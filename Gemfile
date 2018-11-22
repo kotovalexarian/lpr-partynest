@@ -36,10 +36,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pry-rails', '~> 0.3'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution
-  # and get a debugger console.
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-
   # Automatic Ruby code style checking tool.
   # Aims to enforce the community-driven Ruby Style Guide.
   gem 'rubocop', '~> 0.60.0'
@@ -49,6 +45,9 @@ group :development, :test do
 end
 
 group :development do
+  # Call 'byebug' anywhere in the code to stop execution
+  # and get a debugger console.
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Access an interactive console on exception pages or by calling 'console'
   # anywhere in the code.
