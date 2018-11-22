@@ -82,6 +82,8 @@ group :development do
 end
 
 group :test do
+  gem 'database_cleaner', '~> 1.7'
+
   # Code coverage for Ruby 1.9+ with a powerful configuration library
   # and automatic merging of coverage across test suites.
   gem 'simplecov', '~> 0.16', require: false
