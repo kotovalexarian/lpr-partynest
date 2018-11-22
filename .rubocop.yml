@@ -1,0 +1,39 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  DisplayCopNames: true
+
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/EmptyLinesAroundArguments:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
