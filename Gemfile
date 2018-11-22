@@ -58,3 +58,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :test do
+  # Code coverage for Ruby 1.9+ with a powerful configuration library
+  # and automatic merging of coverage across test suites.
+  gem 'simplecov', '~> 0.16', require: false
+end
