@@ -14,34 +14,50 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+# As with config/secrets.yml, you never want to store sensitive information,
+# like your database password, in your source code. If your source code is
+# ever seen by anyone, they now have access to your database.
+#
+# Instead, provide the password as a unix environment variable when you boot
+# the app. For a full rundown on how to provide these environment variables
+# in a production deployment read
+# http://guides.rubyonrails.org/configuring.html#configuring-a-database
+#
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL='postgres://myuser:mypass@localhost/somedatabase'
+#
+# You can use this database configuration with:
+#
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
+
 default: &default
   adapter: postgresql
   encoding: unicode
+
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
 
-development: &development
-  <<: *default
-  database: partynest_development
+  # Connect on a TCP socket. Omitted by default since the client uses a
+  # domain socket that doesn't need configuration. Windows does not have
+  # domain sockets, so uncomment these lines.
+  host: <%= ENV.fetch('POSTGRES_HOST') { 'localhost' } %>
+
+  # The TCP port the server listens on. Defaults to 5432.
+  # If your server runs on a different port number, change accordingly.
+  port: <%= ENV.fetch('POSTGRES_PORT') { 5432 } %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  username: partynest
+  username: <%= ENV.fetch('POSTGRES_USER') { 'partynest' } %>
 
   # The password associated with the postgres role (username).
-  password: password
-
-  # Connect on a TCP socket. Omitted by default since the client uses a
-  # domain socket that doesn't need configuration. Windows does not have
-  # domain sockets, so uncomment these lines.
-  host: localhost
-
-  # The TCP port the server listens on. Defaults to 5432.
-  # If your server runs on a different port number, change accordingly.
-  port: 5432
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password' } %>
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -52,34 +68,17 @@ development: &development
   # Defaults to warning.
   #min_messages: notice
 
+development:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_development' } %>
+
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *development
-  database: partynest_test
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_test' } %>
 
-# As with config/secrets.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
-#
-# Instead, provide the password as a unix environment variable when you boot
-# the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full rundown on how to provide these environment variables in a
-# production deployment.
-#
-# On Heroku and other platform providers, you may have a full connection URL
-# available as an environment variable. For example:
-#
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   <<: *default
-  database: partynest_production
-  username: partynest
-  password: <%= ENV['PARTYNEST_DATABASE_PASSWORD'] %>
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_production' } %>
