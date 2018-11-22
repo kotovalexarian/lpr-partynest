@@ -36,6 +36,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pry-rails', '~> 0.3'
 
 group :development, :test do
+  # Faker is used to easily generate fake data:
+  # names, addresses, phone numbers, etc.
+  gem 'faker', '~> 1.8'
+
   # Automatic Ruby code style checking tool.
   # Aims to enforce the community-driven Ruby Style Guide.
   gem 'rubocop', '~> 0.60.0'
