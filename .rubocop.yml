@@ -19,10 +19,6 @@ Rails:
 Style/AndOr:
   EnforcedStyle: conditionals
 
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'app/**/*'
-
 Style/Documentation:
   Enabled: false
 
