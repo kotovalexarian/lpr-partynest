@@ -30,6 +30,9 @@ gem 'turbolinks', '~> 5'
 # Reduces boot times through caching; required in config/boot.rb.
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Use Pry as your Rails console.
+gem 'pry-rails', '~> 0.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console.
