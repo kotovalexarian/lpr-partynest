@@ -48,6 +48,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pry-rails', '~> 0.3'
 
 group :development, :test do
+  # factory_bot provides a framework and DSL for defining and using factories.
+  gem 'factory_bot_rails', '~> 4.10'
+
   # Faker is used to easily generate fake data:
   # names, addresses, phone numbers, etc.
   gem 'faker', '~> 1.8'
