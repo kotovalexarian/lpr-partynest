@@ -47,6 +47,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Pry as your Rails console.
 gem 'pry-rails', '~> 0.3'
 
+# This gem provides jQuery and the jQuery-ujs driver
+# for your Rails 4+ application.
+gem 'jquery-rails', '~> 4.3'
+
+# The most popular HTML, CSS, and JavaScript framework for developing
+# responsive, mobile first projects on the web.
+gem 'bootstrap', '~> 4.1.3'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
