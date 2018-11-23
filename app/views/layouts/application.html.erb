@@ -15,6 +15,67 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="<%= root_path %>">
+        ЛПР Пермь
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://t.me/lpr_perm">
+              <i class="fab fa-telegram"></i>
+              Канал
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://t.me/lpr_perm_chat">
+              <i class="fab fa-telegram"></i>
+              Чат
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://vk.com/lpr_perm">
+              <i class="fab fa-vk"></i>
+              Паблик
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-link"></i>
+              Другие ссылки
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" target="_blank" href="https://libertarian-party.ru">
+                <i class="fas fa-home"></i>
+                Основной сайт партии
+              </a>
+              <a class="dropdown-item" target="_blank" href="https://libertarian-party.ru/regionalnye-otdeleniya/permskiy-kray">
+                <i class="fas fa-home"></i>
+                Страница отделения на сайте партии
+              </a>
+              <a class="dropdown-item" target="_blank" href="https://libertarian-party.ru/regionalnye-otdeleniya">
+                <i class="fas fa-home"></i>
+                Отделения в других регионах
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" target="_blank" href="https://github.com/lpr-perm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
