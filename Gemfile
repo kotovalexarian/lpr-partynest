@@ -55,6 +55,9 @@ gem 'jquery-rails', '~> 4.3'
 # responsive, mobile first projects on the web.
 gem 'bootstrap', '~> 4.1.3'
 
+# Font-Awesome SASS gem for use in Ruby projects.
+gem 'font-awesome-sass', '~> 5.5.0'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
