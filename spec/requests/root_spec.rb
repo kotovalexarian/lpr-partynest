@@ -10,8 +10,4 @@ RSpec.describe 'GET /' do
   specify do
     expect(response).to have_http_status :ok
   end
-
-  specify do
-    expect(response.body).to match 'Hello, World!'
-  end
 end
