@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_132402) do
     t.string "last_name", null: false
     t.string "middle_name"
     t.date "date_of_birth", null: false
+    t.string "occupation"
   end
 
 end

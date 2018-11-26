@@ -6,5 +6,6 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     middle_name { Faker::Name.first_name }
     date_of_birth { Faker::Date.backward }
+    occupation { Faker::Company.profession }
   end
 end
