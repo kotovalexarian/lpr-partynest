@@ -7,6 +7,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
 gem 'rails', '~> 5.2.1'
 
+# A set of common locale data and translations
+# to internationalize and/or localize your Rails applications.
+gem 'rails-i18n', '~> 5.1'
+
 # Use postgresql as the database for Active Record.
 gem 'pg', '>= 0.18', '< 2.0'
 
