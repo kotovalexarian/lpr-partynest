@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_132402) do
     t.datetime "updated_at", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
-    t.string "middle_name", null: false
+    t.string "middle_name"
   end
 
 end
