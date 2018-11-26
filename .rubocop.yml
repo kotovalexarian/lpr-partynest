@@ -10,8 +10,20 @@ AllCops:
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
+Layout/AlignHash:
+  EnforcedColonStyle: table
+
 Layout/EmptyLinesAroundArguments:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/initializers/*.rb'
+
+Metrics/LineLength:
+  Exclude:
+    - 'config/initializers/simple_form.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
 
 Rails:
   Enabled: true

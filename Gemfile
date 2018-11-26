@@ -58,6 +58,10 @@ gem 'bootstrap', '~> 4.1.3'
 # Font-Awesome SASS gem for use in Ruby projects.
 gem 'font-awesome-sass', '~> 5.5.0'
 
+# Forms made easy for Rails!
+# It's tied to a simple DSL, with no opinion on markup.
+gem 'simple_form', '~> 4.1'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
