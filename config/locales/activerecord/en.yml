@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      membership_application:
+        one: Membership application
+        other: Membership applications
+    attributes:
+      membership_application:
+        first_name: First name
+        last_name: Last name
+        middle_name: Middle name
