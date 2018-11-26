@@ -6,7 +6,7 @@ class CreateMembershipApplications < ActiveRecord::Migration[5.2]
       t.timestamps null: false
 
       t.string :first_name, null: false
-      t.string :last_name,  null: false
+      t.string :last_name, null: false
       t.string :middle_name
     end
   end
