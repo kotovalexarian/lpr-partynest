@@ -2,5 +2,7 @@
 
 class MembershipApplicationsController < ApplicationController
   # GET /membership_applications/new
-  def new; end
+  def new
+    @membership_application = MembershipApplication.new
+  end
 end

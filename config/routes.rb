@@ -3,5 +3,5 @@
 Rails.application.routes.draw do
   root to: 'home#show'
 
-  resources :membership_applications, only: :new
+  resources :membership_applications, only: %i[new create]
 end
