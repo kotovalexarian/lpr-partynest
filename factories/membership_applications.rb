@@ -7,5 +7,6 @@ FactoryBot.define do
     middle_name { Faker::Name.first_name }
     date_of_birth { Faker::Date.backward }
     occupation { Faker::Company.profession }
+    comment { Faker::Lorem.paragraph }
   end
 end

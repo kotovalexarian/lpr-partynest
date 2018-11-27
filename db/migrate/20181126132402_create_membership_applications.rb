@@ -10,6 +10,7 @@ class CreateMembershipApplications < ActiveRecord::Migration[5.2]
       t.string :middle_name
       t.date :date_of_birth, null: false
       t.string :occupation
+      t.text :comment
     end
   end
 end
