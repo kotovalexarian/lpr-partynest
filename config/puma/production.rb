@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-root_dir = File.expand_path('..', __dir__).freeze
+root_dir = File.expand_path('../..', __dir__).freeze
 
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
@@ -16,15 +16,6 @@ threads threads_count, threads_count
 #
 bind "unix://#{File.join(root_dir, 'tmp', 'sockets', 'puma.sock')}"
 
-# Specifies the `port` that Puma will listen on to receive requests;
-# default is 3000.
-#
-port ENV.fetch('PORT') { 3000 }
-
-# Specifies the `environment` that Puma will run in.
-#
-environment ENV.fetch('RAILS_ENV') { 'development' }
-
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
@@ -39,6 +30,3 @@ environment ENV.fetch('RAILS_ENV') { 'development' }
 # process behavior so workers use less memory.
 #
 # preload_app!
-
-# Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart
