@@ -87,6 +87,8 @@ group :development do
   # and get a debugger console.
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
+  # The Listen gem listens to file modifications
+  # and notifies you about the changes. Works everywhere!
   gem 'listen', '>= 3.0.5', '< 3.2'
 
   # Access an interactive console on exception pages or by calling 'console'
@@ -97,6 +99,7 @@ group :development do
   # in the background. Read more: https://github.com/rails/spring.
   gem 'spring'
 
+  # Makes spring watch files using the listen gem.
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
@@ -104,6 +107,8 @@ group :test do
   # A Ruby implementation of the Coveralls API.
   gem 'coveralls', require: false
 
+  # Strategies for cleaning databases.
+  # Can be used to ensure a clean state for testing.
   gem 'database_cleaner', '~> 1.7'
 
   # Code coverage for Ruby 1.9+ with a powerful configuration library
