@@ -83,6 +83,13 @@ group :development, :test do
 end
 
 group :development do
+  # Capistrano is a utility and framework for executing commands in parallel
+  # on multiple remote machines, via SSH.
+  gem 'capistrano', '~> 3.11', require: false
+
+  # Rails specific Capistrano tasks.
+  gem 'capistrano-rails', '~> 1.4', require: false
+
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console.
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
