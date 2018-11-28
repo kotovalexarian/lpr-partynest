@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+root_dir = File.expand_path('..', __dir__).freeze
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -8,6 +10,11 @@
 #
 threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
 threads threads_count, threads_count
+
+# Bind the server to "url". "tcp://", "unix://" and "ssl://" are the only
+# accepted protocols.
+#
+bind "unix://#{File.join(root_dir, 'tmp', 'sockets', 'puma.sock')}"
 
 # Specifies the `port` that Puma will listen on to receive requests;
 # default is 3000.
