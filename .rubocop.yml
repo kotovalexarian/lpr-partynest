@@ -19,6 +19,7 @@ Layout/EmptyLinesAroundArguments:
 Metrics/BlockLength:
   Exclude:
     - 'config/initializers/*.rb'
+    - 'spec/**/*.rb'
 
 Metrics/LineLength:
   Exclude:
