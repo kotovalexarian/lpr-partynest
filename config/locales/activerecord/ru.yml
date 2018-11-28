@@ -2,8 +2,8 @@ ru:
   activerecord:
     models:
       membership_application:
-        one: Заявление о вступлении
-        other: Заявления о вступлении
+        one: Заявление на вступление
+        other: Заявления на вступление
     attributes:
       membership_application:
         first_name: Имя
