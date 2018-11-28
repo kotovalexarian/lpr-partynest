@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2018_11_26_132402) do
     t.date "date_of_birth", null: false
     t.string "occupation"
     t.text "comment"
+    t.string "email", null: false
+    t.string "phone_number", null: false
+    t.string "telegram_username"
   end
 
 end

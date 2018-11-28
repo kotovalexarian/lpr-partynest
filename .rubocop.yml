@@ -25,6 +25,10 @@ Metrics/LineLength:
     - 'config/initializers/simple_form.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+
 Rails:
   Enabled: true
 

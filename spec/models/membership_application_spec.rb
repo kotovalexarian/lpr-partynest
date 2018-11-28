@@ -11,4 +11,7 @@ RSpec.describe MembershipApplication, type: :model do
   it { is_expected.to validate_presence_of :date_of_birth }
   it { is_expected.not_to validate_presence_of :occupation }
   it { is_expected.not_to validate_presence_of :comment }
+  it { is_expected.to validate_presence_of :email }
+  it { is_expected.to validate_presence_of :phone_number }
+  it { is_expected.not_to validate_presence_of :telegram_username }
 end
