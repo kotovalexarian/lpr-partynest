@@ -10,6 +10,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
     phone_number { Faker::PhoneNumber.phone_number }
     telegram_username { Faker::Internet.username }
+    organization_membership { Faker::Lorem.paragraph }
     comment { Faker::Lorem.paragraph }
   end
 end

@@ -13,6 +13,7 @@ class CreateMembershipApplications < ActiveRecord::Migration[5.2]
       t.string :email, null: false
       t.string :phone_number, null: false
       t.string :telegram_username
+      t.text :organization_membership
       t.text :comment
     end
   end

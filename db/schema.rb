@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_132402) do
     t.string "email", null: false
     t.string "phone_number", null: false
     t.string "telegram_username"
+    t.text "organization_membership"
     t.text "comment"
   end
 
