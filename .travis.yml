@@ -1,1 +1,15 @@
 language: ruby
+
+services:
+  - postgresql
+
+env:
+  global:
+    - POSTGRES_HOST=localhost
+    - POSTGRES_PORT=5432
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=''
+    - POSTGRES_DB=partynest_test
+
+before_script:
+  - psql -U postgres -c "CREATE DATABASE partynest_test;"
