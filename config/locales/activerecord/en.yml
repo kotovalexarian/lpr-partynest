@@ -11,7 +11,7 @@ en:
         middle_name: Middle name
         date_of_birth: Date of birth
         occupation: Occupation
-        comment: Comment
         email: Email
         phone_number: Phone number
         telegram_username: Telegram username
+        comment: Comment

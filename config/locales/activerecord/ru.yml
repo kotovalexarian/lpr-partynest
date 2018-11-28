@@ -11,7 +11,7 @@ ru:
         middle_name: Отчество
         date_of_birth: Дата рождения
         occupation: Профессия или род деятельности
-        comment: Комментарий
         email: Адрес электронной почты
         phone_number: Телефонный номер
         telegram_username: Имя пользователя в Telegram
+        comment: Комментарий

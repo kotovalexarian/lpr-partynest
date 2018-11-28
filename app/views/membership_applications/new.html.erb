@@ -6,10 +6,10 @@
     <%= f.input :date_of_birth, start_year: Date.today.year - 150,
                                 end_year: Date.today.year %>
     <%= f.input :occupation %>
-    <%= f.input :comment %>
     <%= f.input :email %>
     <%= f.input :phone_number %>
     <%= f.input :telegram_username %>
+    <%= f.input :comment %>
 
     <%= f.button :submit %>
   <% end %>
