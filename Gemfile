@@ -101,6 +101,9 @@ group :development do
 end
 
 group :test do
+  # A Ruby implementation of the Coveralls API.
+  gem 'coveralls', require: false
+
   gem 'database_cleaner', '~> 1.7'
 
   # Code coverage for Ruby 1.9+ with a powerful configuration library
