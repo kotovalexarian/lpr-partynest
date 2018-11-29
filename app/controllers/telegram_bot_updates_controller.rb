@@ -28,13 +28,15 @@ private
   end
 
   def handle_user(user)
-    TelegramUser.create!(
-      remote_telegram_id: user[:id],
-      is_bot:             user[:is_bot],
-      first_name:         user[:first_name],
-      last_name:          user[:last_name],
-      username:           user[:username],
-      language_code:      user[:language_code],
-    )
+    telegram_user =
+      TelegramUser.find_or_initialize_by remote_telegram_id: user[:id]
+
+    telegram_user.is_bot        = user[:is_bot]
+    telegram_user.first_name    = user[:first_name]
+    telegram_user.last_name     = user[:last_name]
+    telegram_user.username      = user[:username]
+    telegram_user.language_code = user[:language_code]
+
+    telegram_user.save!
   end
 end
