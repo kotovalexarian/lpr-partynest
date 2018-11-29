@@ -4,4 +4,5 @@
 
 Raven.configure do |config|
   config.dsn = Rails.application.credentials.raven_dsn
+  config.sanitize_fields = Partynest::Application::FILTER_PARAMS.map(&:to_s)
 end
