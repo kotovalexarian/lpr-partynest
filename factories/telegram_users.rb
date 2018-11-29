@@ -7,6 +7,6 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     username { Faker::Internet.username }
-    language_code { I18n.available_locales.sample }
+    language_code { I18n.available_locales.sample.to_s }
   end
 end
