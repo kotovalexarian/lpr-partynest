@@ -8,8 +8,6 @@ class TelegramBotUpdatesController < ApplicationController
   def create
     logger.info params.inspect
 
-    handle_message params[:message] if params[:message]
-
     render status: :no_content, json: {}
   end
 
@@ -21,22 +19,5 @@ private
 
   def verify_telegram_bot_secret
     raise NotAuthorizedError unless params[:secret] == @telegram_bot.secret
-  end
-
-  def handle_message(message)
-    handle_user message[:from] if message[:from]
-  end
-
-  def handle_user(user)
-    telegram_user =
-      TelegramUser.find_or_initialize_by remote_telegram_id: user[:id]
-
-    telegram_user.is_bot        = user[:is_bot]
-    telegram_user.first_name    = user[:first_name]
-    telegram_user.last_name     = user[:last_name]
-    telegram_user.username      = user[:username]
-    telegram_user.language_code = user[:language_code]
-
-    telegram_user.save!
   end
 end
