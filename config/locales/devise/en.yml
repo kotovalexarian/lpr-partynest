@@ -29,7 +29,7 @@ en:
       user:
         one: User
         other: Users
-  devise:
+  users:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
       new:

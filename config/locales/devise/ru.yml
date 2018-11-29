@@ -27,7 +27,7 @@ ru:
         updated_at: "Дата обновления"
     models:
       user: "Пользователь"
-  devise:
+  users:
     confirmations:
       confirmed: "Ваш адрес эл. почты успешно подтвержден."
       new:
