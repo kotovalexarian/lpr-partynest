@@ -3,5 +3,5 @@
 # Be sure to restart your server when you modify this file.
 
 Raven.configure do |config|
-  config.dsn = Rails.application.secrets.raven_dsn
+  config.dsn = Rails.application.credentials.raven_dsn
 end
