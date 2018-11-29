@@ -37,7 +37,7 @@ gem 'turbolinks', '~> 5'
 # gem 'redis', '~> 4.0'
 
 # Use ActiveModel has_secure_password.
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1'
 
 # Use ActiveStorage variant.
 # gem 'mini_magick', '~> 4.8'
@@ -73,6 +73,12 @@ gem 'rest-client', '~> 2.0'
 
 # A gem that provides a client interface for the Sentry error logger.
 gem 'sentry-raven'
+
+# Flexible authentication solution for Rails with Warden.
+gem 'devise', '~> 4.5'
+
+# Translations for the devise gem.
+gem 'devise-i18n', '~> 1.7'
 
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
