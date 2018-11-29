@@ -20,4 +20,6 @@ Rails.application.routes.draw do
       to: 'home#post2'
 
   resources :membership_applications, only: %i[new create]
+
+  resources :telegram_bot_updates, only: :create
 end
