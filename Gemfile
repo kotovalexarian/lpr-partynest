@@ -66,6 +66,11 @@ gem 'font-awesome-sass', '~> 5.5.0'
 # It's tied to a simple DSL, with no opinion on markup.
 gem 'simple_form', '~> 4.1'
 
+# A simple HTTP and REST client for Ruby,
+# inspired by the Sinatra microframework style of specifying actions:
+# get, put, post, delete.
+gem 'rest-client', '~> 2.0'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
