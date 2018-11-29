@@ -13,4 +13,6 @@ class User < ApplicationRecord
     :trackable,
     :validatable,
   )
+
+  rolify role_join_table_name: 'user_roles'
 end

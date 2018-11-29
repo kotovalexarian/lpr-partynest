@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  subject { create :user }
+RSpec.describe Role, type: :model do
+  subject { create :role }
 
   pending "add some examples to (or delete) #{__FILE__}"
 end
