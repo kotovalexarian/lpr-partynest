@@ -71,6 +71,9 @@ gem 'simple_form', '~> 4.1'
 # get, put, post, delete.
 gem 'rest-client', '~> 2.0'
 
+# A gem that provides a client interface for the Sentry error logger.
+gem 'sentry-raven'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
