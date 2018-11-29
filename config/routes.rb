@@ -21,7 +21,10 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    registrations: 'users/registrations',
+  }
 
   resources :membership_applications, only: %i[new create]
 

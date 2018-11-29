@@ -40,6 +40,10 @@ Rails:
 Style/AndOr:
   EnforcedStyle: conditionals
 
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/**/*.rb'
+
 Style/Documentation:
   Enabled: false
 
