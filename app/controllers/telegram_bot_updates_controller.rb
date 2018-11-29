@@ -4,8 +4,6 @@ class TelegramBotUpdatesController < ApplicationController
   before_action :set_telegram_bot
   before_action :verify_telegram_bot_secret
 
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
-
   # POST /telegram_bot_updates
   def create
     logger.info params.inspect
@@ -20,12 +18,6 @@ private
   end
 
   def verify_telegram_bot_secret
-    return if params[:secret] == @telegram_bot.secret
-
-    render status: :unauthorized, json: {}
-  end
-
-  def not_found
-    render status: :not_found, json: {}
+    raise NotAuthorizedError unless params[:secret] == @telegram_bot.secret
   end
 end
