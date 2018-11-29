@@ -56,5 +56,27 @@
         </div>
       </li>
     </ul>
+
+    <% if user_signed_in? %>
+      <span class="navbar-text mr-2">
+        <%= current_user.email %>
+      </span>
+
+      <%= link_to translate('users.shared.links.sign_out'),
+                  destroy_user_session_path,
+                  method: :delete,
+                  role: :button,
+                  class: 'btn btn-light' %>
+    <% else %>
+      <%= link_to translate('users.shared.links.sign_in'),
+                  new_user_session_path,
+                  role: :button,
+                  class: 'btn btn-light mr-2' %>
+
+      <%= link_to translate('users.shared.links.sign_up'),
+                  new_user_registration_path,
+                  role: :button,
+                  class: 'btn btn-primary' %>
+    <% end %>
   </div>
 </nav>
