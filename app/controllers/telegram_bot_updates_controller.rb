@@ -23,25 +23,21 @@ private
     raise NotAuthorizedError unless params[:secret] == @telegram_bot.secret
   end
 
-  def handle_message(message) # rubocop:disable AbcSize, MethodLength
+  # rubocop:disable AbcSize, CyclomaticComplexity, PerceivedComplexity
+  def handle_message(message)
     handle_user message[:from] if message[:from]
 
     return if message[:chat].nil?
 
-    RestClient.post(
-      "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
-      chat_id: message[:chat][:id],
-      text:    "Message received: #{message[:text]}",
-    )
-
     (message[:entities] || []).each do |message_entity|
-      RestClient.post(
-        "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
-        chat_id: message[:chat][:id],
-        text:    "Entity: #{message_entity.inspect}",
-      )
+      next unless message_entity[:type] == 'bot_command' &&
+                  message_entity[:offset].zero? &&
+                  message_entity[:length] == message[:text].length
+
+      handle_command message[:chat][:id], message[:text] if message[:chat]
     end
   end
+  # rubocop:enable AbcSize, CyclomaticComplexity, PerceivedComplexity
 
   def handle_user(user)
     telegram_user =
@@ -54,5 +50,13 @@ private
     telegram_user.language_code = user[:language_code]
 
     telegram_user.save!
+  end
+
+  def handle_command(chat_id, command)
+    RestClient.post(
+      "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
+      chat_id: chat_id,
+      text:    "Command: #{command}",
+    )
   end
 end
