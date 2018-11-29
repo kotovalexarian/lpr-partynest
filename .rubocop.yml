@@ -16,6 +16,10 @@ Layout/AlignHash:
 Layout/EmptyLinesAroundArguments:
   Enabled: false
 
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'config/initializers/*.rb'
