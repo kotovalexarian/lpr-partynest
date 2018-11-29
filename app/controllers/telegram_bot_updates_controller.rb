@@ -23,8 +23,24 @@ private
     raise NotAuthorizedError unless params[:secret] == @telegram_bot.secret
   end
 
-  def handle_message(message)
+  def handle_message(message) # rubocop:disable AbcSize, MethodLength
     handle_user message[:from] if message[:from]
+
+    return if message[:chat].nil?
+
+    RestClient.post(
+      "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
+      chat_id: message[:chat][:id],
+      text:    "Message received: #{message[:text]}",
+    )
+
+    (message[:entities] || []).each do |message_entity|
+      RestClient.post(
+        "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
+        chat_id: message[:chat][:id],
+        text:    "Entity: #{message_entity.inspect}",
+      )
+    end
   end
 
   def handle_user(user)
