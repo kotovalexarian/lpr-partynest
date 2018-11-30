@@ -32,4 +32,8 @@ FactoryBot.define do
       )
     end
   end
+
+  factory :confirmed_passport, parent: :passport do
+    confirmed { true }
+  end
 end

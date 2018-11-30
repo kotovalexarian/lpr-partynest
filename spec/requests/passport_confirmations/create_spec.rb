@@ -112,4 +112,39 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       end
     end
   end
+
+  context 'when passport is already confirmed' do
+    let!(:passport) { create :confirmed_passport }
+
+    let(:current_user) { create :user }
+
+    before do
+      sign_in current_user
+    end
+
+    specify do
+      expect { make_request }.to \
+        change(PassportConfirmation, :count).from(0).to(1)
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change { passport.reload.confirmed? }.from(true)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
+      end
+
+      specify do
+        expect(PassportConfirmation.last).to have_attributes(
+          passport: passport,
+          user:     current_user,
+        )
+      end
+    end
+  end
 end
