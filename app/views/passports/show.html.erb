@@ -7,6 +7,30 @@
 
   <hr/>
 
+  <% if user_signed_in? %>
+    <% if @passport.passport_confirmations.where(user: current_user).exists? %>
+      <div role="alert" class="alert alert-success">
+        <%= translate '.instruction_confirmed' %>
+      </div>
+
+      <button class="btn btn-primary" disabled>
+        <%= translate '.confirm' %>
+      </button>
+    <% else %>
+      <div role="alert" class="alert alert-warning">
+        <%= translate '.instruction_unconfirmed' %>
+      </div>
+
+      <%= link_to translate('.confirm'),
+                  passport_passport_confirmations_path(@passport),
+                  method: :post,
+                  role: :button,
+                  class: 'btn btn-primary' %>
+    <% end %>
+
+    <hr/>
+  <% end %>
+
   <div class="row">
     <div class="col-md-6">
       <dl class="row">
@@ -117,28 +141,4 @@
       <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
     </div>
   </div>
-
-  <% if user_signed_in? %>
-    <hr/>
-
-    <% if @passport.passport_confirmations.where(user: current_user).exists? %>
-      <div role="alert" class="alert alert-success">
-        <%= translate '.instruction_confirmed' %>
-      </div>
-
-      <button class="btn btn-primary" disabled>
-        <%= translate '.confirm' %>
-      </button>
-    <% else %>
-      <div role="alert" class="alert alert-warning">
-        <%= translate '.instruction_unconfirmed' %>
-      </div>
-
-      <%= link_to translate('.confirm'),
-                  passport_passport_confirmations_path(@passport),
-                  method: :post,
-                  role: :button,
-                  class: 'btn btn-primary' %>
-    <% end %>
-  <% end %>
 </div>
