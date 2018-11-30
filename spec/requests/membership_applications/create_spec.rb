@@ -18,9 +18,7 @@ RSpec.describe 'POST /membership_applications' do
   end
 
   context 'after request' do
-    before do
-      make_request
-    end
+    before { make_request }
 
     specify do
       expect(MembershipApplication.last).to \
