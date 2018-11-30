@@ -45,8 +45,8 @@
           </td>
           <td><%= localize passport.date_of_birth %></td>
           <td><%= truncate passport.place_of_birth %></td>
-          <td><%= passport.series.to_s.rjust(4, '0') %></td>
-          <td><%= passport.number.to_s.rjust(6, '0') %></td>
+          <td><%= passport_series passport.series %></td>
+          <td><%= passport_number passport.number %></td>
         </tr>
       <% end %>
     </tbody>
