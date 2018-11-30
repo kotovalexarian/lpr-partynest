@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Passport < ApplicationRecord
+  REQUIRED_CONFIRMATIONS = 3
+
   enum sex: %i[male female]
 
   has_one_attached :image
@@ -24,5 +26,11 @@ class Passport < ApplicationRecord
 
   before_validation do
     self.patronymic = nil if patronymic.blank?
+  end
+
+  before_save do
+    next unless passport_confirmations.length >= REQUIRED_CONFIRMATIONS
+
+    self.confirmed = true
   end
 end

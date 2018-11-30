@@ -7,14 +7,9 @@ class PassportConfirmationsController < ApplicationController
 
   # POST /passports/:passport_id/passport_confirmations
   def create
-    @passport_confirmation = PassportConfirmation.new(
-      passport: @passport,
-      user:     current_user,
-    )
+    authorize @passport.passport_confirmations.build user: current_user
 
-    authorize @passport_confirmation
-
-    return redirect_to @passport unless @passport_confirmation.save
+    return redirect_to @passport unless @passport.save
 
     redirect_to @passport
   end
