@@ -9,7 +9,9 @@
     </div>
 
     <div class="col-md-6">
-      <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
+      <% if @passport.image.attached? %>
+        <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
+      <% end %>
     </div>
   </div>
 </div>
