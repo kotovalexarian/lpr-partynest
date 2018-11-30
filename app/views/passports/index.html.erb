@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= Passport.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :surname %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :given_name %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :patronymic %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :sex %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :date_of_birth %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :place_of_birth %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :series %>
+        </th>
+        <th scope="col">
+          <%= Passport.human_attribute_name :number %>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @passports.each do |passport| %>
+        <tr>
+          <td scope="row"><%= passport.id %></td>
+          <td><%= truncate passport.surname %></td>
+          <td><%= truncate passport.given_name %></td>
+          <td><%= truncate passport.patronymic %></td>
+          <td>
+            <%= Passport.human_attribute_name \
+                "sex.#{Passport.sexes.key(passport.sex)}" %>
+          </td>
+          <td><%= localize passport.date_of_birth %></td>
+          <td><%= truncate passport.place_of_birth %></td>
+          <td><%= passport.series.to_s.rjust(4, '0') %></td>
+          <td><%= passport.number.to_s.rjust(6, '0') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

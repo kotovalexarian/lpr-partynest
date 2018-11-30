@@ -12,6 +12,7 @@ ru:
         other: Пользователи
     attributes:
       membership_application:
+        id: ID
         first_name: Имя
         last_name: Фамилия
         middle_name: Отчество
@@ -23,6 +24,7 @@ ru:
         organization_membership: Членство в других общественных организациях
         comment: Комментарий
       passport:
+        id: ID
         surname: Фамилия
         given_name: Имя
         patronymic: Отчество
@@ -38,6 +40,7 @@ ru:
         male: Мужской
         female: Женский
       user:
+        id: ID
         confirmation_sent_at: Дата отправки подтверждения
         confirmation_token: Токен подтверждения
         confirmed_at: Дата подтверждения
