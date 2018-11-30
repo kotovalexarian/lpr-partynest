@@ -5,8 +5,8 @@
     <%= f.input :patronymic %>
     <%= f.input :sex,
                 as: :radio_buttons,
-                collection: Passport.sexes.map { |k, v|
-                  [Passport.human_attribute_name("sex.#{k}"), v]
+                collection: Passport.sexes.keys.map { |sex|
+                  [Passport.human_attribute_name("sex.#{sex}"), sex]
                 } %>
     <%= f.input :date_of_birth, start_year: Date.today.year - 150,
                                 end_year: Date.today.year %>
