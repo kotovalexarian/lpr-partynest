@@ -28,5 +28,7 @@ Rails.application.routes.draw do
 
   resources :membership_applications, only: %i[new create]
 
+  resources :passports, only: :index
+
   resources :telegram_bot_updates, only: :create
 end
