@@ -149,4 +149,8 @@ group :test do
 
   # Cucumber Generator and Runtime for Rails.
   gem 'cucumber-rails', '~> 1.6', require: false
+
+  # When a Cucumber step fails, it is useful to create a screenshot image
+  # and HTML file of the current page.
+  gem 'capybara-screenshot', '~> 1.0'
 end
