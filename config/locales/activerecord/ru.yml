@@ -4,6 +4,9 @@ ru:
       membership_application:
         one: Заявление на вступление
         other: Заявления на вступление
+      passport:
+        one: Паспорт
+        other: Паспорта
       user:
         one: Пользователь
         other: Пользователи
@@ -19,6 +22,21 @@ ru:
         telegram_username: Имя пользователя в Telegram
         organization_membership: Членство в других общественных организациях
         comment: Комментарий
+      passport:
+        surname: Фамилия
+        given_name: Имя
+        patronymic: Отчество
+        sex: Пол
+        date_of_birth: Дата рождения
+        place_of_birth: Место рождения
+        series: Серия
+        number: Номер
+        issued_by: Кем выдан
+        unit_code: Код подразделения
+        date_of_issue: Дата выдачи
+      passport/sex:
+        male: Мужской
+        female: Женский
       user:
         confirmation_sent_at: Дата отправки подтверждения
         confirmation_token: Токен подтверждения

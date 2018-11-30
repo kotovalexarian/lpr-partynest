@@ -4,6 +4,9 @@ en:
       membership_application:
         one: Membership application
         other: Membership applications
+      passport:
+        one: Passport
+        other: Passports
       user:
         one: User
         other: Users
@@ -19,6 +22,21 @@ en:
         telegram_username: Telegram username
         organization_membership: Membership in other social organizations
         comment: Comment
+      passport:
+        surname: Surname
+        given_name: Given names
+        patronymic: Patronymic
+        sex: Sex
+        date_of_birth: Date of birth
+        place_of_birth: Place of birth
+        series: Series
+        number: Number
+        issued_by: Issued by
+        unit_code: Unit code
+        date_of_issue: Date of issue
+      passport/sex:
+        male: Male
+        female: Female
       user:
         confirmation_sent_at: Confirmation sent at
         confirmation_token: Confirmation token
