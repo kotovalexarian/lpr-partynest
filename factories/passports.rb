@@ -5,7 +5,7 @@ FactoryBot.define do
     surname { Faker::Name.last_name }
     given_name { Faker::Name.first_name }
     patronymic { Faker::Name.first_name }
-    sex { Passport.sexes.keys.sample }
+    sex { Passport.sexes.values.sample }
     date_of_birth { Faker::Date.backward }
     place_of_birth { Faker::Address.city }
     series { rand 0..9999 }
