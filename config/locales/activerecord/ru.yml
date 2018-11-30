@@ -25,6 +25,8 @@ ru:
         comment: Комментарий
       passport:
         id: ID
+        confirmed: Подтверждён?
+        passport_confirmations_count: Количество подтверждений
         image: Изображение
         surname: Фамилия
         given_name: Имя
@@ -37,6 +39,9 @@ ru:
         issued_by: Кем выдан
         unit_code: Код подразделения
         date_of_issue: Дата выдачи
+      passport/confirmed:
+        'true': Подтверждён
+        'false': Не подтверждён
       passport/sex:
         male: Мужской
         female: Женский

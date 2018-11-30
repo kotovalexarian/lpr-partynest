@@ -11,6 +11,30 @@
     <div class="col-md-6">
       <dl class="row">
         <dt class="col-lg-4">
+          <%= Passport.human_attribute_name :confirmed %>
+        </dt>
+        <dd class="col-lg-8">
+          <% if @passport.confirmed? %>
+            <span class="badge badge-success">
+              <%= Passport.human_attribute_name 'confirmed.true' %>
+            </span>
+          <% else %>
+            <span class="badge badge-warning">
+              <%= Passport.human_attribute_name 'confirmed.false' %>
+            </span>
+          <% end %>
+        </dt>
+
+        <dt class="col-lg-4">
+          <%= Passport.human_attribute_name :passport_confirmations_count %>
+        </dt>
+        <dd class="col-lg-8">
+          <%= @passport.passport_confirmations.count %>
+          /
+          <%= Passport::REQUIRED_CONFIRMATIONS %>
+        </dd>
+
+        <dt class="col-lg-4">
           <%= Passport.human_attribute_name :surname %>
         </dt>
         <dd class="col-lg-8">
@@ -87,6 +111,20 @@
           <%= localize @passport.date_of_issue %>
         </dd>
       </dl>
+
+      <% if user_signed_in? %>
+        <% if @passport.passport_confirmations.where(user: current_user).exists? %>
+          <button class="btn btn-primary" disabled>
+            Confirm
+          </button>
+        <% else %>
+          <%= link_to 'Confirm',
+                      passport_passport_confirmations_path(@passport),
+                      method: :post,
+                      role: :button,
+                      class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
     </div>
 
     <div class="col-md-6">

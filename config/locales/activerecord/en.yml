@@ -25,6 +25,8 @@ en:
         comment: Comment
       passport:
         id: ID
+        confirmed: Confirmed?
+        passport_confirmations_count: Confirmations count
         image: Image
         surname: Surname
         given_name: Given names
@@ -37,6 +39,9 @@ en:
         issued_by: Issued by
         unit_code: Unit code
         date_of_issue: Date of issue
+      passport/confirmed:
+        'true': Confirmed
+        'false': Unconfirmed
       passport/sex:
         male: Male
         female: Female
