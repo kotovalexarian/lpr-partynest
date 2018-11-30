@@ -115,10 +115,10 @@
       <% if user_signed_in? %>
         <% if @passport.passport_confirmations.where(user: current_user).exists? %>
           <button class="btn btn-primary" disabled>
-            Confirm
+            <%= translate '.confirm' %>
           </button>
         <% else %>
-          <%= link_to 'Confirm',
+          <%= link_to translate('.confirm'),
                       passport_passport_confirmations_path(@passport),
                       method: :post,
                       role: :button,
