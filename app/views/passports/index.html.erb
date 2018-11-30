@@ -20,6 +20,7 @@
         <th scope="col" class="d-none d-lg-table-cell">
           <%= Passport.human_attribute_name :place_of_birth %>
         </th>
+        <th scope="col"></th>
       </tr>
     </thead>
 
@@ -35,6 +36,14 @@
           </td>
           <td class="d-none d-lg-table-cell">
             <%= truncate passport.place_of_birth, length: 15 %>
+          </td>
+          <td>
+            <% if policy(passport).show? %>
+              <%= link_to passport_path(passport),
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       <% end %>
