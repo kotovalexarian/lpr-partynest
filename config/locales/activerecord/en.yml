@@ -25,6 +25,7 @@ en:
         comment: Comment
       passport:
         id: ID
+        image: Image
         surname: Surname
         given_name: Given names
         patronymic: Patronymic

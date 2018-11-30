@@ -9,6 +9,10 @@ class PassportPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
   def permitted_attributes_for_create
     %i[
       surname given_name patronymic sex date_of_birth place_of_birth series

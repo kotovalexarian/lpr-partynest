@@ -11,6 +11,11 @@
     <div class="col-md-6">
       <% if @passport.image.attached? %>
         <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
+      <% elsif policy(@passport).update? %>
+        <%= simple_form_for @passport do |f| %>
+          <%= f.input :image %>
+          <%= f.button :submit %>
+        <% end %>
       <% end %>
     </div>
   </div>

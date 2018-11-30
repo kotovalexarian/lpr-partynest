@@ -25,6 +25,7 @@ ru:
         comment: Комментарий
       passport:
         id: ID
+        image: Изображение
         surname: Фамилия
         given_name: Имя
         patronymic: Отчество

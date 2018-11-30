@@ -6,9 +6,7 @@ FactoryBot.define do
       image_filename { image_fixture }
       image_fixture { "passport_image_#{rand(1..4)}.jpg" }
 
-      image_path do
-        File.join File.expand_path('..', __dir__), 'fixtures', image_fixture
-      end
+      image_path { Rails.root.join 'fixtures', image_fixture }
     end
 
     surname { Faker::Name.last_name }
