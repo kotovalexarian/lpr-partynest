@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Passport < ApplicationRecord
-  enum sexes: %i[male female]
+  enum sex: %i[male female]
 
   validates :surname, presence: true
   validates :given_name, presence: true
