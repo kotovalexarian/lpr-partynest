@@ -16,7 +16,8 @@
 
   <body>
     <%= render 'navbar' %>
-    <div class="my-5">
+    <%= yield :top %>
+    <div class="my-4">
       <%= yield %>
     </div>
   </body>

@@ -1,20 +1,22 @@
-<div class="jumbotron jumbotron-fluid text-center">
-  <div class="container">
-    <h1>
-      <%= translate '.primary_title' %>
-      <br/>
-      <small class="text-muted">
-        <%= translate '.secondary_title' %>
-      </small>
-    </h1>
-    <p class="lead">
-      <%= translate '.description' %>
-    </p>
-    <a role="button" class="btn btn-primary btn-lg" href="<%= new_membership_application_path %>">
-      <%= translate '.join' %>
-    </a>
+<% content_for :top do %>
+  <div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+      <h1>
+        <%= translate '.primary_title' %>
+        <br/>
+        <small class="text-muted">
+          <%= translate '.secondary_title' %>
+        </small>
+      </h1>
+      <p class="lead">
+        <%= translate '.description' %>
+      </p>
+      <a role="button" class="btn btn-primary btn-lg" href="<%= new_membership_application_path %>">
+        <%= translate '.join' %>
+      </a>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="container">
   <div class="home">
