@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PassportsController < ApplicationController
-  before_action :set_passport, except: :index
+  before_action :set_passport, except: %i[index new create]
 
   # GET /passports
   def index
@@ -10,6 +10,12 @@ class PassportsController < ApplicationController
 
   # GET /passports/:id
   def show
+    authorize @passport
+  end
+
+  # GET /passports/new
+  def new
+    @passport = Passport.new
     authorize @passport
   end
 
