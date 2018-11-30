@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PassportsController < ApplicationController
-  before_action :set_passport, except: %i[index new create]
+  before_action :set_passport, except: %i[index new]
 
   # GET /passports
   def index

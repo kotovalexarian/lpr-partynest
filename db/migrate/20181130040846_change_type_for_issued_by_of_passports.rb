@@ -2,7 +2,9 @@
 
 class ChangeTypeForIssuedByOfPassports < ActiveRecord::Migration[5.2]
   def change
-    remove_column :passports, :issued_by, :string, null: false
-    add_column    :passports, :issued_by, :text,   null: false
+    change_table :passports, bulk: true do |t|
+      t.remove :issued_by # rubocop:disable Rails/ReversibleMigration
+      t.text :issued_by, null: false
+    end
   end
 end
