@@ -7,6 +7,9 @@ en:
       passport:
         one: Passport
         other: Passports
+      state:
+        one: State
+        other: States
       user:
         one: User
         other: Users
@@ -39,6 +42,9 @@ en:
         issued_by: Issued by
         unit_code: Unit code
         date_of_issue: Date of issue
+      state:
+        id: ID
+        name: Name
       passport/confirmed:
         'true': Confirmed
         'false': Unconfirmed

@@ -7,6 +7,9 @@ ru:
       passport:
         one: Паспорт
         other: Паспорта
+      state:
+        one: Субъект РФ
+        other: Субъекты РФ
       user:
         one: Пользователь
         other: Пользователи
@@ -39,6 +42,9 @@ ru:
         issued_by: Кем выдан
         unit_code: Код подразделения
         date_of_issue: Дата выдачи
+      state:
+        id: ID
+        name: Название
       passport/confirmed:
         'true': Подтверждён
         'false': Не подтверждён
