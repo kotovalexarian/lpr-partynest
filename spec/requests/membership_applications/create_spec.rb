@@ -21,6 +21,10 @@ RSpec.describe 'POST /membership_applications' do
     before { make_request }
 
     specify do
+      expect(response).to redirect_to root_url
+    end
+
+    specify do
       expect(MembershipApplication.last).to \
         have_attributes membership_application_attributes
     end

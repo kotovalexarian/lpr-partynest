@@ -27,7 +27,7 @@ RSpec.describe 'POST /passports' do
     before { make_request }
 
     specify do
-      expect(response).to redirect_to passport_url Passport.last
+      expect(response).to redirect_to Passport.last
     end
 
     specify do
