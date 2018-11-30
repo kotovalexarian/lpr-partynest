@@ -14,20 +14,11 @@
         <th scope="col">
           <%= Passport.human_attribute_name :patronymic %>
         </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :sex %>
-        </th>
-        <th scope="col">
+        <th scope="col" class="d-none d-md-table-cell">
           <%= Passport.human_attribute_name :date_of_birth %>
         </th>
-        <th scope="col">
+        <th scope="col" class="d-none d-lg-table-cell">
           <%= Passport.human_attribute_name :place_of_birth %>
-        </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :series %>
-        </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :number %>
         </th>
       </tr>
     </thead>
@@ -36,17 +27,15 @@
       <% @passports.each do |passport| %>
         <tr>
           <td scope="row"><%= passport.id %></td>
-          <td><%= truncate passport.surname %></td>
-          <td><%= truncate passport.given_name %></td>
-          <td><%= truncate passport.patronymic %></td>
-          <td>
-            <%= Passport.human_attribute_name \
-                "sex.#{Passport.sexes.key(passport.sex)}" %>
+          <td><%= truncate passport.surname, length: 15 %></td>
+          <td><%= truncate passport.given_name, length: 15 %></td>
+          <td><%= truncate passport.patronymic, length: 15 %></td>
+          <td class="d-none d-md-table-cell">
+            <%= localize passport.date_of_birth %>
           </td>
-          <td><%= localize passport.date_of_birth %></td>
-          <td><%= truncate passport.place_of_birth %></td>
-          <td><%= passport_series passport.series %></td>
-          <td><%= passport_number passport.number %></td>
+          <td class="d-none d-lg-table-cell">
+            <%= truncate passport.place_of_birth, length: 15 %>
+          </td>
         </tr>
       <% end %>
     </tbody>
