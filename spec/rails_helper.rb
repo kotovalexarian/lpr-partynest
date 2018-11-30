@@ -36,6 +36,7 @@ require_relative 'support/shoulda_matchers'
 require_relative 'support/faker'
 require_relative 'support/factory_bot'
 require_relative 'support/database_cleaner'
+require_relative 'support/devise'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
