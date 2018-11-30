@@ -10,80 +10,80 @@
   <div class="row">
     <div class="col-md-6">
       <dl class="row">
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :surname %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= @passport.surname %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :given_name %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= @passport.given_name %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :patronymic %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= @passport.patronymic %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :sex %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= Passport.human_attribute_name "sex.#{@passport.sex}" %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :date_of_birth %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= localize @passport.date_of_birth %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :place_of_birth %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= @passport.place_of_birth %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :series %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= passport_series @passport.series %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :number %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= passport_number @passport.number %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :issued_by %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= @passport.issued_by %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :unit_code %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= @passport.unit_code %>
         </dd>
 
-        <dt class="col-sm-3">
+        <dt class="col-lg-3">
           <%= Passport.human_attribute_name :date_of_issue %>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-lg-9">
           <%= localize @passport.date_of_issue %>
         </dd>
       </dl>
