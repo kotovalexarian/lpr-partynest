@@ -4,6 +4,8 @@ class TelegramBotUpdatesController < ApplicationController
   before_action :set_telegram_bot
   before_action :verify_telegram_bot_secret
 
+  skip_after_action :verify_authorized
+
   # POST /telegram_bot_updates
   def create
     logger.info params.inspect

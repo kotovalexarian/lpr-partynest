@@ -37,6 +37,10 @@ Metrics/MethodLength:
 Rails:
   Enabled: true
 
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+
 Style/AndOr:
   EnforcedStyle: conditionals
 

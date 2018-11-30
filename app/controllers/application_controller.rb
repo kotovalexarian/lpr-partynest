@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   skip_forgery_protection if: :json_request?
 
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from NotAuthorizedError,           with: :unauthorized
 
