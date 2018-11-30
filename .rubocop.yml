@@ -5,6 +5,9 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'db/schema.rb'
+    - 'features/support/env.rb'
+    - 'lib/tasks/cucumber.rake'
+    - 'script/cucumber'
     - 'vendor/**/*'
 
 Layout/AccessModifierIndentation:

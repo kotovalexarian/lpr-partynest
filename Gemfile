@@ -146,4 +146,7 @@ group :test do
 
   # Simple one-liner tests for common Rails functionality.
   gem 'shoulda-matchers', '4.0.0.rc1'
+
+  # Cucumber Generator and Runtime for Rails.
+  gem 'cucumber-rails', '~> 1.6', require: false
 end
