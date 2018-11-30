@@ -1,14 +1,14 @@
 <div class="container-fluid">
+  <h1>
+    <%= @passport.surname %>
+    <%= @passport.given_name %>
+    <%= @passport.patronymic %>
+  </h1>
+
+  <hr/>
+
   <div class="row">
     <div class="col-md-6">
-      <h1>
-        <%= @passport.surname %>
-        <%= @passport.given_name %>
-        <%= @passport.patronymic %>
-      </h1>
-
-      <hr/>
-
       <dl class="row">
         <dt class="col-sm-3">
           <%= Passport.human_attribute_name :surname %>
