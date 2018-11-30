@@ -4,6 +4,7 @@ Feature: Sign up
 
   Scenario:
     When I fill form with the following data:
+      | key                  | value            |
       | Email                | user@example.com |
       | Пароль               | q1w2e3r4t5y6     |
       | Подтверждение пароля | q1w2e3r4t5y6     |
