@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <h1>
     <%= @passport.surname %>
     <%= @passport.given_name %>
@@ -32,7 +32,7 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4 col-lg-6">
       <dl class="row">
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :confirmed %>
@@ -137,7 +137,7 @@
       </dl>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8 col-lg-6">
       <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
     </div>
   </div>
