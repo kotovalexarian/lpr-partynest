@@ -12,7 +12,9 @@ env:
     - POSTGRES_DB=partynest_test
 
 before_install:
-  - sudo apt install qt4-qmake libqt4-dev libqtwebkit-dev
+  - sudo apt install qt4-qmake libqt4-dev libqtwebkit-dev xvfb
 
 before_script:
   - psql -U postgres -c "CREATE DATABASE partynest_test;"
+
+script: xvfb-run -a bundle exec rake
