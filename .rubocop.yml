@@ -23,6 +23,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - 'config/initializers/*.rb'
+    - 'factories/**/*.rb'
     - 'spec/**/*.rb'
 
 Metrics/LineLength:
