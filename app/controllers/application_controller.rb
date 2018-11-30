@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  class NotAuthorizedError < RuntimeError; end
+  include Pundit
 
   before_action :set_raven_context
 

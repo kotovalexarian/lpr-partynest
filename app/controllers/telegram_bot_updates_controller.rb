@@ -18,6 +18,9 @@ private
   end
 
   def verify_telegram_bot_secret
-    raise NotAuthorizedError unless params[:secret] == @telegram_bot.secret
+    return if params[:secret] == @telegram_bot.secret
+
+    raise NotAuthorizedError.new query:  "#{action_name}?",
+                                 record: @telegram_bot
   end
 end

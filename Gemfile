@@ -85,6 +85,9 @@ gem 'devise-i18n', '~> 1.7'
 # Supports ActiveRecord and Mongoid ORMs.
 gem 'rolify', '~> 5.2'
 
+# Object oriented authorization for Rails applications.
+gem 'pundit', '~> 2.0'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
