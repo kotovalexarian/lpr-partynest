@@ -9,6 +9,8 @@ FactoryBot.define do
       image_path { Rails.root.join 'fixtures', image_fixture }
     end
 
+    confirmed { false }
+
     surname { Faker::Name.last_name }
     given_name { Faker::Name.first_name }
     patronymic { Faker::Name.first_name }
