@@ -4,6 +4,24 @@ When 'I visit main page' do
   visit '/'
 end
 
+When 'I visit sign up page' do
+  visit '/users/sign_up'
+end
+
+When 'I fill form with the following data:' do |table|
+  within 'form' do
+    table.rows.each do |(key, value)|
+      fill_in key, with: value
+    end
+  end
+end
+
+When 'I click the form button {string}' do |string|
+  within 'form' do
+    click_on string
+  end
+end
+
 Then 'I see main page' do
   expect(page).to have_css(
     'h1',
