@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :state do
+  factory :country_state do
     name { Faker::Address.state }
   end
 end

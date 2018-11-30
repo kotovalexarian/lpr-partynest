@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class State < ApplicationRecord
+class CountryState < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 end

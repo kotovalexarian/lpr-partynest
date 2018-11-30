@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe State do
-  subject { create :state }
+RSpec.describe CountryState do
+  subject { create :country_state }
 
   it { is_expected.to validate_presence_of :name }
 

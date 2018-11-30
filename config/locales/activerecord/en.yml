@@ -7,7 +7,7 @@ en:
       passport:
         one: Passport
         other: Passports
-      state:
+      country_state:
         one: State
         other: States
       user:
@@ -42,7 +42,7 @@ en:
         issued_by: Issued by
         unit_code: Unit code
         date_of_issue: Date of issue
-      state:
+      country_state:
         id: ID
         name: Name
       passport/confirmed:
