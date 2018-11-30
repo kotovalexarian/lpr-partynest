@@ -5,6 +5,12 @@ require 'rails_helper'
 RSpec.describe Passport do
   subject { create :passport }
 
+  it do
+    is_expected.to \
+      have_many(:passport_confirmations)
+      .dependent(:restrict_with_exception)
+  end
+
   it { is_expected.to validate_presence_of :surname }
   it { is_expected.to validate_presence_of :given_name }
   it { is_expected.not_to validate_presence_of :patronymic }

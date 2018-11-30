@@ -5,5 +5,9 @@ require 'rails_helper'
 RSpec.describe User do
   subject { create :user }
 
-  pending "add some examples to (or delete) #{__FILE__}"
+  it do
+    is_expected.to \
+      have_many(:passport_confirmations)
+      .dependent(:restrict_with_exception)
+  end
 end

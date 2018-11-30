@@ -5,6 +5,8 @@ class Passport < ApplicationRecord
 
   has_one_attached :image
 
+  has_many :passport_confirmations, dependent: :restrict_with_exception
+
   validates :surname, presence: true
   validates :given_name, presence: true
   validates :sex, presence: true
