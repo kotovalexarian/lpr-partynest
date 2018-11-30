@@ -2,3 +2,11 @@ en:
   passports:
     show:
       confirm: Confirm
+      instruction_confirmed: >
+        You have already confirmed correctness of the data above.
+        Nothing to do here anymore.
+      instruction_unconfirmed: >
+        You have not confirmed correctness of the data above.
+        Please compare it with corresponding data on the image.
+        It you believe the data matches,
+        confirm it by pressing the button below.
