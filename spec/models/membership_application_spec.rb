@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MembershipApplication, type: :model do
+RSpec.describe MembershipApplication do
   subject { create :membership_application }
 
   it { is_expected.to validate_presence_of :first_name }

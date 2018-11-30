@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Passport, type: :model do
+RSpec.describe Passport do
   subject { create :passport }
 
   it { is_expected.to validate_presence_of :surname }

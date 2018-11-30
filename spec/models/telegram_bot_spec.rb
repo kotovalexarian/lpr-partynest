@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TelegramBot, type: :model do
+RSpec.describe TelegramBot do
   subject { create :telegram_bot }
 
   it { is_expected.to validate_presence_of :secret }
