@@ -153,4 +153,7 @@ group :test do
   # When a Cucumber step fails, it is useful to create a screenshot image
   # and HTML file of the current page.
   gem 'capybara-screenshot', '~> 1.0'
+
+  # Headless Webkit driver for Capybara.
+  gem 'capybara-webkit', '~> 1.15'
 end

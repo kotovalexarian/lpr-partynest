@@ -11,5 +11,8 @@ env:
     - POSTGRES_PASSWORD=''
     - POSTGRES_DB=partynest_test
 
+before_install:
+  - apt install qt4-qmake libqt4-dev libqtwebkit-dev
+
 before_script:
   - psql -U postgres -c "CREATE DATABASE partynest_test;"
