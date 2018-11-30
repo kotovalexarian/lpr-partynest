@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
 
-  skip_before_action :verify_authenticity_token, if: :json_request?
+  protect_from_forgery with: :exception
+  skip_forgery_protection if: :json_request?
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from NotAuthorizedError,           with: :unauthorized
