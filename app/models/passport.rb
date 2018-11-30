@@ -16,6 +16,10 @@ class Passport < ApplicationRecord
   validates :unit_code, presence: true
   validates :date_of_issue, presence: true
 
+  validate do
+    errors.add :image, :blank unless image.attached?
+  end
+
   before_validation do
     self.patronymic = nil if patronymic.blank?
   end

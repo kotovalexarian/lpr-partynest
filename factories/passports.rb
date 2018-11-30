@@ -23,7 +23,7 @@ FactoryBot.define do
     end
     date_of_issue { Faker::Date.backward }
 
-    after :create do |passport, evaluator|
+    after :build do |passport, evaluator|
       passport.image.attach(
         filename: evaluator.image_filename,
         io:       File.open(evaluator.image_path),

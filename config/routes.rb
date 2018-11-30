@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :membership_applications, only: %i[new create]
 
-  resources :passports, only: %i[index show new create update]
+  resources :passports, only: %i[index show new create]
 
   resources :telegram_bot_updates, only: :create
 end

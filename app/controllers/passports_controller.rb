@@ -31,15 +31,6 @@ class PassportsController < ApplicationController
     redirect_to @passport
   end
 
-  # PATCH/PUT /passports/:id
-  def update
-    authorize @passport
-
-    return render :show unless @passport.update permitted_attributes @passport
-
-    redirect_to @passport
-  end
-
 private
 
   def set_passport
