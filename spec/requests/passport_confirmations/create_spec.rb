@@ -11,7 +11,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
   context 'when no user is authenticated' do
     specify do
-      expect { make_request }.not_to change(PassportConfirmation, :count)
+      expect { make_request }.not_to \
+        change(PassportConfirmation, :count).from(0)
     end
 
     context 'after request' do
@@ -47,6 +48,28 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
           passport: passport,
           user:     current_user,
         )
+      end
+    end
+  end
+
+  context 'when passport confirmation already exists' do
+    let(:current_user) { create :user }
+
+    before do
+      create :passport_confirmation, passport: passport, user: current_user
+      sign_in current_user
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change(PassportConfirmation, :count).from(1)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
       end
     end
   end
