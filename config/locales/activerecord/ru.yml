@@ -30,7 +30,7 @@ ru:
         id: ID
         confirmed: Подтверждён?
         passport_confirmations_count: Количество подтверждений
-        image: Изображение
+        images: Изображения
         surname: Фамилия
         given_name: Имя
         patronymic: Отчество

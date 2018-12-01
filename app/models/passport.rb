@@ -5,7 +5,7 @@ class Passport < ApplicationRecord
 
   enum sex: %i[male female]
 
-  has_one_attached :image
+  has_many_attached :images
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 

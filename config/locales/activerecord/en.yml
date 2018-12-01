@@ -30,7 +30,7 @@ en:
         id: ID
         confirmed: Confirmed?
         passport_confirmations_count: Confirmations count
-        image: Image
+        images: Images
         surname: Surname
         given_name: Given names
         patronymic: Patronymic

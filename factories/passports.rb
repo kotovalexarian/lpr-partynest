@@ -28,7 +28,7 @@ FactoryBot.define do
     end
 
     after :build do |passport, evaluator|
-      passport.image.attach(
+      passport.images.attach(
         filename: evaluator.image_filename,
         io:       File.open(evaluator.image_path),
       )
