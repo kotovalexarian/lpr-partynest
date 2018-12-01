@@ -137,8 +137,10 @@
       </dl>
     </div>
 
-    <div class="col-md-8 col-lg-6">
-      <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
-    </div>
+    <% if @passport.image.attached? %>
+      <div class="col-md-8 col-lg-6">
+        <%= image_tag url_for(@passport.image), class: 'img-fluid' %>
+      </div>
+    <% end %>
   </div>
 </div>

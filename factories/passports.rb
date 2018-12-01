@@ -2,13 +2,6 @@
 
 FactoryBot.define do
   factory :passport do
-    transient do
-      image_filename { image_fixture }
-      image_fixture { "passport_image_#{rand(1..4)}.jpg" }
-
-      image_path { Rails.root.join 'fixtures', image_fixture }
-    end
-
     confirmed { false }
 
     surname { Faker::Name.last_name }
@@ -24,6 +17,15 @@ FactoryBot.define do
       "#{rand(0..999).to_s.rjust(3, '0')}-#{rand(0..999).to_s.rjust(3, '0')}"
     end
     date_of_issue { Faker::Date.backward }
+  end
+
+  factory :passport_with_image, parent: :passport do
+    transient do
+      image_filename { image_fixture }
+      image_fixture { "passport_image_#{rand(1..4)}.jpg" }
+
+      image_path { Rails.root.join 'fixtures', image_fixture }
+    end
 
     after :build do |passport, evaluator|
       passport.image.attach(
@@ -33,7 +35,7 @@ FactoryBot.define do
     end
   end
 
-  factory :confirmed_passport, parent: :passport do
+  factory :confirmed_passport, parent: :passport_with_image do
     confirmed { true }
   end
 end
