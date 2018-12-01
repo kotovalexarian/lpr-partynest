@@ -35,7 +35,27 @@ FactoryBot.define do
     end
   end
 
-  factory :confirmed_passport, parent: :passport_with_image do
-    confirmed { true }
+  factory :passport_with_almost_enough_confirmations,
+          parent: :passport_with_image do
+    after :create do |passport, _evaluator|
+      create_list :passport_confirmation,
+                  Passport::REQUIRED_CONFIRMATIONS - 1,
+                  passport: passport
+    end
+  end
+
+  factory :passport_with_enough_confirmations,
+          parent: :passport_with_image do
+    after :create do |passport, _evaluator|
+      create_list :passport_confirmation,
+                  Passport::REQUIRED_CONFIRMATIONS,
+                  passport: passport
+    end
+  end
+
+  factory :confirmed_passport, parent: :passport_with_enough_confirmations do
+    after :create do |passport, _evaluator|
+      passport.update! confirmed: true
+    end
   end
 end

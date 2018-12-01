@@ -26,6 +26,47 @@ RSpec.describe Passport do
   pending '#image'
   pending '#enough_confirmations?'
 
+  describe '#confirmed' do
+    def allow_value(*)
+      super.for :confirmed
+    end
+
+    context 'when passport has no image' do
+      subject { create :passport_without_image }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.not_to allow_value true }
+    end
+
+    context 'when passport has no confirmations' do
+      subject { create :passport_with_image }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.not_to allow_value true }
+    end
+
+    context 'when passport has almost enough confirmations' do
+      subject { create :passport_with_almost_enough_confirmations }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.not_to allow_value true }
+    end
+
+    context 'when passport has enough confirmations' do
+      subject { create :passport_with_enough_confirmations }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.to allow_value true }
+    end
+
+    context 'when passport is confirmed' do
+      subject { create :confirmed_passport }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.to allow_value true }
+    end
+  end
+
   describe '#patronymic' do
     context 'when it is empty' do
       subject { create :passport_without_image, patronymic: '' }

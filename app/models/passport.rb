@@ -9,6 +9,9 @@ class Passport < ApplicationRecord
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
+  validates :confirmed,
+            inclusion: { in: [false], unless: :enough_confirmations? }
+
   validates :surname, presence: true
   validates :given_name, presence: true
   validates :sex, presence: true

@@ -124,7 +124,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
     specify do
       expect { make_request }.to \
-        change(PassportConfirmation, :count).from(0).to(1)
+        change(PassportConfirmation, :count).from(3).to(4)
     end
 
     specify do
