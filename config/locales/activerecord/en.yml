@@ -16,6 +16,7 @@ en:
     attributes:
       membership_application:
         id: ID
+        country_state: State
         first_name: First name
         last_name: Last name
         middle_name: Middle name
@@ -44,6 +45,7 @@ en:
         date_of_issue: Date of issue
       country_state:
         id: ID
+        membership_applications: Membership applications
         name: Name
       passport/confirmed:
         'true': Confirmed

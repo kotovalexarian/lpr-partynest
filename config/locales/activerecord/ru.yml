@@ -16,6 +16,7 @@ ru:
     attributes:
       membership_application:
         id: ID
+        country_state: Регион
         first_name: Имя
         last_name: Фамилия
         middle_name: Отчество
@@ -44,6 +45,7 @@ ru:
         date_of_issue: Дата выдачи
       country_state:
         id: ID
+        membership_applications: Заявления на вступление
         name: Название
       passport/confirmed:
         'true': Подтверждён
