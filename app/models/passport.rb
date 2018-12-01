@@ -28,9 +28,7 @@ class Passport < ApplicationRecord
     self.patronymic = nil if patronymic.blank?
   end
 
-  before_save do
-    next unless passport_confirmations.length >= REQUIRED_CONFIRMATIONS
-
-    self.confirmed = true
+  def enough_confirmations?
+    passport_confirmations.count >= REQUIRED_CONFIRMATIONS
   end
 end

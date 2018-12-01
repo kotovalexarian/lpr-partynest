@@ -7,9 +7,12 @@ class PassportConfirmationsController < ApplicationController
 
   # POST /passports/:passport_id/passport_confirmations
   def create
-    authorize @passport.passport_confirmations.build user: current_user
-
-    return redirect_to @passport unless @passport.save
+    ActiveRecord::Base.transaction do
+      ConfirmPassport.call(passport: @passport,
+                           user:     current_user).tap do |context|
+        authorize context.passport_confirmation
+      end
+    end
 
     redirect_to @passport
   end
