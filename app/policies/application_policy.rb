@@ -8,6 +8,8 @@ class ApplicationPolicy
     @record = record
   end
 
+  # :nocov:
+
   def index?
     false
   end
@@ -36,6 +38,8 @@ class ApplicationPolicy
     false
   end
 
+  # :nocov:
+
   def policy(record)
     Pundit.policy user, record
   end
@@ -48,8 +52,12 @@ class ApplicationPolicy
       @scope = scope
     end
 
+    # :nocov:
+
     def resolve
       scope.none
     end
+
+    # :nocov:
   end
 end
