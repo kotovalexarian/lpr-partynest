@@ -20,6 +20,6 @@ class ConfirmPassport
   def confirm_passport
     return unless context.passport.enough_confirmations?
 
-    context.fail! unless context.passport.update confirmed: true
+    context.passport.update! confirmed: true
   end
 end
