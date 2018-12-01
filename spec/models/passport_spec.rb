@@ -23,6 +23,7 @@ RSpec.describe Passport do
   it { is_expected.to validate_presence_of :unit_code }
   it { is_expected.to validate_presence_of :date_of_issue }
 
+  pending '#image'
   pending '#enough_confirmations?'
 
   describe '#patronymic' do

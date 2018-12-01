@@ -137,7 +137,7 @@
       </dl>
     </div>
 
-    <% @passport.images.order(created_at: :desc).limit(1).each do |image| %>
+    <% @passport.image.try do |image| %>
       <div class="col-md-8 col-lg-6">
         <%= image_tag url_for(image), class: 'img-fluid' %>
       </div>

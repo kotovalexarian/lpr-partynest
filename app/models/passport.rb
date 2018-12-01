@@ -24,6 +24,10 @@ class Passport < ApplicationRecord
     self.patronymic = nil if patronymic.blank?
   end
 
+  def image
+    images.order(created_at: :desc).last
+  end
+
   def enough_confirmations?
     passport_confirmations.count >= REQUIRED_CONFIRMATIONS
   end
