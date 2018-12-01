@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :passport_confirmation do
     association :passport, factory: :passport_with_image
-    user
+    association :user
   end
 end
