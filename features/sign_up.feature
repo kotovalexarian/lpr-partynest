@@ -1,6 +1,6 @@
 Feature: Sign up
   Background:
-    Given I visit sign up page
+    Given I visit "/users/sign_up"
 
   Scenario:
     When I fill form with the following data:

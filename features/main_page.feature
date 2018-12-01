@@ -1,4 +1,6 @@
 Feature: Main page
+  Background:
+    Given I visit "/"
+
   Scenario: It works
-    When I visit main page
     Then I see main page

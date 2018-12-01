@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-When 'I visit main page' do
-  visit '/'
-end
-
-When 'I visit sign up page' do
-  visit '/users/sign_up'
+When 'I visit {string}' do |string|
+  visit string
 end
 
 When 'I fill form with the following data:' do |table|
@@ -36,10 +32,6 @@ end
 
 Given 'I want to create the following passport:' do |table|
   @passport_attributes = table.rows.to_h
-end
-
-When 'I visit passport creation page' do
-  visit '/passports/new'
 end
 
 When 'I fill the passport creation form' do

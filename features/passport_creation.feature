@@ -1,6 +1,6 @@
 Feature: Passport creation
   Background:
-    Given I visit passport creation page
+    Given I visit "/passports/new"
 
   Scenario:
     Given I want to create the following passport:
