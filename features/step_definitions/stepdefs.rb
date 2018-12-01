@@ -18,6 +18,10 @@ When 'I click the form button {string}' do |string|
   end
 end
 
+Then 'I am logged in as {string}' do |string|
+  expect(page).to have_css 'span.navbar-text', text: string
+end
+
 Then 'I see main page' do
   expect(page).to have_css(
     'h1',
