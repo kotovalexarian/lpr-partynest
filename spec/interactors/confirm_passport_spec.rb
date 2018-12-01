@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ConfirmPassport do
   subject { described_class.call passport: passport, user: user }
 
-  let!(:passport) { create :passport }
+  let!(:passport) { create :passport_with_image }
   let!(:user) { create :user }
 
   specify do
@@ -32,6 +32,22 @@ RSpec.describe ConfirmPassport do
 
   specify do
     expect { subject }.not_to change { passport.reload.confirmed? }.from(false)
+  end
+
+  context 'when passport has no image' do
+    let!(:passport) { create :passport }
+
+    specify do
+      expect(subject).to be_failure
+    end
+
+    specify do
+      expect(subject).to have_attributes(
+        passport:              passport,
+        user:                  user,
+        passport_confirmation: nil,
+      )
+    end
   end
 
   context 'when confirmations count is almost enough' do

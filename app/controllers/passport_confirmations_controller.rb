@@ -10,7 +10,7 @@ class PassportConfirmationsController < ApplicationController
     ActiveRecord::Base.transaction do
       ConfirmPassport.call(passport: @passport,
                            user:     current_user).tap do |context|
-        authorize context.passport_confirmation
+        authorize_if_present context.passport_confirmation
       end
     end
 
@@ -21,5 +21,13 @@ private
 
   def set_passport
     @passport = Passport.find params[:passport_id]
+  end
+
+  def authorize_if_present(record)
+    if record
+      authorize record
+    else
+      skip_authorization
+    end
   end
 end

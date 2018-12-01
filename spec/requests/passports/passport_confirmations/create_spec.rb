@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
-  let!(:passport) { create :passport }
+  let!(:passport) { create :passport_with_image }
 
   def make_request
     post "/passports/#{passport.id}/passport_confirmations"
@@ -144,6 +144,34 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
           passport: passport,
           user:     current_user,
         )
+      end
+    end
+  end
+
+  context 'when passport has no image' do
+    let!(:passport) { create :passport }
+
+    let(:current_user) { create :user }
+
+    before do
+      sign_in current_user
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change(PassportConfirmation, :count).from(0)
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change { passport.reload.confirmed? }.from(false)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
       end
     end
   end
