@@ -88,6 +88,10 @@ gem 'rolify', '~> 5.2'
 # Object oriented authorization for Rails applications.
 gem 'pundit', '~> 2.0'
 
+# Interactor provides a common interface
+# for performing complex user interactions.
+gem 'interactor', '~> 3.1'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
