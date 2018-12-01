@@ -8,8 +8,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 ])
 
 SimpleCov.start 'rails' do
+  add_group 'Channels', '/app/channels/'
+
   add_filter '/factories/'
   add_filter '/spec/'
-
-  add_group 'Channels', '/app/channels/'
 end
