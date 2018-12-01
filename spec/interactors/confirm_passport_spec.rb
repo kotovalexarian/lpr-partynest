@@ -35,7 +35,7 @@ RSpec.describe ConfirmPassport do
   end
 
   context 'when passport has no image' do
-    let!(:passport) { create :passport }
+    let!(:passport) { create :passport_without_image }
 
     specify do
       expect(subject).to be_failure

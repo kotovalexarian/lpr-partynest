@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :passport do
+  factory :passport_without_image, class: Passport do
     confirmed { false }
 
     surname { Faker::Name.last_name }
@@ -19,7 +19,7 @@ FactoryBot.define do
     date_of_issue { Faker::Date.backward }
   end
 
-  factory :passport_with_image, parent: :passport do
+  factory :passport_with_image, parent: :passport_without_image do
     transient do
       image_filename { image_fixture }
       image_fixture { "passport_image_#{rand(1..4)}.jpg" }

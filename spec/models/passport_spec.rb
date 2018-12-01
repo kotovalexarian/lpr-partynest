@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Passport do
-  subject { create :passport }
+  subject { create :passport_without_image }
 
   it do
     is_expected.to \
@@ -28,7 +28,7 @@ RSpec.describe Passport do
 
   describe '#patronymic' do
     context 'when it is empty' do
-      subject { create :passport, patronymic: '' }
+      subject { create :passport_without_image, patronymic: '' }
 
       specify do
         expect(subject.patronymic).to eq nil
@@ -36,7 +36,7 @@ RSpec.describe Passport do
     end
 
     context 'when it is blank' do
-      subject { create :passport, patronymic: '   ' }
+      subject { create :passport_without_image, patronymic: '   ' }
 
       specify do
         expect(subject.patronymic).to eq nil

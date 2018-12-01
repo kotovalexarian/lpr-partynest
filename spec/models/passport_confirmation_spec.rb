@@ -12,6 +12,10 @@ RSpec.describe PassportConfirmation do
     is_expected.to validate_uniqueness_of(:user_id).scoped_to(:passport_id)
   end
 
-  it { is_expected.not_to allow_value(create(:passport)).for :passport }
+  it do
+    is_expected.not_to \
+      allow_value(create(:passport_without_image)).for :passport
+  end
+
   it { is_expected.to allow_value(create(:confirmed_passport)).for :passport }
 end

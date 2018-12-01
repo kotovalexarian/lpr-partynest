@@ -149,7 +149,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport has no image' do
-    let!(:passport) { create :passport }
+    let!(:passport) { create :passport_without_image }
 
     let(:current_user) { create :user }
 
