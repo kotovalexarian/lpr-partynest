@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
 
-  protect_from_forgery with: :exception
-  skip_forgery_protection if: :json_request?
+  protect_from_forgery with: :exception, unless: :json_request?
 
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
