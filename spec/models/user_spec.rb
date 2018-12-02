@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  subject { create :user }
+  subject { create(:account).user }
 
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to belong_to(:account).required(false) }
+
+  it { is_expected.to validate_uniqueness_of :account_id }
 end

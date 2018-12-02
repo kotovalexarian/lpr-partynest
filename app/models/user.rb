@@ -13,4 +13,12 @@ class User < ApplicationRecord
     :trackable,
     :validatable,
   )
+
+  belongs_to :account
+
+  validates :account_id, uniqueness: true
+
+  before_validation do
+    self.account ||= Account.new
+  end
 end

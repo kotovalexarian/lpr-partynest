@@ -9,7 +9,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
     post "/passports/#{passport.id}/passport_confirmations"
   end
 
-  context 'when no user is authenticated' do
+  context 'when no account is authenticated' do
     specify do
       expect { make_request }.not_to \
         change(PassportConfirmation, :count).from(0)
@@ -24,11 +24,11 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
     end
   end
 
-  context 'when user is authorized' do
-    let(:current_user) { create :user }
+  context 'when account is authorized' do
+    let(:current_account) { create :account }
 
     before do
-      sign_in current_user
+      sign_in current_account.user
     end
 
     specify do
@@ -46,18 +46,20 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       specify do
         expect(PassportConfirmation.last).to have_attributes(
           passport: passport,
-          user:     current_user,
+          account:  current_account,
         )
       end
     end
   end
 
   context 'when passport confirmation already exists' do
-    let(:current_user) { create :user }
+    let(:current_account) { create :account }
 
     before do
-      create :passport_confirmation, passport: passport, user: current_user
-      sign_in current_user
+      sign_in current_account.user
+
+      create :passport_confirmation,
+             passport: passport, account: current_account
     end
 
     specify do
@@ -75,14 +77,14 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport confirmations count is almost enough' do
-    let(:current_user) { create :user }
+    let(:current_account) { create :account }
 
     before do
       (Passport::REQUIRED_CONFIRMATIONS - 1).times do
         create :passport_confirmation, passport: passport
       end
 
-      sign_in current_user
+      sign_in current_account.user
     end
 
     specify do
@@ -107,7 +109,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       specify do
         expect(PassportConfirmation.last).to have_attributes(
           passport: passport,
-          user:     current_user,
+          account:  current_account,
         )
       end
     end
@@ -116,10 +118,10 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   context 'when passport is already confirmed' do
     let!(:passport) { create :confirmed_passport }
 
-    let(:current_user) { create :user }
+    let(:current_account) { create :account }
 
     before do
-      sign_in current_user
+      sign_in current_account.user
     end
 
     specify do
@@ -142,7 +144,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       specify do
         expect(PassportConfirmation.last).to have_attributes(
           passport: passport,
-          user:     current_user,
+          account:  current_account,
         )
       end
     end
@@ -151,10 +153,10 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   context 'when passport has no image' do
     let!(:passport) { create :passport_without_image }
 
-    let(:current_user) { create :user }
+    let(:current_account) { create :account }
 
     before do
-      sign_in current_user
+      sign_in current_account.user
     end
 
     specify do
