@@ -6,5 +6,4 @@
 //= require bootstrap-sprockets
 //= require cropperjs/dist/cropper
 //= require jquery-cropper/dist/jquery-cropper
-//= require jquery-zoom/jquery.zoom
 //= require_tree .

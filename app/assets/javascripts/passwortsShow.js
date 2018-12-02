@@ -6,7 +6,6 @@ window.onload = function() {
     document.getElementById('passportMessage').innerText = 'Загрузите фото/скан-копию основной страницы пасспорта';
     document.getElementById('passportFileLabel').style.display = 'inline-block';
   } else {
-    $('#passportPreview').wrap('<span style="display:inline-block"></span>').css('display', 'block').parent().zoom();
     document.getElementById('passportFileLabel').style.display = 'none';
     document.getElementById('passportMessage').style.display = 'none';
   }
