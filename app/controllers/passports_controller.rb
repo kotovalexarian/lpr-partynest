@@ -11,6 +11,7 @@ class PassportsController < ApplicationController
   # GET /passports/:id
   def show
     authorize @passport
+    @passport.passport_maps.build if @passport.passport_map.nil?
   end
 
   # GET /passports/new
