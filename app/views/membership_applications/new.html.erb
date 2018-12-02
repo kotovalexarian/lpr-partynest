@@ -1,11 +1,11 @@
 <div class="container">
   <%= simple_form_for @membership_application do |f| %>
-    <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.input :first_name %>
     <%= f.input :middle_name %>
-    <%= f.association :country_state, collection: CountryState.all %>
     <%= f.input :date_of_birth, start_year: Date.today.year - 150,
                                 end_year: Date.today.year %>
+    <%= f.association :country_state, collection: CountryState.all %>
     <%= f.input :occupation %>
     <%= f.input :email %>
     <%= f.input :phone_number %>
