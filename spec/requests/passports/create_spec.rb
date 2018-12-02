@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /passports' do
-  let(:passport_plain_attributes) { attributes_for :passport_without_image }
+  let(:passport_plain_attributes) { attributes_for :empty_passport }
 
   let :passport_all_attributes do
     passport_plain_attributes.merge(

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :passport_map do
-    association :passport, factory: :passport_without_image
+    association :passport, factory: :empty_passport
 
     surname { Faker::Name.last_name }
     given_name { Faker::Name.first_name }

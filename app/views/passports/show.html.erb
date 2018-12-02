@@ -1,12 +1,4 @@
 <div class="container-fluid">
-  <h1>
-    <%= @passport.passport_map.surname %>
-    <%= @passport.passport_map.given_name %>
-    <%= @passport.passport_map.patronymic %>
-  </h1>
-
-  <hr/>
-
   <% if @passport.image && current_account %>
     <% if @passport.passport_confirmations.where(account: current_account).exists? %>
       <div role="alert" class="alert alert-success">
@@ -62,77 +54,87 @@
           <%= Passport.human_attribute_name :surname %>
         </dt>
         <dd class="col-lg-8">
-          <%= @passport.passport_map.surname %>
+          <%= @passport.passport_map&.surname %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :given_name %>
         </dt>
         <dd class="col-lg-8">
-          <%= @passport.passport_map.given_name %>
+          <%= @passport.passport_map&.given_name %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :patronymic %>
         </dt>
         <dd class="col-lg-8">
-          <%= @passport.passport_map.patronymic %>
+          <%= @passport.passport_map&.patronymic %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :sex %>
         </dt>
         <dd class="col-lg-8">
-          <%= Passport.human_attribute_name "sex.#{@passport.passport_map.sex}" %>
+          <% if @passport.passport_map %>
+            <%= Passport.human_attribute_name "sex.#{@passport.passport_map.sex}" %>
+          <% end %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :date_of_birth %>
         </dt>
         <dd class="col-lg-8">
-          <%= localize @passport.passport_map.date_of_birth %>
+          <% if @passport.passport_map %>
+            <%= localize @passport.passport_map.date_of_birth %>
+          <% end %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :place_of_birth %>
         </dt>
         <dd class="col-lg-8">
-          <%= @passport.passport_map.place_of_birth %>
+          <%= @passport.passport_map&.place_of_birth %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :series %>
         </dt>
         <dd class="col-lg-8">
-          <%= passport_series @passport.passport_map.series %>
+          <% if @passport.passport_map %>
+            <%= passport_series @passport.passport_map.series %>
+          <% end %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :number %>
         </dt>
         <dd class="col-lg-8">
-          <%= passport_number @passport.passport_map.number %>
+          <% if @passport.passport_map %>
+            <%= passport_number @passport.passport_map.number %>
+          <% end %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :issued_by %>
         </dt>
         <dd class="col-lg-8">
-          <%= @passport.passport_map.issued_by %>
+          <%= @passport.passport_map&.issued_by %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :unit_code %>
         </dt>
         <dd class="col-lg-8">
-          <%= @passport.passport_map.unit_code %>
+          <%= @passport.passport_map&.unit_code %>
         </dd>
 
         <dt class="col-lg-4">
           <%= Passport.human_attribute_name :date_of_issue %>
         </dt>
         <dd class="col-lg-8">
-          <%= localize @passport.passport_map.date_of_issue %>
+          <% if @passport.passport_map %>
+            <%= localize @passport.passport_map.date_of_issue %>
+          <% end %>
         </dd>
       </dl>
     </div>

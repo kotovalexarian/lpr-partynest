@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
-  let!(:passport) { create :passport_with_image }
+  let!(:passport) { create :passport_with_passport_map_and_image }
 
   def make_request
     post "/passports/#{passport.id}/passport_confirmations"
@@ -48,6 +48,118 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
           passport: passport,
           account:  current_account,
         )
+      end
+    end
+  end
+
+  context 'when passport is empty' do
+    let!(:passport) { create :empty_passport }
+
+    let(:current_account) { create :account_with_user }
+
+    before do
+      sign_in current_account.user
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change(PassportConfirmation, :count).from(0)
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change { passport.reload.confirmed? }.from(false)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
+      end
+    end
+  end
+
+  context 'when passport has passport map' do
+    let!(:passport) { create :passport_with_passport_map }
+
+    let(:current_account) { create :account_with_user }
+
+    before do
+      sign_in current_account.user
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change(PassportConfirmation, :count).from(0)
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change { passport.reload.confirmed? }.from(false)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
+      end
+    end
+  end
+
+  context 'when passport has image' do
+    let!(:passport) { create :passport_with_image }
+
+    let(:current_account) { create :account_with_user }
+
+    before do
+      sign_in current_account.user
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change(PassportConfirmation, :count).from(0)
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change { passport.reload.confirmed? }.from(false)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
+      end
+    end
+  end
+
+  context 'when passport has passport map and image' do
+    let!(:passport) { create :passport_with_passport_map_and_image }
+
+    let(:current_account) { create :account_with_user }
+
+    before do
+      sign_in current_account.user
+    end
+
+    specify do
+      expect { make_request }.to \
+        change(PassportConfirmation, :count).from(0).to(1)
+    end
+
+    specify do
+      expect { make_request }.not_to \
+        change { passport.reload.confirmed? }.from(false)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to redirect_to passport
       end
     end
   end
@@ -146,34 +258,6 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
           passport: passport,
           account:  current_account,
         )
-      end
-    end
-  end
-
-  context 'when passport has no image' do
-    let!(:passport) { create :passport_without_image }
-
-    let(:current_account) { create :account_with_user }
-
-    before do
-      sign_in current_account.user
-    end
-
-    specify do
-      expect { make_request }.not_to \
-        change(PassportConfirmation, :count).from(0)
-    end
-
-    specify do
-      expect { make_request }.not_to \
-        change { passport.reload.confirmed? }.from(false)
-    end
-
-    context 'after request' do
-      before { make_request }
-
-      specify do
-        expect(response).to redirect_to passport
       end
     end
   end

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ConfirmPassport do
   subject { described_class.call passport: passport, account: account }
 
-  let!(:passport) { create :passport_with_image }
+  let!(:passport) { create :passport_with_passport_map_and_image }
   let!(:account) { create :account_with_user }
 
   specify do
@@ -34,8 +34,8 @@ RSpec.describe ConfirmPassport do
     expect { subject }.not_to change { passport.reload.confirmed? }.from(false)
   end
 
-  context 'when passport has no image' do
-    let!(:passport) { create :passport_without_image }
+  context 'when passport is empty' do
+    let!(:passport) { create :empty_passport }
 
     specify do
       expect(subject).to be_failure
@@ -50,12 +50,54 @@ RSpec.describe ConfirmPassport do
     end
   end
 
-  context 'when confirmations count is almost enough' do
-    before do
-      (Passport::REQUIRED_CONFIRMATIONS - 1).times do
-        create :passport_confirmation, passport: passport
-      end
+  context 'when passport has a passport map' do
+    let!(:passport) { create :passport_with_passport_map }
+
+    specify do
+      expect(subject).to be_failure
     end
+
+    specify do
+      expect(subject).to have_attributes(
+        passport:              passport,
+        account:               account,
+        passport_confirmation: nil,
+      )
+    end
+  end
+
+  context 'when passport has an image' do
+    let!(:passport) { create :passport_with_image }
+
+    specify do
+      expect(subject).to be_failure
+    end
+
+    specify do
+      expect(subject).to have_attributes(
+        passport:              passport,
+        account:               account,
+        passport_confirmation: nil,
+      )
+    end
+  end
+
+  context 'when passport has a passport map and an image' do
+    let!(:passport) { create :passport_with_passport_map_and_image }
+
+    specify do
+      expect { subject }.to \
+        change { passport.reload.passport_confirmations.count }.from(0).to(1)
+    end
+
+    specify do
+      expect { subject }.not_to \
+        change { passport.reload.confirmed? }.from(false)
+    end
+  end
+
+  context 'when passport has almost enough confirmations' do
+    let!(:passport) { create :passport_with_almost_enough_confirmations }
 
     specify do
       expect { subject }.to \
@@ -68,23 +110,10 @@ RSpec.describe ConfirmPassport do
       expect { subject }.to \
         change { passport.reload.confirmed? }.from(false).to(true)
     end
-
-    context 'and passport is already confirmed' do
-      let!(:passport) { create :confirmed_passport }
-
-      specify do
-        expect { subject }.not_to \
-          change { passport.reload.confirmed? }.from(true)
-      end
-    end
   end
 
-  context 'when confirmations count is already enough' do
-    before do
-      Passport::REQUIRED_CONFIRMATIONS.times do
-        create :passport_confirmation, passport: passport
-      end
-    end
+  context 'when passport has enough confirmationsh' do
+    let!(:passport) { create :passport_with_enough_confirmations }
 
     specify do
       expect { subject }.to \
@@ -97,14 +126,21 @@ RSpec.describe ConfirmPassport do
       expect { subject }.to \
         change { passport.reload.confirmed? }.from(false).to(true)
     end
+  end
 
-    context 'and passport is already confirmed' do
-      let!(:passport) { create :confirmed_passport }
+  context 'when passport is already confimed' do
+    let!(:passport) { create :confirmed_passport }
 
-      specify do
-        expect { subject }.not_to \
-          change { passport.reload.confirmed? }.from(true)
-      end
+    specify do
+      expect { subject }.to \
+        change { passport.reload.passport_confirmations.count }
+        .from(Passport::REQUIRED_CONFIRMATIONS)
+        .to(Passport::REQUIRED_CONFIRMATIONS + 1)
+    end
+
+    specify do
+      expect { subject }.not_to \
+        change { passport.reload.confirmed? }.from(true)
     end
   end
 end

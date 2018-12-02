@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Passport do
-  subject { create :passport_without_image }
+  subject { create :empty_passport }
 
   it do
     is_expected.to \
@@ -25,15 +25,29 @@ RSpec.describe Passport do
       super.for :confirmed
     end
 
-    context 'when passport has no image' do
-      subject { create :passport_without_image }
+    context 'when passport is empty' do
+      subject { create :empty_passport }
 
       it { is_expected.to allow_value false }
       it { is_expected.not_to allow_value true }
     end
 
-    context 'when passport has no confirmations' do
+    context 'when passport has passport map' do
+      subject { create :passport_with_passport_map }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.not_to allow_value true }
+    end
+
+    context 'when passport has image' do
       subject { create :passport_with_image }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.not_to allow_value true }
+    end
+
+    context 'when passport has passport map and image' do
+      subject { create :passport_with_passport_map_and_image }
 
       it { is_expected.to allow_value false }
       it { is_expected.not_to allow_value true }

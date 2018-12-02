@@ -15,9 +15,32 @@ RSpec.describe PassportConfirmation do
     is_expected.to validate_uniqueness_of(:account_id).scoped_to(:passport_id)
   end
 
+  it { is_expected.not_to allow_value(create(:empty_passport)).for :passport }
+
   it do
     is_expected.not_to \
-      allow_value(create(:passport_without_image)).for :passport
+      allow_value(create(:passport_with_passport_map)).for :passport
+  end
+
+  it do
+    is_expected.not_to \
+      allow_value(create(:passport_with_image)).for :passport
+  end
+
+  it do
+    is_expected.to \
+      allow_value(create(:passport_with_passport_map_and_image)).for :passport
+  end
+
+  it do
+    is_expected.to \
+      allow_value(create(:passport_with_almost_enough_confirmations))
+      .for :passport
+  end
+
+  it do
+    is_expected.to \
+      allow_value(create(:passport_with_enough_confirmations)).for :passport
   end
 
   it { is_expected.to allow_value(create(:confirmed_passport)).for :passport }
