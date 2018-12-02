@@ -28,14 +28,16 @@
       <% @passports.each do |passport| %>
         <tr>
           <td scope="row"><%= passport.id %></td>
-          <td><%= truncate passport.surname, length: 15 %></td>
-          <td><%= truncate passport.given_name, length: 15 %></td>
-          <td><%= truncate passport.patronymic, length: 15 %></td>
+          <td><%= truncate passport.passport_map&.surname, length: 15 %></td>
+          <td><%= truncate passport.passport_map&.given_name, length: 15 %></td>
+          <td><%= truncate passport.passport_map&.patronymic, length: 15 %></td>
           <td class="d-none d-md-table-cell">
-            <%= localize passport.date_of_birth %>
+            <% if passport.passport_map %>
+              <%= localize passport.passport_map.date_of_birth %>
+            <% end %>
           </td>
           <td class="d-none d-lg-table-cell">
-            <%= truncate passport.place_of_birth, length: 15 %>
+            <%= truncate passport.passport_map&.place_of_birth, length: 15 %>
           </td>
           <td>
             <% if policy(passport).show? %>
