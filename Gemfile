@@ -42,9 +42,6 @@ gem 'bcrypt', '~> 3.1'
 # Use ActiveStorage variant.
 # gem 'mini_magick', '~> 4.8'
 
-# Use Capistrano for deployment.
-# gem 'capistrano-rails', group: :development
-
 # Reduces boot times through caching; required in config/boot.rb.
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -115,6 +112,9 @@ group :development do
 
   # Rails specific Capistrano tasks.
   gem 'capistrano-rails', '~> 1.4', require: false
+
+  # NPM support for Capistrano 3.x.
+  gem 'capistrano-npm', '~> 1.0', require: false
 
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console.
