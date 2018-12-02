@@ -7,8 +7,8 @@
 
   <hr/>
 
-  <% if @passport.image && current_account %>
-    <% if @passport.passport_confirmations.where(account: current_account).exists? %>
+  <% if user_signed_in? %>
+    <% if @passport.passport_confirmations.where(user: current_user).exists? %>
       <div role="alert" class="alert alert-success">
         <%= translate '.instruction_confirmed' %>
       </div>
@@ -137,10 +137,26 @@
       </dl>
     </div>
 
-    <% @passport.image.try do |image| %>
-      <div class="col-md-8 col-lg-6">
-        <%= image_tag url_for(image), class: 'img-fluid' %>
+    <div class="col-md-8 col-lg-6">
+      <div id="passportMessage"></div>
+      <form onSubmit="return false">
+        <input type="file" name="passportFile" id="passportFile" accept="image/*" onChange="readURL(this)" />
+        <label id="passportFileLabel" for="passportFile">Загрузить фото паспорта</label>
+        <div id="passportPreviewContainer">
+          <%= image_tag url_for(@passport.image), id: 'passportPreview' %>
+        </div>
+        <div id="passportPreviewControls">
+          <button id="passportPreviewRotateLeft" title="Rotate left"><i class="fas fa-undo"></i></button>
+          <button id="passportPreviewRotateRight" title="Rotate right"><i class="fas fa-redo"></i></button>
+          <button id="passportPreviewZoomIn" title="Zoom in"><i class="fas fa-search-plus"></i></button>
+          <button id="passportPreviewZoomOut" title="Zoom out"><i class="fas fa-search-minus"></i></button>
+          <button type="submit" id="passportPreviewSubmit">Готово</button>
+        </div>
+      </form>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
+
