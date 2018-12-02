@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_104848) do
+ActiveRecord::Schema.define(version: 2018_12_02_140310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,24 @@ ActiveRecord::Schema.define(version: 2018_12_02_104848) do
     t.index ["passport_id"], name: "index_passport_confirmations_on_passport_id"
   end
 
+  create_table "passport_maps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "passport_id", null: false
+    t.string "surname", null: false
+    t.string "given_name", null: false
+    t.string "patronymic"
+    t.integer "sex", null: false
+    t.date "date_of_birth", null: false
+    t.string "place_of_birth", null: false
+    t.integer "series", null: false
+    t.integer "number", null: false
+    t.text "issued_by", null: false
+    t.string "unit_code", null: false
+    t.date "date_of_issue", null: false
+    t.index ["passport_id"], name: "index_passport_maps_on_passport_id", unique: true
+  end
+
   create_table "passports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -155,5 +173,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_104848) do
   add_foreign_key "membership_applications", "country_states"
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"
+  add_foreign_key "passport_maps", "passports"
   add_foreign_key "users", "accounts"
 end

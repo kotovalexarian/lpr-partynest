@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
-class Passport < ApplicationRecord
-  REQUIRED_CONFIRMATIONS = 3
-
+class PassportMap < ApplicationRecord
   enum sex: %i[male female]
 
-  has_many_attached :images
+  belongs_to :passport
 
-  has_one :passport_map, dependent: :restrict_with_exception
-
-  has_many :passport_confirmations, dependent: :restrict_with_exception
-
-  validates :confirmed,
-            inclusion: { in: [false], unless: :enough_confirmations? }
+  validates :passport_id, uniqueness: true
 
   validates :surname, presence: true
   validates :given_name, presence: true
@@ -27,13 +20,5 @@ class Passport < ApplicationRecord
 
   before_validation do
     self.patronymic = nil if patronymic.blank?
-  end
-
-  def image
-    images.order(created_at: :desc).last
-  end
-
-  def enough_confirmations?
-    passport_confirmations.count >= REQUIRED_CONFIRMATIONS
   end
 end

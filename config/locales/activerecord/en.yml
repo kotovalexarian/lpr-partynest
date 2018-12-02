@@ -7,6 +7,9 @@ en:
       passport:
         one: Passport
         other: Passports
+      passport_map:
+        one: Passport mapping
+        other: Passport mappings
       country_state:
         one: State
         other: States
@@ -32,6 +35,19 @@ en:
         confirmed: Confirmed?
         passport_confirmations_count: Confirmations count
         images: Images
+        surname: Surname
+        given_name: Given names
+        patronymic: Patronymic
+        sex: Sex
+        date_of_birth: Date of birth
+        place_of_birth: Place of birth
+        series: Series
+        number: Number
+        issued_by: Issued by
+        unit_code: Unit code
+        date_of_issue: Date of issue
+      passport_map:
+        id: ID
         surname: Surname
         given_name: Given names
         patronymic: Patronymic
