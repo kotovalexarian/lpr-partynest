@@ -33,3 +33,8 @@ Feature: Passport creation
     When I fill the passport creation form
     When I click the passport creation button
     Then I see the passport page
+
+  Scenario: only image is uploaded, no fields are filled
+    When I upload "passport_image_1.jpg" as "Изображения"
+    And I click the passport creation button
+    Then I am at "/passports/\d+"

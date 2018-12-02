@@ -4,11 +4,21 @@ When 'I visit {string}' do |string|
   visit string
 end
 
+Then 'I am at {string}' do |re|
+  expect(page.current_path).to match(/\A#{re}\z/)
+end
+
 When 'I fill form with the following data:' do |table|
   within 'form' do
     table.rows.each do |(key, value)|
       fill_in key, with: value, match: :prefer_exact
     end
+  end
+end
+
+When 'I upload {string} as {string}' do |fixture, field|
+  within 'form' do
+    attach_file field, Rails.root.join('fixtures', fixture)
   end
 end
 

@@ -9,7 +9,7 @@ class Passport < ApplicationRecord
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
-  accepts_nested_attributes_for :passport_maps
+  accepts_nested_attributes_for :passport_maps, reject_if: :blank_passport_map?
 
   validates :confirmed,
             inclusion: { in: [false], unless: :enough_confirmations? }
@@ -28,5 +28,15 @@ class Passport < ApplicationRecord
 
   def enough_confirmations?
     passport_confirmations.count >= REQUIRED_CONFIRMATIONS
+  end
+
+private
+
+  def blank_passport_map?(passport_map_attributes)
+    passport_map_attributes.all? do |key, value|
+      next true if key.start_with? 'date_'
+
+      value.blank?
+    end
   end
 end
