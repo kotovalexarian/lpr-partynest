@@ -1,5 +1,8 @@
 {
   "name": "partynest",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-viewer": "^1.0.0",
+    "viewerjs": "^1.3.0"
+  }
 }

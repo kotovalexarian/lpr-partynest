@@ -139,7 +139,9 @@
 
     <% @passport.image.try do |image| %>
       <div class="col-md-8 col-lg-6">
-        <%= image_tag url_for(image), class: 'img-fluid' %>
+        <div>
+          <%= image_tag url_for(image), id: :image, class: 'img-fluid' %>
+        </div>
       </div>
     <% end %>
   </div>
