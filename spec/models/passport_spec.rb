@@ -19,6 +19,7 @@ RSpec.describe Passport do
 
   pending '#passport_map'
   pending '#image'
+  pending '#can_have_confirmations?'
   pending '#enough_confirmations?'
 
   describe '#confirmed' do

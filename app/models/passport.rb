@@ -22,6 +22,10 @@ class Passport < ApplicationRecord
     images.order(created_at: :asc).last
   end
 
+  def can_have_confirmations?
+    passport_map && image
+  end
+
   def enough_confirmations?
     passport_confirmations.count >= REQUIRED_CONFIRMATIONS
   end
