@@ -3,6 +3,7 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :middle_name %>
+    <%= f.association :country_state, collection: CountryState.all %>
     <%= f.input :date_of_birth, start_year: Date.today.year - 150,
                                 end_year: Date.today.year %>
     <%= f.input :occupation %>

@@ -9,6 +9,7 @@ class MembershipApplicationPolicy < ApplicationPolicy
     %i[
       first_name last_name middle_name date_of_birth occupation email
       phone_number telegram_username organization_membership comment
+      country_state_id
     ]
   end
 end
