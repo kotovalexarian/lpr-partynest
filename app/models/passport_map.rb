@@ -5,8 +5,6 @@ class PassportMap < ApplicationRecord
 
   belongs_to :passport
 
-  validates :passport_id, uniqueness: true
-
   validates :surname, presence: true
   validates :given_name, presence: true
   validates :sex, presence: true

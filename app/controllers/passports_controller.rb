@@ -16,7 +16,7 @@ class PassportsController < ApplicationController
   # GET /passports/new
   def new
     @passport = Passport.new
-    @passport.build_passport_map
+    @passport.passport_maps.build
 
     authorize @passport
   end

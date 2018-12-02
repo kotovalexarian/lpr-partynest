@@ -5,17 +5,21 @@ class Passport < ApplicationRecord
 
   has_many_attached :images
 
-  has_one :passport_map, dependent: :restrict_with_exception
+  has_many :passport_maps, dependent: :restrict_with_exception
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
-  accepts_nested_attributes_for :passport_map
+  accepts_nested_attributes_for :passport_maps
 
   validates :confirmed,
             inclusion: { in: [false], unless: :enough_confirmations? }
 
+  def passport_map
+    passport_maps.order(created_at: :asc).last
+  end
+
   def image
-    images.order(created_at: :desc).last
+    images.order(created_at: :asc).last
   end
 
   def enough_confirmations?

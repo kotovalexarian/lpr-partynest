@@ -5,7 +5,9 @@ FactoryBot.define do
     confirmed { false }
 
     trait :with_passport_map do
-      association :passport_map, strategy: :build
+      after :create do |passport, _evaluator|
+        create :passport_map, passport: passport
+      end
     end
 
     trait :with_image do

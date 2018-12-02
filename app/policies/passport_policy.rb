@@ -12,7 +12,7 @@ class PassportPolicy < ApplicationPolicy
   def permitted_attributes_for_create
     [
       :images,
-      passport_map_attributes: %i[
+      passport_maps_attributes: %i[
         surname given_name patronymic sex date_of_birth place_of_birth series
         number issued_by unit_code date_of_issue
       ],

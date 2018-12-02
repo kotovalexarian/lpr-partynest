@@ -7,7 +7,7 @@ RSpec.describe Passport do
 
   it do
     is_expected.to \
-      have_one(:passport_map)
+      have_many(:passport_maps)
       .dependent(:restrict_with_exception)
   end
 
@@ -17,6 +17,7 @@ RSpec.describe Passport do
       .dependent(:restrict_with_exception)
   end
 
+  pending '#passport_map'
   pending '#image'
   pending '#enough_confirmations?'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_142918) do
+ActiveRecord::Schema.define(version: 2018_12_02_201924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 2018_12_02_142918) do
   create_table "passport_maps", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "passport_id", null: false
     t.string "surname", null: false
     t.string "given_name", null: false
     t.string "patronymic"
@@ -102,7 +101,8 @@ ActiveRecord::Schema.define(version: 2018_12_02_142918) do
     t.text "issued_by", null: false
     t.string "unit_code", null: false
     t.date "date_of_issue", null: false
-    t.index ["passport_id"], name: "index_passport_maps_on_passport_id", unique: true
+    t.bigint "passport_id", null: false
+    t.index ["passport_id"], name: "index_passport_maps_on_passport_id"
   end
 
   create_table "passports", force: :cascade do |t|

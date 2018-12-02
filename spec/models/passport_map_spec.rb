@@ -21,8 +21,6 @@ RSpec.describe PassportMap do
   it { is_expected.to validate_presence_of :unit_code }
   it { is_expected.to validate_presence_of :date_of_issue }
 
-  it { is_expected.to validate_uniqueness_of :passport_id }
-
   describe '#patronymic' do
     context 'when it is empty' do
       subject { create :passport_map, patronymic: '' }
