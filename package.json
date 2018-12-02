@@ -1,5 +1,7 @@
 {
   "name": "partynest",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "cropperjs": "^1.4.3"
+  }
 }
