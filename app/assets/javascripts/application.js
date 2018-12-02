@@ -11,5 +11,6 @@
 $(document).ready(function() {
   $('#image').viewer({
     inline: true,
+    navbar: false,
   })
 })
