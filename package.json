@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "cropperjs": "^1.4.3",
-    "jquery-cropper": "^1.0.0"
+    "jquery-cropper": "^1.0.0",
+    "jquery-zoom": "^1.7.21"
   }
 }
