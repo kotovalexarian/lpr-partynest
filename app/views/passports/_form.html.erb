@@ -1,0 +1,25 @@
+<%= simple_form_for passport do |f| %>
+  <%= f.simple_fields_for :passport_map do |ff| %>
+    <%= ff.input :surname %>
+    <%= ff.input :given_name %>
+    <%= ff.input :patronymic %>
+    <%= ff.input :sex,
+                 as: :radio_buttons,
+                 collection: PassportMap.sexes.keys.map { |sex|
+                   [Passport.human_attribute_name("sex.#{sex}"), sex]
+                 } %>
+    <%= ff.input :date_of_birth, start_year: Date.today.year - 150,
+                                 end_year: Date.today.year %>
+    <%= ff.input :place_of_birth %>
+    <%= ff.input :series %>
+    <%= ff.input :number %>
+    <%= ff.input :issued_by %>
+    <%= ff.input :unit_code %>
+    <%= ff.input :date_of_issue, start_year: Date.today.year - 150,
+                                 end_year: Date.today.year %>
+  <% end %>
+
+  <%= f.input :images %>
+
+  <%= f.button :submit %>
+<% end %>
