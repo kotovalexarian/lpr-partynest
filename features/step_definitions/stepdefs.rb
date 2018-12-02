@@ -73,13 +73,14 @@ When 'I click the passport creation button' do
 end
 
 Then 'I see the passport page' do
-  expect(page).to have_content @passport_attributes['Фамилия']
-  expect(page).to have_content @passport_attributes['Имя']
-  expect(page).to have_content @passport_attributes['Отчество']
-  expect(page).to have_content @passport_attributes['Пол']
-  expect(page).to have_content @passport_attributes['Место рождения']
-  expect(page).to have_content @passport_attributes['Серия']
-  expect(page).to have_content @passport_attributes['Номер']
-  expect(page).to have_content @passport_attributes['Кем выдан']
-  expect(page).to have_content @passport_attributes['Код подразделения']
+  @passport_attributes.each do |key, value|
+    case key
+    when 'Пол'
+      nil
+    when 'Серия', 'Номер'
+      expect(page).to have_field key, with: value.to_i
+    else
+      expect(page).to have_field key, with: value
+    end
+  end
 end

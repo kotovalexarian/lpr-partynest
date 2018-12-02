@@ -1,4 +1,25 @@
-<div class="container-fluid">
+<div class="container">
+  <div>
+    <% if @passport.confirmed? %>
+      <span class="badge badge-success">
+        <%= Passport.human_attribute_name 'confirmed.true' %>
+      </span>
+    <% else %>
+      <span class="badge badge-warning">
+        <%= Passport.human_attribute_name 'confirmed.false' %>
+      </span>
+    <% end %>
+
+    <span>
+      <%= Passport.human_attribute_name :passport_confirmations_count %>
+      <%= @passport.passport_confirmations.count %>
+      /
+      <%= Passport::REQUIRED_CONFIRMATIONS %>
+    </span>
+  </div>
+
+  <hr/>
+
   <% if @passport.image && current_account %>
     <% if @passport.passport_confirmations.where(account: current_account).exists? %>
       <div role="alert" class="alert alert-success">
@@ -19,132 +40,50 @@
                   role: :button,
                   class: 'btn btn-primary' %>
     <% end %>
-
-    <hr/>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-6">
-      <dl class="row">
-        <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :confirmed %>
-        </dt>
-        <dd class="col-lg-8">
-          <% if @passport.confirmed? %>
-            <span class="badge badge-success">
-              <%= Passport.human_attribute_name 'confirmed.true' %>
-            </span>
-          <% else %>
-            <span class="badge badge-warning">
-              <%= Passport.human_attribute_name 'confirmed.false' %>
-            </span>
-          <% end %>
-        </dt>
+  <hr/>
 
-        <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :passport_confirmations_count %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_confirmations.count %>
-          /
-          <%= Passport::REQUIRED_CONFIRMATIONS %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :surname %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_map&.surname %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :given_name %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_map&.given_name %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :patronymic %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_map&.patronymic %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :sex %>
-        </dt>
-        <dd class="col-lg-8">
-          <% if @passport.passport_map %>
-            <%= PassportMap.human_attribute_name "sex.#{@passport.passport_map.sex}" %>
-          <% end %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :date_of_birth %>
-        </dt>
-        <dd class="col-lg-8">
-          <% if @passport.passport_map %>
-            <%= localize @passport.passport_map.date_of_birth %>
-          <% end %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :place_of_birth %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_map&.place_of_birth %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :series %>
-        </dt>
-        <dd class="col-lg-8">
-          <% if @passport.passport_map %>
-            <%= passport_series @passport.passport_map.series %>
-          <% end %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :number %>
-        </dt>
-        <dd class="col-lg-8">
-          <% if @passport.passport_map %>
-            <%= passport_number @passport.passport_map.number %>
-          <% end %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :issued_by %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_map&.issued_by %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :unit_code %>
-        </dt>
-        <dd class="col-lg-8">
-          <%= @passport.passport_map&.unit_code %>
-        </dd>
-
-        <dt class="col-lg-4">
-          <%= PassportMap.human_attribute_name :date_of_issue %>
-        </dt>
-        <dd class="col-lg-8">
-          <% if @passport.passport_map %>
-            <%= localize @passport.passport_map.date_of_issue %>
-          <% end %>
-        </dd>
-      </dl>
-    </div>
-
-    <% @passport.image.try do |image| %>
+  <%= simple_form_for @passport, wrapper: :horizontal_form do |f| %>
+    <div class="row">
       <div class="col-md-6">
-        <div>
-          <%= image_tag url_for(image), id: :image, class: 'img-fluid', style: 'max-height: 600px' %>
-        </div>
+        <%= f.simple_fields_for :passport_maps do |ff| %>
+          <%= ff.input :surname %>
+          <%= ff.input :given_name %>
+          <%= ff.input :patronymic %>
+
+          <%= ff.input :sex,
+                       as: :radio_buttons,
+                       wrapper: :horizontal_collection_inline,
+                       collection: PassportMap.sexes.keys.map { |sex|
+                         [PassportMap.human_attribute_name("sex.#{sex}"), sex]
+                       } %>
+
+          <%= ff.input :date_of_birth,
+                       wrapper: :horizontal_multi_select,
+                       start_year: Date.today.year - 150,
+                       end_year: Date.today.year %>
+
+          <%= ff.input :place_of_birth %>
+          <%= ff.input :series %>
+          <%= ff.input :number %>
+          <%= ff.input :issued_by %>
+          <%= ff.input :unit_code %>
+
+          <%= ff.input :date_of_issue,
+                       wrapper: :horizontal_multi_select,
+                       start_year: Date.today.year - 150,
+                       end_year: Date.today.year %>
+        <% end %>
       </div>
-    <% end %>
-  </div>
+
+      <% @passport.image.try do |image| %>
+        <div class="col-md-6">
+          <div>
+            <%= image_tag url_for(image), id: :image, class: 'img-fluid', style: 'max-height: 600px' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
