@@ -134,6 +134,10 @@ group :development do
 
   # Makes spring watch files using the listen gem.
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Automatically generate an entity-relationship diagram (ERD)
+  # for your Rails models.
+  gem 'rails-erd', '~> 1.5'
 end
 
 group :test do
