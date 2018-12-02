@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'GET /passports/:id' do
   before do
+    create :passport_map, passport: passport
     get "/passports/#{passport.id}"
   end
 

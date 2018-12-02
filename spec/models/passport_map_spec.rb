@@ -25,7 +25,7 @@ RSpec.describe PassportMap do
 
   describe '#patronymic' do
     context 'when it is empty' do
-      subject { create :passport_without_image, patronymic: '' }
+      subject { create :passport_map, patronymic: '' }
 
       specify do
         expect(subject.patronymic).to eq nil
@@ -33,7 +33,7 @@ RSpec.describe PassportMap do
     end
 
     context 'when it is blank' do
-      subject { create :passport_without_image, patronymic: '   ' }
+      subject { create :passport_map, patronymic: '   ' }
 
       specify do
         expect(subject.patronymic).to eq nil

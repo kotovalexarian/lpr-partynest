@@ -1,22 +1,25 @@
 <div class="container">
   <%= simple_form_for @passport do |f| %>
-    <%= f.input :surname %>
-    <%= f.input :given_name %>
-    <%= f.input :patronymic %>
-    <%= f.input :sex,
-                as: :radio_buttons,
-                collection: Passport.sexes.keys.map { |sex|
-                  [Passport.human_attribute_name("sex.#{sex}"), sex]
-                } %>
-    <%= f.input :date_of_birth, start_year: Date.today.year - 150,
-                                end_year: Date.today.year %>
-    <%= f.input :place_of_birth %>
-    <%= f.input :series %>
-    <%= f.input :number %>
-    <%= f.input :issued_by %>
-    <%= f.input :unit_code %>
-    <%= f.input :date_of_issue, start_year: Date.today.year - 150,
-                                end_year: Date.today.year %>
+    <%= f.simple_fields_for :passport_map do |ff| %>
+      <%= ff.input :surname %>
+      <%= ff.input :given_name %>
+      <%= ff.input :patronymic %>
+      <%= ff.input :sex,
+                   as: :radio_buttons,
+                   collection: PassportMap.sexes.keys.map { |sex|
+                     [Passport.human_attribute_name("sex.#{sex}"), sex]
+                   } %>
+      <%= ff.input :date_of_birth, start_year: Date.today.year - 150,
+                                   end_year: Date.today.year %>
+      <%= ff.input :place_of_birth %>
+      <%= ff.input :series %>
+      <%= ff.input :number %>
+      <%= ff.input :issued_by %>
+      <%= ff.input :unit_code %>
+      <%= ff.input :date_of_issue, start_year: Date.today.year - 150,
+                                   end_year: Date.today.year %>
+    <% end %>
+
     <%= f.input :images %>
 
     <%= f.button :submit %>

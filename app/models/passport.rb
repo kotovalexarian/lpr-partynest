@@ -3,31 +3,16 @@
 class Passport < ApplicationRecord
   REQUIRED_CONFIRMATIONS = 3
 
-  enum sex: %i[male female]
-
   has_many_attached :images
 
   has_one :passport_map, dependent: :restrict_with_exception
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
+  accepts_nested_attributes_for :passport_map
+
   validates :confirmed,
             inclusion: { in: [false], unless: :enough_confirmations? }
-
-  validates :surname, presence: true
-  validates :given_name, presence: true
-  validates :sex, presence: true
-  validates :date_of_birth, presence: true
-  validates :place_of_birth, presence: true
-  validates :series, presence: true
-  validates :number, presence: true
-  validates :issued_by, presence: true
-  validates :unit_code, presence: true
-  validates :date_of_issue, presence: true
-
-  before_validation do
-    self.patronymic = nil if patronymic.blank?
-  end
 
   def image
     images.order(created_at: :desc).last

@@ -17,18 +17,6 @@ RSpec.describe Passport do
       .dependent(:restrict_with_exception)
   end
 
-  it { is_expected.to validate_presence_of :surname }
-  it { is_expected.to validate_presence_of :given_name }
-  it { is_expected.not_to validate_presence_of :patronymic }
-  it { is_expected.to validate_presence_of :sex }
-  it { is_expected.to validate_presence_of :date_of_birth }
-  it { is_expected.to validate_presence_of :place_of_birth }
-  it { is_expected.to validate_presence_of :series }
-  it { is_expected.to validate_presence_of :number }
-  it { is_expected.to validate_presence_of :issued_by }
-  it { is_expected.to validate_presence_of :unit_code }
-  it { is_expected.to validate_presence_of :date_of_issue }
-
   pending '#image'
   pending '#enough_confirmations?'
 
@@ -70,24 +58,6 @@ RSpec.describe Passport do
 
       it { is_expected.to allow_value false }
       it { is_expected.to allow_value true }
-    end
-  end
-
-  describe '#patronymic' do
-    context 'when it is empty' do
-      subject { create :passport_without_image, patronymic: '' }
-
-      specify do
-        expect(subject.patronymic).to eq nil
-      end
-    end
-
-    context 'when it is blank' do
-      subject { create :passport_without_image, patronymic: '   ' }
-
-      specify do
-        expect(subject.patronymic).to eq nil
-      end
     end
   end
 end

@@ -10,11 +10,12 @@ class PassportPolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_create
-    %i[
-      surname given_name patronymic sex date_of_birth place_of_birth series
-      number issued_by unit_code date_of_issue
-    ] + [
+    [
       images: [],
+      passport_map_attributes: %i[
+        surname given_name patronymic sex date_of_birth place_of_birth series
+        number issued_by unit_code date_of_issue
+      ],
     ]
   end
 
