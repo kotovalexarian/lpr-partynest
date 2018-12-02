@@ -6,7 +6,7 @@ RSpec.describe ConfirmPassport do
   subject { described_class.call passport: passport, account: account }
 
   let!(:passport) { create :passport_with_image }
-  let!(:account) { create :account }
+  let!(:account) { create :account_with_user }
 
   specify do
     expect(subject).to be_success

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  subject { create :account }
+  subject { create :account_with_user }
 
   it do
     is_expected.to \

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  subject { create(:account).user }
+  subject { create(:account_with_user).user }
 
   it { is_expected.to belong_to(:account).required(false) }
 

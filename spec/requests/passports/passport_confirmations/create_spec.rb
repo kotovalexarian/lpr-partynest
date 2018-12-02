@@ -25,7 +25,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   end
 
   context 'when account is authorized' do
-    let(:current_account) { create :account }
+    let(:current_account) { create :account_with_user }
 
     before do
       sign_in current_account.user
@@ -53,7 +53,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport confirmation already exists' do
-    let(:current_account) { create :account }
+    let(:current_account) { create :account_with_user }
 
     before do
       sign_in current_account.user
@@ -77,7 +77,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport confirmations count is almost enough' do
-    let(:current_account) { create :account }
+    let(:current_account) { create :account_with_user }
 
     before do
       (Passport::REQUIRED_CONFIRMATIONS - 1).times do
@@ -118,7 +118,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   context 'when passport is already confirmed' do
     let!(:passport) { create :confirmed_passport }
 
-    let(:current_account) { create :account }
+    let(:current_account) { create :account_with_user }
 
     before do
       sign_in current_account.user
@@ -153,7 +153,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
   context 'when passport has no image' do
     let!(:passport) { create :passport_without_image }
 
-    let(:current_account) { create :account }
+    let(:current_account) { create :account_with_user }
 
     before do
       sign_in current_account.user
