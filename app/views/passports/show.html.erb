@@ -20,7 +20,7 @@
 
   <hr/>
 
-  <% if @passport.image && current_account %>
+  <% if @passport.can_have_confirmations? && current_account %>
     <% if @passport.passport_confirmations.where(account: current_account).exists? %>
       <div role="alert" class="alert alert-success">
         <%= translate '.instruction_confirmed' %>
@@ -40,9 +40,9 @@
                   role: :button,
                   class: 'btn btn-primary' %>
     <% end %>
-  <% end %>
 
-  <hr/>
+    <hr/>
+  <% end %>
 
   <%= simple_form_for @passport, wrapper: :horizontal_form, defaults: { readonly: true } do |f| %>
     <div class="row">
