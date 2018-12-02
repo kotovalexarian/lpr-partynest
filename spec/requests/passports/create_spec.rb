@@ -7,7 +7,7 @@ RSpec.describe 'POST /passports' do
 
   let :passport_all_attributes do
     passport_plain_attributes.merge(
-      images: [Rack::Test::UploadedFile.new(File.open(passport_image_path))],
+      images: Rack::Test::UploadedFile.new(File.open(passport_image_path)),
     )
   end
 
