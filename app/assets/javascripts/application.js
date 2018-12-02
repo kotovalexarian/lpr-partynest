@@ -5,4 +5,5 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require cropperjs/dist/cropper
+//= require jquery-cropper/dist/jquery-cropper
 //= require_tree .

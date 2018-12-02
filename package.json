@@ -2,6 +2,7 @@
   "name": "partynest",
   "private": true,
   "dependencies": {
-    "cropperjs": "^1.4.3"
+    "cropperjs": "^1.4.3",
+    "jquery-cropper": "^1.0.0"
   }
 }
