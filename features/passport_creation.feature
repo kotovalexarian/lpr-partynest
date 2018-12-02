@@ -2,7 +2,7 @@ Feature: Passport creation
   Background:
     Given I visit "/passports/new"
 
-  Scenario:
+  Scenario: all fields are filled
     Given I want to create the following passport:
       | key               | value    |
       | Фамилия           | Иванов   |
@@ -18,7 +18,7 @@ Feature: Passport creation
     When I click the passport creation button
     Then I see the passport page
 
-  Scenario:
+  Scenario: only required fields are filled
     Given I want to create the following passport:
       | key               | value    |
       | Фамилия           | Петрова  |
