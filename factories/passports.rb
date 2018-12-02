@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :passport_without_image, class: Passport do
-    confirmed { false }
-
+  factory :empty_passport, class: Passport do
     surname { Faker::Name.last_name }
     given_name { Faker::Name.first_name }
     patronymic { Faker::Name.first_name }
@@ -17,6 +15,10 @@ FactoryBot.define do
       "#{rand(0..999).to_s.rjust(3, '0')}-#{rand(0..999).to_s.rjust(3, '0')}"
     end
     date_of_issue { Faker::Date.backward }
+  end
+
+  factory :passport_without_image, parent: :empty_passport do
+    confirmed { false }
   end
 
   factory :passport_with_image, parent: :passport_without_image do
