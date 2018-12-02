@@ -44,13 +44,13 @@
 
   <hr/>
 
-  <%= simple_form_for @passport, wrapper: :horizontal_form do |f| %>
+  <%= simple_form_for @passport, wrapper: :horizontal_form, defaults: { readonly: true } do |f| %>
     <div class="row">
       <div class="col-md-6">
         <%= f.simple_fields_for :passport_maps do |ff| %>
-          <%= ff.input :surname,    readonly: true %>
-          <%= ff.input :given_name, readonly: true %>
-          <%= ff.input :patronymic, readonly: true %>
+          <%= ff.input :surname %>
+          <%= ff.input :given_name %>
+          <%= ff.input :patronymic %>
 
           <%= ff.input :sex,
                        as: :radio_buttons,
@@ -66,11 +66,11 @@
                        start_year: Date.today.year - 150,
                        end_year: Date.today.year %>
 
-          <%= ff.input :place_of_birth, readonly: true %>
-          <%= ff.input :series,         readonly: true %>
-          <%= ff.input :number,         readonly: true %>
-          <%= ff.input :issued_by,      readonly: true %>
-          <%= ff.input :unit_code,      readonly: true %>
+          <%= ff.input :place_of_birth %>
+          <%= ff.input :series %>
+          <%= ff.input :number %>
+          <%= ff.input :issued_by %>
+          <%= ff.input :unit_code %>
 
           <%= ff.input :date_of_issue,
                        wrapper: :horizontal_multi_select,
