@@ -9,7 +9,30 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $('#image').viewer({
+  $('#image').passportImageViewer()
+
+  $("input[name='passport[images]']").change(function() {
+    if (!this.files) { return }
+
+    var file = this.files[0]
+
+    if (!file) { return }
+
+    var reader = new FileReader()
+
+    reader.onload = function(e) {
+      $('#image').attr('src', e.target.result)
+      $('#image').passportImageViewer()
+    }
+
+    reader.readAsDataURL(file)
+  })
+})
+
+$.fn.passportImageViewer = function() {
+  $(this).viewer('destroy')
+
+  $(this).viewer({
     inline: true,
     title: false,
     navbar: false,
@@ -27,4 +50,4 @@ $(document).ready(function() {
       flipVertical: true,
     },
   })
-})
+}
