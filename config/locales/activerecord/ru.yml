@@ -35,6 +35,9 @@ ru:
         confirmed: Подтверждён?
         passport_confirmations_count: Количество подтверждений
         images: Изображения
+      passport/confirmed:
+        'true': Подтверждён
+        'false': Не подтверждён
       passport_map:
         id: ID
         surname: Фамилия
@@ -48,16 +51,13 @@ ru:
         issued_by: Кем выдан
         unit_code: Код подразделения
         date_of_issue: Дата выдачи
+      passport_map/sex:
+        male: Мужской
+        female: Женский
       country_state:
         id: ID
         membership_applications: Заявления на вступление
         name: Название
-      passport/confirmed:
-        'true': Подтверждён
-        'false': Не подтверждён
-      passport/sex:
-        male: Мужской
-        female: Женский
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения

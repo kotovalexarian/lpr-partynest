@@ -10,7 +10,7 @@
                      as: :radio_buttons,
                      wrapper: :horizontal_collection_inline,
                      collection: PassportMap.sexes.keys.map { |sex|
-                       [Passport.human_attribute_name("sex.#{sex}"), sex]
+                       [PassportMap.human_attribute_name("sex.#{sex}"), sex]
                      } %>
 
         <%= ff.input :date_of_birth,

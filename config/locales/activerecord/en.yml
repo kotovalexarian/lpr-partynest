@@ -35,6 +35,9 @@ en:
         confirmed: Confirmed?
         passport_confirmations_count: Confirmations count
         images: Images
+      passport/confirmed:
+        'true': Confirmed
+        'false': Unconfirmed
       passport_map:
         id: ID
         surname: Surname
@@ -48,16 +51,13 @@ en:
         issued_by: Issued by
         unit_code: Unit code
         date_of_issue: Date of issue
+      passport_map/sex:
+        male: Male
+        female: Female
       country_state:
         id: ID
         membership_applications: Membership applications
         name: Name
-      passport/confirmed:
-        'true': Confirmed
-        'false': Unconfirmed
-      passport/sex:
-        male: Male
-        female: Female
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at

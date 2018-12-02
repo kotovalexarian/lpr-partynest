@@ -51,37 +51,37 @@
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :surname %>
+          <%= PassportMap.human_attribute_name :surname %>
         </dt>
         <dd class="col-lg-8">
           <%= @passport.passport_map&.surname %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :given_name %>
+          <%= PassportMap.human_attribute_name :given_name %>
         </dt>
         <dd class="col-lg-8">
           <%= @passport.passport_map&.given_name %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :patronymic %>
+          <%= PassportMap.human_attribute_name :patronymic %>
         </dt>
         <dd class="col-lg-8">
           <%= @passport.passport_map&.patronymic %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :sex %>
+          <%= PassportMap.human_attribute_name :sex %>
         </dt>
         <dd class="col-lg-8">
           <% if @passport.passport_map %>
-            <%= Passport.human_attribute_name "sex.#{@passport.passport_map.sex}" %>
+            <%= PassportMap.human_attribute_name "sex.#{@passport.passport_map.sex}" %>
           <% end %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :date_of_birth %>
+          <%= PassportMap.human_attribute_name :date_of_birth %>
         </dt>
         <dd class="col-lg-8">
           <% if @passport.passport_map %>
@@ -90,14 +90,14 @@
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :place_of_birth %>
+          <%= PassportMap.human_attribute_name :place_of_birth %>
         </dt>
         <dd class="col-lg-8">
           <%= @passport.passport_map&.place_of_birth %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :series %>
+          <%= PassportMap.human_attribute_name :series %>
         </dt>
         <dd class="col-lg-8">
           <% if @passport.passport_map %>
@@ -106,7 +106,7 @@
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :number %>
+          <%= PassportMap.human_attribute_name :number %>
         </dt>
         <dd class="col-lg-8">
           <% if @passport.passport_map %>
@@ -115,21 +115,21 @@
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :issued_by %>
+          <%= PassportMap.human_attribute_name :issued_by %>
         </dt>
         <dd class="col-lg-8">
           <%= @passport.passport_map&.issued_by %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :unit_code %>
+          <%= PassportMap.human_attribute_name :unit_code %>
         </dt>
         <dd class="col-lg-8">
           <%= @passport.passport_map&.unit_code %>
         </dd>
 
         <dt class="col-lg-4">
-          <%= Passport.human_attribute_name :date_of_issue %>
+          <%= PassportMap.human_attribute_name :date_of_issue %>
         </dt>
         <dd class="col-lg-8">
           <% if @passport.passport_map %>
