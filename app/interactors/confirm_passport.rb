@@ -10,7 +10,7 @@ class ConfirmPassport
 
   def create_passport_confirmation
     passport_confirmation =
-      context.passport.passport_confirmations.build user: context.user
+      context.passport.passport_confirmations.build account: context.account
 
     context.fail! passport_confirmation: nil unless passport_confirmation.save
 

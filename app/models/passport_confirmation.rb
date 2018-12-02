@@ -2,9 +2,9 @@
 
 class PassportConfirmation < ApplicationRecord
   belongs_to :passport
-  belongs_to :user
+  belongs_to :account
 
-  validates :user_id, uniqueness: { scope: :passport_id }
+  validates :account_id, uniqueness: { scope: :passport_id }
 
   validate :passport_has_image
 

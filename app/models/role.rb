@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Role < ApplicationRecord
-  has_many :user_roles, dependent: :destroy
+  has_many :account_roles, dependent: :destroy
 
-  has_many :users, through: :user_roles, source: :user
+  has_many :accounts, through: :account_roles, source: :account
 
   belongs_to :resource, polymorphic: true, optional: true
 

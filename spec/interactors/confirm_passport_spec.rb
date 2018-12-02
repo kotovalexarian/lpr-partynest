@@ -3,17 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe ConfirmPassport do
-  subject { described_class.call passport: passport, user: user }
+  subject { described_class.call passport: passport, account: account }
 
   let!(:passport) { create :passport_with_image }
-  let!(:user) { create :user }
+  let!(:account) { create :account }
 
   specify do
     expect(subject).to be_success
   end
 
   specify do
-    expect(subject).to have_attributes passport: passport, user: user
+    expect(subject).to have_attributes passport: passport, account: account
   end
 
   specify do
@@ -22,7 +22,7 @@ RSpec.describe ConfirmPassport do
 
   specify do
     expect(subject.passport_confirmation).to \
-      have_attributes passport: passport, user: user
+      have_attributes passport: passport, account: account
   end
 
   specify do
@@ -44,7 +44,7 @@ RSpec.describe ConfirmPassport do
     specify do
       expect(subject).to have_attributes(
         passport:              passport,
-        user:                  user,
+        account:               account,
         passport_confirmation: nil,
       )
     end

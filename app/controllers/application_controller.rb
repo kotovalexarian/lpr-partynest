@@ -13,7 +13,15 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from NotAuthorizedError,           with: :unauthorized
 
+  helper_method :current_account
+
 private
+
+  def current_account
+    @current_account ||= current_user&.account
+  end
+
+  alias pundit_user current_account
 
   def set_raven_context
     Raven.user_context id: current_user.id if user_signed_in?

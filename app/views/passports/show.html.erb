@@ -7,8 +7,8 @@
 
   <hr/>
 
-  <% if @passport.image && user_signed_in? %>
-    <% if @passport.passport_confirmations.where(user: current_user).exists? %>
+  <% if @passport.image && current_account %>
+    <% if @passport.passport_confirmations.where(account: current_account).exists? %>
       <div role="alert" class="alert alert-success">
         <%= translate '.instruction_confirmed' %>
       </div>
