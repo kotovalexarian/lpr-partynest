@@ -5,8 +5,10 @@ require 'rails_helper'
 RSpec.describe MembershipApplication do
   subject { create :membership_application }
 
+  it { is_expected.to belong_to :account }
   it { is_expected.to belong_to(:country_state).optional }
 
+  it { is_expected.to validate_presence_of(:account).with_message(:required) }
   it { is_expected.not_to validate_presence_of :country_state }
   it { is_expected.to validate_presence_of :first_name }
   it { is_expected.to validate_presence_of :last_name }

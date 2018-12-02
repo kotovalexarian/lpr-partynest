@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MembershipApplication < ApplicationRecord
+  belongs_to :account
   belongs_to :country_state, optional: true
 
   validates :first_name, presence: true

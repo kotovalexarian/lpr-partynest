@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_022901) do
+ActiveRecord::Schema.define(version: 2018_12_02_104848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2018_12_02_022901) do
     t.text "organization_membership"
     t.text "comment"
     t.bigint "country_state_id"
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_membership_applications_on_account_id"
     t.index ["country_state_id"], name: "index_membership_applications_on_country_state_id"
   end
 
@@ -149,6 +151,7 @@ ActiveRecord::Schema.define(version: 2018_12_02_022901) do
 
   add_foreign_key "account_roles", "accounts"
   add_foreign_key "account_roles", "roles"
+  add_foreign_key "membership_applications", "accounts"
   add_foreign_key "membership_applications", "country_states"
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"

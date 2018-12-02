@@ -13,6 +13,8 @@ class MembershipApplicationsController < ApplicationController
     @membership_application =
       MembershipApplication.new permitted_attributes MembershipApplication
 
+    @membership_application.account = current_account || Account.new
+
     authorize @membership_application
 
     return render :new unless @membership_application.save

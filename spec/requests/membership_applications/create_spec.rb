@@ -26,6 +26,11 @@ RSpec.describe 'POST /membership_applications' do
       change(MembershipApplication, :count).from(0).to(1)
   end
 
+  specify do
+    expect { make_request }.to \
+      change(Account, :count).from(0).to(1)
+  end
+
   context 'after request' do
     before { make_request }
 
@@ -51,6 +56,11 @@ RSpec.describe 'POST /membership_applications' do
     specify do
       expect { make_request }.to \
         change(MembershipApplication, :count).from(0).to(1)
+    end
+
+    specify do
+      expect { make_request }.to \
+        change(Account, :count).from(0).to(1)
     end
 
     context 'after request' do

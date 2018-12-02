@@ -13,6 +13,12 @@ RSpec.describe Account do
 
   it do
     is_expected.to \
+      have_many(:membership_applications)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
       have_many(:passport_confirmations)
       .dependent(:restrict_with_exception)
   end
