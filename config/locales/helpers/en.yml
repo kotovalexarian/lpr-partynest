@@ -1,0 +1,5 @@
+en:
+  helpers:
+    submit:
+      membership_application:
+        create: Send application

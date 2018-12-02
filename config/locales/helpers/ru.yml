@@ -1,0 +1,5 @@
+ru:
+  helpers:
+    submit:
+      membership_application:
+        create: Отправить заявление

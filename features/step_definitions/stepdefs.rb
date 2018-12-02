@@ -7,9 +7,13 @@ end
 When 'I fill form with the following data:' do |table|
   within 'form' do
     table.rows.each do |(key, value)|
-      fill_in key, with: value
+      fill_in key, with: value, match: :prefer_exact
     end
   end
+end
+
+When 'I click the button {string}' do |string|
+  click_on string
 end
 
 When 'I click the form button {string}' do |string|
