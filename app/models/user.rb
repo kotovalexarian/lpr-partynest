@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   devise(
-    # :confirmable,
+    :confirmable,
     :database_authenticatable,
     # :lockable,
     # :omniauthable,

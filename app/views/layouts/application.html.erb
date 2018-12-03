@@ -16,6 +16,7 @@
 
   <body>
     <%= render 'navbar' %>
+    <%= render partial: 'flash', flash: flash %>
     <%= yield :top %>
     <div class="my-4">
       <%= yield %>
