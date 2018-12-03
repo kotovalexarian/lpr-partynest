@@ -8,6 +8,10 @@
 # Ignore bundler config.
 /.bundle/
 
+# Ignore documentation.
+/doc/
+/.yardoc/
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

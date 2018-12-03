@@ -138,6 +138,9 @@ group :development do
   # Automatically generate an entity-relationship diagram (ERD)
   # for your Rails models.
   gem 'rails-erd', '~> 1.5'
+
+  # YARD is a documentation generation tool for the Ruby programming language.
+  gem 'yard', '~> 0.9'
 end
 
 group :test do
