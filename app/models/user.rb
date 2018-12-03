@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise(
     :confirmable,
     :database_authenticatable,
-    # :lockable,
+    :lockable,
     # :omniauthable,
     :recoverable,
     :registerable,
