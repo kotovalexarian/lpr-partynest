@@ -1,0 +1,23 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= PassportConfirmation.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= PassportConfirmation.human_attribute_name :account %>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @passport_confirmations.each do |passport_confirmation| %>
+        <tr>
+          <td scope="row"><%= passport_confirmation.id %></td>
+          <td><%= truncate passport_confirmation.account.user&.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

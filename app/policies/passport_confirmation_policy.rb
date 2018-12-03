@@ -7,4 +7,10 @@ class PassportConfirmationPolicy < ApplicationPolicy
 
     policy(record.passport).show?
   end
+
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
+  end
 end

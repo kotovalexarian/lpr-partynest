@@ -7,6 +7,9 @@ en:
       passport:
         one: Passport
         other: Passports
+      passport_confirmation:
+        one: Passport confirmation
+        other: Passport confirmations
       passport_map:
         one: Passport mapping
         other: Passport mappings
@@ -38,6 +41,10 @@ en:
       passport/confirmed:
         'true': Confirmed
         'false': Unconfirmed
+      passport_confirmation:
+        id: ID
+        passport: Passport
+        account: Account
       passport_map:
         id: ID
         surname: Surname

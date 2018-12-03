@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :membership_applications, only: %i[new create]
 
   resources :passports, only: %i[index show new create] do
-    resources :passport_confirmations, shallow: true, only: :create
+    resources :passport_confirmations, shallow: true, only: %i[index create]
   end
 
   resources :telegram_bot_updates, only: :create

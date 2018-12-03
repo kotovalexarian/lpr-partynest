@@ -7,6 +7,9 @@ ru:
       passport:
         one: Паспорт
         other: Паспорта
+      passport_confirmation:
+        one: Подтверждение паспорта
+        other: Подтверждения паспортов
       passport_map:
         one: Отображение паспорта
         other: Отображения паспортов
@@ -38,6 +41,10 @@ ru:
       passport/confirmed:
         'true': Подтверждён
         'false': Не подтверждён
+      passport_confirmation:
+        id: ID
+        passport: Паспорт
+        account: Аккаунт
       passport_map:
         id: ID
         surname: Фамилия
