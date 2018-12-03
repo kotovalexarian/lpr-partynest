@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PassportConfirmationsController < ApplicationController
+class Passports::PassportConfirmationsController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   before_action :set_passport, only: %i[index create]
