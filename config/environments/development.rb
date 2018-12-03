@@ -37,10 +37,13 @@ Rails.application.configure do
   # When mail is sent from your application,
   # Letter Opener will open a preview in the browser instead of sending.
   config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = {
+    host: 'localhost',
+    port: 3000,
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
