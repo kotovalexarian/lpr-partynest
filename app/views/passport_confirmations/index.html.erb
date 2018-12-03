@@ -16,8 +16,13 @@
     <tbody>
       <% @passport_confirmations.each do |passport_confirmation| %>
         <tr>
-          <td scope="row"><%= passport_confirmation.id %></td>
-          <td><%= truncate passport_confirmation.account.user&.email %></td>
+          <td scope="row">
+            <%= passport_confirmation.id %>
+          </td>
+          <td>
+            <%= truncate passport_confirmation.account.user&.email,
+                         length: 50 %>
+          </td>
         </tr>
       <% end %>
     </tbody>
