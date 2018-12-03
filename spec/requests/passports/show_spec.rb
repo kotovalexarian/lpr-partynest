@@ -3,8 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe 'GET /passports/:id' do
-  before do
+  let!(:passport) { create :confirmed_passport }
+  let(:current_user) { create :user }
+
+  def make_request
     get "/passports/#{passport.id}"
+  end
+
+  before do
+    sign_in current_user if current_user
+    make_request
+  end
+
+  context 'when no user is authenticated' do
+    let(:current_user) { nil }
+
+    specify do
+      expect(response).to have_http_status :ok
+    end
   end
 
   context 'when passport is empty' do
