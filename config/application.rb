@@ -23,9 +23,12 @@ module Partynest
   class Application < Rails::Application
     FILTER_PARAMS = %i[
       api_token
+      confirmation_token
       password
       password_confirmation
+      reset_password_token
       secret
+      unlock_token
     ].freeze
 
     # Initialize configuration defaults for originally generated Rails version.
