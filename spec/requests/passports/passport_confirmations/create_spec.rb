@@ -40,7 +40,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
 
       specify do
@@ -75,7 +76,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
     end
   end
@@ -103,7 +105,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
     end
   end
@@ -131,7 +134,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
     end
   end
@@ -159,7 +163,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
     end
   end
@@ -183,7 +188,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
     end
   end
@@ -215,7 +221,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
 
       specify do
@@ -250,7 +257,8 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to passport
+        expect(response).to \
+          redirect_to passport_passport_confirmations_path passport
       end
 
       specify do

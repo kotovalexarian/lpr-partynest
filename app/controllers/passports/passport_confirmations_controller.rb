@@ -19,7 +19,7 @@ class Passports::PassportConfirmationsController < ApplicationController
       end
     end
 
-    redirect_to @passport
+    redirect_to passport_passport_confirmations_path @passport
   end
 
 private
