@@ -1,4 +1,6 @@
 <div class="container">
+  <%= render partial: 'nav_tabs', locals: { tab: :overview } %>
+
   <div>
     <% if @passport.confirmed? %>
       <span class="badge badge-success">
