@@ -1,12 +1,27 @@
-<ul class="nav nav-tabs mb-3">
-  <li class="nav-item">
-    <%= link_to translate(:overview, scope: %i[nav_tabs passport]),
-                @passport,
-                class: "nav-link #{:active if tab == :overview}" %>
-  </li>
-  <li class="nav-item">
-    <%= link_to translate(:confirmations, scope: %i[nav_tabs passport]),
-                passport_passport_confirmations_path(@passport),
-                class: "nav-link #{:active if tab == :confirmations}" %>
-  </li>
-</ul>
+<div class="mb-3">
+  <ul class="nav nav-tabs d-none d-sm-flex">
+    <li class="nav-item">
+      <%= link_to translate(:overview, scope: %i[nav_tabs passport]),
+                  @passport,
+                  class: "nav-link #{:active if tab == :overview}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to translate(:confirmations, scope: %i[nav_tabs passport]),
+                  passport_passport_confirmations_path(@passport),
+                  class: "nav-link #{:active if tab == :confirmations}" %>
+    </li>
+  </ul>
+
+  <ul class="nav flex-column nav-pills d-flex d-sm-none">
+    <li class="nav-item">
+      <%= link_to translate(:overview, scope: %i[nav_tabs passport]),
+                  @passport,
+                  class: "nav-link #{:active if tab == :overview}" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to translate(:confirmations, scope: %i[nav_tabs passport]),
+                  passport_passport_confirmations_path(@passport),
+                  class: "nav-link #{:active if tab == :confirmations}" %>
+    </li>
+  </ul>
+</div>
