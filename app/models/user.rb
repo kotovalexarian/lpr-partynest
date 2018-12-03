@@ -6,7 +6,7 @@ class User < ApplicationRecord
     :database_authenticatable,
     # :lockable,
     # :omniauthable,
-    # :recoverable,
+    :recoverable,
     :registerable,
     :rememberable,
     # :timeoutable,

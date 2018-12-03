@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     sessions:      'users/sessions',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
+    passwords:     'users/passwords',
   }
 
   resources :membership_applications, only: %i[new create]
