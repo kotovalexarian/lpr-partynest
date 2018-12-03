@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
     passwords:     'users/passwords',
+    unlocks:       'users/unlocks',
   }
 
   resources :membership_applications, only: %i[new create]
