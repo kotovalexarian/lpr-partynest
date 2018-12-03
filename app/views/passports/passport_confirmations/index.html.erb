@@ -1,6 +1,19 @@
 <div class="container">
   <%= render partial: 'passports/nav_tabs', locals: { tab: :confirmations } %>
 
+  <% if @passport.can_have_confirmations? && current_account %>
+    <div class="mb-3">
+      <% if @passport.passport_confirmations.where(account: current_account).exists? %>
+        <%= translate '.already_confirmed' %>
+      <% else %>
+          <%= link_to translate('.new_confirmation'),
+                      '#', # new_passport_passport_confirmation_path(@passport),
+                      role: :button,
+                      class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  <% end %>
+
   <table class="table">
     <thead>
       <tr>

@@ -10,3 +10,7 @@ en:
         Please compare it with corresponding data on the image.
         It you believe the data matches,
         confirm it by pressing the button below.
+    passport_confirmations:
+      index:
+        new_confirmation: New confirmation
+        already_confirmed: You have already confirmed the passport.
