@@ -109,6 +109,9 @@ group :development, :test do
 
   # rspec-rails is a testing framework for Rails 3+
   gem 'rspec-rails', '~> 3.8'
+
+  # bundler-audit provides patch-level verification for Bundled apps.
+  gem 'bundler-audit', '~> 0.6'
 end
 
 group :development do
