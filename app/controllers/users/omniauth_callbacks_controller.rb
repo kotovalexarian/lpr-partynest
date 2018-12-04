@@ -15,16 +15,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   # GET|POST /users/auth/github/callback
-  def github # rubocop:disable Metrics/AbcSize
+  def github # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     auth = request.env['omniauth.auth']
 
-    users = User.where omniauth_provider: auth.provider, omniauth_uid: auth.uid
+    user = User.where(email: auth.info.email).first_or_create! do |new_user|
+      new_user.password = Devise.friendly_token[0, 20]
+    end
 
-    user = users.first_or_create do |new_user|
-      new_user.omniauth_provider = auth.provider
-      new_user.omniauth_uid      = auth.uid
-      new_user.email             = auth.info.email
-      new_user.password          = Devise.friendly_token[0, 20]
+    UserOmniauth.where(
+      provider:  auth.provider,
+      remote_id: auth.uid,
+    ).first_or_create! do |new_user_omniauth|
+      new_user_omniauth.user = user
+      new_user_omniauth.email = auth.info.email
     end
 
     sign_in_and_redirect user
