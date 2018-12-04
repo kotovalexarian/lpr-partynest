@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_201924) do
+ActiveRecord::Schema.define(version: 2018_12_04_024403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,8 @@ ActiveRecord::Schema.define(version: 2018_12_02_201924) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.bigint "account_id", null: false
+    t.string "omniauth_provider"
+    t.string "omniauth_uid"
     t.index ["account_id"], name: "index_users_on_account_id", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
