@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   root to: 'home#show'
 
   devise_for :users, controllers: {
-    sessions:      'users/sessions',
-    registrations: 'users/registrations',
-    confirmations: 'users/confirmations',
-    passwords:     'users/passwords',
-    unlocks:       'users/unlocks',
+    sessions:           'users/sessions',
+    registrations:      'users/registrations',
+    confirmations:      'users/confirmations',
+    passwords:          'users/passwords',
+    unlocks:            'users/unlocks',
+    omniauth_callbacks: 'users/omniauth_callbacks',
   }
 
   resources :membership_applications, only: %i[new create]
