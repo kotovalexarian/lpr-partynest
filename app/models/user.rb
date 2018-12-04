@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   belongs_to :account
 
+  has_many :user_omniauths, dependent: :restrict_with_exception
+
   validates :account_id, uniqueness: true
 
   before_validation do

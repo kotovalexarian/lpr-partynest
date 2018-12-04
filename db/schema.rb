@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_030126) do
+ActiveRecord::Schema.define(version: 2018_12_04_030414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,17 @@ ActiveRecord::Schema.define(version: 2018_12_04_030126) do
     t.string "api_token", null: false
   end
 
+  create_table "user_omniauths", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "provider", null: false
+    t.string "remote_id", null: false
+    t.string "email", null: false
+    t.index ["remote_id", "provider"], name: "index_user_omniauths_on_remote_id_and_provider", unique: true
+    t.index ["user_id"], name: "index_user_omniauths_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -163,5 +174,6 @@ ActiveRecord::Schema.define(version: 2018_12_04_030126) do
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"
   add_foreign_key "passport_maps", "passports"
+  add_foreign_key "user_omniauths", "users"
   add_foreign_key "users", "accounts"
 end
