@@ -9,7 +9,7 @@ class User < ApplicationRecord
     :recoverable,
     :registerable,
     :rememberable,
-    # :timeoutable,
+    :timeoutable,
     :trackable,
     :validatable,
   )
