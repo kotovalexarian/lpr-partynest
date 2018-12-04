@@ -122,6 +122,9 @@ group :development do
   # NPM support for Capistrano 3.x.
   gem 'capistrano-npm', '~> 1.0', require: false
 
+  # Remote Rails console for Capistrano.
+  gem 'capistrano-rails-console', '~> 2.3', require: false
+
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console.
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
