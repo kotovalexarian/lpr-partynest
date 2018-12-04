@@ -8,7 +8,7 @@ desc 'Run all checks (test, lint...)'
 task default: :lint
 
 desc 'Run all code analysis tools (RuboCop...)'
-task lint: %i[rubocop bundler:audit]
+task lint: %i[rubocop bundler:audit brakeman]
 
 desc 'Fix code style (rubocop --auto-correct)'
 task fix: 'rubocop:auto_correct'
@@ -47,4 +47,17 @@ namespace :bundler do
   end
 rescue LoadError
   nil
+end
+
+desc 'Detects security vulnerabilities via static analysis'
+task :brakeman do
+  sh(
+    'bundle',
+    'exec',
+    'brakeman',
+    Rails.root.to_s,
+    '--confidence-level',
+    '1',
+    '--run-all-checks',
+  )
 end

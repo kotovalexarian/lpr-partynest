@@ -112,6 +112,10 @@ group :development, :test do
 
   # bundler-audit provides patch-level verification for Bundled apps.
   gem 'bundler-audit', '~> 0.6'
+
+  # Brakeman detects security vulnerabilities
+  # in Ruby on Rails applications via static analysis.
+  gem 'brakeman', '~> 4.3'
 end
 
 group :development do
