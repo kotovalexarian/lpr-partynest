@@ -5,13 +5,14 @@ class User < ApplicationRecord
     :confirmable,
     :database_authenticatable,
     :lockable,
-    # :omniauthable,
+    :omniauthable,
     :recoverable,
     :registerable,
     :rememberable,
     :timeoutable,
     :trackable,
     :validatable,
+    omniauth_providers: %i[github],
   )
 
   belongs_to :account

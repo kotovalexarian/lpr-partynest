@@ -89,6 +89,12 @@ gem 'pundit', '~> 2.0'
 # for performing complex user interactions.
 gem 'interactor', '~> 3.1'
 
+# A generalized Rack framework for multiple-provider authentication.
+gem 'omniauth', '~> 1.8'
+
+# Official OmniAuth strategy for GitHub.
+gem 'omniauth-github', '~> 1.3'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
