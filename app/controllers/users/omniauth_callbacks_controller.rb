@@ -21,10 +21,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     users = User.where omniauth_provider: auth.provider, omniauth_uid: auth.uid
 
     user = users.first_or_create do |new_user|
-      new_user.provider = auth.provider
-      new_user.uid      = auth.uid
-      new_user.email    = auth.info.email
-      new_user.password = Devise.friendly_token[0, 20]
+      new_user.omniauth_provider = auth.provider
+      new_user.omniauth_uid      = auth.uid
+      new_user.email             = auth.info.email
+      new_user.password          = Devise.friendly_token[0, 20]
     end
 
     sign_in_and_redirect user
