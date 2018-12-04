@@ -15,26 +15,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   # GET|POST /users/auth/github/callback
-  def github # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-    auth = request.env['omniauth.auth']
+  def github
+    context = AuthenticateUserWithOmniauth.call(
+      provider:  auth_hash.provider,
+      remote_id: auth_hash.uid,
+      email:     auth_hash.info.email,
+    )
 
-    user = User.where(email: auth.info.email).first_or_create! do |new_user|
-      new_user.password = Devise.friendly_token[0, 20]
-      new_user.confirmed_at = Time.zone.now
-    end
-
-    UserOmniauth.where(
-      provider:  auth.provider,
-      remote_id: auth.uid,
-    ).first_or_create! do |new_user_omniauth|
-      new_user_omniauth.user = user
-      new_user_omniauth.email = auth.info.email
-    end
-
-    sign_in_and_redirect user
+    sign_in_and_redirect context.user
   end
 
-  # protected
+private
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
 
   # The path used when OmniAuth fails
   # def after_omniauth_failure_path_for(scope)

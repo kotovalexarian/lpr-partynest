@@ -8,6 +8,8 @@ class ConfirmPassport
     confirm_passport
   end
 
+private
+
   def create_passport_confirmation
     passport_confirmation =
       context.passport.passport_confirmations.build account: context.account
