@@ -4,7 +4,7 @@
 lock '~> 3.11.0'
 
 set :application, 'partynest'
-set :repo_url, 'git@github.com:lpr-perm/partynest.git'
+set :repo_url, 'git@github.com:libertarian-party/partynest.git'
 
 # Default branch is :master.
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

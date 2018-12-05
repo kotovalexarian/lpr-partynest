@@ -1,10 +1,10 @@
 Partynest
 =========
 
-[![Build Status](https://travis-ci.org/lpr-perm/partynest.svg?branch=master)](https://travis-ci.org/lpr-perm/partynest)
-[![Coverage Status](https://coveralls.io/repos/github/lpr-perm/partynest/badge.svg)](https://coveralls.io/github/lpr-perm/partynest)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c156d8af7a63f8d3166b/maintainability)](https://codeclimate.com/github/lpr-perm/partynest/maintainability)
-[![Inline docs](http://inch-ci.org/github/lpr-perm/partynest.svg?branch=master)](http://inch-ci.org/github/lpr-perm/partynest)
+[![Build Status](https://travis-ci.org/libertarian-party/partynest.svg?branch=master)](https://travis-ci.org/libertarian-party/partynest)
+[![Coverage Status](https://coveralls.io/repos/github/libertarian-party/partynest/badge.svg)](https://coveralls.io/github/libertarian-party/partynest)
+[![Maintainability](https://api.codeclimate.com/v1/badges/974d97f03895453189e1/maintainability)](https://codeclimate.com/github/libertarian-party/partynest/maintainability)
+[![Inline docs](http://inch-ci.org/github/libertarian-party/partynest.svg?branch=master)](http://inch-ci.org/github/libertarian-party/partynest)
 
 
 
