@@ -13,3 +13,32 @@ Table of contents
 
 * [Overview](#partynest)
 * [Table of contents](#table-of-contents)
+* [Deploy](#deploy)
+
+
+
+Deploy
+------
+
+Tested with **Ubuntu Server 18.04 LTS**.
+
+### System packages
+
+* `build-essential`
+* `bundler`
+* `liblzma-dev`
+* `libpq-dev`
+* `nodejs`
+* `npm`
+* `patch`
+* `ruby`
+* `ruby-dev`
+* `rubygems-integration`
+* `zlib1g-dev`
+
+### Steps
+
+* Create directory `/var/www/partynest/` writable by deploy user
+* Copy file `config/master.key` to `/var/www/partynest/shared/config/`
+* Create PostgreSQL role `partynest` with password `password`
+* Create PostgreSQL database `partynest_production` owned by `partynest`
