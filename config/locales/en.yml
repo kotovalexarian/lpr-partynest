@@ -1,21 +1,2 @@
 en:
-  title: Libertarian party of Russia, Perm
-  brand: LPR Perm
-  telegram_channel: Channel
-  telegram_chat: Chat
-  vk_public: Public
-  other_links: Other links
-  main_party_site: Main party site
-  department_page_on_party_site: Department page on party site
-  departments_in_other_states: Departments in other states
-  github: GitHub
-
-  home:
-    show:
-      primary_title: Libertarian party of Russia
-      secondary_title: in Perm Krai
-      description: >
-        We stand for a free market and freedom of government intervention
-        in the economy, for the principle of self-ownership and self-value
-        of the human person.
-      join: Join
+  title: Libertarian party of Russia

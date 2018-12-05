@@ -1,21 +1,2 @@
 ru:
-  title: Либертарианская партия России в Пермском крае
-  brand: ЛПР Пермь
-  telegram_channel: Канал
-  telegram_chat: Чат
-  vk_public: Паблик
-  other_links: Другие ссылки
-  main_party_site: Основной сайт партии
-  department_page_on_party_site: Страница отделения на сайте партии
-  departments_in_other_states: Отделения в других регионах
-  github: GitHub
-
-  home:
-    show:
-      primary_title: Либертарианская партия России
-      secondary_title: в Пермском крае
-      description: >
-        Мы выступаем за свободный рынок и государственное невмешательство
-        в экономику, за принцип самопринадлежности и самоценности человеческой
-        личности.
-      join: Вступить
+  title: Либертарианская партия России
