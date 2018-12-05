@@ -62,10 +62,11 @@ class ApplicationPolicy
   end
 
   class Context
-    attr_reader :account
+    attr_reader :account, :guest_account
 
-    def initialize(account:)
+    def initialize(account:, guest_account:)
       @account = account
+      @guest_account = guest_account
     end
   end
 end

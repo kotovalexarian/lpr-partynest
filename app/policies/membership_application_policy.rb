@@ -2,7 +2,7 @@
 
 class MembershipApplicationPolicy < ApplicationPolicy
   def show?
-    record.account == context.account
+    record.account.in? [context.account, context.guest_account]
   end
 
   def create?

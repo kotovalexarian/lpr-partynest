@@ -18,14 +18,18 @@ class ApplicationController < ActionController::Base
 private
 
   def current_account
-    @current_account ||=
-      current_user&.account ||
-      Account.guests.find_by(id: session[:guest_account_id])
+    @current_account ||= current_user&.account
+  end
+
+  def guest_account
+    @guest_account ||= current_account
+    @guest_account ||= Account.guests.find_by(id: session[:guest_account_id])
   end
 
   def pundit_user
     @pundit_user ||= ApplicationPolicy::Context.new(
-      account: current_account,
+      account:       current_account,
+      guest_account: guest_account,
     )
   end
 
