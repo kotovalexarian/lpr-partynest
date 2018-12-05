@@ -24,4 +24,7 @@ RSpec.describe Account do
   end
 
   it { is_expected.not_to validate_presence_of :user }
+
+  pending '.guests'
+  pending '#guest?'
 end

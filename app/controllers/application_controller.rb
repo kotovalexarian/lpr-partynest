@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
 private
 
   def current_account
-    @current_account ||= current_user&.account
+    @current_account ||=
+      current_user&.account ||
+      Account.guests.find_by(id: session[:guest_account_id])
   end
 
   def pundit_user
@@ -42,5 +44,9 @@ private
 
   def unauthorized
     render status: :unauthorized, json: {}
+  end
+
+  def remember_if_guest_account(account)
+    session[:guest_account_id] = account.id if account.guest?
   end
 end

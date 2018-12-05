@@ -19,6 +19,8 @@ class MembershipApplicationsController < ApplicationController
 
     return render :new unless @membership_application.save
 
+    remember_if_guest_account @membership_application.account
+
     redirect_to root_url
   end
 end
