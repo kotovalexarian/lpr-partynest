@@ -24,7 +24,7 @@ threads threads_count, threads_count
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-preload_app!
+# preload_app!
 
 # Specifies the `port` that Puma will listen on to receive requests;
 # default is 3000.
