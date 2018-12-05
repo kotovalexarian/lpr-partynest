@@ -40,7 +40,10 @@ append :linked_files,
 #        'tmp/sockets',
 #        'public/system'
 append :linked_dirs,
+       'log',
        'storage',
+       'tmp/cache',
+       'tmp/pids',
        'tmp/sockets'
 
 # Default value for default_env is {}.
