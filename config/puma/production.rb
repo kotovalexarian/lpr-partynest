@@ -26,7 +26,7 @@ threads threads_count, threads_count
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-preload_app!
+# preload_app!
 
 # Bind the server to "url". "tcp://", "unix://" and "ssl://" are the only
 # accepted protocols.
