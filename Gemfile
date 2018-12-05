@@ -92,6 +92,9 @@ gem 'omniauth', '~> 1.8'
 # Official OmniAuth strategy for GitHub.
 gem 'omniauth-github', '~> 1.3'
 
+# A rack middleware for throttling and blocking abusive requests.
+gem 'rack-attack', '~> 5.4'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
