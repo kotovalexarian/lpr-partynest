@@ -7,6 +7,8 @@ Partynest
 [![Test Coverage](https://api.codeclimate.com/v1/badges/974d97f03895453189e1/test_coverage)](https://codeclimate.com/github/libertarian-party/partynest/test_coverage)
 [![Inline docs](http://inch-ci.org/github/libertarian-party/partynest.svg?branch=master)](http://inch-ci.org/github/libertarian-party/partynest)
 
+A web application to manage political party members and supporters.
+
 
 
 Table of contents
