@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :user do
+    association :account, factory: :empty_account
+
     email { Faker::Internet.email }
     password { Faker::Internet.password }
     password_confirmation { password }

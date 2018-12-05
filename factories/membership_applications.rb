@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :membership_application do
-    association :account, factory: :account_with_user
+    association :account, factory: :empty_account
     association :country_state
 
     first_name { Faker::Name.first_name }
