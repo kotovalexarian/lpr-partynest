@@ -42,3 +42,23 @@ Tested with **Ubuntu Server 18.04 LTS**.
 * Copy file `config/master.key` to `/var/www/partynest/shared/config/`
 * Create PostgreSQL role `partynest` with password `password`
 * Create PostgreSQL database `partynest_production` owned by `partynest`
+
+### Example systemd service
+
+Replace `user` with the name of user which you want an application to run with.
+
+```
+[Unit]
+After=network.target
+Description=Partynest web server
+
+[Service]
+ExecStart=/usr/bin/bundle exec rails server --environment production
+Restart=always
+Type=simple
+User=user
+WorkingDirectory=/var/www/partynest/current
+
+[Install]
+WantedBy=multi-user.target
+```
