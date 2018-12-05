@@ -48,7 +48,7 @@ Tested with **Ubuntu Server 18.04 LTS**.
 
 ### Example systemd service
 
-Replace `user` with the name of user which you want an application to run with.
+Replace `user` with the name of user which you want an application to run as.
 
 ```
 [Unit]
