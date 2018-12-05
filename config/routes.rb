@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
 
-  resources :membership_applications, only: %i[new create]
+  resources :membership_applications, only: %i[show new create]
 
   resources :passports, only: %i[index show new create] do
     resources :passport_confirmations,

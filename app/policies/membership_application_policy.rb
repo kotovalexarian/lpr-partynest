@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class MembershipApplicationPolicy < ApplicationPolicy
+  def show?
+    record.account == context.account
+  end
+
   def create?
     true
   end

@@ -1,4 +1,7 @@
 ru:
+  membership_applications:
+    show:
+      processing: Ваша заявка в обработке
   passports:
     show:
       confirm: Подтвердить

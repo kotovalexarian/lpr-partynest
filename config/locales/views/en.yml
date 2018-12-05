@@ -1,4 +1,7 @@
 en:
+  membership_applications:
+    show:
+      processing: Your application is being processed
   passports:
     show:
       confirm: Confirm

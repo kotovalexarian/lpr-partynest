@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class MembershipApplicationsController < ApplicationController
+  before_action :set_membership_application, only: :show
+
+  # GET /membership_applications/:id
+  def show
+    authorize @membership_application
+  end
+
   # GET /membership_applications/new
   def new
     @membership_application = MembershipApplication.new
@@ -21,6 +28,12 @@ class MembershipApplicationsController < ApplicationController
 
     remember_if_guest_account @membership_application.account
 
-    redirect_to root_url
+    redirect_to @membership_application
+  end
+
+private
+
+  def set_membership_application
+    @membership_application = MembershipApplication.find params[:id]
   end
 end

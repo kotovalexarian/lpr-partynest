@@ -16,4 +16,5 @@ Feature: Membership application
       | Членство в других общественных организациях | Не скажу         |
       | Комментарий                                 | Примите, плиз    |
     And I click the form button "Отправить заявление"
-    Then I see main page
+    Then I am at "/membership_applications/\d+"
+    And I see text "Ваша заявка в обработке"

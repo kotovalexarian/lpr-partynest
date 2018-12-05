@@ -35,7 +35,7 @@ RSpec.describe 'POST /membership_applications' do
     before { make_request }
 
     specify do
-      expect(response).to redirect_to root_url
+      expect(response).to redirect_to MembershipApplication.last
     end
 
     specify do
@@ -67,7 +67,7 @@ RSpec.describe 'POST /membership_applications' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to root_url
+        expect(response).to redirect_to MembershipApplication.last
       end
 
       specify do
