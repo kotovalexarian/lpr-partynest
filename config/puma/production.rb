@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-root_dir = File.expand_path('../..', __dir__).freeze
-
 workers_count = ENV.fetch('WEB_CONCURRENCY') { 1 }
 threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
 
@@ -31,4 +29,7 @@ threads threads_count, threads_count
 # Bind the server to "url". "tcp://", "unix://" and "ssl://" are the only
 # accepted protocols.
 #
-bind "unix://#{File.join(root_dir, 'tmp', 'sockets', 'puma.sock')}"
+bind "unix://#{Rails.root.join('tmp', 'sockets', 'puma.sock')}"
+
+# Allow puma to be restarted by `rails restart` command.
+# plugin :tmp_restart
