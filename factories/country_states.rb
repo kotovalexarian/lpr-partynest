@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :country_state do
-    name { Faker::Address.state }
+    name { Faker::Address.unique.state }
   end
 end
