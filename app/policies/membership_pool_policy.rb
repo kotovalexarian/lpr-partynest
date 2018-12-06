@@ -10,9 +10,11 @@ class MembershipPoolPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      return scope.all if context.account&.is_superuser?
+      return scope.none if context.account.nil?
+      return scope.all  if context.account.is_superuser?
 
-      scope.none
+      scope.includes(:membership_pool_accounts)
+           .where(membership_pool_accounts: { account: context.account })
     end
   end
 end
