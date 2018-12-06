@@ -27,4 +27,22 @@ RSpec.describe Account do
 
   pending '.guests'
   pending '#guest?'
+
+  describe '#add_role' do
+    context 'to guest account' do
+      subject { create :empty_account }
+
+      let(:result) { subject.add_role :superuser }
+
+      specify do
+        expect { result }.to \
+          raise_error RuntimeError, 'can not add role to guest account'
+      end
+
+      specify do
+        expect { result rescue nil }.not_to \
+          change { subject.roles.reload.count }
+      end
+    end
+  end
 end
