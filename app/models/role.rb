@@ -5,6 +5,8 @@ class Role < ApplicationRecord
 
   belongs_to :resource, polymorphic: true, optional: true
 
+  validates :name, presence: true
+
   validates :resource_type,
             allow_nil: true,
             inclusion: { in: Rolify.resource_types }
