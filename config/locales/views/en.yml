@@ -6,7 +6,7 @@ en:
         We stand for a free market and freedom of government intervention
         in the economy, for the principle of self-ownership and self-value
         of the human person.
-  membership_applications:
+  membership_apps:
     show:
       header: Your application is being processed
       lead_text: >
@@ -14,7 +14,7 @@ en:
         to browser bookmarks. Also the link to this page was sent to email
         address which you have provided. You will be contacted by provided
         contacts soon.
-  membership_application_mailer:
+  membership_app_mailer:
     tracking:
       subject: Your application is being processed
       lead_text: >

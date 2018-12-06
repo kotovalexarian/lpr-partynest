@@ -1,7 +1,7 @@
 ru:
   activerecord:
     models:
-      membership_application:
+      membership_app:
         one: Заявление на вступление
         other: Заявления на вступление
       passport:
@@ -20,7 +20,7 @@ ru:
         one: Пользователь
         other: Пользователи
     attributes:
-      membership_application:
+      membership_app:
         id: ID
         country_state: Регион
         first_name: Имя
@@ -63,7 +63,7 @@ ru:
         female: Женский
       country_state:
         id: ID
-        membership_applications: Заявления на вступление
+        membership_apps: Заявления на вступление
         name: Название
       user:
         id: ID

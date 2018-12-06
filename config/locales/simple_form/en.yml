@@ -11,10 +11,10 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     labels:
-      membership_application:
+      membership_app:
         country_state:
           Main region of residence
     hints:
-      membership_application:
+      membership_app:
         country_state:
           If the appropriate option is not listed, enter it in the comment

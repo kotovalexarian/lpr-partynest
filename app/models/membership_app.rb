@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class MembershipApplication < ApplicationRecord
+class MembershipApp < ApplicationRecord
+  self.table_name = 'membership_applications'
+
   belongs_to :account
   belongs_to :country_state, optional: true
 

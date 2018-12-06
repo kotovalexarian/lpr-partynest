@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /membership_applications/:id' do
-  let :membership_application do
-    create :membership_application, account: owner
+RSpec.describe 'GET /membership_apps/:id' do
+  let :membership_app do
+    create :membership_app, account: owner
   end
 
   let(:owner) { create :account_with_user }
 
   before do
     sign_in current_account&.user if current_account&.user
-    get "/membership_applications/#{membership_application.id}"
+    get "/membership_apps/#{membership_app.id}"
   end
 
   context 'when owner is authenticated' do

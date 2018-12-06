@@ -2,6 +2,6 @@
 
 require 'rails_helper'
 
-RSpec.describe ProcessNewMembershipApplication do
+RSpec.describe ProcessNewMembershipApp do
   pending "add some examples to (or delete) #{__FILE__}"
 end

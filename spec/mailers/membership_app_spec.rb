@@ -2,6 +2,6 @@
 
 require 'rails_helper'
 
-RSpec.describe MembershipApplicationMailer do
+RSpec.describe MembershipAppMailer do
   pending "add some examples to (or delete) #{__FILE__}"
 end

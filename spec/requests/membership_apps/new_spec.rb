@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /membership_applications/new' do
+RSpec.describe 'GET /membership_apps/new' do
   before do
-    get '/membership_applications/new'
+    get '/membership_apps/new'
   end
 
   specify do

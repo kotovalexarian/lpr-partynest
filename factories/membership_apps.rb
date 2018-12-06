@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :membership_application do
+  factory :membership_app do
     association :account, factory: :guest_account
     association :country_state
 

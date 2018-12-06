@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MembershipApplicationPolicy < ApplicationPolicy
+class MembershipAppPolicy < ApplicationPolicy
   def show?
     return false if context.guest_account.nil?
 

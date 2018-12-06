@@ -1,7 +1,7 @@
 en:
   activerecord:
     models:
-      membership_application:
+      membership_app:
         one: Membership application
         other: Membership applications
       passport:
@@ -20,7 +20,7 @@ en:
         one: User
         other: Users
     attributes:
-      membership_application:
+      membership_app:
         id: ID
         country_state: State
         first_name: First name
@@ -63,7 +63,7 @@ en:
         female: Female
       country_state:
         id: ID
-        membership_applications: Membership applications
+        membership_apps: Membership applications
         name: Name
       user:
         id: ID

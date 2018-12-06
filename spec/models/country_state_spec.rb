@@ -7,7 +7,7 @@ RSpec.describe CountryState do
 
   it do
     is_expected.to \
-      have_many(:membership_applications)
+      have_many(:membership_apps)
       .dependent(:restrict_with_exception)
   end
 
