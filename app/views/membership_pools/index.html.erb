@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= MembershipPool.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= MembershipPool.human_attribute_name :name %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @membership_pools.each do |membership_pool| %>
+        <tr>
+          <td scope="row"><%= membership_pool.id %></td>
+          <td><%= truncate membership_pool.name %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
