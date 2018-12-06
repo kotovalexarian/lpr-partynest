@@ -56,6 +56,7 @@ RSpec.describe 'POST /membership_applications' do
 
     specify do
       expect(ActionMailer::Base.deliveries.last).to have_attributes(
+        from:    [Rails.application.config.noreply_email_address],
         to:      [MembershipApplication.last.email],
         subject: I18n.t('membership_application_mailer.tracking.subject'),
       )

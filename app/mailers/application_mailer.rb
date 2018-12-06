@@ -3,5 +3,5 @@
 class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
-  default from: Devise.mailer_sender
+  default from: Rails.application.config.noreply_email_address
 end
