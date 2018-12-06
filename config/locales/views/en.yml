@@ -8,7 +8,12 @@ en:
         of the human person.
   membership_applications:
     show:
-      processing: Your application is being processed
+      header: Your application is being processed
+      lead_text: >
+        You can track the status of your application on this page. Save it
+        to browser bookmarks. Also the link to this page was sent to email
+        address which you have provided. You will be contacted by provided
+        contacts soon.
   passports:
     show:
       confirm: Confirm
