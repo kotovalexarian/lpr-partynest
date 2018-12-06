@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MembershipApp < ApplicationRecord
-  belongs_to :account
+  belongs_to :account, inverse_of: :own_membership_apps
   belongs_to :country_state, optional: true
 
   validates :email, presence: true, format: Devise.email_regexp

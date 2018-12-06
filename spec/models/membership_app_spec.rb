@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe MembershipApp do
   subject { create :membership_app }
 
-  it { is_expected.to belong_to :account }
+  it { is_expected.to belong_to(:account).inverse_of(:own_membership_apps) }
   it { is_expected.to belong_to(:country_state).optional }
 
   it { is_expected.to validate_presence_of(:account).with_message(:required) }

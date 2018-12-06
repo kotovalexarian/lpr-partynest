@@ -5,7 +5,9 @@ class Account < ApplicationRecord
 
   has_one :user, dependent: :restrict_with_exception
 
-  has_many :membership_apps, dependent: :restrict_with_exception
+  has_many :own_membership_apps,
+           class_name: 'MembershipApp',
+           dependent:  :restrict_with_exception
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
