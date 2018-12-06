@@ -9,6 +9,10 @@ class Account < ApplicationRecord
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
+  has_many :membership_pool_accounts, dependent: :restrict_with_exception
+
+  has_many :membership_pools, through: :membership_pool_accounts
+
   scope :guests, -> { includes(:user).where(users: { id: nil }) }
 
   def guest?
