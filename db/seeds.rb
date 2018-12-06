@@ -11,9 +11,9 @@ country_state_names.each do |name|
 end
 
 admin_account = Account.create!
-admin_account.add_role :superuser
 admin_account.create_user!(
   email:        Rails.application.credentials.initial_superuser_email,
   password:     Rails.application.credentials.initial_superuser_password,
   confirmed_at: Time.zone.now,
 )
+admin_account.add_role :superuser
