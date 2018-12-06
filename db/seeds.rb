@@ -10,10 +10,11 @@ country_state_names.each do |name|
   CountryState.create! name: name
 end
 
-admin_account = Account.create!
-admin_account.create_user!(
-  email:        Rails.application.credentials.initial_superuser_email,
-  password:     Rails.application.credentials.initial_superuser_password,
-  confirmed_at: Time.zone.now,
-)
-admin_account.add_role :superuser
+User.where(email: Rails.application.credentials.initial_superuser_email)
+    .first_or_create! do |new_user|
+  new_user.account = Account.create!
+  new_user.password = Rails.application.credentials.initial_superuser_password
+  new_user.confirmed_at = Time.zone.now
+end.account.add_role :superuser
+
+MembershipPool.create! name: 'Все заявления' unless MembershipPool.any?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_014718) do
+ActiveRecord::Schema.define(version: 2018_12_06_190602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 2018_12_06_014718) do
     t.bigint "account_id", null: false
     t.index ["account_id"], name: "index_membership_applications_on_account_id"
     t.index ["country_state_id"], name: "index_membership_applications_on_country_state_id"
+  end
+
+  create_table "membership_pools", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
   end
 
   create_table "passport_confirmations", force: :cascade do |t|
