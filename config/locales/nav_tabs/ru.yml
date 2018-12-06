@@ -1,5 +1,7 @@
 ru:
   nav_tabs:
+    membership_pool:
+      overview: Обзор
     passport:
       overview: Обзор
       confirmations: Подтверждения
