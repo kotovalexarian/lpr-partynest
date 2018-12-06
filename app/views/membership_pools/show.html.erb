@@ -9,4 +9,9 @@
 
   <%= render partial: 'nav_tabs', locals: { membership_pool: @membership_pool,
                                             tab: :overview } %>
+
+  <dl>
+    <dt><%= translate '.total_apps_in_pool' %></dt>
+    <dd><%= @membership_pool.membership_pool_apps.count %></dd>
+  </dl>
 </div>
