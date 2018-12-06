@@ -302,7 +302,7 @@ Devise.setup do |config|
   # If your app is using Turbolinks, Turbolinks::Controller needs
   # to be included to make redirection work correctly:
   #
-  # ActiveSupport.on_load(:devise_failure_app) do
-  #   include Turbolinks::Controller
-  # end
+  ActiveSupport.on_load :devise_failure_app do
+    include Turbolinks::Controller
+  end
 end
