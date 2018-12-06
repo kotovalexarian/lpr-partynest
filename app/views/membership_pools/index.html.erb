@@ -17,7 +17,14 @@
         <tr>
           <td scope="row"><%= membership_pool.id %></td>
           <td><%= truncate membership_pool.name %></td>
-          <td></td>
+          <td>
+            <% if policy(membership_pool).show? %>
+              <%= link_to membership_pool_path(membership_pool),
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

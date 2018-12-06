@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :membership_apps, only: %i[show new create]
 
-  resources :membership_pools, only: :index
+  resources :membership_pools, only: %i[index show]
 
   resources :passports, only: %i[index show new create] do
     resources :passport_confirmations,
