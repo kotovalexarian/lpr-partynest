@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_190602) do
+ActiveRecord::Schema.define(version: 2018_12_06_193802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_190602) do
     t.index ["name"], name: "index_country_states_on_name", unique: true
   end
 
-  create_table "membership_applications", force: :cascade do |t|
+  create_table "membership_apps", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name", null: false
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_190602) do
     t.text "comment"
     t.bigint "country_state_id"
     t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_membership_applications_on_account_id"
-    t.index ["country_state_id"], name: "index_membership_applications_on_country_state_id"
+    t.index ["account_id"], name: "index_membership_apps_on_account_id"
+    t.index ["country_state_id"], name: "index_membership_apps_on_country_state_id"
   end
 
   create_table "membership_pools", force: :cascade do |t|
@@ -175,8 +175,8 @@ ActiveRecord::Schema.define(version: 2018_12_06_190602) do
 
   add_foreign_key "account_roles", "accounts"
   add_foreign_key "account_roles", "roles"
-  add_foreign_key "membership_applications", "accounts"
-  add_foreign_key "membership_applications", "country_states"
+  add_foreign_key "membership_apps", "accounts"
+  add_foreign_key "membership_apps", "country_states"
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"
   add_foreign_key "passport_maps", "passports"
