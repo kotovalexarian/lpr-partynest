@@ -35,7 +35,11 @@ module Partynest
 
     # Fully qualified domain name.
     config.site_domain = 'libertarian-party.com'
+
+    # Email which all mail is set from.
     config.noreply_email_address = "no-reply@#{config.site_domain}"
+    config.noreply_email_contact =
+      "Libertarian party of Russia <#{config.noreply_email_address}>"
 
     # ActionMailer previews
     config.action_mailer.preview_path = Rails.root.join('app', 'previews')
