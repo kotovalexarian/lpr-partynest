@@ -21,6 +21,25 @@ RSpec.describe MembershipApplication do
   it { is_expected.not_to validate_presence_of :organization_membership }
   it { is_expected.not_to validate_presence_of :comment }
 
+  describe '#email' do
+    def allow_value(*)
+      super.for :email
+    end
+
+    it { is_expected.to allow_value Faker::Internet.email }
+    it { is_expected.not_to allow_value Faker::Internet.username }
+
+    context 'when it has extra spaces' do
+      subject { create :membership_application, email: " #{email} " }
+
+      let(:email) { Faker::Internet.email }
+
+      specify do
+        expect(subject.email).to eq email
+      end
+    end
+  end
+
   describe '#middle_name' do
     context 'when it is empty' do
       subject { create :membership_application, middle_name: '' }
