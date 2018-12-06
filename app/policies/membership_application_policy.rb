@@ -2,7 +2,10 @@
 
 class MembershipApplicationPolicy < ApplicationPolicy
   def show?
-    record.account.in? [context.account, context.guest_account]
+    return false if context.guest_account.nil?
+
+    context.guest_account.is_superuser? ||
+      record.account == context.guest_account
   end
 
   def create?
