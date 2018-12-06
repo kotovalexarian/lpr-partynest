@@ -16,5 +16,3 @@ User.where(email: Rails.application.credentials.initial_superuser_email)
   new_user.password = Rails.application.credentials.initial_superuser_password
   new_user.confirmed_at = Time.zone.now
 end.account.add_role :superuser
-
-MembershipPool.create! name: 'Все заявления' unless MembershipPool.any?

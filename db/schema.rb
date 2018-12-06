@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_205529) do
+ActiveRecord::Schema.define(version: 2018_12_06_223335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,32 +75,6 @@ ActiveRecord::Schema.define(version: 2018_12_06_205529) do
     t.bigint "account_id", null: false
     t.index ["account_id"], name: "index_membership_apps_on_account_id"
     t.index ["country_state_id"], name: "index_membership_apps_on_country_state_id"
-  end
-
-  create_table "membership_pool_accounts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "membership_pool_id", null: false
-    t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_membership_pool_accounts_on_account_id"
-    t.index ["membership_pool_id", "account_id"], name: "index_membership_pool_accounts_on_pool_and_account", unique: true
-    t.index ["membership_pool_id"], name: "index_membership_pool_accounts_on_membership_pool_id"
-  end
-
-  create_table "membership_pool_apps", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "membership_pool_id", null: false
-    t.bigint "membership_app_id", null: false
-    t.index ["membership_app_id", "membership_pool_id"], name: "index_membership_pool_apps_on_app_and_pool", unique: true
-    t.index ["membership_app_id"], name: "index_membership_pool_apps_on_membership_app_id"
-    t.index ["membership_pool_id"], name: "index_membership_pool_apps_on_membership_pool_id"
-  end
-
-  create_table "membership_pools", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", null: false
   end
 
   create_table "passport_confirmations", force: :cascade do |t|
@@ -197,10 +171,6 @@ ActiveRecord::Schema.define(version: 2018_12_06_205529) do
   add_foreign_key "account_roles", "roles"
   add_foreign_key "membership_apps", "accounts"
   add_foreign_key "membership_apps", "country_states"
-  add_foreign_key "membership_pool_accounts", "accounts"
-  add_foreign_key "membership_pool_accounts", "membership_pools"
-  add_foreign_key "membership_pool_apps", "membership_apps"
-  add_foreign_key "membership_pool_apps", "membership_pools"
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"
   add_foreign_key "passport_maps", "passports"

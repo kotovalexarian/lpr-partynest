@@ -4,9 +4,6 @@ en:
       membership_app:
         one: Membership application
         other: Membership applications
-      membership_pool:
-        one: Membership application pool
-        other: Membership application pools
       passport:
         one: Passport
         other: Passports
@@ -36,9 +33,6 @@ en:
         telegram_username: Telegram username
         organization_membership: Membership in other social organizations
         comment: Comment
-      membership_pool:
-        id: ID
-        name: Name
       passport:
         id: ID
         confirmed: Confirmed?

@@ -4,9 +4,6 @@ ru:
       membership_app:
         one: Заявление на вступление
         other: Заявления на вступление
-      membership_pool:
-        one: Пул заявлений на вступление
-        other: Пулы заявлений на вступление
       passport:
         one: Паспорт
         other: Паспорта
@@ -36,9 +33,6 @@ ru:
         telegram_username: Имя пользователя в Telegram
         organization_membership: Членство в других общественных организациях
         comment: Комментарий
-      membership_pool:
-        id: ID
-        name: Название
       passport:
         id: ID
         confirmed: Подтверждён?

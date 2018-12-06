@@ -23,18 +23,6 @@ RSpec.describe Account do
       .dependent(:restrict_with_exception)
   end
 
-  it do
-    is_expected.to \
-      have_many(:membership_pool_accounts)
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
-      have_many(:membership_pools)
-      .through(:membership_pool_accounts)
-  end
-
   it { is_expected.not_to validate_presence_of :user }
 
   pending '.guests'

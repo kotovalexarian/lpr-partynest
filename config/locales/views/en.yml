@@ -20,10 +20,6 @@ en:
       lead_text: >
         You can track the status of your application by the following link.
         You will be contacted by provided contacts soon.
-  membership_pools:
-    show:
-      accounts_in_pool: Number of accounts with access to the pool
-      total_apps_in_pool: Total number of applications in the pool
   passports:
     show:
       confirm: Confirm

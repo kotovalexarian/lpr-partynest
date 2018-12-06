@@ -1,7 +1,5 @@
 en:
   nav_tabs:
-    membership_pool:
-      overview: Overview
     passport:
       overview: Overview
       confirmations: Confirmations
