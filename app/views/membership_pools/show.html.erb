@@ -11,6 +11,9 @@
                                             tab: :overview } %>
 
   <dl>
+    <dt><%= translate '.accounts_in_pool' %></dt>
+    <dd><%= @membership_pool.membership_pool_accounts.count %></dd>
+
     <dt><%= translate '.total_apps_in_pool' %></dt>
     <dd><%= @membership_pool.membership_pool_apps.count %></dd>
   </dl>

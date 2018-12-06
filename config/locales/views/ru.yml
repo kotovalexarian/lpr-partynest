@@ -23,6 +23,7 @@ ru:
         контактам.
   membership_pools:
     show:
+      accounts_in_pool: Аккаунтов с доступом к пулу
       total_apps_in_pool: Всего заявлений в пуле
   passports:
     show:
