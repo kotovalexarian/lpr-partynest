@@ -30,4 +30,6 @@ RSpec.describe MembershipPool do
   end
 
   it { is_expected.to validate_presence_of :name }
+
+  pending '.with_account'
 end

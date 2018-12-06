@@ -9,5 +9,10 @@ class MembershipPool < ApplicationRecord
 
   has_many :accounts, through: :membership_pool_accounts
 
+  scope :with_account, lambda { |account|
+    includes(:membership_pool_accounts)
+      .where(membership_pool_accounts: { account: account })
+  }
+
   validates :name, presence: true
 end

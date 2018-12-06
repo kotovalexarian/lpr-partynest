@@ -13,14 +13,7 @@ class MembershipPoolPolicy < ApplicationPolicy
       return scope.none if context.account.nil?
       return scope.all  if context.account.is_superuser?
 
-      associated
-    end
-
-  private
-
-    def associated
-      scope.includes(:membership_pool_accounts)
-           .where(membership_pool_accounts: { account: context.account })
+      scope.with_account context.account
     end
   end
 end
