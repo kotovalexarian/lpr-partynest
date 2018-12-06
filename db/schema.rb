@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_223335) do
+ActiveRecord::Schema.define(version: 2018_12_06_224446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(version: 2018_12_06_223335) do
     t.boolean "confirmed", default: false, null: false
   end
 
+  create_table "regional_offices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "country_state_id", null: false
+    t.index ["country_state_id"], name: "index_regional_offices_on_country_state_id", unique: true
+  end
+
   create_table "roles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -174,6 +181,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_223335) do
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"
   add_foreign_key "passport_maps", "passports"
+  add_foreign_key "regional_offices", "country_states"
   add_foreign_key "user_omniauths", "users"
   add_foreign_key "users", "accounts"
 end
