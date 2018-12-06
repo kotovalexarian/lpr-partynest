@@ -45,6 +45,10 @@ Rails:
 Rails/BulkChangeTable:
   Enabled: false
 
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - 'app/models/role.rb'
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
