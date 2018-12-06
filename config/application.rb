@@ -41,13 +41,14 @@ module Partynest
     config.noreply_email_contact =
       "Libertarian party of Russia <#{config.noreply_email_address}>"
 
-    # ActionMailer previews
+    # ActionMailer previews.
     config.action_mailer.preview_path = Rails.root.join('app', 'previews')
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
-
     config.generators do |g|
+      g.assets false
+      g.helper false
+      g.system_tests false
+
       g.factory_bot dir: 'factories'
     end
   end
