@@ -17,4 +17,4 @@ Feature: Membership application
       | Комментарий                                 | Примите, плиз    |
     And I click the form button "Отправить заявление"
     Then I am at "/membership_applications/\d+"
-    And I see text "Ваша заявка в обработке"
+    And I see text "Ваше заявление в обработке"

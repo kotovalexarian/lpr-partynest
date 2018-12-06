@@ -8,7 +8,7 @@ ru:
         личности.
   membership_applications:
     show:
-      processing: Ваша заявка в обработке
+      processing: Ваше заявление в обработке
   passports:
     show:
       confirm: Подтвердить
