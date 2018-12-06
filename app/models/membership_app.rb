@@ -4,6 +4,8 @@ class MembershipApp < ApplicationRecord
   belongs_to :account, inverse_of: :own_membership_apps
   belongs_to :country_state, optional: true
 
+  has_one :regional_office, through: :country_state
+
   validates :email, presence: true, format: Devise.email_regexp
 
   validates :first_name, presence: true

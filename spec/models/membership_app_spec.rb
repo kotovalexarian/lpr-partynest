@@ -8,6 +8,8 @@ RSpec.describe MembershipApp do
   it { is_expected.to belong_to(:account).inverse_of(:own_membership_apps) }
   it { is_expected.to belong_to(:country_state).optional }
 
+  it { is_expected.to have_one(:regional_office).through(:country_state) }
+
   it { is_expected.to validate_presence_of(:account).with_message(:required) }
   it { is_expected.not_to validate_presence_of :country_state }
   it { is_expected.to validate_presence_of :first_name }
