@@ -1,3 +1,9 @@
 <div class="container">
-  <h2><%= truncate @membership_pool.name %></h2>
+  <h2>
+    <%= truncate @membership_pool.name %>
+    <br/>
+    <small class="text-muted">
+      <%= MembershipPool.model_name.human %>
+    </small>
+  </h2>
 </div>
