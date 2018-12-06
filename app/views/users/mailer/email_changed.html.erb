@@ -1,0 +1,7 @@
+<p><%= translate '.greeting', recipient: @email %></p>
+
+<% if @resource.try :unconfirmed_email? %>
+  <p><%= translate '.message', email: @resource.unconfirmed_email %></p>
+<% else %>
+  <p><%= translate '.message', email: @resource.email %></p>
+<% end %>
