@@ -8,6 +8,18 @@ RSpec.describe MembershipApp do
   it { is_expected.to belong_to :account }
   it { is_expected.to belong_to(:country_state).optional }
 
+  it do
+    is_expected.to \
+      have_many(:membership_pool_apps)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
+      have_many(:membership_pools)
+      .through(:membership_pool_apps)
+  end
+
   it { is_expected.to validate_presence_of(:account).with_message(:required) }
   it { is_expected.not_to validate_presence_of :country_state }
   it { is_expected.to validate_presence_of :first_name }

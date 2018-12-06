@@ -4,6 +4,10 @@ class MembershipApp < ApplicationRecord
   belongs_to :account
   belongs_to :country_state, optional: true
 
+  has_many :membership_pool_apps, dependent: :restrict_with_exception
+
+  has_many :membership_pools, through: :membership_pool_apps
+
   validates :email, presence: true, format: Devise.email_regexp
 
   validates :first_name, presence: true
