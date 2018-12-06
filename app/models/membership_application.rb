@@ -20,10 +20,4 @@ class MembershipApplication < ApplicationRecord
     self.organization_membership = nil if organization_membership.blank?
     self.comment                 = nil if comment.blank?
   end
-
-  after_create do
-    MembershipApplicationMailer.with(
-      membership_application: self,
-    ).tracking.deliver_now
-  end
 end
