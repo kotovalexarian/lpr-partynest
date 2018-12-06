@@ -7,7 +7,10 @@ class ProcessNewMembershipApp
     MembershipAppMailer.with(context).tracking.deliver_now
 
     MembershipPool.find_each do |membership_pool|
-      membership_pool.membership_apps << context.membership_app
+      PutMembershipAppToPool.call(
+        membership_pool: membership_pool,
+        membership_app:  context.membership_app,
+      )
     end
   end
 end
