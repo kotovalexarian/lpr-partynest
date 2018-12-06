@@ -30,7 +30,7 @@ RSpec.describe Account do
 
   describe '#add_role' do
     context 'to guest account' do
-      subject { create :empty_account }
+      subject { create :guest_account }
 
       let(:result) { subject.add_role :superuser }
 
@@ -40,8 +40,9 @@ RSpec.describe Account do
       end
 
       specify do
-        expect { result rescue nil }.not_to \
-          change { subject.roles.reload.count }
+        expect { result rescue nil }.not_to(
+          change { subject.roles.reload.count },
+        )
       end
     end
   end

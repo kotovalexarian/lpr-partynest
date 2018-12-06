@@ -66,6 +66,10 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
+Style/RescueModifier:
+  Exclude:
+    - 'spec/**/*.rb'
+
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 

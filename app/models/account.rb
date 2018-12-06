@@ -17,6 +17,7 @@ class Account < ApplicationRecord
 
   def add_role(_role_name, _resource = nil)
     raise 'can not add role to guest account' if guest?
+
     super
   end
 end
