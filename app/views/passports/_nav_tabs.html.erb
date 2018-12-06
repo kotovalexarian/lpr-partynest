@@ -2,12 +2,12 @@
   <ul class="nav nav-tabs d-none d-sm-flex">
     <li class="nav-item">
       <%= link_to translate(:overview, scope: %i[nav_tabs passport]),
-                  @passport,
+                  passport,
                   class: "nav-link #{:active if tab == :overview}" %>
     </li>
     <li class="nav-item">
       <%= link_to translate(:confirmations, scope: %i[nav_tabs passport]),
-                  passport_passport_confirmations_path(@passport),
+                  passport_passport_confirmations_path(passport),
                   class: "nav-link #{:active if tab == :confirmations}" %>
     </li>
   </ul>
@@ -15,12 +15,12 @@
   <ul class="nav flex-column nav-pills d-flex d-sm-none">
     <li class="nav-item">
       <%= link_to translate(:overview, scope: %i[nav_tabs passport]),
-                  @passport,
+                  passport,
                   class: "nav-link #{:active if tab == :overview}" %>
     </li>
     <li class="nav-item">
       <%= link_to translate(:confirmations, scope: %i[nav_tabs passport]),
-                  passport_passport_confirmations_path(@passport),
+                  passport_passport_confirmations_path(passport),
                   class: "nav-link #{:active if tab == :confirmations}" %>
     </li>
   </ul>

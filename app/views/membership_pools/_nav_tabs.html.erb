@@ -2,7 +2,7 @@
   <ul class="nav nav-tabs d-none d-sm-flex">
     <li class="nav-item">
       <%= link_to translate(:overview, scope: %i[nav_tabs membership_pool]),
-                  @membership_pool,
+                  membership_pool,
                   class: "nav-link #{:active if tab == :overview}" %>
     </li>
   </ul>
@@ -10,7 +10,7 @@
   <ul class="nav flex-column nav-pills d-flex d-sm-none">
     <li class="nav-item">
       <%= link_to translate(:overview, scope: %i[nav_tabs membership_pool]),
-                  @membership_pool,
+                  membership_pool,
                   class: "nav-link #{:active if tab == :overview}" %>
     </li>
   </ul>

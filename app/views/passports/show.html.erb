@@ -1,5 +1,6 @@
 <div class="container">
-  <%= render partial: 'nav_tabs', locals: { tab: :overview } %>
+  <%= render partial: 'nav_tabs', locals: { passport: @passport,
+                                            tab: :overview } %>
 
   <div>
     <% if @passport.confirmed? %>
