@@ -31,6 +31,11 @@ RSpec.describe 'POST /membership_applications' do
       change(Account, :count).from(0).to(1)
   end
 
+  specify do
+    expect { make_request }.to \
+      change(ActionMailer::Base.deliveries, :count).from(0).to(1)
+  end
+
   context 'after request' do
     before { make_request }
 
@@ -46,6 +51,13 @@ RSpec.describe 'POST /membership_applications' do
     specify do
       expect(MembershipApplication.last).to have_attributes(
         country_state: country_state,
+      )
+    end
+
+    specify do
+      expect(ActionMailer::Base.deliveries.last).to have_attributes(
+        to:      [MembershipApplication.last.email],
+        subject: I18n.t('membership_application_mailer.tracking.subject'),
       )
     end
   end

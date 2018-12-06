@@ -14,6 +14,12 @@ en:
         to browser bookmarks. Also the link to this page was sent to email
         address which you have provided. You will be contacted by provided
         contacts soon.
+  membership_application_mailer:
+    tracking:
+      subject: Your application is being processed
+      lead_text: >
+        You can track the status of your application by the following link.
+        You will be contacted by provided contacts soon.
   passports:
     show:
       confirm: Confirm

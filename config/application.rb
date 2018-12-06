@@ -36,6 +36,9 @@ module Partynest
     # Fully qualified domain name.
     config.site_domain = 'libertarian-party.com'
 
+    # ActionMailer previews
+    config.action_mailer.preview_path = Rails.root.join('app', 'previews')
+
     # Don't generate system test files.
     config.generators.system_tests = nil
 
