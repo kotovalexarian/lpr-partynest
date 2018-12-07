@@ -31,13 +31,14 @@ private
   def handle_chat(chat)
     return if chat.blank?
 
-    TelegramChat.create!(
-      remote_id:  chat[:id],
-      chat_type:  chat[:type],
-      title:      chat[:title],
-      username:   chat[:username],
-      first_name: chat[:first_name],
-      last_name:  chat[:last_name],
-    )
+    telegram_chat = TelegramChat.first_or_initialize remote_id: chat[:id]
+
+    telegram_chat.chat_type  = chat[:type]
+    telegram_chat.title      = chat[:title]
+    telegram_chat.username   = chat[:username]
+    telegram_chat.first_name = chat[:first_name]
+    telegram_chat.last_name  = chat[:last_name]
+
+    telegram_chat.save!
   end
 end
