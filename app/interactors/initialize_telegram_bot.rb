@@ -42,11 +42,11 @@ private
 
   def webhook_url
     telegram_bot_updates_url(
-      format:          'json',
-      protocol:        'https',
-      host:            Rails.application.config.site_domain,
-      telegram_bot_id: context.telegram_bot.id,
-      secret:          context.telegram_bot.secret,
+      context.telegram_bot,
+      format:   'json',
+      protocol: 'https',
+      host:     Rails.application.config.site_domain,
+      secret:   context.telegram_bot.secret,
     )
   end
 end

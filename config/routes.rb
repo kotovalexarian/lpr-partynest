@@ -20,7 +20,7 @@ Rails.application.routes.draw do
               only:       %i[index create]
   end
 
-  resources :telegram_bots, only: %i[index show]
-
-  resources :telegram_bot_updates, only: :create
+  resources :telegram_bots, only: %i[index show] do
+    resources :updates, controller: 'telegram_bots/updates', only: :create
+  end
 end

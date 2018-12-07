@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class TelegramBotUpdatesController < ApplicationController
+class TelegramBots::UpdatesController < ApplicationController
   before_action :set_telegram_bot
   before_action :verify_telegram_bot_secret
 
   skip_after_action :verify_authorized
 
-  # POST /telegram_bot_updates
+  # POST /telegram_bots/:telegram_bot_id/updates
   def create
     logger.info params.inspect
 
