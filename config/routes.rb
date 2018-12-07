@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   resources :telegram_bots, only: %i[index show] do
     resources :updates, controller: 'telegram_bots/updates', only: :create
   end
+
+  resources :telegram_chats, only: %i[index show]
 end

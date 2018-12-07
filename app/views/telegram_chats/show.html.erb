@@ -1,0 +1,21 @@
+<div class="container">
+  <dl>
+    <dt><%= TelegramChat.human_attribute_name :remote_id %></dt>
+    <dd><%= @telegram_chat.remote_id %></dd>
+
+    <dt><%= TelegramChat.human_attribute_name :chat_type %></dt>
+    <dd><%= @telegram_chat.chat_type %></dd>
+
+    <dt><%= TelegramChat.human_attribute_name :title %></dt>
+    <dd><%= truncate @telegram_chat.title %></dd>
+
+    <dt><%= TelegramChat.human_attribute_name :username %></dt>
+    <dd><%= truncate @telegram_chat.username %></dd>
+
+    <dt><%= TelegramChat.human_attribute_name :first_name %></dt>
+    <dd><%= truncate @telegram_chat.first_name %></dd>
+
+    <dt><%= TelegramChat.human_attribute_name :last_name %></dt>
+    <dd><%= truncate @telegram_chat.last_name %></dd>
+  </dl>
+</div>

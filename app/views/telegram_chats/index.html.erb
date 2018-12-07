@@ -1,0 +1,52 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :remote_id %>
+        </th>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :chat_type %>
+        </th>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :title %>
+        </th>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :username %>
+        </th>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :first_name %>
+        </th>
+        <th scope="col">
+          <%= TelegramChat.human_attribute_name :last_name %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @telegram_chats.each do |telegram_chat| %>
+        <tr>
+          <td scope="row"><%= telegram_chat.id %></td>
+          <td><%= telegram_chat.remote_id %></td>
+          <td><%= telegram_chat.chat_type %></td>
+          <td><%= truncate telegram_chat.title,      length: 20 %></td>
+          <td><%= truncate telegram_chat.username,   length: 20 %></td>
+          <td><%= truncate telegram_chat.first_name, length: 20 %></td>
+          <td><%= truncate telegram_chat.last_name,  length: 20 %></td>
+          <td>
+            <% if policy(telegram_chat).show? %>
+              <%= link_to telegram_chat_path(telegram_chat),
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
