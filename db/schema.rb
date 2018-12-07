@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_224446) do
+ActiveRecord::Schema.define(version: 2018_12_07_002553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2018_12_06_224446) do
     t.datetime "updated_at", null: false
     t.string "secret", null: false
     t.string "api_token", null: false
+    t.string "username"
   end
 
   create_table "user_omniauths", force: :cascade do |t|

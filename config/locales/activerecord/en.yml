@@ -72,6 +72,7 @@ en:
         id: ID
         secret: Secret
         api_token: API token
+        username: Username
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at

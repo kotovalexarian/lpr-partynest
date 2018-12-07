@@ -11,6 +11,9 @@
         <th scope="col">
           <%= TelegramBot.human_attribute_name :api_token %>
         </th>
+        <th scope="col">
+          <%= TelegramBot.human_attribute_name :username %>
+        </th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -21,6 +24,8 @@
           <td scope="row"><%= telegram_bot.id %></td>
           <td><%= telegram_bot.secret %></td>
           <td><%= telegram_bot.api_token %></td>
+          <td><%= truncate telegram_bot.username, length: 20 %></td>
+          <td></td>
         </tr>
       <% end %>
     </tbody>

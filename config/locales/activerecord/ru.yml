@@ -72,6 +72,7 @@ ru:
         id: ID
         secret: Секрет
         api_token: Токен API
+        username: Имя пользователя
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения
