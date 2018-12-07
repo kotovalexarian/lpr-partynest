@@ -31,7 +31,7 @@ gem 'turbolinks', '~> 5'
 # gem 'jbuilder', '~> 2.5'
 
 # Use Redis adapter to run Action Cable in production.
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 
 # Use ActiveModel has_secure_password.
 gem 'bcrypt', '~> 3.1'
@@ -94,6 +94,9 @@ gem 'omniauth-github', '~> 1.3'
 
 # A rack middleware for throttling and blocking abusive requests.
 gem 'rack-attack', '~> 5.4'
+
+# Simple, efficient background processing for Ruby.
+gem 'sidekiq', '~> 5.2'
 
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
