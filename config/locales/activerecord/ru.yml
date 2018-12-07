@@ -1,6 +1,9 @@
 ru:
   activerecord:
     models:
+      country_state:
+        one: Регион
+        other: Регионы
       membership_app:
         one: Заявление на вступление
         other: Заявления на вступление
@@ -13,13 +16,17 @@ ru:
       passport_map:
         one: Отображение паспорта
         other: Отображения паспортов
-      country_state:
-        one: Регион
-        other: Регионы
+      telegram_bot:
+        one: Telegram-бот
+        other: Telegram-боты
       user:
         one: Пользователь
         other: Пользователи
     attributes:
+      country_state:
+        id: ID
+        membership_apps: Заявления на вступление
+        name: Название
       membership_app:
         id: ID
         country_state: Регион
@@ -61,10 +68,10 @@ ru:
       passport_map/sex:
         male: Мужской
         female: Женский
-      country_state:
+      telegram_bot:
         id: ID
-        membership_apps: Заявления на вступление
-        name: Название
+        secret: Секрет
+        api_token: Токен API
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения

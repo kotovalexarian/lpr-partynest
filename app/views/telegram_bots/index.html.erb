@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= TelegramBot.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= TelegramBot.human_attribute_name :secret %>
+        </th>
+        <th scope="col">
+          <%= TelegramBot.human_attribute_name :api_token %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @telegram_bots.each do |telegram_bot| %>
+        <tr>
+          <td scope="row"><%= telegram_bot.id %></td>
+          <td><%= telegram_bot.secret %></td>
+          <td><%= telegram_bot.api_token %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

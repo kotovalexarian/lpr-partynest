@@ -20,5 +20,7 @@ Rails.application.routes.draw do
               only:       %i[index create]
   end
 
+  resources :telegram_bots, only: :index
+
   resources :telegram_bot_updates, only: :create
 end

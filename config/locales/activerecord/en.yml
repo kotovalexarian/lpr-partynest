@@ -1,6 +1,9 @@
 en:
   activerecord:
     models:
+      country_state:
+        one: State
+        other: States
       membership_app:
         one: Membership application
         other: Membership applications
@@ -13,13 +16,17 @@ en:
       passport_map:
         one: Passport mapping
         other: Passport mappings
-      country_state:
-        one: State
-        other: States
+      telegram_bot:
+        one: Telegram bot
+        other: Telegram bots
       user:
         one: User
         other: Users
     attributes:
+      country_state:
+        id: ID
+        membership_apps: Membership applications
+        name: Name
       membership_app:
         id: ID
         country_state: State
@@ -61,10 +68,10 @@ en:
       passport_map/sex:
         male: Male
         female: Female
-      country_state:
+      telegram_bot:
         id: ID
-        membership_apps: Membership applications
-        name: Name
+        secret: Secret
+        api_token: API token
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at
