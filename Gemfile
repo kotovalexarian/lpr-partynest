@@ -42,6 +42,12 @@ gem 'bcrypt', '~> 3.1'
 # Reduces boot times through caching; required in config/boot.rb.
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Provides extended documentation support for the REPL
+# by means of improving the `show-doc` and `show-source` commands.
+# With help of the plugin the commands are be able to display the source code
+# and the docs of Ruby methods and classes implemented in C.
+gem 'pry-doc', '~> 0.13'
+
 # Use Pry as your Rails console.
 gem 'pry-rails', '~> 0.3'
 
