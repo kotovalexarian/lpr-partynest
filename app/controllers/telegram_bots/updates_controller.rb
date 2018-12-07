@@ -26,10 +26,31 @@ private
                                  record: @telegram_bot
   end
 
-  def handle_message(message)
+  def handle_message(message) # rubocop:disable Metrics/MethodLength
     return if message.blank?
 
-    _telegram_chat = handle_chat message[:chat]
+    telegram_chat = handle_chat message[:chat]
+
+    return if @telegram_bot.username.nil?
+
+    expected = case telegram_chat.chat_type
+               when 'private'
+                 '/shrug'
+               when 'group', 'supergroup'
+                 "/shrug@#{@telegram_bot.username}"
+               else
+                 return
+               end
+
+    return unless message[:text] == expected
+
+    RestClient.get(
+      "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
+      params: {
+        chat_id: telegram_chat.remote_id,
+        text:    '¯\_(ツ)_/¯',
+      },
+    )
   end
 
   def handle_chat(chat)
