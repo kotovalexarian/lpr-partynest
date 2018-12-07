@@ -24,7 +24,7 @@ private
     data = call_api_method_get(
       :setWebhook,
       max_connections: 1,
-      url:             CGI.escape(webhook_url),
+      url:             webhook_url,
     )
 
     context.fail! unless data['ok']
