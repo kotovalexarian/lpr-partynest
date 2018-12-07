@@ -33,16 +33,10 @@ private
 
     return if @telegram_bot.username.nil?
 
-    expected = case telegram_chat.chat_type
-               when 'private'
-                 '/shrug'
-               when 'group', 'supergroup'
-                 "/shrug@#{@telegram_bot.username}"
-               else
-                 return
-               end
-
-    return unless message[:text] == expected
+    return unless message[:text].in? [
+      '/shrug',
+      "/shrug@#{@telegram_bot.username}",
+    ]
 
     @telegram_bot.client.send_message(
       chat_id: telegram_chat.remote_id,
