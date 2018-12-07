@@ -44,12 +44,9 @@ private
 
     return unless message[:text] == expected
 
-    RestClient.get(
-      "https://api.telegram.org/bot#{@telegram_bot.api_token}/sendMessage",
-      params: {
-        chat_id: telegram_chat.remote_id,
-        text:    '¯\_(ツ)_/¯',
-      },
+    Telegram::Bot::Client.new(@telegram_bot.api_token).send_message(
+      chat_id: telegram_chat.remote_id,
+      text:    '¯\_(ツ)_/¯',
     )
   end
 

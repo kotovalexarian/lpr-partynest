@@ -13,31 +13,19 @@ class InitializeTelegramBot
 private
 
   def fetch_info
-    data = call_api_method_get :getMe
-
-    context.fail! unless data['ok'] && context.telegram_bot.update(
-      username: data['result']['username'],
-    )
+    user = Telegram::Bot::Client.new(context.telegram_bot.api_token).get_me
+    context.telegram_bot.update! username: user.username
+  rescue Telegram::Bot::Error, ActiveRecord::RecordInvalid
+    context.fail!
   end
 
   def set_webhook
-    data = call_api_method_get(
-      :setWebhook,
-      params: {
-        max_connections: 1,
-        url:             webhook_url,
-      },
+    Telegram::Bot::Client.new(context.telegram_bot.api_token).set_webhook(
+      url:             webhook_url,
+      max_connections: 1,
     )
-
-    context.fail! unless data['ok']
-  end
-
-  def api_method_url(method)
-    "https://api.telegram.org/bot#{context.telegram_bot.api_token}/#{method}"
-  end
-
-  def call_api_method_get(method, params = {})
-    JSON.parse RestClient.get(api_method_url(method), params).body
+  rescue Telegram::Bot::Error
+    context.fail!
   end
 
   def webhook_url
