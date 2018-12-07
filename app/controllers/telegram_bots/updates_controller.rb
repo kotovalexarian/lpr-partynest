@@ -29,7 +29,7 @@ private
   def handle_chat(chat)
     return if chat.blank?
 
-    telegram_chat = TelegramChat.first_or_initialize remote_id: chat[:id]
+    telegram_chat = TelegramChat.where(remote_id: chat[:id]).first_or_initialize
 
     telegram_chat.chat_type  = chat[:type]
     telegram_chat.title      = chat[:title]
