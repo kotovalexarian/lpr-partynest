@@ -19,6 +19,9 @@ ru:
       telegram_bot:
         one: Telegram-бот
         other: Telegram-боты
+      telegram_chat:
+        one: Telegram-чат
+        other: Telegram-чаты
       user:
         one: Пользователь
         other: Пользователи
@@ -73,6 +76,14 @@ ru:
         secret: Секрет
         api_token: Токен API
         username: Имя пользователя
+      telegram_chat:
+        id: ID
+        remote_id: Удалённый ID
+        chat_type: Тип
+        title: Название
+        username: Имя пользователя
+        first_name: Имя
+        last_name: Фамилия
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения
