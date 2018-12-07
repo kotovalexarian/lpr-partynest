@@ -32,4 +32,4 @@ threads threads_count, threads_count
 bind "unix://#{Rails.root.join('tmp', 'sockets', 'puma.sock')}"
 
 # Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart
+# plugin :tmp_restart

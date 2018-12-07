@@ -50,5 +50,3 @@ append :linked_dirs,
 # Uncomment the following to require manually verifying the host key
 # before first deploy.
 # set :ssh_options, verify_host_key: :secure
-
-after 'deploy:published', 'rails:restart'
