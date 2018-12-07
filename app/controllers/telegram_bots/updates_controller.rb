@@ -8,8 +8,6 @@ class TelegramBots::UpdatesController < ApplicationController
 
   # POST /telegram_bots/:telegram_bot_id/updates
   def create
-    logger.info params.inspect
-
     handle_chat params.dig(:message, :chat)
 
     render status: :no_content, json: {}
