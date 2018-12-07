@@ -5,6 +5,10 @@ class TelegramBotPolicy < ApplicationPolicy
     context.account&.is_superuser?
   end
 
+  def show?
+    context.account&.is_superuser?
+  end
+
   class Scope < Scope
     def resolve
       return scope.all if context.account&.is_superuser?

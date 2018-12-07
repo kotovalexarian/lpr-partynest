@@ -25,7 +25,14 @@
           <td><%= telegram_bot.secret %></td>
           <td><%= telegram_bot.api_token %></td>
           <td><%= truncate telegram_bot.username, length: 20 %></td>
-          <td></td>
+          <td>
+            <% if policy(telegram_bot).show? %>
+              <%= link_to telegram_bot_path(telegram_bot),
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
