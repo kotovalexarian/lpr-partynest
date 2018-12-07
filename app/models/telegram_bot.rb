@@ -10,4 +10,10 @@ class TelegramBot < ApplicationRecord
             allow_nil: true,
             presence:  true,
             format:    USERNAME_RE
+
+  def client
+    @client ||= api_token.try do |api_token|
+      Telegram::Bot::Client.new api_token
+    end
+  end
 end

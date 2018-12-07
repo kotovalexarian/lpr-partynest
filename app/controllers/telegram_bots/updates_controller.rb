@@ -44,7 +44,7 @@ private
 
     return unless message[:text] == expected
 
-    Telegram::Bot::Client.new(@telegram_bot.api_token).send_message(
+    @telegram_bot.client.send_message(
       chat_id: telegram_chat.remote_id,
       text:    '¯\_(ツ)_/¯',
     )

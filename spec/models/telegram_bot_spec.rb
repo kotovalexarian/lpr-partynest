@@ -8,6 +8,8 @@ RSpec.describe TelegramBot do
   it { is_expected.to validate_presence_of :secret }
   it { is_expected.to validate_presence_of :api_token }
 
+  pending '#client'
+
   describe '#username' do
     def allow_value(*)
       super.for :username
