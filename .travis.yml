@@ -2,6 +2,7 @@ language: ruby
 
 services:
   - postgresql
+  - redis-server
 
 env:
   global:
