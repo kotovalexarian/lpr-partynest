@@ -7,6 +7,7 @@ AllCops:
     - 'db/schema.rb'
     - 'features/support/env.rb'
     - 'lib/tasks/cucumber.rake'
+    - 'lib/templates/**/*'
     - 'script/cucumber'
     - 'vendor/**/*'
 
