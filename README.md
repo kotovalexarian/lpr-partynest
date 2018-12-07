@@ -46,18 +46,49 @@ Tested with **Ubuntu Server 18.04 LTS**.
 * Create PostgreSQL role `partynest` with password `password`
 * Create PostgreSQL database `partynest_production` owned by `partynest`
 
-### Example systemd service
+### Example systemd services
 
-Replace `user` with the name of user which you want an application to run as.
+Replace `user` with the name of user and `group` with the name of group
+which you want an application to run as.
+
+#### Web server
 
 ```
 [Unit]
-After=network.target
+After=syslog.target network.target
 Description=Partynest web server
 
 [Service]
 ExecStart=/usr/bin/bundle exec rails server --environment production
-Restart=always
+Group=group
+Restart=on-failure
+RestartSec=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=partynest-web
+Type=simple
+User=user
+WorkingDirectory=/var/www/partynest/current
+
+[Install]
+WantedBy=multi-user.target
+```
+
+#### Job processing
+
+```
+[Unit]
+After=syslog.target network.target
+Description=Partynest job processing
+
+[Service]
+ExecStart=/usr/bin/bundle exec sidekiq --environment production
+Group=group
+Restart=on-failure
+RestartSec=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=partynest-worker
 Type=simple
 User=user
 WorkingDirectory=/var/www/partynest/current
