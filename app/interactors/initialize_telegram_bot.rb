@@ -23,8 +23,10 @@ private
   def set_webhook
     data = call_api_method_get(
       :setWebhook,
-      max_connections: 1,
-      url:             webhook_url,
+      params: {
+        max_connections: 1,
+        url:             webhook_url,
+      },
     )
 
     context.fail! unless data['ok']
