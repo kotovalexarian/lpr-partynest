@@ -8,7 +8,7 @@ class TelegramBots::UpdatesController < ApplicationController
 
   # POST /telegram_bots/:telegram_bot_id/updates
   def create
-    handle_chat params.dig(:message, :chat)
+    handle_message params[:message]
 
     render status: :no_content, json: {}
   end
@@ -26,6 +26,12 @@ private
                                  record: @telegram_bot
   end
 
+  def handle_message(message)
+    return if message.blank?
+
+    _telegram_chat = handle_chat message[:chat]
+  end
+
   def handle_chat(chat)
     return if chat.blank?
 
@@ -38,5 +44,7 @@ private
     telegram_chat.last_name  = chat[:last_name]
 
     telegram_chat.save!
+
+    telegram_chat
   end
 end
