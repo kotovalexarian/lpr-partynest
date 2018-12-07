@@ -26,22 +26,20 @@ private
                                  record: @telegram_bot
   end
 
-  def handle_message(message) # rubocop:disable Metrics/MethodLength
+  def handle_message(message)
     return if message.blank?
 
     telegram_chat = handle_chat message[:chat]
 
     return if @telegram_bot.username.nil?
 
-    return unless message[:text].in? [
-      '/shrug',
-      "/shrug@#{@telegram_bot.username}",
-    ]
-
-    @telegram_bot.client.send_message(
-      chat_id: telegram_chat.remote_id,
-      text:    '¯\_(ツ)_/¯',
-    )
+    case message[:text]
+    when '/shrug', "/shrug@#{@telegram_bot.username}"
+      @telegram_bot.client.send_message(
+        chat_id: telegram_chat.remote_id,
+        text:    '¯\_(ツ)_/¯',
+      )
+    end
   end
 
   def handle_chat(chat)
