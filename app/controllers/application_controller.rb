@@ -50,6 +50,10 @@ private
     render status: :unauthorized, json: {}
   end
 
+  def method_not_allowed
+    render status: :method_not_allowed, json: {}
+  end
+
   def remember_if_guest_account(account)
     session[:guest_account_id] = account.id if account.guest?
   end
