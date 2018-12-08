@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-server 'ssh.libertarian-party.com', roles: %w[web app db]
+server '138.197.0.6', roles: %w[web app db]
