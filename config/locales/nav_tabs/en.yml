@@ -3,3 +3,5 @@ en:
     passport:
       overview: Overview
       confirmations: Confirmations
+    settings:
+      credentials: Credentials

@@ -3,3 +3,5 @@ ru:
     passport:
       overview: Обзор
       confirmations: Подтверждения
+    settings:
+      credentials: Данные для входа

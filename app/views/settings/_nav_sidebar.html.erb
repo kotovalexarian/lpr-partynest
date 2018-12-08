@@ -1,0 +1,6 @@
+<div class="list-group">
+  <%= link_to translate(:credentials, scope: %i[nav_tabs settings]),
+              edit_user_registration_path,
+              class: 'list-group-item list-group-item-action ' \
+                     "#{:active if tab == :credentials}" %>
+</div>
