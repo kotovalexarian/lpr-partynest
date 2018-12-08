@@ -3,11 +3,11 @@
 FactoryBot.define do
   factory :guest_account, class: Account
 
-  factory :account_with_user, parent: :guest_account do
+  factory :usual_account, parent: :guest_account do
     association :user
   end
 
-  factory :superuser_account, parent: :account_with_user do
+  factory :superuser_account, parent: :usual_account do
     after :create do |account, _evaluator|
       account.add_role :superuser
     end

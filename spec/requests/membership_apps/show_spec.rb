@@ -7,7 +7,7 @@ RSpec.describe 'GET /membership_apps/:id' do
     create :membership_app, account: owner
   end
 
-  let(:owner) { create :account_with_user }
+  let(:owner) { create :usual_account }
 
   before do
     sign_in current_account&.user if current_account&.user
@@ -31,7 +31,7 @@ RSpec.describe 'GET /membership_apps/:id' do
   end
 
   context 'when unauthorized account is authenticated' do
-    let(:current_account) { create :account_with_user }
+    let(:current_account) { create :usual_account }
 
     specify do
       expect(response).to have_http_status :unauthorized

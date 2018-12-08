@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'DELETE /users' do
-  let(:current_account) { create :account_with_user }
+  let(:current_account) { create :usual_account }
 
   def make_request
     delete '/users'

@@ -27,7 +27,7 @@ RSpec.describe 'GET /telegram_bots/:id' do
   end
 
   context 'when usual account is authenticated' do
-    let(:current_account) { create :account_with_user }
+    let(:current_account) { create :usual_account }
 
     specify do
       expect(response).to have_http_status :unauthorized
