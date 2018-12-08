@@ -50,18 +50,3 @@ append :linked_dirs,
 # Uncomment the following to require manually verifying the host key
 # before first deploy.
 # set :ssh_options, verify_host_key: :secure
-
-namespace :deploy do
-  after :published, :restart
-
-  desc 'Restart application services'
-  task :restart do
-    on roles(:web) do
-      execute :sudo, :systemctl, :restart, 'partynest-web.service'
-    end
-
-    on roles(:app) do
-      execute :sudo, :systemctl, :restart, 'partynest-worker.service'
-    end
-  end
-end
