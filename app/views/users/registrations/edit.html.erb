@@ -30,13 +30,4 @@
       <%= f.button :submit, translate('.update') %>
     </div>
   <% end %>
-
-  <h3><%= translate '.cancel_my_account' %></h3>
-
-  <p>
-    <%= translate '.unhappy' %>
-    <%= link_to translate('.cancel_my_account'), registration_path(resource_name), data: { confirm: translate('.are_you_sure') }, method: :delete %>
-  </p>
-
-  <%= link_to translate('devise.shared.links.back'), :back %>
 </div>
