@@ -19,7 +19,7 @@ class MembershipAppsController < ApplicationController
   def create
     @membership_app = MembershipApp.new permitted_attributes MembershipApp
 
-    @membership_app.account = guest_account || Account.new
+    @membership_app.account = current_account || Account.new
 
     authorize @membership_app
 
