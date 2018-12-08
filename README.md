@@ -41,8 +41,8 @@ Tested with **Ubuntu Server 18.04 LTS**.
 
 ### Steps
 
-* Create directory `/var/www/partynest/` writable by deploy user
-* Copy file `config/master.key` to `/var/www/partynest/shared/config/`
+* Create directory `/opt/partynest/` writable by deploy user
+* Copy file `config/master.key` to `/opt/partynest/shared/config/`
 * Create PostgreSQL role `partynest` with password `password`
 * Create PostgreSQL database `partynest_production` owned by `partynest`
 
@@ -68,7 +68,7 @@ StandardError=syslog
 SyslogIdentifier=partynest-web
 Type=simple
 User=user
-WorkingDirectory=/var/www/partynest/current
+WorkingDirectory=/opt/partynest/current
 
 [Install]
 WantedBy=multi-user.target
@@ -91,7 +91,7 @@ StandardError=syslog
 SyslogIdentifier=partynest-worker
 Type=simple
 User=user
-WorkingDirectory=/var/www/partynest/current
+WorkingDirectory=/opt/partynest/current
 
 [Install]
 WantedBy=multi-user.target
