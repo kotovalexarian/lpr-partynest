@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require 'coveralls'
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter,
-])
-
 SimpleCov.start 'rails' do
+  merge_timeout 3600
+
+  formatter SimpleCov::Formatter::HTMLFormatter
+
   add_group 'Channels',    '/app/channels/'
   add_group 'Interactors', '/app/interactors/'
   add_group 'Policies',    '/app/policies/'

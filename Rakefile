@@ -14,6 +14,13 @@ desc 'Fix code style (rubocop --auto-correct)'
 task fix: 'rubocop:auto_correct'
 
 begin
+  require 'coveralls/rake/task'
+  Coveralls::RakeTask.new
+rescue LoadError
+  nil
+end
+
+begin
   require 'rubocop/rake_task'
   RuboCop::RakeTask.new
 rescue LoadError

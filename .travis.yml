@@ -23,3 +23,6 @@ before_script:
   - psql -U postgres -c "CREATE DATABASE partynest_test;"
 
 script: xvfb-run -a bundle exec rake
+
+after_script:
+  - bundle exec rake coveralls:push
