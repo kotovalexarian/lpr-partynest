@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace :sidekiq do
-  dest 'Stop Sidekiq app worker'
+  desc 'Stop Sidekiq app worker'
   task :stop do
     on roles(:app) do
       within release_path do
