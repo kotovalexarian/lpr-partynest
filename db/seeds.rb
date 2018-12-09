@@ -10,9 +10,10 @@ country_state_names.each do |name|
   CountryState.create! name: name
 end
 
-User.where(email: Rails.application.credentials.initial_superuser_email)
-    .first_or_create! do |new_user|
-  new_user.account = Account.create!
-  new_user.password = Rails.application.credentials.initial_superuser_password
-  new_user.confirmed_at = Time.zone.now
-end.account.add_role :superuser
+Rails.application.config_for(:superuser).try do |config|
+  User.where(email: config['email']).first_or_create! do |new_user|
+    new_user.account = Account.create!
+    new_user.password = config['password']
+    new_user.confirmed_at = Time.zone.now
+  end.account.add_role :superuser
+end

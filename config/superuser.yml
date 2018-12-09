@@ -1,0 +1,7 @@
+development:
+  email: admin@example.com
+  password: password
+
+production:
+  email: <%= Rails.application.credentials.superuser_email %>
+  password: <%= Rails.application.credentials.superuser_password %>
