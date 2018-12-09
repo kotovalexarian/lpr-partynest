@@ -31,7 +31,7 @@ module Partynest
     ].freeze
 
     def settings(name)
-      config_for "settings/#{name}"
+      config_for("settings/#{name}").deep_symbolize_keys
     end
 
     # Initialize configuration defaults for originally generated Rails version.

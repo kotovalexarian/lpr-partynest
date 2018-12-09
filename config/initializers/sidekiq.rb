@@ -2,8 +2,8 @@
 
 # Be sure to restart your server when you modify this file.
 
-client_conf = Rails.application.settings(:sidekiq_client).deep_symbolize_keys
-server_conf = Rails.application.settings(:sidekiq_server).deep_symbolize_keys
+client_conf = Rails.application.settings :sidekiq_client
+server_conf = Rails.application.settings :sidekiq_server
 
 Sidekiq.configure_client do |config|
   config.redis = {
