@@ -2,7 +2,7 @@
 
 # Be sure to restart your server when you modify this file.
 
-Rails.application.config_for(:smtp).try(&:deep_symbolize_keys).try do |config|
+Rails.application.config_for(:smtp).deep_symbolize_keys.tap do |config|
   ActionMailer::Base.smtp_settings = {
     address:              config[:address],
     port:                 config[:port]&.to_i,
