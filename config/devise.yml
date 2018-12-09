@@ -8,7 +8,7 @@ development:
   github_id:     001403b371a8e8b6bd9d
   github_secret: ea1aa41c9d6377871e6c7321dc0ae1962b259859
 
-development:
+test:
   <<: *default
   secret_key:    12715a3b4ed05d1a67cd8cddd0274bddee685f5809ff262e085c2e6afb33e4dfc04bd78816e06bc0d181934a62a747ac6b77295ebd9d9d51ef6f9a9bbf4dfe58
   pepper:        6921164fe73d0dc399cae94dd7c6df959d3675fb0a3c722ee6f0bcf9c4a09c4b80ea7cff85e41056fcad8875e167570567cff0c5ebfabfb298bcd2246fc486e3
