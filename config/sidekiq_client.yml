@@ -1,0 +1,20 @@
+default: &default
+  redis_host: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_HOST') { 'localhost' } %>
+  redis_port: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_PORT') { 6379 } %>
+
+unsafe: &unsafe
+  <<: *default
+  redis_password: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_PASSWORD') { 'password' } %>
+
+development:
+  <<: *unsafe
+  redis_db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 0 } %>
+
+test:
+  <<: *unsafe
+  redis_db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 15 } %>
+
+production:
+  <<: *default
+  redis_password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
+  redis_db:       <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 0 } %>

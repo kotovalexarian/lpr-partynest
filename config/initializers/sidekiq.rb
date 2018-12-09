@@ -2,14 +2,23 @@
 
 # Be sure to restart your server when you modify this file.
 
+server_conf = Rails.application.config_for(:sidekiq_server).deep_symbolize_keys
+client_conf = Rails.application.config_for(:sidekiq_client).deep_symbolize_keys
+
 Sidekiq.configure_server do |config|
-  Rails.application.credentials.sidekiq_redis_server.try do |redis_config|
-    config.redis = redis_config.deep_symbolize_keys if redis_config
-  end
+  config.redis = {
+    host:     server_conf[:redis_host],
+    port:     server_conf[:redis_port],
+    db:       server_conf[:redis_db],
+    password: server_conf[:redis_password],
+  }
 end
 
 Sidekiq.configure_client do |config|
-  Rails.application.credentials.sidekiq_redis_client.try do |redis_config|
-    config.redis = redis_config.deep_symbolize_keys if redis_config
-  end
+  config.redis = {
+    host:     client_conf[:redis_host],
+    port:     client_conf[:redis_port],
+    db:       client_conf[:redis_db],
+    password: client_conf[:redis_password],
+  }
 end
