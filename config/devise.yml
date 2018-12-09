@@ -1,0 +1,23 @@
+default: &default
+  mailer_sender: 'Libertarian party of Russia <no-reply@libertarian-party.com>'
+
+development:
+  <<: *default
+  secret_key:    9dc30f6c18254ae4fea843e06f94d59cc41bb36e22bf54e5296a211500a73dd8db212a3460338af240802ef867bb1377a19a92e420d5578c5d97d936bd2262ec
+  pepper:        1233d305eec1b7e9216f80dae77e2914ee8207c472aa60890ccd6a4e0a1f0e4339e7c7b5b4020a88c5201695d103d26d1903b4e2bd3b2900f0e63938b08c135c
+  github_id:     001403b371a8e8b6bd9d
+  github_secret: ea1aa41c9d6377871e6c7321dc0ae1962b259859
+
+development:
+  <<: *default
+  secret_key:    12715a3b4ed05d1a67cd8cddd0274bddee685f5809ff262e085c2e6afb33e4dfc04bd78816e06bc0d181934a62a747ac6b77295ebd9d9d51ef6f9a9bbf4dfe58
+  pepper:        6921164fe73d0dc399cae94dd7c6df959d3675fb0a3c722ee6f0bcf9c4a09c4b80ea7cff85e41056fcad8875e167570567cff0c5ebfabfb298bcd2246fc486e3
+  github_id:     a70df81e860ff2c3ceb0
+  github_secret: bbea64bbf666361e50ca96bbf596cb9d122eff1c
+
+production:
+  <<: *default
+  secret_key:    <%= Rails.application.credentials.devise_secret_key %>
+  pepper:        <%= Rails.application.credentials.devise_pepper %>
+  github_id:     <%= Rails.application.credentials.github_client_id %>
+  github_secret: <%= Rails.application.credentials.github_client_secret %>

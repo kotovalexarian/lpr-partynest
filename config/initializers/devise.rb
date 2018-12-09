@@ -2,6 +2,8 @@
 
 # Be sure to restart your server when you modify this file.
 
+conf = Rails.application.config_for(:devise).deep_symbolize_keys
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -10,7 +12,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = Rails.application.credentials.devise_secret_key
+  config.secret_key = conf[:secret_key]
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -20,7 +22,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = Rails.application.config.noreply_email_contact
+  config.mailer_sender = conf[:mailer_sender]
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'UserMailer'
@@ -124,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  config.pepper = Rails.application.credentials.pepper
+  config.pepper = conf[:pepper]
 
   # Send a notification to the original email when the user's email is changed.
   config.send_email_changed_notification = true
@@ -268,10 +270,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :github,
-                  Rails.application.credentials.dig(:github, :client_id),
-                  Rails.application.credentials.dig(:github, :client_secret),
-                  scope: 'user'
+  config.omniauth :github, conf[:github_id], conf[:github_secret], scope: 'user'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise,
