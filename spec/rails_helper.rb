@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # This should be on the top of the file.
+$coverage = true
 require 'simplecov'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

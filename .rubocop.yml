@@ -67,6 +67,12 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: false
 
+Style/GlobalVars:
+  Exclude:
+    - 'features/support/env.rb'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+
 Style/RescueModifier:
   Exclude:
     - 'spec/**/*.rb'

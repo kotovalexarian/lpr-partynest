@@ -5,6 +5,7 @@
 # files.
 
 # This should be on the top of the file.
+$coverage = true
 require 'simplecov'
 
 require 'cucumber/rails'
