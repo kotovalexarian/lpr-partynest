@@ -65,7 +65,13 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  cache_conf = Rails.application.config_for(:cache_store).deep_symbolize_keys
+  config.cache_store = :redis_cache_store, {
+    host:     cache_conf[:host],
+    port:     cache_conf[:port],
+    db:       cache_conf[:db],
+    password: cache_conf[:password],
+  }
 
   # Use a real queuing backend for Active Job
   # (and separate queues per environment).

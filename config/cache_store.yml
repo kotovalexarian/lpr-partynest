@@ -1,0 +1,12 @@
+default: &default
+  redis_host: <%= ENV.fetch('RAILS_CACHE_REDIS_HOST') { 'localhost' } %>
+  redis_port: <%= ENV.fetch('RAILS_CACHE_REDIS_PORT') { 6379 } %>
+  redis_db:   <%= ENV.fetch('RAILS_CACHE_REDIS_DB') { 1 } %>
+
+development:
+  <<: *default
+  redis_password: <%= ENV.fetch('RAILS_CACHE_REDIS_PASSWORD') { 'password' } %>
+
+production:
+  <<: *default
+  redis_password: <%= Rails.application.credentials.rails_cache_redis_password %>
