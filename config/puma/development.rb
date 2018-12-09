@@ -33,3 +33,8 @@ port ENV.fetch('PORT') { 3000 }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+# Use "path" as the file to store the server info state. This is
+# used by "pumactl" to query and control the server.
+#
+state_path Rails.root.join('tmp', 'pids', 'puma.state')
