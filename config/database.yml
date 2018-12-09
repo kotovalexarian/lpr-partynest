@@ -6,15 +6,17 @@ default: &default
   port:     <%= ENV.fetch('POSTGRES_PORT') { 5432 } %>
   username: <%= ENV.fetch('POSTGRES_USER') { 'partynest' } %>
 
-development:
+unsafe: &unsafe
   <<: *default
-  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_development' } %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password' } %>
 
+development:
+  <<: *unsafe
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_development' } %>
+
 test: &test
-  <<: *default
+  <<: *unsafe
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_test' } %>
-  password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password' } %>
 
 cucumber:
   <<: *test
