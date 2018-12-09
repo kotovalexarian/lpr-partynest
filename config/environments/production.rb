@@ -65,7 +65,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  cache_conf = Rails.application.config_for(:cache_store).deep_symbolize_keys
+  cache_conf = Rails.application.settings(:cache_store).deep_symbolize_keys
   config.cache_store = :redis_cache_store, {
     host:     cache_conf[:host],
     port:     cache_conf[:port],

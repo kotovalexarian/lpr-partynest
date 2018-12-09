@@ -2,7 +2,7 @@
 
 # Be sure to restart your server when you modify this file.
 
-conf = Rails.application.config_for(:devise).deep_symbolize_keys
+conf = Rails.application.settings(:devise).deep_symbolize_keys
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.

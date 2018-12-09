@@ -30,6 +30,10 @@ module Partynest
       unlock_token
     ].freeze
 
+    def settings(name)
+      config_for "settings/#{name}"
+    end
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 

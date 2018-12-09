@@ -2,7 +2,7 @@
 
 # Be sure to restart your server when you modify this file.
 
-conf = Rails.application.config_for(:smtp).deep_symbolize_keys
+conf = Rails.application.settings(:smtp).deep_symbolize_keys
 
 ActionMailer::Base.smtp_settings = {
   address:              conf[:address],
