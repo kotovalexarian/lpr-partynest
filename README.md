@@ -60,7 +60,7 @@ Description=Partynest web server
 [Service]
 ExecStart=/usr/bin/bundle exec rails server --environment production
 Group=group
-Restart=on-failure
+Restart=always
 RestartSec=1
 StandardOutput=syslog
 StandardError=syslog

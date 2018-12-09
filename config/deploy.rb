@@ -53,5 +53,5 @@ append :linked_dirs,
 
 after 'deploy:publishing', 'deploy:restart'
 
-after 'deploy:restart', 'puma:restart'
+after 'deploy:restart', 'puma:stop'
 after 'deploy:restart', 'sidekiq:stop'
