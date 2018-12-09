@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+root_dir = File.expand_path '../..', __dir__
+
 workers_count = ENV.fetch('WEB_CONCURRENCY') { 1 }
 threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
 
@@ -37,4 +39,4 @@ plugin :tmp_restart
 # Use "path" as the file to store the server info state. This is
 # used by "pumactl" to query and control the server.
 #
-state_path Rails.root.join('tmp', 'pids', 'puma.state')
+state_path File.join(root_dir, 'tmp', 'pids', 'puma.state')
