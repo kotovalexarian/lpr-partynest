@@ -83,7 +83,7 @@ Description=Partynest job processing
 [Service]
 ExecStart=/usr/bin/bundle exec sidekiq --environment production
 Group=group
-Restart=on-failure
+Restart=always
 RestartSec=1
 StandardOutput=syslog
 StandardError=syslog
