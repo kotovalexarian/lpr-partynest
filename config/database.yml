@@ -11,13 +11,13 @@ development:
   <<: *default
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_development' } %>
 
-production:
-  <<: *default
-  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_production' } %>
-
 test: &test
   <<: *default
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_test' } %>
 
 cucumber:
   <<: *test
+
+production:
+  <<: *default
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_production' } %>
