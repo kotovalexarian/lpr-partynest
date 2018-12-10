@@ -58,7 +58,7 @@ After=syslog.target network.target
 Description=Partynest web server
 
 [Service]
-ExecStart=/usr/bin/bundle exec rails server --environment production
+ExecStart=/usr/bin/bundle exec puma --environment production
 Group=group
 Restart=always
 RestartSec=1
