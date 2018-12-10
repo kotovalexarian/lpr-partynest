@@ -13,6 +13,10 @@ class Account < ApplicationRecord
 
   scope :guests, -> { includes(:user).where(users: { id: nil }) }
 
+  before_create do
+    self.guest_token = SecureRandom.hex
+  end
+
   def guest?
     user.nil?
   end
