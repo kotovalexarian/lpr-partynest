@@ -3,5 +3,5 @@ development:
   password: password
 
 production:
-  email: <%= Rails.application.credentials.superuser_email %>
+  email:    <%= Rails.application.credentials.superuser_email %>
   password: <%= Rails.application.credentials.superuser_password %>
