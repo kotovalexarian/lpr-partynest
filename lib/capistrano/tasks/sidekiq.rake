@@ -7,6 +7,8 @@ namespace :sidekiq do
       within release_path do
         pidfile = File.join shared_path, 'tmp', 'pids', 'sidekiq.pid'
         execute :bundle, :exec, :sidekiqctl, :stop, pidfile
+      rescue SSHKit::Command::Failed
+        nil
       end
     end
   end

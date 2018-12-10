@@ -7,6 +7,8 @@ namespace :puma do
       within release_path do
         statefile = File.join shared_path, 'tmp', 'pids', 'puma.state'
         execute :bundle, :exec, :pumactl, '--state', statefile, :stop
+      rescue SSHKit::Command::Failed
+        nil
       end
     end
   end
