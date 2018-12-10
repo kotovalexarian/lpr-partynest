@@ -8,6 +8,7 @@ env:
   global:
     - RAILS_MAX_THREADS=5
 
+    - POSTGRES_POOL=5
     - POSTGRES_HOST=localhost
     - POSTGRES_PORT=5432
     - POSTGRES_USER=postgres
