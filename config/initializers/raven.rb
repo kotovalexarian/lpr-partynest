@@ -17,5 +17,6 @@ Raven.configure do |config|
     Sinatra::NotFound
     ActiveJob::DeserializationError
   ]
+  config.sample_rate = 1.0
   config.sanitize_fields = Partynest::Application::FILTER_PARAMS.map(&:to_s)
 end
