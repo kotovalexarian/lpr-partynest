@@ -7,6 +7,7 @@ services:
 env:
   global:
     - RAILS_MAX_THREADS=5
+    - SIDEKIQ_CONCURRENCY=5
 
     - POSTGRES_POOL=5
     - POSTGRES_HOST=localhost
