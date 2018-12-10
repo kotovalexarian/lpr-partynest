@@ -30,7 +30,15 @@ RSpec.describe 'GET /membership_apps/:id' do
     end
   end
 
-  context 'when unauthorized account is authenticated' do
+  context 'when guest account is authenticated' do
+    let(:current_account) { create :guest_account }
+
+    specify do
+      expect(response).to have_http_status :unauthorized
+    end
+  end
+
+  context 'when usual account is authenticated' do
     let(:current_account) { create :usual_account }
 
     specify do
