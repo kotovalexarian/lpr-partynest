@@ -7,7 +7,11 @@ FactoryBot.define do
     association :user
   end
 
-  factory :superuser_account, parent: :usual_account do
+  factory :personal_account, parent: :usual_account do
+    association :person
+  end
+
+  factory :superuser_account, parent: :personal_account do
     after :create do |account, _evaluator|
       account.add_role :superuser
     end

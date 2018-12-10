@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  subject { create :usual_account }
+  subject { create :personal_account }
+
+  it { is_expected.to belong_to(:person).optional }
 
   it do
     is_expected.to \
@@ -24,6 +26,7 @@ RSpec.describe Account do
       .dependent(:restrict_with_exception)
   end
 
+  it { is_expected.not_to validate_presence_of :person }
   it { is_expected.not_to validate_presence_of :user }
 
   pending '.guests'

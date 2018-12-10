@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_033105) do
+ActiveRecord::Schema.define(version: 2018_12_10_033307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_033105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "guest_token", null: false
+    t.bigint "person_id"
+    t.index ["person_id"], name: "index_accounts_on_person_id", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -195,6 +197,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_033105) do
 
   add_foreign_key "account_roles", "accounts"
   add_foreign_key "account_roles", "roles"
+  add_foreign_key "accounts", "people"
   add_foreign_key "membership_apps", "accounts"
   add_foreign_key "membership_apps", "country_states"
   add_foreign_key "passport_confirmations", "accounts"

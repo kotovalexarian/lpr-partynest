@@ -3,6 +3,8 @@
 class Account < ApplicationRecord
   rolify role_join_table_name: :account_roles
 
+  belongs_to :person, optional: true
+
   has_one :user, dependent: :restrict_with_exception
 
   has_many :own_membership_apps,
@@ -16,6 +18,8 @@ class Account < ApplicationRecord
   before_create do
     self.guest_token = SecureRandom.hex
   end
+
+  validates :person_id, allow_nil: true, uniqueness: true
 
   def guest?
     user.nil?
