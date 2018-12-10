@@ -20,4 +20,5 @@ Raven.configure do |config|
   config.sample_rate = 1.0
   config.sanitize_fields = Partynest::Application::FILTER_PARAMS.map(&:to_s)
   config.silence_ready = false
+  config.ssl_verification = true
 end
