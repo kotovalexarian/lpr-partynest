@@ -54,7 +54,7 @@ module Partynest
     config.generators do |g|
       g.assets false
       g.helper false
-      g.system_tests false
+      g.system_tests nil
 
       g.factory_bot dir: 'factories'
     end
