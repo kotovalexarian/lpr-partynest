@@ -3,6 +3,7 @@
 # Be sure to restart your server when you modify this file.
 
 Raven.configure do |config|
+  config.async = RavenJob.method :perform_later
   config.current_environment = Rails.env
   config.dsn = Rails.application.credentials.raven_dsn
   config.environments = %w[production]
