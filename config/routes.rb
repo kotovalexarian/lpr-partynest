@@ -20,13 +20,13 @@ Rails.application.routes.draw do
               only:       %i[index create]
   end
 
+  namespace :settings do
+    resources :telegram_contacts, only: :index
+  end
+
   resources :telegram_bots, only: %i[index show] do
     resources :updates, controller: 'telegram_bots/updates', only: :create
   end
 
   resources :telegram_chats, only: %i[index show]
-
-  namespace :settings do
-    resources :telegram_contacts, only: :index
-  end
 end
