@@ -3,4 +3,9 @@
               edit_user_registration_path,
               class: 'list-group-item list-group-item-action ' \
                      "#{:active if tab == :credentials}" %>
+
+  <%= link_to translate(:telegram_contacts, scope: %i[nav_tabs settings]),
+              settings_telegram_contacts_path,
+              class: 'list-group-item list-group-item-action '\
+                     "#{:active if tab == :telegram_contacts}" %>
 </div>

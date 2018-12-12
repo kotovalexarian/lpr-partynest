@@ -5,3 +5,4 @@ ru:
       confirmations: Подтверждения
     settings:
       credentials: Данные для входа
+      telegram_contacts: Контакты Telegram

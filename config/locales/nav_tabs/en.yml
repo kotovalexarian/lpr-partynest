@@ -5,3 +5,4 @@ en:
       confirmations: Confirmations
     settings:
       credentials: Credentials
+      telegram_contacts: Telegram contacts
