@@ -16,5 +16,6 @@ end
 
 Then 'I fail to sign in' do
   expect(page.current_path).to eq '/users/sign_in'
-  expect(page).to have_css 'div.alert.alert-warning', text: 'Неправильный Email или пароль.'
+  expect(page).to have_css 'div.alert.alert-warning',
+                           text: 'Неправильный Email или пароль.'
 end
