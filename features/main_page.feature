@@ -3,4 +3,4 @@ Feature: Main page
     Given I visit "/"
 
   Scenario: It works
-    Then I see main page
+    Then I see CSS "h1" with text "Либертарианская партия России"

@@ -9,4 +9,4 @@ Feature: Sign up
       | Пароль               | q1w2e3r4t5y6     |
       | Подтверждение пароля | q1w2e3r4t5y6     |
     And I click the form button "Регистрация"
-    Then I see main page
+    Then I see CSS "h1" with text "Либертарианская партия России"

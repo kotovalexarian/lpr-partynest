@@ -40,11 +40,8 @@ Then 'I see text {string}' do |text|
   expect(page).to have_content text
 end
 
-Then 'I see main page' do
-  expect(page).to have_css(
-    'h1',
-    text: I18n.translate('title'),
-  )
+Then 'I see CSS {string} with text {string}' do |selector, text|
+  expect(page).to have_css selector, text: text
 end
 
 Given 'I want to create the following passport:' do |table|
