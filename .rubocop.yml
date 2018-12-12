@@ -58,6 +58,7 @@ Style/AndOr:
 
 Style/ClassAndModuleChildren:
   Exclude:
+    - 'app/policies/**/*.rb'
     - 'app/controllers/**/*.rb'
 
 Style/Documentation:

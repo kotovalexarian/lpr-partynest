@@ -25,4 +25,8 @@ Rails.application.routes.draw do
   end
 
   resources :telegram_chats, only: %i[index show]
+
+  namespace :settings do
+    resources :telegram_contacts, only: :index
+  end
 end
