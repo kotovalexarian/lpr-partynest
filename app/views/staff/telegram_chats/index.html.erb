@@ -38,8 +38,8 @@
           <td><%= truncate telegram_chat.first_name, length: 20 %></td>
           <td><%= truncate telegram_chat.last_name,  length: 20 %></td>
           <td>
-            <% if policy(telegram_chat).show? %>
-              <%= link_to telegram_chat_path(telegram_chat),
+            <% if policy([:staff, telegram_chat]).show? %>
+              <%= link_to staff_telegram_chat_path(telegram_chat),
                           role: :button, class: 'btn btn-light btn-sm' do %>
                 <i class="far fa-eye"></i>
               <% end %>

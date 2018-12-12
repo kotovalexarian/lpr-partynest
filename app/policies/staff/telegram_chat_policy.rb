@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TelegramChatPolicy < ApplicationPolicy
+class Staff::TelegramChatPolicy < ApplicationPolicy
   def index?
     context.account&.is_superuser?
   end
