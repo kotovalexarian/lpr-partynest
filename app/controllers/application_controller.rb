@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from Pundit::NotAuthorizedError,   with: :unauthorized
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  rescue_from Pundit::NotAuthorizedError,   with: :render_unauthorized
 
   helper_method :current_account
 
@@ -38,18 +38,18 @@ private
     request.format.json?
   end
 
-  def not_found
+  def render_not_found
     respond_to do |format|
       format.html { render status: :not_found, template: 'errors/not_found' }
       format.json { render status: :not_found, json: {} }
     end
   end
 
-  def unauthorized
+  def render_unauthorized
     render status: :unauthorized, json: {}
   end
 
-  def method_not_allowed
+  def render_method_not_allowed
     render status: :method_not_allowed, json: {}
   end
 

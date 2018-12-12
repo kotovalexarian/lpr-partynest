@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    method_not_allowed
+    render_method_not_allowed
   end
 
   # GET /resource/cancel
