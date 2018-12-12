@@ -3,9 +3,9 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  before_action :set_raven_context
-
   protect_from_forgery with: :exception, prepend: true, unless: :json_request?
+
+  before_action :set_raven_context
 
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
