@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root to: 'home#show'
 
@@ -25,6 +27,12 @@ Rails.application.routes.draw do
   end
 
   namespace :staff do
+    authenticate :user, ->(user) { user.account.is_superuser? } do
+      mount Sidekiq::Web, at: '/sidekiq', as: :sidekiq
+    end
+
+    get '/sidekiq', to: redirect('/', status: 307), as: :forbidden_sidekiq
+
     resources :telegram_chats, only: %i[index show]
   end
 
