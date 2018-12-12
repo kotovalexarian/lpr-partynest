@@ -4,15 +4,14 @@ Feature: Sign in
 
   Scenario: with valid credentials
     When I try to sign in with email "user@example.com" and password "password"
-    Then I am at "/"
+    Then I am signed in as "user@example.com"
+    And I am at "/"
     And I see CSS "h1" with text "Либертарианская партия России"
 
   Scenario: with invalid email
     When I try to sign in with email "foo@example.com" and password "password"
-    Then I am at "/users/sign_in"
-    And I see CSS "div.alert.alert-warning" with text "Неправильный Email или пароль."
+    Then I fail to sign in
 
   Scenario: with invalid password
     When I try to sign in with email "user@example.com" and password "foobar"
-    Then I am at "/users/sign_in"
-    And I see CSS "div.alert.alert-warning" with text "Неправильный Email или пароль."
+    Then I fail to sign in
