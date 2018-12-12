@@ -6,12 +6,12 @@ class CreateAccountTelegramContacts < ActiveRecord::Migration[5.2]
       t.timestamps null: false
 
       t.references :account,
-                   null: false,
+                   null:        false,
                    foreign_key: true
 
       t.references :telegram_chat,
-                   null: false,
-                   index: { unique: true },
+                   null:        false,
+                   index:       { unique: true },
                    foreign_key: true
     end
   end
