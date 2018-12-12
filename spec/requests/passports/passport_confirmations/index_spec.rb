@@ -4,19 +4,43 @@ require 'rails_helper'
 
 RSpec.describe 'GET /passports/:passport_id/passport_confirmations' do
   let!(:passport) { create :passport_with_passport_map_and_image }
-  let(:current_user) { create :user }
+  let(:current_account) { create :usual_account }
 
   def make_request
     get "/passports/#{passport.id}/passport_confirmations"
   end
 
   before do
-    sign_in current_user if current_user
+    sign_in current_account.user if current_account&.user
     make_request
   end
 
-  context 'when no user is authenticated' do
-    let(:current_user) { nil }
+  context 'when no account is authenticated' do
+    let(:current_account) { nil }
+
+    specify do
+      expect(response).to have_http_status :ok
+    end
+  end
+
+  context 'when guest account is authenticated' do
+    let(:current_account) { create :guest_account }
+
+    specify do
+      expect(response).to have_http_status :ok
+    end
+  end
+
+  context 'when usual account is authenticated' do
+    let(:current_account) { create :usual_account }
+
+    specify do
+      expect(response).to have_http_status :ok
+    end
+  end
+
+  context 'when superuser account is authenticated' do
+    let(:current_account) { create :superuser_account }
 
     specify do
       expect(response).to have_http_status :ok
