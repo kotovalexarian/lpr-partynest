@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_033307) do
+ActiveRecord::Schema.define(version: 2018_12_12_000903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2018_12_10_033307) do
     t.index ["account_id", "role_id"], name: "index_account_roles_on_account_id_and_role_id", unique: true
     t.index ["account_id"], name: "index_account_roles_on_account_id"
     t.index ["role_id"], name: "index_account_roles_on_role_id"
+  end
+
+  create_table "account_telegram_contacts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "account_id", null: false
+    t.bigint "telegram_chat_id", null: false
+    t.index ["account_id"], name: "index_account_telegram_contacts_on_account_id"
+    t.index ["telegram_chat_id"], name: "index_account_telegram_contacts_on_telegram_chat_id", unique: true
   end
 
   create_table "accounts", force: :cascade do |t|
@@ -197,6 +206,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_033307) do
 
   add_foreign_key "account_roles", "accounts"
   add_foreign_key "account_roles", "roles"
+  add_foreign_key "account_telegram_contacts", "accounts"
+  add_foreign_key "account_telegram_contacts", "telegram_chats"
   add_foreign_key "accounts", "people"
   add_foreign_key "membership_apps", "accounts"
   add_foreign_key "membership_apps", "country_states"

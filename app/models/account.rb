@@ -7,6 +7,9 @@ class Account < ApplicationRecord
 
   has_one :user, dependent: :restrict_with_exception
 
+  has_many :account_telegram_contacts,
+           dependent: :restrict_with_exception
+
   has_many :own_membership_apps,
            class_name: 'MembershipApp',
            dependent:  :restrict_with_exception

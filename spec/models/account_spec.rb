@@ -15,6 +15,12 @@ RSpec.describe Account do
 
   it do
     is_expected.to \
+      have_many(:account_telegram_contacts)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
       have_many(:own_membership_apps)
       .class_name('MembershipApp')
       .dependent(:restrict_with_exception)

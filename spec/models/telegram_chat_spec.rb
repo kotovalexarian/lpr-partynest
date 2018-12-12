@@ -5,6 +5,12 @@ require 'rails_helper'
 RSpec.describe TelegramChat do
   subject { create :telegram_chat }
 
+  it do
+    is_expected.to \
+      have_one(:account_telegram_contact)
+      .dependent(:restrict_with_exception)
+  end
+
   it { is_expected.to validate_presence_of :remote_id }
   it { is_expected.to validate_presence_of :chat_type }
 
