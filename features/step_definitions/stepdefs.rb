@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Given 'a user with email {string} and password {string}' do |email, password|
+  create :user, email: email, password: password
+end
+
 When 'I visit {string}' do |string|
   visit string
 end
@@ -30,10 +34,6 @@ When 'I click the form button {string}' do |string|
   within 'form' do
     click_on string
   end
-end
-
-Then 'I am logged in as {string}' do |string|
-  expect(page).to have_css 'span.navbar-text', text: string
 end
 
 Then 'I see text {string}' do |text|

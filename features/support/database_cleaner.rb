@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
-require 'database_cleaner/cucumber'
+Cucumber::Rails::Database.autorun_database_cleaner = false
+Cucumber::Rails::World.use_transactional_tests = false
 
-DatabaseCleaner.strategy = :transaction
+DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean_with :truncation
+
+Around do |_scenario, block|
+  DatabaseCleaner.cleaning(&block)
+end
 
 # You may also want to configure DatabaseCleaner to use different strategies
 # for certain features and scenarios. See the DatabaseCleaner documentation

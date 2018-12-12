@@ -37,7 +37,3 @@ Capybara.javascript_driver = :webkit
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
-
-# Possible values are :truncation and :transaction
-# The :transaction strategy is faster, but might give you threading problems.
-Cucumber::Rails::Database.javascript_strategy = :truncation
