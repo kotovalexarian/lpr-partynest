@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true, unless: :json_request?
 
   before_action :set_raven_context
+  before_action :sign_in_guest_account
 
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
@@ -36,6 +37,14 @@ private
     )
 
     Raven.extra_context params: params.to_unsafe_h, url: request.url
+  end
+
+  def sign_in_guest_account
+    return if current_account || params[:guest_token].blank?
+
+    account = Account.guests.find_by! guest_token: params[:guest_token]
+    remember_if_guest_account account
+    redirect_to request.original_url
   end
 
   def json_request?

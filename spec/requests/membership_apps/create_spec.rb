@@ -40,7 +40,12 @@ RSpec.describe 'POST /membership_apps' do
     before { make_request }
 
     specify do
-      expect(response).to redirect_to MembershipApp.last
+      membership_app = MembershipApp.last
+
+      expect(response).to redirect_to membership_app_url(
+        membership_app,
+        guest_token: membership_app.account.guest_token,
+      )
     end
 
     specify do
@@ -80,7 +85,12 @@ RSpec.describe 'POST /membership_apps' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to MembershipApp.last
+        membership_app = MembershipApp.last
+
+        expect(response).to redirect_to membership_app_url(
+          membership_app,
+          guest_token: membership_app.account.guest_token,
+        )
       end
 
       specify do

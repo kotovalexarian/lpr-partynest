@@ -29,7 +29,10 @@ class MembershipAppsController < ApplicationController
 
     remember_if_guest_account @membership_app.account
 
-    redirect_to @membership_app
+    redirect_to membership_app_url(
+      @membership_app,
+      guest_token: @membership_app.account.guest_token,
+    )
   end
 
 private
