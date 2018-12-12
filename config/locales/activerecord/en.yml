@@ -1,6 +1,9 @@
 en:
   activerecord:
     models:
+      account_telegram_contact:
+        one: Telegram contact
+        other: Telegram contacts
       country_state:
         one: State
         other: States
@@ -26,6 +29,8 @@ en:
         one: User
         other: Users
     attributes:
+      account_telegram_contact:
+        id: ID
       country_state:
         id: ID
         membership_apps: Membership applications

@@ -5,7 +5,7 @@ class Settings::TelegramContactsController < ApplicationController
   def index
     authorize %i[settings account_telegram_contact]
 
-    @telegram_contacts = policy_scope(
+    @account_telegram_contacts = policy_scope(
       current_account.account_telegram_contacts,
       policy_scope_class: Settings::AccountTelegramContactPolicy::Scope,
     )

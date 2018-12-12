@@ -1,6 +1,9 @@
 ru:
   activerecord:
     models:
+      account_telegram_contact:
+        one: Контакт Telegram
+        other: Контакты Telegram
       country_state:
         one: Регион
         other: Регионы
@@ -26,6 +29,8 @@ ru:
         one: Пользователь
         other: Пользователи
     attributes:
+      account_telegram_contact:
+        id: ID
       country_state:
         id: ID
         membership_apps: Заявления на вступление
