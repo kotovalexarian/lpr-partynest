@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index
 
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from NotAuthorizedError,           with: :unauthorized
+  rescue_from Pundit::NotAuthorizedError,   with: :unauthorized
 
   helper_method :current_account
 
@@ -39,7 +39,10 @@ private
   end
 
   def not_found
-    render status: :not_found, json: {}
+    respond_to do |format|
+      format.html { render status: :not_found, template: 'errors/not_found' }
+      format.json { render status: :not_found, json: {} }
+    end
   end
 
   def unauthorized
