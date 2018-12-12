@@ -50,7 +50,7 @@ RSpec.describe 'GET /membership_apps/:id' do
     let(:current_account) { create :superuser_account }
 
     specify do
-      expect(response).to have_http_status :ok
+      expect(response).to have_http_status :unauthorized
     end
   end
 end

@@ -4,8 +4,7 @@ class MembershipAppPolicy < ApplicationPolicy
   def show?
     return false if context.guest_account.nil?
 
-    context.guest_account.is_superuser? ||
-      record.account == context.guest_account
+    record.account == context.guest_account
   end
 
   def create?
