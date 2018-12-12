@@ -33,4 +33,8 @@ class Account < ApplicationRecord
 
     super
   end
+
+  def can_access_sidekiq_web_interface?
+    is_superuser?
+  end
 end

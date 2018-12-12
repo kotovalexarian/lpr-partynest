@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   end
 
   namespace :staff do
-    authenticate :user, ->(user) { user.account.is_superuser? } do
+    authenticate :user,
+                 ->(user) { user.account.can_access_sidekiq_web_interface? } do
       mount Sidekiq::Web, at: '/sidekiq', as: :sidekiq
     end
 

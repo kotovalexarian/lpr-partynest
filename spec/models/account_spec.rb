@@ -37,6 +37,7 @@ RSpec.describe Account do
 
   pending '.guests'
   pending '#guest?'
+  pending '#can_access_sidekiq_web_interface?'
 
   describe '#add_role' do
     context 'to guest account' do
