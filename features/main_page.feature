@@ -2,5 +2,5 @@ Feature: Main page
   Background:
     Given I visit "/"
 
-  Scenario: It works
+  Scenario:
     Then I see CSS "h1" with text "Либертарианская партия России"
