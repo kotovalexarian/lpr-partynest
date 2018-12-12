@@ -200,6 +200,8 @@ group :test do
   # and HTML file of the current page.
   gem 'capybara-screenshot', '~> 1.0'
 
-  # Headless Webkit driver for Capybara.
-  gem 'capybara-webkit', '~> 1.15'
+  # WebDriver is a tool for writing automated tests of websites.
+  # It aims to mimic the behaviour of a real user,
+  # and as such interacts with the HTML of the application.
+  gem 'selenium-webdriver', '~> 3.14'
 end

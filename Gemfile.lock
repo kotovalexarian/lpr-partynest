@@ -96,9 +96,8 @@ GEM
     capybara-screenshot (1.0.22)
       capybara (>= 1.0, < 4)
       launchy
-    capybara-webkit (1.15.1)
-      capybara (>= 2.3, < 4.0)
-      json
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
     coderay (1.1.2)
     coercible (1.0.0)
@@ -333,6 +332,7 @@ GEM
     ruby-graphviz (1.2.4)
     ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
+    rubyzip (1.2.2)
     sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -347,6 +347,9 @@ GEM
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
+    selenium-webdriver (3.141.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2, >= 1.2.2)
     sentry-raven (2.7.4)
       faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (4.0.0.rc1)
@@ -437,7 +440,6 @@ DEPENDENCIES
   capistrano-rails (~> 1.4)
   capistrano-rails-console (~> 2.3)
   capybara-screenshot (~> 1.0)
-  capybara-webkit (~> 1.15)
   coveralls
   cucumber-rails (~> 1.6)
   database_cleaner (~> 1.7)
@@ -467,6 +469,7 @@ DEPENDENCIES
   rspec-rails (~> 3.8)
   rubocop (~> 0.60.0)
   sass-rails (~> 5.0)
+  selenium-webdriver (~> 3.14)
   sentry-raven
   shoulda-matchers (= 4.0.0.rc1)
   sidekiq (~> 5.2)
