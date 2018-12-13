@@ -1,6 +1,17 @@
 Feature: Main page
-  Background:
-    Given I visit "/"
+  Scenario: as a visitor
+    When I visit the main page
+    Then I see the main page
+    And I see the join button
 
-  Scenario:
-    Then I see CSS "h1" with text "Либертарианская партия России"
+  Scenario: as a guest account
+    Given I am signed in as guest
+    When I visit the main page
+    Then I see the main page
+    And I see the join button
+
+  Scenario: as a usual account
+    Given I am signed in with email "user@example.com"
+    When I visit the main page
+    Then I see the main page
+    And I see the join button

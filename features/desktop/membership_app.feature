@@ -1,6 +1,6 @@
 Feature: Membership application
   Background:
-    Given I visit "/"
+    Given I visit the main page
     Then I click the button "Вступить"
 
   Scenario:

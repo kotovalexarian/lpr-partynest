@@ -4,6 +4,11 @@ Given 'a user with email {string} and password {string}' do |email, password|
   create :user, email: email, password: password
 end
 
+Given 'I am signed in as guest' do
+  account = create :guest_account
+  visit root_path guest_token: account.guest_token
+end
+
 Given 'I am signed in with email {string}' do |email|
   @user = create :user, email: email
 
