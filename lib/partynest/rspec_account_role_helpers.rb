@@ -9,9 +9,15 @@ module Partynest
     end
 
     module ClassMethods
+      def account_type_name(account_type)
+        return 'no account' if account_type.nil?
+
+        "#{account_type} account"
+      end
+
       def for_account_types(*account_types, &block)
         account_types.each do |account_type|
-          context "when #{account_type || :no_account} is authenticated" do
+          context "when #{account_type_name account_type} is authenticated" do
             let(:current_account) { create_account_type account_type }
             let(:account) { current_account }
 
@@ -22,7 +28,7 @@ module Partynest
 
       def xfor_account_types(*account_types, &block)
         account_types.each do |account_type|
-          xcontext "when #{account_type || :no_account} is authenticated" do
+          xcontext "when #{account_type_name account_type} is authenticated" do
             let(:current_account) { create_account_type account_type }
             let(:account) { current_account }
 
