@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-Given 'a user with email {string} and password {string}' do |email, password|
-  create :user, email: email, password: password
-end
-
 When 'I visit {string}' do |string|
   visit string
 end
