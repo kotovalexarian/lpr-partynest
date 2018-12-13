@@ -112,5 +112,4 @@ Then 'the password is failed to change' do
   expect(page.current_path).to eq '/users'
   expect(page).to have_css 'div.alert.alert-danger',
                            text: 'Пожалуйста, исправьте следующие ошибки:'
-  expect(page).to have_text 'Текущий пароль имеет неверное значение'
 end

@@ -31,11 +31,35 @@ Feature: Password change
       | Текущий пароль       | invalid  |
     And I click the form button "Обновить"
     Then the password is failed to change
+    And I see text "Текущий пароль имеет неверное значение"
 
     When I try to sign out
     Then I am successfully signed out
 
     When I try to sign in with email "user@example.com" and password "q1w2e3r4"
+    Then I fail to sign in
+
+    When I try to sign in with email "user@example.com" and password "password"
+    Then I am signed in as "user@example.com"
+
+  Scenario: with invalid password confirmation
+    When I visit "/users/edit"
+    And I fill form with the following data:
+      | key                  | value    |
+      | Пароль               | q1w2e3r4 |
+      | Подтверждение пароля | invalid  |
+      | Текущий пароль       | password |
+    And I click the form button "Обновить"
+    Then the password is failed to change
+    And I see text "Подтверждение пароля не совпадает со значением поля Пароль"
+
+    When I try to sign out
+    Then I am successfully signed out
+
+    When I try to sign in with email "user@example.com" and password "q1w2e3r4"
+    Then I fail to sign in
+
+    When I try to sign in with email "user@example.com" and password "invalid"
     Then I fail to sign in
 
     When I try to sign in with email "user@example.com" and password "password"
