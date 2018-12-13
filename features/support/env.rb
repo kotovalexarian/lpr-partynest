@@ -13,7 +13,7 @@ require 'simplecov'
 require 'cucumber/rails'
 require 'capybara-screenshot/cucumber'
 
-Capybara.default_driver = :selenium_headless
+Capybara.default_driver = :rack_test
 Capybara.javascript_driver = :selenium_headless
 
 # Capybara defaults to CSS3 selectors rather than XPath.
