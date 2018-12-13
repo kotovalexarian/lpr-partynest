@@ -4,11 +4,14 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-desc 'Run all checks (test, lint...)'
-task default: :lint
+desc 'Run all checks'
+task all: %i[default extra]
 
-desc 'Run all code analysis tools (RuboCop...)'
-task lint: %i[rubocop bundler:audit brakeman]
+desc 'Run common checks (test, lint...)'
+task default: :rubocop
+
+desc 'Run additional checks'
+task extra: %i[bundler:audit brakeman]
 
 desc 'Fix code style (rubocop --auto-correct)'
 task fix: 'rubocop:auto_correct'
