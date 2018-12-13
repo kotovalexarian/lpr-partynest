@@ -3,7 +3,7 @@
 class Staff::TelegramBotsController < ApplicationController
   before_action :set_telegram_bot, except: :index
 
-  # GET /telegram_bots
+  # GET /staff/telegram_bots
   def index
     authorize %i[staff telegram_bot]
     @telegram_bots = policy_scope(
@@ -12,7 +12,7 @@ class Staff::TelegramBotsController < ApplicationController
     )
   end
 
-  # GET /telegram_bots/:id
+  # GET /staff/telegram_bots/:id
   def show
     authorize [:staff, @telegram_bot]
   end

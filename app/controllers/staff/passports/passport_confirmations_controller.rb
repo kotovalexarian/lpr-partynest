@@ -5,7 +5,7 @@ class Staff::Passports::PassportConfirmationsController < ApplicationController
 
   before_action :set_passport, only: %i[index create]
 
-  # GET /passports/:passport_id/passport_confirmations
+  # GET /staff/passports/:passport_id/passport_confirmations
   def index
     @passport_confirmations = policy_scope(
       @passport.passport_confirmations,
@@ -13,7 +13,7 @@ class Staff::Passports::PassportConfirmationsController < ApplicationController
     )
   end
 
-  # POST /passports/:passport_id/passport_confirmations
+  # POST /staff/passports/:passport_id/passport_confirmations
   def create
     ActiveRecord::Base.transaction do
       ConfirmPassport.call(passport: @passport,

@@ -3,7 +3,7 @@
 class Staff::PassportsController < ApplicationController
   before_action :set_passport, except: %i[index new create]
 
-  # GET /passports
+  # GET /staff/passports
   def index
     @passports = policy_scope(
       Passport,
@@ -11,13 +11,13 @@ class Staff::PassportsController < ApplicationController
     )
   end
 
-  # GET /passports/:id
+  # GET /staff/passports/:id
   def show
     authorize [:staff, @passport]
     @passport.passport_maps.build if @passport.passport_map.nil?
   end
 
-  # GET /passports/new
+  # GET /staff/passports/new
   def new
     @passport = Passport.new
     @passport.passport_maps.build
@@ -25,7 +25,7 @@ class Staff::PassportsController < ApplicationController
     authorize [:staff, @passport]
   end
 
-  # POST /passports
+  # POST /staff/passports
   def create
     @passport = Passport.new permitted_attributes [:staff, Passport]
 

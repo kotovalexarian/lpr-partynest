@@ -3,7 +3,7 @@
 class Staff::MembershipAppsController < ApplicationController
   before_action :set_membership_app, except: :index
 
-  # GET /membership_apps
+  # GET /staff/membership_apps
   def index
     authorize %i[staff membership_app]
     @membership_apps = policy_scope(
@@ -12,7 +12,7 @@ class Staff::MembershipAppsController < ApplicationController
     )
   end
 
-  # GET /membership_apps/:id
+  # GET /staff/membership_apps/:id
   def show
     authorize [:staff, @membership_app]
   end
