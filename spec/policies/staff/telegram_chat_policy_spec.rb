@@ -13,34 +13,20 @@ RSpec.describe Staff::TelegramChatPolicy do
 
   before { create_list :telegram_chat, 3 }
 
-  context 'when no account is authenticated' do
-    let(:account) { nil }
+  [
+    nil,
+    :guest_account,
+    :usual_account,
+  ].each do |account_type|
+    context "when #{account_type || :no_account} is authenticated" do
+      let(:account) { create account_type if account_type }
 
-    it { is_expected.to forbid_actions %i[index show destroy] }
-    it { is_expected.to forbid_new_and_create_actions }
-    it { is_expected.to forbid_edit_and_update_actions }
+      it { is_expected.to forbid_actions %i[index show destroy] }
+      it { is_expected.to forbid_new_and_create_actions }
+      it { is_expected.to forbid_edit_and_update_actions }
 
-    specify { expect(resolved_scope).to be_empty }
-  end
-
-  context 'when guest account is authenticated' do
-    let(:account) { create :guest_account }
-
-    it { is_expected.to forbid_actions %i[index show destroy] }
-    it { is_expected.to forbid_new_and_create_actions }
-    it { is_expected.to forbid_edit_and_update_actions }
-
-    specify { expect(resolved_scope).to be_empty }
-  end
-
-  context 'when usual account is authenticated' do
-    let(:account) { create :usual_account }
-
-    it { is_expected.to forbid_actions %i[index show destroy] }
-    it { is_expected.to forbid_new_and_create_actions }
-    it { is_expected.to forbid_edit_and_update_actions }
-
-    specify { expect(resolved_scope).to be_empty }
+      specify { expect(resolved_scope).to be_empty }
+    end
   end
 
   context 'when superuser account is authenticated' do
