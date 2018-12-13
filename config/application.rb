@@ -46,9 +46,6 @@ module Partynest
     config.noreply_email_contact =
       "Libertarian party of Russia <#{config.noreply_email_address}>"
 
-    # ActionMailer previews.
-    config.action_mailer.preview_path = Rails.root.join('app', 'previews')
-
     # Use Sidekiq as ActiveJob adapter.
     config.active_job.queue_adapter = :sidekiq
 
