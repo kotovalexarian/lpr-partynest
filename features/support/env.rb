@@ -16,6 +16,10 @@ require 'capybara-screenshot/cucumber'
 Capybara.default_driver = :rack_test
 Capybara.javascript_driver = :selenium_headless
 
+Capybara::Screenshot.register_driver :selenium_headless do |driver, path|
+  driver.browser.save_screenshot path
+end
+
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
