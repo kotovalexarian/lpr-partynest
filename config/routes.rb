@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   resources :membership_apps, only: %i[show new create]
 
-  resources :passports, only: %i[index show new create] do
+  resources :passports, only: %i[index show new create]
+
+  resources :passports, only: [] do
     resources :passport_confirmations,
               controller: 'passports/passport_confirmations',
               only:       %i[index create]
@@ -37,7 +39,9 @@ Rails.application.routes.draw do
     resources :telegram_chats, only: %i[index show]
   end
 
-  resources :telegram_bots, only: %i[index show] do
+  resources :telegram_bots, only: %i[index show]
+
+  resources :telegram_bots, only: [] do
     resources :updates,
               controller: 'telegram_bots/updates',
               only:       :create
