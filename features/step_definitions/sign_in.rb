@@ -13,7 +13,7 @@ When 'I try to sign in with email {string} ' \
 end
 
 Then 'I am signed in as {string}' do |email|
-  expect(page).to have_css 'ul > li > a', visible: false, text: email
+  expect(page).to have_css 'ul > li > a', text: email
 end
 
 Then 'I fail to sign in' do

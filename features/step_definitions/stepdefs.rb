@@ -76,7 +76,7 @@ Then 'I see the passport page' do
     when 'Серия', 'Номер'
       expect(page).to have_field key, with: value.to_i
     else
-      expect(page).to have_field key, with: value unless value.blank?
+      expect(page).to have_field key, with: value if value.present?
     end
   end
 end
