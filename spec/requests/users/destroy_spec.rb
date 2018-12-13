@@ -11,9 +11,7 @@ RSpec.describe 'DELETE /users' do
     sign_in current_account.user if current_account&.user
   end
 
-  context 'when guest account is authenticated' do
-    let(:current_account) { create :guest_account }
-
+  for_account_types nil, :guest do
     specify do
       expect { make_request }.not_to change(User, :count)
     end
@@ -27,25 +25,7 @@ RSpec.describe 'DELETE /users' do
     end
   end
 
-  context 'when usual account is authenticated' do
-    let(:current_account) { create :usual_account }
-
-    specify do
-      expect { make_request }.not_to change(User, :count)
-    end
-
-    context 'after request' do
-      before { make_request }
-
-      specify do
-        expect(response).to have_http_status :method_not_allowed
-      end
-    end
-  end
-
-  context 'when superuser account is authenticated' do
-    let(:current_account) { create :superuser_account }
-
+  for_account_types :usual, :superuser do
     specify do
       expect { make_request }.not_to change(User, :count)
     end

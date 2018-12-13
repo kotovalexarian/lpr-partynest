@@ -15,33 +15,7 @@ RSpec.describe 'GET /staff/passports/:id' do
     make_request
   end
 
-  context 'when no account is authenticated' do
-    let(:current_account) { nil }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when guest account is authenticated' do
-    let(:current_account) { create :guest_account }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when usual account is authenticated' do
-    let(:current_account) { create :usual_account }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when superuser account is authenticated' do
-    let(:current_account) { create :superuser_account }
-
+  for_account_types nil, :guest, :usual, :superuser do
     specify do
       expect(response).to have_http_status :ok
     end

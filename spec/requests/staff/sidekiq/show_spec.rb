@@ -9,33 +9,19 @@ RSpec.describe 'GET /staff/sidekiq' do
     get '/staff/sidekiq'
   end
 
-  context 'when no account is authenticated' do
-    let(:current_account) { nil }
-
+  for_account_types nil, :guest do
     specify do
       expect(response).to redirect_to @new_user_session_url
     end
   end
 
-  context 'when guest account is authenticated' do
-    let(:current_account) { create :guest_account }
-
-    specify do
-      expect(response).to redirect_to @new_user_session_url
-    end
-  end
-
-  context 'when usual account is authenticated' do
-    let(:current_account) { create :usual_account }
-
+  for_account_types :usual do
     specify do
       expect(response).to redirect_to root_url
     end
   end
 
-  context 'when superuser account is authenticated' do
-    let(:current_account) { create :superuser_account }
-
+  for_account_types :superuser do
     specify do
       expect(response).to have_http_status :ok
     end

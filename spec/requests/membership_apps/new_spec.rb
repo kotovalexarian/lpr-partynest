@@ -7,7 +7,9 @@ RSpec.describe 'GET /membership_apps/new' do
     get '/membership_apps/new'
   end
 
-  specify do
-    expect(response).to have_http_status :ok
+  for_account_types nil, :guest, :usual, :superuser do
+    specify do
+      expect(response).to have_http_status :ok
+    end
   end
 end

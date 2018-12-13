@@ -10,33 +10,13 @@ RSpec.describe 'GET /staff/telegram_bots/:id' do
     get "/staff/telegram_bots/#{telegram_bot.id}"
   end
 
-  context 'when no account is authenticated' do
-    let(:current_account) { nil }
-
+  for_account_types nil, :guest, :usual do
     specify do
       expect(response).to have_http_status :unauthorized
     end
   end
 
-  context 'when guest account is authenticated' do
-    let(:current_account) { create :guest_account }
-
-    specify do
-      expect(response).to have_http_status :unauthorized
-    end
-  end
-
-  context 'when usual account is authenticated' do
-    let(:current_account) { create :usual_account }
-
-    specify do
-      expect(response).to have_http_status :unauthorized
-    end
-  end
-
-  context 'when superuser account is authenticated' do
-    let(:current_account) { create :superuser_account }
-
+  for_account_types :superuser do
     specify do
       expect(response).to have_http_status :ok
     end
