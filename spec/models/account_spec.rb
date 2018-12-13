@@ -21,7 +21,7 @@ RSpec.describe Account do
 
   it do
     is_expected.to \
-      have_many(:own_membership_apps)
+      have_one(:own_membership_app)
       .class_name('MembershipApp')
       .dependent(:restrict_with_exception)
   end

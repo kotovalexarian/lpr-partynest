@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MembershipApp < ApplicationRecord
-  belongs_to :account, inverse_of: :own_membership_apps
+  belongs_to :account, inverse_of: :own_membership_app
   belongs_to :country_state, optional: true
 
   has_one :regional_office, through: :country_state
@@ -12,6 +12,8 @@ class MembershipApp < ApplicationRecord
   validates :last_name, presence: true
   validates :date_of_birth, presence: true
   validates :phone_number, presence: true
+
+  validates :account_id, uniqueness: true
 
   before_validation do
     email&.strip!

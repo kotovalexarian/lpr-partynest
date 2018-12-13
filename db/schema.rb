@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_000903) do
+ActiveRecord::Schema.define(version: 2018_12_13_053336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_000903) do
     t.text "comment"
     t.bigint "country_state_id"
     t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_membership_apps_on_account_id"
+    t.index ["account_id"], name: "index_membership_apps_on_account_id", unique: true
     t.index ["country_state_id"], name: "index_membership_apps_on_country_state_id"
   end
 

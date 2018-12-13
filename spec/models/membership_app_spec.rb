@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe MembershipApp do
   subject { create :membership_app }
 
-  it { is_expected.to belong_to(:account).inverse_of(:own_membership_apps) }
+  it { is_expected.to belong_to(:account).inverse_of(:own_membership_app) }
   it { is_expected.to belong_to(:country_state).optional }
 
   it { is_expected.to have_one(:regional_office).through(:country_state) }
@@ -22,6 +22,8 @@ RSpec.describe MembershipApp do
   it { is_expected.not_to validate_presence_of :telegram_username }
   it { is_expected.not_to validate_presence_of :organization_membership }
   it { is_expected.not_to validate_presence_of :comment }
+
+  it { is_expected.to validate_uniqueness_of :account_id }
 
   describe '#email' do
     def allow_value(*)

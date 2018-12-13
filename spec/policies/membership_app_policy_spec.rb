@@ -9,16 +9,14 @@ RSpec.describe MembershipAppPolicy do
     described_class::Scope.new(account, MembershipApp.all).resolve
   end
 
-  let(:record) { create :membership_app, account: owner }
-
-  let!(:owner_record) { create :membership_app, account: owner }
+  let!(:record) { create :membership_app, account: owner }
   let!(:other_record) { create :membership_app }
 
   let(:owner) { create %i[guest_account usual_account].sample }
 
-  let(:account) { owner }
-
   context 'when owner is authenticated' do
+    let(:account) { owner }
+
     it { is_expected.to permit_action :show }
     it { is_expected.to permit_new_and_create_actions }
 
