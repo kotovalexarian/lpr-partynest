@@ -2,14 +2,14 @@
 
 class Settings::AccountTelegramContactPolicy < ApplicationPolicy
   def index?
-    !!context.guest_account
+    account && !account.guest?
   end
 
   class Scope < Scope
     def resolve
-      return scope.none if context.guest_account.nil?
+      return scope.none if account.nil? || account.guest?
 
-      scope.where(account: context.guest_account)
+      scope.where(account: account)
     end
   end
 end

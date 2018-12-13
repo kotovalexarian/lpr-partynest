@@ -2,9 +2,9 @@
 
 class MembershipAppPolicy < ApplicationPolicy
   def show?
-    return false if context.guest_account.nil?
+    return false if account.nil?
 
-    record.account == context.guest_account
+    record.account == account
   end
 
   def create?

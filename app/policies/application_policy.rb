@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :context, :record
+  attr_reader :account, :record
 
-  def initialize(context, record)
-    @context = context
+  def initialize(account, record)
+    @account = account
     @record = record
   end
 
@@ -41,14 +41,14 @@ class ApplicationPolicy
   # :nocov:
 
   def policy(record)
-    Pundit.policy context, record
+    Pundit.policy account, record
   end
 
   class Scope
-    attr_reader :context, :scope
+    attr_reader :account, :scope
 
-    def initialize(context, scope)
-      @context = context
+    def initialize(account, scope)
+      @account = account
       @scope = scope
     end
 
@@ -59,14 +59,5 @@ class ApplicationPolicy
     end
 
     # :nocov:
-  end
-
-  class Context
-    attr_reader :account, :guest_account
-
-    def initialize(account:, guest_account:)
-      @account = account
-      @guest_account = guest_account
-    end
   end
 end

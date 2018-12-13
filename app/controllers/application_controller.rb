@@ -23,12 +23,7 @@ private
     @current_account ||= Account.guests.find_by(id: session[:guest_account_id])
   end
 
-  def pundit_user
-    @pundit_user ||= ApplicationPolicy::Context.new(
-      account:       current_account&.guest? ? nil : current_account,
-      guest_account: current_account,
-    )
-  end
+  alias pundit_user current_account
 
   def set_raven_context
     Raven.user_context(
