@@ -14,3 +14,9 @@ Feature: Sign up
 
     When I try to sign in with email "user@example.com" and password "password"
     Then I fail to sign in because of unconfirmed email
+
+    When I follow confirmation link for email "user@example.com"
+    Then I see that my email is confirmed
+
+    When I try to sign in with email "user@example.com" and password "password"
+    Then I am signed in as "user@example.com"

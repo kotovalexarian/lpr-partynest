@@ -33,3 +33,14 @@ Then 'I fail to sign in because of unconfirmed email' do
   expect(page).to have_css 'div.alert.alert-warning',
                            text: 'Вы должны подтвердить вашу учетную запись.'
 end
+
+When 'I follow confirmation link for email {string}' do |email|
+  user = User.find_by! email: email
+  visit user_confirmation_path confirmation_token: user.confirmation_token
+end
+
+Then 'I see that my email is confirmed' do
+  expect(page.current_path).to eq '/users/sign_in'
+  expect(page).to have_css 'div.alert.alert-info',
+                           text: 'Ваш адрес эл. почты успешно подтвержден.'
+end
