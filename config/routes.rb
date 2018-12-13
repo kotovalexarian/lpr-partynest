@@ -34,10 +34,9 @@ Rails.application.routes.draw do
                 only:       %i[index create]
     end
 
+    resources :telegram_bots, only: %i[index show]
     resources :telegram_chats, only: %i[index show]
   end
-
-  resources :telegram_bots, only: %i[index show]
 
   resources :telegram_bots, only: [] do
     resources :updates,

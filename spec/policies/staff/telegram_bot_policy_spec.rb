@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TelegramBotPolicy do
+RSpec.describe Staff::TelegramBotPolicy do
   permissions '.scope' do
     pending "add some examples to (or delete) #{__FILE__}"
   end

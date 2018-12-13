@@ -26,8 +26,8 @@
           <td><%= telegram_bot.api_token %></td>
           <td><%= truncate telegram_bot.username, length: 20 %></td>
           <td>
-            <% if policy(telegram_bot).show? %>
-              <%= link_to telegram_bot_path(telegram_bot),
+            <% if policy([:staff, telegram_bot]).show? %>
+              <%= link_to [:staff, telegram_bot],
                           role: :button, class: 'btn btn-light btn-sm' do %>
                 <i class="far fa-eye"></i>
               <% end %>

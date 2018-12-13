@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
-class TelegramBotsController < ApplicationController
+class Staff::TelegramBotsController < ApplicationController
   before_action :set_telegram_bot, except: :index
 
   # GET /telegram_bots
   def index
-    authorize :telegram_bot
-    @telegram_bots = policy_scope(TelegramBot)
+    authorize %i[staff telegram_bot]
+    @telegram_bots = policy_scope(
+      TelegramBot,
+      policy_scope_class: Staff::TelegramBotPolicy::Scope,
+    )
   end
 
   # GET /telegram_bots/:id
   def show
-    authorize @telegram_bot
+    authorize [:staff, @telegram_bot]
   end
 
 private

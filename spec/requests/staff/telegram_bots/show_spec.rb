@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /telegram_bots' do
+RSpec.describe 'GET /staff/telegram_bots/:id' do
+  let!(:telegram_bot) { create :telegram_bot }
+
   before do
     sign_in current_account.user if current_account&.user
-
-    create_list :telegram_bot, 5
-
-    get '/telegram_bots'
+    get "/staff/telegram_bots/#{telegram_bot.id}"
   end
 
   context 'when no account is authenticated' do
