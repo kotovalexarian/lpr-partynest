@@ -7,19 +7,10 @@ RSpec.describe ApplicationPolicy do
 
   let(:record) { nil }
 
-  [
-    nil,
-    :guest_account,
-    :usual_account,
-    :superuser_account,
-  ].each do |account_type|
-    context "when #{account_type || :no_account} is authenticated" do
-      let(:account) { create account_type if account_type }
-
-      it do
-        is_expected.to \
-          forbid_actions %i[index show new create edit update destroy]
-      end
+  for_account_types nil, :guest, :usual, :superuser do
+    it do
+      is_expected.to \
+        forbid_actions %i[index show new create edit update destroy]
     end
   end
 end

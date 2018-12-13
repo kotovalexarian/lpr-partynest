@@ -13,25 +13,15 @@ RSpec.describe Staff::TelegramBotPolicy do
 
   before { create_list :telegram_bot, 3 }
 
-  [
-    nil,
-    :guest_account,
-    :usual_account,
-  ].each do |account_type|
-    context "when #{account_type || :no_account} is authenticated" do
-      let(:account) { create account_type if account_type }
+  for_account_types nil, :guest, :usual do
+    it { is_expected.to forbid_actions %i[index show destroy] }
+    it { is_expected.to forbid_new_and_create_actions }
+    it { is_expected.to forbid_edit_and_update_actions }
 
-      it { is_expected.to forbid_actions %i[index show destroy] }
-      it { is_expected.to forbid_new_and_create_actions }
-      it { is_expected.to forbid_edit_and_update_actions }
-
-      specify { expect(resolved_scope).to be_empty }
-    end
+    specify { expect(resolved_scope).to be_empty }
   end
 
-  context 'when superuser account is authenticated' do
-    let(:account) { create :superuser_account }
-
+  for_account_types :superuser do
     it { is_expected.to permit_actions %i[index show] }
 
     it { is_expected.to forbid_new_and_create_actions }
