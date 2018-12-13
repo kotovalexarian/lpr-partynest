@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
-class Passports::PassportConfirmationsController < ApplicationController
+class Staff::Passports::PassportConfirmationsController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   before_action :set_passport, only: %i[index create]
 
   # GET /passports/:passport_id/passport_confirmations
   def index
-    @passport_confirmations = policy_scope(@passport.passport_confirmations)
+    @passport_confirmations = policy_scope(
+      @passport.passport_confirmations,
+      policy_scope_class: Staff::PassportConfirmationPolicy::Scope,
+    )
   end
 
   # POST /passports/:passport_id/passport_confirmations
@@ -19,7 +22,7 @@ class Passports::PassportConfirmationsController < ApplicationController
       end
     end
 
-    redirect_to passport_passport_confirmations_path @passport
+    redirect_to staff_passport_passport_confirmations_path @passport
   end
 
 private
@@ -30,7 +33,7 @@ private
 
   def authorize_if_present(record)
     if record
-      authorize record
+      authorize [:staff, record]
     else
       skip_authorization
     end

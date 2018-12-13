@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PassportConfirmationPolicy do
+RSpec.describe Staff::PassportConfirmationPolicy do
   permissions '.scope' do
     pending "add some examples to (or delete) #{__FILE__}"
   end

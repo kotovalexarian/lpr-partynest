@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
+RSpec.describe 'POST /staff/passports/:passport_id/passport_confirmations' do
   let!(:passport) { create :passport_with_passport_map_and_image }
 
   def make_request
-    post "/passports/#{passport.id}/passport_confirmations"
+    post "/staff/passports/#{passport.id}/passport_confirmations"
   end
 
   context 'when no account is authenticated' do
@@ -41,7 +41,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
 
       specify do
@@ -77,7 +77,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
     end
   end
@@ -106,7 +106,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
     end
   end
@@ -135,7 +135,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
     end
   end
@@ -164,7 +164,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
     end
   end
@@ -189,7 +189,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
     end
   end
@@ -222,7 +222,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
 
       specify do
@@ -258,7 +258,7 @@ RSpec.describe 'POST /passports/:passport_id/passport_confirmations' do
 
       specify do
         expect(response).to \
-          redirect_to passport_passport_confirmations_path passport
+          redirect_to staff_passport_passport_confirmations_path passport
       end
 
       specify do

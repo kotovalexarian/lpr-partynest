@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PassportConfirmationPolicy < ApplicationPolicy
+class Staff::PassportConfirmationPolicy < ApplicationPolicy
   def create?
     return false if record.passport.nil?
     return false if record.account != context.account
