@@ -5,7 +5,13 @@ require 'rails_helper'
 RSpec.describe Staff::TelegramChatPolicy do
   subject { described_class.new account, record }
 
+  let :resolved_scope do
+    described_class::Scope.new(account, TelegramChat.all).resolve
+  end
+
   let(:record) { create :telegram_chat }
+
+  before { create_list :telegram_chat, 3 }
 
   context 'when no account is authenticated' do
     let(:account) { nil }
@@ -13,6 +19,8 @@ RSpec.describe Staff::TelegramChatPolicy do
     it { is_expected.to forbid_actions %i[index show destroy] }
     it { is_expected.to forbid_new_and_create_actions }
     it { is_expected.to forbid_edit_and_update_actions }
+
+    specify { expect(resolved_scope).to be_empty }
   end
 
   context 'when guest account is authenticated' do
@@ -21,6 +29,8 @@ RSpec.describe Staff::TelegramChatPolicy do
     it { is_expected.to forbid_actions %i[index show destroy] }
     it { is_expected.to forbid_new_and_create_actions }
     it { is_expected.to forbid_edit_and_update_actions }
+
+    specify { expect(resolved_scope).to be_empty }
   end
 
   context 'when usual account is authenticated' do
@@ -29,6 +39,8 @@ RSpec.describe Staff::TelegramChatPolicy do
     it { is_expected.to forbid_actions %i[index show destroy] }
     it { is_expected.to forbid_new_and_create_actions }
     it { is_expected.to forbid_edit_and_update_actions }
+
+    specify { expect(resolved_scope).to be_empty }
   end
 
   context 'when superuser account is authenticated' do
@@ -39,5 +51,7 @@ RSpec.describe Staff::TelegramChatPolicy do
     it { is_expected.to forbid_new_and_create_actions }
     it { is_expected.to forbid_edit_and_update_actions }
     it { is_expected.to forbid_action :destroy }
+
+    specify { expect(resolved_scope).to eq TelegramChat.all }
   end
 end
