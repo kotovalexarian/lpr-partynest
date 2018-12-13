@@ -9,6 +9,7 @@ Feature: Password change
       | Текущий пароль       | password |
     And I click the form button "Обновить"
     Then the password is successfully changed
+    And I received password change email as "user@example.com"
 
     When I try to sign out
     Then I am successfully signed out
