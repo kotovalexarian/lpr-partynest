@@ -1,0 +1,40 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= MembershipApp.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= MembershipApp.human_attribute_name :last_name %>
+        </th>
+        <th scope="col">
+          <%= MembershipApp.human_attribute_name :first_name %>
+        </th>
+        <th scope="col">
+          <%= MembershipApp.human_attribute_name :middle_name %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @membership_apps.each do |membership_app| %>
+        <tr>
+          <td scope="row"><%= membership_app.id %></td>
+          <td><%= truncate membership_app.last_name,   length: 20 %></td>
+          <td><%= truncate membership_app.first_name,  length: 20 %></td>
+          <td><%= truncate membership_app.middle_name, length: 20 %></td>
+          <td>
+            <% if policy([:staff, membership_app]).show? %>
+              <%= link_to [:staff, membership_app],
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

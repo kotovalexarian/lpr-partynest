@@ -60,6 +60,7 @@ Rails.application.routes.draw do
                 only:       %i[index create]
     end
 
+    resources :membership_apps, only: %i[index show]
     resources :telegram_bots, only: %i[index show]
     resources :telegram_chats, only: %i[index show]
   end
