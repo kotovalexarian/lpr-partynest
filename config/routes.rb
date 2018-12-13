@@ -32,6 +32,16 @@ Rails.application.routes.draw do
     resources :telegram_contacts, only: :index
   end
 
+  ######################################
+  # Callbacks for third-party services #
+  ######################################
+
+  resources :telegram_bots, only: [] do
+    resources :updates,
+              controller: 'telegram_bots/updates',
+              only:       :create
+  end
+
   #########################
   # Routes for staff only #
   #########################
@@ -52,15 +62,5 @@ Rails.application.routes.draw do
 
     resources :telegram_bots, only: %i[index show]
     resources :telegram_chats, only: %i[index show]
-  end
-
-  ######################################
-  # Callbacks for third-party services #
-  ######################################
-
-  resources :telegram_bots, only: [] do
-    resources :updates,
-              controller: 'telegram_bots/updates',
-              only:       :create
   end
 end
