@@ -15,8 +15,6 @@ require 'rspec/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
-require 'pundit/matchers'
-
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -35,6 +33,7 @@ require_relative 'support/faker'
 require_relative 'support/factory_bot'
 require_relative 'support/database_cleaner'
 require_relative 'support/devise'
+require_relative 'support/pundit'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
