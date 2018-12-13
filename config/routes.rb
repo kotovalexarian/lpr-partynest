@@ -3,7 +3,17 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  #################
+  # Common routes #
+  #################
+
   root to: 'home#show'
+
+  resources :membership_apps, only: %i[show new create]
+
+  ###############
+  # User routes #
+  ###############
 
   devise_for :users, controllers: {
     sessions:           'users/sessions',
@@ -14,11 +24,17 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
 
-  resources :membership_apps, only: %i[show new create]
+  ##################
+  # Account routes #
+  ##################
 
   namespace :settings do
     resources :telegram_contacts, only: :index
   end
+
+  #########################
+  # Routes for staff only #
+  #########################
 
   namespace :staff do
     authenticate :user,
@@ -37,6 +53,10 @@ Rails.application.routes.draw do
     resources :telegram_bots, only: %i[index show]
     resources :telegram_chats, only: %i[index show]
   end
+
+  ######################################
+  # Callbacks for third-party services #
+  ######################################
 
   resources :telegram_bots, only: [] do
     resources :updates,
