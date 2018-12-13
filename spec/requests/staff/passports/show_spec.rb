@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /passports/:id' do
+RSpec.describe 'GET /staff/passports/:id' do
   let!(:passport) { create :confirmed_passport }
   let(:current_account) { create :usual_account }
 
   def make_request
-    get "/passports/#{passport.id}"
+    get "/staff/passports/#{passport.id}"
   end
 
   before do

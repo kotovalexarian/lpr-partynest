@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
-class PassportsController < ApplicationController
+class Staff::PassportsController < ApplicationController
   before_action :set_passport, except: %i[index new create]
 
   # GET /passports
   def index
-    @passports = policy_scope(Passport)
+    @passports = policy_scope(
+      Passport,
+      policy_scope_class: Staff::PassportPolicy::Scope,
+    )
   end
 
   # GET /passports/:id
   def show
-    authorize @passport
+    authorize [:staff, @passport]
     @passport.passport_maps.build if @passport.passport_map.nil?
   end
 
@@ -19,18 +22,18 @@ class PassportsController < ApplicationController
     @passport = Passport.new
     @passport.passport_maps.build
 
-    authorize @passport
+    authorize [:staff, @passport]
   end
 
   # POST /passports
   def create
-    @passport = Passport.new permitted_attributes Passport
+    @passport = Passport.new permitted_attributes [:staff, Passport]
 
-    authorize @passport
+    authorize [:staff, @passport]
 
     return render :new unless @passport.save
 
-    redirect_to @passport
+    redirect_to [:staff, @passport]
   end
 
 private

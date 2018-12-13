@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /passports' do
+RSpec.describe 'GET /staff/passports' do
   before do
     create :empty_passport
     create :passport_with_passport_map
@@ -12,7 +12,7 @@ RSpec.describe 'GET /passports' do
     create :passport_with_enough_confirmations
     create :confirmed_passport
 
-    get '/passports'
+    get '/staff/passports'
   end
 
   specify do

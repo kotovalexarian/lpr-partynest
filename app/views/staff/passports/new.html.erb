@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for @passport, wrapper: :horizontal_form do |f| %>
+  <%= simple_form_for [:staff, @passport], wrapper: :horizontal_form do |f| %>
     <div class="row">
       <div class="col-md-6">
         <%= f.simple_fields_for :passport_maps do |ff| %>

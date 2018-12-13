@@ -1,6 +1,6 @@
 Feature: Passport creation
   Background:
-    Given I visit "/passports/new"
+    Given I visit "/staff/passports/new"
 
   Scenario: all fields are filled
     Given I want to create the following passport:
@@ -37,4 +37,4 @@ Feature: Passport creation
   Scenario: only image is uploaded, no fields are filled
     When I upload "passport_image_1.jpg" as "Изображения"
     And I click the passport creation button
-    Then I am at "/passports/\d+"
+    Then I am at "/staff/passports/\d+"

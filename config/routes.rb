@@ -16,8 +16,6 @@ Rails.application.routes.draw do
 
   resources :membership_apps, only: %i[show new create]
 
-  resources :passports, only: %i[index show new create]
-
   resources :passports, only: [] do
     resources :passport_confirmations,
               controller: 'passports/passport_confirmations',
@@ -35,6 +33,8 @@ Rails.application.routes.draw do
     end
 
     get '/sidekiq', to: redirect('/', status: 307), as: :forbidden_sidekiq
+
+    resources :passports, only: %i[index show new create]
 
     resources :telegram_chats, only: %i[index show]
   end

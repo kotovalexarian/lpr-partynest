@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /passports/new' do
+RSpec.describe 'GET /staff/passports/new' do
   before do
-    get '/passports/new'
+    get '/staff/passports/new'
   end
 
   specify do

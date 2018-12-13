@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST /passports' do
+RSpec.describe 'POST /staff/passports' do
   let(:passport_plain_attributes) { attributes_for :empty_passport }
 
   let :passport_all_attributes do
@@ -16,7 +16,7 @@ RSpec.describe 'POST /passports' do
   end
 
   def make_request
-    post '/passports', params: { passport: passport_all_attributes }
+    post '/staff/passports', params: { passport: passport_all_attributes }
   end
 
   specify do
@@ -27,7 +27,7 @@ RSpec.describe 'POST /passports' do
     before { make_request }
 
     specify do
-      expect(response).to redirect_to Passport.last
+      expect(response).to redirect_to [:staff, Passport.last]
     end
 
     specify do

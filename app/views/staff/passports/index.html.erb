@@ -40,8 +40,8 @@
             <%= truncate passport.passport_map&.place_of_birth, length: 15 %>
           </td>
           <td>
-            <% if policy(passport).show? %>
-              <%= link_to passport_path(passport),
+            <% if policy([:staff, passport]).show? %>
+              <%= link_to staff_passport_path(passport),
                           role: :button, class: 'btn btn-light btn-sm' do %>
                 <i class="far fa-eye"></i>
               <% end %>

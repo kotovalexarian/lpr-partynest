@@ -1,6 +1,7 @@
 <div class="container">
-  <%= render partial: 'passports/nav_tabs', locals: { passport: @passport,
-                                            tab: :confirmations } %>
+  <%= render partial: 'staff/passports/nav_tabs',
+             locals: { passport: @passport,
+                       tab: :confirmations } %>
 
   <% if @passport.can_have_confirmations? && current_account %>
     <div class="mb-3">

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PassportPolicy < ApplicationPolicy
+class Staff::PassportPolicy < ApplicationPolicy
   def show?
     true
   end
