@@ -36,6 +36,7 @@ before_install:
   - sudo tar -xvzf geckodriver*
   - sudo chmod +x geckodriver
   - sudo mv geckodriver /usr/local/bin/
+  - geckodriver --version
 
 install:
   - bundle install --jobs=3 --retry=3
