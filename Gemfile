@@ -204,4 +204,7 @@ group :test do
   # It aims to mimic the behaviour of a real user,
   # and as such interacts with the HTML of the application.
   gem 'selenium-webdriver', '~> 3.14'
+
+  # A set of RSpec matchers for testing Pundit authorization policies.
+  gem 'pundit-matchers', '~> 1.6'
 end
