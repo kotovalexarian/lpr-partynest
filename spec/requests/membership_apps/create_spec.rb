@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST /membership_apps' do
+RSpec.describe 'POST /join' do
   let :membership_app_plain_attributes do
     attributes_for :membership_app
   end
@@ -16,7 +16,7 @@ RSpec.describe 'POST /membership_apps' do
   let(:country_state) { create :country_state }
 
   def make_request
-    post '/membership_apps', params: {
+    post '/join', params: {
       membership_app: membership_app_all_attributes,
     }
   end

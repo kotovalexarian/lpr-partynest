@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /membership_apps/new' do
+RSpec.describe 'GET /join' do
   before do
-    get '/membership_apps/new'
+    get '/join'
   end
 
   for_account_types nil, :guest, :usual, :superuser do

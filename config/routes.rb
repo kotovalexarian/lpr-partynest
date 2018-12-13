@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
-  resources :membership_apps, only: %i[show new create]
+  get  :join, to: 'membership_apps#new'
+  post :join, to: 'membership_apps#create'
+
+  resources :membership_apps, only: :show
 
   ###############
   # User routes #

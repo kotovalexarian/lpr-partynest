@@ -8,14 +8,14 @@ class MembershipAppsController < ApplicationController
     authorize @membership_app
   end
 
-  # GET /membership_apps/new
+  # GET /join
   def new
     @membership_app = MembershipApp.new
 
     authorize @membership_app
   end
 
-  # POST /membership_apps
+  # POST /join
   def create
     @membership_app = MembershipApp.new permitted_attributes MembershipApp
 

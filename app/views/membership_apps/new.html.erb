@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for @membership_app do |f| %>
+  <%= simple_form_for @membership_app, url: join_path do |f| %>
     <%= f.input :last_name %>
     <%= f.input :first_name %>
     <%= f.input :middle_name %>

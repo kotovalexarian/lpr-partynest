@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Then 'I see membership application creation form' do
-  expect(page.current_path).to eq '/membership_apps/new'
+  expect(page.current_path).to eq '/join'
 
   expect(page).to have_field 'Фамилия'
   expect(page).to have_field 'Имя'
@@ -14,7 +14,7 @@ Then 'I see the membership application tracking page' do
 end
 
 When 'I send a membership application' do
-  visit '/membership_apps/new'
+  visit '/join'
 
   within 'form' do
     fill_in 'Фамилия',                   with: Faker::Name.last_name
