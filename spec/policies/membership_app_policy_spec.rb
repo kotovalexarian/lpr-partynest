@@ -18,8 +18,8 @@ RSpec.describe MembershipAppPolicy do
     let(:account) { owner }
 
     it { is_expected.to permit_action :show }
-    it { is_expected.to permit_new_and_create_actions }
 
+    it { is_expected.to forbid_new_and_create_actions }
     it { is_expected.to forbid_actions %i[index destroy] }
     it { is_expected.to forbid_edit_and_update_actions }
 
