@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'GET /join' do
   before do
+    sign_in current_account.user if current_account&.user
     get '/join'
   end
 
