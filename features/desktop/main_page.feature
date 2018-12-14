@@ -30,7 +30,9 @@ Feature: Main page
 
   Scenario: when already sent a membership application as a visitor
     When I send a membership application
-    And I visit the main page
+    Then I see the membership application tracking page
+
+    When I visit the main page
     Then I see the main page
     And I do not see the join button
     And I see the membership application button
@@ -41,7 +43,9 @@ Feature: Main page
   Scenario: when already sent a membership application as a usual account
     Given I am signed in with email "user@example.com"
     When I send a membership application
-    And I visit the main page
+    Then I see the membership application tracking page
+
+    When I visit the main page
     Then I see the main page
     And I do not see the join button
     And I see the membership application button
