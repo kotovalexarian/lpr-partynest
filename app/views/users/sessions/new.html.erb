@@ -13,6 +13,10 @@
                   input_html: { autocomplete: 'current-password' } %>
 
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+      <div class="mb-3">
+        <%= recaptcha_tags %>
+      </div>
     </div>
 
     <div class="form-actions">

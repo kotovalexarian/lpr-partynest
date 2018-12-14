@@ -5,7 +5,7 @@ module ApplicationHelper
     case flash_type
     when 'success'
       'alert-success'
-    when 'error'
+    when 'error', 'recaptcha_error'
       'alert-danger'
     when 'alert'
       'alert-warning'

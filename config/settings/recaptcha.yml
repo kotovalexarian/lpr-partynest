@@ -1,0 +1,9 @@
+default: &default
+  site_key: 6LdgbIEUAAAAANMCKgv_eVOViQt4oQHlBpVxqguZ
+  secret_key: <%= Rails.application.credentials.recaptcha_secret_key %>
+
+development:
+  <<: *default
+
+production:
+  <<: *default
