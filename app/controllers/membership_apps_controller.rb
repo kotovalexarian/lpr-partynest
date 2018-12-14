@@ -2,6 +2,7 @@
 
 class MembershipAppsController < ApplicationController
   before_action :set_membership_app, only: :show
+  before_action :verify_not_joined, only: :new
 
   # GET /membership_apps/:id
   def show
@@ -39,5 +40,12 @@ private
 
   def set_membership_app
     @membership_app = MembershipApp.find params[:id]
+  end
+
+  def verify_not_joined
+    return if current_account&.own_membership_app.nil?
+
+    skip_authorization
+    redirect_to current_account.own_membership_app
   end
 end
