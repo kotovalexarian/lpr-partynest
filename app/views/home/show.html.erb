@@ -7,11 +7,13 @@
         <%= translate '.description' %>
       </p>
 
-      <% if current_account&.own_membership_app.nil? %>
+      <% if policy(:membership_app).new? %>
         <a role="button" class="btn btn-primary btn-lg" href="<%= join_path %>">
           <%= translate '.join' %>
         </a>
-      <% else %>
+      <% end %>
+
+      <% unless current_account&.own_membership_app.nil? %>
         <a role="button" class="btn btn-success btn-lg" href="<%= membership_app_path current_account.own_membership_app %>">
           <%= translate '.tracking' %>
         </a>
