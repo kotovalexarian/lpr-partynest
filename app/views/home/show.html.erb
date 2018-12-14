@@ -13,7 +13,7 @@
         </a>
       <% end %>
 
-      <% unless current_account&.own_membership_app.nil? %>
+      <% if policy(:membership_app).show? %>
         <a role="button" class="btn btn-success btn-lg" href="<%= membership_app_path %>">
           <%= translate '.tracking' %>
         </a>

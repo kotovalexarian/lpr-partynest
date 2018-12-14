@@ -2,9 +2,7 @@
 
 class MembershipAppPolicy < ApplicationPolicy
   def show?
-    return false if account.nil?
-
-    record.account == account
+    !create?
   end
 
   def create?
