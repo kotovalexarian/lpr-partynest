@@ -8,9 +8,7 @@ class MembershipAppPolicy < ApplicationPolicy
   end
 
   def create?
-    account.nil? ||
-      account.own_membership_app.nil? ||
-      account.own_membership_app == record
+    account.nil? || account.own_membership_app.nil?
   end
 
   def permitted_attributes_for_create
