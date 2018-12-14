@@ -4,6 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_after_action :verify_authorized
   skip_after_action :verify_policy_scoped
 
+  prepend_before_action :check_captcha, only: :create
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -66,5 +68,14 @@ protected
   # The default url to be used after updating a resource.
   def after_update_path_for(_resource)
     edit_user_registration_path
+  end
+
+  def check_captcha
+    return if verify_recaptcha
+
+    self.resource = resource_class.new sign_up_params
+    resource.validate
+    set_minimum_password_length
+    render :new
   end
 end
