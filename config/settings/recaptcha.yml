@@ -1,5 +1,5 @@
 default: &default
-  site_key: 6LdgbIEUAAAAANMCKgv_eVOViQt4oQHlBpVxqguZ
+  site_key: 6LfLa4EUAAAAADUTFj2GdnRh49kH_WBfUHabv8_7
   secret_key: <%= Rails.application.credentials.recaptcha_secret_key %>
 
 development:
