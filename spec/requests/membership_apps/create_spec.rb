@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /join' do
+  let(:current_account) { nil }
+
   let :membership_app_plain_attributes do
     attributes_for :membership_app
   end
@@ -14,6 +16,14 @@ RSpec.describe 'POST /join' do
   end
 
   let(:country_state) { create :country_state }
+
+  before do
+    sign_in current_account.user if current_account&.user
+
+    if current_account&.guest?
+      get root_url guest_token: current_account.guest_token
+    end
+  end
 
   def make_request
     post '/join', params: {
@@ -34,6 +44,50 @@ RSpec.describe 'POST /join' do
   specify do
     expect { make_request }.to \
       change(ActionMailer::Base.deliveries, :count).from(0).to(1)
+  end
+
+  context 'when guest owner is authenticated' do
+    let!(:membership_app) { create :membership_app, account: owner }
+    let(:owner) { create :guest_account }
+    let(:current_account) { owner }
+
+    specify do
+      expect { make_request }.not_to change(MembershipApp, :count).from(1)
+    end
+
+    specify do
+      expect { make_request }.not_to change(Account, :count).from(1)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :unauthorized
+      end
+    end
+  end
+
+  context 'when usual owner is authenticated' do
+    let!(:membership_app) { create :membership_app, account: owner }
+    let(:owner) { create :usual_account }
+    let(:current_account) { owner }
+
+    specify do
+      expect { make_request }.not_to change(MembershipApp, :count).from(1)
+    end
+
+    specify do
+      expect { make_request }.not_to change(Account, :count).from(2)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :unauthorized
+      end
+    end
   end
 
   context 'after request' do
