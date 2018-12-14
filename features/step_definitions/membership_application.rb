@@ -9,7 +9,7 @@ Then 'I see membership application creation form' do
 end
 
 Then 'I see the membership application tracking page' do
-  expect(page.current_path).to eq '/membership_app'
+  expect(page.current_path).to eq '/application'
   expect(page).to have_css 'h2', text: 'Ваше заявление в обработке'
 end
 

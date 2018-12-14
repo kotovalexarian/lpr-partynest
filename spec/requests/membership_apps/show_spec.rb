@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /membership_app' do
+RSpec.describe 'GET /application' do
   let! :membership_app do
     create :membership_app, account: owner
   end
@@ -11,7 +11,7 @@ RSpec.describe 'GET /membership_app' do
 
   before do
     sign_in current_account&.user if current_account&.user
-    get '/membership_app'
+    get '/application'
   end
 
   context 'when owner is authenticated' do

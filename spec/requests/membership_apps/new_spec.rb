@@ -28,7 +28,7 @@ RSpec.describe 'GET /join' do
     let(:current_account) { owner }
 
     specify do
-      expect(response).to redirect_to membership_app
+      expect(response).to redirect_to application_url
     end
   end
 
@@ -37,7 +37,7 @@ RSpec.describe 'GET /join' do
     let(:current_account) { owner }
 
     specify do
-      expect(response).to redirect_to membership_app
+      expect(response).to redirect_to application_url
     end
   end
 end

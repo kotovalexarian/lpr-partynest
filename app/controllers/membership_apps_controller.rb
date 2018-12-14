@@ -31,9 +31,7 @@ class MembershipAppsController < ApplicationController
 
     remember_if_guest_account @membership_app.account
 
-    redirect_to membership_app_url(
-      guest_token: @membership_app.account.guest_token,
-    )
+    redirect_to application_url guest_token: @membership_app.account.guest_token
   end
 
 private
@@ -53,6 +51,6 @@ private
     return if current_account&.own_membership_app.nil?
 
     skip_authorization
-    redirect_to current_account.own_membership_app
+    redirect_to application_url
   end
 end

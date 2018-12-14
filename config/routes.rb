@@ -9,10 +9,9 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
-  get  :join, to: 'membership_apps#new'
-  post :join, to: 'membership_apps#create'
-
-  resource :membership_app, only: :show
+  get  :application, to: 'membership_apps#show'
+  get  :join,        to: 'membership_apps#new'
+  post :join,        to: 'membership_apps#create'
 
   ###############
   # User routes #
