@@ -97,7 +97,6 @@ RSpec.describe 'POST /join' do
       membership_app = MembershipApp.last
 
       expect(response).to redirect_to membership_app_url(
-        membership_app,
         guest_token: membership_app.account.guest_token,
       )
     end
@@ -142,7 +141,6 @@ RSpec.describe 'POST /join' do
         membership_app = MembershipApp.last
 
         expect(response).to redirect_to membership_app_url(
-          membership_app,
           guest_token: membership_app.account.guest_token,
         )
       end

@@ -1,10 +1,8 @@
 <p><%= translate '.lead_text' %></p>
 
 <%= link_to membership_app_url(
-              @membership_app,
               guest_token: @membership_app.account.guest_token,
             ),
             membership_app_url(
-              @membership_app,
               guest_token: @membership_app.account.guest_token,
             ) %>

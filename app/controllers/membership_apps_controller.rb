@@ -2,9 +2,10 @@
 
 class MembershipAppsController < ApplicationController
   before_action :set_membership_app, only: :show
+  before_action :verify_joined, only: :show
   before_action :verify_not_joined, only: :new
 
-  # GET /membership_apps/:id
+  # GET /membership_app
   def show
     authorize @membership_app
   end
@@ -31,7 +32,6 @@ class MembershipAppsController < ApplicationController
     remember_if_guest_account @membership_app.account
 
     redirect_to membership_app_url(
-      @membership_app,
       guest_token: @membership_app.account.guest_token,
     )
   end
@@ -39,7 +39,14 @@ class MembershipAppsController < ApplicationController
 private
 
   def set_membership_app
-    @membership_app = MembershipApp.find params[:id]
+    @membership_app = current_account&.own_membership_app
+  end
+
+  def verify_joined
+    return if current_account&.own_membership_app
+
+    skip_authorization
+    redirect_to join_url
   end
 
   def verify_not_joined

@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /membership_apps/:id' do
-  let :membership_app do
+RSpec.describe 'GET /membership_app' do
+  let! :membership_app do
     create :membership_app, account: owner
   end
 
@@ -11,7 +11,7 @@ RSpec.describe 'GET /membership_apps/:id' do
 
   before do
     sign_in current_account&.user if current_account&.user
-    get "/membership_apps/#{membership_app.id}"
+    get '/membership_app'
   end
 
   context 'when owner is authenticated' do
@@ -24,7 +24,7 @@ RSpec.describe 'GET /membership_apps/:id' do
 
   for_account_types nil, :guest, :usual, :superuser do
     specify do
-      expect(response).to have_http_status :unauthorized
+      expect(response).to redirect_to join_url
     end
   end
 end

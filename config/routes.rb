@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get  :join, to: 'membership_apps#new'
   post :join, to: 'membership_apps#create'
 
-  resources :membership_apps, only: :show
+  resource :membership_app, only: :show
 
   ###############
   # User routes #
