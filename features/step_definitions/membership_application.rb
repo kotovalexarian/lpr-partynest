@@ -11,6 +11,23 @@ end
 Then 'I see the membership application tracking page' do
   expect(page.current_path).to eq '/application'
   expect(page).to have_css 'h1', text: 'Ваше заявление в обработке'
+  expect(page).to have_css(
+    'p.lead',
+    text: <<~TEXT.split("\n").join(' '),
+      На данной странице вы можете отслеживать статус вашего заявления.
+      Сохраните её в закладки браузера. Также на указанный вами адрес
+      электронной почты была отправлена ссылка на данную страницу.
+      В ближайшее время с вами свяжутся по указанным вами контактам.
+    TEXT
+  )
+end
+
+Then 'I see that I am already a party member' do
+  expect(page.current_path).to eq '/application'
+  expect(page).to have_css 'h1', text: 'Поздравляем!'
+  expect(page).to have_css 'p.lead',
+                           text: 'Вы уже являетесь членом или сторонником ' \
+                                 'Либертарианской партии России!'
 end
 
 When 'I send a membership application' do

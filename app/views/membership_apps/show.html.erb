@@ -1,5 +1,10 @@
 <div class="container">
-  <h1><%= translate '.header' %></h1>
-  <p class="lead"><%= translate '.lead_text' %></p>
-  <hr/>
+  <% if @membership_app.person %>
+    <h1><%= translate '.congratulations' %></h1>
+    <p class="lead"><%= translate '.lead_congratulations' %></p>
+  <% else %>
+    <h1><%= translate '.header' %></h1>
+    <p class="lead"><%= translate '.lead_text' %></p>
+    <hr/>
+  <% end %>
 </div>
