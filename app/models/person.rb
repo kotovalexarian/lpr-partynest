@@ -10,4 +10,20 @@ class Person < ApplicationRecord
           inverse_of: :person,
           through:    :account,
           source:     :own_membership_app
+
+  def related_to_party?
+    party_supporter? || party_member? || excluded_from_party?
+  end
+
+  def party_supporter?
+    false
+  end
+
+  def party_member?
+    true
+  end
+
+  def excluded_from_party?
+    false
+  end
 end

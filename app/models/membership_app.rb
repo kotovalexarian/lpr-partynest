@@ -27,6 +27,6 @@ class MembershipApp < ApplicationRecord
   end
 
   def resolved?
-    person.present?
+    person&.related_to_party?
   end
 end

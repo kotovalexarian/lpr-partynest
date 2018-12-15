@@ -19,4 +19,9 @@ RSpec.describe Person do
   end
 
   it { is_expected.not_to validate_presence_of :regional_office }
+
+  pending '#related_to_party?'
+  pending '#party_supporter?'
+  pending '#party_member?'
+  pending '#excluded_from_party?'
 end
