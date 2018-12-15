@@ -6,6 +6,6 @@ FactoryBot.define do
       CountryState.find_or_initialize_by name: name
     end
 
-    name { Faker::Address.state }
+    name { Faker::Address.unique.state }
   end
 end
