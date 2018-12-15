@@ -1,5 +1,5 @@
 <div class="container">
-  <% if @membership_app.person %>
+  <% if @membership_app.resolved? %>
     <h1><%= translate '.congratulations' %></h1>
     <p class="lead"><%= translate '.lead_congratulations' %></p>
   <% else %>

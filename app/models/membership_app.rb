@@ -25,4 +25,8 @@ class MembershipApp < ApplicationRecord
     self.organization_membership = nil if organization_membership.blank?
     self.comment                 = nil if comment.blank?
   end
+
+  def resolved?
+    person.present?
+  end
 end
