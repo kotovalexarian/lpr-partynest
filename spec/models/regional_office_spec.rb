@@ -9,6 +9,8 @@ RSpec.describe RegionalOffice do
 
   it { is_expected.to have_many(:membership_apps).through(:country_state) }
 
+  it { is_expected.to have_many(:people).dependent(:restrict_with_exception) }
+
   it do
     is_expected.to \
       validate_presence_of(:country_state)

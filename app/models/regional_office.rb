@@ -5,5 +5,7 @@ class RegionalOffice < ApplicationRecord
 
   has_many :membership_apps, through: :country_state
 
+  has_many :people, dependent: :restrict_with_exception
+
   validates :country_state_id, uniqueness: true
 end
