@@ -10,7 +10,7 @@ end
 
 Then 'I see the membership application tracking page' do
   expect(page.current_path).to eq '/application'
-  expect(page).to have_css 'h2', text: 'Ваше заявление в обработке'
+  expect(page).to have_css 'h1', text: 'Ваше заявление в обработке'
 end
 
 When 'I send a membership application' do
