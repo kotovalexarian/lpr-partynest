@@ -28,15 +28,6 @@ RSpec.describe Account do
 
   it do
     is_expected.to \
-      have_one(:own_regional_office)
-      .class_name('RegionalOffice')
-      .inverse_of(false)
-      .through(:person)
-      .source(:regional_office)
-  end
-
-  it do
-    is_expected.to \
       have_many(:passport_confirmations)
       .dependent(:restrict_with_exception)
   end
