@@ -40,4 +40,16 @@ RSpec.describe Person do
     it { is_expected.not_to allow_value 1.day.from_now.to_date }
     it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
   end
+
+  describe '#party_supporter?' do
+    let(:result) { subject.party_supporter? }
+
+    specify { expect(result).to eq false }
+
+    context 'for party supporter' do
+      subject { create :supporter_person }
+
+      specify { expect(result).to eq true }
+    end
+  end
 end

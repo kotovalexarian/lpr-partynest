@@ -18,7 +18,7 @@ class Person < ApplicationRecord
   end
 
   def party_supporter?
-    false
+    supporter_since.present?
   end
 
   def party_member?
