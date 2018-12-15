@@ -8,7 +8,7 @@ FactoryBot.define do
   end
 
   factory :personal_account, parent: :usual_account do
-    association :person
+    association :person, factory: :initial_person
   end
 
   factory :superuser_account, parent: :personal_account do

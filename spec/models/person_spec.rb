@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Person do
-  subject { create :person }
+  subject { create :initial_person }
 
   it { is_expected.to belong_to(:regional_office).optional }
 

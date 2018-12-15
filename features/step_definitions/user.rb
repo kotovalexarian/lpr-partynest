@@ -41,7 +41,7 @@ Given 'I am signed in with email {string} ' \
 end
 
 Given 'I am signed in as party member' do
-  @person = create :person
+  @person = create :initial_person
   @account = create :usual_account, person: @person
   create :membership_app, account: @account
   @user = @account.user

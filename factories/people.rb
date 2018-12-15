@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :person do
-  end
+  factory :initial_person, class: Person
 end
