@@ -14,6 +14,12 @@ class Account < ApplicationRecord
           class_name: 'MembershipApp',
           dependent:  :restrict_with_exception
 
+  has_one :own_regional_office,
+          class_name: 'RegionalOffice',
+          inverse_of: false,
+          through:    :person,
+          source:     :regional_office
+
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
   scope :guests, -> { includes(:user).where(users: { id: nil }) }
