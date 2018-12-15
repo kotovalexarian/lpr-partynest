@@ -3,8 +3,7 @@
 module UsersHelper
   def display_password_reset_link?
     devise_mapping.recoverable? &&
-      controller_name != 'passwords' &&
-      controller_name != 'registrations'
+      controller_name != 'passwords'
   end
 
   def display_email_confirmation_link?
