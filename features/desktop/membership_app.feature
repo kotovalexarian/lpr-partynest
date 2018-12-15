@@ -1,10 +1,8 @@
 Feature: Membership application
-  Background:
-    Given I visit the main page
-    Then I click the button "Вступить"
-
   Scenario:
-    When I fill form with the following data:
+    When I visit the main page
+    And I click the button "Вступить"
+    And I fill form with the following data:
       | key                                         | value            |
       | Фамилия                                     | Иванов           |
       | Имя                                         | Иван             |
