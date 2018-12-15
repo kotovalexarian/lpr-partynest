@@ -24,4 +24,20 @@ RSpec.describe Person do
   pending '#party_supporter?'
   pending '#party_member?'
   pending '#excluded_from_party?'
+
+  describe '#supporter_since' do
+    def allow_value(*)
+      super.for :supporter_since
+    end
+
+    it { is_expected.not_to validate_presence_of :supporter_since }
+
+    it { is_expected.to allow_value Time.zone.today }
+    it { is_expected.to allow_value Time.zone.yesterday }
+    it { is_expected.to allow_value rand(10_000).days.ago.to_date }
+
+    it { is_expected.not_to allow_value Time.zone.tomorrow }
+    it { is_expected.not_to allow_value 1.day.from_now.to_date }
+    it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
+  end
 end
