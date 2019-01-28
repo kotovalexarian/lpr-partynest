@@ -46,7 +46,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # by means of improving the `show-doc` and `show-source` commands.
 # With help of the plugin the commands are be able to display the source code
 # and the docs of Ruby methods and classes implemented in C.
-gem 'pry-doc', '~> 0.13'
+gem 'pry-doc', '~> 1.0'
 
 # Use Pry as your Rails console.
 gem 'pry-rails', '~> 0.3'
