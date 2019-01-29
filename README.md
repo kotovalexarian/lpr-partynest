@@ -27,16 +27,36 @@ Tested with **Ubuntu Server 18.04 LTS**.
 ### System packages
 
 * `build-essential`
-* `bundler`
+* `gnupg2`
 * `liblzma-dev`
 * `libpq-dev`
 * `nodejs`
 * `npm`
 * `patch`
-* `ruby`
-* `ruby-dev`
-* `rubygems-integration`
 * `zlib1g-dev`
+
+### Ruby installation
+
+Install Ruby system-wide with [RVM](https://rvm.io):
+
+```
+gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | sudo bash -s stable
+```
+
+Replace `user` with the name of your current user:
+
+```
+sudo usermod -a -G rvm user
+```
+
+Log out from system, then log in again. Install Ruby and Bundler:
+
+```
+rvm install ruby-2.6.0
+rvm use ruby-2.6.0
+gem install bundler
+```
 
 ### Steps
 
