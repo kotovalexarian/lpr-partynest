@@ -28,7 +28,6 @@ private
       email: context.email,
     ).lock(true).first_or_initialize do |new_user|
       new_user.password = Devise.friendly_token[0, 20]
-      new_user.confirmed_at = Time.zone.now
     end
   end
 
