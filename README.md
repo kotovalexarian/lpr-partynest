@@ -58,7 +58,7 @@ After=syslog.target network.target
 Description=Partynest web server
 
 [Service]
-ExecStart=/usr/bin/bundle exec puma --environment production
+ExecStart=/usr/local/rvm/bin/rvm default do bundle exec puma --environment production
 Group=group
 Restart=always
 RestartSec=1
@@ -81,7 +81,7 @@ After=syslog.target network.target
 Description=Partynest job processing
 
 [Service]
-ExecStart=/usr/bin/bundle exec sidekiq --environment production
+ExecStart=/usr/local/rvm/bin/rvm default do bundle exec sidekiq --environment production
 Group=group
 Restart=always
 RestartSec=1
