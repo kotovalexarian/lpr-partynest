@@ -16,6 +16,12 @@ Feature: Membership application
     And I click the form button "Отправить заявление"
     Then I see the membership application tracking page
 
+  Scenario: as a supporter
+    Given I am signed in as party supporter
+    When I visit the main page
+    And I click the button "Ваше заявление"
+    Then I see that I am already a party supporter
+
   Scenario: as a member
     Given I am signed in as party member
     When I visit the main page

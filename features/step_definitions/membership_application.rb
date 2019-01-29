@@ -22,11 +22,19 @@ Then 'I see the membership application tracking page' do
   )
 end
 
+Then 'I see that I am already a party supporter' do
+  expect(page.current_path).to eq '/application'
+  expect(page).to have_css 'h1', text: 'Поздравляем!'
+  expect(page).to have_css 'p.lead',
+                           text: 'Вы уже являетесь сторонником ' \
+                                 'Либертарианской партии России!'
+end
+
 Then 'I see that I am already a party member' do
   expect(page.current_path).to eq '/application'
   expect(page).to have_css 'h1', text: 'Поздравляем!'
   expect(page).to have_css 'p.lead',
-                           text: 'Вы уже являетесь членом или сторонником ' \
+                           text: 'Вы уже являетесь членом ' \
                                  'Либертарианской партии России!'
 end
 

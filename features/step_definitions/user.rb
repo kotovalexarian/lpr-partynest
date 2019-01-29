@@ -40,8 +40,26 @@ Given 'I am signed in with email {string} ' \
   expect(page).to have_css 'ul > li > a', text: @user.email
 end
 
-Given 'I am signed in as party member' do
+Given 'I am signed in as party supporter' do
   @person = create :supporter_person
+  @account = create :usual_account, person: @person
+  create :membership_app, account: @account
+  @user = @account.user
+
+  visit '/users/sign_in'
+
+  within 'form' do
+    fill_in 'Email',  with: @user.email
+    fill_in 'Пароль', with: @user.password
+
+    click_on 'Войти'
+  end
+
+  expect(page).to have_css 'ul > li > a', text: @user.email
+end
+
+Given 'I am signed in as party member' do
+  @person = create :member_person
   @account = create :usual_account, person: @person
   create :membership_app, account: @account
   @user = @account.user
