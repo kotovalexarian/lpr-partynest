@@ -141,6 +141,9 @@ group :development do
   # on multiple remote machines, via SSH.
   gem 'capistrano', '~> 3.11', require: false
 
+  # RVM integration for Capistrano.
+  gem 'capistrano-rvm', '~> 0.1', require: false
+
   # Rails specific Capistrano tasks.
   gem 'capistrano-rails', '~> 1.4', require: false
 
