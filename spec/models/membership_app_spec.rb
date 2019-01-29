@@ -32,8 +32,6 @@ RSpec.describe MembershipApp do
 
   it { is_expected.to validate_uniqueness_of :account_id }
 
-  pending '#resolved?'
-
   describe '#email' do
     def allow_value(*)
       super.for :email

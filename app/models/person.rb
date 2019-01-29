@@ -14,16 +14,12 @@ class Person < ApplicationRecord
   validate :supporter_since_not_in_future
   validate :member_since_not_in_future
 
-  def related_to_party?
-    party_supporter? || party_member? || excluded_from_party?
-  end
-
   def party_supporter?
     supporter_since.present?
   end
 
   def party_member?
-    true
+    member_since.present?
   end
 
   def excluded_from_party?

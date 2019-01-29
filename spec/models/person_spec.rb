@@ -20,9 +20,6 @@ RSpec.describe Person do
 
   it { is_expected.not_to validate_presence_of :regional_office }
 
-  pending '#related_to_party?'
-  pending '#party_supporter?'
-  pending '#party_member?'
   pending '#excluded_from_party?'
 
   describe '#supporter_since' do
@@ -64,6 +61,30 @@ RSpec.describe Person do
 
     context 'for party supporter' do
       subject { create :supporter_person }
+
+      specify { expect(result).to eq true }
+    end
+
+    context 'for party member' do
+      subject { create :member_person }
+
+      specify { expect(result).to eq true }
+    end
+  end
+
+  describe '#party_member?' do
+    let(:result) { subject.party_member? }
+
+    specify { expect(result).to eq false }
+
+    context 'for party supporter' do
+      subject { create :supporter_person }
+
+      specify { expect(result).to eq false }
+    end
+
+    context 'for party member' do
+      subject { create :member_person }
 
       specify { expect(result).to eq true }
     end
