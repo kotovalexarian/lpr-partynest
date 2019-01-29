@@ -41,6 +41,22 @@ RSpec.describe Person do
     it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
   end
 
+  describe '#member_since' do
+    def allow_value(*)
+      super.for :member_since
+    end
+
+    it { is_expected.not_to validate_presence_of :member_since }
+
+    it { is_expected.to allow_value Time.zone.today }
+    it { is_expected.to allow_value Time.zone.yesterday }
+    it { is_expected.to allow_value rand(10_000).days.ago.to_date }
+
+    it { is_expected.not_to allow_value Time.zone.tomorrow }
+    it { is_expected.not_to allow_value 1.day.from_now.to_date }
+    it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
+  end
+
   describe '#party_supporter?' do
     let(:result) { subject.party_supporter? }
 

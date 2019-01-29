@@ -12,6 +12,7 @@ class Person < ApplicationRecord
           source:     :own_membership_app
 
   validate :supporter_since_not_in_future
+  validate :member_since_not_in_future
 
   def related_to_party?
     party_supporter? || party_member? || excluded_from_party?
@@ -35,5 +36,11 @@ private
     return if supporter_since.nil?
 
     errors.add :supporter_since unless supporter_since <= Time.zone.today
+  end
+
+  def member_since_not_in_future
+    return if member_since.nil?
+
+    errors.add :member_since unless member_since <= Time.zone.today
   end
 end
