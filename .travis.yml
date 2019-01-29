@@ -5,6 +5,9 @@ services:
   - postgresql
   - redis-server
 
+addons:
+  postgresql: 10
+
 env:
   global:
     - RAILS_MAX_THREADS=5
