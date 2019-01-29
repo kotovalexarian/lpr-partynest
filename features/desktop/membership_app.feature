@@ -27,3 +27,9 @@ Feature: Membership application
     When I visit the main page
     And I click the button "Ваше заявление"
     Then I see that I am already a party member
+
+  Scenario: as an excluded member
+    Given I am signed in as excluded party member
+    When I visit the main page
+    And I click the button "Ваше заявление"
+    Then I see that I am excluded from party

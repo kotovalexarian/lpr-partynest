@@ -14,6 +14,11 @@ en:
         You are already a party supporter!
       lead_congratulations_member: >
         You are already a party member!
+      excluded: >
+        You are excluded from party
+      lead_excluded:
+        You was excluded from Libertarian party of Russia
+        and can not apply for entry.
       header: Your application is being processed
       lead_text: >
         You can track the status of your application on this page. Save it

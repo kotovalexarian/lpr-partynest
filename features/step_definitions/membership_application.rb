@@ -38,6 +38,15 @@ Then 'I see that I am already a party member' do
                                  'Либертарианской партии России!'
 end
 
+Then 'I see that I am excluded from party' do
+  expect(page.current_path).to eq '/application'
+  expect(page).to have_css 'h1', text: 'Вы исключены из партии'
+  expect(page).to have_css 'p.lead',
+                           text: 'Вы были исключены из ' \
+                                 'Либертарианской партии России ' \
+                                 'и не можете подать заявление на вступление.'
+end
+
 When 'I send a membership application' do
   visit '/join'
 

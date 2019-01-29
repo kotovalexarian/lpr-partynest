@@ -13,17 +13,18 @@ class Person < ApplicationRecord
 
   validate :supporter_since_not_in_future
   validate :member_since_not_in_future
+  validate :excluded_since_not_in_future
 
   def party_supporter?
-    supporter_since.present?
+    supporter_since.present? && !excluded_from_party?
   end
 
   def party_member?
-    member_since.present?
+    member_since.present? && !excluded_from_party?
   end
 
   def excluded_from_party?
-    false
+    excluded_since.present?
   end
 
 private
@@ -38,5 +39,11 @@ private
     return if member_since.nil?
 
     errors.add :member_since unless member_since <= Time.zone.today
+  end
+
+  def excluded_since_not_in_future
+    return if excluded_since.nil?
+
+    errors.add :excluded_since unless excluded_since <= Time.zone.today
   end
 end

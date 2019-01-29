@@ -76,6 +76,24 @@ Given 'I am signed in as party member' do
   expect(page).to have_css 'ul > li > a', text: @user.email
 end
 
+Given 'I am signed in as excluded party member' do
+  @person = create :excluded_person
+  @account = create :usual_account, person: @person
+  create :membership_app, account: @account
+  @user = @account.user
+
+  visit '/users/sign_in'
+
+  within 'form' do
+    fill_in 'Email',  with: @user.email
+    fill_in 'Пароль', with: @user.password
+
+    click_on 'Войти'
+  end
+
+  expect(page).to have_css 'ul > li > a', text: @user.email
+end
+
 When 'I try to sign in with email {string} ' \
      'and password {string}' do |email, password|
   visit '/users/sign_in'
