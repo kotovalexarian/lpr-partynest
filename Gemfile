@@ -4,12 +4,14 @@ ruby '2.6.0'
 
 source 'https://rubygems.org'
 
+git_source(:github) { |s| "https://github.com/#{s}.git" }
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
-gem 'rails', '~> 5.2.1'
+gem 'rails', '~> 6.0.0.beta1'
 
 # A set of common locale data and translations
 # to internationalize and/or localize your Rails applications.
-gem 'rails-i18n', '~> 5.1'
+gem 'rails-i18n', '~> 6.0.0.beta1'
 
 # Use postgresql as the database for Active Record.
 gem 'pg', '>= 0.18', '< 2.0'
@@ -200,7 +202,8 @@ group :test do
   gem 'shoulda-matchers', '4.0.0.rc1'
 
   # Cucumber Generator and Runtime for Rails.
-  gem 'cucumber-rails', '~> 1.6', require: false
+  gem 'cucumber-rails', '~> 1.6', require: false,
+                                  github:  'libertarian-party/cucumber-rails'
 
   # When a Cucumber step fails, it is useful to create a screenshot image
   # and HTML file of the current page.
