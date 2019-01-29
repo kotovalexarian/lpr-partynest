@@ -9,6 +9,11 @@ en:
         of the human person.
   membership_apps:
     show:
+      congratulations: Congratulations!
+      lead_congratulations_supporter: >
+        You are already a party supporter!
+      lead_congratulations_member: >
+        You are already a party member!
       header: Your application is being processed
       lead_text: >
         You can track the status of your application on this page. Save it
