@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Person do
-  subject { create :initial_person }
+  subject { create :member_person }
 
   it { is_expected.to belong_to(:regional_office).optional }
 
@@ -34,6 +34,34 @@ RSpec.describe Person do
     it { is_expected.not_to allow_value Time.zone.tomorrow }
     it { is_expected.not_to allow_value 1.day.from_now.to_date }
     it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
+
+    context 'for initial person' do
+      subject { create :initial_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for supporter person' do
+      subject { create :supporter_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for member person' do
+      subject { create :member_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for excluded person' do
+      subject { create :excluded_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
   end
 
   describe '#member_since' do
@@ -50,6 +78,34 @@ RSpec.describe Person do
     it { is_expected.not_to allow_value Time.zone.tomorrow }
     it { is_expected.not_to allow_value 1.day.from_now.to_date }
     it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
+
+    context 'for initial person' do
+      subject { create :initial_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value Time.zone.today }
+    end
+
+    context 'for supporter person' do
+      subject { create :supporter_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for member person' do
+      subject { create :member_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for excluded person' do
+      subject { create :excluded_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
   end
 
   describe '#excluded_since' do
@@ -66,12 +122,44 @@ RSpec.describe Person do
     it { is_expected.not_to allow_value Time.zone.tomorrow }
     it { is_expected.not_to allow_value 1.day.from_now.to_date }
     it { is_expected.not_to allow_value rand(10_000).days.from_now.to_date }
+
+    context 'for initial person' do
+      subject { create :initial_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value Time.zone.today }
+    end
+
+    context 'for supporter person' do
+      subject { create :supporter_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for member person' do
+      subject { create :member_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
+
+    context 'for excluded person' do
+      subject { create :excluded_person }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value Time.zone.today }
+    end
   end
 
   describe '#party_supporter?' do
     let(:result) { subject.party_supporter? }
 
-    specify { expect(result).to eq false }
+    context 'for initial person' do
+      subject { create :initial_person }
+
+      specify { expect(result).to eq false }
+    end
 
     context 'for party supporter' do
       subject { create :supporter_person }
@@ -95,7 +183,11 @@ RSpec.describe Person do
   describe '#party_member?' do
     let(:result) { subject.party_member? }
 
-    specify { expect(result).to eq false }
+    context 'for initial person' do
+      subject { create :initial_person }
+
+      specify { expect(result).to eq false }
+    end
 
     context 'for party supporter' do
       subject { create :supporter_person }
@@ -119,7 +211,11 @@ RSpec.describe Person do
   describe '#excluded_from_party?' do
     let(:result) { subject.excluded_from_party? }
 
-    specify { expect(result).to eq false }
+    context 'for initial person' do
+      subject { create :initial_person }
+
+      specify { expect(result).to eq false }
+    end
 
     context 'for party supporter' do
       subject { create :supporter_person }

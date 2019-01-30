@@ -11,6 +11,9 @@ class Person < ApplicationRecord
           through:    :account,
           source:     :own_membership_app
 
+  validate :possible_member
+  validate :possible_excluded
+
   validate :supporter_since_not_in_future
   validate :member_since_not_in_future
   validate :excluded_since_not_in_future
@@ -28,6 +31,18 @@ class Person < ApplicationRecord
   end
 
 private
+
+  def possible_member
+    return if member_since.nil?
+
+    errors.add :member_since if supporter_since.nil?
+  end
+
+  def possible_excluded
+    return if excluded_since.nil?
+
+    errors.add :excluded_since if supporter_since.nil? && member_since.nil?
+  end
 
   def supporter_since_not_in_future
     return if supporter_since.nil?
