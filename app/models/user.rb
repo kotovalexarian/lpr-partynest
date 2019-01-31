@@ -4,6 +4,9 @@ class User < ApplicationRecord
   MIN_PASSWORD_LENGTH = 8
   MAX_PASSWORD_LENGTH = 128
 
+  OTP_SECRET_ENCRYPTION_KEY =
+    Rails.application.credentials.otp_secret_encryption_key.freeze
+
   devise(
     :confirmable,
     :database_authenticatable,
@@ -14,8 +17,10 @@ class User < ApplicationRecord
     :rememberable,
     :timeoutable,
     :trackable,
+    :two_factor_authenticatable,
     :validatable,
     omniauth_providers: %i[github],
+    otp_secret_encryption_key: OTP_SECRET_ENCRYPTION_KEY,
   )
 
   ################
