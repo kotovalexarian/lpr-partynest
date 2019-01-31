@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST /telegram_bots/:telegram_bot_id/updates' do
+RSpec.describe 'POST /callbacks/telegram_bots/:telegram_bot_id/updates' do
   let(:telegram_bot) { create :telegram_bot }
 
   context 'with valid params' do
     before do
-      post "/telegram_bots/#{telegram_bot.id}/updates",
+      post "/callbacks/telegram_bots/#{telegram_bot.id}/updates",
            params: { secret: telegram_bot.secret }
     end
 
@@ -18,7 +18,7 @@ RSpec.describe 'POST /telegram_bots/:telegram_bot_id/updates' do
 
   context 'when no telegram bot exist' do
     before do
-      post "/telegram_bots/#{rand(10_000..1_000_000)}/updates",
+      post "/callbacks/telegram_bots/#{rand(10_000..1_000_000)}/updates",
            params: { secret: telegram_bot.secret }
     end
 
@@ -29,7 +29,7 @@ RSpec.describe 'POST /telegram_bots/:telegram_bot_id/updates' do
 
   context 'when secret is not valid' do
     before do
-      post "/telegram_bots/#{telegram_bot.id}/updates",
+      post "/callbacks/telegram_bots/#{telegram_bot.id}/updates",
            params: { secret: SecureRandom.hex }
     end
 

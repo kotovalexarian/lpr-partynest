@@ -29,7 +29,7 @@ private
   end
 
   def webhook_url
-    telegram_bot_updates_url(
+    callbacks_telegram_bot_updates_url(
       context.telegram_bot,
       format:   'json',
       protocol: 'https',

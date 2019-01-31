@@ -38,10 +38,12 @@ Rails.application.routes.draw do
   # Callbacks for third-party services #
   ######################################
 
-  resources :telegram_bots, only: [] do
-    resources :updates,
-              controller: 'telegram_bots/updates',
-              only:       :create
+  namespace :callbacks do
+    resources :telegram_bots, only: [] do
+      resources :updates,
+                controller: 'telegram_bots/updates',
+                only:       :create
+    end
   end
 
   #########################
