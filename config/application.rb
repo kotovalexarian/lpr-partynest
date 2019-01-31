@@ -24,6 +24,7 @@ module Partynest
     FILTER_PARAMS = %i[
       api_token
       confirmation_token
+      otp_attempt
       password
       password_confirmation
       reset_password_token
