@@ -55,20 +55,26 @@ private
   end
 
   def supporter_since_not_in_future
-    return if supporter_since.nil?
-
-    errors.add :supporter_since unless supporter_since <= Time.zone.today
+    errors.add :supporter_since unless supporter_since_not_in_future?
   end
 
   def member_since_not_in_future
-    return if member_since.nil?
-
-    errors.add :member_since unless member_since <= Time.zone.today
+    errors.add :member_since unless member_since_not_in_future?
   end
 
   def excluded_since_not_in_future
-    return if excluded_since.nil?
+    errors.add :excluded_since unless excluded_since_not_in_future?
+  end
 
-    errors.add :excluded_since unless excluded_since <= Time.zone.today
+  def supporter_since_not_in_future?
+    supporter_since.nil? || supporter_since <= Time.zone.today
+  end
+
+  def member_since_not_in_future?
+    member_since.nil? || member_since <= Time.zone.today
+  end
+
+  def excluded_since_not_in_future?
+    excluded_since.nil? || excluded_since <= Time.zone.today
   end
 end
