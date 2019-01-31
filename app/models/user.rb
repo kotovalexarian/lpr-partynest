@@ -17,6 +17,7 @@ class User < ApplicationRecord
     :timeoutable,
     :trackable,
     :two_factor_authenticatable,
+    :two_factor_backupable,
     :validatable,
     omniauth_providers:        %i[github],
     otp_secret_encryption_key: OTP_SECRET_ENCRYPTION_KEY,
