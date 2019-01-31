@@ -6,6 +6,8 @@ class Users::SessionsController < Devise::SessionsController
 
   prepend_before_action :check_captcha, only: :create
 
+  before_action :configure_sign_in_params, only: :create
+
   # GET /resource/sign_in
   def new
     authorize %i[users session]
@@ -36,5 +38,10 @@ protected
 
   def verify_signed_out_user
     super if current_account.nil?
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:otp_attempt])
   end
 end
