@@ -33,25 +33,14 @@ class Person < ApplicationRecord
 private
 
   def possible_member
-    return if member_since.nil?
-
-    return errors.add :member_since if supporter_since.nil?
-    return errors.add :member_since if member_since < supporter_since
-
-    nil
+    errors.add :member_since unless member_since_not_before_supporter_since?
   end
 
   def possible_excluded
-    return if excluded_since.nil?
+    return if excluded_since_not_before_member_since? ||
+              excluded_since_not_before_supporter_since?
 
-    return errors.add :excluded_since if supporter_since.nil? &&
-                                         member_since.nil?
-    return errors.add :excluded_since if supporter_since &&
-                                         excluded_since < supporter_since
-    return errors.add :excluded_since if member_since &&
-                                         excluded_since < member_since
-
-    nil
+    errors.add :excluded_since
   end
 
   def supporter_since_not_in_future
@@ -64,6 +53,18 @@ private
 
   def excluded_since_not_in_future
     errors.add :excluded_since unless excluded_since_not_in_future?
+  end
+
+  def member_since_not_before_supporter_since?
+    member_since.nil? || supporter_since && member_since >= supporter_since
+  end
+
+  def excluded_since_not_before_supporter_since?
+    excluded_since.nil? || supporter_since && excluded_since >= supporter_since
+  end
+
+  def excluded_since_not_before_member_since?
+    excluded_since.nil? || member_since && excluded_since >= member_since
   end
 
   def supporter_since_not_in_future?
