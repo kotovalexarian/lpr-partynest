@@ -30,14 +30,13 @@ Tested with **Ubuntu Server 18.04 LTS**.
 * `gnupg2`
 * `liblzma-dev`
 * `libpq-dev`
-* `nodejs`
-* `npm`
 * `patch`
 * `zlib1g-dev`
 
 ### Ruby installation
 
-Install Ruby system-wide with [RVM](https://rvm.io):
+Install [Ruby](https://www.ruby-lang.org) system-wide
+with [RVM](https://rvm.io):
 
 ```
 gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
@@ -56,6 +55,18 @@ Log out from system, then log in again. Install Ruby and Bundler:
 rvm install ruby-2.6.0
 rvm use ruby-2.6.0
 gem install bundler
+```
+
+### Node.js and Yarn installation
+
+[Node.js](https://nodejs.org) will be installed from system packages
+as [Yarn](https://yarnpkg.com) dependency:
+
+```
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install yarn
 ```
 
 ### Steps
