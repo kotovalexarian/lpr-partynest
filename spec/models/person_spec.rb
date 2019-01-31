@@ -73,7 +73,7 @@ RSpec.describe Person do
 
     it { is_expected.to allow_value Time.zone.today }
     it { is_expected.to allow_value Time.zone.yesterday }
-    it { is_expected.to allow_value rand(10_000).days.ago.to_date }
+    it { is_expected.to allow_value subject.supporter_since + rand(500) }
 
     it { is_expected.not_to allow_value Time.zone.tomorrow }
     it { is_expected.not_to allow_value 1.day.from_now.to_date }
@@ -117,7 +117,7 @@ RSpec.describe Person do
 
     it { is_expected.to allow_value Time.zone.today }
     it { is_expected.to allow_value Time.zone.yesterday }
-    it { is_expected.to allow_value rand(10_000).days.ago.to_date }
+    it { is_expected.to allow_value subject.member_since + rand(500) }
 
     it { is_expected.not_to allow_value Time.zone.tomorrow }
     it { is_expected.not_to allow_value 1.day.from_now.to_date }
