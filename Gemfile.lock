@@ -448,6 +448,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timecop (0.9.1)
     tins (1.24.0)
       sync
     turbolinks (5.2.1)
@@ -540,6 +541,7 @@ DEPENDENCIES
   simplecov (~> 0.16)
   spring
   spring-watcher-listen (~> 2.0.0)
+  timecop (~> 0.9)
   turbolinks (~> 5.2)
   uglifier (>= 4.0)
   web-console (>= 3.3.0)
