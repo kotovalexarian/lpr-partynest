@@ -18,7 +18,7 @@ class User < ApplicationRecord
     :trackable,
     :two_factor_authenticatable,
     :validatable,
-    omniauth_providers: %i[github],
+    omniauth_providers:        %i[github],
     otp_secret_encryption_key: OTP_SECRET_ENCRYPTION_KEY,
   )
 
