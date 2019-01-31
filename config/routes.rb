@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get  :join,        to: 'membership_apps#new'
   post :join,        to: 'membership_apps#create'
 
+  resources :country_states, only: %i[index show]
+
   ###############
   # User routes #
   ###############

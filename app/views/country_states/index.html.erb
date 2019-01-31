@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= CountryState.human_attribute_name :name %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @country_states.each do |country_state| %>
+        <tr>
+          <td><%= country_state.name %></td>
+          <td>
+            <% if policy(country_state).show? %>
+              <%= link_to country_state,
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
