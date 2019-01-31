@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :empty_passport, class: Passport do
+    association :person, factory: :initial_person
+
     confirmed { false }
 
     trait :with_passport_map do

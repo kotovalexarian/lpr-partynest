@@ -3,6 +3,8 @@
 class Passport < ApplicationRecord
   REQUIRED_CONFIRMATIONS = 3
 
+  belongs_to :person, optional: true
+
   has_many_attached :images
 
   has_many :passport_maps, dependent: :restrict_with_exception

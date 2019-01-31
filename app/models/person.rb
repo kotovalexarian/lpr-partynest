@@ -5,6 +5,8 @@ class Person < ApplicationRecord
 
   has_one :account, dependent: :restrict_with_exception
 
+  has_many :passports, dependent: :restrict_with_exception
+
   has_one :own_membership_app,
           class_name: 'MembershipApp',
           inverse_of: :person,
