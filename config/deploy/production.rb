@@ -8,6 +8,7 @@ namespace :deploy do
   desc 'Restart application services'
   task :restart do
     on roles(:app) do
+      execute :sudo, :systemctl, :restart, 'partynest-web.service'
       execute :sudo, :systemctl, :restart, 'partynest-worker.service'
     end
   end
