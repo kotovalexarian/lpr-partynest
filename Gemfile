@@ -149,9 +149,6 @@ group :development do
   # Rails specific Capistrano tasks.
   gem 'capistrano-rails', '~> 1.4', require: false
 
-  # NPM support for Capistrano 3.x.
-  gem 'capistrano-npm', '~> 1.0', require: false
-
   # Remote Rails console for Capistrano.
   gem 'capistrano-rails-console', '~> 2.3', require: false
 
