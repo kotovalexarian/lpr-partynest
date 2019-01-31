@@ -277,10 +277,13 @@ Devise.setup do |config|
   # or change the failure app, you can configure them
   # inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
+  config.warden do |manager|
+    # manager.intercept_401 = false
+    # manager.default_strategies(scope: :user).unshift :some_external_strategy
+
+    manager.default_strategies(scope: :user)
+           .unshift(:two_factor_authenticatable)
+  end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`,
