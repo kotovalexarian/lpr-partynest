@@ -42,6 +42,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 protected
 
+  # Build a devise resource passing in the session.
+  # Useful to move temporary session data to the newly created user.
+  def build_resource(hash = {})
+    super
+    resource.account ||= current_account if current_account&.user.nil?
+  end
+
   # The path used after sign up.
   def after_sign_up_path_for(_resource)
     super
