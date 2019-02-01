@@ -12,9 +12,7 @@ class Settings::ProfilesController < ApplicationController
   def update
     authorize %i[settings profile]
 
-    unless @account.update account_attributes_for_update
-      return render :edit
-    end
+    return render :edit unless @account.update account_attributes_for_update
 
     redirect_to edit_settings_profile_url
   end
