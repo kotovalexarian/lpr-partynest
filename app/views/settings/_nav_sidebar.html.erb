@@ -6,10 +6,12 @@
                        "#{:active if tab == :profile}" %>
   <% end %>
 
-  <%= link_to translate(:credentials, scope: %i[nav_tabs settings]),
-              edit_user_registration_path,
-              class: 'list-group-item list-group-item-action ' \
-                     "#{:active if tab == :credentials}" %>
+  <% if policy(%i[users registration]).edit? %>
+    <%= link_to translate(:credentials, scope: %i[nav_tabs settings]),
+                edit_user_registration_path,
+                class: 'list-group-item list-group-item-action ' \
+                       "#{:active if tab == :credentials}" %>
+  <% end %>
 
   <% if policy(%i[settings account_telegram_contact]).index? %>
     <%= link_to translate(:telegram_contacts, scope: %i[nav_tabs settings]),
