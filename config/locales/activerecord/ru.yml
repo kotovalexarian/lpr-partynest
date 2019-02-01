@@ -35,6 +35,7 @@ ru:
       account:
         id: ID
         username: Имя пользователя
+        public_name: Публичное имя
         biography: Биография
       account_telegram_contact:
         id: ID

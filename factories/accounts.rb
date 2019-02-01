@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :guest_account, class: Account do
+    public_name { Faker::Lorem.name }
     biography { Faker::Lorem.paragraph }
   end
 

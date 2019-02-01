@@ -35,6 +35,7 @@ en:
       account:
         id: ID
         username: Username
+        public_name: Public name
         biography: Bio
       account_telegram_contact:
         id: ID

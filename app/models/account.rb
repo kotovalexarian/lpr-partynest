@@ -32,6 +32,11 @@ class Account < ApplicationRecord
             format:     USERNAME_RE,
             uniqueness: { case_sensitive: false }
 
+  validates :public_name,
+            allow_nil:   true,
+            allow_blank: false,
+            presence:    true
+
   validates :biography, length: { maximum: 10_000 }
 
   def to_param

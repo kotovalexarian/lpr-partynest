@@ -77,6 +77,21 @@ RSpec.describe Account do
     it { is_expected.not_to allow_value '1foo' }
   end
 
+  describe '#public_name' do
+    def allow_value(*)
+      super.for :public_name
+    end
+
+    it { is_expected.to allow_value nil }
+
+    it { is_expected.not_to allow_value '' }
+    it { is_expected.not_to allow_value ' ' }
+
+    it { is_expected.to allow_value Faker::Name.name }
+    it { is_expected.to allow_value Faker::Name.first_name }
+    it { is_expected.to allow_value 'Foo Bar' }
+  end
+
   describe '#biography' do
     it { is_expected.not_to validate_presence_of :biography }
     it { is_expected.to validate_length_of(:biography).is_at_most(10_000) }
