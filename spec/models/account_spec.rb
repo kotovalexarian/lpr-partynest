@@ -60,6 +60,11 @@ RSpec.describe Account do
     it { is_expected.to allow_value 'foo_bar' }
     it { is_expected.to allow_value 'foo123' }
 
+    it do
+      is_expected.not_to \
+        allow_value Faker::Internet.username(3..36, %w[_]).upcase
+    end
+
     it { is_expected.not_to allow_value Faker::Internet.email }
     it { is_expected.not_to allow_value '_foo' }
     it { is_expected.not_to allow_value 'bar_' }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  USERNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/i.freeze
+  USERNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/.freeze
 
   rolify role_join_table_name: :account_roles
 
