@@ -5,4 +5,5 @@ en:
       confirmations: Confirmations
     settings:
       credentials: Credentials
+      profile: Public profile
       telegram_contacts: Telegram contacts

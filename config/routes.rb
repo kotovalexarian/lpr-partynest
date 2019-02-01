@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   ##################
 
   namespace :settings do
+    resource :profile, only: :edit
     resources :telegram_contacts, only: :index
   end
 

@@ -4,6 +4,11 @@
               class: 'list-group-item list-group-item-action ' \
                      "#{:active if tab == :credentials}" %>
 
+  <%= link_to translate(:profile, scope: %i[nav_tabs settings]),
+              edit_settings_profile_path,
+              class: 'list-group-item list-group-item-action ' \
+                     "#{:active if tab == :profile}" %>
+
   <%= link_to translate(:telegram_contacts, scope: %i[nav_tabs settings]),
               settings_telegram_contacts_path,
               class: 'list-group-item list-group-item-action '\
