@@ -14,51 +14,58 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <% if user_signed_in? %>
-      <ul class="navbar-nav ml-auto mr-5">
-        <li class="nav-item dropdown">
-          <%= link_to current_user.account.username,
-                      '#',
-                      id: :navbarDropdown,
-                      role: :button,
-                      class: 'nav-link dropdown-toggle',
-                      'data-toggle': :dropdown,
-                      'aria-haspopup': true,
-                      'aria-expanded': false %>
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to translate('users.shared.links.profile'),
-                        account_path(current_account),
+      <ul class="navbar-nav ml-auto mr-3">
+        <% if current_account || user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= link_to current_account&.username ||
+                        translate('users.shared.links.anonymous'),
+                        '#',
+                        id: :navbarDropdown,
                         role: :button,
-                        class: 'dropdown-item' %>
+                        class: 'nav-link dropdown-toggle',
+                        'data-toggle': :dropdown,
+                        'aria-haspopup': true,
+                        'aria-expanded': false %>
 
-            <%= link_to translate('users.shared.links.settings'),
-                        edit_user_registration_path,
-                        role: :button,
-                        class: 'dropdown-item' %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% if current_account %>
+                <%= link_to translate('users.shared.links.profile'),
+                            account_path(current_account),
+                            role: :button,
+                            class: 'dropdown-item' %>
+              <% end %>
 
-            <div class="dropdown-divider"></div>
+              <% if user_signed_in? %>
+                <%= link_to translate('users.shared.links.settings'),
+                            edit_user_registration_path,
+                            role: :button,
+                            class: 'dropdown-item' %>
 
-            <%= link_to translate('users.shared.links.sign_out'),
-                        destroy_user_session_path,
-                        method: :delete,
-                        role: :button,
-                        class: 'dropdown-item' %>
-          </div>
-        </li>
+                <div class="dropdown-divider"></div>
+
+                <%= link_to translate('users.shared.links.sign_out'),
+                            destroy_user_session_path,
+                            method: :delete,
+                            role: :button,
+                            class: 'dropdown-item' %>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
       </ul>
-    <% else %>
-      <div class="ml-auto">
-        <%= link_to translate('users.shared.links.sign_in'),
-                    new_user_session_path,
-                    role: :button,
-                    class: 'btn btn-light mr-2' %>
 
-        <%= link_to translate('users.shared.links.sign_up'),
-                    new_user_registration_path,
-                    role: :button,
-                    class: 'btn btn-primary' %>
-      </div>
-    <% end %>
+      <% unless user_signed_in? %>
+        <div>
+          <%= link_to translate('users.shared.links.sign_in'),
+                      new_user_session_path,
+                      role: :button,
+                      class: 'btn btn-light mr-2' %>
+
+          <%= link_to translate('users.shared.links.sign_up'),
+                      new_user_registration_path,
+                      role: :button,
+                      class: 'btn btn-primary' %>
+        </div>
+      <% end %>
   </div>
 </nav>
