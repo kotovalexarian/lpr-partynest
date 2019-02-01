@@ -1,7 +1,13 @@
 development:
-  email: admin@example.com
-  password: password
+  email:       admin@example.com
+  password:    password
+  username:    admin
+  public_name: Just Admin
+  biography:   I am creator of the website you read this text on.
 
 production:
-  email:    <%= Rails.application.credentials.superuser_email %>
-  password: <%= Rails.application.credentials.superuser_password %>
+  email:       <%= Rails.application.credentials.superuser_email %>
+  password:    <%= Rails.application.credentials.superuser_password %>
+  username:    kotovalexarian
+  public_name: Alex Kotov
+  biography:   I am creator of the website you read this text on.
