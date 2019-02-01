@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
+  USERNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/i.freeze
+
   rolify role_join_table_name: :account_roles
 
   belongs_to :person, optional: true
@@ -18,9 +20,17 @@ class Account < ApplicationRecord
 
   scope :guests, -> { includes(:user).where(users: { id: nil }) }
 
+  after_initialize :generate_username
+
   before_create do
     self.guest_token = SecureRandom.hex
   end
+
+  validates :username,
+            presence:   true,
+            length:     { in: 3..36 },
+            format:     USERNAME_RE,
+            uniqueness: { case_sensitive: false }
 
   validates :person_id, allow_nil: true, uniqueness: true
 
@@ -36,5 +46,11 @@ class Account < ApplicationRecord
 
   def can_access_sidekiq_web_interface?
     is_superuser?
+  end
+
+private
+
+  def generate_username
+    self.username = "noname_#{SecureRandom.hex(8)}" if username.nil?
   end
 end

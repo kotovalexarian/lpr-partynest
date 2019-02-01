@@ -39,6 +39,33 @@ RSpec.describe Account do
   pending '#guest?'
   pending '#can_access_sidekiq_web_interface?'
 
+  describe '#username' do
+    def allow_value(*)
+      super.for :username
+    end
+
+    it { is_expected.to validate_presence_of :username }
+
+    it do
+      is_expected.to validate_length_of(:username).is_at_least(3).is_at_most(36)
+    end
+
+    it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
+
+    it { is_expected.not_to allow_value nil }
+    it { is_expected.not_to allow_value '' }
+    it { is_expected.not_to allow_value ' ' * 3 }
+
+    it { is_expected.to allow_value Faker::Internet.username(3..36, %w[_]) }
+    it { is_expected.to allow_value 'foo_bar' }
+    it { is_expected.to allow_value 'foo123' }
+
+    it { is_expected.not_to allow_value Faker::Internet.email }
+    it { is_expected.not_to allow_value '_foo' }
+    it { is_expected.not_to allow_value 'bar_' }
+    it { is_expected.not_to allow_value '1foo' }
+  end
+
   describe '#add_role' do
     context 'to guest account' do
       subject { create :guest_account }
