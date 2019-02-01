@@ -15,10 +15,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mr-3">
-        <% if current_account || user_signed_in? %>
+        <% if current_account %>
           <li class="nav-item dropdown">
-            <%= link_to current_account&.username ||
-                        translate('users.shared.links.anonymous'),
+            <%= link_to current_account.username,
                         '#',
                         id: :navbarDropdown,
                         role: :button,
@@ -28,12 +27,10 @@
                         'aria-expanded': false %>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <% if current_account %>
-                <%= link_to translate('users.shared.links.profile'),
-                            account_path(current_account),
-                            role: :button,
-                            class: 'dropdown-item' %>
-              <% end %>
+              <%= link_to translate('users.shared.links.profile'),
+                          account_path(current_account),
+                          role: :button,
+                          class: 'dropdown-item' %>
 
               <% if user_signed_in? %>
                 <%= link_to translate('users.shared.links.settings'),
