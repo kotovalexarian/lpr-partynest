@@ -6,6 +6,6 @@ class Settings::ProfilePolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_update
-    %i[username biography]
+    %i[username public_name biography]
   end
 end
