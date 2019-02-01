@@ -24,6 +24,8 @@ class Account < ApplicationRecord
 
   before_create :generate_guest_token
 
+  validates :person_id, allow_nil: true, uniqueness: true
+
   validates :username,
             presence:   true,
             length:     { in: 3..36 },
@@ -31,8 +33,6 @@ class Account < ApplicationRecord
             uniqueness: { case_sensitive: false }
 
   validates :biography, length: { maximum: 10_000 }
-
-  validates :person_id, allow_nil: true, uniqueness: true
 
   def guest?
     user.nil?
