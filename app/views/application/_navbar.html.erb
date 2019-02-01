@@ -27,15 +27,19 @@
                         'aria-expanded': false %>
 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to translate('users.shared.links.profile'),
-                          account_path(current_account),
-                          role: :button,
-                          class: 'dropdown-item' %>
+              <% if policy(current_account).show? %>
+                <%= link_to translate('users.shared.links.profile'),
+                            account_path(current_account),
+                            role: :button,
+                            class: 'dropdown-item' %>
+              <% end %>
 
-              <%= link_to translate('users.shared.links.settings'),
-                          edit_settings_profile_path,
-                          role: :button,
-                          class: 'dropdown-item' %>
+              <% if policy(%i[settings profile]).edit? %>
+                <%= link_to translate('users.shared.links.settings'),
+                            edit_settings_profile_path,
+                            role: :button,
+                            class: 'dropdown-item' %>
+              <% end %>
 
               <% if user_signed_in? %>
                 <div class="dropdown-divider"></div>
