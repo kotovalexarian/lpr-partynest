@@ -32,12 +32,12 @@
                           role: :button,
                           class: 'dropdown-item' %>
 
-              <% if user_signed_in? %>
-                <%= link_to translate('users.shared.links.settings'),
-                            edit_user_registration_path,
-                            role: :button,
-                            class: 'dropdown-item' %>
+              <%= link_to translate('users.shared.links.settings'),
+                          edit_settings_profile_path,
+                          role: :button,
+                          class: 'dropdown-item' %>
 
+              <% if user_signed_in? %>
                 <div class="dropdown-divider"></div>
 
                 <%= link_to translate('users.shared.links.sign_out'),
