@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Settings::ProfilePolicy < ApplicationPolicy
-  def edit?
+  def update?
     account && !account.guest?
+  end
+
+  def permitted_attributes_for_update
+    %i[username]
   end
 end
