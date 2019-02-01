@@ -5,6 +5,17 @@
     </div>
 
     <div class="col-md-9">
+      <%= simple_form_for current_account, url: settings_profile_path do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :username, required: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, translate('users.registrations.edit.update') %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

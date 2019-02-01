@@ -1,6 +1,9 @@
 en:
   activerecord:
     models:
+      account:
+        one: Account
+        other: Accounts
       account_telegram_contact:
         one: Telegram contact
         other: Telegram contacts
@@ -29,6 +32,9 @@ en:
         one: User
         other: Users
     attributes:
+      account:
+        id: ID
+        username: Username
       account_telegram_contact:
         id: ID
       country_state:
