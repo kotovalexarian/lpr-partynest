@@ -22,9 +22,7 @@ class Account < ApplicationRecord
 
   after_initialize :generate_username
 
-  before_create do
-    self.guest_token = SecureRandom.hex
-  end
+  before_create :generate_guest_token
 
   validates :username,
             presence:   true,
@@ -52,5 +50,9 @@ private
 
   def generate_username
     self.username = "noname_#{SecureRandom.hex(8)}" if username.nil?
+  end
+
+  def generate_guest_token
+    self.guest_token = SecureRandom.hex
   end
 end
