@@ -30,6 +30,8 @@ class Account < ApplicationRecord
             format:     USERNAME_RE,
             uniqueness: { case_sensitive: false }
 
+  validates :biography, length: { maximum: 10_000 }
+
   validates :person_id, allow_nil: true, uniqueness: true
 
   def guest?

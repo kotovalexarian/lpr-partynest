@@ -71,6 +71,11 @@ RSpec.describe Account do
     it { is_expected.not_to allow_value '1foo' }
   end
 
+  describe '#biography' do
+    it { is_expected.not_to validate_presence_of :biography }
+    it { is_expected.to validate_length_of(:biography).is_at_most(10_000) }
+  end
+
   describe '#add_role' do
     context 'to guest account' do
       subject { create :guest_account }

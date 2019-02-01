@@ -35,6 +35,7 @@ en:
       account:
         id: ID
         username: Username
+        biography: Bio
       account_telegram_contact:
         id: ID
       country_state:
