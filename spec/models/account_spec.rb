@@ -39,6 +39,12 @@ RSpec.describe Account do
   pending '#guest?'
   pending '#can_access_sidekiq_web_interface?'
 
+  describe '#to_param' do
+    specify do
+      expect(subject.to_param).to eq subject.username
+    end
+  end
+
   describe '#username' do
     def allow_value(*)
       super.for :username

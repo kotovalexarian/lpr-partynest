@@ -34,6 +34,10 @@ class Account < ApplicationRecord
 
   validates :biography, length: { maximum: 10_000 }
 
+  def to_param
+    username
+  end
+
   def guest?
     user.nil?
   end
