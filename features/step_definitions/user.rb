@@ -21,7 +21,7 @@ Given 'I am signed in with email {string}' do |email|
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.email
+  expect(page).to have_css 'ul > li > a', text: @user.account.username
 end
 
 Given 'I am signed in with email {string} ' \
@@ -37,7 +37,7 @@ Given 'I am signed in with email {string} ' \
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.email
+  expect(page).to have_css 'ul > li > a', text: @user.account.username
 end
 
 Given 'I am signed in as party supporter' do
@@ -55,7 +55,7 @@ Given 'I am signed in as party supporter' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.email
+  expect(page).to have_css 'ul > li > a', text: @user.account.username
 end
 
 Given 'I am signed in as party member' do
@@ -73,7 +73,7 @@ Given 'I am signed in as party member' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.email
+  expect(page).to have_css 'ul > li > a', text: @user.account.username
 end
 
 Given 'I am signed in as excluded party member' do
@@ -91,7 +91,7 @@ Given 'I am signed in as excluded party member' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.email
+  expect(page).to have_css 'ul > li > a', text: @user.account.username
 end
 
 When 'I try to sign in with email {string} ' \
@@ -107,7 +107,7 @@ When 'I try to sign in with email {string} ' \
 end
 
 When 'I try to sign out' do
-  click_on @user.email
+  click_on @user.account.username
   click_on 'Выйти'
 end
 
@@ -117,7 +117,8 @@ When 'I follow confirmation link for email {string}' do |email|
 end
 
 Then 'I am signed in as {string}' do |email|
-  expect(page).to have_css 'ul > li > a', text: email
+  user = User.find_by! email: email
+  expect(page).to have_css 'ul > li > a', text: user.account.username
 end
 
 Then 'I fail to sign in' do

@@ -17,7 +17,7 @@
     <% if user_signed_in? %>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <%= link_to truncate(current_user.email),
+          <%= link_to current_user.account.username,
                       '#',
                       id: :navbarDropdown,
                       role: :button,
