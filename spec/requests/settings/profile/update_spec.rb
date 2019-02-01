@@ -7,7 +7,8 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
 
   let :account_attributes do
     {
-      username: Faker::Internet.username(3..36, %w[_]),
+      username:  Faker::Internet.username(3..36, %w[_]),
+      biography: Faker::Lorem.paragraph,
     }
   end
 
@@ -33,6 +34,13 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
         change { current_account.reload.username }
         .from(current_account.username)
         .to(account_attributes[:username])
+    end
+
+    specify do
+      expect { make_request }.to \
+        change { current_account.reload.biography }
+        .from(current_account.biography)
+        .to(account_attributes[:biography])
     end
 
     context 'after request' do

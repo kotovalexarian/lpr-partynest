@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :guest_account, class: Account
+  factory :guest_account, class: Account do
+    biography { Faker::Lorem.paragraph }
+  end
 
   factory :usual_account, parent: :guest_account do
     association :user
