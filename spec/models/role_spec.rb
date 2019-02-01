@@ -5,7 +5,17 @@ require 'rails_helper'
 RSpec.describe Role do
   subject { create :role }
 
-  it { is_expected.to validate_presence_of :name }
+  describe '#name' do
+    def allow_value(*)
+      super.for :name
+    end
+
+    it { is_expected.to validate_presence_of :name }
+
+    it { is_expected.not_to allow_value 'foobar' }
+
+    it { is_expected.to allow_value 'superuser' }
+  end
 
   pending "add some examples to (or delete) #{__FILE__}"
 end
