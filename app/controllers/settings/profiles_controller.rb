@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Settings::ProfilesController < ApplicationController
+  before_action :set_account
+
   # GET /settings/profile/edit
   def edit
     authorize %i[settings profile]
@@ -10,7 +12,7 @@ class Settings::ProfilesController < ApplicationController
   def update
     authorize %i[settings profile]
 
-    unless current_account.update account_attributes_for_update
+    unless @account.update account_attributes_for_update
       return render :edit
     end
 
@@ -18,6 +20,10 @@ class Settings::ProfilesController < ApplicationController
   end
 
 private
+
+  def set_account
+    @account = current_account.clone&.reload
+  end
 
   def account_attributes_for_update
     params.require(:account).permit(

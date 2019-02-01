@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-md-9">
-      <%= simple_form_for current_account, url: settings_profile_path do |f| %>
+      <%= simple_form_for @account, url: settings_profile_path do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
