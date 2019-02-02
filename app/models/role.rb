@@ -5,7 +5,9 @@ class Role < ApplicationRecord
     superuser
   ].map(&:freeze).freeze
 
-  has_many :account_roles, dependent: :restrict_with_exception
+  has_many :account_roles,
+           -> { where deleted_at: nil },
+           dependent: :restrict_with_exception
 
   has_many :accounts, through: :account_roles
 

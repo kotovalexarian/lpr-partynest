@@ -12,7 +12,9 @@ class Account < ApplicationRecord
 
   self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
 
-  has_many :account_roles, dependent: :restrict_with_exception
+  has_many :account_roles,
+           -> { where deleted_at: nil },
+           dependent: :restrict_with_exception
 
   has_many :roles, through: :account_roles
 
@@ -62,6 +64,12 @@ class Account < ApplicationRecord
     raise 'can not add role to guest account' if guest?
 
     super
+  end
+
+  def remove_role(role_name, resource = nil)
+    role = self.class.role_class.find_by name: role_name, resource: resource
+    return if role.nil?
+    account_roles.where(role: role).update_all(deleted_at: Time.zone.now)
   end
 
   def can_access_sidekiq_web_interface?

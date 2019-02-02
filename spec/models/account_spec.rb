@@ -131,9 +131,9 @@ RSpec.describe Account do
   describe '#remove_role' do
     subject { create :usual_account }
 
-    before do
-      subject.add_role :superuser
-    end
+    let(:role) { subject.add_role :superuser }
+
+    let!(:account_role) { role.account_roles.last }
 
     let(:result) { subject.remove_role :superuser }
 
@@ -146,11 +146,33 @@ RSpec.describe Account do
     end
 
     specify do
+      expect { result }.to change { role.accounts.reload.count }.by(-1)
+    end
+
+    specify do
+      expect { result }.to change { role.account_roles.reload.count }.by(-1)
+    end
+
+    specify do
       expect { result }.not_to change { Role.count }
     end
 
     specify do
-      expect { result }.to change { AccountRole.count }.by(-1)
+      expect { result }.not_to change { AccountRole.count }
+    end
+
+    specify do
+      expect { result }.not_to \
+        change { account_role.reload.account }.from(subject)
+    end
+
+    specify do
+      expect { result }.not_to change { account_role.reload.role }.from(role)
+    end
+
+    specify do
+      expect { result }.to change { account_role.reload.deleted_at }.from(nil)
+      expect(account_role.deleted_at).to be_within(10).of(Time.zone.now)
     end
   end
 end
