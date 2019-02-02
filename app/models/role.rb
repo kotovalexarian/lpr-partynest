@@ -5,7 +5,9 @@ class Role < ApplicationRecord
     superuser
   ].map(&:freeze).freeze
 
-  has_and_belongs_to_many :accounts, join_table: :account_roles
+  has_many :account_roles, dependent: :restrict_with_exception
+
+  has_many :accounts, through: :account_roles
 
   belongs_to :resource, polymorphic: true, optional: true
 

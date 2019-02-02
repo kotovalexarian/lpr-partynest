@@ -1,9 +1,20 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
+  include Rolify::Role
+  extend Rolify::Dynamic if Rolify.dynamic_shortcuts
+
   USERNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/.freeze
 
-  rolify role_join_table_name: :account_roles
+  self.role_cname = 'Role'
+  self.role_table_name = 'roles'
+  self.strict_rolify = false
+
+  self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
+
+  has_many :account_roles, dependent: :restrict_with_exception
+
+  has_many :roles, through: :account_roles
 
   belongs_to :person, optional: true
 

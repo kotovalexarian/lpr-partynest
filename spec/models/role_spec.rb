@@ -5,6 +5,18 @@ require 'rails_helper'
 RSpec.describe Role do
   subject { create :role }
 
+  it do
+    is_expected.to \
+      have_many(:account_roles)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
+      have_many(:accounts)
+      .through(:account_roles)
+  end
+
   describe '#name' do
     def allow_value(*)
       super.for :name

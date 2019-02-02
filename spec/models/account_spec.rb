@@ -15,6 +15,18 @@ RSpec.describe Account do
 
   it do
     is_expected.to \
+      have_many(:account_roles)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
+      have_many(:roles)
+      .through(:account_roles)
+  end
+
+  it do
+    is_expected.to \
       have_many(:account_telegram_contacts)
       .dependent(:restrict_with_exception)
   end
