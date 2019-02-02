@@ -127,4 +127,30 @@ RSpec.describe Account do
       end
     end
   end
+
+  describe '#remove_role' do
+    subject { create :usual_account }
+
+    before do
+      subject.add_role :superuser
+    end
+
+    let(:result) { subject.remove_role :superuser }
+
+    specify do
+      expect { result }.to change { subject.roles.reload.count }.by(-1)
+    end
+
+    specify do
+      expect { result }.to change { subject.account_roles.reload.count }.by(-1)
+    end
+
+    specify do
+      expect { result }.not_to change { Role.count }
+    end
+
+    specify do
+      expect { result }.to change { AccountRole.count }.by(-1)
+    end
+  end
 end
