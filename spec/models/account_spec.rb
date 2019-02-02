@@ -109,6 +109,30 @@ RSpec.describe Account do
     it { is_expected.to validate_length_of(:biography).is_at_most(10_000) }
   end
 
+  describe '#has_role?' do
+    subject { create :usual_account }
+
+    let(:role) { subject.add_role :superuser }
+
+    let!(:account_role) { role.account_roles.last }
+
+    let(:result) { subject.has_role? :superuser }
+
+    specify do
+      expect(result).to eq true
+    end
+
+    context 'after role is removed' do
+      before do
+        subject.remove_role :superuser
+      end
+
+      specify do
+        expect(result).to eq false
+      end
+    end
+  end
+
   describe '#add_role' do
     context 'to guest account' do
       subject { create :guest_account }
