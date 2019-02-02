@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  skip_after_action :verify_authorized
-  skip_after_action :verify_policy_scoped
+  # TODO: do not skip
+  skip_after_action :verify_authorized, only: :create
 
   prepend_before_action :check_captcha, only: :create
 
   # GET /resource/sign_in
   def new
+    authorize %i[users session]
     super
   end
 
@@ -18,6 +19,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
+    authorize %i[users session]
     super
   end
 

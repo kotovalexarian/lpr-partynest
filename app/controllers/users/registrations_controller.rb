@@ -1,28 +1,32 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_after_action :verify_authorized
-  skip_after_action :verify_policy_scoped
+  # TODO: do not skip
+  skip_after_action :verify_authorized, only: %i[create destroy]
 
   prepend_before_action :check_captcha, only: :create
 
   # GET /resource/sign_up
   def new
+    authorize %i[users registration]
     super
   end
 
   # POST /resource
   def create
+    authorize %i[users registration]
     super
   end
 
   # GET /resource/edit
   def edit
+    authorize %i[users registration]
     super
   end
 
   # PUT /resource
   def update
+    authorize %i[users registration]
     super
   end
 
@@ -37,6 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # cancel oauth signing in/up in the middle of the process,
   # removing all OAuth session data.
   def cancel
+    authorize %i[users registration]
     super
   end
 
