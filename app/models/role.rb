@@ -18,4 +18,8 @@ class Role < ApplicationRecord
             inclusion: { in: Rolify.resource_types }
 
   scopify
+
+  def human_name
+    I18n.translate name, scope: :roles
+  end
 end

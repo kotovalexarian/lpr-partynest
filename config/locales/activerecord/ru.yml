@@ -22,6 +22,9 @@ ru:
       passport_map:
         one: Отображение паспорта
         other: Отображения паспортов
+      roles:
+        one: Роль
+        other: Роли
       telegram_bot:
         one: Telegram-бот
         other: Telegram-боты
@@ -84,6 +87,9 @@ ru:
       passport_map/sex:
         male: Мужской
         female: Женский
+      role:
+        id: ID
+        name: Название
       telegram_bot:
         id: ID
         secret: Секрет

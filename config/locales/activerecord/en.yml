@@ -22,6 +22,9 @@ en:
       passport_map:
         one: Passport mapping
         other: Passport mappings
+      roles:
+        one: Role
+        other: Roles
       telegram_bot:
         one: Telegram bot
         other: Telegram bots
@@ -84,6 +87,9 @@ en:
       passport_map/sex:
         male: Male
         female: Female
+      role:
+        id: ID
+        name: Name
       telegram_bot:
         id: ID
         secret: Secret

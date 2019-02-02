@@ -17,5 +17,5 @@ RSpec.describe Role do
     it { is_expected.to allow_value 'superuser' }
   end
 
-  pending "add some examples to (or delete) #{__FILE__}"
+  pending '#human_name'
 end
