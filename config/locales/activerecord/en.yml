@@ -90,6 +90,7 @@ en:
       role:
         id: ID
         name: Name
+        resource: Resource
       telegram_bot:
         id: ID
         secret: Secret

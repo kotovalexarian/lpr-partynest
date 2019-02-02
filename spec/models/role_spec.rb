@@ -18,4 +18,5 @@ RSpec.describe Role do
   end
 
   pending '#human_name'
+  pending '#human_resource'
 end

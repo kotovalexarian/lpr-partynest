@@ -22,4 +22,8 @@ class Role < ApplicationRecord
   def human_name
     I18n.translate name, scope: :roles
   end
+
+  def human_resource
+    "#{resource_type} ##{resource_id}" if resource_id
+  end
 end

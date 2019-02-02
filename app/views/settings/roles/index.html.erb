@@ -14,6 +14,9 @@
             <th scope="col">
               <%= Role.human_attribute_name :name %>
             </th>
+            <th scope="col">
+              <%= Role.human_attribute_name :resource %>
+            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -23,6 +26,7 @@
             <tr>
               <td scope="row"><%= role.id %></td>
               <td><%= role.human_name %></td>
+              <td><%= role.human_resource %></td>
               <td></td>
             </tr>
           <% end %>
