@@ -15,7 +15,7 @@ RSpec.describe 'GET /settings/telegram_contacts' do
 
   for_account_types nil do
     specify do
-      expect(response).to have_http_status :unauthorized
+      expect(response).to have_http_status :forbidden
     end
   end
 

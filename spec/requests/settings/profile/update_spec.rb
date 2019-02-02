@@ -25,7 +25,7 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
     before { make_request }
 
     specify do
-      expect(response).to have_http_status :unauthorized
+      expect(response).to have_http_status :forbidden
     end
   end
 

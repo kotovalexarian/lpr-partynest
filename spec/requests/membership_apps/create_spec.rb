@@ -63,7 +63,7 @@ RSpec.describe 'POST /join' do
       before { make_request }
 
       specify do
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status :forbidden
       end
     end
   end
@@ -85,7 +85,7 @@ RSpec.describe 'POST /join' do
       before { make_request }
 
       specify do
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status :forbidden
       end
     end
   end

@@ -12,7 +12,7 @@ RSpec.describe 'GET /staff/telegram_bots/:id' do
 
   for_account_types nil, :guest, :usual do
     specify do
-      expect(response).to have_http_status :unauthorized
+      expect(response).to have_http_status :forbidden
     end
   end
 

@@ -12,7 +12,7 @@ RSpec.describe 'GET /staff/membership_apps/:id' do
 
   for_account_types nil, :guest, :usual do
     specify do
-      expect(response).to have_http_status :unauthorized
+      expect(response).to have_http_status :forbidden
     end
   end
 

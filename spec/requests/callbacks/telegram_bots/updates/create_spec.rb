@@ -34,7 +34,7 @@ RSpec.describe 'POST /callbacks/telegram_bots/:telegram_bot_id/updates' do
     end
 
     specify do
-      expect(response).to have_http_status :unauthorized
+      expect(response).to have_http_status :forbidden
     end
   end
 end

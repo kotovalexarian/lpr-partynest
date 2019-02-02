@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-  rescue_from Pundit::NotAuthorizedError,   with: :render_unauthorized
+  rescue_from Pundit::NotAuthorizedError,   with: :render_forbidden
 
   helper_method :current_account
 
@@ -53,8 +53,8 @@ private
     end
   end
 
-  def render_unauthorized
-    render status: :unauthorized, json: {}
+  def render_forbidden
+    render status: :forbidden, json: {}
   end
 
   def render_method_not_allowed
