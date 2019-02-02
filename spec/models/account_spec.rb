@@ -16,6 +16,7 @@ RSpec.describe Account do
   it do
     is_expected.to \
       have_many(:account_roles)
+      .inverse_of(:account)
       .dependent(:restrict_with_exception)
   end
 
@@ -178,11 +179,11 @@ RSpec.describe Account do
     end
 
     specify do
-      expect { result }.not_to change { Role.count }
+      expect { result }.not_to(change { Role.count })
     end
 
     specify do
-      expect { result }.not_to change { AccountRole.count }
+      expect { result }.not_to(change { AccountRole.count })
     end
 
     specify do

@@ -53,6 +53,10 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
+Rails/SkipsModelValidations:
+  Whitelist:
+    - update_all
+
 Style/AndOr:
   EnforcedStyle: conditionals
 

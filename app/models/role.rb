@@ -7,7 +7,8 @@ class Role < ApplicationRecord
 
   has_many :account_roles,
            -> { where deleted_at: nil },
-           dependent: :restrict_with_exception
+           inverse_of: :role,
+           dependent:  :restrict_with_exception
 
   has_many :accounts, through: :account_roles
 

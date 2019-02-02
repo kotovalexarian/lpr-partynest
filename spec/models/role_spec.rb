@@ -8,6 +8,7 @@ RSpec.describe Role do
   it do
     is_expected.to \
       have_many(:account_roles)
+      .inverse_of(:role)
       .dependent(:restrict_with_exception)
   end
 

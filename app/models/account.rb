@@ -14,7 +14,8 @@ class Account < ApplicationRecord
 
   has_many :account_roles,
            -> { where deleted_at: nil },
-           dependent: :restrict_with_exception
+           inverse_of: :account,
+           dependent:  :restrict_with_exception
 
   has_many :roles, through: :account_roles
 
@@ -69,6 +70,7 @@ class Account < ApplicationRecord
   def remove_role(role_name, resource = nil)
     role = self.class.role_class.find_by name: role_name, resource: resource
     return if role.nil?
+
     account_roles.where(role: role).update_all(deleted_at: Time.zone.now)
   end
 
