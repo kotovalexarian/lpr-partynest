@@ -13,7 +13,7 @@ class Account < ApplicationRecord
   self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
 
   has_many :account_roles,
-           -> { where deleted_at: nil },
+           -> { active },
            inverse_of: :account,
            dependent:  :restrict_with_exception
 

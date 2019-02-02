@@ -6,7 +6,7 @@ class Role < ApplicationRecord
   ].map(&:freeze).freeze
 
   has_many :account_roles,
-           -> { where deleted_at: nil },
+           -> { active },
            inverse_of: :role,
            dependent:  :restrict_with_exception
 
