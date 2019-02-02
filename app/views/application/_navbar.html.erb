@@ -66,10 +66,12 @@
                         class: 'btn btn-light mr-2' %>
           <% end %>
 
-          <%= link_to translate('users.shared.links.sign_up'),
-                      new_user_registration_path,
-                      role: :button,
-                      class: 'btn btn-primary' %>
+          <% if policy(%i[users registration]).new? %>
+            <%= link_to translate('users.shared.links.sign_up'),
+                        new_user_registration_path,
+                        role: :button,
+                        class: 'btn btn-primary' %>
+          <% end %>
         </div>
       <% end %>
   </div>
