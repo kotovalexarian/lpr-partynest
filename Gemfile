@@ -200,7 +200,7 @@ group :test do
 
   # Cucumber Generator and Runtime for Rails.
   gem 'cucumber-rails', '~> 1.6', require: false,
-                                  github:  'libertarian-party/cucumber-rails'
+                                  github:  'cucumber/cucumber-rails'
 
   # When a Cucumber step fails, it is useful to create a screenshot image
   # and HTML file of the current page.

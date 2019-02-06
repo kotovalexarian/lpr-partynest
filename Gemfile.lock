@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/libertarian-party/cucumber-rails.git
-  revision: c41d652fa15ebb59796b0eb6926a6456136c1f7b
+  remote: https://github.com/cucumber/cucumber-rails.git
+  revision: cc447bfdf7b57118b05dde64f356c0e773aa2cd2
   specs:
     cucumber-rails (1.6.0)
       capybara (>= 1.1.2, < 4)
