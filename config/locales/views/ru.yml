@@ -46,3 +46,7 @@ ru:
       index:
         new_confirmation: Новое подтверждение
         already_confirmed: Вы уже подтвердили этот паспорт.
+  settings:
+    roles:
+      index:
+        revoke: Отозвать

@@ -9,6 +9,21 @@ Given 'I am signed in as guest' do
   visit root_path guest_token: account.guest_token
 end
 
+Given 'I am signed in as superuser' do
+  account = create :superuser_account
+
+  visit '/users/sign_in'
+
+  within 'form' do
+    fill_in 'Email',  with: account.user.email
+    fill_in 'Пароль', with: account.user.password
+
+    click_on 'Войти'
+  end
+
+  expect(page).to have_css 'ul > li > a', text: account.user.account.username
+end
+
 Given 'I am signed in with email {string}' do |email|
   @user = create :user, email: email
 

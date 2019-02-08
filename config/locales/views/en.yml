@@ -45,3 +45,7 @@ en:
       index:
         new_confirmation: New confirmation
         already_confirmed: You have already confirmed the passport.
+  settings:
+    roles:
+      index:
+        revoke: Revoke

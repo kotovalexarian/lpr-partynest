@@ -16,7 +16,8 @@
           <td>
             <% if policy(country_state).show? %>
               <%= link_to country_state,
-                          role: :button, class: 'btn btn-light btn-sm' do %>
+                          role: :button,
+                          class: 'btn btn-light btn-sm' do %>
                 <i class="far fa-eye"></i>
               <% end %>
             <% end %>

@@ -27,7 +27,17 @@
               <td scope="row"><%= role.id %></td>
               <td><%= role.human_name %></td>
               <td><%= role.human_resource %></td>
-              <td></td>
+              <td>
+                <% if policy([:settings, role]).destroy? %>
+                  <%= link_to [:settings, role],
+                              method: :delete,
+                              role: :button,
+                              class: 'btn btn-danger btn-sm' do %>
+                    <i class="fas fa-trash"></i>
+                    <%= translate '.revoke' %>
+                  <% end %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
