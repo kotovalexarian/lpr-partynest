@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: %i[edit update]
     resources :telegram_contacts, only: :index
-    resources :roles, only: :index
+    resources :roles, only: %i[index destroy]
   end
 
   ######################################

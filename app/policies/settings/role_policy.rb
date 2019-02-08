@@ -5,6 +5,10 @@ class Settings::RolePolicy < ApplicationPolicy
     account && !account.guest?
   end
 
+  def destroy?
+    account && !account.guest? && account.roles.include?(record)
+  end
+
   class Scope < Scope
     def resolve
       return scope.none if account.nil? || account.guest?
