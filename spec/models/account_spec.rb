@@ -175,10 +175,38 @@ RSpec.describe Account do
   end
 
   describe '#add_role' do
+    subject { create :usual_account }
+
+    let(:result) { subject.add_role :superuser }
+
+    let(:account_role) { result; AccountRole.last }
+
+    specify do
+      expect { result }.to change { subject.roles.reload.count }.by(1)
+    end
+
+    specify do
+      expect { result }.to change { subject.account_roles.reload.count }.by(1)
+    end
+
+    specify do
+      expect { result }.to change { Role.count }.by(1)
+    end
+
+    specify do
+      expect { result }.to change { AccountRole.count }.by(1)
+    end
+
+    specify do
+      expect(account_role.account).to eq subject
+    end
+
+    specify do
+      expect(account_role.role).to eq result
+    end
+
     context 'to guest account' do
       subject { create :guest_account }
-
-      let(:result) { subject.add_role :superuser }
 
       specify do
         expect { result }.to \
