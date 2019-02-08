@@ -18,6 +18,8 @@ RSpec.describe Role do
       .through(:account_roles)
   end
 
+  pending '.make!'
+
   describe '#name' do
     def allow_value(*)
       super.for :name

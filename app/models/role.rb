@@ -24,6 +24,19 @@ class Role < ApplicationRecord
 
   scopify
 
+  def self.make!(role_name, resource = nil)
+    resource_type =
+      resource.is_a?(Class) ? resource.to_s : resource&.class&.name
+
+    resource_id = resource&.id unless resource.is_a? Class
+
+    find_or_create_by!(
+      name:          role_name,
+      resource_type: resource_type,
+      resource_id:   resource_id,
+    )
+  end
+
   def human_name
     I18n.translate name, scope: :roles
   end

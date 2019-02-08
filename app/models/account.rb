@@ -64,18 +64,10 @@ class Account < ApplicationRecord
   def add_role(role_name, resource = nil)
     raise 'can not add role to guest account' if guest?
 
-    resource_type =
-      resource.is_a?(Class) ? resource.to_s : resource&.class&.name
-
-    resource_id = resource&.id unless resource.is_a? Class
-
-    role = self.class.role_class.where(
-      name:          role_name,
-      resource_type: resource_type,
-      resource_id:   resource_id,
-    ).first_or_create!
-
-    add_role_record role, resource
+    add_role_record(
+      self.class.role_class.make!(role_name, resource),
+      resource,
+    )
   end
 
   def remove_role(role_name, resource = nil)
