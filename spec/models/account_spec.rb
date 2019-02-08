@@ -132,6 +132,46 @@ RSpec.describe Account do
         expect(result).to eq false
       end
     end
+
+    context 'before role expires' do
+      before do
+        account_role.update! expires_at: 2.seconds.from_now
+      end
+
+      specify do
+        expect(result).to eq true
+      end
+    end
+
+    context 'before role expires' do
+      before do
+        account_role.update! expires_at: Faker::Time.forward
+      end
+
+      specify do
+        expect(result).to eq true
+      end
+    end
+
+    context 'after role expires' do
+      before do
+        account_role.update! expires_at: 1.second.ago
+      end
+
+      specify do
+        expect(result).to eq false
+      end
+    end
+
+    context 'after role expires' do
+      before do
+        account_role.update! expires_at: Faker::Time.backward
+      end
+
+      specify do
+        expect(result).to eq false
+      end
+    end
   end
 
   describe '#add_role' do
