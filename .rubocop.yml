@@ -80,6 +80,10 @@ Style/RescueModifier:
   Exclude:
     - 'spec/**/*.rb'
 
+Style/Semicolon:
+  Exclude:
+    - 'spec/**/*.rb'
+
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 
