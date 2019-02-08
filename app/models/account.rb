@@ -61,10 +61,21 @@ class Account < ApplicationRecord
     user.nil?
   end
 
-  def add_role(_role_name, _resource = nil)
+  def add_role(role_name, resource = nil)
     raise 'can not add role to guest account' if guest?
 
-    super
+    resource_type =
+      resource.is_a?(Class) ? resource.to_s : resource&.class&.name
+
+    resource_id = resource&.id unless resource.is_a? Class
+
+    role = self.class.role_class.where(
+      name:          role_name,
+      resource_type: resource_type,
+      resource_id:   resource_id,
+    ).first_or_create!
+
+    add_role_record role, resource
   end
 
   def remove_role(role_name, resource = nil)
@@ -86,5 +97,17 @@ private
 
   def generate_guest_token
     self.guest_token = SecureRandom.hex
+  end
+
+  def add_role_record(role, resource)
+    return role if roles.include? role
+
+    if Rolify.dynamic_shortcuts
+      self.class.define_dynamic_method role.name, resource
+    end
+
+    roles << role
+
+    role
   end
 end
