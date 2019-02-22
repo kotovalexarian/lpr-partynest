@@ -59,7 +59,7 @@ gem 'jquery-rails', '~> 4.3'
 
 # The most popular HTML, CSS, and JavaScript framework for developing
 # responsive, mobile first projects on the web.
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.3.1'
 
 # Font-Awesome SASS gem for use in Ruby projects.
 gem 'font-awesome-sass', '~> 5.5.0'
