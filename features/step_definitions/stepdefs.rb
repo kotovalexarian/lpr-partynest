@@ -36,6 +36,10 @@ Then 'I see text {string}' do |text|
   expect(page).to have_content text
 end
 
+Then 'I do not see text {string}' do |text|
+  expect(page).not_to have_content text
+end
+
 Then 'I see CSS {string} with text {string}' do |selector, text|
   expect(page).to have_css selector, text: text
 end
