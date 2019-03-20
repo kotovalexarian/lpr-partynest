@@ -7,7 +7,7 @@ source 'https://rubygems.org'
 git_source(:github) { |s| "https://github.com/#{s}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
-gem 'rails', '~> 6.0.0.beta1'
+gem 'rails', '~> 6.0.0.beta3'
 
 # A set of common locale data and translations
 # to internationalize and/or localize your Rails applications.
