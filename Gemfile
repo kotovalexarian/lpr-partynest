@@ -77,7 +77,7 @@ gem 'rest-client', '~> 2.0'
 gem 'sentry-raven'
 
 # Flexible authentication solution for Rails with Warden.
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.6'
 
 # Translations for the devise gem.
 gem 'devise-i18n', '~> 1.7'
