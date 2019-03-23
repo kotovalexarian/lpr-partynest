@@ -41,38 +41,34 @@
                             class: 'dropdown-item' %>
               <% end %>
 
-              <% if user_signed_in? %>
+              <% if policy(%i[users session]).destroy? %>
                 <div class="dropdown-divider"></div>
 
-                <% if policy(%i[users session]).destroy? %>
-                  <%= link_to translate('users.shared.links.sign_out'),
-                              destroy_user_session_path,
-                              method: :delete,
-                              role: :button,
-                              class: 'dropdown-item' %>
-                <% end %>
+                <%= link_to translate('users.shared.links.sign_out'),
+                            destroy_user_session_path,
+                            method: :delete,
+                            role: :button,
+                            class: 'dropdown-item' %>
               <% end %>
             </div>
           </li>
         <% end %>
       </ul>
 
-      <% unless user_signed_in? %>
-        <div>
-          <% if policy(%i[users session]).new? %>
-            <%= link_to translate('users.shared.links.sign_in'),
-                        new_user_session_path,
-                        role: :button,
-                        class: 'btn btn-light mr-2' %>
-          <% end %>
+      <div>
+        <% if policy(%i[users session]).new? %>
+          <%= link_to translate('users.shared.links.sign_in'),
+                      new_user_session_path,
+                      role: :button,
+                      class: 'btn btn-light mr-2' %>
+        <% end %>
 
-          <% if policy(%i[users registration]).new? %>
-            <%= link_to translate('users.shared.links.sign_up'),
-                        new_user_registration_path,
-                        role: :button,
-                        class: 'btn btn-primary' %>
-          <% end %>
-        </div>
-      <% end %>
+        <% if policy(%i[users registration]).new? %>
+          <%= link_to translate('users.shared.links.sign_up'),
+                      new_user_registration_path,
+                      role: :button,
+                      class: 'btn btn-primary' %>
+        <% end %>
+      </div>
   </div>
 </nav>
