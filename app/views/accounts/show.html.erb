@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
+      <% if @account.avatar.attached? %>
+        <%= image_tag @account.avatar, class: 'img-thumbnail mb-4' %>
+      <% end %>
+
       <% if @account.public_name.present? %>
         <h1><%= @account.public_name %></h1>
       <% end %>

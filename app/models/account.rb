@@ -12,6 +12,8 @@ class Account < ApplicationRecord
 
   self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
 
+  has_one_attached :avatar
+
   has_many :account_roles,
            -> { active },
            inverse_of: :account,
