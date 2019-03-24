@@ -13,7 +13,7 @@ When 'there is a supporter account with the following data:' do |table|
   options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
 
   country_state = create :country_state, name: options[:country_state]
-  regional_office = create :regional_office
+  regional_office = create :regional_office, country_state: country_state
   person = create :supporter_person, regional_office: regional_office
 
   create :personal_account,
@@ -27,7 +27,7 @@ When 'there is a member account with the following data:' do |table|
   options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
 
   country_state = create :country_state, name: options[:country_state]
-  regional_office = create :regional_office
+  regional_office = create :regional_office, country_state: country_state
   person = create :member_person, regional_office: regional_office
 
   create :personal_account,
