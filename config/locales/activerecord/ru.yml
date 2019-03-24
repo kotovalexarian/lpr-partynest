@@ -37,6 +37,7 @@ ru:
         membership_apps: Заявления на вступление
         name: Название
         english_name: Название
+        native_name: Название
       membership_app:
         id: ID
         country_state: Регион

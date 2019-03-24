@@ -8,6 +8,9 @@
         <th scope="col">
           <%= CountryState.human_attribute_name :english_name %>
         </th>
+        <th scope="col">
+          <%= CountryState.human_attribute_name :native_name %>
+        </th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -17,6 +20,7 @@
         <tr>
           <td><%= country_state.name %></td>
           <td><%= country_state.english_name %></td>
+          <td><%= country_state.native_name %></td>
           <td>
             <% if policy(country_state).show? %>
               <%= link_to country_state,

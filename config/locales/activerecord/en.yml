@@ -37,6 +37,7 @@ en:
         membership_apps: Membership applications
         name: Name
         english_name: Name
+        native_name: Name
       membership_app:
         id: ID
         country_state: State

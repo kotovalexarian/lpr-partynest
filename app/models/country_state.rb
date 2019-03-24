@@ -8,4 +8,6 @@ class CountryState < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   validates :english_name, presence: true, uniqueness: true
+
+  validates :native_name, presence: true, uniqueness: true
 end

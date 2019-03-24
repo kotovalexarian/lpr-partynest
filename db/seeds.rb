@@ -10,7 +10,7 @@ CSV.foreach country_states_filename, col_sep: '|' do |(name, english_name)|
 
   next if CountryState.where(name: name).exists?
 
-  CountryState.create! name: name, english_name: english_name
+  CountryState.create! name: name, english_name: english_name, native_name: name
 end
 
 Rails.application.settings(:superuser).tap do |config|
