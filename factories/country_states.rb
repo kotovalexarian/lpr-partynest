@@ -7,5 +7,6 @@ FactoryBot.define do
     end
 
     name { Faker::Address.unique.state }
+    english_name { Faker::Address.unique.state }
   end
 end
