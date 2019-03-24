@@ -8,4 +8,10 @@ class CountryState < ApplicationRecord
   validates :english_name, presence: true, uniqueness: true
 
   validates :native_name, presence: true, uniqueness: true
+
+  def display_name
+    return native_name if I18n.locale == :ru
+
+    english_name
+  end
 end
