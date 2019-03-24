@@ -5,108 +5,105 @@ Given 'a user with email {string} and password {string}' do |email, password|
 end
 
 Given 'I am signed in as guest' do
-  account = create :guest_account
-  visit root_path guest_token: account.guest_token
+  @account = create :guest_account
+  visit root_path guest_token: @account.guest_token
 end
 
 Given 'I am signed in as superuser' do
-  account = create :superuser_account
+  @account = create :superuser_account
 
   visit '/users/sign_in'
 
   within 'form' do
-    fill_in 'Email',  with: account.user.email
-    fill_in 'Пароль', with: account.user.password
+    fill_in 'Email',  with: @account.user.email
+    fill_in 'Пароль', with: @account.user.password
 
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: account.user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.user.account.username
 end
 
 Given 'I am signed in with email {string}' do |email|
-  @user = create :user, email: email
+  @account = create(:user, email: email).account
 
   visit '/users/sign_in'
 
   within 'form' do
-    fill_in 'Email',  with: @user.email
-    fill_in 'Пароль', with: @user.password
+    fill_in 'Email',  with: @account.user.email
+    fill_in 'Пароль', with: @account.user.password
 
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.username
 end
 
 Given 'I am signed in with email {string} ' \
       'and password {string}' do |email, password|
-  @user = create :user, email: email, password: password
+  @account = create(:user, email: email, password: password).account
 
   visit '/users/sign_in'
 
   within 'form' do
-    fill_in 'Email',  with: @user.email
-    fill_in 'Пароль', with: @user.password
+    fill_in 'Email',  with: @account.user.email
+    fill_in 'Пароль', with: @account.user.password
 
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.username
 end
 
 Given 'I am signed in as party supporter' do
   @person = create :supporter_person
   @account = create :usual_account, person: @person
   create :membership_app, account: @account
-  @user = @account.user
 
   visit '/users/sign_in'
 
   within 'form' do
-    fill_in 'Email',  with: @user.email
-    fill_in 'Пароль', with: @user.password
+    fill_in 'Email',  with: @account.user.email
+    fill_in 'Пароль', with: @account.user.password
 
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.username
 end
 
 Given 'I am signed in as party member' do
   @person = create :member_person
   @account = create :usual_account, person: @person
   create :membership_app, account: @account
-  @user = @account.user
 
   visit '/users/sign_in'
 
   within 'form' do
-    fill_in 'Email',  with: @user.email
-    fill_in 'Пароль', with: @user.password
+    fill_in 'Email',  with: @account.user.email
+    fill_in 'Пароль', with: @account.user.password
 
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.username
 end
 
 Given 'I am signed in as excluded party member' do
   @person = create :excluded_person
   @account = create :usual_account, person: @person
   create :membership_app, account: @account
-  @user = @account.user
 
   visit '/users/sign_in'
 
   within 'form' do
-    fill_in 'Email',  with: @user.email
-    fill_in 'Пароль', with: @user.password
+    fill_in 'Email',  with: @account.user.email
+    fill_in 'Пароль', with: @account.user.password
 
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.username
 end
 
 When 'I try to sign in with email {string} ' \
@@ -122,7 +119,7 @@ When 'I try to sign in with email {string} ' \
 end
 
 When 'I try to sign out' do
-  click_on @user.account.username
+  click_on @account.username
   click_on 'Выйти'
 end
 
@@ -150,7 +147,7 @@ end
 
 Then 'I am successfully signed out' do
   expect(page.current_path).to eq '/'
-  expect(page).not_to have_text @user.email
+  expect(page).not_to have_text @account.user.email if @account.user
   expect(page).to have_text 'Выход из системы выполнен.'
 end
 

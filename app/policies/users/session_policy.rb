@@ -6,6 +6,6 @@ class Users::SessionPolicy < ApplicationPolicy
   end
 
   def destroy?
-    !account&.user.nil?
+    !account.nil?
   end
 end
