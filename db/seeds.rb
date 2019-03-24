@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
-country_states_filename = Rails.root.join 'config', 'country_states.txt'
+require 'csv'
 
-country_state_names = File.readlines(country_states_filename).map(&:strip)
+country_states_filename = Rails.root.join 'config', 'country_states.csv'
 
-country_state_names.each do |name|
+CSV.foreach country_states_filename, col_sep: '|' do |(name, english_name)|
+  name.strip!
+  english_name.strip!
+
   next if CountryState.where(name: name).exists?
 
   CountryState.create! name: name
