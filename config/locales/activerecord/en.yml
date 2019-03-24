@@ -4,9 +4,6 @@ en:
       account:
         one: Account
         other: Accounts
-      account_telegram_contact:
-        one: Telegram contact
-        other: Telegram contacts
       country_state:
         one: State
         other: States
@@ -25,12 +22,6 @@ en:
       roles:
         one: Role
         other: Roles
-      telegram_bot:
-        one: Telegram bot
-        other: Telegram bots
-      telegram_chat:
-        one: Telegram chat
-        other: Telegram chats
       user:
         one: User
         other: Users
@@ -41,8 +32,6 @@ en:
         public_name: Public name
         biography: Bio
         avatar: Avatar
-      account_telegram_contact:
-        id: ID
       country_state:
         id: ID
         membership_apps: Membership applications
@@ -92,19 +81,6 @@ en:
         id: ID
         name: Name
         resource: Resource
-      telegram_bot:
-        id: ID
-        secret: Secret
-        api_token: API token
-        username: Username
-      telegram_chat:
-        id: ID
-        remote_id: Remote ID
-        chat_type: Type
-        title: Title
-        username: Username
-        first_name: First name
-        last_name: Last name
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at

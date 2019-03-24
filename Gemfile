@@ -106,12 +106,6 @@ gem 'rack-attack', '~> 5.4'
 # Simple, efficient background processing for Ruby.
 gem 'sidekiq', '~> 5.2'
 
-# Library for building Telegram Bots with Rails integration.
-gem 'telegram-bot', '~> 0.14'
-
-# Virtus types for Telegram Bot API.
-gem 'telegram-bot-types', '~> 0.6'
-
 # Helpers for the reCAPTCHA API.
 gem 'recaptcha', '~> 4.13'
 

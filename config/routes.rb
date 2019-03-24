@@ -36,20 +36,7 @@ Rails.application.routes.draw do
 
   namespace :settings do
     resource :profile, only: %i[edit update]
-    resources :telegram_contacts, only: :index
     resources :roles, only: %i[index destroy]
-  end
-
-  ######################################
-  # Callbacks for third-party services #
-  ######################################
-
-  namespace :callbacks do
-    resources :telegram_bots, only: [] do
-      resources :updates,
-                controller: 'telegram_bots/updates',
-                only:       :create
-    end
   end
 
   #########################
@@ -71,7 +58,5 @@ Rails.application.routes.draw do
     end
 
     resources :membership_apps, only: %i[index show]
-    resources :telegram_bots, only: %i[index show]
-    resources :telegram_chats, only: %i[index show]
   end
 end

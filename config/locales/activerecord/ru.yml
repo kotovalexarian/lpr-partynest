@@ -4,9 +4,6 @@ ru:
       account:
         one: Аккаунт
         other: Аккаунты
-      account_telegram_contact:
-        one: Контакт Telegram
-        other: Контакты Telegram
       country_state:
         one: Регион
         other: Регионы
@@ -25,12 +22,6 @@ ru:
       roles:
         one: Роль
         other: Роли
-      telegram_bot:
-        one: Telegram-бот
-        other: Telegram-боты
-      telegram_chat:
-        one: Telegram-чат
-        other: Telegram-чаты
       user:
         one: Пользователь
         other: Пользователи
@@ -41,8 +32,6 @@ ru:
         public_name: Публичное имя
         biography: Биография
         avatar: Аватар
-      account_telegram_contact:
-        id: ID
       country_state:
         id: ID
         membership_apps: Заявления на вступление
@@ -92,19 +81,6 @@ ru:
         id: ID
         name: Название
         resource: Ресурс
-      telegram_bot:
-        id: ID
-        secret: Секрет
-        api_token: Токен API
-        username: Имя пользователя
-      telegram_chat:
-        id: ID
-        remote_id: Удалённый ID
-        chat_type: Тип
-        title: Название
-        username: Имя пользователя
-        first_name: Имя
-        last_name: Фамилия
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения

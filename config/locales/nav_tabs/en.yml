@@ -6,5 +6,4 @@ en:
     settings:
       credentials: Credentials
       profile: Public profile
-      telegram_contacts: Telegram contacts
       roles: Roles
