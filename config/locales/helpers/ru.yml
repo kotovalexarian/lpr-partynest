@@ -3,3 +3,8 @@ ru:
     submit:
       membership_app:
         create: Отправить заявление
+    person_status:
+      not_in_party: Не относится к партии
+      supporter: Сторонник партии
+      member: Член партии
+      excluded: Исключён из партии
