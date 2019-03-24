@@ -12,7 +12,7 @@ RSpec.describe PassportConfirmation do
   it { is_expected.to validate_presence_of(:account).with_message(:required) }
 
   it do
-    is_expected.to validate_uniqueness_of(:account_id).scoped_to(:passport_id)
+    is_expected.to validate_uniqueness_of(:account).scoped_to(:passport_id)
   end
 
   it { is_expected.not_to allow_value(create(:empty_passport)).for :passport }

@@ -7,5 +7,5 @@ RSpec.describe User do
 
   it { is_expected.to belong_to(:account).required(false) }
 
-  it { is_expected.to validate_uniqueness_of :account_id }
+  it { is_expected.to validate_uniqueness_of :account }
 end

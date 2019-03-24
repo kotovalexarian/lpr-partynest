@@ -17,5 +17,5 @@ RSpec.describe RegionalOffice do
       .with_message(:required)
   end
 
-  it { is_expected.to validate_uniqueness_of :country_state_id }
+  it { is_expected.to validate_uniqueness_of :country_state }
 end

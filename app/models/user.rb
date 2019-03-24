@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   has_many :user_omniauths, dependent: :restrict_with_exception
 
-  validates :account_id, uniqueness: true
+  validates :account, uniqueness: true
 
   before_validation do
     self.account ||= Account.new

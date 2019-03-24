@@ -40,7 +40,7 @@ class Account < ApplicationRecord
 
   before_create :generate_guest_token
 
-  validates :person_id, allow_nil: true, uniqueness: true
+  validates :person, allow_nil: true, uniqueness: true
 
   validates :username,
             presence:   true,

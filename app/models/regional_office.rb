@@ -7,5 +7,5 @@ class RegionalOffice < ApplicationRecord
 
   has_many :people, dependent: :restrict_with_exception
 
-  validates :country_state_id, uniqueness: true
+  validates :country_state, uniqueness: true
 end

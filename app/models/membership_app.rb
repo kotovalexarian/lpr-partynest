@@ -14,7 +14,7 @@ class MembershipApp < ApplicationRecord
   validates :date_of_birth, presence: true
   validates :phone_number, presence: true
 
-  validates :account_id, uniqueness: true
+  validates :account, uniqueness: true
 
   before_validation do
     email&.strip!

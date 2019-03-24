@@ -4,7 +4,7 @@ class PassportConfirmation < ApplicationRecord
   belongs_to :passport
   belongs_to :account
 
-  validates :account_id, uniqueness: { scope: :passport_id }
+  validates :account, uniqueness: { scope: :passport_id }
 
   validate :passport_can_have_confirmations
 

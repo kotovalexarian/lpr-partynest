@@ -30,7 +30,7 @@ RSpec.describe MembershipApp do
   it { is_expected.not_to validate_presence_of :organization_membership }
   it { is_expected.not_to validate_presence_of :comment }
 
-  it { is_expected.to validate_uniqueness_of :account_id }
+  it { is_expected.to validate_uniqueness_of :account }
 
   describe '#email' do
     def allow_value(*)
