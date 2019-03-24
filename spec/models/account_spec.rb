@@ -96,18 +96,42 @@ RSpec.describe Account do
     end
 
     it { is_expected.to allow_value nil }
-
-    it { is_expected.not_to allow_value '' }
-    it { is_expected.not_to allow_value ' ' }
+    it { is_expected.to allow_value '' }
+    it { is_expected.to allow_value ' ' }
 
     it { is_expected.to allow_value Faker::Name.name }
     it { is_expected.to allow_value Faker::Name.first_name }
     it { is_expected.to allow_value 'Foo Bar' }
+
+    context 'when it was set to blank value' do
+      subject { create :personal_account, public_name: ' ' * rand(100) }
+
+      specify do
+        expect(subject.public_name).to eq nil
+      end
+    end
   end
 
   describe '#biography' do
-    it { is_expected.not_to validate_presence_of :biography }
+    def allow_value(*)
+      super.for :biography
+    end
+
     it { is_expected.to validate_length_of(:biography).is_at_most(10_000) }
+
+    it { is_expected.to allow_value nil }
+    it { is_expected.to allow_value '' }
+    it { is_expected.to allow_value ' ' }
+
+    it { is_expected.to allow_value Faker::Lorem.sentence }
+
+    context 'when it was set to blank value' do
+      subject { create :personal_account, biography: ' ' * rand(100) }
+
+      specify do
+        expect(subject.biography).to eq nil
+      end
+    end
   end
 
   describe '#has_role?' do

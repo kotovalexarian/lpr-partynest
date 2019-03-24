@@ -50,6 +50,8 @@ class Account < ApplicationRecord
 
   after_initialize :generate_username
 
+  before_validation :turn_blanks_into_nils
+
   before_create :generate_guest_token
 
   ###############
@@ -63,11 +65,6 @@ class Account < ApplicationRecord
             length:     { in: 3..36 },
             format:     USERNAME_RE,
             uniqueness: { case_sensitive: false }
-
-  validates :public_name,
-            allow_nil:   true,
-            allow_blank: false,
-            presence:    true
 
   validates :biography, length: { maximum: 10_000 }
 
@@ -118,5 +115,10 @@ private
 
   def generate_guest_token
     self.guest_token = SecureRandom.hex
+  end
+
+  def turn_blanks_into_nils
+    self.public_name = nil if public_name.blank?
+    self.biography   = nil if biography.blank?
   end
 end
