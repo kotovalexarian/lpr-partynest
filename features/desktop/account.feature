@@ -21,6 +21,7 @@ Feature: Account
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
     And I see text "Сторонник партии"
+    And I see text "Москва"
 
   Scenario: of a member
     Given there is a member account with the following data:
@@ -33,6 +34,7 @@ Feature: Account
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
     And I see text "Член партии"
+    And I see text "Москва"
 
   Scenario: of an excluded member
     Given there is an excluded member account with the following data:
@@ -45,3 +47,4 @@ Feature: Account
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
     And I see text "Исключён из партии"
+    And I see text "Москва"

@@ -25,6 +25,13 @@
         <% end %>
       </div>
 
+      <% if @account.person&.regional_office %>
+        <div class="mb-2">
+          <i class="fas fa-map-marker-alt"></i>
+          <%= @account.person.regional_office.country_state.name %>
+        </div>
+      <% end %>
+
       <% if @account.biography %>
         <p><%= @account.biography %></p>
       <% end %>
