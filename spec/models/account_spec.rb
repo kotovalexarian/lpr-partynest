@@ -115,6 +115,18 @@ RSpec.describe Account do
         expect(subject.public_name).to eq nil
       end
     end
+
+    context 'when it was set to value with leading and trailing spaces' do
+      subject { create :personal_account, public_name: public_name }
+
+      let :public_name do
+        "#{' ' * rand(4)}#{Faker::Name.name}#{' ' * rand(4)}"
+      end
+
+      specify do
+        expect(subject.public_name).to eq public_name.strip
+      end
+    end
   end
 
   describe '#biography' do
@@ -138,6 +150,18 @@ RSpec.describe Account do
 
       specify do
         expect(subject.biography).to eq nil
+      end
+    end
+
+    context 'when it was set to value with leading and trailing spaces' do
+      subject { create :personal_account, biography: biography }
+
+      let :biography do
+        "#{' ' * rand(4)}#{Faker::Lorem.sentence}#{' ' * rand(4)}"
+      end
+
+      specify do
+        expect(subject.biography).to eq biography.strip
       end
     end
   end

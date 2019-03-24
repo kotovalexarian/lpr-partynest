@@ -51,6 +51,7 @@ class Account < ApplicationRecord
   after_initialize :generate_username
 
   before_validation :turn_blanks_into_nils
+  before_validation :strip_extra_spaces
 
   before_create :generate_guest_token
 
@@ -122,5 +123,10 @@ private
   def turn_blanks_into_nils
     self.public_name = nil if public_name.blank?
     self.biography   = nil if biography.blank?
+  end
+
+  def strip_extra_spaces
+    self.public_name = public_name&.strip
+    self.biography   = biography&.strip
   end
 end
