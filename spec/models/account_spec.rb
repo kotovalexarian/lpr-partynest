@@ -48,22 +48,22 @@ RSpec.describe Account do
 
   describe '#to_param' do
     specify do
-      expect(subject.to_param).to eq subject.username
+      expect(subject.to_param).to eq subject.nickname
     end
   end
 
-  describe '#username' do
+  describe '#nickname' do
     def allow_value(*)
-      super.for :username
+      super.for :nickname
     end
 
-    it { is_expected.to validate_presence_of :username }
+    it { is_expected.to validate_presence_of :nickname }
 
     it do
-      is_expected.to validate_length_of(:username).is_at_least(3).is_at_most(36)
+      is_expected.to validate_length_of(:nickname).is_at_least(3).is_at_most(36)
     end
 
-    it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:nickname).case_insensitive }
 
     it { is_expected.not_to allow_value nil }
     it { is_expected.not_to allow_value '' }

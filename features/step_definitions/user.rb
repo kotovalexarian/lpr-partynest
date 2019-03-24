@@ -21,7 +21,7 @@ Given 'I am signed in as superuser' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @account.user.account.username
+  expect(page).to have_css 'ul > li > a', text: @account.nickname
 end
 
 Given 'I am signed in with email {string}' do |email|
@@ -36,7 +36,7 @@ Given 'I am signed in with email {string}' do |email|
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @account.username
+  expect(page).to have_css 'ul > li > a', text: @account.nickname
 end
 
 Given 'I am signed in with email {string} ' \
@@ -52,7 +52,7 @@ Given 'I am signed in with email {string} ' \
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @account.username
+  expect(page).to have_css 'ul > li > a', text: @account.nickname
 end
 
 Given 'I am signed in as party supporter' do
@@ -69,7 +69,7 @@ Given 'I am signed in as party supporter' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @account.username
+  expect(page).to have_css 'ul > li > a', text: @account.nickname
 end
 
 Given 'I am signed in as party member' do
@@ -86,7 +86,7 @@ Given 'I am signed in as party member' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @account.username
+  expect(page).to have_css 'ul > li > a', text: @account.nickname
 end
 
 Given 'I am signed in as excluded party member' do
@@ -103,7 +103,7 @@ Given 'I am signed in as excluded party member' do
     click_on 'Войти'
   end
 
-  expect(page).to have_css 'ul > li > a', text: @account.username
+  expect(page).to have_css 'ul > li > a', text: @account.nickname
 end
 
 When 'I try to sign in with email {string} ' \
@@ -119,7 +119,7 @@ When 'I try to sign in with email {string} ' \
 end
 
 When 'I try to sign out' do
-  click_on @account.username
+  click_on @account.nickname
   click_on 'Выйти'
 end
 
@@ -130,7 +130,7 @@ end
 
 Then 'I am signed in as {string}' do |email|
   user = User.find_by! email: email
-  expect(page).to have_css 'ul > li > a', text: user.account.username
+  expect(page).to have_css 'ul > li > a', text: user.account.nickname
 end
 
 Then 'I fail to sign in' do

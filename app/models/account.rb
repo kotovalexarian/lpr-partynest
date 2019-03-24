@@ -4,7 +4,7 @@ class Account < ApplicationRecord
   include Rolify::Role
   extend Rolify::Dynamic if Rolify.dynamic_shortcuts
 
-  USERNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/.freeze
+  NICKNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/.freeze
 
   self.role_cname = 'Role'
   self.role_table_name = 'roles'
@@ -45,7 +45,7 @@ class Account < ApplicationRecord
   # Callbacks #
   #############
 
-  after_initialize :generate_username
+  after_initialize :generate_nickname
 
   before_validation :turn_blanks_into_nils
   before_validation :strip_extra_spaces
@@ -58,10 +58,10 @@ class Account < ApplicationRecord
 
   validates :person, allow_nil: true, uniqueness: true
 
-  validates :username,
+  validates :nickname,
             presence:   true,
             length:     { in: 3..36 },
-            format:     USERNAME_RE,
+            format:     NICKNAME_RE,
             uniqueness: { case_sensitive: false }
 
   validates :public_name, allow_nil: true, length: { in: 3..255 }
@@ -73,7 +73,7 @@ class Account < ApplicationRecord
   ###########
 
   def to_param
-    username
+    nickname
   end
 
   def guest?
@@ -109,8 +109,8 @@ class Account < ApplicationRecord
 
 private
 
-  def generate_username
-    self.username = "noname_#{SecureRandom.hex(8)}" if username.nil?
+  def generate_nickname
+    self.nickname = "noname_#{SecureRandom.hex(8)}" if nickname.nil?
   end
 
   def generate_guest_token

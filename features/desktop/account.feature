@@ -1,7 +1,7 @@
 Feature: Account
   Scenario: of a user
     Given there is a usual account with the following data:
-      | username      | kotovalexarian |
+      | nickname      | kotovalexarian |
       | public_name   | Alex Kotov     |
       | biography     | Hi there :)    |
     When I visit "/accounts/kotovalexarian"
@@ -12,7 +12,7 @@ Feature: Account
 
   Scenario: of a supporter
     Given there is a supporter account with the following data:
-      | username      | kotovalexarian |
+      | nickname      | kotovalexarian |
       | public_name   | Alex Kotov     |
       | biography     | Hi there :)    |
       | country_state | Москва         |
@@ -25,7 +25,7 @@ Feature: Account
 
   Scenario: of a member
     Given there is a member account with the following data:
-      | username      | kotovalexarian |
+      | nickname      | kotovalexarian |
       | public_name   | Alex Kotov     |
       | biography     | Hi there :)    |
       | country_state | Москва         |
@@ -38,7 +38,7 @@ Feature: Account
 
   Scenario: of an excluded member
     Given there is an excluded member account with the following data:
-      | username      | kotovalexarian |
+      | nickname      | kotovalexarian |
       | public_name   | Alex Kotov     |
       | biography     | Hi there :)    |
       | country_state | Москва         |

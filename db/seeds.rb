@@ -15,7 +15,7 @@ Rails.application.settings(:superuser).tap do |config|
     new_user.password = config[:password]
     new_user.confirmed_at = Time.zone.now
     new_user.account = Account.create!(
-      username:    config[:username],
+      nickname:    config[:nickname],
       public_name: config[:public_name],
       biography:   config[:biography],
     )

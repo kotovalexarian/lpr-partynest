@@ -7,7 +7,7 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
 
   let :account_attributes do
     {
-      username:    Faker::Internet.username(3..36, %w[_]),
+      nickname:    Faker::Internet.username(3..36, %w[_]),
       public_name: Faker::Name.name,
       biography:   Faker::Lorem.paragraph,
     }
@@ -32,9 +32,9 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
   for_account_types :usual, :superuser do
     specify do
       expect { make_request }.to \
-        change { current_account.reload.username }
-        .from(current_account.username)
-        .to(account_attributes[:username])
+        change { current_account.reload.nickname }
+        .from(current_account.nickname)
+        .to(account_attributes[:nickname])
     end
 
     specify do
