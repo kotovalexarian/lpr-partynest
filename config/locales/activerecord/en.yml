@@ -40,6 +40,7 @@ en:
         username: Username
         public_name: Public name
         biography: Bio
+        avatar: Avatar
       account_telegram_contact:
         id: ID
       country_state:

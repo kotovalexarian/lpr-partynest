@@ -40,6 +40,7 @@ ru:
         username: Имя пользователя
         public_name: Публичное имя
         biography: Биография
+        avatar: Аватар
       account_telegram_contact:
         id: ID
       country_state:
