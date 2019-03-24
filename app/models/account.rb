@@ -12,6 +12,12 @@ class Account < ApplicationRecord
 
   self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
 
+  ##########
+  # Scopes #
+  ##########
+
+  scope :guests, -> { includes(:user).where(users: { id: nil }) }
+
   ################
   # Associations #
   ################
@@ -37,12 +43,6 @@ class Account < ApplicationRecord
           dependent:  :restrict_with_exception
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
-
-  ##########
-  # Scopes #
-  ##########
-
-  scope :guests, -> { includes(:user).where(users: { id: nil }) }
 
   #############
   # Callbacks #
