@@ -3,9 +3,6 @@
     <thead>
       <tr>
         <th scope="col">
-          <%= CountryState.human_attribute_name :name %>
-        </th>
-        <th scope="col">
           <%= CountryState.human_attribute_name :english_name %>
         </th>
         <th scope="col">
@@ -18,7 +15,6 @@
     <tbody>
       <% @country_states.each do |country_state| %>
         <tr>
-          <td><%= country_state.name %></td>
           <td><%= country_state.english_name %></td>
           <td><%= country_state.native_name %></td>
           <td>

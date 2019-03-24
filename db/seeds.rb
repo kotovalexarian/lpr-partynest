@@ -4,13 +4,14 @@ require 'csv'
 
 country_states_filename = Rails.root.join 'config', 'country_states.csv'
 
-CSV.foreach country_states_filename, col_sep: '|' do |(name, english_name)|
-  name.strip!
+CSV.foreach country_states_filename,
+            col_sep: '|' do |(native_name, english_name)|
+  native_name.strip!
   english_name.strip!
 
-  next if CountryState.where(name: name).exists?
+  next if CountryState.where(english_name: english_name).exists?
 
-  CountryState.create! name: name, english_name: english_name, native_name: name
+  CountryState.create! english_name: english_name, native_name: native_name
 end
 
 Rails.application.settings(:superuser).tap do |config|

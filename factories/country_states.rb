@@ -3,11 +3,10 @@
 FactoryBot.define do
   factory :country_state do
     initialize_with do
-      CountryState.find_or_initialize_by name: name
+      CountryState.find_or_initialize_by english_name: english_name
     end
 
-    name { Faker::Address.unique.state }
     english_name { Faker::Address.unique.state }
-    native_name { Faker::Address.unique.state }
+    native_name { english_name }
   end
 end

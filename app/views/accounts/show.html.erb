@@ -28,7 +28,7 @@
       <% if @account.person&.regional_office %>
         <div class="mb-2">
           <i class="fas fa-map-marker-alt"></i>
-          <%= link_to @account.person.regional_office.country_state.name,
+          <%= link_to @account.person.regional_office.country_state.native_name,
                       @account.person.regional_office.country_state %>
         </div>
       <% end %>
