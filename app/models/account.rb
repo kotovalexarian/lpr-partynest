@@ -12,6 +12,10 @@ class Account < ApplicationRecord
 
   self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
 
+  ################
+  # Associations #
+  ################
+
   has_one_attached :avatar
 
   has_many :account_roles,
@@ -34,11 +38,23 @@ class Account < ApplicationRecord
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
+  ##########
+  # Scopes #
+  ##########
+
   scope :guests, -> { includes(:user).where(users: { id: nil }) }
+
+  #############
+  # Callbacks #
+  #############
 
   after_initialize :generate_username
 
   before_create :generate_guest_token
+
+  ###############
+  # Validations #
+  ###############
 
   validates :person, allow_nil: true, uniqueness: true
 
@@ -54,6 +70,10 @@ class Account < ApplicationRecord
             presence:    true
 
   validates :biography, length: { maximum: 10_000 }
+
+  ###########
+  # Methods #
+  ###########
 
   def to_param
     username
