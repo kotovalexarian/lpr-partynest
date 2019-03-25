@@ -112,4 +112,5 @@ en:
         account:
           attributes:
             avatar:
+              size: 'has too big size'
               format: 'has invalid format: %{content_type}'

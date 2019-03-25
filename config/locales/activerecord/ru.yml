@@ -112,4 +112,5 @@ ru:
         account:
           attributes:
             avatar:
+              size: 'имеет слишком большой размер'
               format: 'имеет неверный формат: %{content_type}'

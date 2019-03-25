@@ -6,6 +6,8 @@ class Account < ApplicationRecord
 
   NICKNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/.freeze
 
+  AVATAR_MAX_SIZE = 1.megabyte
+
   AVATAR_CONTENT_TYPES = %w[
     image/png
     image/jpeg
@@ -74,6 +76,7 @@ class Account < ApplicationRecord
 
   validates :biography, allow_nil: true, length: { in: 3..10_000 }
 
+  validate :avatar_size_is_valid
   validate :avatar_content_type_is_valid
 
   ###########
@@ -133,6 +136,13 @@ private
   def strip_extra_spaces
     self.public_name = public_name&.strip
     self.biography   = biography&.strip
+  end
+
+  def avatar_size_is_valid
+    return unless avatar.attached?
+    return if avatar.blob.byte_size <= AVATAR_MAX_SIZE
+
+    errors.add :avatar, :size
   end
 
   def avatar_content_type_is_valid
