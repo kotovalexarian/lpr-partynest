@@ -111,4 +111,4 @@ ru:
       messages:
         image_size: 'имеет слишком большой размер'
         image_format: 'имеет неверный формат: %{content_type}'
-        image_ext: 'имеет неверное расширение: ".%{ext}'
+        image_ext: 'имеет неверное расширение: ".%{ext}"'
