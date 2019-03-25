@@ -17,6 +17,12 @@ RSpec.describe Person do
 
   it do
     is_expected.to \
+      have_many(:resident_registrations)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
       have_one(:own_membership_app)
       .class_name('MembershipApp')
       .inverse_of(:person)
