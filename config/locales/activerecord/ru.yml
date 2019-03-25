@@ -107,3 +107,9 @@ ru:
         unconfirmed_email: Неподтвержденный email
         unlock_token: Токен разблокировки
         updated_at: Дата обновления
+    errors:
+      models:
+        account:
+          attributes:
+            avatar:
+              format: 'имеет неверный формат: %{content_type}'
