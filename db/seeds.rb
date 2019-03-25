@@ -5,7 +5,7 @@ require 'csv'
 country_states_filename = Rails.root.join 'config', 'country_states.csv'
 
 CSV.foreach country_states_filename,
-            col_sep: '|' do |(native_name, english_name)|
+            col_sep: '|' do |(english_name, native_name)|
   native_name.strip!
   english_name.strip!
 
