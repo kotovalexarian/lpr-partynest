@@ -31,14 +31,24 @@ class ImageValidator < ApplicationEachValidator
     end
 
     def check(item)
-      unless item.blob.content_type.in? CONTENT_TYPES
-        error :image_format, content_type: item.blob.content_type
-      end
+      check_format item
+      check_ext item
+      check_size item
+    end
 
-      unless item.blob.filename.extension.in? EXTENSIONS
-        error :image_ext, ext: item.blob.filename.extension
-      end
+    def check_format(item)
+      return if item.blob.content_type.in? CONTENT_TYPES
 
+      error :image_format, content_type: item.blob.content_type
+    end
+
+    def check_ext(item)
+      return if item.blob.filename.extension.in? EXTENSIONS
+
+      error :image_ext, ext: item.blob.filename.extension
+    end
+
+    def check_size(item)
       error :image_size unless item.blob.byte_size <= max_size
     end
 
