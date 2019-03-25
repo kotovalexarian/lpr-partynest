@@ -16,6 +16,8 @@ class Passport < ApplicationRecord
   validates :confirmed,
             inclusion: { in: [false], unless: :enough_confirmations? }
 
+  validates :images, passport_image: true
+
   def passport_map
     passport_maps.order(created_at: :asc).last
   end

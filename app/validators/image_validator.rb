@@ -10,18 +10,29 @@ class ImageValidator < ApplicationEachValidator
       image/gif
     ].freeze
 
-    delegate :blob, to: :value
-
-    delegate :content_type, :byte_size, to: :blob
-
     def perform
       return unless value.attached?
 
-      unless content_type.in? CONTENT_TYPES
-        error :image_format, content_type: content_type
+      case value
+      when ActiveStorage::Attached::One
+        check value
+      when ActiveStorage::Attached::Many
+        value.attachments.each(&method(:check))
+      else
+        raise TypeError
+      end
+    end
+
+    def check(item)
+      unless item.blob.content_type.in? CONTENT_TYPES
+        error :image_format, content_type: item.blob.content_type
       end
 
-      error :image_size unless byte_size <= MAX_SIZE
+      error :image_size unless item.blob.byte_size <= max_size
+    end
+
+    def max_size
+      MAX_SIZE
     end
   end
 end
