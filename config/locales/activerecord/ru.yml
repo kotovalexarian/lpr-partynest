@@ -108,9 +108,6 @@ ru:
         unlock_token: Токен разблокировки
         updated_at: Дата обновления
     errors:
-      models:
-        account:
-          attributes:
-            avatar:
-              size: 'имеет слишком большой размер'
-              format: 'имеет неверный формат: %{content_type}'
+      messages:
+        image_size: 'имеет слишком большой размер'
+        image_format: 'имеет неверный формат: %{content_type}'

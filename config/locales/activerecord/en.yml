@@ -108,9 +108,6 @@ en:
         unlock_token: Unlock token
         updated_at: Updated at
     errors:
-      models:
-        account:
-          attributes:
-            avatar:
-              size: 'has too big size'
-              format: 'has invalid format: %{content_type}'
+      messages:
+        image_size: 'has too big size'
+        image_format: 'has invalid format: %{content_type}'
