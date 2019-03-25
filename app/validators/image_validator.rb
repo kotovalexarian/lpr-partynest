@@ -10,6 +10,13 @@ class ImageValidator < ApplicationEachValidator
       image/gif
     ].freeze
 
+    EXTENSIONS = %w[
+      png
+      jpg
+      jpeg
+      gif
+    ].freeze
+
     def perform
       return unless value.attached?
 
@@ -26,6 +33,10 @@ class ImageValidator < ApplicationEachValidator
     def check(item)
       unless item.blob.content_type.in? CONTENT_TYPES
         error :image_format, content_type: item.blob.content_type
+      end
+
+      unless item.blob.filename.extension.in? EXTENSIONS
+        error :image_ext, ext: item.blob.filename.extension
       end
 
       error :image_size unless item.blob.byte_size <= max_size

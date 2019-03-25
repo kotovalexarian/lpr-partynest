@@ -111,3 +111,4 @@ en:
       messages:
         image_size: 'has too big size'
         image_format: 'has invalid format: %{content_type}'
+        image_ext: 'has invalid extension: ".%{ext}'
