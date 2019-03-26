@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-6">
         <%= f.simple_fields_for :passport_maps do |ff| %>
-          <%= ff.input :surname %>
-          <%= ff.input :given_name %>
-          <%= ff.input :patronymic %>
+          <%= ff.input :first_name %>
+          <%= ff.input :middle_name %>
+          <%= ff.input :last_name %>
 
           <%= ff.input :sex,
                        as: :radio_buttons,

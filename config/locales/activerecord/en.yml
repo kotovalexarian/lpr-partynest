@@ -67,9 +67,9 @@ en:
         account: Account
       passport_map:
         id: ID
-        surname: Surname
-        given_name: Given names
-        patronymic: Patronymic
+        first_name: First name
+        middle_name: Middle name
+        last_name: Last name
         sex: Sex
         date_of_birth: Date of birth
         place_of_birth: Place of birth

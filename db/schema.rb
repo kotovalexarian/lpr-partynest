@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_200244) do
+ActiveRecord::Schema.define(version: 2019_03_26_201603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,9 +100,9 @@ ActiveRecord::Schema.define(version: 2019_03_26_200244) do
   create_table "passport_maps", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "surname", null: false
-    t.string "given_name", null: false
-    t.string "patronymic"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "middle_name"
     t.integer "sex", null: false
     t.date "date_of_birth", null: false
     t.string "place_of_birth", null: false

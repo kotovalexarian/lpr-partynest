@@ -4,9 +4,9 @@ FactoryBot.define do
   factory :passport_map do
     association :passport, factory: :empty_passport
 
-    surname { Faker::Name.last_name }
-    given_name { Faker::Name.first_name }
-    patronymic { Faker::Name.first_name }
+    first_name { Faker::Name.first_name }
+    middle_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     sex { PassportMap.sexes.keys.sample }
     date_of_birth { Faker::Date.backward }
     place_of_birth { Faker::Address.city }

@@ -13,8 +13,8 @@ class Staff::PassportPolicy < ApplicationPolicy
     [
       :images,
       passport_maps_attributes: %i[
-        surname given_name patronymic sex date_of_birth place_of_birth series
-        number issued_by unit_code date_of_issue
+        first_name middle_name last_name sex date_of_birth place_of_birth
+        series number issued_by unit_code date_of_issue
       ],
     ]
   end

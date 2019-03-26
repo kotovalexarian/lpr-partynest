@@ -67,9 +67,9 @@ ru:
         account: Аккаунт
       passport_map:
         id: ID
-        surname: Фамилия
-        given_name: Имя
-        patronymic: Отчество
+        first_name: Имя
+        middle_name: Отчество
+        last_name: Фамилия
         sex: Пол
         date_of_birth: Дата рождения
         place_of_birth: Место рождения

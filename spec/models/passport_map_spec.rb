@@ -9,9 +9,9 @@ RSpec.describe PassportMap do
 
   it { is_expected.to validate_presence_of(:passport).with_message(:required) }
 
-  it { is_expected.to validate_presence_of :surname }
-  it { is_expected.to validate_presence_of :given_name }
-  it { is_expected.not_to validate_presence_of :patronymic }
+  it { is_expected.to validate_presence_of :first_name }
+  it { is_expected.not_to validate_presence_of :middle_name }
+  it { is_expected.to validate_presence_of :last_name }
   it { is_expected.to validate_presence_of :sex }
   it { is_expected.to validate_presence_of :date_of_birth }
   it { is_expected.to validate_presence_of :place_of_birth }
@@ -21,20 +21,20 @@ RSpec.describe PassportMap do
   it { is_expected.to validate_presence_of :unit_code }
   it { is_expected.to validate_presence_of :date_of_issue }
 
-  describe '#patronymic' do
+  describe '#middle_name' do
     context 'when it is empty' do
-      subject { create :passport_map, patronymic: '' }
+      subject { create :passport_map, middle_name: '' }
 
       specify do
-        expect(subject.patronymic).to eq nil
+        expect(subject.middle_name).to eq nil
       end
     end
 
     context 'when it is blank' do
-      subject { create :passport_map, patronymic: '   ' }
+      subject { create :passport_map, middle_name: '   ' }
 
       specify do
-        expect(subject.patronymic).to eq nil
+        expect(subject.middle_name).to eq nil
       end
     end
   end

@@ -13,8 +13,8 @@ class PassportMap < ApplicationRecord
   # Validations #
   ###############
 
-  validates :surname, presence: true
-  validates :given_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :sex, presence: true
   validates :date_of_birth, presence: true
   validates :place_of_birth, presence: true
@@ -29,6 +29,6 @@ class PassportMap < ApplicationRecord
   #############
 
   before_validation do
-    self.patronymic = nil if patronymic.blank?
+    self.middle_name = nil if middle_name.blank?
   end
 end
