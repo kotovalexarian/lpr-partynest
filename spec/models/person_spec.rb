@@ -35,6 +35,9 @@ RSpec.describe Person do
   it { is_expected.to validate_presence_of :first_name }
   it { is_expected.not_to validate_presence_of :middle_name }
   it { is_expected.to validate_presence_of :last_name }
+  it { is_expected.to validate_presence_of :sex }
+  it { is_expected.to validate_presence_of :date_of_birth }
+  it { is_expected.to validate_presence_of :place_of_birth }
 
   describe '#middle_name' do
     context 'when it is empty' do

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
+  enum sex: %i[male female]
+
   ################
   # Associations #
   ################
@@ -31,6 +33,9 @@ class Person < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :sex, presence: true
+  validates :date_of_birth, presence: true
+  validates :place_of_birth, presence: true
 
   validate :membership_is_possible
   validate :membership_dates_are_not_in_future

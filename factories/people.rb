@@ -5,6 +5,9 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     middle_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
+    sex { Person.sexes.keys.sample }
+    date_of_birth { Faker::Date.backward }
+    place_of_birth { Faker::Address.city }
   end
 
   factory :supporter_person, parent: :initial_person do
