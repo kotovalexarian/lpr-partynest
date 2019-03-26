@@ -84,6 +84,15 @@ en:
       person:
         id: ID
         regional_office: Regional office
+        first_name: First name
+        middle_name: Middle name
+        last_name: Last name
+        sex: Sex
+        date_of_birth: Date of birth
+        place_of_birth: Place of birth
+      person/sex:
+        male: Male
+        female: Female
       role:
         id: ID
         name: Name

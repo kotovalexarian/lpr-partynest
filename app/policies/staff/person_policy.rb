@@ -5,6 +5,10 @@ class Staff::PersonPolicy < ApplicationPolicy
     account&.is_superuser?
   end
 
+  def show?
+    account&.is_superuser?
+  end
+
   class Scope < Scope
     def resolve
       return scope.all if account&.is_superuser?

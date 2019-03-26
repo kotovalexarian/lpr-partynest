@@ -84,6 +84,15 @@ ru:
       person:
         id: ID
         regional_office: Региональное отделение
+        first_name: Имя
+        middle_name: Отчество
+        last_name: Фамилия
+        sex: Пол
+        date_of_birth: Дата рождения
+        place_of_birth: Место рождения
+      person/sex:
+        male: Мужской
+        female: Женский
       role:
         id: ID
         name: Название

@@ -1,0 +1,21 @@
+<div class="container">
+  <dl>
+    <dt><%= Person.human_attribute_name :first_name %></dt>
+    <dd><%= truncate @person.first_name %></dd>
+
+    <dt><%= Person.human_attribute_name :middle_name %></dt>
+    <dd><%= truncate @person.middle_name %></dd>
+
+    <dt><%= Person.human_attribute_name :last_name %></dt>
+    <dd><%= truncate @person.last_name %></dd>
+
+    <dt><%= Person.human_attribute_name :sex %></dt>
+    <dd><%= Person.human_attribute_name "sex.#{@person.sex}" %></dd>
+
+    <dt><%= Person.human_attribute_name :date_of_birth %></dt>
+    <dd><%= localize @person.date_of_birth %></dd>
+
+    <dt><%= Person.human_attribute_name :place_of_birth %></dt>
+    <dd><%= truncate @person.place_of_birth %></dd>
+  </dl>
+</div>

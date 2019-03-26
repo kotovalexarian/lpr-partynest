@@ -6,7 +6,19 @@
           <%= Person.human_attribute_name :id %>
         </th>
         <th scope="col">
-          <%= Person.human_attribute_name :regional_office %>
+          <%= Person.human_attribute_name :first_name %>
+        </th>
+        <th scope="col">
+          <%= Person.human_attribute_name :middle_name %>
+        </th>
+        <th scope="col">
+          <%= Person.human_attribute_name :last_name %>
+        </th>
+        <th scope="col" class="d-none d-lg-table-cell">
+          <%= Person.human_attribute_name :date_of_birth %>
+        </th>
+        <th scope="col" class="d-none d-md-table-cell">
+          <%= Person.human_attribute_name :place_of_birth %>
         </th>
         <th scope="col"></th>
       </tr>
@@ -16,13 +28,22 @@
       <% @people.each do |person| %>
         <tr>
           <td scope="row"><%= person.id %></td>
-          <td>
-            <% if person.regional_office %>
-              <%= link_to person.regional_office.country_state.display_name,
-                          person.regional_office.country_state %>
-            <% end %>
+          <td><%= truncate person.first_name, length: 15 %></td>
+          <td><%= truncate person.middle_name, length: 15 %></td>
+          <td><%= truncate person.last_name, length: 15 %></td>
+          <td class="d-none d-lg-table-cell">
+            <%= localize person.date_of_birth %>
+          </td>
+          <td class="d-none d-md-table-cell">
+            <%= truncate person.place_of_birth, length: 15 %>
           </td>
           <td>
+            <% if policy([:staff, person]).show? %>
+              <%= link_to [:staff, person],
+                          role: :button, class: 'btn btn-light btn-sm' do %>
+                <i class="far fa-eye"></i>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       <% end %>
