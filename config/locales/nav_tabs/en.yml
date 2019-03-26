@@ -3,6 +3,8 @@ en:
     passport:
       overview: Overview
       confirmations: Confirmations
+    person:
+      overview: Overview
     settings:
       credentials: Credentials
       profile: Public profile

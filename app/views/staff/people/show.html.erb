@@ -1,4 +1,6 @@
 <div class="container">
+  <%= render partial: 'nav_tabs', locals: { person: @person, tab: :overview } %>
+
   <dl>
     <dt><%= Person.human_attribute_name :first_name %></dt>
     <dd><%= truncate @person.first_name %></dd>

@@ -3,6 +3,8 @@ ru:
     passport:
       overview: Обзор
       confirmations: Подтверждения
+    person:
+      overview: Обзор
     settings:
       credentials: Данные для входа
       profile: Публичный профиль
