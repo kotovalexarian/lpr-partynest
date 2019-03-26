@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
-  enum sex: %i[male female]
+  include Nameable
 
   ################
   # Associations #
@@ -21,21 +21,9 @@ class Person < ApplicationRecord
           through:    :account,
           source:     :own_membership_app
 
-  #############
-  # Callbacks #
-  #############
-
-  before_validation :turn_blanks_into_nils
-
   ###############
   # Validations #
   ###############
-
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :sex, presence: true
-  validates :date_of_birth, presence: true
-  validates :place_of_birth, presence: true
 
   validate :membership_is_possible
   validate :membership_dates_are_not_in_future
@@ -57,10 +45,6 @@ class Person < ApplicationRecord
   end
 
 private
-
-  def turn_blanks_into_nils
-    self.middle_name = nil if middle_name.blank?
-  end
 
   def membership_is_possible
     errors.add :member_since unless member_since_not_before_supporter_since?
