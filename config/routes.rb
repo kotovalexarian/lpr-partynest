@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
     get '/sidekiq', to: redirect('/', status: 307), as: :forbidden_sidekiq
 
+    resources :people, only: :index
+
     resources :passports, only: %i[index show new create] do
       resources :passport_confirmations,
                 controller: 'passports/passport_confirmations',

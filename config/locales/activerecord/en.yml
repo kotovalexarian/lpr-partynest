@@ -19,6 +19,9 @@ en:
       passport_map:
         one: Passport mapping
         other: Passport mappings
+      person:
+        one: Person
+        other: People
       roles:
         one: Role
         other: Roles
@@ -78,6 +81,9 @@ en:
       passport_map/sex:
         male: Male
         female: Female
+      person:
+        id: ID
+        regional_office: Regional office
       role:
         id: ID
         name: Name

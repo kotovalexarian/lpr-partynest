@@ -19,6 +19,9 @@ ru:
       passport_map:
         one: Отображение паспорта
         other: Отображения паспортов
+      person:
+        one: Человек
+        other: Люди
       roles:
         one: Роль
         other: Роли
@@ -78,6 +81,9 @@ ru:
       passport_map/sex:
         male: Мужской
         female: Женский
+      person:
+        id: ID
+        regional_office: Региональное отделение
       role:
         id: ID
         name: Название

@@ -1,0 +1,31 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= Person.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= Person.human_attribute_name :regional_office %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @people.each do |person| %>
+        <tr>
+          <td scope="row"><%= person.id %></td>
+          <td>
+            <% if person.regional_office %>
+              <%= link_to person.regional_office.country_state.display_name,
+                          person.regional_office.country_state %>
+            <% end %>
+          </td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
