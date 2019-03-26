@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 class AccountRole < ApplicationRecord
+  ################
+  # Associations #
+  ################
+
   belongs_to :account
   belongs_to :role
+
+  ##########
+  # Scopes #
+  ##########
 
   scope :active, -> { not_deleted.not_expired }
 
@@ -15,6 +23,10 @@ class AccountRole < ApplicationRecord
       ),
     )
   }
+
+  ###############
+  # Validations #
+  ###############
 
   validate :deleted_at_is_not_in_future
 

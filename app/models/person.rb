@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
+  ################
+  # Associations #
+  ################
+
   belongs_to :regional_office, optional: true
 
   has_one :account, dependent: :restrict_with_exception
@@ -15,13 +19,25 @@ class Person < ApplicationRecord
           through:    :account,
           source:     :own_membership_app
 
+  #############
+  # Callbacks #
+  #############
+
   before_validation :turn_blanks_into_nils
+
+  ###############
+  # Validations #
+  ###############
 
   validates :first_name, presence: true
   validates :last_name, presence: true
 
   validate :membership_is_possible
   validate :membership_dates_are_not_in_future
+
+  ###########
+  # Methods #
+  ###########
 
   def party_supporter?
     supporter_since.present? && !excluded_from_party?

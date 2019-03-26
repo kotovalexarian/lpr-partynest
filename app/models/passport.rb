@@ -3,6 +3,10 @@
 class Passport < ApplicationRecord
   REQUIRED_CONFIRMATIONS = 3
 
+  ################
+  # Associations #
+  ################
+
   belongs_to :person, optional: true
 
   has_many_attached :images
@@ -13,10 +17,18 @@ class Passport < ApplicationRecord
 
   accepts_nested_attributes_for :passport_maps, reject_if: :blank_passport_map?
 
+  ###############
+  # Validations #
+  ###############
+
   validates :confirmed,
             inclusion: { in: [false], unless: :enough_confirmations? }
 
   validates :images, passport_image: true
+
+  ###########
+  # Methods #
+  ###########
 
   def passport_map
     passport_maps.order(created_at: :asc).last

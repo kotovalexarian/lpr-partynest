@@ -15,11 +15,23 @@ class User < ApplicationRecord
     omniauth_providers: %i[github],
   )
 
+  ################
+  # Associations #
+  ################
+
   belongs_to :account
 
   has_many :user_omniauths, dependent: :restrict_with_exception
 
+  ###############
+  # Validations #
+  ###############
+
   validates :account, uniqueness: true
+
+  #############
+  # Callbacks #
+  #############
 
   before_validation do
     self.account ||= Account.new

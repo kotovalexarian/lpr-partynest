@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 class PassportConfirmation < ApplicationRecord
+  ################
+  # Associations #
+  ################
+
   belongs_to :passport
   belongs_to :account
+
+  ###############
+  # Validations #
+  ###############
 
   validates :account, uniqueness: { scope: :passport_id }
 

@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
 class MembershipApp < ApplicationRecord
+  ################
+  # Associations #
+  ################
+
   belongs_to :account, inverse_of: :own_membership_app
   belongs_to :country_state, optional: true
 
   has_one :regional_office, through: :country_state
   has_one :person, through: :account, inverse_of: :own_membership_app
+
+  ###############
+  # Validations #
+  ###############
 
   validates :email, presence: true, format: Devise.email_regexp
 
@@ -15,6 +23,10 @@ class MembershipApp < ApplicationRecord
   validates :phone_number, presence: true
 
   validates :account, uniqueness: true
+
+  #############
+  # Callbacks #
+  #############
 
   before_validation do
     email&.strip!

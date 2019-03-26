@@ -5,6 +5,12 @@ class Role < ApplicationRecord
     superuser
   ].map(&:freeze).freeze
 
+  scopify
+
+  ################
+  # Associations #
+  ################
+
   has_many :account_roles,
            -> { active },
            inverse_of: :role,
@@ -14,6 +20,10 @@ class Role < ApplicationRecord
 
   belongs_to :resource, polymorphic: true, optional: true
 
+  ###############
+  # Validations #
+  ###############
+
   validates :name,
             presence:  true,
             inclusion: { in: NAMES }
@@ -22,7 +32,9 @@ class Role < ApplicationRecord
             allow_nil: true,
             inclusion: { in: Rolify.resource_types }
 
-  scopify
+  ###########
+  # Methods #
+  ###########
 
   def self.make!(role_name, resource = nil)
     resource_type =
