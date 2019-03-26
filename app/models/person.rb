@@ -15,6 +15,11 @@ class Person < ApplicationRecord
           through:    :account,
           source:     :own_membership_app
 
+  before_validation :turn_blanks_into_nils
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+
   validate :membership_is_possible
   validate :membership_dates_are_not_in_future
 
@@ -31,6 +36,10 @@ class Person < ApplicationRecord
   end
 
 private
+
+  def turn_blanks_into_nils
+    self.middle_name = nil if middle_name.blank?
+  end
 
   def membership_is_possible
     errors.add :member_since unless member_since_not_before_supporter_since?

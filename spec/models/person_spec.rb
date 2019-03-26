@@ -32,6 +32,28 @@ RSpec.describe Person do
 
   it { is_expected.not_to validate_presence_of :regional_office }
 
+  it { is_expected.to validate_presence_of :first_name }
+  it { is_expected.not_to validate_presence_of :middle_name }
+  it { is_expected.to validate_presence_of :last_name }
+
+  describe '#middle_name' do
+    context 'when it is empty' do
+      subject { create :member_person, middle_name: '' }
+
+      specify do
+        expect(subject.middle_name).to eq nil
+      end
+    end
+
+    context 'when it is blank' do
+      subject { create :member_person, middle_name: '   ' }
+
+      specify do
+        expect(subject.middle_name).to eq nil
+      end
+    end
+  end
+
   describe '#supporter_since' do
     def allow_value(*)
       super.for :supporter_since
