@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   #########################
 
   namespace :staff do
+    root to: 'home#show'
+
     authenticate :user,
                  ->(user) { user.account.can_access_sidekiq_web_interface? } do
       mount Sidekiq::Web, at: '/sidekiq', as: :sidekiq
