@@ -22,6 +22,9 @@ ru:
       person:
         one: Человек
         other: Люди
+      resident_registration:
+        one: Прописка
+        other: Прописки
       roles:
         one: Роль
         other: Роли
@@ -93,6 +96,8 @@ ru:
       person/sex:
         male: Мужской
         female: Женский
+      resident_registration:
+        id: ID
       role:
         id: ID
         name: Название

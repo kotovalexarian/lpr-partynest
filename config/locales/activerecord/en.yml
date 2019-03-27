@@ -22,6 +22,9 @@ en:
       person:
         one: Person
         other: People
+      resident_registration:
+        one: Resident registration
+        other: Resident registrations
       roles:
         one: Role
         other: Roles
@@ -93,6 +96,8 @@ en:
       person/sex:
         male: Male
         female: Female
+      resident_registration:
+        id: ID
       role:
         id: ID
         name: Name
