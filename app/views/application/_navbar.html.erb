@@ -15,12 +15,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <%= :active if staff_controller? %>">
-        <%= link_to staff_root_path, class: 'nav-link' do %>
-          <%= translate :staff_services %>
-          <span class="sr-only">(<%= translate :current %>)</span>
-        <% end %>
-      </li>
+      <% if policy([:staff, :home]).show? %>
+        <li class="nav-item <%= :active if staff_controller? %>">
+          <%= link_to staff_root_path, class: 'nav-link' do %>
+            <%= translate :staff_services %>
+            <span class="sr-only">(<%= translate :current %>)</span>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
 
     <ul class="navbar-nav ml-auto mr-3">
