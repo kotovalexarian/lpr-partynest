@@ -6,6 +6,10 @@ module ApplicationHelper
     pills: 'nav nav-pills d-flex d-sm-none flex-column',
   }.freeze
 
+  def staff_controller?
+    controller_path.start_with?('staff')
+  end
+
   def bootstrap_class_for_flash(flash_type)
     case flash_type
     when 'success'
