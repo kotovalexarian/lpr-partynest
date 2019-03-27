@@ -19,9 +19,6 @@
         <li class="nav-item <%= :active if country_states_controller? %>">
           <%= link_to country_states_path, class: 'nav-link' do %>
             <%= CountryState.model_name.human count: 0 %>
-            <% if country_states_controller? %>
-              <span class="sr-only">(<%= translate :current %>)</span>
-            <% end %>
           <% end %>
         </li>
       <% end %>
@@ -30,7 +27,6 @@
         <li class="nav-item <%= :active if staff_controller? %>">
           <%= link_to staff_root_path, class: 'nav-link' do %>
             <%= translate :staff_services %>
-            <span class="sr-only">(<%= translate :current %>)</span>
           <% end %>
         </li>
       <% end %>
