@@ -3,34 +3,34 @@ ru:
     models:
       account:
         one: Аккаунт
-        other: Аккаунты
+        many: Аккаунты
       country_state:
         one: Регион
-        other: Регионы
+        many: Регионы
       membership_app:
         one: Заявление на вступление
-        other: Заявления на вступление
+        many: Заявления на вступление
       passport:
         one: Паспорт
-        other: Паспорта
+        many: Паспорта
       passport_confirmation:
         one: Подтверждение паспорта
-        other: Подтверждения паспортов
+        many: Подтверждения паспортов
       passport_map:
         one: Отображение паспорта
-        other: Отображения паспортов
+        many: Отображения паспортов
       person:
         one: Человек
-        other: Люди
+        many: Люди
       resident_registration:
         one: Прописка
-        other: Прописки
+        many: Прописки
       roles:
         one: Роль
-        other: Роли
+        many: Роли
       user:
         one: Пользователь
-        other: Пользователи
+        many: Пользователи
     attributes:
       account:
         id: ID

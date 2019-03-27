@@ -3,34 +3,34 @@ en:
     models:
       account:
         one: Account
-        other: Accounts
+        many: Accounts
       country_state:
         one: State
-        other: States
+        many: States
       membership_app:
         one: Membership application
-        other: Membership applications
+        many: Membership applications
       passport:
         one: Passport
-        other: Passports
+        many: Passports
       passport_confirmation:
         one: Passport confirmation
-        other: Passport confirmations
+        many: Passport confirmations
       passport_map:
         one: Passport mapping
-        other: Passport mappings
+        many: Passport mappings
       person:
         one: Person
-        other: People
+        many: People
       resident_registration:
         one: Resident registration
-        other: Resident registrations
+        many: Resident registrations
       roles:
         one: Role
-        other: Roles
+        many: Roles
       user:
         one: User
-        other: Users
+        many: Users
     attributes:
       account:
         id: ID
