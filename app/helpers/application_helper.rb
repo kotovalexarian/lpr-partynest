@@ -6,6 +6,10 @@ module ApplicationHelper
     pills: 'nav nav-pills d-flex d-sm-none flex-column',
   }.freeze
 
+  def country_states_controller?
+    controller_path == 'country_states'
+  end
+
   def staff_controller?
     controller_path.start_with?('staff')
   end
