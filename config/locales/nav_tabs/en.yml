@@ -5,6 +5,7 @@ en:
       confirmations: Confirmations
     person:
       overview: Overview
+      passports: Passports
     settings:
       credentials: Credentials
       profile: Public profile

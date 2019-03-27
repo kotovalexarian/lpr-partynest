@@ -5,6 +5,7 @@ ru:
       confirmations: Подтверждения
     person:
       overview: Обзор
+      passports: Паспорта
     settings:
       credentials: Данные для входа
       profile: Публичный профиль
