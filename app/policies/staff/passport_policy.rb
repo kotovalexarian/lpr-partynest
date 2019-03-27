@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Staff::PassportPolicy < ApplicationPolicy
+  def index?
+    account&.is_superuser?
+  end
+
   def show?
     true
   end
