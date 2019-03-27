@@ -1,2 +1,27 @@
 <div class="container">
+  <ul>
+    <% if current_user&.account&.can_access_sidekiq_web_interface? %>
+      <li>
+        <%= link_to translate(:sidekiq_web_interface), staff_sidekiq_path %>
+      </li>
+    <% end %>
+
+    <% if policy([:staff, :person]).index? %>
+      <li>
+        <%= link_to Person.model_name.human(count: 0), staff_people_path %>
+      </li>
+    <% end %>
+
+    <% if policy([:staff, :passport]).index? %>
+      <li>
+        <%= link_to Passport.model_name.human(count: 0), staff_passports_path %>
+      </li>
+    <% end %>
+
+    <% if policy([:staff, :membership_app]).index? %>
+      <li>
+        <%= link_to MembershipApp.model_name.human(count: 0), staff_membership_apps_path %>
+      </li>
+    <% end %>
+  </ul>
 </div>
