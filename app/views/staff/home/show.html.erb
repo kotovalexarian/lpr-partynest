@@ -20,7 +20,8 @@
 
     <% if policy([:staff, :membership_app]).index? %>
       <li>
-        <%= link_to MembershipApp.model_name.human(count: 0), staff_membership_apps_path %>
+        <%= link_to MembershipApp.model_name.human(count: 0),
+                    staff_membership_apps_path %>
       </li>
     <% end %>
   </ul>
