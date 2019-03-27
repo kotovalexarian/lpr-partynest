@@ -61,7 +61,13 @@ private
   end
 
   def render_method_not_allowed
-    render status: :method_not_allowed, json: {}
+    respond_to do |format|
+      format.html do
+        render status:   :method_not_allowed,
+               template: 'errors/method_not_allowed'
+      end
+      format.json { render status: :method_not_allowed, json: {} }
+    end
   end
 
   def remember_if_guest_account(account)
