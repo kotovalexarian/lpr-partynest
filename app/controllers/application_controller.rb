@@ -54,7 +54,10 @@ private
   end
 
   def render_forbidden
-    render status: :forbidden, json: {}
+    respond_to do |format|
+      format.html { render status: :forbidden, template: 'errors/forbidden' }
+      format.json { render status: :forbidden, json: {} }
+    end
   end
 
   def render_method_not_allowed
