@@ -6,6 +6,7 @@ en:
     person:
       overview: Overview
       passports: Passports
+      resident_registrations: Resident registrations
     settings:
       credentials: Credentials
       profile: Public profile

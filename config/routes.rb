@@ -55,6 +55,10 @@ Rails.application.routes.draw do
       resources :passports,
                 controller: 'people/passports',
                 only:       :index
+
+      resources :resident_registrations,
+                controller: 'people/resident_registrations',
+                only:       :index
     end
 
     resources :passports, only: %i[index show new create] do
