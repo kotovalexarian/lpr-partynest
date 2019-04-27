@@ -1,33 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'fileutils'
+SCRIPT = File.expand_path(File.join('..', 'script', 'setup'), __dir__).freeze
 
-APP_ROOT = File.expand_path('..', __dir__).freeze
-
-def system!(*args)
-  system(*args) or abort "\n== Command #{args} failed =="
-end
-
-FileUtils.chdir APP_ROOT do
-  puts '== Update RubyGems =='
-  system! 'gem update --system'
-
-  puts '== Update Bundler =='
-  system! "gem install bundler -v '~> 2.0'"
-
-  puts '== Installing gems =='
-  system 'bundle check' or system! 'bundle install'
-
-  puts '== Install JavaScript dependencies =='
-  system! 'bin/rake yarn:install'
-
-  puts '== Updating database =='
-  system! 'bin/rails db:migrate'
-
-  puts '== Removing old logs and tempfiles =='
-  system! 'bin/rails log:clear tmp:clear'
-
-  puts '== Restarting application server =='
-  system! 'bin/rails restart'
-end
+system SCRIPT
