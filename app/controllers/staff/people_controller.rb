@@ -7,7 +7,7 @@ class Staff::PeopleController < ApplicationController
   def index
     authorize %i[staff person]
     @people = policy_scope(
-      ::Person,
+      Person,
       policy_scope_class: Staff::PersonPolicy::Scope,
     )
   end

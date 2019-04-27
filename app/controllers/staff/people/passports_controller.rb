@@ -15,6 +15,6 @@ class Staff::People::PassportsController < ApplicationController
 private
 
   def set_person
-    @person = ::Person.find params[:person_id]
+    @person = Person.find params[:person_id]
   end
 end
