@@ -197,8 +197,7 @@ group :test do
   gem 'shoulda-matchers', '4.0.0.rc1'
 
   # Cucumber Generator and Runtime for Rails.
-  gem 'cucumber-rails', '~> 1.6', require: false,
-                                  github:  'cucumber/cucumber-rails'
+  gem 'cucumber-rails', '~> 1.7', require: false
 
   # When a Cucumber step fails, it is useful to create a screenshot image
   # and HTML file of the current page.
