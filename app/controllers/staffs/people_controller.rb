@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::PeopleController < ApplicationController
+class Staffs::PeopleController < ApplicationController
   before_action :set_person, except: :index
 
   # GET /staff/people

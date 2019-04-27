@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   # Routes for staff only #
   #########################
 
-  namespace :staff do
+  namespace :staff, module: 'staffs' do
     root to: 'home#show'
 
     authenticate :user,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::HomeController < ApplicationController
+class Staffs::HomeController < ApplicationController
   # GET /staff
   def show
     authorize %i[staff home]

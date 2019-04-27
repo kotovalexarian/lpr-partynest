@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::PassportsController < ApplicationController
+class Staffs::PassportsController < ApplicationController
   before_action :set_passport, except: %i[index new create]
 
   # GET /staff/passports

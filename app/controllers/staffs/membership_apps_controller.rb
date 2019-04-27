@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::MembershipAppsController < ApplicationController
+class Staffs::MembershipAppsController < ApplicationController
   before_action :set_membership_app, except: :index
 
   # GET /staff/membership_apps

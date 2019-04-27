@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::People::ResidentRegistrationsController < ApplicationController
+class Staffs::People::ResidentRegistrationsController < ApplicationController
   before_action :set_person
 
   # GET /staff/people/:person_id/resident_registrations

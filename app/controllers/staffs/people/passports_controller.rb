@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::People::PassportsController < ApplicationController
+class Staffs::People::PassportsController < ApplicationController
   before_action :set_person
 
   # GET /staff/people/:person_id/passports
