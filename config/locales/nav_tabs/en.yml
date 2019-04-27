@@ -1,5 +1,7 @@
 en:
   nav_tabs:
+    account:
+      overview: Overview
     passport:
       overview: Overview
       confirmations: Confirmations

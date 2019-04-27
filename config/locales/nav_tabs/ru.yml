@@ -1,5 +1,7 @@
 ru:
   nav_tabs:
+    account:
+      overview: Обзор
     passport:
       overview: Обзор
       confirmations: Подтверждения
