@@ -52,8 +52,8 @@ sudo usermod -a -G rvm user
 Log out from system, then log in again. Install Ruby and Bundler:
 
 ```
-rvm install ruby-2.6.0
-rvm use ruby-2.6.0
+rvm install ruby-2.6.2
+rvm use ruby-2.6.2
 gem install bundler
 ```
 
