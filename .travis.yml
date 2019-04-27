@@ -39,7 +39,7 @@ before_install:
   - sudo mv geckodriver /usr/local/bin/
   - geckodriver --version
 
-install: script/setup --initial
+install: script/setup --travis
 
 script: bundle exec rake all
 

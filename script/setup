@@ -9,7 +9,19 @@ def system!(*args)
   system(*args) or abort "\n== Command #{args} failed =="
 end
 
+postgres_user = ENV['POSTGRES_USER'].to_s.strip
+postgres_user = nil if postgres_user.empty?
+
+postgres_db = ENV['POSTGRES_DB'].to_s.strip
+postgres_db = nil if postgres_db.empty?
+
 initial = !!ARGV.delete('--initial')
+travis  = !!ARGV.delete('--travis')
+
+raise 'Select single option' if initial && travis
+
+raise 'Set env var POSTGRES_USER' if travis && postgres_user.nil?
+raise 'Set env var POSTGRES_DB'   if travis && postgres_db.nil?
 
 FileUtils.chdir APP_ROOT do
   puts '== Update RubyGems =='
@@ -27,6 +39,9 @@ FileUtils.chdir APP_ROOT do
   if initial
     puts '== Preparing database =='
     system! 'bin/rails db:setup'
+  elsif travis
+    puts '== Preparing database =='
+    system! "psql -U #{postgres_user} -c 'CREATE DATABASE #{postgres_db};'"
   else
     puts '== Updating database =='
     system! 'bin/rails db:migrate'
