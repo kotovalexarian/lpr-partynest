@@ -119,7 +119,7 @@ group :development, :test do
 
   # Automatic Ruby code style checking tool.
   # Aims to enforce the community-driven Ruby Style Guide.
-  gem 'rubocop', '~> 0.63.1'
+  gem 'rubocop', '~> 0.67.2'
 
   # rspec-rails is a testing framework for Rails 3+
   gem 'rspec-rails', '~> 3.8'
