@@ -121,6 +121,10 @@ group :development, :test do
   # Aims to enforce the community-driven Ruby Style Guide.
   gem 'rubocop', '~> 0.67.2'
 
+  # A collection of RuboCop cops
+  # to check for performance optimizations in Ruby code.
+  gem 'rubocop-performance', '~> 1.1'
+
   # rspec-rails is a testing framework for Rails 3+
   gem 'rspec-rails', '~> 3.8'
 
