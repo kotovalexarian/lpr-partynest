@@ -19,7 +19,7 @@ FileUtils.chdir APP_ROOT do
   system! "gem install bundler -v '~> 2.0'"
 
   puts '== Installing gems =='
-  system 'bundle check' or system! 'bundle install'
+  system 'bin/bundle check' or system! 'bin/bundle install'
 
   puts '== Install JavaScript dependencies =='
   system! 'bin/rake yarn:install'
