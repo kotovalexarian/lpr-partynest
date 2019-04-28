@@ -22,7 +22,7 @@ RSpec.describe 'POST /users' do
 
     specify do
       expect(User.last).to have_attributes user_attributes.merge(
-        password:              nil,
+        password: nil,
         password_confirmation: nil,
       )
     end

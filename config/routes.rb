@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   ###############
 
   devise_for :users, controllers: {
-    sessions:           'users/sessions',
-    registrations:      'users/registrations',
-    confirmations:      'users/confirmations',
-    passwords:          'users/passwords',
-    unlocks:            'users/unlocks',
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+    unlocks: 'users/unlocks',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
 
@@ -56,17 +56,17 @@ Rails.application.routes.draw do
     resources :people, only: %i[index show] do
       resources :passports,
                 controller: 'people/passports',
-                only:       :index
+                only: :index
 
       resources :resident_registrations,
                 controller: 'people/resident_registrations',
-                only:       :index
+                only: :index
     end
 
     resources :passports, only: %i[index show new create] do
       resources :passport_confirmations,
                 controller: 'passports/passport_confirmations',
-                only:       %i[index create]
+                only: %i[index create]
     end
 
     resources :membership_apps, only: %i[index show]

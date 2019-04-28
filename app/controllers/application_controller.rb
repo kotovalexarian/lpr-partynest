@@ -28,7 +28,7 @@ private
   def set_raven_context
     Raven.user_context(
       account_id: current_account&.id,
-      user_id:    current_user&.id,
+      user_id: current_user&.id,
     )
 
     Raven.extra_context params: params.to_unsafe_h, url: request.url
@@ -63,7 +63,7 @@ private
   def render_method_not_allowed
     respond_to do |format|
       format.html do
-        render status:   :method_not_allowed,
+        render status: :method_not_allowed,
                template: 'errors/method_not_allowed'
       end
       format.json { render status: :method_not_allowed, json: {} }

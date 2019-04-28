@@ -5,7 +5,7 @@ class MembershipAppMailer < ApplicationMailer
 
   def tracking
     mail(
-      to:      @membership_app.email,
+      to: @membership_app.email,
       subject: translate('membership_app_mailer.tracking.subject'),
     )
   end

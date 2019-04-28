@@ -17,7 +17,7 @@ class Staffs::Passports::PassportConfirmationsController < ApplicationController
   def create
     ActiveRecord::Base.transaction do
       ConfirmPassport.call(passport: @passport,
-                           account:  current_account).tap do |context|
+                           account: current_account).tap do |context|
         authorize_if_present context.passport_confirmation
       end
     end

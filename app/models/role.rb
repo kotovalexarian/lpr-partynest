@@ -14,7 +14,7 @@ class Role < ApplicationRecord
   has_many :account_roles,
            -> { active },
            inverse_of: :role,
-           dependent:  :restrict_with_exception
+           dependent: :restrict_with_exception
 
   has_many :accounts, through: :account_roles
 
@@ -25,7 +25,7 @@ class Role < ApplicationRecord
   ###############
 
   validates :name,
-            presence:  true,
+            presence: true,
             inclusion: { in: NAMES }
 
   validates :resource_type,
@@ -43,9 +43,9 @@ class Role < ApplicationRecord
     resource_id = resource&.id unless resource.is_a? Class
 
     find_or_create_by!(
-      name:          role_name,
+      name: role_name,
       resource_type: resource_type,
-      resource_id:   resource_id,
+      resource_id: resource_id,
     )
   end
 

@@ -6,8 +6,8 @@ class CreateRegionalOffices < ActiveRecord::Migration[5.2]
       t.timestamps null: false
 
       t.references :country_state,
-                   null:        false,
-                   index:       { unique: true },
+                   null: false,
+                   index: { unique: true },
                    foreign_key: true
     end
   end

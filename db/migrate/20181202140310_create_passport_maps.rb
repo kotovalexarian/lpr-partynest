@@ -6,7 +6,7 @@ class CreatePassportMaps < ActiveRecord::Migration[5.2]
       t.timestamps null: false
 
       t.references :passport, null: false,
-                   index: { unique: true }, foreign_key: true
+                              index: { unique: true }, foreign_key: true
 
       t.string  :surname,        null: false
       t.string  :given_name,     null: false

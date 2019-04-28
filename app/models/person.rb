@@ -20,8 +20,8 @@ class Person < ApplicationRecord
   has_one :own_membership_app,
           class_name: 'MembershipApp',
           inverse_of: :person,
-          through:    :account,
-          source:     :own_membership_app
+          through: :account,
+          source: :own_membership_app
 
   ###############
   # Validations #

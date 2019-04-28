@@ -17,9 +17,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # GET|POST /users/auth/github/callback
   def github
     context = AuthenticateUserWithOmniauth.call(
-      provider:  auth_hash.provider,
+      provider: auth_hash.provider,
       remote_id: auth_hash.uid,
-      email:     auth_hash.info.email,
+      email: auth_hash.info.email,
     )
 
     sign_in_and_redirect context.user

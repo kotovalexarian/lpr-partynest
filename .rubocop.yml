@@ -15,9 +15,6 @@ AllCops:
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-Layout/AlignHash:
-  EnforcedColonStyle: table
-
 Layout/EmptyLinesAroundArguments:
   Enabled: false
 

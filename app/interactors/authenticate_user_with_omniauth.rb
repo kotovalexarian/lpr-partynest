@@ -33,7 +33,7 @@ private
 
   def build_user_omniauth
     context.user_omniauth = UserOmniauth.where(
-      provider:  context.provider,
+      provider: context.provider,
       remote_id: context.remote_id,
     ).lock(true).first_or_initialize do |new_user_omniauth|
       new_user_omniauth.user = context.user

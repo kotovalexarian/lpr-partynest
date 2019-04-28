@@ -67,9 +67,9 @@ Rails.application.configure do
   # Use a different cache store in production.
   cache_conf = Rails.application.settings :cache_store
   config.cache_store = :redis_cache_store, {
-    host:     cache_conf[:host],
-    port:     cache_conf[:port],
-    db:       cache_conf[:db],
+    host: cache_conf[:host],
+    port: cache_conf[:port],
+    db: cache_conf[:db],
     password: cache_conf[:password],
   }
 

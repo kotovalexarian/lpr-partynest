@@ -2,7 +2,7 @@
 
 class UniqueUsernameOfAccounts < ActiveRecord::Migration[6.0]
   def change
-    change_column :accounts, :username, :string, null:  false,
+    change_column :accounts, :username, :string, null: false,
                                                  index: { unique: true }
   end
 end

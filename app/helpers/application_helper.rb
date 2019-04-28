@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   NAV_TABS_LIST_HTML_CLASS = {
-    tabs:  'nav nav-tabs  d-none d-sm-flex',
+    tabs: 'nav nav-tabs  d-none d-sm-flex',
     pills: 'nav nav-pills d-flex d-sm-none flex-column',
   }.freeze
 

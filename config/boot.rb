@@ -14,11 +14,11 @@ development_mode = ['', nil, 'development'].include?(env)
 test_mode        = env == 'test'
 
 Bootsnap.setup(
-  cache_dir:            cache_dir,
-  development_mode:     development_mode,
-  load_path_cache:      true,
+  cache_dir: cache_dir,
+  development_mode: development_mode,
+  load_path_cache: true,
   autoload_paths_cache: true,
-  disable_trace:        false,
-  compile_cache_iseq:   test_mode,
-  compile_cache_yaml:   true,
+  disable_trace: false,
+  compile_cache_iseq: test_mode,
+  compile_cache_yaml: true,
 )

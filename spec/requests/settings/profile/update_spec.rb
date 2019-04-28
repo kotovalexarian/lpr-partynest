@@ -7,9 +7,9 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
 
   let :account_attributes do
     {
-      nickname:    Faker::Internet.username(3..36, %w[_]),
+      nickname: Faker::Internet.username(3..36, %w[_]),
       public_name: Faker::Name.name,
-      biography:   Faker::Lorem.paragraph,
+      biography: Faker::Lorem.paragraph,
     }
   end
 

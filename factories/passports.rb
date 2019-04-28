@@ -23,7 +23,7 @@ FactoryBot.define do
       after :build do |passport, evaluator|
         passport.images.attach(
           filename: evaluator.image_filename,
-          io:       File.open(evaluator.image_path),
+          io: File.open(evaluator.image_path),
         )
       end
     end

@@ -43,8 +43,8 @@ RSpec.describe ConfirmPassport do
 
     specify do
       expect(subject).to have_attributes(
-        passport:              passport,
-        account:               account,
+        passport: passport,
+        account: account,
         passport_confirmation: nil,
       )
     end
@@ -59,8 +59,8 @@ RSpec.describe ConfirmPassport do
 
     specify do
       expect(subject).to have_attributes(
-        passport:              passport,
-        account:               account,
+        passport: passport,
+        account: account,
         passport_confirmation: nil,
       )
     end
@@ -75,8 +75,8 @@ RSpec.describe ConfirmPassport do
 
     specify do
       expect(subject).to have_attributes(
-        passport:              passport,
-        account:               account,
+        passport: passport,
+        account: account,
         passport_confirmation: nil,
       )
     end

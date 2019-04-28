@@ -27,7 +27,7 @@ class Account < ApplicationRecord
   has_many :account_roles,
            -> { active },
            inverse_of: :account,
-           dependent:  :restrict_with_exception
+           dependent: :restrict_with_exception
 
   has_many :roles, through: :account_roles
 
@@ -37,7 +37,7 @@ class Account < ApplicationRecord
 
   has_one :own_membership_app,
           class_name: 'MembershipApp',
-          dependent:  :restrict_with_exception
+          dependent: :restrict_with_exception
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
 
@@ -59,9 +59,9 @@ class Account < ApplicationRecord
   validates :person, allow_nil: true, uniqueness: true
 
   validates :nickname,
-            presence:   true,
-            length:     { in: 3..36 },
-            format:     NICKNAME_RE,
+            presence: true,
+            length: { in: 3..36 },
+            format: NICKNAME_RE,
             uniqueness: { case_sensitive: false }
 
   validates :public_name, allow_nil: true, length: { in: 3..255 }

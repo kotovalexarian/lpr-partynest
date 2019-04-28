@@ -47,7 +47,7 @@ RSpec.describe 'POST /staff/passports/:passport_id/passport_confirmations' do
       specify do
         expect(PassportConfirmation.last).to have_attributes(
           passport: passport,
-          account:  current_account,
+          account: current_account,
         )
       end
     end
@@ -228,7 +228,7 @@ RSpec.describe 'POST /staff/passports/:passport_id/passport_confirmations' do
       specify do
         expect(PassportConfirmation.last).to have_attributes(
           passport: passport,
-          account:  current_account,
+          account: current_account,
         )
       end
     end
@@ -264,7 +264,7 @@ RSpec.describe 'POST /staff/passports/:passport_id/passport_confirmations' do
       specify do
         expect(PassportConfirmation.last).to have_attributes(
           passport: passport,
-          account:  current_account,
+          account: current_account,
         )
       end
     end
