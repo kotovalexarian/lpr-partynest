@@ -21,6 +21,14 @@ RSpec.describe Person do
 
   it do
     is_expected.to \
+      have_one(:current_relationship)
+      .class_name('Relationship')
+      .inverse_of(:person)
+      .order(number: :desc)
+  end
+
+  it do
+    is_expected.to \
       have_many(:passports)
       .dependent(:restrict_with_exception)
   end
@@ -61,6 +69,24 @@ RSpec.describe Person do
         relationship_2,
         relationship_3,
       ]
+    end
+  end
+
+  describe '#current_relationship' do
+    let! :relationship_2 do
+      create :supporter_relationship, person: subject, number: 2
+    end
+
+    let! :relationship_3 do
+      create :supporter_relationship, person: subject, number: 3
+    end
+
+    let! :relationship_1 do
+      create :supporter_relationship, person: subject, number: 1
+    end
+
+    specify do
+      expect(subject.current_relationship).to eq relationship_3
     end
   end
 

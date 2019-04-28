@@ -16,6 +16,11 @@ class Person < ApplicationRecord
            inverse_of: :person,
            dependent: :restrict_with_exception
 
+  has_one :current_relationship,
+          -> { order(number: :desc) },
+          class_name: 'Relationship',
+          inverse_of: :person
+
   has_many :passports, dependent: :restrict_with_exception
 
   has_many :resident_registrations, dependent: :restrict_with_exception
