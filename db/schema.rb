@@ -150,7 +150,15 @@ ActiveRecord::Schema.define(version: 2019_04_27_141639) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "person_id", null: false
+    t.bigint "regional_office_id", null: false
+    t.date "supporter_since", null: false
+    t.date "member_since"
+    t.date "excluded_since"
+    t.index ["excluded_since"], name: "index_relationships_on_excluded_since"
+    t.index ["member_since"], name: "index_relationships_on_member_since"
     t.index ["person_id"], name: "index_relationships_on_person_id"
+    t.index ["regional_office_id"], name: "index_relationships_on_regional_office_id"
+    t.index ["supporter_since"], name: "index_relationships_on_supporter_since"
   end
 
   create_table "resident_registrations", force: :cascade do |t|
@@ -221,6 +229,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_141639) do
   add_foreign_key "people", "regional_offices"
   add_foreign_key "regional_offices", "country_states"
   add_foreign_key "relationships", "people"
+  add_foreign_key "relationships", "regional_offices"
   add_foreign_key "resident_registrations", "people"
   add_foreign_key "user_omniauths", "users"
   add_foreign_key "users", "accounts"
