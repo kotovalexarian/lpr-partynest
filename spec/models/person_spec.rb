@@ -13,6 +13,12 @@ RSpec.describe Person do
 
   it do
     is_expected.to \
+      have_many(:relationships)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
       have_many(:passports)
       .dependent(:restrict_with_exception)
   end

@@ -11,6 +11,8 @@ class Person < ApplicationRecord
 
   has_one :account, dependent: :restrict_with_exception
 
+  has_many :relationships, dependent: :restrict_with_exception
+
   has_many :passports, dependent: :restrict_with_exception
 
   has_many :resident_registrations, dependent: :restrict_with_exception
