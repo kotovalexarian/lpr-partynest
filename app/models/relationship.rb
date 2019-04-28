@@ -39,6 +39,10 @@ class Relationship < ApplicationRecord
     end
   end
 
+  def supporter?
+    status == :supporter
+  end
+
 private
 
   def membership_dates_are_not_in_future

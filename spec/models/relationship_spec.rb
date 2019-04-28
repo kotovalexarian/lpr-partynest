@@ -131,4 +131,38 @@ RSpec.describe Relationship do
       end
     end
   end
+
+  describe '#supporter?' do
+    context 'for supporter' do
+      subject { create :supporter_relationship }
+
+      specify do
+        expect(subject.supporter?).to eq true
+      end
+    end
+
+    context 'for member' do
+      subject { create :member_relationship }
+
+      specify do
+        expect(subject.supporter?).to eq false
+      end
+    end
+
+    context 'for excluded supporter' do
+      subject { create :excluded_supporter_relationship }
+
+      specify do
+        expect(subject.supporter?).to eq false
+      end
+    end
+
+    context 'for excluded member' do
+      subject { create :excluded_member_relationship }
+
+      specify do
+        expect(subject.supporter?).to eq false
+      end
+    end
+  end
 end
