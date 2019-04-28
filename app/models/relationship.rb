@@ -29,6 +29,16 @@ class Relationship < ApplicationRecord
   # Methods #
   ###########
 
+  def status
+    if excluded_since
+      :excluded
+    elsif member_since
+      :member
+    else
+      :supporter
+    end
+  end
+
   def supporter_since_not_in_future?
     return true if supporter_since.nil?
 

@@ -97,4 +97,38 @@ RSpec.describe Relationship do
       it { is_expected.not_to allow_value subject.member_since    - 1 }
     end
   end
+
+  describe '#status' do
+    context 'for supporter' do
+      subject { create :supporter_relationship }
+
+      specify do
+        expect(subject.status).to eq :supporter
+      end
+    end
+
+    context 'for member' do
+      subject { create :member_relationship }
+
+      specify do
+        expect(subject.status).to eq :member
+      end
+    end
+
+    context 'for excluded supporter' do
+      subject { create :excluded_supporter_relationship }
+
+      specify do
+        expect(subject.status).to eq :excluded
+      end
+    end
+
+    context 'for excluded member' do
+      subject { create :excluded_member_relationship }
+
+      specify do
+        expect(subject.status).to eq :excluded
+      end
+    end
+  end
 end
