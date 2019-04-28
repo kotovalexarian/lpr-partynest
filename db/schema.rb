@@ -151,12 +151,13 @@ ActiveRecord::Schema.define(version: 2019_04_27_141639) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "person_id", null: false
     t.bigint "regional_office_id", null: false
+    t.integer "number", null: false
     t.date "supporter_since", null: false
     t.date "member_since"
     t.date "excluded_since"
     t.index ["excluded_since"], name: "index_relationships_on_excluded_since"
     t.index ["member_since"], name: "index_relationships_on_member_since"
-    t.index ["person_id"], name: "index_relationships_on_person_id"
+    t.index ["person_id", "number"], name: "index_relationships_on_person_id_and_number", unique: true
     t.index ["regional_office_id"], name: "index_relationships_on_regional_office_id"
     t.index ["supporter_since"], name: "index_relationships_on_supporter_since"
   end

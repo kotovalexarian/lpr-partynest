@@ -12,6 +12,14 @@ class Relationship < ApplicationRecord
   # Validations #
   ###############
 
+  validates :number,
+            presence:     true,
+            uniqueness:   { scope: :person_id },
+            numericality: {
+              only_integer:             true,
+              greater_than_or_equal_to: 0,
+            }
+
   validates :supporter_since, presence: true
 
   validate :membership_dates_are_not_in_future

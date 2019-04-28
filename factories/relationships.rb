@@ -5,6 +5,8 @@ FactoryBot.define do
     association :person, factory: :initial_person
     association :regional_office
 
+    sequence :number
+
     supporter_since { rand(1000..10_000).days.ago.to_date }
   end
 
