@@ -14,7 +14,9 @@ RSpec.describe Person do
   it do
     is_expected.to \
       have_many(:relationships)
+      .inverse_of(:person)
       .dependent(:restrict_with_exception)
+      .order(number: :asc)
   end
 
   it do
@@ -39,6 +41,28 @@ RSpec.describe Person do
   end
 
   it { is_expected.not_to validate_presence_of :regional_office }
+
+  describe '#relationships' do
+    let! :relationship_2 do
+      create :supporter_relationship, person: subject, number: 2
+    end
+
+    let! :relationship_3 do
+      create :supporter_relationship, person: subject, number: 3
+    end
+
+    let! :relationship_1 do
+      create :supporter_relationship, person: subject, number: 1
+    end
+
+    specify do
+      expect(subject.relationships).to eq [
+        relationship_1,
+        relationship_2,
+        relationship_3,
+      ]
+    end
+  end
 
   describe '#supporter_since' do
     def allow_value(*)

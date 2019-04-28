@@ -11,7 +11,10 @@ class Person < ApplicationRecord
 
   has_one :account, dependent: :restrict_with_exception
 
-  has_many :relationships, dependent: :restrict_with_exception
+  has_many :relationships,
+           -> { order(number: :asc) },
+           inverse_of: :person,
+           dependent: :restrict_with_exception
 
   has_many :passports, dependent: :restrict_with_exception
 
