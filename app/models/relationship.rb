@@ -47,6 +47,10 @@ class Relationship < ApplicationRecord
     status == :member
   end
 
+  def excluded?
+    status == :excluded
+  end
+
 private
 
   def membership_dates_are_not_in_future
