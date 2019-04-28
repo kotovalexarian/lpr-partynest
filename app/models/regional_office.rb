@@ -11,6 +11,8 @@ class RegionalOffice < ApplicationRecord
 
   has_many :people, dependent: :restrict_with_exception
 
+  has_many :relationships, dependent: :restrict_with_exception
+
   ###############
   # Validations #
   ###############

@@ -13,6 +13,12 @@ RSpec.describe RegionalOffice do
 
   it do
     is_expected.to \
+      have_many(:relationships)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
       validate_presence_of(:country_state)
       .with_message(:required)
   end
