@@ -7,9 +7,6 @@ en:
       country_state:
         one: State
         many: States
-      membership_app:
-        one: Membership application
-        many: Membership applications
       passport:
         one: Passport
         many: Passports
@@ -40,22 +37,8 @@ en:
         avatar: Avatar
       country_state:
         id: ID
-        membership_apps: Membership applications
         english_name: Name
         native_name: Name
-      membership_app:
-        id: ID
-        country_state: State
-        first_name: First name
-        last_name: Last name
-        middle_name: Middle name
-        date_of_birth: Date of birth
-        occupation: Occupation
-        email: Email
-        phone_number: Phone number
-        telegram_username: Telegram username
-        organization_membership: Membership in other social organizations
-        comment: Comment
       passport:
         id: ID
         confirmed: Confirmed?

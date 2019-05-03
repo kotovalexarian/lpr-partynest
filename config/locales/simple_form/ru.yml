@@ -10,11 +10,3 @@ ru:
       # html: '<abbr title="обязательно">*</abbr>'
     error_notification:
       default_message: 'Пожалуйста, исправьте следующие ошибки:'
-    labels:
-      membership_app:
-        country_state:
-          Регион преимущественного проживания
-    hints:
-      membership_app:
-        country_state:
-          Если подходящего варианта нет в списке, укажите его в комментарии

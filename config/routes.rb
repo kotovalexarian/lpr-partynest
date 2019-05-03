@@ -9,10 +9,6 @@ Rails.application.routes.draw do
 
   root to: 'home#show'
 
-  get  :application, to: 'membership_apps#show'
-  get  :join,        to: 'membership_apps#new'
-  post :join,        to: 'membership_apps#create'
-
   resources :accounts, param: :nickname, only: :show
 
   resources :country_states, only: %i[index show]
@@ -68,7 +64,5 @@ Rails.application.routes.draw do
                 controller: 'passports/passport_confirmations',
                 only: %i[index create]
     end
-
-    resources :membership_apps, only: %i[index show]
   end
 end

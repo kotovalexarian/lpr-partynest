@@ -39,15 +39,6 @@ RSpec.describe Person do
       .dependent(:restrict_with_exception)
   end
 
-  it do
-    is_expected.to \
-      have_one(:own_membership_app)
-      .class_name('MembershipApp')
-      .inverse_of(:person)
-      .through(:account)
-      .source(:own_membership_app)
-  end
-
   it { is_expected.not_to validate_presence_of :regional_office }
 
   describe '#relationships' do

@@ -7,8 +7,6 @@ class CountryState < ApplicationRecord
 
   has_one :regional_office, dependent: :restrict_with_exception
 
-  has_many :membership_apps, dependent: :restrict_with_exception
-
   ###############
   # Validations #
   ###############

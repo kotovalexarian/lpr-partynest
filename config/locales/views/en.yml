@@ -7,29 +7,6 @@ en:
         We stand for a free market and freedom of government intervention
         in the economy, for the principle of self-ownership and self-value
         of the human person.
-  membership_apps:
-    show:
-      congratulations: Congratulations!
-      excluded: You are excluded from party
-      header: Your application is being processed
-      lead_congratulations_supporter: >
-        You are already a supporter of the Libertarian party of Russia!
-      lead_congratulations_member: >
-        You are already a member of the Libertarian party of Russia!
-      lead_excluded:
-        You was excluded from Libertarian party of Russia
-        and can not apply for entry.
-      lead_text: >
-        You can track the status of your application on this page. Save it
-        to browser bookmarks. Also the link to this page was sent to email
-        address which you have provided. You will be contacted by provided
-        contacts soon.
-  membership_app_mailer:
-    tracking:
-      subject: Your application is being processed
-      lead_text: >
-        You can track the status of your application by the following link.
-        You will be contacted by provided contacts soon.
   passports:
     show:
       confirm: Confirm

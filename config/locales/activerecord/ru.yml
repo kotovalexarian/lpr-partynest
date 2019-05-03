@@ -7,9 +7,6 @@ ru:
       country_state:
         one: Регион
         many: Регионы
-      membership_app:
-        one: Заявление на вступление
-        many: Заявления на вступление
       passport:
         one: Паспорт
         many: Паспорта
@@ -40,22 +37,8 @@ ru:
         avatar: Аватар
       country_state:
         id: ID
-        membership_apps: Заявления на вступление
         english_name: Название
         native_name: Название
-      membership_app:
-        id: ID
-        country_state: Регион
-        first_name: Имя
-        last_name: Фамилия
-        middle_name: Отчество
-        date_of_birth: Дата рождения
-        occupation: Профессия или род деятельности
-        email: Адрес электронной почты
-        phone_number: Телефонный номер
-        telegram_username: Имя пользователя в Telegram
-        organization_membership: Членство в других общественных организациях
-        comment: Комментарий
       passport:
         id: ID
         confirmed: Подтверждён?

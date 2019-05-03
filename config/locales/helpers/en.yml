@@ -1,8 +1,5 @@
 en:
   helpers:
-    submit:
-      membership_app:
-        create: Send application
     person_status:
       not_in_party: Is not related to the party
       supporter: Party supporter

@@ -11,12 +11,6 @@ RSpec.describe CountryState do
       .dependent(:restrict_with_exception)
   end
 
-  it do
-    is_expected.to \
-      have_many(:membership_apps)
-      .dependent(:restrict_with_exception)
-  end
-
   it { is_expected.not_to validate_presence_of :regional_office }
 
   it { is_expected.to validate_presence_of :english_name }

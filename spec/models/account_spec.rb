@@ -28,13 +28,6 @@ RSpec.describe Account do
 
   it do
     is_expected.to \
-      have_one(:own_membership_app)
-      .class_name('MembershipApp')
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
       have_many(:passport_confirmations)
       .dependent(:restrict_with_exception)
   end
