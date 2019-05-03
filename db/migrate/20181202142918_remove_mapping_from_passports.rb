@@ -2,7 +2,6 @@
 
 class RemoveMappingFromPassports < ActiveRecord::Migration[5.2]
   def change
-    # rubocop:disable Rails/ReversibleMigration
     change_table :passports, bulk: true do |t|
       t.remove :surname
       t.remove :given_name
@@ -16,6 +15,5 @@ class RemoveMappingFromPassports < ActiveRecord::Migration[5.2]
       t.remove :unit_code
       t.remove :date_of_issue
     end
-    # rubocop:enable Rails/ReversibleMigration
   end
 end

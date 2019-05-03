@@ -52,6 +52,9 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
+Rails/ReversibleMigration:
+  Enabled: false
+
 Rails/SkipsModelValidations:
   Whitelist:
     - update_all
