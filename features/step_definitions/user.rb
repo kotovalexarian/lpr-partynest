@@ -58,7 +58,6 @@ end
 Given 'I am signed in as party supporter' do
   @person = create :supporter_person
   @account = create :usual_account, person: @person
-  create :membership_app, account: @account
 
   visit '/users/sign_in'
 
@@ -75,7 +74,6 @@ end
 Given 'I am signed in as party member' do
   @person = create :member_person
   @account = create :usual_account, person: @person
-  create :membership_app, account: @account
 
   visit '/users/sign_in'
 
@@ -92,7 +90,6 @@ end
 Given 'I am signed in as excluded party member' do
   @person = create :excluded_person
   @account = create :usual_account, person: @person
-  create :membership_app, account: @account
 
   visit '/users/sign_in'
 
