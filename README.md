@@ -8,6 +8,8 @@ Partynest
 
 A web application to manage political party members and supporters.
 
+Project name comes from Russian "партийное гнёздышко".
+
 
 
 Table of contents
