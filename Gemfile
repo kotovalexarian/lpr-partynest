@@ -95,7 +95,7 @@ gem 'pundit', '~> 2.0'
 gem 'interactor', '~> 3.1'
 
 # A generalized Rack framework for multiple-provider authentication.
-gem 'omniauth', '~> 1.8'
+gem 'omniauth', '~> 1.9'
 
 # Official OmniAuth strategy for GitHub.
 gem 'omniauth-github', '~> 1.3'
