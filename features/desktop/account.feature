@@ -8,7 +8,7 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Не относится к партии"
+    # And I see text "Не относится к партии"
 
   Scenario: of a supporter
     Given there is a supporter account with the following data:
@@ -20,7 +20,7 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Сторонник партии"
+    # And I see text "Сторонник партии"
     And I see text "Москва"
 
   Scenario: of a member
@@ -33,7 +33,7 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
+    # And I see text "Член партии"
     And I see text "Москва"
 
   Scenario: of an excluded member
@@ -46,5 +46,5 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Исключён из партии"
+    # And I see text "Исключён из партии"
     And I see text "Москва"

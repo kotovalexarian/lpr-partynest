@@ -11,20 +11,6 @@
 
       <p class="h3 text-muted"><%= @account.nickname %></p>
 
-      <div class="mb-2">
-        <i class="fas fa-user-tag"></i>
-
-        <% if @account.person&.party_member? %>
-          <%= translate :member, scope: %i[helpers person_status] %>
-        <% elsif @account.person&.party_supporter? %>
-          <%= translate :supporter, scope: %i[helpers person_status] %>
-        <% elsif @account.person&.excluded_from_party? %>
-          <%= translate :excluded, scope: %i[helpers person_status] %>
-        <% else %>
-          <%= translate :not_in_party, scope: %i[helpers person_status] %>
-        <% end %>
-      </div>
-
       <% if @account.person&.regional_office %>
         <div class="mb-2">
           <i class="fas fa-map-marker-alt"></i>
