@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Relationship < ApplicationRecord
+  enum status: %i[unrelated supporter member excluded]
+
   ################
   # Associations #
   ################
@@ -21,4 +23,6 @@ class Relationship < ApplicationRecord
             }
 
   validates :active_since, presence: true
+
+  validates :status, presence: true
 end

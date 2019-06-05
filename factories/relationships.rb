@@ -10,9 +10,19 @@ FactoryBot.define do
     sequence :active_since do |n|
       Date.new rand((10 * n)...(11 * n)), rand(1..12), rand(1..28)
     end
+
+    status { :supporter }
   end
 
-  factory :member_relationship, parent: :supporter_relationship
-  factory :excluded_supporter_relationship, parent: :supporter_relationship
-  factory :excluded_member_relationship, parent: :member_relationship
+  factory :member_relationship, parent: :supporter_relationship do
+    status { :member }
+  end
+
+  factory :excluded_supporter_relationship, parent: :supporter_relationship do
+    status { :excluded }
+  end
+
+  factory :excluded_member_relationship, parent: :member_relationship do
+    status { :excluded }
+  end
 end

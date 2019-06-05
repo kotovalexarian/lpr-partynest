@@ -24,4 +24,8 @@ RSpec.describe Relationship do
   describe '#active_since' do
     it { is_expected.to validate_presence_of :active_since }
   end
+
+  describe '#status' do
+    it { is_expected.to validate_presence_of :status }
+  end
 end
