@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_074518) do
+ActiveRecord::Schema.define(version: 2019_06_05_011616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,14 +133,8 @@ ActiveRecord::Schema.define(version: 2019_05_03_074518) do
     t.bigint "person_id", null: false
     t.bigint "regional_office_id", null: false
     t.integer "number", null: false
-    t.date "supporter_since", null: false
-    t.date "member_since"
-    t.date "excluded_since"
-    t.index ["excluded_since"], name: "index_relationships_on_excluded_since"
-    t.index ["member_since"], name: "index_relationships_on_member_since"
     t.index ["person_id", "number"], name: "index_relationships_on_person_id_and_number", unique: true
     t.index ["regional_office_id"], name: "index_relationships_on_regional_office_id"
-    t.index ["supporter_since"], name: "index_relationships_on_supporter_since"
   end
 
   create_table "resident_registrations", force: :cascade do |t|
