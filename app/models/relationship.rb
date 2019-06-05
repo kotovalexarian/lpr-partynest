@@ -19,4 +19,6 @@ class Relationship < ApplicationRecord
               only_integer: true,
               greater_than_or_equal_to: 0,
             }
+
+  validates :active_since, presence: true
 end

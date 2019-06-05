@@ -20,4 +20,8 @@ RSpec.describe Relationship do
         .is_greater_than_or_equal_to(0)
     end
   end
+
+  describe '#active_since' do
+    it { is_expected.to validate_presence_of :active_since }
+  end
 end
