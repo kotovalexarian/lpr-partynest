@@ -12,7 +12,8 @@ end
 When 'there is a supporter account with the following data:' do |table|
   options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
 
-  federal_subject = create :federal_subject, english_name: options[:federal_subject]
+  federal_subject =
+    create :federal_subject, english_name: options[:federal_subject]
   regional_office = create :regional_office, federal_subject: federal_subject
   person = create :supporter_person, regional_office: regional_office
 
@@ -26,7 +27,8 @@ end
 When 'there is a member account with the following data:' do |table|
   options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
 
-  federal_subject = create :federal_subject, english_name: options[:federal_subject]
+  federal_subject =
+    create :federal_subject, english_name: options[:federal_subject]
   regional_office = create :regional_office, federal_subject: federal_subject
   person = create :member_person, regional_office: regional_office
 
@@ -40,7 +42,8 @@ end
 When 'there is an excluded member account with the following data:' do |table|
   options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
 
-  federal_subject = create :federal_subject, english_name: options[:federal_subject]
+  federal_subject =
+    create :federal_subject, english_name: options[:federal_subject]
   regional_office = create :regional_office, federal_subject: federal_subject
   person = create :excluded_person, regional_office: regional_office
 
