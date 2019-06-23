@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CountryState do
+RSpec.describe FederalSubject do
   subject { create :country_state }
 
   it do

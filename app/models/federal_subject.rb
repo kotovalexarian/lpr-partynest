@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CountryState < ApplicationRecord
+class FederalSubject < ApplicationRecord
   ################
   # Associations #
   ################

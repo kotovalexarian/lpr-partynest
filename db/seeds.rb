@@ -9,8 +9,8 @@ CSV.foreach country_states_filename,
   native_name.strip!
   english_name.strip!
 
-  CountryState.where(english_name: english_name)
-              .first_or_create! do |new_country_state|
+  FederalSubject.where(english_name: english_name)
+                .first_or_create! do |new_country_state|
     new_country_state.native_name = native_name
   end
 end

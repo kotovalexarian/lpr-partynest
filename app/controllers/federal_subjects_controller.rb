@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class CountryStatesController < ApplicationController
+class FederalSubjectsController < ApplicationController
   before_action :set_country_state, except: :index
 
   # GET /country_states
   def index
     authorize :country_state
-    @country_states = policy_scope(CountryState)
+    @country_states = policy_scope(FederalSubject)
   end
 
   # GET /country_states/:id
@@ -17,6 +17,6 @@ class CountryStatesController < ApplicationController
 private
 
   def set_country_state
-    @country_state = CountryState.find params[:id]
+    @country_state = FederalSubject.find params[:id]
   end
 end

@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe CountryStatePolicy do
+RSpec.describe FederalSubjectPolicy do
   subject { described_class.new current_account, record }
 
   let :resolved_scope do
-    described_class::Scope.new(current_account, CountryState.all).resolve
+    described_class::Scope.new(current_account, FederalSubject.all).resolve
   end
 
   let!(:record) { create :country_state }
@@ -20,7 +20,7 @@ RSpec.describe CountryStatePolicy do
     it { is_expected.to forbid_edit_and_update_actions }
     it { is_expected.to forbid_action :destroy }
 
-    specify { expect(resolved_scope).to eq CountryState.all }
+    specify { expect(resolved_scope).to eq FederalSubject.all }
 
     specify { expect(resolved_scope).to include record }
     specify { expect(resolved_scope).to include other_record }

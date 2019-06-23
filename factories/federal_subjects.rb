@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :country_state do
     initialize_with do
-      CountryState.find_or_initialize_by english_name: english_name
+      FederalSubject.find_or_initialize_by english_name: english_name
     end
 
     english_name do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CountryStatePolicy < ApplicationPolicy
+class FederalSubjectPolicy < ApplicationPolicy
   def index?
     true
   end

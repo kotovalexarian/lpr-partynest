@@ -18,7 +18,7 @@
       <% if policy(:country_state).index? %>
         <li class="nav-item <%= :active if country_states_controller? %>">
           <%= link_to country_states_path, class: 'nav-link' do %>
-            <%= CountryState.model_name.human count: 0 %>
+            <%= FederalSubject.model_name.human count: 0 %>
           <% end %>
         </li>
       <% end %>
