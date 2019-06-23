@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_160009) do
+ActiveRecord::Schema.define(version: 2019_06_23_160130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,8 +120,8 @@ ActiveRecord::Schema.define(version: 2019_06_23_160009) do
   create_table "regional_offices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "country_state_id", null: false
-    t.index ["country_state_id"], name: "index_regional_offices_on_country_state_id", unique: true
+    t.bigint "federal_subject_id", null: false
+    t.index ["federal_subject_id"], name: "index_regional_offices_on_federal_subject_id", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 2019_06_23_160009) do
   add_foreign_key "passport_maps", "passports"
   add_foreign_key "passports", "people"
   add_foreign_key "people", "regional_offices"
-  add_foreign_key "regional_offices", "federal_subjects", column: "country_state_id"
+  add_foreign_key "regional_offices", "federal_subjects"
   add_foreign_key "relationships", "people"
   add_foreign_key "relationships", "regional_offices"
   add_foreign_key "resident_registrations", "people"
