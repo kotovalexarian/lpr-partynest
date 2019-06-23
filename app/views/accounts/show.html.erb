@@ -15,8 +15,8 @@
         <div class="mb-2">
           <i class="fas fa-map-marker-alt"></i>
           <%= link_to(
-                @account.person.regional_office.country_state.display_name,
-                @account.person.regional_office.country_state,
+                @account.person.regional_office.federal_subject.display_name,
+                @account.person.regional_office.federal_subject,
               ) %>
         </div>
       <% end %>

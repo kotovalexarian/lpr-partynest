@@ -6,8 +6,8 @@ module ApplicationHelper
     pills: 'nav nav-pills d-flex d-sm-none flex-column',
   }.freeze
 
-  def country_states_controller?
-    controller_path == 'country_states'
+  def federal_subjects_controller?
+    controller_path == 'federal_subjects'
   end
 
   def staff_controller?

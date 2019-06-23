@@ -13,13 +13,13 @@
     </thead>
 
     <tbody>
-      <% @country_states.each do |country_state| %>
+      <% @federal_subjects.each do |federal_subject| %>
         <tr>
-          <td><%= country_state.english_name %></td>
-          <td><%= country_state.native_name %></td>
+          <td><%= federal_subject.english_name %></td>
+          <td><%= federal_subject.native_name %></td>
           <td>
-            <% if policy(country_state).show? %>
-              <%= link_to country_state,
+            <% if policy(federal_subject).show? %>
+              <%= link_to federal_subject,
                           role: :button,
                           class: 'btn btn-light btn-sm' do %>
                 <i class="far fa-eye"></i>

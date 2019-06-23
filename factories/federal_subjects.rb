@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :country_state do
+  factory :federal_subject do
     initialize_with do
       FederalSubject.find_or_initialize_by english_name: english_name
     end

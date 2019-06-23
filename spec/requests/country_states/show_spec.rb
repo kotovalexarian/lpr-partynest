@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /country_states/:id' do
-  let!(:country_state) { create :country_state }
+RSpec.describe 'GET /federal_subjects/:id' do
+  let!(:federal_subject) { create :federal_subject }
 
   before do
     sign_in current_account.user if current_account&.user
-    get "/country_states/#{country_state.id}"
+    get "/federal_subjects/#{federal_subject.id}"
   end
 
   for_account_types nil, :guest, :usual, :superuser do

@@ -5,7 +5,7 @@ class RegionalOffice < ApplicationRecord
   # Associations #
   ################
 
-  belongs_to :country_state
+  belongs_to :federal_subject
 
   has_many :people, dependent: :restrict_with_exception
 
@@ -15,5 +15,5 @@ class RegionalOffice < ApplicationRecord
   # Validations #
   ###############
 
-  validates :country_state, uniqueness: true
+  validates :federal_subject, uniqueness: true
 end

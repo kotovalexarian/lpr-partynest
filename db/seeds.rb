@@ -2,16 +2,16 @@
 
 require 'csv'
 
-country_states_filename = Rails.root.join 'config', 'country_states.csv'
+federal_subjects_filename = Rails.root.join 'config', 'federal_subjects.csv'
 
-CSV.foreach country_states_filename,
+CSV.foreach federal_subjects_filename,
             col_sep: '|' do |(english_name, native_name)|
   native_name.strip!
   english_name.strip!
 
   FederalSubject.where(english_name: english_name)
-                .first_or_create! do |new_country_state|
-    new_country_state.native_name = native_name
+                .first_or_create! do |new_federal_subject|
+    new_federal_subject.native_name = native_name
   end
 end
 

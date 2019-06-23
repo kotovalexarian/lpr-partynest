@@ -15,9 +15,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if policy(:country_state).index? %>
-        <li class="nav-item <%= :active if country_states_controller? %>">
-          <%= link_to country_states_path, class: 'nav-link' do %>
+      <% if policy(:federal_subject).index? %>
+        <li class="nav-item <%= :active if federal_subjects_controller? %>">
+          <%= link_to federal_subjects_path, class: 'nav-link' do %>
             <%= FederalSubject.model_name.human count: 0 %>
           <% end %>
         </li>

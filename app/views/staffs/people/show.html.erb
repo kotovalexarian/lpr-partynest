@@ -24,8 +24,8 @@
     <dd>
       <% if @person.regional_office %>
         <%= link_to(
-              @person.regional_office.country_state.display_name,
-              @person.regional_office.country_state,
+              @person.regional_office.federal_subject.display_name,
+              @person.regional_office.federal_subject,
             ) %>
       <% else %>
         <%= translate :none %>

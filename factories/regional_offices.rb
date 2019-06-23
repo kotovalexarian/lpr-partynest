@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :regional_office do
     initialize_with do
-      RegionalOffice.find_or_initialize_by country_state: country_state
+      RegionalOffice.find_or_initialize_by federal_subject: federal_subject
     end
 
-    association :country_state
+    association :federal_subject
   end
 end

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe FederalSubject do
-  subject { create :country_state }
+  subject { create :federal_subject }
 
   it do
     is_expected.to \
@@ -20,7 +20,9 @@ RSpec.describe FederalSubject do
   it { is_expected.to validate_uniqueness_of :native_name }
 
   describe '#display_name' do
-    subject { create :country_state, native_name: Faker::Address.unique.state }
+    subject do
+      create :federal_subject, native_name: Faker::Address.unique.state
+    end
 
     around do |example|
       I18n.with_locale locale do

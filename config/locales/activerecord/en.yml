@@ -4,7 +4,7 @@ en:
       account:
         one: Account
         many: Accounts
-      country_state:
+      federal_subject:
         one: State
         many: States
       passport:
@@ -35,7 +35,7 @@ en:
         public_name: Public name
         biography: Bio
         avatar: Avatar
-      country_state:
+      federal_subject:
         id: ID
         english_name: Name
         native_name: Name

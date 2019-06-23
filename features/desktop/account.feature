@@ -12,10 +12,10 @@ Feature: Account
 
   Scenario: of a supporter
     Given there is a supporter account with the following data:
-      | nickname      | kotovalexarian |
-      | public_name   | Alex Kotov     |
-      | biography     | Hi there :)    |
-      | country_state | Москва         |
+      | nickname        | kotovalexarian |
+      | public_name     | Alex Kotov     |
+      | biography       | Hi there :)    |
+      | federal_subject | Москва         |
     When I visit "/accounts/kotovalexarian"
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
@@ -25,10 +25,10 @@ Feature: Account
 
   Scenario: of a member
     Given there is a member account with the following data:
-      | nickname      | kotovalexarian |
-      | public_name   | Alex Kotov     |
-      | biography     | Hi there :)    |
-      | country_state | Москва         |
+      | nickname        | kotovalexarian |
+      | public_name     | Alex Kotov     |
+      | biography       | Hi there :)    |
+      | federal_subject | Москва         |
     When I visit "/accounts/kotovalexarian"
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
@@ -38,10 +38,10 @@ Feature: Account
 
   Scenario: of an excluded member
     Given there is an excluded member account with the following data:
-      | nickname      | kotovalexarian |
-      | public_name   | Alex Kotov     |
-      | biography     | Hi there :)    |
-      | country_state | Москва         |
+      | nickname        | kotovalexarian |
+      | public_name     | Alex Kotov     |
+      | biography       | Hi there :)    |
+      | federal_subject | Москва         |
     When I visit "/accounts/kotovalexarian"
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"

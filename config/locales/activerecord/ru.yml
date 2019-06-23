@@ -4,7 +4,7 @@ ru:
       account:
         one: Аккаунт
         many: Аккаунты
-      country_state:
+      federal_subject:
         one: Регион
         many: Регионы
       passport:
@@ -35,7 +35,7 @@ ru:
         public_name: Публичное имя
         biography: Биография
         avatar: Аватар
-      country_state:
+      federal_subject:
         id: ID
         english_name: Название
         native_name: Название

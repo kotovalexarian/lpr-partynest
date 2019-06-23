@@ -9,10 +9,10 @@ RSpec.describe FederalSubjectPolicy do
     described_class::Scope.new(current_account, FederalSubject.all).resolve
   end
 
-  let!(:record) { create :country_state }
-  let!(:other_record) { create :country_state }
+  let!(:record) { create :federal_subject }
+  let!(:other_record) { create :federal_subject }
 
-  before { create_list :country_state, 3 }
+  before { create_list :federal_subject, 3 }
 
   for_account_types nil, :guest, :usual, :superuser do
     it { is_expected.to permit_actions %i[index show] }
