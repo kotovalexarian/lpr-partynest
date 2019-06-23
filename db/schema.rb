@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_041924) do
+ActiveRecord::Schema.define(version: 2019_06_23_160009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 2019_06_05_041924) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "country_states", force: :cascade do |t|
+  create_table "federal_subjects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "english_name", null: false
     t.string "native_name", null: false
-    t.index ["english_name"], name: "index_country_states_on_english_name", unique: true
-    t.index ["native_name"], name: "index_country_states_on_native_name", unique: true
+    t.index ["english_name"], name: "index_federal_subjects_on_english_name", unique: true
+    t.index ["native_name"], name: "index_federal_subjects_on_native_name", unique: true
   end
 
   create_table "passport_confirmations", force: :cascade do |t|
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_041924) do
   add_foreign_key "passport_maps", "passports"
   add_foreign_key "passports", "people"
   add_foreign_key "people", "regional_offices"
-  add_foreign_key "regional_offices", "country_states"
+  add_foreign_key "regional_offices", "federal_subjects", column: "country_state_id"
   add_foreign_key "relationships", "people"
   add_foreign_key "relationships", "regional_offices"
   add_foreign_key "resident_registrations", "people"
