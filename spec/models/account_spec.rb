@@ -7,6 +7,8 @@ RSpec.describe Account do
 
   it { is_expected.to belong_to(:person).optional }
 
+  xit { is_expected.to belong_to(:contacts_list).required }
+
   it do
     is_expected.to \
       have_one(:user)

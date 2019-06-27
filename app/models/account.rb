@@ -33,6 +33,8 @@ class Account < ApplicationRecord
 
   belongs_to :person, optional: true
 
+  belongs_to :contacts_list
+
   has_one :user, dependent: :restrict_with_exception
 
   has_many :passport_confirmations, dependent: :restrict_with_exception
@@ -42,6 +44,10 @@ class Account < ApplicationRecord
   #############
 
   after_initialize :generate_nickname
+
+  before_validation do
+    self.contacts_list ||= ContactsList.new
+  end
 
   before_validation :turn_blanks_into_nils
   before_validation :strip_extra_spaces
@@ -53,6 +59,8 @@ class Account < ApplicationRecord
   ###############
 
   validates :person, allow_nil: true, uniqueness: true
+
+  validates :contacts_list, uniqueness: true
 
   validates :nickname,
             presence: true,

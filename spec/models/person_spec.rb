@@ -9,6 +9,8 @@ RSpec.describe Person do
 
   it { is_expected.to belong_to(:regional_office).optional }
 
+  xit { is_expected.to belong_to(:contacts_list).required }
+
   it { is_expected.to have_one(:account).dependent(:restrict_with_exception) }
 
   it do

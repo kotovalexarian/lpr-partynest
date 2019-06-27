@@ -9,6 +9,8 @@ class Person < ApplicationRecord
 
   belongs_to :regional_office, optional: true
 
+  belongs_to :contacts_list
+
   has_one :account, dependent: :restrict_with_exception
 
   has_many :relationships,
@@ -24,4 +26,18 @@ class Person < ApplicationRecord
   has_many :passports, dependent: :restrict_with_exception
 
   has_many :resident_registrations, dependent: :restrict_with_exception
+
+  ###############
+  # Validations #
+  ###############
+
+  validates :contacts_list, uniqueness: true
+
+  #############
+  # Callbacks #
+  #############
+
+  before_validation do
+    self.contacts_list ||= ContactsList.new
+  end
 end

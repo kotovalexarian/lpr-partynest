@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_160130) do
+ActiveRecord::Schema.define(version: 2019_06_27_000456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2019_06_23_160130) do
     t.string "nickname", null: false
     t.text "biography"
     t.string "public_name"
+    t.bigint "contacts_list_id", null: false
+    t.index ["contacts_list_id"], name: "index_accounts_on_contacts_list_id", unique: true
     t.index ["person_id"], name: "index_accounts_on_person_id", unique: true
   end
 
@@ -57,6 +59,11 @@ ActiveRecord::Schema.define(version: 2019_06_23_160130) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "contacts_lists", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "federal_subjects", force: :cascade do |t|
@@ -114,6 +121,8 @@ ActiveRecord::Schema.define(version: 2019_06_23_160130) do
     t.integer "sex", null: false
     t.date "date_of_birth", null: false
     t.string "place_of_birth", null: false
+    t.bigint "contacts_list_id", null: false
+    t.index ["contacts_list_id"], name: "index_people_on_contacts_list_id", unique: true
     t.index ["regional_office_id"], name: "index_people_on_regional_office_id"
   end
 
@@ -196,11 +205,13 @@ ActiveRecord::Schema.define(version: 2019_06_23_160130) do
 
   add_foreign_key "account_roles", "accounts"
   add_foreign_key "account_roles", "roles"
+  add_foreign_key "accounts", "contacts_lists"
   add_foreign_key "accounts", "people"
   add_foreign_key "passport_confirmations", "accounts"
   add_foreign_key "passport_confirmations", "passports"
   add_foreign_key "passport_maps", "passports"
   add_foreign_key "passports", "people"
+  add_foreign_key "people", "contacts_lists"
   add_foreign_key "people", "regional_offices"
   add_foreign_key "regional_offices", "federal_subjects"
   add_foreign_key "relationships", "people"
