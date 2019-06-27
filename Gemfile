@@ -77,7 +77,7 @@ gem 'sentry-raven'
 gem 'devise', '~> 4.6'
 
 # Translations for the devise gem.
-gem 'devise-i18n', '~> 1.7'
+gem 'devise-i18n', '~> 1.8'
 
 # Very simple Roles library without any authorization enforcement
 # supporting scope on resource objects (instance or class).
