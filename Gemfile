@@ -39,7 +39,7 @@ gem 'bcrypt', '~> 3.1'
 # gem 'mini_magick', '~> 4.8'
 
 # Reduces boot times through caching; required in config/boot.rb.
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.4.0', require: false
 
 # Provides extended documentation support for the REPL
 # by means of improving the `show-doc` and `show-source` commands.
