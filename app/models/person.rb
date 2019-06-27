@@ -32,12 +32,4 @@ class Person < ApplicationRecord
   ###############
 
   validates :contacts_list, uniqueness: true
-
-  #############
-  # Callbacks #
-  #############
-
-  before_validation do
-    self.contacts_list ||= ContactsList.new
-  end
 end
