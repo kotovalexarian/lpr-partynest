@@ -46,7 +46,7 @@ class Account < ApplicationRecord
   after_initialize :generate_nickname
 
   before_validation do
-    self.contacts_list ||= ContactsList.new
+    self.contacts_list ||= person ? person.contacts_list : ContactsList.new
   end
 
   before_validation :turn_blanks_into_nils
@@ -73,6 +73,8 @@ class Account < ApplicationRecord
   validates :biography, allow_nil: true, length: { in: 3..10_000 }
 
   validates :avatar, allow_nil: true, image: true
+
+  validate :contacts_list_corresponds_person
 
   ###########
   # Methods #
@@ -131,5 +133,11 @@ private
   def strip_extra_spaces
     self.public_name = public_name&.strip
     self.biography   = biography&.strip
+  end
+
+  def contacts_list_corresponds_person
+    return if person.nil?
+
+    errors.add :contacts_list unless contacts_list == person.contacts_list
   end
 end

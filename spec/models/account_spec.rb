@@ -47,6 +47,30 @@ RSpec.describe Account do
     end
   end
 
+  describe '#contacts_list' do
+    def allow_value(*)
+      super.for :contacts_list
+    end
+
+    context 'for usual account' do
+      subject { create :usual_account }
+
+      it { is_expected.to allow_value create :contacts_list }
+    end
+
+    context 'for personal account' do
+      subject { create :personal_account }
+
+      it { is_expected.not_to allow_value create :contacts_list }
+
+      it { is_expected.to allow_value subject.person.contacts_list }
+
+      specify do
+        expect(subject.contacts_list).to eq subject.person.contacts_list
+      end
+    end
+  end
+
   describe '#nickname' do
     def allow_value(*)
       super.for :nickname
