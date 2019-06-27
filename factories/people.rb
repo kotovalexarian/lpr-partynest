@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :initial_person, class: Person do
-    association :contacts_list
+    association :contacts_list, factory: :empty_contacts_list
 
     first_name { Faker::Name.first_name }
     middle_name { Faker::Name.first_name }

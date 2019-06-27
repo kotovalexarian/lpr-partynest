@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :contacts_list
+  factory :empty_contacts_list, class: ContactsList
 end

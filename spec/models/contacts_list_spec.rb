@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ContactsList do
-  subject { create :contacts_list }
+  subject { create :empty_contacts_list }
 
   it do
     is_expected.to \

@@ -55,13 +55,13 @@ RSpec.describe Account do
     context 'for usual account' do
       subject { create :usual_account }
 
-      it { is_expected.to allow_value create :contacts_list }
+      it { is_expected.to allow_value create :empty_contacts_list }
     end
 
     context 'for personal account' do
       subject { create :personal_account }
 
-      it { is_expected.not_to allow_value create :contacts_list }
+      it { is_expected.not_to allow_value create :empty_contacts_list }
 
       it { is_expected.to allow_value subject.person.contacts_list }
 
