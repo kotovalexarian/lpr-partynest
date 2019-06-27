@@ -98,7 +98,7 @@ gem 'omniauth', '~> 1.9'
 gem 'omniauth-github', '~> 1.3'
 
 # A rack middleware for throttling and blocking abusive requests.
-gem 'rack-attack', '~> 5.4'
+gem 'rack-attack', '~> 6.0'
 
 # Simple, efficient background processing for Ruby.
 gem 'sidekiq', '~> 5.2'
