@@ -116,11 +116,15 @@ group :development, :test do
 
   # Automatic Ruby code style checking tool.
   # Aims to enforce the community-driven Ruby Style Guide.
-  gem 'rubocop', '~> 0.67.2'
+  gem 'rubocop', '~> 0.72.0'
 
   # A collection of RuboCop cops
   # to check for performance optimizations in Ruby code.
-  gem 'rubocop-performance', '~> 1.1'
+  gem 'rubocop-performance', '~> 1.4'
+
+  # Automatic Rails code style checking tool. A RuboCop extension
+  # focused on enforcing Rails best practices and coding conventions.
+  gem 'rubocop-rails', '~> 2.2'
 
   # rspec-rails is a testing framework for Rails 3+
   gem 'rspec-rails', '~> 3.8'
