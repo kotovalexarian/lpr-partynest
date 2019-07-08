@@ -179,6 +179,22 @@ RSpec.describe Account do
     end
   end
 
+  describe '#roles' do
+    subject { create :usual_account }
+
+    let(:role) { subject.add_role :superuser }
+
+    context 'when role is added twice' do
+      before do
+        AccountRole.create! account: subject, role: role
+      end
+
+      specify do
+        expect(subject.roles).to eq [role]
+      end
+    end
+  end
+
   describe '#has_role?' do
     subject { create :usual_account }
 

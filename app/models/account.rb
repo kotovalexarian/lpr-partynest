@@ -29,7 +29,9 @@ class Account < ApplicationRecord
            inverse_of: :account,
            dependent: :restrict_with_exception
 
-  has_many :roles, through: :account_roles
+  has_many :roles,
+           -> { distinct },
+           through: :account_roles
 
   belongs_to :person, optional: true
 
