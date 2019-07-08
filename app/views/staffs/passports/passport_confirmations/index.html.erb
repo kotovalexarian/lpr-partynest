@@ -35,8 +35,8 @@
             <%= passport_confirmation.id %>
           </td>
           <td>
-            <%= truncate passport_confirmation.account.user&.email,
-                         length: 50 %>
+            <%= link_to passport_confirmation.account.nickname,
+                        passport_confirmation.account %>
           </td>
         </tr>
       <% end %>
