@@ -94,6 +94,12 @@ gem 'interactor', '~> 3.1'
 # A generalized Rack framework for multiple-provider authentication.
 gem 'omniauth', '~> 1.9'
 
+# This gem provides a mitigation against CVE-2015-9284 (Cross-Site Request
+# Forgery on the request phrase when using OmniAuth gem with a Ruby on Rails
+# application) by implementing a CSRF token verifier that directly utilize
+# `ActionController::RequestForgeryProtection` code from Rails.
+gem 'omniauth-rails_csrf_protection', '~> 0.1'
+
 # Official OmniAuth strategy for GitHub.
 gem 'omniauth-github', '~> 1.3'
 

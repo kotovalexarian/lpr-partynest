@@ -19,7 +19,7 @@
 
 <%- if display_omniauth_links? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to translate('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)), omniauth_authorize_path(resource_name, provider) %>
+    <%= link_to translate('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)), omniauth_authorize_path(resource_name, provider), method: :post %>
     <br/>
   <% end -%>
 <% end -%>
