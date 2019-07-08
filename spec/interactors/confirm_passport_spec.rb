@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ConfirmPassport do
   subject { described_class.call passport: passport, account: account }
 
-  let!(:passport) { create :passport_with_passport_map_and_image }
+  let!(:passport) { create :passport_with_map_and_image }
   let!(:account) { create :usual_account }
 
   specify do
@@ -51,7 +51,7 @@ RSpec.describe ConfirmPassport do
   end
 
   context 'when passport has a passport map' do
-    let!(:passport) { create :passport_with_passport_map }
+    let!(:passport) { create :passport_with_map }
 
     specify do
       expect(subject).to be_failure
@@ -83,7 +83,7 @@ RSpec.describe ConfirmPassport do
   end
 
   context 'when passport has a passport map and an image' do
-    let!(:passport) { create :passport_with_passport_map_and_image }
+    let!(:passport) { create :passport_with_map_and_image }
 
     specify do
       expect { subject }.to \

@@ -30,7 +30,7 @@ RSpec.describe 'GET /staff/passports/:id' do
   end
 
   context 'when passport has a passport map' do
-    let!(:passport) { create :passport_with_passport_map }
+    let!(:passport) { create :passport_with_map }
 
     specify do
       expect(response).to have_http_status :ok
@@ -46,7 +46,7 @@ RSpec.describe 'GET /staff/passports/:id' do
   end
 
   context 'when passport has a passport map and an image' do
-    let!(:passport) { create :passport_with_passport_map_and_image }
+    let!(:passport) { create :passport_with_map_and_image }
 
     specify do
       expect(response).to have_http_status :ok

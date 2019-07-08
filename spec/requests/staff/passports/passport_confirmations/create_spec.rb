@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.xdescribe 'POST /staff/passports/:passport_id/passport_confirmations' do
-  let!(:passport) { create :passport_with_passport_map_and_image }
+  let!(:passport) { create :passport_with_map_and_image }
 
   def make_request
     post "/staff/passports/#{passport.id}/passport_confirmations"
@@ -83,7 +83,7 @@ RSpec.xdescribe 'POST /staff/passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport has passport map' do
-    let!(:passport) { create :passport_with_passport_map }
+    let!(:passport) { create :passport_with_map }
 
     let(:current_account) { create :usual_account }
 
@@ -141,7 +141,7 @@ RSpec.xdescribe 'POST /staff/passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport has passport map and image' do
-    let!(:passport) { create :passport_with_passport_map_and_image }
+    let!(:passport) { create :passport_with_map_and_image }
 
     let(:current_account) { create :usual_account }
 

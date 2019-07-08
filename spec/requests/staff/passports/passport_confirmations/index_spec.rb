@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'GET /staff/passports/:passport_id/passport_confirmations' do
-  let!(:passport) { create :passport_with_passport_map_and_image }
+  let!(:passport) { create :passport_with_map_and_image }
   let(:current_account) { create :usual_account }
 
   def make_request
@@ -30,7 +30,7 @@ RSpec.describe 'GET /staff/passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport has passport map' do
-    let!(:passport) { create :passport_with_passport_map }
+    let!(:passport) { create :passport_with_map }
 
     specify do
       expect(response).to have_http_status :ok
@@ -46,7 +46,7 @@ RSpec.describe 'GET /staff/passports/:passport_id/passport_confirmations' do
   end
 
   context 'when passport has passport map and image' do
-    let!(:passport) { create :passport_with_passport_map_and_image }
+    let!(:passport) { create :passport_with_map_and_image }
 
     specify do
       expect(response).to have_http_status :ok

@@ -37,7 +37,7 @@ RSpec.describe Passport do
     end
 
     context 'when passport has passport map' do
-      subject { create :passport_with_passport_map }
+      subject { create :passport_with_map }
 
       it { is_expected.to allow_value false }
       it { is_expected.not_to allow_value true }
@@ -51,7 +51,7 @@ RSpec.describe Passport do
     end
 
     context 'when passport has passport map and image' do
-      subject { create :passport_with_passport_map_and_image }
+      subject { create :passport_with_map_and_image }
 
       it { is_expected.to allow_value false }
       it { is_expected.not_to allow_value true }

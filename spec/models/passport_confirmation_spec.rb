@@ -19,7 +19,7 @@ RSpec.describe PassportConfirmation do
 
   it do
     is_expected.not_to \
-      allow_value(create(:passport_with_passport_map)).for :passport
+      allow_value(create(:passport_with_map)).for :passport
   end
 
   it do
@@ -29,7 +29,7 @@ RSpec.describe PassportConfirmation do
 
   it do
     is_expected.to \
-      allow_value(create(:passport_with_passport_map_and_image)).for :passport
+      allow_value(create(:passport_with_map_and_image)).for :passport
   end
 
   it do

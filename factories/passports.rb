@@ -6,7 +6,7 @@ FactoryBot.define do
 
     confirmed { false }
 
-    trait :with_passport_map do
+    trait :with_map do
       after :create do |passport, _evaluator|
         create :passport_map, passport: passport
       end
@@ -29,17 +29,17 @@ FactoryBot.define do
     end
   end
 
-  factory :passport_with_passport_map,
+  factory :passport_with_map,
           parent: :empty_passport,
-          traits: %i[with_passport_map]
+          traits: %i[with_map]
 
   factory :passport_with_image,
           parent: :empty_passport,
           traits: %i[with_image]
 
-  factory :passport_with_passport_map_and_image,
+  factory :passport_with_map_and_image,
           parent: :empty_passport,
-          traits: %i[with_passport_map with_image] do
+          traits: %i[with_map with_image] do
     trait :with_almost_enough_confirmations do
       after :create do |passport, _evaluator|
         create_list :passport_confirmation,
@@ -58,11 +58,11 @@ FactoryBot.define do
   end
 
   factory :passport_with_almost_enough_confirmations,
-          parent: :passport_with_passport_map_and_image,
+          parent: :passport_with_map_and_image,
           traits: %i[with_almost_enough_confirmations]
 
   factory :passport_with_enough_confirmations,
-          parent: :passport_with_passport_map_and_image,
+          parent: :passport_with_map_and_image,
           traits: %i[with_enough_confirmations]
 
   factory :confirmed_passport, parent: :passport_with_enough_confirmations do
