@@ -1,12 +1,12 @@
 <div class="container">
   <ul>
-    <% if policy([:staff, :person]).index? %>
+    <% if policy(%i[staff person]).index? %>
       <li>
         <%= link_to Person.model_name.human(count: 0), staff_people_path %>
       </li>
     <% end %>
 
-    <% if policy([:staff, :passport]).index? %>
+    <% if policy(%i[staff passport]).index? %>
       <li>
         <%= link_to Passport.model_name.human(count: 0), staff_passports_path %>
       </li>
