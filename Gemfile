@@ -175,7 +175,7 @@ group :development do
   gem 'rails-erd', '~> 1.5'
 
   # YARD is a documentation generation tool for the Ruby programming language.
-  gem 'yard', '~> 0.9'
+  gem 'yard', '~> 0.9', '>= 0.9.20'
 
   # When mail is sent from your application,
   # Letter Opener will open a preview in the browser instead of sending.
