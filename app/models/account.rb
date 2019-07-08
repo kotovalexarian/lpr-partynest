@@ -101,7 +101,7 @@ class Account < ApplicationRecord
       self.class.define_dynamic_method role.name, resource
     end
 
-    roles << role
+    account_roles.where(role: role).first_or_create!
 
     role
   end
