@@ -11,11 +11,14 @@ class Passport < ApplicationRecord
 
   has_many_attached :images
 
-  has_many :passport_maps, dependent: :restrict_with_exception
+  has_many :passport_maps,
+           dependent: :restrict_with_exception
 
-  has_many :passport_confirmations, dependent: :restrict_with_exception
+  has_many :passport_confirmations,
+           dependent: :restrict_with_exception
 
-  accepts_nested_attributes_for :passport_maps, reject_if: :blank_passport_map?
+  accepts_nested_attributes_for :passport_maps,
+                                reject_if: :blank_passport_map?
 
   ###############
   # Validations #
