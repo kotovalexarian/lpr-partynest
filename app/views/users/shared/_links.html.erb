@@ -1,17 +1,20 @@
 <hr/>
 
 <%- if display_password_reset_link? %>
-  <%= link_to translate('.forgot_your_password'), new_password_path(resource_name) %>
+  <%= link_to translate('.forgot_your_password'),
+              new_password_path(resource_name) %>
   <br/>
 <% end -%>
 
 <%- if display_email_confirmation_link? %>
-  <%= link_to translate('.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %>
+  <%= link_to translate('.didn_t_receive_confirmation_instructions'),
+              new_confirmation_path(resource_name) %>
   <br/>
 <% end -%>
 
 <%- if display_unlock_link? %>
-  <%= link_to translate('.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %>
+  <%= link_to translate('.didn_t_receive_unlock_instructions'),
+              new_unlock_path(resource_name) %>
   <br/>
 <% end -%>
 
@@ -19,7 +22,10 @@
 
 <%- if display_omniauth_links? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to translate('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)), omniauth_authorize_path(resource_name, provider), method: :post %>
+    <%= link_to translate('.sign_in_with_provider',
+                          provider: OmniAuth::Utils.camelize(provider)),
+                omniauth_authorize_path(resource_name, provider),
+                method: :post %>
     <br/>
   <% end -%>
 <% end -%>
