@@ -62,7 +62,8 @@ Rails.application.routes.draw do
     resources :passports, only: %i[index show new create] do
       resources :passport_confirmations,
                 controller: 'passports/passport_confirmations',
-                only: %i[index create]
+                # only: %i[index create]
+                only: %i[index]
     end
   end
 end
