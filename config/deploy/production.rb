@@ -2,6 +2,8 @@
 
 server 'partynest.libertarian-party.com', roles: %w[web app db]
 
+append :linked_dirs, '.bundle'
+
 namespace :deploy do
   after :finished, :change_group
 
