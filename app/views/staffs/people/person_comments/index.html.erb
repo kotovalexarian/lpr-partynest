@@ -1,0 +1,29 @@
+<div class="container">
+  <%= render partial: 'staffs/people/nav_tabs',
+             locals: { person: @person, tab: :person_comments } %>
+
+  <% @person_comments.each_with_index do |person_comment, index| %>
+    <% unless index.zero? %>
+      <hr class="my-0"/>
+    <% end %>
+
+    <div class="card border-light">
+      <div class="card-body">
+        <p class="card-text">
+          <%= person_comment.text %>
+        </p>
+
+        <p class="card-text">
+          <small class="text-muted">
+            <%= localize person_comment.created_at, format: :long %>
+            <% if person_comment.account %>
+              &bull;
+              <%= link_to person_comment.account.nickname,
+                          person_comment.account %>
+            <% end %>
+          </small>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

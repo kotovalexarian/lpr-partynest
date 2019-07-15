@@ -7,6 +7,7 @@ en:
       confirmations: Confirmations
     person:
       overview: Overview
+      person_comments: Comments
       passports: Passports
       resident_registrations: Resident registrations
     settings:

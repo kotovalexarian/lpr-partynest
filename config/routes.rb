@@ -50,6 +50,11 @@ Rails.application.routes.draw do
     get '/sidekiq', to: redirect('/', status: 307), as: :forbidden_sidekiq
 
     resources :people, only: %i[index show] do
+      resources :person_comments,
+                path: 'comments',
+                controller: 'people/person_comments',
+                only: :index
+
       resources :passports,
                 controller: 'people/passports',
                 only: :index

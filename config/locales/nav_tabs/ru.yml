@@ -7,6 +7,7 @@ ru:
       confirmations: Подтверждения
     person:
       overview: Обзор
+      person_comments: Комментарии
       passports: Паспорта
       resident_registrations: Прописки
     settings:

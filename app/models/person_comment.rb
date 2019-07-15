@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PersonComment < ApplicationRecord
+  default_scope { order(created_at: :asc) }
+
   ################
   # Associations #
   ################
