@@ -11,8 +11,7 @@ desc 'Run common checks (test, lint...)'
 task default: :rubocop
 
 desc 'Run additional checks'
-# task extra: %i[bundler:audit brakeman]
-task extra: %i[brakeman]
+task extra: %i[bundler:audit brakeman]
 
 desc 'Fix code style (rubocop --auto-correct)'
 task fix: 'rubocop:auto_correct'
@@ -53,7 +52,9 @@ namespace :bundler do
 
     desc 'Checks the Gemfile.lock for insecure dependencies'
     task :check do
-      Bundler::Audit::CLI.start ['check']
+      # Ignore CVE-2015-9284 because it is already solved
+      # by using gem `omniauth-rails_csrf_protection`
+      Bundler::Audit::CLI.start ['check', '--ignore', 'CVE-2015-9284']
     end
   end
 rescue LoadError
