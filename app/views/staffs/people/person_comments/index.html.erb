@@ -26,4 +26,16 @@
       </div>
     </div>
   <% end %>
+
+  <div class="mt-2">
+    <%= simple_form_for [:staff, @person, @person_comment] do |f| %>
+      <div class="form-inputs">
+        <%= f.input :text, label: false %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+  </div>
 </div>

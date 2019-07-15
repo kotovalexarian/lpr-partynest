@@ -5,3 +5,7 @@ ru:
       supporter: Сторонник партии
       member: Член партии
       excluded: Исключён из партии
+
+    submit:
+      person_comment:
+        create: Сохранить

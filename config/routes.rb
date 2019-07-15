@@ -53,7 +53,7 @@ Rails.application.routes.draw do
       resources :person_comments,
                 path: 'comments',
                 controller: 'people/person_comments',
-                only: :index
+                only: %i[index create]
 
       resources :passports,
                 controller: 'people/passports',
