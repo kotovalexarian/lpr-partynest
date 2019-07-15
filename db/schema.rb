@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_130309) do
+ActiveRecord::Schema.define(version: 2019_07_15_210610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,16 @@ ActiveRecord::Schema.define(version: 2019_07_08_130309) do
     t.index ["regional_office_id"], name: "index_people_on_regional_office_id"
   end
 
+  create_table "person_comments", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "person_id", null: false
+    t.bigint "account_id"
+    t.text "text", null: false
+    t.index ["account_id"], name: "index_person_comments_on_account_id"
+    t.index ["person_id"], name: "index_person_comments_on_person_id"
+  end
+
   create_table "regional_offices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -212,6 +222,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_130309) do
   add_foreign_key "passports", "people"
   add_foreign_key "people", "contacts_lists"
   add_foreign_key "people", "regional_offices"
+  add_foreign_key "person_comments", "accounts"
+  add_foreign_key "person_comments", "people"
   add_foreign_key "regional_offices", "federal_subjects"
   add_foreign_key "relationships", "people"
   add_foreign_key "relationships", "regional_offices"

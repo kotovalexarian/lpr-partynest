@@ -23,6 +23,8 @@ class Person < ApplicationRecord
           class_name: 'Relationship',
           inverse_of: :person
 
+  has_many :person_comments, dependent: :restrict_with_exception
+
   has_many :passports, dependent: :restrict_with_exception
 
   has_many :resident_registrations, dependent: :restrict_with_exception
