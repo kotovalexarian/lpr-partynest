@@ -11,7 +11,8 @@ desc 'Run common checks (test, lint...)'
 task default: :rubocop
 
 desc 'Run additional checks'
-task extra: %i[bundler:audit brakeman]
+# task extra: %i[bundler:audit brakeman]
+task extra: %i[brakeman]
 
 desc 'Fix code style (rubocop --auto-correct)'
 task fix: 'rubocop:auto_correct'
