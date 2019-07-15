@@ -2,8 +2,6 @@
 
 if $coverage
   SimpleCov.start 'rails' do
-    minimum_coverage 80
-
     merge_timeout 3600
 
     formatter SimpleCov::Formatter::HTMLFormatter
