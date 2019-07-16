@@ -6,7 +6,7 @@ Partynest
 [![Maintainability](https://api.codeclimate.com/v1/badges/974d97f03895453189e1/maintainability)](https://codeclimate.com/github/libertarian-party/partynest/maintainability)
 [![Inline docs](http://inch-ci.org/github/libertarian-party/partynest.svg?branch=master)](http://inch-ci.org/github/libertarian-party/partynest)
 
-A web application to manage political party members and supporters.
+A web application to manage political party.
 
 Project name comes from Russian "партийное гнёздышко".
 
