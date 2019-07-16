@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'POST /staff/people/:person_id/comments' do
+  let(:current_account) { create :superuser_account }
+
   let!(:person) { create :initial_person }
 
   let(:person_comment_attributes) { attributes_for :person_comment }
@@ -10,6 +12,10 @@ RSpec.describe 'POST /staff/people/:person_id/comments' do
   def make_request
     post "/staff/people/#{person.id}/comments",
          params: { person_comment: person_comment_attributes }
+  end
+
+  before do
+    sign_in current_account.user if current_account&.user
   end
 
   for_account_types nil, :guest, :usual do
@@ -27,10 +33,6 @@ RSpec.describe 'POST /staff/people/:person_id/comments' do
   end
 
   for_account_types :superuser do
-    before do
-      sign_in current_account.user
-    end
-
     specify do
       expect { make_request }.to change(PersonComment, :count).from(0).to(1)
     end
