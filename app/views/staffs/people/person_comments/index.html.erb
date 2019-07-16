@@ -2,7 +2,7 @@
   <%= render partial: 'staffs/people/nav_tabs',
              locals: { person: @person, tab: :person_comments } %>
 
-  <% @person_comments.each_with_index do |person_comment, index| %>
+  <% @person_comments&.each_with_index do |person_comment, index| %>
     <% unless index.zero? %>
       <hr class="my-0"/>
     <% end %>
@@ -29,8 +29,10 @@
 
   <div class="mt-2">
     <%= simple_form_for [:staff, @person, @person_comment] do |f| %>
+      <%= f.error_notification %>
+
       <div class="form-inputs">
-        <%= f.input :text, label: false %>
+        <%= f.input :text %>
       </div>
 
       <div class="form-actions">

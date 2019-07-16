@@ -49,4 +49,20 @@ RSpec.describe 'POST /staff/people/:person_id/comments' do
       end
     end
   end
+
+  context 'when text is empty' do
+    let(:person_comment_attributes) { { text: '' } }
+
+    specify do
+      expect { make_request }.not_to change(PersonComment, :count)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :ok
+      end
+    end
+  end
 end
