@@ -22,6 +22,14 @@ When 'I upload {string} as {string}' do |fixture, field|
   end
 end
 
+When 'I click {string}' do |string|
+  click_on string
+end
+
+When 'I click first {string}' do |string|
+  click_on string, match: :first
+end
+
 When 'I click the button {string}' do |string|
   click_on string
 end
@@ -30,6 +38,10 @@ When 'I click the form button {string}' do |string|
   within 'form' do
     click_on string
   end
+end
+
+When 'I click font awesome {string}' do |string|
+  all("i.fa-#{string}").sample.ancestor(:xpath, './/a').click
 end
 
 Then 'I see text {string}' do |text|
