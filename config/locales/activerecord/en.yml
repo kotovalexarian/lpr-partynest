@@ -81,6 +81,7 @@ en:
         place_of_birth: Place of birth
       person_comment:
         id: ID
+        attachment: Attachment
         text: Text
       person/sex:
         male: Male

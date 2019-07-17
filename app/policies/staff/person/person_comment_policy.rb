@@ -10,7 +10,7 @@ class Staff::Person::PersonCommentPolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_create
-    %i[text]
+    %i[attachment text]
   end
 
   class Scope < Scope

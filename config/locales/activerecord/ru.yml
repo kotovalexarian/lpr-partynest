@@ -81,6 +81,7 @@ ru:
         place_of_birth: Место рождения
       person_comment:
         id: ID
+        attachment: Приложение
         text: Текст
       person/sex:
         male: Мужской

@@ -11,6 +11,8 @@ class PersonComment < ApplicationRecord
 
   belongs_to :account, optional: true
 
+  has_one_attached :attachment
+
   ###############
   # Validations #
   ###############
