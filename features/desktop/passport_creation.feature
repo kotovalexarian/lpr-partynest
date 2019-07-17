@@ -15,7 +15,7 @@ Feature: Passport creation
       | Кем выдан         | ФСМ      |
       | Код подразделения | 123-456  |
     When I fill the passport creation form
-    When I click the passport creation button
+    When I click "Создать Паспорт"
     Then I see the passport page
 
   Scenario: only required fields are filled
@@ -31,10 +31,10 @@ Feature: Passport creation
       | Кем выдан         | ФСМ      |
       | Код подразделения | 001-001  |
     When I fill the passport creation form
-    When I click the passport creation button
+    When I click "Создать Паспорт"
     Then I see the passport page
 
   Scenario: only image is uploaded, no fields are filled
     When I upload "passport_image_1.jpg" as "Изображения"
-    And I click the passport creation button
+    And I click "Создать Паспорт"
     Then I am at "/staff/passports/\d+"

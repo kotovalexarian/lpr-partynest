@@ -76,10 +76,6 @@ When 'I fill the passport creation form' do
   attach_file 'Изображения', Rails.root.join('fixtures', 'passport_image_1.jpg')
 end
 
-When 'I click the passport creation button' do
-  click_on 'Создать Паспорт'
-end
-
 Then 'I see the passport page' do
   @passport_attributes.each do |key, value|
     case key
