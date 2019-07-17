@@ -5,11 +5,5 @@
         <%= link_to Person.model_name.human(count: 0), staff_people_path %>
       </li>
     <% end %>
-
-    <% if policy(%i[staff passport]).index? %>
-      <li>
-        <%= link_to Passport.model_name.human(count: 0), staff_passports_path %>
-      </li>
-    <% end %>
   </ul>
 </div>
