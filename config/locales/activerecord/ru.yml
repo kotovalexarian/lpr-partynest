@@ -19,6 +19,9 @@ ru:
       person:
         one: Человек
         many: Люди
+      person_comment:
+        one: Комментарий
+        many: Комментарии
       resident_registration:
         one: Прописка
         many: Прописки
@@ -76,6 +79,9 @@ ru:
         sex: Пол
         date_of_birth: Дата рождения
         place_of_birth: Место рождения
+      person_comment:
+        id: ID
+        text: Текст
       person/sex:
         male: Мужской
         female: Женский

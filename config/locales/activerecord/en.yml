@@ -19,6 +19,9 @@ en:
       person:
         one: Person
         many: People
+      person_comment:
+        one: Comment
+        many: Comments
       resident_registration:
         one: Resident registration
         many: Resident registrations
@@ -76,6 +79,9 @@ en:
         sex: Sex
         date_of_birth: Date of birth
         place_of_birth: Place of birth
+      person_comment:
+        id: ID
+        text: Text
       person/sex:
         male: Male
         female: Female
