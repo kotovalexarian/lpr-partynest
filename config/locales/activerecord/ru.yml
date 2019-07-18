@@ -10,9 +10,6 @@ ru:
       passport:
         one: Паспорт
         many: Паспорта
-      passport_map:
-        one: Отображение паспорта
-        many: Отображения паспортов
       person:
         one: Человек
         many: Люди
@@ -41,8 +38,6 @@ ru:
         native_name: Название
       passport:
         id: ID
-      passport_map:
-        id: ID
         first_name: Имя
         middle_name: Отчество
         last_name: Фамилия
@@ -54,7 +49,7 @@ ru:
         issued_by: Кем выдан
         unit_code: Код подразделения
         date_of_issue: Дата выдачи
-      passport_map/sex:
+      passport/sex:
         male: Мужской
         female: Женский
       person:

@@ -10,9 +10,6 @@ en:
       passport:
         one: Passport
         many: Passports
-      passport_map:
-        one: Passport mapping
-        many: Passport mappings
       person:
         one: Person
         many: People
@@ -41,8 +38,6 @@ en:
         native_name: Name
       passport:
         id: ID
-      passport_map:
-        id: ID
         first_name: First name
         middle_name: Middle name
         last_name: Last name
@@ -54,7 +49,7 @@ en:
         issued_by: Issued by
         unit_code: Unit code
         date_of_issue: Date of issue
-      passport_map/sex:
+      passport/sex:
         male: Male
         female: Female
       person:

@@ -9,16 +9,16 @@
           <%= Passport.human_attribute_name :id %>
         </th>
         <th scope="col">
-          <%= PassportMap.human_attribute_name :series %>
+          <%= Passport.human_attribute_name :series %>
         </th>
         <th scope="col">
-          <%= PassportMap.human_attribute_name :number %>
+          <%= Passport.human_attribute_name :number %>
         </th>
         <th scope="col">
-          <%= PassportMap.human_attribute_name :unit_code %>
+          <%= Passport.human_attribute_name :unit_code %>
         </th>
         <th scope="col">
-          <%= PassportMap.human_attribute_name :date_of_issue %>
+          <%= Passport.human_attribute_name :date_of_issue %>
         </th>
         <th scope="col"></th>
       </tr>
@@ -28,10 +28,10 @@
       <% @passports.each do |passport| %>
         <tr>
           <td scope="row"><%= passport.id %></td>
-          <td><%= passport.passport_map&.series %></td>
-          <td><%= passport.passport_map&.number %></td>
-          <td><%= passport.passport_map&.unit_code %></td>
-          <td><%= passport.passport_map&.date_of_issue %></td>
+          <td><%= passport.series %></td>
+          <td><%= passport.number %></td>
+          <td><%= passport.unit_code %></td>
+          <td><%= passport.date_of_issue %></td>
           <td></td>
         </tr>
       <% end %>
