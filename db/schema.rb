@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_15_210610) do
+ActiveRecord::Schema.define(version: 2019_07_18_181335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,16 +74,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_210610) do
     t.index ["native_name"], name: "index_federal_subjects_on_native_name", unique: true
   end
 
-  create_table "passport_confirmations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "passport_id", null: false
-    t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_passport_confirmations_on_account_id"
-    t.index ["passport_id", "account_id"], name: "index_passport_confirmations_on_passport_id_and_account_id", unique: true
-    t.index ["passport_id"], name: "index_passport_confirmations_on_passport_id"
-  end
-
   create_table "passport_maps", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -105,7 +95,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_210610) do
   create_table "passports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "confirmed", default: false, null: false
     t.bigint "person_id"
     t.index ["person_id"], name: "index_passports_on_person_id"
   end
@@ -216,8 +205,6 @@ ActiveRecord::Schema.define(version: 2019_07_15_210610) do
   add_foreign_key "account_roles", "roles"
   add_foreign_key "accounts", "contacts_lists"
   add_foreign_key "accounts", "people"
-  add_foreign_key "passport_confirmations", "accounts"
-  add_foreign_key "passport_confirmations", "passports"
   add_foreign_key "passport_maps", "passports"
   add_foreign_key "passports", "people"
   add_foreign_key "people", "contacts_lists"
