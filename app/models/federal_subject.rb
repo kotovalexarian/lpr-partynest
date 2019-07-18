@@ -20,8 +20,10 @@ class FederalSubject < ApplicationRecord
   ###########
 
   def display_name
-    return native_name if I18n.locale == :ru
-
-    english_name
+    if I18n.locale == :ru
+      native_name
+    else
+      english_name
+    end
   end
 end
