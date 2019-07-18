@@ -1,7 +1,5 @@
 en:
   nav_tabs:
-    account:
-      overview: Overview
     person:
       overview: Overview
       person_comments: Comments

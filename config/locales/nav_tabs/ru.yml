@@ -1,7 +1,5 @@
 ru:
   nav_tabs:
-    account:
-      overview: Обзор
     person:
       overview: Обзор
       person_comments: Комментарии
