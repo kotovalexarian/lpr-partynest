@@ -36,6 +36,7 @@ en:
         id: ID
         english_name: Name
         native_name: Name
+        display_name: Name
       passport:
         id: ID
         first_name: First name

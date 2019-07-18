@@ -3,10 +3,7 @@
     <thead>
       <tr>
         <th scope="col">
-          <%= FederalSubject.human_attribute_name :english_name %>
-        </th>
-        <th scope="col">
-          <%= FederalSubject.human_attribute_name :native_name %>
+          <%= FederalSubject.human_attribute_name :display_name %>
         </th>
         <th scope="col"></th>
       </tr>
@@ -15,8 +12,7 @@
     <tbody>
       <% @federal_subjects.each do |federal_subject| %>
         <tr>
-          <td><%= federal_subject.english_name %></td>
-          <td><%= federal_subject.native_name %></td>
+          <td><%= federal_subject.display_name %></td>
           <td>
             <% if policy(federal_subject).show? %>
               <%= link_to federal_subject,

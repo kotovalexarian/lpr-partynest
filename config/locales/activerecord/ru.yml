@@ -36,6 +36,7 @@ ru:
         id: ID
         english_name: Название
         native_name: Название
+        display_name: Название
       passport:
         id: ID
         first_name: Имя
