@@ -8,13 +8,10 @@ RSpec.describe 'GET /staff/people/:person_id/passports' do
   before do
     sign_in current_account.user if current_account&.user
 
-    create :empty_passport,                            person: person
-    create :passport_with_map,                         person: person
-    create :passport_with_image,                       person: person
-    create :passport_with_map_and_image,               person: person
-    create :passport_with_almost_enough_confirmations, person: person
-    create :passport_with_enough_confirmations,        person: person
-    create :confirmed_passport,                        person: person
+    create :empty_passport,              person: person
+    create :passport_with_map,           person: person
+    create :passport_with_image,         person: person
+    create :passport_with_map_and_image, person: person
 
     get "/staff/people/#{person.to_param}/passports"
   end

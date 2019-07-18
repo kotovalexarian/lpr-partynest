@@ -7,21 +7,6 @@ en:
         We stand for a free market and freedom of government intervention
         in the economy, for the principle of self-ownership and self-value
         of the human person.
-  passports:
-    show:
-      confirm: Confirm
-      instruction_confirmed: >
-        You have already confirmed correctness of the data below.
-        Nothing to do here anymore.
-      instruction_unconfirmed: >
-        You have not confirmed correctness of the data below.
-        Please compare it with corresponding data on the image.
-        It you believe the data matches,
-        confirm it by pressing the button below.
-    passport_confirmations:
-      index:
-        new_confirmation: New confirmation
-        already_confirmed: You have already confirmed the passport.
   settings:
     roles:
       index:

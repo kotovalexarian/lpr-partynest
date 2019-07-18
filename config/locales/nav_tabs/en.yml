@@ -2,9 +2,6 @@ en:
   nav_tabs:
     account:
       overview: Overview
-    passport:
-      overview: Overview
-      confirmations: Confirmations
     person:
       overview: Overview
       person_comments: Comments

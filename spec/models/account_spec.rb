@@ -28,12 +28,6 @@ RSpec.describe Account do
       .through(:account_roles)
   end
 
-  it do
-    is_expected.to \
-      have_many(:passport_confirmations)
-      .dependent(:restrict_with_exception)
-  end
-
   it { is_expected.not_to validate_presence_of :person }
   it { is_expected.not_to validate_presence_of :user }
 

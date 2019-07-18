@@ -10,9 +10,6 @@ en:
       passport:
         one: Passport
         many: Passports
-      passport_confirmation:
-        one: Passport confirmation
-        many: Passport confirmations
       passport_map:
         one: Passport mapping
         many: Passport mappings
@@ -44,16 +41,7 @@ en:
         native_name: Name
       passport:
         id: ID
-        confirmed: Confirmed?
-        passport_confirmations_count: Confirmations count
         images: Images
-      passport/confirmed:
-        'true': Confirmed
-        'false': Unconfirmed
-      passport_confirmation:
-        id: ID
-        passport: Passport
-        account: Account
       passport_map:
         id: ID
         first_name: First name

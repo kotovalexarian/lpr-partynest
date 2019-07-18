@@ -10,9 +10,6 @@ ru:
       passport:
         one: Паспорт
         many: Паспорта
-      passport_confirmation:
-        one: Подтверждение паспорта
-        many: Подтверждения паспортов
       passport_map:
         one: Отображение паспорта
         many: Отображения паспортов
@@ -44,16 +41,7 @@ ru:
         native_name: Название
       passport:
         id: ID
-        confirmed: Подтверждён?
-        passport_confirmations_count: Количество подтверждений
         images: Изображения
-      passport/confirmed:
-        'true': Подтверждён
-        'false': Не подтверждён
-      passport_confirmation:
-        id: ID
-        passport: Паспорт
-        account: Аккаунт
       passport_map:
         id: ID
         first_name: Имя
