@@ -41,7 +41,6 @@ ru:
         native_name: Название
       passport:
         id: ID
-        images: Изображения
       passport_map:
         id: ID
         first_name: Имя

@@ -7,19 +7,11 @@ class Passport < ApplicationRecord
 
   belongs_to :person, optional: true
 
-  has_many_attached :images
-
   has_many :passport_maps,
            dependent: :restrict_with_exception
 
   accepts_nested_attributes_for :passport_maps,
                                 reject_if: :blank_passport_map?
-
-  ###############
-  # Validations #
-  ###############
-
-  validates :images, passport_image: true
 
   ###########
   # Methods #
@@ -27,10 +19,6 @@ class Passport < ApplicationRecord
 
   def passport_map
     passport_maps.order(created_at: :asc).last
-  end
-
-  def image
-    images.order(created_at: :asc).last
   end
 
 private

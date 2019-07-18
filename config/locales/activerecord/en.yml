@@ -41,7 +41,6 @@ en:
         native_name: Name
       passport:
         id: ID
-        images: Images
       passport_map:
         id: ID
         first_name: First name

@@ -72,8 +72,6 @@ When 'I fill the passport creation form' do
   fill_in 'Номер',             with: @passport_attributes['Номер']
   fill_in 'Кем выдан',         with: @passport_attributes['Кем выдан']
   fill_in 'Код подразделения', with: @passport_attributes['Код подразделения']
-
-  attach_file 'Изображения', Rails.root.join('fixtures', 'passport_image_1.jpg')
 end
 
 Then 'I see the passport page' do

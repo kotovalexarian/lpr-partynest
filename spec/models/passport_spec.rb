@@ -14,5 +14,4 @@ RSpec.describe Passport do
   end
 
   pending '#passport_map'
-  pending '#image'
 end

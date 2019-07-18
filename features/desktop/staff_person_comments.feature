@@ -18,7 +18,7 @@ Feature: Staff person comments
     When I fill form with the following data:
       | key   | value  |
       | Текст | foobar |
-    And I upload "passport_image_1.jpg" as "Приложение"
+    And I upload "avatar.jpg" as "Приложение"
     And I click the form button "Отправить"
     Then I see text "foobar"
-    And I see text "passport_image_1.jpg"
+    And I see text "avatar.jpg"
