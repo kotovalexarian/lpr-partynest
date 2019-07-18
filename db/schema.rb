@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_181335) do
+ActiveRecord::Schema.define(version: 2019_07_18_184543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(version: 2019_07_18_181335) do
     t.index ["native_name"], name: "index_federal_subjects_on_native_name", unique: true
   end
 
-  create_table "passport_maps", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "passports", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "middle_name"
@@ -88,13 +88,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_181335) do
     t.text "issued_by", null: false
     t.string "unit_code", null: false
     t.date "date_of_issue", null: false
-    t.bigint "passport_id", null: false
-    t.index ["passport_id"], name: "index_passport_maps_on_passport_id"
-  end
-
-  create_table "passports", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "person_id"
     t.index ["person_id"], name: "index_passports_on_person_id"
   end
@@ -205,7 +198,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_181335) do
   add_foreign_key "account_roles", "roles"
   add_foreign_key "accounts", "contacts_lists"
   add_foreign_key "accounts", "people"
-  add_foreign_key "passport_maps", "passports"
   add_foreign_key "passports", "people"
   add_foreign_key "people", "contacts_lists"
   add_foreign_key "people", "regional_offices"
