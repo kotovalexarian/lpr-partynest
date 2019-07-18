@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class FederalSubject < ApplicationRecord
+  ##########
+  # Scopes #
+  ##########
+
+  scope :order_by_display_name, lambda { |dir = :asc|
+    if I18n.locale == :ru
+      order(native_name: dir)
+    else
+      order(english_name: dir)
+    end
+  }
+
   ################
   # Associations #
   ################

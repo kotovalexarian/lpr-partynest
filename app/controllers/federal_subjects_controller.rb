@@ -6,7 +6,7 @@ class FederalSubjectsController < ApplicationController
   # GET /federal_subjects
   def index
     authorize :federal_subject
-    @federal_subjects = policy_scope(FederalSubject)
+    @federal_subjects = policy_scope(FederalSubject).order_by_display_name
   end
 
   # GET /federal_subjects/:id
