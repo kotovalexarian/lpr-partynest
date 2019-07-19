@@ -506,6 +506,7 @@ CREATE TABLE public.users (
     id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    account_id bigint NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
@@ -522,8 +523,7 @@ CREATE TABLE public.users (
     unconfirmed_email character varying,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
-    locked_at timestamp without time zone,
-    account_id bigint NOT NULL
+    locked_at timestamp without time zone
 );
 
 
@@ -1096,8 +1096,6 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
-('20181130161628'),
-('20181202022901'),
 ('20181204024403'),
 ('20181204030126'),
 ('20181204030414'),
