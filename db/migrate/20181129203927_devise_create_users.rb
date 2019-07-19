@@ -47,8 +47,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index :users, :unlock_token,         unique: true
     end
 
-    add_foreign_key :users, :accounts
-
     create_table :roles do |t|
       t.timestamps null: false
       t.string :name
@@ -65,14 +63,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index %i[account_id role_id], unique: true
     end
 
-    add_foreign_key :account_roles, :accounts
-    add_foreign_key :account_roles, :roles
-
     create_table :country_states do |t|
       t.timestamps null: false
       t.string :name, null: false
 
       t.index :name, unique: true
     end
+
+    add_foreign_key :users,         :accounts
+    add_foreign_key :account_roles, :accounts
+    add_foreign_key :account_roles, :roles
   end
 end
