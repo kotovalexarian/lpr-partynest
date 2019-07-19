@@ -40,11 +40,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string   :unlock_token
       t.datetime :locked_at
 
-      t.index :users, :account,              unique: true
-      t.index :users, :email,                unique: true
-      t.index :users, :reset_password_token, unique: true
-      t.index :users, :confirmation_token,   unique: true
-      t.index :users, :unlock_token,         unique: true
+      t.index :account,              unique: true
+      t.index :email,                unique: true
+      t.index :reset_password_token, unique: true
+      t.index :confirmation_token,   unique: true
+      t.index :unlock_token,         unique: true
     end
 
     create_table :roles do |t|
