@@ -39,14 +39,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer  :failed_attempts, default: 0, null: false
       t.string   :unlock_token
       t.datetime :locked_at
+
+      t.index :users, :account,              unique: true
+      t.index :users, :email,                unique: true
+      t.index :users, :reset_password_token, unique: true
+      t.index :users, :confirmation_token,   unique: true
+      t.index :users, :unlock_token,         unique: true
     end
-
-    add_index :users, :account, unique: true
-
-    add_index :users, :email,                unique: true
-    add_index :users, :reset_password_token, unique: true
-    add_index :users, :confirmation_token,   unique: true
-    add_index :users, :unlock_token,         unique: true
 
     add_foreign_key :users, :accounts
 
