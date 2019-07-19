@@ -118,11 +118,11 @@ class Account < ApplicationRecord
 private
 
   def generate_nickname
-    self.nickname = "noname_#{SecureRandom.hex(8)}" if nickname.nil?
+    self.nickname ||= "noname_#{SecureRandom.hex(8)}"
   end
 
   def generate_guest_token
-    self.guest_token = SecureRandom.hex
+    self.guest_token ||= SecureRandom.hex
   end
 
   def turn_blanks_into_nils
