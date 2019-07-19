@@ -38,18 +38,10 @@ module Partynest
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
-    # Fully qualified domain name.
-    config.site_domain = 'libertarian-party.com'
-
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += [
       config.root.join('app', 'validators'),
     ]
-
-    # Email which all mail is set from.
-    config.noreply_email_address = "no-reply@#{config.site_domain}"
-    config.noreply_email_contact =
-      "Libertarian party of Russia <#{config.noreply_email_address}>"
 
     # Use Sidekiq as ActiveJob adapter.
     config.active_job.queue_adapter = :sidekiq
