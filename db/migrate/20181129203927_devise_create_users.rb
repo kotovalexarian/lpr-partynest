@@ -2,6 +2,10 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
+    create_table :accounts do |t|
+      t.timestamps null: false
+    end
+
     create_table :users do |t|
       t.timestamps null: false
 
@@ -48,15 +52,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index %i[name resource_type resource_id], unique: true
     end
 
-    create_table :user_roles do |t|
+    create_table :account_roles do |t|
       t.timestamps null: false
-      t.references :user, null: false
+      t.references :account, null: false
       t.references :role, null: false
 
-      t.index %i[user_id role_id], unique: true
+      t.index %i[account_id role_id], unique: true
     end
 
-    add_foreign_key :user_roles, :users
-    add_foreign_key :user_roles, :roles
+    add_foreign_key :account_roles, :accounts
+    add_foreign_key :account_roles, :roles
   end
 end
