@@ -40,7 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string   :unlock_token
       t.datetime :locked_at
 
-      t.index :account,              unique: true
+      t.index :account_id,           unique: true
       t.index :email,                unique: true
       t.index :reset_password_token, unique: true
       t.index :confirmation_token,   unique: true
