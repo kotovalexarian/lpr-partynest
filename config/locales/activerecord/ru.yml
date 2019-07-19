@@ -16,9 +16,6 @@ ru:
       person_comment:
         one: Комментарий
         many: Комментарии
-      resident_registration:
-        one: Прописка
-        many: Прописки
       roles:
         one: Роль
         many: Роли
@@ -69,8 +66,6 @@ ru:
       person/sex:
         male: Мужской
         female: Женский
-      resident_registration:
-        id: ID
       role:
         id: ID
         name: Название

@@ -16,9 +16,6 @@ en:
       person_comment:
         one: Comment
         many: Comments
-      resident_registration:
-        one: Resident registration
-        many: Resident registrations
       roles:
         one: Role
         many: Roles
@@ -69,8 +66,6 @@ en:
       person/sex:
         male: Male
         female: Female
-      resident_registration:
-        id: ID
       role:
         id: ID
         name: Name

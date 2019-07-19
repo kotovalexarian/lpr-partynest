@@ -41,12 +41,6 @@ RSpec.describe Person do
       .dependent(:restrict_with_exception)
   end
 
-  it do
-    is_expected.to \
-      have_many(:resident_registrations)
-      .dependent(:restrict_with_exception)
-  end
-
   it { is_expected.not_to validate_presence_of :regional_office }
 
   describe '#relationships' do
