@@ -62,5 +62,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
     add_foreign_key :account_roles, :accounts
     add_foreign_key :account_roles, :roles
+
+    create_table :country_states do |t|
+      t.timestamps null: false
+      t.string :name, null: false
+
+      t.index :name, unique: true
+    end
   end
 end
