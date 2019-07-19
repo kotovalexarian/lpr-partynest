@@ -2,9 +2,6 @@
 
 class TurnPassportMapsIntoPassports < ActiveRecord::Migration[6.0]
   def change
-    drop_table :passport_maps
-    drop_table :passports
-
     create_table :passports do |t|
       t.timestamps null: false
 
