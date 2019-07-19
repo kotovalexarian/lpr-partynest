@@ -1,85 +1,85 @@
-22 | Altai Krai                            | Алтайский край                           |
-31 | Amur Oblast                           | Амурская область                         |
-32 | Arkhangelsk Oblast                    | Архангельская область                    |
-33 | Astrakhan Oblast                      | Астраханская область                     |
-34 | Belgorod Oblast                       | Белгородская область                     |
-35 | Bryansk Oblast                        | Брянская область                         |
-36 | Vladimir Oblast                       | Владимирская область                     |
-37 | Volgograd Oblast                      | Волгоградская область                    |
-38 | Vologda Oblast                        | Вологодская область                      |
-39 | Voronezh Oblast                       | Воронежская область                      |
-80 | Jewish Autonomous Oblast              | Еврейская автономная область             |
-23 | Zabaykalsky Krai                      | Забайкальский край                       |
-40 | Ivanovo Oblast                        | Ивановская область                       |
-41 | Irkutsk Oblast                        | Иркутская область                        |
-6  | Kabardino-Balkar Republic             | Кабардино-Балкарская Республика          |
-42 | Kaliningrad Oblast                    | Калининградская область                  |
-43 | Kaluga Oblast                         | Калужская область                        |
-24 | Kamchatka Krai                        | Камчатский край                          |
-8  | Karachay-Cherkess Republic            | Карачаево-Черкесская Республика          |
-44 | Kemerovo Oblast                       | Кемеровская область                      |
-45 | Kirov Oblast                          | Кировская область                        |
-46 | Kostroma Oblast                       | Костромская область                      |
-25 | Krasnodar Krai                        | Краснодарский край                       |
-26 | Krasnoyarsk Krai                      | Красноярский край                        |
-47 | Kurgan Oblast                         | Курганская область                       |
-48 | Kursk Oblast                          | Курская область                          |
-49 | Leningrad Oblast                      | Ленинградская область                    |
-50 | Lipetsk Oblast                        | Липецкая область                         |
-51 | Magadan Oblast                        | Магаданская область                      |
-77 | Moscow                                | Москва                                   |
-52 | Moscow Oblast                         | Московская область                       |
-53 | Murmansk Oblast                       | Мурманская область                       |
-81 | Nenets Autonomous Okrug               | Ненецкий автономный округ                |
-54 | Nizhny Novgorod Oblast                | Нижегородская область                    |
-55 | Novgorod Oblast                       | Новгородская область                     |
-56 | Novosibirsk Oblast                    | Новосибирская область                    |
-57 | Omsk Oblast                           | Омская область                           |
-58 | Orenburg Oblast                       | Оренбургская область                     |
-59 | Oryol Oblast                          | Орловская область                        |
-60 | Penza Oblast                          | Пензенская область                       |
-27 | Perm Krai                             | Пермский край                            |
-28 | Primorsky Krai                        | Приморский край                          |
-61 | Pskov Oblast                          | Псковская область                        |
-87 | Republic of Adygea                    | Республика Адыгея                        |
-1  | Altai Republic                        | Республика Алтай                         |
-2  | Republic of Bashkortostan             | Республика Башкортостан                  |
-3  | Republic of Buryatia                  | Республика Бурятия                       |
-4  | Republic of Dagestan                  | Республика Дагестан                      |
-5  | Republic of Ingushetia                | Республика Ингушетия                     |
-7  | Republic of Kalmykia                  | Республика Калмыкия                      |
-9  | Republic of Karelia                   | Республика Карелия                       |
-10 | Komi Republic                         | Республика Коми                          |
-12 | Mari El Republic                      | Республика Марий Эл                      |
-13 | Republic of Mordovia                  | Республика Мордовия                      |
-11 | Republic of Crimea                    | Республика Крым                          |
-14 | Republic of Sakha (Yakutia)           | Республика Саха (Якутия)                 |
-15 | Republic of North Ossetia – Alania    | Республика Северная Осетия — Алания      |
-16 | Republic of Tatarstan                 | Республика Татарстан                     |
-17 | Tyva Republic                         | Республика Тыва                          |
-19 | Republic of Khakassia                 | Республика Хакасия                       |
-62 | Rostov Oblast                         | Ростовская область                       |
-63 | Ryazan Oblast                         | Рязанская область                        |
-64 | Samara Oblast                         | Самарская область                        |
-78 | Saint Petersburg                      | Санкт-Петербург                          |
-65 | Saratov Oblast                        | Саратовская область                      |
-66 | Sakhalin Oblast                       | Сахалинская область                      |
-67 | Sverdlovsk Oblast                     | Свердловская область                     |
-79 | Sevastopol                            | Севастополь                              |
-68 | Smolensk Oblast                       | Смоленская область                       |
-29 | Stavropol Krai                        | Ставропольский край                      |
-69 | Tambov Oblast                         | Тамбовская область                       |
-70 | Tver Oblast                           | Тверская область                         |
-71 | Tomsk Oblast                          | Томская область                          |
-72 | Tula Oblast                           | Тульская область                         |
-73 | Tyumen Oblast                         | Тюменская область                        |
-18 | Udmurt Republic                       | Удмуртская Республика                    |
-74 | Ulyanovsk Oblast                      | Ульяновская область                      |
-30 | Khabarovsk Krai                       | Хабаровский край                         |
-82 | Khanty-Mansi Autonomous Okrug – Yugra | Ханты-Мансийский автономный округ — Югра |
-75 | Chelyabinsk Oblast                    | Челябинская область                      |
-20 | Chechen Republic                      | Чеченская Республика                     |
-21 | Chuvash Republic                      | Чувашская Республика                     |
-83 | Chukotka Autonomous Okrug             | Чукотский автономный округ               |
-84 | Yamalo-Nenets Autonomous Okrug        | Ямало-Ненецкий автономный округ          |
-76 | Yaroslavl Oblast                      | Ярославская область                      |
+22 | Altai Krai                            | Алтайский край                           | 22 |
+31 | Amur Oblast                           | Амурская область                         | 28 |
+32 | Arkhangelsk Oblast                    | Архангельская область                    | 29 |
+33 | Astrakhan Oblast                      | Астраханская область                     | 30 |
+34 | Belgorod Oblast                       | Белгородская область                     | 31 |
+35 | Bryansk Oblast                        | Брянская область                         | 32 |
+36 | Vladimir Oblast                       | Владимирская область                     | 33 |
+37 | Volgograd Oblast                      | Волгоградская область                    | 34 |
+38 | Vologda Oblast                        | Вологодская область                      | 35 |
+39 | Voronezh Oblast                       | Воронежская область                      | 36 |
+80 | Jewish Autonomous Oblast              | Еврейская автономная область             | 79 |
+23 | Zabaykalsky Krai                      | Забайкальский край                       | 75 |
+40 | Ivanovo Oblast                        | Ивановская область                       | 37 |
+41 | Irkutsk Oblast                        | Иркутская область                        | 38 |
+6  | Kabardino-Balkar Republic             | Кабардино-Балкарская Республика          | 07 |
+42 | Kaliningrad Oblast                    | Калининградская область                  | 39 |
+43 | Kaluga Oblast                         | Калужская область                        | 40 |
+24 | Kamchatka Krai                        | Камчатский край                          | 41 |
+8  | Karachay-Cherkess Republic            | Карачаево-Черкесская Республика          | 09 |
+44 | Kemerovo Oblast                       | Кемеровская область                      | 42 |
+45 | Kirov Oblast                          | Кировская область                        | 43 |
+46 | Kostroma Oblast                       | Костромская область                      | 44 |
+25 | Krasnodar Krai                        | Краснодарский край                       | 23 |
+26 | Krasnoyarsk Krai                      | Красноярский край                        | 24 |
+47 | Kurgan Oblast                         | Курганская область                       | 45 |
+48 | Kursk Oblast                          | Курская область                          | 46 |
+49 | Leningrad Oblast                      | Ленинградская область                    | 47 |
+50 | Lipetsk Oblast                        | Липецкая область                         | 48 |
+51 | Magadan Oblast                        | Магаданская область                      | 49 |
+77 | Moscow                                | Москва                                   | 77 |
+52 | Moscow Oblast                         | Московская область                       | 50 |
+53 | Murmansk Oblast                       | Мурманская область                       | 51 |
+81 | Nenets Autonomous Okrug               | Ненецкий автономный округ                | 83 |
+54 | Nizhny Novgorod Oblast                | Нижегородская область                    | 52 |
+55 | Novgorod Oblast                       | Новгородская область                     | 53 |
+56 | Novosibirsk Oblast                    | Новосибирская область                    | 54 |
+57 | Omsk Oblast                           | Омская область                           | 55 |
+58 | Orenburg Oblast                       | Оренбургская область                     | 56 |
+59 | Oryol Oblast                          | Орловская область                        | 57 |
+60 | Penza Oblast                          | Пензенская область                       | 58 |
+27 | Perm Krai                             | Пермский край                            | 59 |
+28 | Primorsky Krai                        | Приморский край                          | 25 |
+61 | Pskov Oblast                          | Псковская область                        | 60 |
+87 | Republic of Adygea                    | Республика Адыгея                        | 01 |
+1  | Altai Republic                        | Республика Алтай                         | 04 |
+2  | Republic of Bashkortostan             | Республика Башкортостан                  | 02 |
+3  | Republic of Buryatia                  | Республика Бурятия                       | 03 |
+4  | Republic of Dagestan                  | Республика Дагестан                      | 05 |
+5  | Republic of Ingushetia                | Республика Ингушетия                     | 06 |
+7  | Republic of Kalmykia                  | Республика Калмыкия                      | 08 |
+9  | Republic of Karelia                   | Республика Карелия                       | 10 |
+10 | Komi Republic                         | Республика Коми                          | 11 |
+12 | Mari El Republic                      | Республика Марий Эл                      | 12 |
+13 | Republic of Mordovia                  | Республика Мордовия                      | 13 |
+11 | Republic of Crimea                    | Республика Крым                          | 91 |
+14 | Republic of Sakha (Yakutia)           | Республика Саха (Якутия)                 | 14 |
+15 | Republic of North Ossetia – Alania    | Республика Северная Осетия — Алания      | 15 |
+16 | Republic of Tatarstan                 | Республика Татарстан                     | 16 |
+17 | Tyva Republic                         | Республика Тыва                          | 17 |
+19 | Republic of Khakassia                 | Республика Хакасия                       | 19 |
+62 | Rostov Oblast                         | Ростовская область                       | 61 |
+63 | Ryazan Oblast                         | Рязанская область                        | 62 |
+64 | Samara Oblast                         | Самарская область                        | 63 |
+78 | Saint Petersburg                      | Санкт-Петербург                          | 78 |
+65 | Saratov Oblast                        | Саратовская область                      | 64 |
+66 | Sakhalin Oblast                       | Сахалинская область                      | 65 |
+67 | Sverdlovsk Oblast                     | Свердловская область                     | 66 |
+79 | Sevastopol                            | Севастополь                              | 92 |
+68 | Smolensk Oblast                       | Смоленская область                       | 67 |
+29 | Stavropol Krai                        | Ставропольский край                      | 26 |
+69 | Tambov Oblast                         | Тамбовская область                       | 68 |
+70 | Tver Oblast                           | Тверская область                         | 69 |
+71 | Tomsk Oblast                          | Томская область                          | 70 |
+72 | Tula Oblast                           | Тульская область                         | 71 |
+73 | Tyumen Oblast                         | Тюменская область                        | 72 |
+18 | Udmurt Republic                       | Удмуртская Республика                    | 18 |
+74 | Ulyanovsk Oblast                      | Ульяновская область                      | 73 |
+30 | Khabarovsk Krai                       | Хабаровский край                         | 27 |
+82 | Khanty-Mansi Autonomous Okrug – Yugra | Ханты-Мансийский автономный округ — Югра | 86 |
+75 | Chelyabinsk Oblast                    | Челябинская область                      | 74 |
+20 | Chechen Republic                      | Чеченская Республика                     | 20 |
+21 | Chuvash Republic                      | Чувашская Республика                     | 21 |
+83 | Chukotka Autonomous Okrug             | Чукотский автономный округ               | 87 |
+84 | Yamalo-Nenets Autonomous Okrug        | Ямало-Ненецкий автономный округ          | 89 |
+76 | Yaroslavl Oblast                      | Ярославская область                      | 76 |

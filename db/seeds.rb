@@ -5,7 +5,7 @@ require 'csv'
 federal_subjects_filename = Rails.root.join 'config', 'federal_subjects.csv'
 
 CSV.foreach federal_subjects_filename,
-            col_sep: '|' do |(id, english_name, native_name)|
+            col_sep: '|' do |(id, english_name, native_name, _number)|
   id = Integer(id.strip)
   english_name.strip!
   native_name.strip!
