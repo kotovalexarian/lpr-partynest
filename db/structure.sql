@@ -992,14 +992,6 @@ ALTER TABLE ONLY public.relationships
 
 
 --
--- Name: account_roles fk_rails_3369e0d5fc; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.account_roles
-    ADD CONSTRAINT fk_rails_3369e0d5fc FOREIGN KEY (role_id) REFERENCES public.roles(id);
-
-
---
 -- Name: passports fk_rails_5cdfa39dea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1088,6 +1080,14 @@ ALTER TABLE ONLY public.relationships
 
 
 --
+-- Name: account_roles fk_rails_f48937287f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.account_roles
+    ADD CONSTRAINT fk_rails_f48937287f FOREIGN KEY (role_id) REFERENCES public.roles(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1095,12 +1095,8 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
-('20181129231814'),
 ('20181130024918'),
 ('20181130161628'),
-('20181130163121'),
-('20181202020031'),
-('20181202021854'),
 ('20181202022901'),
 ('20181204024403'),
 ('20181204030126'),
