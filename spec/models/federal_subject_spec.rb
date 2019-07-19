@@ -15,9 +15,18 @@ RSpec.describe FederalSubject do
 
   it { is_expected.to validate_presence_of :english_name }
   it { is_expected.to validate_presence_of :native_name }
+  it { is_expected.to validate_presence_of :number }
 
   it { is_expected.to validate_uniqueness_of :english_name }
   it { is_expected.to validate_uniqueness_of :native_name }
+  it { is_expected.to validate_uniqueness_of :number }
+
+  it do
+    is_expected.to \
+      validate_numericality_of(:number)
+      .only_integer
+      .is_greater_than(0)
+  end
 
   describe '.order_by_display_name' do
     let! :federal_subject_1 do

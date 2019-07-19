@@ -13,5 +13,7 @@ FactoryBot.define do
     end
 
     native_name { english_name }
+
+    sequence :number
   end
 end

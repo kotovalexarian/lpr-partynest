@@ -219,7 +219,8 @@ CREATE TABLE public.federal_subjects (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     english_name character varying NOT NULL,
-    native_name character varying NOT NULL
+    native_name character varying NOT NULL,
+    number integer NOT NULL
 );
 
 
@@ -835,6 +836,13 @@ CREATE UNIQUE INDEX index_federal_subjects_on_native_name ON public.federal_subj
 
 
 --
+-- Name: index_federal_subjects_on_number; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_federal_subjects_on_number ON public.federal_subjects USING btree (number);
+
+
+--
 -- Name: index_passports_on_person_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1158,6 +1166,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190715210610'),
 ('20190718181335'),
 ('20190718184543'),
-('20190719024630');
+('20190719024630'),
+('20190719224405');
 
 
