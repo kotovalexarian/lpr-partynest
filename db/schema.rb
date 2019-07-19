@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_184543) do
+ActiveRecord::Schema.define(version: 2019_07_19_024630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,13 +138,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_184543) do
     t.index ["status"], name: "index_relationships_on_status"
   end
 
-  create_table "resident_registrations", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "person_id"
-    t.index ["person_id"], name: "index_resident_registrations_on_person_id"
-  end
-
   create_table "roles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -206,7 +199,6 @@ ActiveRecord::Schema.define(version: 2019_07_18_184543) do
   add_foreign_key "regional_offices", "federal_subjects"
   add_foreign_key "relationships", "people"
   add_foreign_key "relationships", "regional_offices"
-  add_foreign_key "resident_registrations", "people"
   add_foreign_key "user_omniauths", "users"
   add_foreign_key "users", "accounts"
 end
