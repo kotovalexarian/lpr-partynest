@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.timestamps null: false
 
-      t.references :account, null: false
+      t.references :account, null: false, index: { unique: true }
 
       ## Database authenticatable
       t.string :email,              null: false, default: ''
@@ -40,7 +40,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string   :unlock_token
       t.datetime :locked_at
 
-      t.index :account_id,           unique: true
       t.index :email,                unique: true
       t.index :reset_password_token, unique: true
       t.index :confirmation_token,   unique: true
