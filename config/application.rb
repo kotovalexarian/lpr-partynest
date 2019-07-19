@@ -43,6 +43,9 @@ module Partynest
       config.root.join('app', 'validators'),
     ]
 
+    # Use SQL format for database schema
+    config.active_record.schema_format = :sql
+
     # Use Sidekiq as ActiveJob adapter.
     config.active_job.queue_adapter = :sidekiq
 
