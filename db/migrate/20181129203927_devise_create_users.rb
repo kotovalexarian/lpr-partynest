@@ -2,6 +2,10 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
+    create_table :people do |t|
+      t.timestamps null: false
+    end
+
     create_table :accounts do |t|
       t.timestamps null: false
 
