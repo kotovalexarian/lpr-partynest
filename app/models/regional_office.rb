@@ -7,13 +7,12 @@ class RegionalOffice < ApplicationRecord
 
   belongs_to :federal_subject
 
-  has_many :relationships, dependent: :restrict_with_exception
+  has_many :relationships
 
   has_many :people,
            inverse_of: :regional_office,
            through: :relationships,
-           source: :person,
-           dependent: :restrict_with_exception
+           source: :person
 
   ###############
   # Validations #

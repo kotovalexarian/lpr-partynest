@@ -19,7 +19,7 @@ class FederalSubject < ApplicationRecord
   # Associations #
   ################
 
-  has_one :regional_office, dependent: :restrict_with_exception
+  has_one :regional_office
 
   ###############
   # Validations #

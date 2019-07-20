@@ -5,7 +5,7 @@ class ContactsList < ApplicationRecord
   # Associations #
   ################
 
-  has_one :account, dependent: :restrict_with_exception
+  has_one :account
 
-  has_one :person, dependent: :restrict_with_exception
+  has_one :person
 end

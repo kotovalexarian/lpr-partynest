@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   belongs_to :account
 
-  has_many :user_omniauths, dependent: :restrict_with_exception
+  has_many :user_omniauths
 
   ###############
   # Validations #

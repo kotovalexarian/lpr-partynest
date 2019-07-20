@@ -26,8 +26,7 @@ class Account < ApplicationRecord
 
   has_many :account_roles,
            -> { active },
-           inverse_of: :account,
-           dependent: :restrict_with_exception
+           inverse_of: :account
 
   has_many :roles,
            -> { distinct },
@@ -37,7 +36,7 @@ class Account < ApplicationRecord
 
   belongs_to :contacts_list
 
-  has_one :user, dependent: :restrict_with_exception
+  has_one :user
 
   #############
   # Callbacks #

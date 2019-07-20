@@ -50,6 +50,9 @@ Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/role.rb'
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'

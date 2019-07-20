@@ -13,8 +13,7 @@ class Role < ApplicationRecord
 
   has_many :account_roles,
            -> { active },
-           inverse_of: :role,
-           dependent: :restrict_with_exception
+           inverse_of: :role
 
   has_many :accounts, through: :account_roles
 

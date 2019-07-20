@@ -11,28 +11,25 @@ class Person < ApplicationRecord
 
   belongs_to :contacts_list
 
-  has_one :account, dependent: :restrict_with_exception
+  has_one :account
 
   has_many :relationships,
            -> { order(from_date: :asc) },
-           inverse_of: :person,
-           dependent: :restrict_with_exception
+           inverse_of: :person
 
   has_one :current_relationship,
           -> { order(from_date: :desc) },
           class_name: 'Relationship',
-          inverse_of: :person,
-          dependent: :restrict_with_exception
+          inverse_of: :person
 
   has_one :regional_office,
           inverse_of: :people,
           through: :current_relationship,
-          source: :regional_office,
-          dependent: :restrict_with_exception
+          source: :regional_office
 
-  has_many :person_comments, dependent: :restrict_with_exception
+  has_many :person_comments
 
-  has_many :passports, dependent: :restrict_with_exception
+  has_many :passports
 
   ###############
   # Validations #
