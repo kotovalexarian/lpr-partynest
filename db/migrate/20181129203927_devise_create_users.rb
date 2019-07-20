@@ -69,6 +69,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index :name, unique: true
     end
 
+    create_table :user_omniauths do |t|
+      t.timestamps null: false
+
+      t.references :user, foreign_key: true
+      t.string :provider,  null: false
+      t.string :remote_id, null: false
+      t.string :email,     null: false
+
+      t.index %i[remote_id provider], unique: true
+    end
+
     add_foreign_key :users,         :accounts
     add_foreign_key :account_roles, :accounts
     add_foreign_key :account_roles, :roles
