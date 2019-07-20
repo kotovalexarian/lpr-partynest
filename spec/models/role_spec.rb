@@ -5,20 +5,26 @@ require 'rails_helper'
 RSpec.describe Role do
   subject { create :role }
 
-  it do
-    is_expected.to \
-      have_many(:account_roles)
-      .inverse_of(:role)
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
-      have_many(:accounts)
-      .through(:account_roles)
-  end
-
   pending '.make!'
+  pending '#human_name'
+  pending '#human_resource'
+
+  describe '#account_roles' do
+    it do
+      is_expected.to \
+        have_many(:account_roles)
+        .inverse_of(:role)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#accounts' do
+    it do
+      is_expected.to \
+        have_many(:accounts)
+        .through(:account_roles)
+    end
+  end
 
   describe '#name' do
     def allow_value(*)
@@ -31,7 +37,4 @@ RSpec.describe Role do
 
     it { is_expected.to allow_value 'superuser' }
   end
-
-  pending '#human_name'
-  pending '#human_resource'
 end
