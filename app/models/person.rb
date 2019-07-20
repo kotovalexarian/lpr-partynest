@@ -14,12 +14,12 @@ class Person < ApplicationRecord
   has_one :account, dependent: :restrict_with_exception
 
   has_many :relationships,
-           -> { order(active_since: :asc) },
+           -> { order(start_date: :asc) },
            inverse_of: :person,
            dependent: :restrict_with_exception
 
   has_one :current_relationship,
-          -> { order(active_since: :desc) },
+          -> { order(start_date: :desc) },
           class_name: 'Relationship',
           inverse_of: :person,
           dependent: :restrict_with_exception
