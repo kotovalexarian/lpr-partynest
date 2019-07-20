@@ -6,7 +6,7 @@ RSpec.describe Relationship do
   subject { create :supporter_relationship }
 
   describe '#person' do
-    it { is_expected.to belong_to(:person).required }
+    it { is_expected.to belong_to(:person).inverse_of(:relationships).required }
   end
 
   describe '#regional_office' do

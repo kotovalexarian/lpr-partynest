@@ -9,7 +9,7 @@ class Relationship < ApplicationRecord
   # Associations #
   ################
 
-  belongs_to :person
+  belongs_to :person, inverse_of: :relationships
 
   belongs_to :regional_office, inverse_of: :all_relationships
 
