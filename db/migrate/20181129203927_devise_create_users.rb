@@ -48,7 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
     create_table :roles do |t|
       t.timestamps null: false
-      t.string :name
+      t.string :name, null: false
       t.references :resource, polymorphic: true
 
       t.index %i[name resource_type resource_id], unique: true
