@@ -12,10 +12,6 @@ class CreateRelationships < ActiveRecord::Migration[6.0]
 
       t.index %i[person_id number], unique: true
       t.foreign_key :people
-
-      t.date :supporter_since, index: true, null: false
-      t.date :member_since,    index: true
-      t.date :excluded_since,  index: true
     end
   end
 end
