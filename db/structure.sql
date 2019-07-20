@@ -1137,7 +1137,13 @@ CREATE TABLE public.users (
     unconfirmed_email character varying,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    encrypted_otp_secret character varying,
+    encrypted_otp_secret_iv character varying,
+    encrypted_otp_secret_salt character varying,
+    consumed_timestep integer,
+    otp_required_for_login boolean,
+    otp_backup_codes character varying[]
 );
 
 
@@ -1964,6 +1970,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
+('20190131041634');
 ('20190910040709'),
 ('20190921142404'),
 ('20190921191213'),
