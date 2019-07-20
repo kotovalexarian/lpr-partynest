@@ -8,12 +8,12 @@ RSpec.describe Relationship do
   it { is_expected.to belong_to(:person).required }
   it { is_expected.to belong_to(:regional_office).required }
 
-  describe '#start_date' do
-    it { is_expected.to validate_presence_of :start_date }
+  describe '#from_date' do
+    it { is_expected.to validate_presence_of :from_date }
 
     it do
       is_expected.to \
-        validate_uniqueness_of(:start_date)
+        validate_uniqueness_of(:from_date)
         .scoped_to(:person_id)
     end
   end

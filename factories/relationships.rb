@@ -5,7 +5,7 @@ FactoryBot.define do
     association :person, factory: :initial_person
     association :regional_office
 
-    sequence :start_date do |n|
+    sequence :from_date do |n|
       Date.new rand((10 * n)...(11 * n)), rand(1..12), rand(1..28)
     end
 

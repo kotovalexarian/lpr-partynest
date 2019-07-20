@@ -399,7 +399,7 @@ CREATE TABLE public.relationships (
     updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
-    start_date date NOT NULL,
+    from_date date NOT NULL,
     status integer NOT NULL
 );
 
@@ -893,10 +893,10 @@ CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regio
 
 
 --
--- Name: index_relationships_on_person_id_and_start_date; Type: INDEX; Schema: public; Owner: -
+-- Name: index_relationships_on_person_id_and_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_relationships_on_person_id_and_start_date ON public.relationships USING btree (person_id, start_date);
+CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.relationships USING btree (person_id, from_date);
 
 
 --
@@ -907,10 +907,10 @@ CREATE INDEX index_relationships_on_regional_office_id ON public.relationships U
 
 
 --
--- Name: index_relationships_on_start_date; Type: INDEX; Schema: public; Owner: -
+-- Name: index_relationships_on_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_relationships_on_start_date ON public.relationships USING btree (start_date);
+CREATE INDEX index_relationships_on_from_date ON public.relationships USING btree (from_date);
 
 
 --

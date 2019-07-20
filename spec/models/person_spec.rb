@@ -18,7 +18,7 @@ RSpec.describe Person do
       have_many(:relationships)
       .inverse_of(:person)
       .dependent(:restrict_with_exception)
-      .order(start_date: :asc)
+      .order(from_date: :asc)
   end
 
   it do
@@ -27,7 +27,7 @@ RSpec.describe Person do
       .class_name('Relationship')
       .inverse_of(:person)
       .dependent(:restrict_with_exception)
-      .order(start_date: :desc)
+      .order(from_date: :desc)
   end
 
   it do
@@ -48,19 +48,19 @@ RSpec.describe Person do
     let! :relationship_2 do
       create :supporter_relationship,
              person: subject,
-             start_date: 4.days.ago
+             from_date: 4.days.ago
     end
 
     let! :relationship_3 do
       create :supporter_relationship,
              person: subject,
-             start_date: 2.days.ago
+             from_date: 2.days.ago
     end
 
     let! :relationship_1 do
       create :supporter_relationship,
              person: subject,
-             start_date: 6.days.ago
+             from_date: 6.days.ago
     end
 
     specify do
@@ -76,19 +76,19 @@ RSpec.describe Person do
     let! :relationship_2 do
       create :supporter_relationship,
              person: subject,
-             start_date: 4.days.ago
+             from_date: 4.days.ago
     end
 
     let! :relationship_3 do
       create :supporter_relationship,
              person: subject,
-             start_date: 2.days.ago
+             from_date: 2.days.ago
     end
 
     let! :relationship_1 do
       create :supporter_relationship,
              person: subject,
-             start_date: 6.days.ago
+             from_date: 6.days.ago
     end
 
     specify do

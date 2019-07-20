@@ -11,10 +11,10 @@ class CreateRelationships < ActiveRecord::Migration[6.0]
       t.references :regional_office,
                    null: false, index: true,  foreign_key: true
 
-      t.date    :start_date, null: false, index: true
-      t.integer :status,     null: false, index: true
+      t.date    :from_date, null: false, index: true
+      t.integer :status,    null: false, index: true
 
-      t.index %i[person_id start_date], unique: true
+      t.index %i[person_id from_date], unique: true
     end
   end
 end

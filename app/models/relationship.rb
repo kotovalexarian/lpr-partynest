@@ -14,7 +14,7 @@ class Relationship < ApplicationRecord
   # Validations #
   ###############
 
-  validates :start_date, presence: true, uniqueness: { scope: :person_id }
+  validates :from_date, presence: true, uniqueness: { scope: :person_id }
 
   validates :status, presence: true
 end
