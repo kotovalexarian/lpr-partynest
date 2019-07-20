@@ -11,8 +11,9 @@ class Person < ApplicationRecord
 
   has_one :account
 
-  has_many :relationships,
+  has_many :all_relationships,
            -> { order(from_date: :asc) },
+           class_name: 'Relationship',
            inverse_of: :person
 
   has_one :current_relationship,

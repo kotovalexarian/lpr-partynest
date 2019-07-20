@@ -15,7 +15,7 @@ RSpec.describe Person do
     xit { is_expected.to belong_to(:contacts_list).required }
   end
 
-  describe '#relationships' do
+  describe '#all_relationships' do
     let! :relationship_2 do
       create :supporter_relationship,
              person: subject,
@@ -36,14 +36,15 @@ RSpec.describe Person do
 
     it do
       is_expected.to \
-        have_many(:relationships)
+        have_many(:all_relationships)
+        .class_name('Relationship')
         .inverse_of(:person)
         .dependent(:restrict_with_exception)
         .order(from_date: :asc)
     end
 
     specify do
-      expect(subject.relationships).to eq [
+      expect(subject.all_relationships).to eq [
         relationship_1,
         relationship_2,
         relationship_3,
