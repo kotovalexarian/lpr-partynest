@@ -18,5 +18,10 @@ class CreateRelationships < ActiveRecord::Migration[6.0]
     add_column :relationships, :active_since, :date, null: false
     # rubocop:enable Rails/NotNullColumn
     add_index  :relationships, :active_since
+
+    # rubocop:disable Rails/NotNullColumn
+    add_column :relationships, :status, :integer, null: false
+    # rubocop:enable Rails/NotNullColumn
+    add_index  :relationships, :status
   end
 end
