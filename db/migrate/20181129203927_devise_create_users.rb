@@ -11,6 +11,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :guest_token, null: false
 
+      t.references :person, index: { unique: true }
+
       t.index :guest_token, unique: true
     end
 
@@ -100,5 +102,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_foreign_key :users,         :accounts
     add_foreign_key :account_roles, :accounts
     add_foreign_key :account_roles, :roles
+    add_foreign_key :accounts,      :people
   end
 end
