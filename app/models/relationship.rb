@@ -14,15 +14,7 @@ class Relationship < ApplicationRecord
   # Validations #
   ###############
 
-  validates :number,
-            presence: true,
-            uniqueness: { scope: :person_id },
-            numericality: {
-              only_integer: true,
-              greater_than_or_equal_to: 0,
-            }
-
-  validates :active_since, presence: true
+  validates :active_since, presence: true, uniqueness: { scope: :person_id }
 
   validates :status, presence: true
 end

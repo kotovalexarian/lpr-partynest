@@ -399,7 +399,6 @@ CREATE TABLE public.relationships (
     updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
-    number integer NOT NULL,
     active_since date NOT NULL,
     status integer NOT NULL
 );
@@ -901,10 +900,10 @@ CREATE INDEX index_relationships_on_active_since ON public.relationships USING b
 
 
 --
--- Name: index_relationships_on_person_id_and_number; Type: INDEX; Schema: public; Owner: -
+-- Name: index_relationships_on_person_id_and_active_since; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_relationships_on_person_id_and_number ON public.relationships USING btree (person_id, number);
+CREATE UNIQUE INDEX index_relationships_on_person_id_and_active_since ON public.relationships USING btree (person_id, active_since);
 
 
 --
