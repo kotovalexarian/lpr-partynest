@@ -2,6 +2,22 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
+    create_table :country_states do |t|
+      t.timestamps null: false
+      t.string :name, null: false
+
+      t.index :name, unique: true
+    end
+
+    create_table :regional_offices do |t|
+      t.timestamps null: false
+
+      t.references :country_state,
+                   null: false,
+                   index: { unique: true },
+                   foreign_key: true
+    end
+
     create_table :people do |t|
       t.timestamps null: false
     end
@@ -72,13 +88,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index %i[account_id role_id], unique: true
     end
 
-    create_table :country_states do |t|
-      t.timestamps null: false
-      t.string :name, null: false
-
-      t.index :name, unique: true
-    end
-
     create_table :user_omniauths do |t|
       t.timestamps null: false
 
@@ -88,15 +97,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :email,     null: false
 
       t.index %i[remote_id provider], unique: true
-    end
-
-    create_table :regional_offices do |t|
-      t.timestamps null: false
-
-      t.references :country_state,
-                   null: false,
-                   index: { unique: true },
-                   foreign_key: true
     end
 
     add_foreign_key :users,         :accounts
