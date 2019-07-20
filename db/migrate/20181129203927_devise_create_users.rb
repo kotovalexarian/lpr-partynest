@@ -5,9 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :country_states do |t|
       t.timestamps null: false
 
-      t.string :name, null: false
-
-      t.index :name, unique: true
+      t.string :name, null: false, index: { unique: true }
     end
 
     create_table :regional_offices do |t|
@@ -23,11 +21,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :accounts do |t|
       t.timestamps null: false
 
-      t.string :guest_token, null: false
+      t.string :guest_token, null: false, index: { unique: true }
 
       t.references :person, index: { unique: true }
-
-      t.index :guest_token, unique: true
     end
 
     create_table :users do |t|
