@@ -7,7 +7,9 @@ class RegionalOffice < ApplicationRecord
 
   belongs_to :federal_subject
 
-  has_many :relationships, inverse_of: :regional_office
+  has_many :all_relationships,
+           class_name: 'Relationship',
+           inverse_of: :regional_office
 
   has_many :current_relationships,
            lambda {
@@ -53,9 +55,10 @@ class RegionalOffice < ApplicationRecord
            class_name: 'Relationship',
            inverse_of: :regional_office
 
-  has_many :people,
+  has_many :all_people,
+           class_name: 'Person',
            inverse_of: :regional_office,
-           through: :relationships,
+           through: :all_relationships,
            source: :person
 
   has_many :current_people,

@@ -88,7 +88,7 @@ RSpec.describe Person do
     it do
       is_expected.to \
         have_one(:regional_office)
-        .inverse_of(:people)
+        .inverse_of(:all_people)
         .through(:current_relationship)
         .source(:regional_office)
         .dependent(:restrict_with_exception)

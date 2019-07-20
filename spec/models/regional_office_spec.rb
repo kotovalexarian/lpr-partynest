@@ -17,10 +17,11 @@ RSpec.describe RegionalOffice do
     it { is_expected.to validate_uniqueness_of :federal_subject }
   end
 
-  describe '#relationships' do
+  describe '#all_relationships' do
     it do
       is_expected.to \
-        have_many(:relationships)
+        have_many(:all_relationships)
+        .class_name('Relationship')
         .inverse_of(:regional_office)
         .dependent(:restrict_with_exception)
     end
@@ -85,12 +86,13 @@ RSpec.describe RegionalOffice do
     end
   end
 
-  describe '#people' do
+  describe '#all_people' do
     it do
       is_expected.to \
-        have_many(:people)
+        have_many(:all_people)
+        .class_name('Person')
         .inverse_of(:regional_office)
-        .through(:relationships)
+        .through(:all_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end

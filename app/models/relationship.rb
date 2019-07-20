@@ -11,7 +11,7 @@ class Relationship < ApplicationRecord
 
   belongs_to :person
 
-  belongs_to :regional_office
+  belongs_to :regional_office, inverse_of: :all_relationships
 
   ###############
   # Validations #

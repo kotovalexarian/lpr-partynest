@@ -10,7 +10,10 @@ RSpec.describe Relationship do
   end
 
   describe '#regional_office' do
-    it { is_expected.to belong_to(:regional_office).required }
+    it do
+      is_expected.to \
+        belong_to(:regional_office).inverse_of(:all_relationships).required
+    end
   end
 
   describe '#from_date' do

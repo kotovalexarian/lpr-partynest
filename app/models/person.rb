@@ -23,7 +23,7 @@ class Person < ApplicationRecord
           inverse_of: :person
 
   has_one :regional_office,
-          inverse_of: :people,
+          inverse_of: :all_people,
           through: :current_relationship,
           source: :regional_office
 
