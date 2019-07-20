@@ -37,6 +37,64 @@ RSpec.describe FederalSubject do
     end
   end
 
+  describe '#timezone' do
+    def allow_value(*)
+      super.for :timezone
+    end
+
+    it { is_expected.to validate_presence_of :timezone }
+
+    it { is_expected.to allow_value '00:00:00' }
+    it { is_expected.to allow_value '01:00:00' }
+    it { is_expected.to allow_value '-01:00:00' }
+    it { is_expected.to allow_value '05:00:00' }
+    it { is_expected.to allow_value '-09:00:00' }
+    it { is_expected.to allow_value '12:00:00' }
+    it { is_expected.to allow_value '-12:00:00' }
+    it { is_expected.to allow_value '03:30:00' }
+    it { is_expected.to allow_value '-11:30:00' }
+    it { is_expected.to allow_value '10:45:00' }
+    it { is_expected.to allow_value '-06:15:00' }
+
+    it { is_expected.not_to allow_value '+01:00:00' }
+  end
+
+  describe '#display_name' do
+    subject do
+      create :federal_subject, native_name: Faker::Address.unique.state
+    end
+
+    around do |example|
+      I18n.with_locale locale do
+        example.run
+      end
+    end
+
+    context 'when locale is "en"' do
+      let(:locale) { :en }
+
+      specify do
+        expect(subject.display_name).to eq subject.english_name
+      end
+
+      specify do
+        expect(subject.display_name).not_to eq subject.native_name
+      end
+    end
+
+    context 'when locale is "ru"' do
+      let(:locale) { :ru }
+
+      specify do
+        expect(subject.display_name).to eq subject.native_name
+      end
+
+      specify do
+        expect(subject.display_name).not_to eq subject.english_name
+      end
+    end
+  end
+
   describe '.order_by_display_name' do
     let! :federal_subject_1 do
       create :federal_subject, english_name: '1', native_name: '3'
@@ -109,64 +167,6 @@ RSpec.describe FederalSubject do
           federal_subject_5,
           federal_subject_4,
         ]
-      end
-    end
-  end
-
-  describe '#timezone' do
-    def allow_value(*)
-      super.for :timezone
-    end
-
-    it { is_expected.to validate_presence_of :timezone }
-
-    it { is_expected.to allow_value '00:00:00' }
-    it { is_expected.to allow_value '01:00:00' }
-    it { is_expected.to allow_value '-01:00:00' }
-    it { is_expected.to allow_value '05:00:00' }
-    it { is_expected.to allow_value '-09:00:00' }
-    it { is_expected.to allow_value '12:00:00' }
-    it { is_expected.to allow_value '-12:00:00' }
-    it { is_expected.to allow_value '03:30:00' }
-    it { is_expected.to allow_value '-11:30:00' }
-    it { is_expected.to allow_value '10:45:00' }
-    it { is_expected.to allow_value '-06:15:00' }
-
-    it { is_expected.not_to allow_value '+01:00:00' }
-  end
-
-  describe '#display_name' do
-    subject do
-      create :federal_subject, native_name: Faker::Address.unique.state
-    end
-
-    around do |example|
-      I18n.with_locale locale do
-        example.run
-      end
-    end
-
-    context 'when locale is "en"' do
-      let(:locale) { :en }
-
-      specify do
-        expect(subject.display_name).to eq subject.english_name
-      end
-
-      specify do
-        expect(subject.display_name).not_to eq subject.native_name
-      end
-    end
-
-    context 'when locale is "ru"' do
-      let(:locale) { :ru }
-
-      specify do
-        expect(subject.display_name).to eq subject.native_name
-      end
-
-      specify do
-        expect(subject.display_name).not_to eq subject.english_name
       end
     end
   end
