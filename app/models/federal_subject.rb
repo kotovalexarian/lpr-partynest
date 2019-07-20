@@ -25,9 +25,15 @@ class FederalSubject < ApplicationRecord
   # Validations #
   ###############
 
-  validates :english_name, presence: true, uniqueness: true
+  validates :english_name,
+            presence: true,
+            uniqueness: true,
+            length: { in: 1..255 }
 
-  validates :native_name, presence: true, uniqueness: true
+  validates :native_name,
+            presence: true,
+            uniqueness: true,
+            length: { in: 1..255 }
 
   validates :number,
             presence: true,
@@ -35,6 +41,9 @@ class FederalSubject < ApplicationRecord
             numericality: { only_integer: true, greater_than: 0 }
 
   validates :timezone, presence: true, format: { with: TIMEZONE_RE }
+
+  validate :english_name_looks_realistic
+  validate :native_name_looks_realistic
 
   ###########
   # Methods #
@@ -46,5 +55,21 @@ class FederalSubject < ApplicationRecord
     else
       english_name
     end
+  end
+
+private
+
+  def english_name_looks_realistic
+    return if english_name.blank?
+
+    errors.add :english_name, :leading_spaces  if english_name.start_with? ' '
+    errors.add :english_name, :trailing_spaces if english_name.end_with?   ' '
+  end
+
+  def native_name_looks_realistic
+    return if native_name.blank?
+
+    errors.add :native_name, :leading_spaces  if native_name.start_with? ' '
+    errors.add :native_name, :trailing_spaces if native_name.end_with?   ' '
   end
 end

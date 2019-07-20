@@ -222,7 +222,10 @@ CREATE TABLE public.federal_subjects (
     english_name character varying NOT NULL,
     native_name character varying NOT NULL,
     number integer NOT NULL,
-    timezone interval NOT NULL
+    timezone interval NOT NULL,
+    CONSTRAINT english_name CHECK ((((length((english_name)::text) >= 1) AND (length((english_name)::text) <= 255)) AND ((english_name)::text !~ '^[[:space:]]{1,}'::text) AND ((english_name)::text !~ '[[:space:]]{1,}$'::text))),
+    CONSTRAINT native_name CHECK ((((length((native_name)::text) >= 1) AND (length((native_name)::text) <= 255)) AND ((native_name)::text !~ '^[[:space:]]{1,}'::text) AND ((native_name)::text !~ '[[:space:]]{1,}$'::text))),
+    CONSTRAINT number CHECK ((number > 0))
 );
 
 
@@ -1124,6 +1127,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190718184543'),
 ('20190719224405'),
 ('20190720022446'),
-('20190720042127');
+('20190720042127'),
+('20190720124758');
 
 
