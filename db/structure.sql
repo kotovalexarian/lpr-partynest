@@ -794,6 +794,13 @@ CREATE UNIQUE INDEX index_accounts_on_contacts_list_id ON public.accounts USING 
 
 
 --
+-- Name: index_accounts_on_guest_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_accounts_on_guest_token ON public.accounts USING btree (guest_token);
+
+
+--
 -- Name: index_accounts_on_person_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1096,9 +1103,6 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
-('20181210024922'),
-('20181210033105'),
-('20181210033307'),
 ('20181215040559'),
 ('20181215053720'),
 ('20190129013754'),
