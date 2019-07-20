@@ -893,6 +893,13 @@ CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regio
 
 
 --
+-- Name: index_relationships_on_from_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_from_date ON public.relationships USING btree (from_date);
+
+
+--
 -- Name: index_relationships_on_person_id_and_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -904,13 +911,6 @@ CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.rel
 --
 
 CREATE INDEX index_relationships_on_regional_office_id ON public.relationships USING btree (regional_office_id);
-
-
---
--- Name: index_relationships_on_from_date; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_relationships_on_from_date ON public.relationships USING btree (from_date);
 
 
 --
