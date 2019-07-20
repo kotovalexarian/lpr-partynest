@@ -4,6 +4,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :accounts do |t|
       t.timestamps null: false
+
+      t.string :guest_token, null: false
+
+      t.index :guest_token, unique: true
     end
 
     create_table :users do |t|
