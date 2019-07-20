@@ -7,11 +7,18 @@ RSpec.describe RegionalOffice do
 
   it { is_expected.to belong_to :federal_subject }
 
-  it { is_expected.to have_many(:people).dependent(:restrict_with_exception) }
-
   it do
     is_expected.to \
       have_many(:relationships)
+      .dependent(:restrict_with_exception)
+  end
+
+  it do
+    is_expected.to \
+      have_many(:people)
+      .inverse_of(:regional_office)
+      .through(:relationships)
+      .source(:person)
       .dependent(:restrict_with_exception)
   end
 

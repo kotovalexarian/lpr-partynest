@@ -295,7 +295,6 @@ CREATE TABLE public.people (
     id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    regional_office_id bigint,
     first_name character varying NOT NULL,
     middle_name character varying,
     last_name character varying NOT NULL,
@@ -869,13 +868,6 @@ CREATE UNIQUE INDEX index_people_on_contacts_list_id ON public.people USING btre
 
 
 --
--- Name: index_people_on_regional_office_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_people_on_regional_office_id ON public.people USING btree (regional_office_id);
-
-
---
 -- Name: index_person_comments_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1075,14 +1067,6 @@ ALTER TABLE ONLY public.people
 
 
 --
--- Name: people fk_rails_cc7540413a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.people
-    ADD CONSTRAINT fk_rails_cc7540413a FOREIGN KEY (regional_office_id) REFERENCES public.regional_offices(id);
-
-
---
 -- Name: person_comments fk_rails_d3ef7dc526; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1115,7 +1099,6 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
-('20181215040559'),
 ('20181215053720'),
 ('20190129013754'),
 ('20190129015721'),

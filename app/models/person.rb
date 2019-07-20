@@ -24,6 +24,12 @@ class Person < ApplicationRecord
           inverse_of: :person,
           dependent: :restrict_with_exception
 
+  has_one :regional_office,
+          inverse_of: :people,
+          through: :current_relationship,
+          source: :regional_office,
+          dependent: :restrict_with_exception
+
   has_many :person_comments, dependent: :restrict_with_exception
 
   has_many :passports, dependent: :restrict_with_exception

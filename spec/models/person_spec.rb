@@ -3,11 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Person do
-  subject { create :member_person }
+  subject { create :initial_person }
 
   it_behaves_like 'nameable'
-
-  it { is_expected.to belong_to(:regional_office).optional }
 
   xit { is_expected.to belong_to(:contacts_list).required }
 
@@ -28,6 +26,15 @@ RSpec.describe Person do
       .inverse_of(:person)
       .dependent(:restrict_with_exception)
       .order(from_date: :desc)
+  end
+
+  it do
+    is_expected.to \
+      have_one(:regional_office)
+      .inverse_of(:people)
+      .through(:current_relationship)
+      .source(:regional_office)
+      .dependent(:restrict_with_exception)
   end
 
   it do
