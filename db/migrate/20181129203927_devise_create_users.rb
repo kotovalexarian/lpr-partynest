@@ -4,6 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :country_states do |t|
       t.timestamps null: false
+
       t.string :name, null: false
 
       t.index :name, unique: true
@@ -12,10 +13,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :regional_offices do |t|
       t.timestamps null: false
 
-      t.references :country_state,
-                   null: false,
-                   index: { unique: true },
-                   foreign_key: true
+      t.references :country_state, null: false
+
+      t.index :country_state_id, unique: true
     end
 
     create_table :people do |t|
@@ -99,9 +99,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index %i[remote_id provider], unique: true
     end
 
-    add_foreign_key :users,         :accounts
-    add_foreign_key :account_roles, :accounts
-    add_foreign_key :account_roles, :roles
-    add_foreign_key :accounts,      :people
+    add_foreign_key :users,            :accounts
+    add_foreign_key :account_roles,    :accounts
+    add_foreign_key :account_roles,    :roles
+    add_foreign_key :accounts,         :people
+    add_foreign_key :regional_offices, :country_states
   end
 end
