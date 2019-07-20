@@ -5,16 +5,18 @@ require 'csv'
 federal_subjects_filename = Rails.root.join 'config', 'federal_subjects.csv'
 
 CSV.foreach federal_subjects_filename,
-            col_sep: '|' do |(id, english_name, native_name, number)|
+            col_sep: '|' do |(id, english_name, native_name, number, timezone)|
   id = Integer(id.strip)
   english_name.strip!
   native_name.strip!
   number = Integer(number.strip.sub(/\A0*/, ''))
+  timezone.strip!
 
   FederalSubject.where(id: id).first_or_create! do |new_federal_subject|
     new_federal_subject.english_name = english_name
     new_federal_subject.native_name = native_name
     new_federal_subject.number = number
+    new_federal_subject.timezone = timezone
   end
 end
 

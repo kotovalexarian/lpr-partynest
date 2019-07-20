@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FederalSubject < ApplicationRecord
+  TIMEZONE_RE = /\A-?\d\d:\d\d:00\z/.freeze
+
   ##########
   # Scopes #
   ##########
@@ -31,6 +33,8 @@ class FederalSubject < ApplicationRecord
             presence: true,
             uniqueness: true,
             numericality: { only_integer: true, greater_than: 0 }
+
+  validates :timezone, presence: true, format: { with: TIMEZONE_RE }
 
   ###########
   # Methods #

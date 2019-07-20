@@ -104,6 +104,28 @@ RSpec.describe FederalSubject do
     end
   end
 
+  describe '#timezone' do
+    def allow_value(*)
+      super.for :timezone
+    end
+
+    it { is_expected.to validate_presence_of :timezone }
+
+    it { is_expected.to allow_value '00:00:00' }
+    it { is_expected.to allow_value '01:00:00' }
+    it { is_expected.to allow_value '-01:00:00' }
+    it { is_expected.to allow_value '05:00:00' }
+    it { is_expected.to allow_value '-09:00:00' }
+    it { is_expected.to allow_value '12:00:00' }
+    it { is_expected.to allow_value '-12:00:00' }
+    it { is_expected.to allow_value '03:30:00' }
+    it { is_expected.to allow_value '-11:30:00' }
+    it { is_expected.to allow_value '10:45:00' }
+    it { is_expected.to allow_value '-06:15:00' }
+
+    it { is_expected.not_to allow_value '+01:00:00' }
+  end
+
   describe '#display_name' do
     subject do
       create :federal_subject, native_name: Faker::Address.unique.state

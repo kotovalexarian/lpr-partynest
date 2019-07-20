@@ -220,7 +220,8 @@ CREATE TABLE public.federal_subjects (
     updated_at timestamp without time zone NOT NULL,
     english_name character varying NOT NULL,
     native_name character varying NOT NULL,
-    number integer NOT NULL
+    number integer NOT NULL,
+    timezone interval NOT NULL
 );
 
 
@@ -1131,6 +1132,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190708130309'),
 ('20190715210610'),
 ('20190718184543'),
-('20190719224405');
+('20190719224405'),
+('20190720022446');
 
 
