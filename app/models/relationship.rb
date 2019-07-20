@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Relationship < ApplicationRecord
-  enum status: %i[unrelated supporter member excluded]
+  enum status: %i[supporter member excluded]
 
   ################
   # Associations #
