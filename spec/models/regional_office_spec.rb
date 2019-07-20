@@ -48,6 +48,28 @@ RSpec.describe RegionalOffice do
     end
   end
 
+  describe '#manager_relationships' do
+    it do
+      is_expected.to \
+        have_many(:manager_relationships)
+        .class_name('Relationship')
+        .inverse_of(:regional_office)
+        .dependent(:restrict_with_exception)
+        .conditions(status: :member, role: :manager)
+    end
+  end
+
+  describe '#supervisor_relationships' do
+    it do
+      is_expected.to \
+        have_many(:supervisor_relationships)
+        .class_name('Relationship')
+        .inverse_of(:regional_office)
+        .dependent(:restrict_with_exception)
+        .conditions(status: :member, role: :supervisor)
+    end
+  end
+
   describe '#people' do
     it do
       is_expected.to \
@@ -78,6 +100,30 @@ RSpec.describe RegionalOffice do
         .class_name('Person')
         .inverse_of(:regional_office)
         .through(:member_relationships)
+        .source(:person)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#manager_people' do
+    it do
+      is_expected.to \
+        have_many(:manager_people)
+        .class_name('Person')
+        .inverse_of(:regional_office)
+        .through(:manager_relationships)
+        .source(:person)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#supervisor_people' do
+    it do
+      is_expected.to \
+        have_many(:supervisor_people)
+        .class_name('Person')
+        .inverse_of(:regional_office)
+        .through(:supervisor_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end

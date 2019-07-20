@@ -19,6 +19,16 @@ class RegionalOffice < ApplicationRecord
            class_name: 'Relationship',
            inverse_of: :regional_office
 
+  has_many :manager_relationships,
+           -> { where(status: :member, role: :manager) },
+           class_name: 'Relationship',
+           inverse_of: :regional_office
+
+  has_many :supervisor_relationships,
+           -> { where(status: :member, role: :supervisor) },
+           class_name: 'Relationship',
+           inverse_of: :regional_office
+
   has_many :people,
            inverse_of: :regional_office,
            through: :relationships,
@@ -34,6 +44,18 @@ class RegionalOffice < ApplicationRecord
            class_name: 'Person',
            inverse_of: :regional_office,
            through: :member_relationships,
+           source: :person
+
+  has_many :manager_people,
+           class_name: 'Person',
+           inverse_of: :regional_office,
+           through: :manager_relationships,
+           source: :person
+
+  has_many :supervisor_people,
+           class_name: 'Person',
+           inverse_of: :regional_office,
+           through: :supervisor_relationships,
            source: :person
 
   ###############
