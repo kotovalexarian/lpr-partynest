@@ -80,6 +80,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.index %i[remote_id provider], unique: true
     end
 
+    create_table :regional_offices do |t|
+      t.timestamps null: false
+
+      t.references :country_state,
+                   null: false,
+                   index: { unique: true },
+                   foreign_key: true
+    end
+
     add_foreign_key :users,         :accounts
     add_foreign_key :account_roles, :accounts
     add_foreign_key :account_roles, :roles
