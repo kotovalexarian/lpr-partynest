@@ -49,13 +49,11 @@ RSpec.describe Account do
   end
 
   describe '#contacts_list' do
-    xit { is_expected.to belong_to(:contacts_list).required }
-  end
-
-  describe '#contacts_list' do
     def allow_value(*)
       super.for :contacts_list
     end
+
+    xit { is_expected.to belong_to(:contacts_list).required }
 
     context 'for usual account' do
       subject { create :usual_account }
