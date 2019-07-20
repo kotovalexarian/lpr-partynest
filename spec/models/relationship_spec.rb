@@ -21,4 +21,31 @@ RSpec.describe Relationship do
   describe '#status' do
     it { is_expected.to validate_presence_of :status }
   end
+
+  describe '#role' do
+    context 'for supporter relationship' do
+      subject { create :supporter_relationship }
+
+      it { is_expected.to validate_absence_of :role }
+    end
+
+    context 'for excluded supporter relationship' do
+      subject { create :excluded_supporter_relationship }
+
+      it { is_expected.to validate_absence_of :role }
+    end
+
+    context 'for excluded member relationship' do
+      subject { create :excluded_member_relationship }
+
+      it { is_expected.to validate_absence_of :role }
+    end
+
+    context 'for member relationship' do
+      subject { create :member_relationship }
+
+      it { is_expected.not_to validate_absence_of :role }
+      it { is_expected.not_to validate_presence_of :role }
+    end
+  end
 end

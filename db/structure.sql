@@ -400,9 +400,11 @@ CREATE TABLE public.relationships (
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
-    status integer NOT NULL,
     until_date date,
-    CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date)))
+    status integer NOT NULL,
+    role integer,
+    CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date))),
+    CONSTRAINT role CHECK (((status = 2) OR (role IS NULL)))
 );
 
 
@@ -913,6 +915,13 @@ CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.rel
 --
 
 CREATE INDEX index_relationships_on_regional_office_id ON public.relationships USING btree (regional_office_id);
+
+
+--
+-- Name: index_relationships_on_role; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_role ON public.relationships USING btree (role);
 
 
 --

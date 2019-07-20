@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Relationship < ApplicationRecord
-  enum status: %i[supporter member excluded]
+  enum status: %i[supporter excluded member]
+
+  enum role: %i[manager supervisor]
 
   ################
   # Associations #
@@ -17,4 +19,6 @@ class Relationship < ApplicationRecord
   validates :from_date, presence: true, uniqueness: { scope: :person_id }
 
   validates :status, presence: true
+
+  validates :role, absence: { unless: :member? }
 end
