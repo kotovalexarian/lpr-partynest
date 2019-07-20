@@ -37,47 +37,51 @@ RSpec.describe RegionalOffice do
     end
   end
 
-  describe '#supporter_relationships' do
+  describe '#current_supporter_relationships' do
     it do
       is_expected.to \
-        have_many(:supporter_relationships)
+        have_many(:current_supporter_relationships)
         .class_name('Relationship')
         .inverse_of(:regional_office)
         .dependent(:restrict_with_exception)
         .conditions(status: :supporter)
+        .order(person_id: :asc, from_date: :desc)
     end
   end
 
-  describe '#member_relationships' do
+  describe '#current_member_relationships' do
     it do
       is_expected.to \
-        have_many(:member_relationships)
+        have_many(:current_member_relationships)
         .class_name('Relationship')
         .inverse_of(:regional_office)
         .dependent(:restrict_with_exception)
         .conditions(status: :member)
+        .order(person_id: :asc, from_date: :desc)
     end
   end
 
-  describe '#manager_relationships' do
+  describe '#current_manager_relationships' do
     it do
       is_expected.to \
-        have_many(:manager_relationships)
+        have_many(:current_manager_relationships)
         .class_name('Relationship')
         .inverse_of(:regional_office)
         .dependent(:restrict_with_exception)
         .conditions(status: :member, role: :manager)
+        .order(person_id: :asc, from_date: :desc)
     end
   end
 
-  describe '#supervisor_relationships' do
+  describe '#current_supervisor_relationships' do
     it do
       is_expected.to \
-        have_many(:supervisor_relationships)
+        have_many(:current_supervisor_relationships)
         .class_name('Relationship')
         .inverse_of(:regional_office)
         .dependent(:restrict_with_exception)
         .conditions(status: :member, role: :supervisor)
+        .order(person_id: :asc, from_date: :desc)
     end
   end
 
@@ -104,49 +108,49 @@ RSpec.describe RegionalOffice do
     end
   end
 
-  describe '#supporter_people' do
+  describe '#current_supporter_people' do
     it do
       is_expected.to \
-        have_many(:supporter_people)
+        have_many(:current_supporter_people)
         .class_name('Person')
         .inverse_of(:regional_office)
-        .through(:supporter_relationships)
+        .through(:current_supporter_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end
   end
 
-  describe '#member_people' do
+  describe '#current_member_people' do
     it do
       is_expected.to \
-        have_many(:member_people)
+        have_many(:current_member_people)
         .class_name('Person')
         .inverse_of(:regional_office)
-        .through(:member_relationships)
+        .through(:current_member_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end
   end
 
-  describe '#manager_people' do
+  describe '#current_manager_people' do
     it do
       is_expected.to \
-        have_many(:manager_people)
+        have_many(:current_manager_people)
         .class_name('Person')
         .inverse_of(:regional_office)
-        .through(:manager_relationships)
+        .through(:current_manager_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end
   end
 
-  describe '#supervisor_people' do
+  describe '#current_supervisor_people' do
     it do
       is_expected.to \
-        have_many(:supervisor_people)
+        have_many(:current_supervisor_people)
         .class_name('Person')
         .inverse_of(:regional_office)
-        .through(:supervisor_relationships)
+        .through(:current_supervisor_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end
