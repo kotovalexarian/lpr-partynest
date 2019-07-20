@@ -5,28 +5,34 @@ require 'rails_helper'
 RSpec.describe RegionalOffice do
   subject { create :regional_office }
 
-  it { is_expected.to belong_to :federal_subject }
+  describe '#federal_subject' do
+    it { is_expected.to belong_to :federal_subject }
 
-  it do
-    is_expected.to \
-      have_many(:relationships)
-      .dependent(:restrict_with_exception)
+    it do
+      is_expected.to \
+        validate_presence_of(:federal_subject)
+        .with_message(:required)
+    end
+
+    it { is_expected.to validate_uniqueness_of :federal_subject }
   end
 
-  it do
-    is_expected.to \
-      have_many(:people)
-      .inverse_of(:regional_office)
-      .through(:relationships)
-      .source(:person)
-      .dependent(:restrict_with_exception)
+  describe '#relationships' do
+    it do
+      is_expected.to \
+        have_many(:relationships)
+        .dependent(:restrict_with_exception)
+    end
   end
 
-  it do
-    is_expected.to \
-      validate_presence_of(:federal_subject)
-      .with_message(:required)
+  describe '#people' do
+    it do
+      is_expected.to \
+        have_many(:people)
+        .inverse_of(:regional_office)
+        .through(:relationships)
+        .source(:person)
+        .dependent(:restrict_with_exception)
+    end
   end
-
-  it { is_expected.to validate_uniqueness_of :federal_subject }
 end

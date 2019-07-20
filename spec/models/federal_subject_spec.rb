@@ -5,27 +5,36 @@ require 'rails_helper'
 RSpec.describe FederalSubject do
   subject { create :federal_subject }
 
-  it do
-    is_expected.to \
-      have_one(:regional_office)
-      .dependent(:restrict_with_exception)
+  describe '#regional_office' do
+    it do
+      is_expected.to \
+        have_one(:regional_office)
+        .dependent(:restrict_with_exception)
+    end
+
+    it { is_expected.not_to validate_presence_of :regional_office }
   end
 
-  it { is_expected.not_to validate_presence_of :regional_office }
+  describe '#english_name' do
+    it { is_expected.to validate_presence_of :english_name }
+    it { is_expected.to validate_uniqueness_of :english_name }
+  end
 
-  it { is_expected.to validate_presence_of :english_name }
-  it { is_expected.to validate_presence_of :native_name }
-  it { is_expected.to validate_presence_of :number }
+  describe '#native_name' do
+    it { is_expected.to validate_presence_of :native_name }
+    it { is_expected.to validate_uniqueness_of :native_name }
+  end
 
-  it { is_expected.to validate_uniqueness_of :english_name }
-  it { is_expected.to validate_uniqueness_of :native_name }
-  it { is_expected.to validate_uniqueness_of :number }
+  describe '#number' do
+    it { is_expected.to validate_presence_of :number }
+    it { is_expected.to validate_uniqueness_of :number }
 
-  it do
-    is_expected.to \
-      validate_numericality_of(:number)
-      .only_integer
-      .is_greater_than(0)
+    it do
+      is_expected.to \
+        validate_numericality_of(:number)
+        .only_integer
+        .is_greater_than(0)
+    end
   end
 
   describe '.order_by_display_name' do

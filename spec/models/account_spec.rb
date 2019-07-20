@@ -5,32 +5,6 @@ require 'rails_helper'
 RSpec.describe Account do
   subject { create :personal_account }
 
-  it { is_expected.to belong_to(:person).optional }
-
-  xit { is_expected.to belong_to(:contacts_list).required }
-
-  it do
-    is_expected.to \
-      have_one(:user)
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
-      have_many(:account_roles)
-      .inverse_of(:account)
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
-      have_many(:roles)
-      .through(:account_roles)
-  end
-
-  it { is_expected.not_to validate_presence_of :person }
-  it { is_expected.not_to validate_presence_of :user }
-
   pending '.guests'
   pending '#guest?'
   pending '#can_access_sidekiq_web_interface?'
@@ -39,6 +13,43 @@ RSpec.describe Account do
     specify do
       expect(subject.to_param).to eq subject.nickname
     end
+  end
+
+  describe '#account_roles' do
+    it do
+      is_expected.to \
+        have_many(:account_roles)
+        .inverse_of(:account)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#roles' do
+    it do
+      is_expected.to \
+        have_many(:roles)
+        .through(:account_roles)
+    end
+  end
+
+  describe '#user' do
+    it do
+      is_expected.to \
+        have_one(:user)
+        .dependent(:restrict_with_exception)
+    end
+
+    it { is_expected.not_to validate_presence_of :user }
+  end
+
+  describe '#person' do
+    it { is_expected.to belong_to(:person).optional }
+
+    it { is_expected.not_to validate_presence_of :person }
+  end
+
+  describe '#contacts_list' do
+    xit { is_expected.to belong_to(:contacts_list).required }
   end
 
   describe '#contacts_list' do

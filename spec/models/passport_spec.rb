@@ -7,11 +7,27 @@ RSpec.describe Passport do
 
   it_behaves_like 'nameable'
 
-  it { is_expected.to belong_to(:person).optional }
+  describe '#person' do
+    it { is_expected.to belong_to(:person).optional }
+  end
 
-  it { is_expected.to validate_presence_of :series }
-  it { is_expected.to validate_presence_of :number }
-  it { is_expected.to validate_presence_of :issued_by }
-  it { is_expected.to validate_presence_of :unit_code }
-  it { is_expected.to validate_presence_of :date_of_issue }
+  describe '#series' do
+    it { is_expected.to validate_presence_of :series }
+  end
+
+  describe '#number' do
+    it { is_expected.to validate_presence_of :number }
+  end
+
+  describe '#issued_by' do
+    it { is_expected.to validate_presence_of :issued_by }
+  end
+
+  describe '#unit_code' do
+    it { is_expected.to validate_presence_of :unit_code }
+  end
+
+  describe '#date_of_issue' do
+    it { is_expected.to validate_presence_of :date_of_issue }
+  end
 end

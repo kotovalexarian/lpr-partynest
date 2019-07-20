@@ -3,12 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe AccountRole do
-  it { is_expected.to belong_to :account }
-  it { is_expected.to belong_to :role }
-
   pending '.active'
   pending '.not_deleted'
   pending '.not_expired'
+
+  describe '#account' do
+    it { is_expected.to belong_to :account }
+  end
+
+  describe '#role' do
+    it { is_expected.to belong_to :role }
+  end
 
   describe '#deleted_at' do
     def allow_value(*)

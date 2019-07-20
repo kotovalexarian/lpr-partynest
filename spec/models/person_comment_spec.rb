@@ -5,9 +5,13 @@ require 'rails_helper'
 RSpec.describe PersonComment do
   subject { create :person_comment }
 
-  it { is_expected.to belong_to(:person).required }
+  describe '#person' do
+    it { is_expected.to belong_to(:person).required }
+  end
 
-  it { is_expected.to belong_to(:account).optional }
+  describe '#account' do
+    it { is_expected.to belong_to(:account).optional }
+  end
 
   describe '#text' do
     it { is_expected.to validate_presence_of :text }

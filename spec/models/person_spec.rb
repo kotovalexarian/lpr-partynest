@@ -7,49 +7,13 @@ RSpec.describe Person do
 
   it_behaves_like 'nameable'
 
-  xit { is_expected.to belong_to(:contacts_list).required }
-
-  it { is_expected.to have_one(:account).dependent(:restrict_with_exception) }
-
-  it do
-    is_expected.to \
-      have_many(:relationships)
-      .inverse_of(:person)
-      .dependent(:restrict_with_exception)
-      .order(from_date: :asc)
+  describe '#account' do
+    it { is_expected.to have_one(:account).dependent(:restrict_with_exception) }
   end
 
-  it do
-    is_expected.to \
-      have_one(:current_relationship)
-      .class_name('Relationship')
-      .inverse_of(:person)
-      .dependent(:restrict_with_exception)
-      .order(from_date: :desc)
+  describe '#contacts_list' do
+    xit { is_expected.to belong_to(:contacts_list).required }
   end
-
-  it do
-    is_expected.to \
-      have_one(:regional_office)
-      .inverse_of(:people)
-      .through(:current_relationship)
-      .source(:regional_office)
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
-      have_many(:person_comments)
-      .dependent(:restrict_with_exception)
-  end
-
-  it do
-    is_expected.to \
-      have_many(:passports)
-      .dependent(:restrict_with_exception)
-  end
-
-  it { is_expected.not_to validate_presence_of :regional_office }
 
   describe '#relationships' do
     let! :relationship_2 do
@@ -70,6 +34,14 @@ RSpec.describe Person do
              from_date: 6.days.ago
     end
 
+    it do
+      is_expected.to \
+        have_many(:relationships)
+        .inverse_of(:person)
+        .dependent(:restrict_with_exception)
+        .order(from_date: :asc)
+    end
+
     specify do
       expect(subject.relationships).to eq [
         relationship_1,
@@ -80,6 +52,15 @@ RSpec.describe Person do
   end
 
   describe '#current_relationship' do
+    it do
+      is_expected.to \
+        have_one(:current_relationship)
+        .class_name('Relationship')
+        .inverse_of(:person)
+        .dependent(:restrict_with_exception)
+        .order(from_date: :desc)
+    end
+
     let! :relationship_2 do
       create :supporter_relationship,
              person: subject,
@@ -100,6 +81,35 @@ RSpec.describe Person do
 
     specify do
       expect(subject.current_relationship).to eq relationship_3
+    end
+  end
+
+  describe '#regional_office' do
+    it do
+      is_expected.to \
+        have_one(:regional_office)
+        .inverse_of(:people)
+        .through(:current_relationship)
+        .source(:regional_office)
+        .dependent(:restrict_with_exception)
+    end
+
+    it { is_expected.not_to validate_presence_of :regional_office }
+  end
+
+  describe '#person_comments' do
+    it do
+      is_expected.to \
+        have_many(:person_comments)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#passports' do
+    it do
+      is_expected.to \
+        have_many(:passports)
+        .dependent(:restrict_with_exception)
     end
   end
 end

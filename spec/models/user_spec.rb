@@ -5,7 +5,9 @@ require 'rails_helper'
 RSpec.describe User do
   subject { create(:usual_account).user }
 
-  it { is_expected.to belong_to(:account).required(false) }
+  describe '#account' do
+    it { is_expected.to belong_to(:account).required(false) }
 
-  it { is_expected.to validate_uniqueness_of :account }
+    it { is_expected.to validate_uniqueness_of :account }
+  end
 end

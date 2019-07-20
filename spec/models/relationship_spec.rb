@@ -5,8 +5,13 @@ require 'rails_helper'
 RSpec.describe Relationship do
   subject { create :supporter_relationship }
 
-  it { is_expected.to belong_to(:person).required }
-  it { is_expected.to belong_to(:regional_office).required }
+  describe '#person' do
+    it { is_expected.to belong_to(:person).required }
+  end
+
+  describe '#regional_office' do
+    it { is_expected.to belong_to(:regional_office).required }
+  end
 
   describe '#from_date' do
     it { is_expected.to validate_presence_of :from_date }
