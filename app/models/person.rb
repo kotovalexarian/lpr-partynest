@@ -7,8 +7,6 @@ class Person < ApplicationRecord
   # Associations #
   ################
 
-  belongs_to :regional_office, optional: true
-
   belongs_to :contacts_list
 
   has_one :account
@@ -22,7 +20,7 @@ class Person < ApplicationRecord
           class_name: 'Relationship',
           inverse_of: :person
 
-  has_one :regional_office,
+  has_one :current_regional_office,
           inverse_of: :all_people,
           through: :current_relationship,
           source: :regional_office

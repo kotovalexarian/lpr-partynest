@@ -11,13 +11,14 @@
 
       <p class="h3 text-muted"><%= @account.nickname %></p>
 
-      <% if @account.person&.regional_office %>
+      <% if @account.person&.current_regional_office %>
         <div class="mb-2">
           <i class="fas fa-map-marker-alt"></i>
           <%= link_to(
-                @account.person.regional_office.federal_subject.display_name,
-                @account.person.regional_office.federal_subject,
-              ) %>
+            @account.person.current_regional_office.federal_subject
+              .display_name,
+            @account.person.current_regional_office.federal_subject,
+          ) %>
         </div>
       <% end %>
 

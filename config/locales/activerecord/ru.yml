@@ -54,7 +54,7 @@ ru:
         female: Женский
       person:
         id: ID
-        regional_office: Региональное отделение
+        current_regional_office: Региональное отделение
         first_name: Имя
         middle_name: Отчество
         last_name: Фамилия

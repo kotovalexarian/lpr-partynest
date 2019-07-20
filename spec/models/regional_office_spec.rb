@@ -91,7 +91,7 @@ RSpec.describe RegionalOffice do
       is_expected.to \
         have_many(:all_people)
         .class_name('Person')
-        .inverse_of(:regional_office)
+        .inverse_of(:current_regional_office)
         .through(:all_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
@@ -103,7 +103,7 @@ RSpec.describe RegionalOffice do
       is_expected.to \
         have_many(:current_people)
         .class_name('Person')
-        .inverse_of(:regional_office)
+        .inverse_of(:current_regional_office)
         .through(:current_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
@@ -115,7 +115,7 @@ RSpec.describe RegionalOffice do
       is_expected.to \
         have_many(:current_supporter_people)
         .class_name('Person')
-        .inverse_of(:regional_office)
+        .inverse_of(:current_regional_office)
         .through(:current_supporter_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
@@ -127,7 +127,7 @@ RSpec.describe RegionalOffice do
       is_expected.to \
         have_many(:current_member_people)
         .class_name('Person')
-        .inverse_of(:regional_office)
+        .inverse_of(:current_regional_office)
         .through(:current_member_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
@@ -139,7 +139,7 @@ RSpec.describe RegionalOffice do
       is_expected.to \
         have_many(:current_manager_people)
         .class_name('Person')
-        .inverse_of(:regional_office)
+        .inverse_of(:current_regional_office)
         .through(:current_manager_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
@@ -151,7 +151,7 @@ RSpec.describe RegionalOffice do
       is_expected.to \
         have_many(:current_supervisor_people)
         .class_name('Person')
-        .inverse_of(:regional_office)
+        .inverse_of(:current_regional_office)
         .through(:current_supervisor_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)

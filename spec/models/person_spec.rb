@@ -84,17 +84,17 @@ RSpec.describe Person do
     end
   end
 
-  describe '#regional_office' do
+  describe '#current_regional_office' do
     it do
       is_expected.to \
-        have_one(:regional_office)
+        have_one(:current_regional_office)
         .inverse_of(:all_people)
         .through(:current_relationship)
         .source(:regional_office)
         .dependent(:restrict_with_exception)
     end
 
-    it { is_expected.not_to validate_presence_of :regional_office }
+    it { is_expected.not_to validate_presence_of :current_regional_office }
   end
 
   describe '#person_comments' do

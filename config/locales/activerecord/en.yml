@@ -54,7 +54,7 @@ en:
         female: Female
       person:
         id: ID
-        regional_office: Regional office
+        current_regional_office: Regional office
         first_name: First name
         middle_name: Middle name
         last_name: Last name

@@ -20,12 +20,12 @@
     <dt><%= Person.human_attribute_name :place_of_birth %></dt>
     <dd><%= truncate @person.place_of_birth %></dd>
 
-    <dt><%= Person.human_attribute_name :regional_office %></dt>
+    <dt><%= Person.human_attribute_name :current_regional_office %></dt>
     <dd>
-      <% if @person.regional_office %>
+      <% if @person.current_regional_office %>
         <%= link_to(
-              @person.regional_office.federal_subject.display_name,
-              @person.regional_office.federal_subject,
+              @person.current_regional_office.federal_subject.display_name,
+              @person.current_regional_office.federal_subject,
             ) %>
       <% else %>
         <%= translate :none %>
