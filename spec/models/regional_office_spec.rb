@@ -26,6 +26,17 @@ RSpec.describe RegionalOffice do
     end
   end
 
+  describe '#current_relationships' do
+    it do
+      is_expected.to \
+        have_many(:current_relationships)
+        .class_name('Relationship')
+        .inverse_of(:regional_office)
+        .dependent(:restrict_with_exception)
+        .order(person_id: :asc, from_date: :desc)
+    end
+  end
+
   describe '#supporter_relationships' do
     it do
       is_expected.to \
@@ -76,6 +87,18 @@ RSpec.describe RegionalOffice do
         have_many(:people)
         .inverse_of(:regional_office)
         .through(:relationships)
+        .source(:person)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#current_people' do
+    it do
+      is_expected.to \
+        have_many(:current_people)
+        .class_name('Person')
+        .inverse_of(:regional_office)
+        .through(:current_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end

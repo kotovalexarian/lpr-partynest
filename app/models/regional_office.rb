@@ -9,6 +9,14 @@ class RegionalOffice < ApplicationRecord
 
   has_many :relationships, inverse_of: :regional_office
 
+  has_many :current_relationships,
+           lambda {
+             select('DISTINCT ON (relationships.person_id) *')
+               .order(person_id: :asc, from_date: :desc)
+           },
+           class_name: 'Relationship',
+           inverse_of: :regional_office
+
   has_many :supporter_relationships,
            -> { where(status: :supporter) },
            class_name: 'Relationship',
@@ -32,6 +40,12 @@ class RegionalOffice < ApplicationRecord
   has_many :people,
            inverse_of: :regional_office,
            through: :relationships,
+           source: :person
+
+  has_many :current_people,
+           class_name: 'Person',
+           inverse_of: :regional_office,
+           through: :current_relationships,
            source: :person
 
   has_many :supporter_people,
