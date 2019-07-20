@@ -400,7 +400,9 @@ CREATE TABLE public.relationships (
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
-    status integer NOT NULL
+    status integer NOT NULL,
+    until_date date,
+    CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date)))
 );
 
 
