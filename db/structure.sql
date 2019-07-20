@@ -75,9 +75,10 @@ CREATE TABLE public.accounts (
     biography text,
     public_name character varying,
     contacts_list_id bigint NOT NULL,
-    CONSTRAINT accounts_username_lower_case_check CHECK (((nickname)::text = lower((nickname)::text))),
-    CONSTRAINT accounts_username_max_length_check CHECK ((length((nickname)::text) <= 36)),
-    CONSTRAINT accounts_username_min_length_check CHECK ((length((nickname)::text) >= 3))
+    CONSTRAINT biography CHECK (((biography IS NULL) OR (((length(biography) >= 3) AND (length(biography) <= 10000)) AND (biography !~ '^[[:space:]]*$'::text)))),
+    CONSTRAINT guest_token CHECK (((guest_token)::text ~ '^[0-9a-f]{32}$'::text)),
+    CONSTRAINT nickname CHECK ((((length((nickname)::text) >= 3) AND (length((nickname)::text) <= 36)) AND ((nickname)::text ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$'::text))),
+    CONSTRAINT public_name CHECK (((public_name IS NULL) OR (((length((public_name)::text) >= 3) AND (length((public_name)::text) <= 255)) AND ((public_name)::text !~ '^[[:space:]]*$'::text))))
 );
 
 
@@ -1110,7 +1111,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190129015721'),
 ('20190201002444'),
 ('20190201012021'),
-('20190201013649'),
 ('20190201035804'),
 ('20190201214347'),
 ('20190202041009'),
@@ -1133,6 +1133,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190715210610'),
 ('20190718184543'),
 ('20190719224405'),
-('20190720022446');
+('20190720022446'),
+('20190720042127');
 
 

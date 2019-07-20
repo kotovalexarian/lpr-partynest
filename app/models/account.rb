@@ -4,7 +4,7 @@ class Account < ApplicationRecord
   include Rolify::Role
   extend Rolify::Dynamic if Rolify.dynamic_shortcuts
 
-  NICKNAME_RE = /\A[a-z][_a-z0-9]*[a-z0-9]\z/.freeze
+  NICKNAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
 
   self.role_cname = 'Role'
   self.role_table_name = 'roles'
