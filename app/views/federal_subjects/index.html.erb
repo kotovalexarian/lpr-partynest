@@ -3,7 +3,13 @@
     <thead>
       <tr>
         <th scope="col">
+          <%= FederalSubject.human_attribute_name :number %>
+        </th>
+        <th scope="col">
           <%= FederalSubject.human_attribute_name :display_name %>
+        </th>
+        <th scope="col">
+          <%= FederalSubject.human_attribute_name :timezone %>
         </th>
         <th scope="col"></th>
       </tr>
@@ -12,7 +18,9 @@
     <tbody>
       <% @federal_subjects.each do |federal_subject| %>
         <tr>
+          <td><%= federal_subject.number %></td>
           <td><%= federal_subject.display_name %></td>
+          <td><%= federal_subject.timezone %></td>
           <td>
             <% if policy(federal_subject).show? %>
               <%= link_to federal_subject,

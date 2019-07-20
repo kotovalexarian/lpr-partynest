@@ -34,6 +34,8 @@ en:
         english_name: Name
         native_name: Name
         display_name: Name
+        number: Number
+        timezone: Time zone
       passport:
         id: ID
         first_name: First name

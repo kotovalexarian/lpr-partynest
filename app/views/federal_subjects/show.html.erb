@@ -1,8 +1,17 @@
 <div class="container">
   <h1><%= @federal_subject.native_name %></h1>
+
   <p class="h1">
     <small class="text-muted">
       <%= @federal_subject.english_name %>
     </small>
   </p>
+
+  <dl class="mt-3">
+    <dt><%= FederalSubject.human_attribute_name :number %></dt>
+    <dd><%= @federal_subject.number %></dd>
+
+    <dt><%= FederalSubject.human_attribute_name :timezone %></dt>
+    <dd><%= @federal_subject.timezone %></dd>
+  </dl>
 </div>
