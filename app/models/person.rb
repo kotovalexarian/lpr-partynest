@@ -21,7 +21,8 @@ class Person < ApplicationRecord
   has_one :current_relationship,
           -> { order(active_since: :desc) },
           class_name: 'Relationship',
-          inverse_of: :person
+          inverse_of: :person,
+          dependent: :restrict_with_exception
 
   has_many :person_comments, dependent: :restrict_with_exception
 

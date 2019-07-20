@@ -26,6 +26,7 @@ RSpec.describe Person do
       have_one(:current_relationship)
       .class_name('Relationship')
       .inverse_of(:person)
+      .dependent(:restrict_with_exception)
       .order(active_since: :desc)
   end
 
