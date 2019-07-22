@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeviseCreateUsers < ActiveRecord::Migration[5.2]
+class InitialMigration < ActiveRecord::Migration[5.2]
   def change
     reversible do |dir|
       dir.up do
