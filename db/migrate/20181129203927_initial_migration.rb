@@ -2,7 +2,7 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
-    func :has_no_leading_trailing_whitespace, <<~SQL
+    func :is_good_text, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -238,7 +238,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(public_name) BETWEEN 3 AND 255
       AND
-      has_no_leading_trailing_whitespace(public_name)
+      is_good_text(public_name)
     SQL
 
     constraint :accounts, :biography, <<~SQL
@@ -246,25 +246,25 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(biography) BETWEEN 3 AND 10000
       AND
-      has_no_leading_trailing_whitespace(biography)
+      is_good_text(biography)
     SQL
 
     constraint :federal_subjects, :english_name, <<~SQL
       length(english_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(english_name)
+      is_good_text(english_name)
     SQL
 
     constraint :federal_subjects, :native_name, <<~SQL
       length(native_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(native_name)
+      is_good_text(native_name)
     SQL
 
     constraint :federal_subjects, :centre, <<~SQL
       length(centre) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(centre)
+      is_good_text(centre)
     SQL
 
     constraint :federal_subjects, :number, <<~SQL
@@ -276,7 +276,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(zip_code) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(zip_code)
+      is_good_text(zip_code)
     SQL
 
     constraint :passports, :town_type, <<~SQL
@@ -284,7 +284,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(town_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(town_type)
+      is_good_text(town_type)
     SQL
 
     constraint :passports, :town_name, <<~SQL
@@ -292,7 +292,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(town_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(town_name)
+      is_good_text(town_name)
     SQL
 
     constraint :passports, :settlement_type, <<~SQL
@@ -300,7 +300,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(settlement_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(settlement_type)
+      is_good_text(settlement_type)
     SQL
 
     constraint :passports, :settlement_name, <<~SQL
@@ -308,7 +308,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(settlement_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(settlement_name)
+      is_good_text(settlement_name)
     SQL
 
     constraint :passports, :district_type, <<~SQL
@@ -316,7 +316,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(district_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(district_type)
+      is_good_text(district_type)
     SQL
 
     constraint :passports, :district_name, <<~SQL
@@ -324,7 +324,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(district_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(district_name)
+      is_good_text(district_name)
     SQL
 
     constraint :passports, :street_type, <<~SQL
@@ -332,7 +332,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(street_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(street_type)
+      is_good_text(street_type)
     SQL
 
     constraint :passports, :street_name, <<~SQL
@@ -340,7 +340,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(street_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(street_name)
+      is_good_text(street_name)
     SQL
 
     constraint :passports, :residence_type, <<~SQL
@@ -348,7 +348,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(residence_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(residence_type)
+      is_good_text(residence_type)
     SQL
 
     constraint :passports, :residence_name, <<~SQL
@@ -356,7 +356,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(residence_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(residence_name)
+      is_good_text(residence_name)
     SQL
 
     constraint :passports, :building_type, <<~SQL
@@ -364,7 +364,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(building_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(building_type)
+      is_good_text(building_type)
     SQL
 
     constraint :passports, :building_name, <<~SQL
@@ -372,7 +372,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(building_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(building_name)
+      is_good_text(building_name)
     SQL
 
     constraint :passports, :apartment_type, <<~SQL
@@ -380,7 +380,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(apartment_type) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(apartment_type)
+      is_good_text(apartment_type)
     SQL
 
     constraint :passports, :apartment_name, <<~SQL
@@ -388,7 +388,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       OR
       length(apartment_name) BETWEEN 1 AND 255
       AND
-      has_no_leading_trailing_whitespace(apartment_name)
+      is_good_text(apartment_name)
     SQL
   end
 
