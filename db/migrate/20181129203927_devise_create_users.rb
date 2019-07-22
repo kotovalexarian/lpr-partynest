@@ -40,6 +40,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
     create_table :people do |t|
       t.timestamps null: false
+
+      t.string :first_name,  null: false
+      t.string :middle_name, null: true
+      t.string :last_name,   null: false
     end
 
     create_table :accounts do |t|
