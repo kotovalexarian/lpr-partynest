@@ -35,6 +35,10 @@ class FederalSubject < ApplicationRecord
             uniqueness: true,
             length: { in: 1..255 }
 
+  validates :centre,
+            presence: true,
+            length: { in: 1..255 }
+
   validates :number,
             presence: true,
             uniqueness: true,
@@ -44,6 +48,7 @@ class FederalSubject < ApplicationRecord
 
   validate :english_name_looks_realistic
   validate :native_name_looks_realistic
+  validate :centre_looks_realistic
 
   ###########
   # Methods #
@@ -71,5 +76,12 @@ private
 
     errors.add :native_name, :leading_spaces  if native_name.start_with? ' '
     errors.add :native_name, :trailing_spaces if native_name.end_with?   ' '
+  end
+
+  def centre_looks_realistic
+    return if centre.blank?
+
+    errors.add :centre, :leading_spaces  if centre.start_with? ' '
+    errors.add :centre, :trailing_spaces if centre.end_with?   ' '
   end
 end

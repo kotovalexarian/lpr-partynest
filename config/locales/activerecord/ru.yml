@@ -34,6 +34,7 @@ ru:
         english_name: Название
         native_name: Название
         display_name: Название
+        centre: Административный центр
         number: Номер
         timezone: Часовой пояс
       passport:

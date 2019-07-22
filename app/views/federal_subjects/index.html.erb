@@ -9,6 +9,9 @@
           <%= FederalSubject.human_attribute_name :display_name %>
         </th>
         <th scope="col">
+          <%= FederalSubject.human_attribute_name :centre %>
+        </th>
+        <th scope="col">
           <%= FederalSubject.human_attribute_name :timezone %>
         </th>
         <th scope="col"></th>
@@ -20,6 +23,7 @@
         <tr>
           <td><%= federal_subject.number %></td>
           <td><%= federal_subject.display_name %></td>
+          <td><%= federal_subject.centre %></td>
           <td><%= federal_subject.timezone %></td>
           <td>
             <% if policy(federal_subject).show? %>

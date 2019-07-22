@@ -49,6 +49,22 @@ RSpec.describe FederalSubject do
     it { is_expected.not_to allow_value 'Foo ' }
   end
 
+  describe '#centre' do
+    def allow_value(*)
+      super.for :centre
+    end
+
+    it { is_expected.to validate_presence_of :centre }
+
+    it do
+      is_expected.to \
+        validate_length_of(:centre).is_at_least(1).is_at_most(255)
+    end
+
+    it { is_expected.not_to allow_value ' Foo' }
+    it { is_expected.not_to allow_value 'Foo ' }
+  end
+
   describe '#number' do
     it { is_expected.to validate_presence_of :number }
     it { is_expected.to validate_uniqueness_of :number }

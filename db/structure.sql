@@ -252,8 +252,10 @@ CREATE TABLE public.federal_subjects (
     updated_at timestamp(6) without time zone NOT NULL,
     english_name character varying NOT NULL,
     native_name character varying NOT NULL,
+    centre character varying NOT NULL,
     number integer NOT NULL,
     timezone interval NOT NULL,
+    CONSTRAINT centre CHECK ((((length((centre)::text) >= 1) AND (length((centre)::text) <= 255)) AND ((centre)::text !~ '^[[:space:]]{1,}'::text) AND ((centre)::text !~ '[[:space:]]{1,}$'::text))),
     CONSTRAINT english_name CHECK ((((length((english_name)::text) >= 1) AND (length((english_name)::text) <= 255)) AND ((english_name)::text !~ '^[[:space:]]{1,}'::text) AND ((english_name)::text !~ '[[:space:]]{1,}$'::text))),
     CONSTRAINT native_name CHECK ((((length((native_name)::text) >= 1) AND (length((native_name)::text) <= 255)) AND ((native_name)::text !~ '^[[:space:]]{1,}'::text) AND ((native_name)::text !~ '[[:space:]]{1,}$'::text))),
     CONSTRAINT number CHECK ((number > 0))

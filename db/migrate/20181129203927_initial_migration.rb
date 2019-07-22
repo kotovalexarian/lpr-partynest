@@ -17,6 +17,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
       t.string :english_name, null: false, index: { unique: true }
       t.string :native_name,  null: false, index: { unique: true }
+      t.string :centre,       null: false, index: false
 
       t.integer  :number,   null: false, index: { unique: true }
       t.interval :timezone, null: false, index: false
@@ -224,6 +225,14 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       native_name !~ '^[[:space:]]{1,}'
       AND
       native_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :federal_subjects, :centre, <<~SQL
+      length(centre) BETWEEN 1 AND 255
+      AND
+      centre !~ '^[[:space:]]{1,}'
+      AND
+      centre !~ '[[:space:]]{1,}$'
     SQL
 
     constraint :federal_subjects, :number, <<~SQL

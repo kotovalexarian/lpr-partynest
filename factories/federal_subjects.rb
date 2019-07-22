@@ -17,6 +17,8 @@ FactoryBot.define do
 
     native_name { english_name }
 
+    centre { Faker::Address.city }
+
     timezone { "#{[nil, :-].sample}#{rand(0..11).to_s.rjust(2, '0')}:00:00" }
   end
 end

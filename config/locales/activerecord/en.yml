@@ -34,6 +34,7 @@ en:
         english_name: Name
         native_name: Name
         display_name: Name
+        centre: Administrative centre
         number: Number
         timezone: Time zone
       passport:
