@@ -3,3 +3,7 @@ en:
     sex:
       male: Male
       female: Female
+    relationship_status:
+      supporter: Party supporter
+      excluded: Excluded from party
+      member: Party member

@@ -3,3 +3,18 @@ ru:
     sex:
       male: Мужской
       female: Женский
+    relationship_status:
+      supporter: Сторонник партии
+      excluded: Исключён из партии
+      member: Член партии
+    relationship_role:
+      manager: Член руководящего комитета регионального отделения
+      supervisor: Член контрольно-ревизионной комиссии регионального отделения
+    person_comment_origin:
+      general_comments: Общий комментарий
+      first_contact_date: Дата первого контакта
+      latest_contact_date: Дата последнего контакта
+      human_readable_id: Человеко-читаемый идентификатор
+      past_experience: Прошлый опыт
+      aid_at_2014_elections: Помощь на выборах в 2014 году
+      aid_at_2015_elections: Помощь на выборах в 2015 году
