@@ -102,9 +102,9 @@ CREATE TABLE public.accounts (
     updated_at timestamp without time zone NOT NULL,
     guest_token character varying NOT NULL,
     nickname character varying NOT NULL,
+    public_name character varying,
     biography text,
     person_id bigint,
-    public_name character varying,
     contacts_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR (((length(biography) >= 3) AND (length(biography) <= 10000)) AND (biography !~ '^[[:space:]]*$'::text)))),
     CONSTRAINT guest_token CHECK (((guest_token)::text ~ '^[0-9a-f]{32}$'::text)),
@@ -1140,7 +1140,6 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
-('20190201214347'),
 ('20190202041009'),
 ('20190208062215'),
 ('20190324204513'),

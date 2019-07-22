@@ -52,7 +52,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :guest_token, null: false, index: { unique: true }
       t.string :nickname,    null: false, index: { unique: true }
 
-      t.text :biography
+      t.string :public_name
+      t.text   :biography
 
       t.references :person, index: { unique: true }
     end
