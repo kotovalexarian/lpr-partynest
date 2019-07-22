@@ -95,6 +95,20 @@ END;
 $_$;
 
 
+--
+-- Name: is_nickname(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.is_nickname(str text) RETURNS boolean
+    LANGUAGE plpgsql IMMUTABLE
+    AS $_$
+BEGIN
+  RETURN length(str) BETWEEN 3 AND 36
+    AND str ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$';
+END;
+$_$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -149,7 +163,7 @@ CREATE TABLE public.accounts (
     contacts_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_limited_text(biography, 3, 10000))),
     CONSTRAINT guest_token CHECK (((guest_token)::text ~ '^[0-9a-f]{32}$'::text)),
-    CONSTRAINT nickname CHECK ((((length((nickname)::text) >= 3) AND (length((nickname)::text) <= 36)) AND ((nickname)::text ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$'::text))),
+    CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
     CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_limited_text((public_name)::text, 3, 255)))
 );
 

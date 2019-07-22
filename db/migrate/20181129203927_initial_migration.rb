@@ -2,6 +2,16 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
+    func :is_nickname, <<~SQL
+      (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
+      $$
+      BEGIN
+        RETURN length(str) BETWEEN 3 AND 36
+          AND str ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$';
+      END;
+      $$;
+    SQL
+
     func :is_good_text, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -238,9 +248,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     SQL
 
     constraint :accounts, :nickname, <<~SQL
-      length(nickname) BETWEEN 3 AND 36
-      AND
-      nickname ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$'
+      is_nickname(nickname)
     SQL
 
     constraint :accounts, :public_name, <<~SQL
