@@ -3,6 +3,9 @@
     <thead>
       <tr>
         <th scope="col">
+          <%= FederalSubject.human_attribute_name :id %>
+        </th>
+        <th scope="col">
           <%= FederalSubject.human_attribute_name :number %>
         </th>
         <th scope="col">
@@ -21,6 +24,7 @@
     <tbody>
       <% @federal_subjects.each do |federal_subject| %>
         <tr>
+          <td><%= federal_subject.id %></td>
           <td><%= federal_subject.number %></td>
           <td><%= federal_subject.display_name %></td>
           <td><%= federal_subject.centre %></td>
