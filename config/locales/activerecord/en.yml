@@ -25,7 +25,7 @@ en:
     attributes:
       account:
         id: ID
-        username: Username
+        nickname: Username
         public_name: Public name
         biography: Bio
         avatar: Avatar

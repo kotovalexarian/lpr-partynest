@@ -101,8 +101,8 @@ CREATE TABLE public.accounts (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     guest_token character varying NOT NULL,
-    person_id bigint,
     nickname character varying NOT NULL,
+    person_id bigint,
     biography text,
     public_name character varying,
     contacts_list_id bigint NOT NULL,
@@ -839,6 +839,13 @@ CREATE UNIQUE INDEX index_accounts_on_guest_token ON public.accounts USING btree
 
 
 --
+-- Name: index_accounts_on_nickname; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_accounts_on_nickname ON public.accounts USING btree (nickname);
+
+
+--
 -- Name: index_accounts_on_person_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1133,13 +1140,10 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
-('20190201002444'),
-('20190201012021'),
 ('20190201035804'),
 ('20190201214347'),
 ('20190202041009'),
 ('20190208062215'),
-('20190324192022'),
 ('20190324204513'),
 ('20190324210722'),
 ('20190324211036'),

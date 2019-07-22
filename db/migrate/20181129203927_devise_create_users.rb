@@ -22,6 +22,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.timestamps null: false
 
       t.string :guest_token, null: false, index: { unique: true }
+      t.string :nickname,    null: false, index: { unique: true }
 
       t.references :person, index: { unique: true }
     end

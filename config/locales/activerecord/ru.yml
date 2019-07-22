@@ -25,7 +25,7 @@ ru:
     attributes:
       account:
         id: ID
-        username: Имя пользователя
+        nickname: Имя пользователя
         public_name: Публичное имя
         biography: Биография
         avatar: Аватар
