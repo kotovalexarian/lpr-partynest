@@ -70,6 +70,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.references :contacts_list, null: false, index: { unique: true }
     end
 
+    create_table :person_comments do |t|
+      t.timestamps null: false
+
+      t.references :person,  null: false, index: true, foreign_key: true
+      t.references :account, null: true,  index: true, foreign_key: true
+
+      t.text :text, null: false
+    end
+
     create_table :users do |t|
       t.timestamps null: false
 

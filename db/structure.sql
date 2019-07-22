@@ -364,8 +364,8 @@ ALTER SEQUENCE public.people_id_seq OWNED BY public.people.id;
 
 CREATE TABLE public.person_comments (
     id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     person_id bigint NOT NULL,
     account_id bigint,
     text text NOT NULL
@@ -1141,7 +1141,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
 ('20190427141639'),
-('20190715210610'),
 ('20190718184543'),
 ('20190719224405'),
 ('20190720022446'),
