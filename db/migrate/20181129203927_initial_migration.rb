@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InitialMigration < ActiveRecord::Migration[5.2]
+class InitialMigration < ActiveRecord::Migration[6.0]
   def change
     reversible do |dir|
       dir.up do

@@ -64,8 +64,8 @@ SET default_with_oids = false;
 
 CREATE TABLE public.account_roles (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     account_id bigint NOT NULL,
     role_id bigint NOT NULL,
     deleted_at timestamp without time zone,
@@ -98,8 +98,8 @@ ALTER SEQUENCE public.account_roles_id_seq OWNED BY public.account_roles.id;
 
 CREATE TABLE public.accounts (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     guest_token character varying NOT NULL,
     nickname character varying NOT NULL,
     public_name character varying,
@@ -218,8 +218,8 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.contacts_lists (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -248,8 +248,8 @@ ALTER SEQUENCE public.contacts_lists_id_seq OWNED BY public.contacts_lists.id;
 
 CREATE TABLE public.federal_subjects (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     english_name character varying NOT NULL,
     native_name character varying NOT NULL,
     number integer NOT NULL,
@@ -285,8 +285,8 @@ ALTER SEQUENCE public.federal_subjects_id_seq OWNED BY public.federal_subjects.i
 
 CREATE TABLE public.passports (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     last_name character varying NOT NULL,
     first_name character varying NOT NULL,
     middle_name character varying,
@@ -327,8 +327,8 @@ ALTER SEQUENCE public.passports_id_seq OWNED BY public.passports.id;
 
 CREATE TABLE public.people (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     first_name character varying NOT NULL,
     middle_name character varying,
     last_name character varying NOT NULL,
@@ -364,8 +364,8 @@ ALTER SEQUENCE public.people_id_seq OWNED BY public.people.id;
 
 CREATE TABLE public.person_comments (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     account_id bigint,
     text text NOT NULL
@@ -397,8 +397,8 @@ ALTER SEQUENCE public.person_comments_id_seq OWNED BY public.person_comments.id;
 
 CREATE TABLE public.regional_offices (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     federal_subject_id bigint NOT NULL
 );
 
@@ -428,8 +428,8 @@ ALTER SEQUENCE public.regional_offices_id_seq OWNED BY public.regional_offices.i
 
 CREATE TABLE public.relationships (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
@@ -466,8 +466,8 @@ ALTER SEQUENCE public.relationships_id_seq OWNED BY public.relationships.id;
 
 CREATE TABLE public.roles (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     name character varying NOT NULL,
     resource_type character varying,
     resource_id bigint
@@ -508,8 +508,8 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.user_omniauths (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     user_id bigint,
     provider character varying NOT NULL,
     remote_id character varying NOT NULL,
@@ -542,8 +542,8 @@ ALTER SEQUENCE public.user_omniauths_id_seq OWNED BY public.user_omniauths.id;
 
 CREATE TABLE public.users (
     id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
     account_id bigint NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
