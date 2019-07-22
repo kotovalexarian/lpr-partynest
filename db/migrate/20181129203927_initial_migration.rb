@@ -2,29 +2,11 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
-    reversible do |dir|
-      dir.up do
-        execute <<~SQL
-          CREATE TYPE sex AS ENUM ('male', 'female');
+    enum :sex, %i[male female]
 
-          CREATE TYPE relationship_status AS ENUM (
-            'supporter',
-            'excluded',
-            'member'
-          );
+    enum :relationship_status, %i[supporter excluded member]
 
-          CREATE TYPE relationship_role AS ENUM ('manager', 'supervisor');
-        SQL
-      end
-
-      dir.down do
-        execute <<~SQL
-          DROP TYPE sex;
-          DROP TYPE relationship_status;
-          DROP TYPE relationship_role;
-        SQL
-      end
-    end
+    enum :relationship_role, %i[manager supervisor]
 
     create_table :contacts_lists do |t|
       t.timestamps null: false
@@ -250,6 +232,21 @@ class InitialMigration < ActiveRecord::Migration[6.0]
   end
 
 private
+
+  def enum(name, values)
+    reversible do |dir|
+      dir.up do
+        execute <<~SQL
+          CREATE TYPE #{name}
+            AS ENUM (#{values.map { |s| "'#{s}'" }.join(', ')})
+        SQL
+      end
+
+      dir.down do
+        execute "DROP TYPE #{name}"
+      end
+    end
+  end
 
   def constraint(table, name, check)
     reversible do |dir|
