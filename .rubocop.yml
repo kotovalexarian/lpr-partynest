@@ -31,6 +31,10 @@ Metrics/BlockLength:
     - 'lib/capistrano/tasks/**/*.rake'
     - 'spec/**/*.rb'
 
+Metrics/ClassLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+
 Metrics/LineLength:
   Exclude:
     - 'config/initializers/simple_form.rb'
