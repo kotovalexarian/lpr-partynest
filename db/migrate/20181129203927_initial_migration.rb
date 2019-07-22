@@ -195,19 +195,13 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     add_foreign_key :accounts,         :contacts_lists
     add_foreign_key :people,           :contacts_lists
 
-    reversible do |dir|
-      dir.up do
-        execute <<~SQL
-          ALTER TABLE relationships ADD CONSTRAINT dates CHECK (
-            until_date IS NULL OR from_date < until_date
-          );
+    constraint :relationships, :dates, <<~SQL
+      until_date IS NULL OR from_date < until_date
+    SQL
 
-          ALTER TABLE relationships ADD CONSTRAINT role CHECK (
-            status = 'member' OR role IS NULL
-          );
-        SQL
-      end
-    end
+    constraint :relationships, :role, <<~SQL
+      status = 'member' OR role IS NULL
+    SQL
 
     constraint :accounts, :guest_token, <<~SQL
       guest_token ~ '^[0-9a-f]{32}$'
@@ -251,7 +245,9 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       native_name !~ '[[:space:]]{1,}$'
     SQL
 
-    constraint :federal_subjects, :number, 'number > 0'
+    constraint :federal_subjects, :number, <<~SQL
+      number > 0
+    SQL
   end
 
 private
