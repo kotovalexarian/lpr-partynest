@@ -1,0 +1,5 @@
+en:
+  enums:
+    sex:
+      male: Male
+      female: Female

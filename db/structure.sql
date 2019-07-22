@@ -24,6 +24,21 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
+-- Name: person_comment_origin; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.person_comment_origin AS ENUM (
+    'general_comments',
+    'first_contact_date',
+    'latest_contact_date',
+    'human_readable_id',
+    'past_experience',
+    'aid_at_2014_elections',
+    'aid_at_2015_elections'
+);
+
+
+--
 -- Name: relationship_role; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -401,7 +416,8 @@ CREATE TABLE public.person_comments (
     updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     account_id bigint,
-    text text NOT NULL
+    text text NOT NULL,
+    origin public.person_comment_origin
 );
 
 

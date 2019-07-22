@@ -50,9 +50,6 @@ ru:
         issued_by: Кем выдан
         unit_code: Код подразделения
         date_of_issue: Дата выдачи
-      passport/sex:
-        male: Мужской
-        female: Женский
       person:
         id: ID
         current_regional_office: Региональное отделение
@@ -66,9 +63,6 @@ ru:
         id: ID
         attachment: Приложение
         text: Текст
-      person/sex:
-        male: Мужской
-        female: Женский
       role:
         id: ID
         name: Название

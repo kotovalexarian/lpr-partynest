@@ -8,6 +8,16 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
     enum :relationship_role, %i[manager supervisor]
 
+    enum :person_comment_origin, %i[
+      general_comments
+      first_contact_date
+      latest_contact_date
+      human_readable_id
+      past_experience
+      aid_at_2014_elections
+      aid_at_2015_elections
+    ]
+
     create_table :contacts_lists do |t|
       t.timestamps null: false
     end
@@ -102,6 +112,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       t.references :account, null: true,  index: true, foreign_key: true
 
       t.text :text, null: false
+      t.column :origin, :person_comment_origin
     end
 
     create_table :users do |t|

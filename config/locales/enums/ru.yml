@@ -1,0 +1,5 @@
+ru:
+  enums:
+    sex:
+      male: Мужской
+      female: Женский
