@@ -1,16 +1,9 @@
 # frozen_string_literal: true
 
 class Relationship < ApplicationRecord
-  enum status: {
-    supporter: 'supporter',
-    excluded: 'excluded',
-    member: 'member',
-  }
+  pg_enum :status, %i[supporter excluded member]
 
-  enum role: {
-    manager: 'manager',
-    supervisor: 'supervisor',
-  }
+  pg_enum :role, %i[manager supervisor]
 
   ################
   # Associations #

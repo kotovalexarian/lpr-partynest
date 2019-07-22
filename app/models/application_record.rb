@@ -14,4 +14,8 @@ class ApplicationRecord < ActiveRecord::Base
     options[:dependent] ||= :restrict_with_exception
     super(*args, options)
   end
+
+  def self.pg_enum(name, values)
+    enum name => values.map { |s| [s.to_sym, s.to_s] }.to_h
+  end
 end
