@@ -10,6 +10,15 @@
     <div class="card border-light">
       <div class="card-body">
         <p class="card-text">
+          <% if person_comment.origin %>
+            <strong>
+              <%= translate person_comment.origin,
+                            scope: %i[enums person_comment_origin] %>
+            </strong>
+
+            <br/>
+          <% end %>
+
           <%= person_comment.text %>
 
           <% if person_comment.attachment.attached? %>
