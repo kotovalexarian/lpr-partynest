@@ -119,10 +119,7 @@ RSpec.describe Account do
     it { is_expected.to allow_value Faker::Name.first_name }
     it { is_expected.to allow_value 'Foo Bar' }
 
-    it do
-      is_expected.to \
-        validate_length_of(:public_name).is_at_least(1).is_at_most(255)
-    end
+    it { is_expected.to validate_length_of(:public_name).is_at_most(255) }
 
     context 'when it was set to blank value' do
       subject { create :personal_account, public_name: ' ' * rand(100) }
@@ -156,10 +153,7 @@ RSpec.describe Account do
 
     it { is_expected.to allow_value Faker::Lorem.sentence }
 
-    it do
-      is_expected.to \
-        validate_length_of(:biography).is_at_least(1).is_at_most(10_000)
-    end
+    it { is_expected.to validate_length_of(:biography).is_at_most(10_000) }
 
     context 'when it was set to blank value' do
       subject { create :personal_account, biography: ' ' * rand(100) }
