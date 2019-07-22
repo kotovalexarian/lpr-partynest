@@ -2,6 +2,15 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
+    func :is_guest_token, <<~SQL
+      (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
+      $$
+      BEGIN
+        RETURN str ~ '^[0-9a-f]{32}$';
+      END;
+      $$;
+    SQL
+
     func :is_nickname, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -244,7 +253,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     SQL
 
     constraint :accounts, :guest_token, <<~SQL
-      guest_token ~ '^[0-9a-f]{32}$'
+      is_guest_token(guest_token)
     SQL
 
     constraint :accounts, :nickname, <<~SQL

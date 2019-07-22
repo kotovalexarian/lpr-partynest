@@ -96,6 +96,19 @@ $_$;
 
 
 --
+-- Name: is_guest_token(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.is_guest_token(str text) RETURNS boolean
+    LANGUAGE plpgsql IMMUTABLE
+    AS $_$
+BEGIN
+  RETURN str ~ '^[0-9a-f]{32}$';
+END;
+$_$;
+
+
+--
 -- Name: is_nickname(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -162,7 +175,7 @@ CREATE TABLE public.accounts (
     person_id bigint,
     contacts_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_limited_text(biography, 3, 10000))),
-    CONSTRAINT guest_token CHECK (((guest_token)::text ~ '^[0-9a-f]{32}$'::text)),
+    CONSTRAINT guest_token CHECK (public.is_guest_token((guest_token)::text)),
     CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
     CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_limited_text((public_name)::text, 3, 255)))
 );
