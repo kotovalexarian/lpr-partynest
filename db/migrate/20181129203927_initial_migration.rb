@@ -59,7 +59,25 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       t.string  :unit_code,      null: false
       t.date    :date_of_issue,  null: false
 
-      t.references :person, index: true, foreign_key: true
+      t.references :person,          index: true, foreign_key: true
+      t.references :federal_subject, index: true, foreign_key: true
+
+      t.string :zip_code
+
+      t.string :town_type
+      t.string :town_name
+      t.string :settlement_type
+      t.string :settlement_name
+      t.string :district_type
+      t.string :district_name
+      t.string :street_type
+      t.string :street_name
+      t.string :residence_type
+      t.string :residence_name
+      t.string :building_type
+      t.string :building_name
+      t.string :apartment_type
+      t.string :apartment_name
     end
 
     create_table :accounts do |t|
@@ -237,6 +255,156 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
     constraint :federal_subjects, :number, <<~SQL
       number > 0
+    SQL
+
+    constraint :passports, :zip_code, <<~SQL
+      zip_code IS NULL
+      OR
+      length(zip_code) BETWEEN 1 AND 255
+      AND
+      zip_code !~ '^[[:space:]]{1,}'
+      AND
+      zip_code !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :town_type, <<~SQL
+      town_type IS NULL
+      OR
+      length(town_type) BETWEEN 1 AND 255
+      AND
+      town_type !~ '^[[:space:]]{1,}'
+      AND
+      town_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :town_name, <<~SQL
+      town_name IS NULL
+      OR
+      length(town_name) BETWEEN 1 AND 255
+      AND
+      town_name !~ '^[[:space:]]{1,}'
+      AND
+      town_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :settlement_type, <<~SQL
+      settlement_type IS NULL
+      OR
+      length(settlement_type) BETWEEN 1 AND 255
+      AND
+      settlement_type !~ '^[[:space:]]{1,}'
+      AND
+      settlement_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :settlement_name, <<~SQL
+      settlement_name IS NULL
+      OR
+      length(settlement_name) BETWEEN 1 AND 255
+      AND
+      settlement_name !~ '^[[:space:]]{1,}'
+      AND
+      settlement_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :district_type, <<~SQL
+      district_type IS NULL
+      OR
+      length(district_type) BETWEEN 1 AND 255
+      AND
+      district_type !~ '^[[:space:]]{1,}'
+      AND
+      district_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :district_name, <<~SQL
+      district_name IS NULL
+      OR
+      length(district_name) BETWEEN 1 AND 255
+      AND
+      district_name !~ '^[[:space:]]{1,}'
+      AND
+      district_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :street_type, <<~SQL
+      street_type IS NULL
+      OR
+      length(street_type) BETWEEN 1 AND 255
+      AND
+      street_type !~ '^[[:space:]]{1,}'
+      AND
+      street_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :street_name, <<~SQL
+      street_name IS NULL
+      OR
+      length(street_name) BETWEEN 1 AND 255
+      AND
+      street_name !~ '^[[:space:]]{1,}'
+      AND
+      street_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :residence_type, <<~SQL
+      residence_type IS NULL
+      OR
+      length(residence_type) BETWEEN 1 AND 255
+      AND
+      residence_type !~ '^[[:space:]]{1,}'
+      AND
+      residence_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :residence_name, <<~SQL
+      residence_name IS NULL
+      OR
+      length(residence_name) BETWEEN 1 AND 255
+      AND
+      residence_name !~ '^[[:space:]]{1,}'
+      AND
+      residence_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :building_type, <<~SQL
+      building_type IS NULL
+      OR
+      length(building_type) BETWEEN 1 AND 255
+      AND
+      building_type !~ '^[[:space:]]{1,}'
+      AND
+      building_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :building_name, <<~SQL
+      building_name IS NULL
+      OR
+      length(building_name) BETWEEN 1 AND 255
+      AND
+      building_name !~ '^[[:space:]]{1,}'
+      AND
+      building_name !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :apartment_type, <<~SQL
+      apartment_type IS NULL
+      OR
+      length(apartment_type) BETWEEN 1 AND 255
+      AND
+      apartment_type !~ '^[[:space:]]{1,}'
+      AND
+      apartment_type !~ '[[:space:]]{1,}$'
+    SQL
+
+    constraint :passports, :apartment_name, <<~SQL
+      apartment_name IS NULL
+      OR
+      length(apartment_name) BETWEEN 1 AND 255
+      AND
+      apartment_name !~ '^[[:space:]]{1,}'
+      AND
+      apartment_name !~ '[[:space:]]{1,}$'
     SQL
   end
 

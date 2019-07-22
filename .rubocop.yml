@@ -27,6 +27,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - 'config/**/*.rb'
+    - 'db/migrate/*.rb'
     - 'factories/**/*.rb'
     - 'lib/capistrano/tasks/**/*.rake'
     - 'spec/**/*.rb'

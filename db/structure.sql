@@ -300,7 +300,38 @@ CREATE TABLE public.passports (
     issued_by text NOT NULL,
     unit_code character varying NOT NULL,
     date_of_issue date NOT NULL,
-    person_id bigint
+    person_id bigint,
+    federal_subject_id bigint,
+    zip_code character varying,
+    town_type character varying,
+    town_name character varying,
+    settlement_type character varying,
+    settlement_name character varying,
+    district_type character varying,
+    district_name character varying,
+    street_type character varying,
+    street_name character varying,
+    residence_type character varying,
+    residence_name character varying,
+    building_type character varying,
+    building_name character varying,
+    apartment_type character varying,
+    apartment_name character varying,
+    CONSTRAINT apartment_name CHECK (((apartment_name IS NULL) OR (((length((apartment_name)::text) >= 1) AND (length((apartment_name)::text) <= 255)) AND ((apartment_name)::text !~ '^[[:space:]]{1,}'::text) AND ((apartment_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT apartment_type CHECK (((apartment_type IS NULL) OR (((length((apartment_type)::text) >= 1) AND (length((apartment_type)::text) <= 255)) AND ((apartment_type)::text !~ '^[[:space:]]{1,}'::text) AND ((apartment_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT building_name CHECK (((building_name IS NULL) OR (((length((building_name)::text) >= 1) AND (length((building_name)::text) <= 255)) AND ((building_name)::text !~ '^[[:space:]]{1,}'::text) AND ((building_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT building_type CHECK (((building_type IS NULL) OR (((length((building_type)::text) >= 1) AND (length((building_type)::text) <= 255)) AND ((building_type)::text !~ '^[[:space:]]{1,}'::text) AND ((building_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT district_name CHECK (((district_name IS NULL) OR (((length((district_name)::text) >= 1) AND (length((district_name)::text) <= 255)) AND ((district_name)::text !~ '^[[:space:]]{1,}'::text) AND ((district_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT district_type CHECK (((district_type IS NULL) OR (((length((district_type)::text) >= 1) AND (length((district_type)::text) <= 255)) AND ((district_type)::text !~ '^[[:space:]]{1,}'::text) AND ((district_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT residence_name CHECK (((residence_name IS NULL) OR (((length((residence_name)::text) >= 1) AND (length((residence_name)::text) <= 255)) AND ((residence_name)::text !~ '^[[:space:]]{1,}'::text) AND ((residence_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT residence_type CHECK (((residence_type IS NULL) OR (((length((residence_type)::text) >= 1) AND (length((residence_type)::text) <= 255)) AND ((residence_type)::text !~ '^[[:space:]]{1,}'::text) AND ((residence_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT settlement_name CHECK (((settlement_name IS NULL) OR (((length((settlement_name)::text) >= 1) AND (length((settlement_name)::text) <= 255)) AND ((settlement_name)::text !~ '^[[:space:]]{1,}'::text) AND ((settlement_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT settlement_type CHECK (((settlement_type IS NULL) OR (((length((settlement_type)::text) >= 1) AND (length((settlement_type)::text) <= 255)) AND ((settlement_type)::text !~ '^[[:space:]]{1,}'::text) AND ((settlement_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT street_name CHECK (((street_name IS NULL) OR (((length((street_name)::text) >= 1) AND (length((street_name)::text) <= 255)) AND ((street_name)::text !~ '^[[:space:]]{1,}'::text) AND ((street_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT street_type CHECK (((street_type IS NULL) OR (((length((street_type)::text) >= 1) AND (length((street_type)::text) <= 255)) AND ((street_type)::text !~ '^[[:space:]]{1,}'::text) AND ((street_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT town_name CHECK (((town_name IS NULL) OR (((length((town_name)::text) >= 1) AND (length((town_name)::text) <= 255)) AND ((town_name)::text !~ '^[[:space:]]{1,}'::text) AND ((town_name)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT town_type CHECK (((town_type IS NULL) OR (((length((town_type)::text) >= 1) AND (length((town_type)::text) <= 255)) AND ((town_type)::text !~ '^[[:space:]]{1,}'::text) AND ((town_type)::text !~ '[[:space:]]{1,}$'::text)))),
+    CONSTRAINT zip_code CHECK (((zip_code IS NULL) OR (((length((zip_code)::text) >= 1) AND (length((zip_code)::text) <= 255)) AND ((zip_code)::text !~ '^[[:space:]]{1,}'::text) AND ((zip_code)::text !~ '[[:space:]]{1,}$'::text))))
 );
 
 
@@ -897,6 +928,13 @@ CREATE UNIQUE INDEX index_federal_subjects_on_number ON public.federal_subjects 
 
 
 --
+-- Name: index_passports_on_federal_subject_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_passports_on_federal_subject_id ON public.passports USING btree (federal_subject_id);
+
+
+--
 -- Name: index_passports_on_person_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1107,6 +1145,14 @@ ALTER TABLE ONLY public.person_comments
 
 ALTER TABLE ONLY public.people
     ADD CONSTRAINT fk_rails_cb9b5a21ec FOREIGN KEY (contacts_list_id) REFERENCES public.contacts_lists(id);
+
+
+--
+-- Name: passports fk_rails_cd632a506c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.passports
+    ADD CONSTRAINT fk_rails_cd632a506c FOREIGN KEY (federal_subject_id) REFERENCES public.federal_subjects(id);
 
 
 --

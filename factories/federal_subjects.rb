@@ -2,16 +2,12 @@
 
 FactoryBot.define do
   factory :federal_subject do
-    initialize_with do
-      FederalSubject.find_or_initialize_by english_name: english_name
-    end
+    sequence(:id)     { |n| n + 1000 }
+    sequence(:number) { |n| n + 1000 }
 
-    sequence(:id)     { |n| n + 100 }
-    sequence(:number) { |n| n + 100 }
-
-    english_name do
+    sequence :english_name do |n|
       I18n.with_locale :en do
-        Faker::Address.unique.state
+        "#{Faker::Address.unique.state} #{n}"
       end
     end
 
