@@ -35,6 +35,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :english_name, null: false, index: { unique: true }
       t.string :native_name,  null: false, index: { unique: true }
+
+      t.integer  :number,   null: false, index: { unique: true }
+      t.interval :timezone, null: false, index: false
     end
 
     create_table :regional_offices do |t|
