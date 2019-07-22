@@ -69,6 +69,19 @@ CREATE TYPE public.sex AS ENUM (
 );
 
 
+--
+-- Name: has_no_leading_trailing_whitespace(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.has_no_leading_trailing_whitespace(str text) RETURNS boolean
+    LANGUAGE plpgsql IMMUTABLE
+    AS $_$
+BEGIN
+  RETURN str ~ '^[^[:space:]]+(.*[^[:space:]])?$';
+END;
+$_$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -121,10 +134,10 @@ CREATE TABLE public.accounts (
     biography text,
     person_id bigint,
     contacts_list_id bigint NOT NULL,
-    CONSTRAINT biography CHECK (((biography IS NULL) OR (((length(biography) >= 3) AND (length(biography) <= 10000)) AND (biography !~ '^[[:space:]]*$'::text)))),
+    CONSTRAINT biography CHECK (((biography IS NULL) OR (((length(biography) >= 3) AND (length(biography) <= 10000)) AND public.has_no_leading_trailing_whitespace(biography)))),
     CONSTRAINT guest_token CHECK (((guest_token)::text ~ '^[0-9a-f]{32}$'::text)),
     CONSTRAINT nickname CHECK ((((length((nickname)::text) >= 3) AND (length((nickname)::text) <= 36)) AND ((nickname)::text ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$'::text))),
-    CONSTRAINT public_name CHECK (((public_name IS NULL) OR (((length((public_name)::text) >= 3) AND (length((public_name)::text) <= 255)) AND ((public_name)::text !~ '^[[:space:]]*$'::text))))
+    CONSTRAINT public_name CHECK (((public_name IS NULL) OR (((length((public_name)::text) >= 3) AND (length((public_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((public_name)::text))))
 );
 
 
@@ -270,9 +283,9 @@ CREATE TABLE public.federal_subjects (
     centre character varying NOT NULL,
     number integer NOT NULL,
     timezone interval NOT NULL,
-    CONSTRAINT centre CHECK ((((length((centre)::text) >= 1) AND (length((centre)::text) <= 255)) AND ((centre)::text !~ '^[[:space:]]{1,}'::text) AND ((centre)::text !~ '[[:space:]]{1,}$'::text))),
-    CONSTRAINT english_name CHECK ((((length((english_name)::text) >= 1) AND (length((english_name)::text) <= 255)) AND ((english_name)::text !~ '^[[:space:]]{1,}'::text) AND ((english_name)::text !~ '[[:space:]]{1,}$'::text))),
-    CONSTRAINT native_name CHECK ((((length((native_name)::text) >= 1) AND (length((native_name)::text) <= 255)) AND ((native_name)::text !~ '^[[:space:]]{1,}'::text) AND ((native_name)::text !~ '[[:space:]]{1,}$'::text))),
+    CONSTRAINT centre CHECK ((((length((centre)::text) >= 1) AND (length((centre)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((centre)::text))),
+    CONSTRAINT english_name CHECK ((((length((english_name)::text) >= 1) AND (length((english_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((english_name)::text))),
+    CONSTRAINT native_name CHECK ((((length((native_name)::text) >= 1) AND (length((native_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((native_name)::text))),
     CONSTRAINT number CHECK ((number > 0))
 );
 
@@ -332,21 +345,21 @@ CREATE TABLE public.passports (
     building_name character varying,
     apartment_type character varying,
     apartment_name character varying,
-    CONSTRAINT apartment_name CHECK (((apartment_name IS NULL) OR (((length((apartment_name)::text) >= 1) AND (length((apartment_name)::text) <= 255)) AND ((apartment_name)::text !~ '^[[:space:]]{1,}'::text) AND ((apartment_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT apartment_type CHECK (((apartment_type IS NULL) OR (((length((apartment_type)::text) >= 1) AND (length((apartment_type)::text) <= 255)) AND ((apartment_type)::text !~ '^[[:space:]]{1,}'::text) AND ((apartment_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT building_name CHECK (((building_name IS NULL) OR (((length((building_name)::text) >= 1) AND (length((building_name)::text) <= 255)) AND ((building_name)::text !~ '^[[:space:]]{1,}'::text) AND ((building_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT building_type CHECK (((building_type IS NULL) OR (((length((building_type)::text) >= 1) AND (length((building_type)::text) <= 255)) AND ((building_type)::text !~ '^[[:space:]]{1,}'::text) AND ((building_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT district_name CHECK (((district_name IS NULL) OR (((length((district_name)::text) >= 1) AND (length((district_name)::text) <= 255)) AND ((district_name)::text !~ '^[[:space:]]{1,}'::text) AND ((district_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT district_type CHECK (((district_type IS NULL) OR (((length((district_type)::text) >= 1) AND (length((district_type)::text) <= 255)) AND ((district_type)::text !~ '^[[:space:]]{1,}'::text) AND ((district_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT residence_name CHECK (((residence_name IS NULL) OR (((length((residence_name)::text) >= 1) AND (length((residence_name)::text) <= 255)) AND ((residence_name)::text !~ '^[[:space:]]{1,}'::text) AND ((residence_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT residence_type CHECK (((residence_type IS NULL) OR (((length((residence_type)::text) >= 1) AND (length((residence_type)::text) <= 255)) AND ((residence_type)::text !~ '^[[:space:]]{1,}'::text) AND ((residence_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT settlement_name CHECK (((settlement_name IS NULL) OR (((length((settlement_name)::text) >= 1) AND (length((settlement_name)::text) <= 255)) AND ((settlement_name)::text !~ '^[[:space:]]{1,}'::text) AND ((settlement_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT settlement_type CHECK (((settlement_type IS NULL) OR (((length((settlement_type)::text) >= 1) AND (length((settlement_type)::text) <= 255)) AND ((settlement_type)::text !~ '^[[:space:]]{1,}'::text) AND ((settlement_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT street_name CHECK (((street_name IS NULL) OR (((length((street_name)::text) >= 1) AND (length((street_name)::text) <= 255)) AND ((street_name)::text !~ '^[[:space:]]{1,}'::text) AND ((street_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT street_type CHECK (((street_type IS NULL) OR (((length((street_type)::text) >= 1) AND (length((street_type)::text) <= 255)) AND ((street_type)::text !~ '^[[:space:]]{1,}'::text) AND ((street_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT town_name CHECK (((town_name IS NULL) OR (((length((town_name)::text) >= 1) AND (length((town_name)::text) <= 255)) AND ((town_name)::text !~ '^[[:space:]]{1,}'::text) AND ((town_name)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT town_type CHECK (((town_type IS NULL) OR (((length((town_type)::text) >= 1) AND (length((town_type)::text) <= 255)) AND ((town_type)::text !~ '^[[:space:]]{1,}'::text) AND ((town_type)::text !~ '[[:space:]]{1,}$'::text)))),
-    CONSTRAINT zip_code CHECK (((zip_code IS NULL) OR (((length((zip_code)::text) >= 1) AND (length((zip_code)::text) <= 255)) AND ((zip_code)::text !~ '^[[:space:]]{1,}'::text) AND ((zip_code)::text !~ '[[:space:]]{1,}$'::text))))
+    CONSTRAINT apartment_name CHECK (((apartment_name IS NULL) OR (((length((apartment_name)::text) >= 1) AND (length((apartment_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((apartment_name)::text)))),
+    CONSTRAINT apartment_type CHECK (((apartment_type IS NULL) OR (((length((apartment_type)::text) >= 1) AND (length((apartment_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((apartment_type)::text)))),
+    CONSTRAINT building_name CHECK (((building_name IS NULL) OR (((length((building_name)::text) >= 1) AND (length((building_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((building_name)::text)))),
+    CONSTRAINT building_type CHECK (((building_type IS NULL) OR (((length((building_type)::text) >= 1) AND (length((building_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((building_type)::text)))),
+    CONSTRAINT district_name CHECK (((district_name IS NULL) OR (((length((district_name)::text) >= 1) AND (length((district_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((district_name)::text)))),
+    CONSTRAINT district_type CHECK (((district_type IS NULL) OR (((length((district_type)::text) >= 1) AND (length((district_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((district_type)::text)))),
+    CONSTRAINT residence_name CHECK (((residence_name IS NULL) OR (((length((residence_name)::text) >= 1) AND (length((residence_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((residence_name)::text)))),
+    CONSTRAINT residence_type CHECK (((residence_type IS NULL) OR (((length((residence_type)::text) >= 1) AND (length((residence_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((residence_type)::text)))),
+    CONSTRAINT settlement_name CHECK (((settlement_name IS NULL) OR (((length((settlement_name)::text) >= 1) AND (length((settlement_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((settlement_name)::text)))),
+    CONSTRAINT settlement_type CHECK (((settlement_type IS NULL) OR (((length((settlement_type)::text) >= 1) AND (length((settlement_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((settlement_type)::text)))),
+    CONSTRAINT street_name CHECK (((street_name IS NULL) OR (((length((street_name)::text) >= 1) AND (length((street_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((street_name)::text)))),
+    CONSTRAINT street_type CHECK (((street_type IS NULL) OR (((length((street_type)::text) >= 1) AND (length((street_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((street_type)::text)))),
+    CONSTRAINT town_name CHECK (((town_name IS NULL) OR (((length((town_name)::text) >= 1) AND (length((town_name)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((town_name)::text)))),
+    CONSTRAINT town_type CHECK (((town_type IS NULL) OR (((length((town_type)::text) >= 1) AND (length((town_type)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((town_type)::text)))),
+    CONSTRAINT zip_code CHECK (((zip_code IS NULL) OR (((length((zip_code)::text) >= 1) AND (length((zip_code)::text) <= 255)) AND public.has_no_leading_trailing_whitespace((zip_code)::text))))
 );
 
 
