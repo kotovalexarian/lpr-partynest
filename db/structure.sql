@@ -1068,6 +1068,14 @@ ALTER TABLE ONLY public.accounts
 
 
 --
+-- Name: regional_offices fk_rails_7a6d5fdd9a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.regional_offices
+    ADD CONSTRAINT fk_rails_7a6d5fdd9a FOREIGN KEY (federal_subject_id) REFERENCES public.federal_subjects(id);
+
+
+--
 -- Name: user_omniauths fk_rails_8c1c9cb22e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1089,14 +1097,6 @@ ALTER TABLE ONLY public.account_roles
 
 ALTER TABLE ONLY public.person_comments
     ADD CONSTRAINT fk_rails_a9c7b4ae11 FOREIGN KEY (account_id) REFERENCES public.accounts(id);
-
-
---
--- Name: regional_offices fk_rails_ba9a6303c5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.regional_offices
-    ADD CONSTRAINT fk_rails_ba9a6303c5 FOREIGN KEY (federal_subject_id) REFERENCES public.federal_subjects(id);
 
 
 --
@@ -1141,8 +1141,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
 ('20190427141639'),
-('20190623160009'),
-('20190623160130'),
 ('20190627000456'),
 ('20190708130309'),
 ('20190715210610'),

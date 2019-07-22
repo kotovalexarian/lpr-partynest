@@ -26,7 +26,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       end
     end
 
-    create_table :country_states do |t|
+    create_table :federal_subjects do |t|
       t.timestamps null: false
 
       t.string :english_name, null: false, index: { unique: true }
@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :regional_offices do |t|
       t.timestamps null: false
 
-      t.references :country_state, null: false, index: { unique: true }
+      t.references :federal_subject, null: false, index: { unique: true }
     end
 
     create_table :people do |t|
@@ -137,6 +137,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_foreign_key :account_roles,    :accounts
     add_foreign_key :account_roles,    :roles
     add_foreign_key :accounts,         :people
-    add_foreign_key :regional_offices, :country_states
+    add_foreign_key :regional_offices, :federal_subjects
   end
 end
