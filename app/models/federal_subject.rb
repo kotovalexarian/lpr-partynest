@@ -54,6 +54,10 @@ class FederalSubject < ApplicationRecord
   # Methods #
   ###########
 
+  def to_param
+    number&.to_s
+  end
+
   def display_name
     if I18n.locale == :ru
       native_name

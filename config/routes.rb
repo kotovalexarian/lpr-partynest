@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :accounts, param: :nickname, only: :show
 
-  resources :federal_subjects, only: %i[index show]
+  resources :federal_subjects, param: :number, only: %i[index show]
 
   ###############
   # User routes #

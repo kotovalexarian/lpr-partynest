@@ -9,7 +9,7 @@ class FederalSubjectsController < ApplicationController
     @federal_subjects = policy_scope(FederalSubject).order_by_display_name
   end
 
-  # GET /federal_subjects/:id
+  # GET /federal_subjects/:number
   def show
     authorize @federal_subject
   end
@@ -17,6 +17,6 @@ class FederalSubjectsController < ApplicationController
 private
 
   def set_federal_subject
-    @federal_subject = FederalSubject.find params[:id]
+    @federal_subject = FederalSubject.find_by! number: params[:number]
   end
 end

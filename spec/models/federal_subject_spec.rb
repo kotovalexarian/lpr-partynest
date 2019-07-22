@@ -15,6 +15,16 @@ RSpec.describe FederalSubject do
     it { is_expected.not_to validate_presence_of :regional_office }
   end
 
+  describe '#to_param' do
+    specify do
+      expect(subject.to_param).to be_instance_of String
+    end
+
+    specify do
+      expect(subject.to_param).to eq subject.number.to_s
+    end
+  end
+
   describe '#english_name' do
     def allow_value(*)
       super.for :english_name
