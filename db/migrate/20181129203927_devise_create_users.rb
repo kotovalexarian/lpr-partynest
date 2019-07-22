@@ -2,6 +2,30 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
+    reversible do |dir|
+      dir.up do
+        execute <<~SQL
+          CREATE TYPE sex AS ENUM ('male', 'female');
+
+          CREATE TYPE relationship_status AS ENUM (
+            'supporter',
+            'excluded',
+            'member'
+          );
+
+          CREATE TYPE relationship_role AS ENUM ('manager', 'supervisor');
+        SQL
+      end
+
+      dir.down do
+        execute <<~SQL
+          DROP TYPE sex;
+          DROP TYPE relationship_status;
+          DROP TYPE relationship_role;
+        SQL
+      end
+    end
+
     create_table :country_states do |t|
       t.timestamps null: false
 

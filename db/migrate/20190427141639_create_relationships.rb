@@ -2,27 +2,6 @@
 
 class CreateRelationships < ActiveRecord::Migration[6.0]
   def change
-    reversible do |dir|
-      dir.up do
-        execute <<~SQL
-          CREATE TYPE relationship_status AS ENUM (
-            'supporter',
-            'excluded',
-            'member'
-          );
-
-          CREATE TYPE relationship_role AS ENUM ('manager', 'supervisor');
-        SQL
-      end
-
-      dir.down do
-        execute <<~SQL
-          DROP TYPE relationship_status;
-          DROP TYPE relationship_role;
-        SQL
-      end
-    end
-
     create_table :relationships do |t|
       t.timestamps null: false
 
