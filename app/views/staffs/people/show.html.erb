@@ -12,7 +12,7 @@
     <dd><%= truncate @person.last_name %></dd>
 
     <dt><%= Person.human_attribute_name :sex %></dt>
-    <dd><%= translate @person.sex, scope: %i[enums sex] %></dd>
+    <dd><%= translate_enum :sex, @person.sex %></dd>
 
     <dt><%= Person.human_attribute_name :date_of_birth %></dt>
     <dd><%= localize @person.date_of_birth %></dd>

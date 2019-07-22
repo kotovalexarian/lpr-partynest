@@ -14,6 +14,10 @@ module ApplicationHelper
     controller_path.start_with?('staff')
   end
 
+  def translate_enum(type, value)
+    translate value, scope: [:enums, type]
+  end
+
   def bootstrap_class_for_flash(flash_type)
     case flash_type
     when 'success'

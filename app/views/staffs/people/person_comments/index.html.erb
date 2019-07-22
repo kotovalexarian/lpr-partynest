@@ -12,8 +12,7 @@
         <p class="card-text">
           <% if person_comment.origin %>
             <strong>
-              <%= translate person_comment.origin,
-                            scope: %i[enums person_comment_origin] %>
+              <%= translate_enum :person_comment_origin, person_comment.origin %>
             </strong>
 
             <br/>
