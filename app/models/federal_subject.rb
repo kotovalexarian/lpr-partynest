@@ -67,21 +67,21 @@ private
   def english_name_looks_realistic
     return if english_name.blank?
 
-    errors.add :english_name, :leading_spaces  if english_name.start_with? ' '
-    errors.add :english_name, :trailing_spaces if english_name.end_with?   ' '
+    errors.add :english_name, :leading_spaces  if english_name =~ /\A\s+/
+    errors.add :english_name, :trailing_spaces if english_name =~ /\s+\z/
   end
 
   def native_name_looks_realistic
     return if native_name.blank?
 
-    errors.add :native_name, :leading_spaces  if native_name.start_with? ' '
-    errors.add :native_name, :trailing_spaces if native_name.end_with?   ' '
+    errors.add :native_name, :leading_spaces  if native_name =~ /\A\s+/
+    errors.add :native_name, :trailing_spaces if native_name =~ /\s+\z/
   end
 
   def centre_looks_realistic
     return if centre.blank?
 
-    errors.add :centre, :leading_spaces  if centre.start_with? ' '
-    errors.add :centre, :trailing_spaces if centre.end_with?   ' '
+    errors.add :centre, :leading_spaces  if centre =~ /\A\s+/
+    errors.add :centre, :trailing_spaces if centre =~ /\s+\z/
   end
 end

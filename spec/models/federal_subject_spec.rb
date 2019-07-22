@@ -30,6 +30,10 @@ RSpec.describe FederalSubject do
 
     it { is_expected.not_to allow_value ' Foo' }
     it { is_expected.not_to allow_value 'Foo ' }
+    it { is_expected.not_to allow_value "\tFoo" }
+    it { is_expected.not_to allow_value "Foo\t" }
+    it { is_expected.not_to allow_value "\nFoo" }
+    it { is_expected.not_to allow_value "Foo\n" }
   end
 
   describe '#native_name' do
@@ -47,6 +51,10 @@ RSpec.describe FederalSubject do
 
     it { is_expected.not_to allow_value ' Foo' }
     it { is_expected.not_to allow_value 'Foo ' }
+    it { is_expected.not_to allow_value "\tFoo" }
+    it { is_expected.not_to allow_value "Foo\t" }
+    it { is_expected.not_to allow_value "\nFoo" }
+    it { is_expected.not_to allow_value "Foo\n" }
   end
 
   describe '#centre' do
@@ -63,6 +71,10 @@ RSpec.describe FederalSubject do
 
     it { is_expected.not_to allow_value ' Foo' }
     it { is_expected.not_to allow_value 'Foo ' }
+    it { is_expected.not_to allow_value "\tFoo" }
+    it { is_expected.not_to allow_value "Foo\t" }
+    it { is_expected.not_to allow_value "\nFoo" }
+    it { is_expected.not_to allow_value "Foo\n" }
   end
 
   describe '#number' do
