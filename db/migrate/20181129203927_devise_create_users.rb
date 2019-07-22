@@ -29,7 +29,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :country_states do |t|
       t.timestamps null: false
 
-      t.string :name, null: false, index: { unique: true }
+      t.string :english_name, null: false, index: { unique: true }
+      t.string :native_name,  null: false, index: { unique: true }
     end
 
     create_table :regional_offices do |t|
