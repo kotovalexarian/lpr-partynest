@@ -43,7 +43,8 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     create_table :regional_offices do |t|
       t.timestamps null: false
 
-      t.references :federal_subject, null: false, index: { unique: true }
+      t.references :federal_subject,
+                   null: false, index: { unique: true }, foreign_key: true
     end
 
     create_table :people do |t|
@@ -56,7 +57,8 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       t.date   :date_of_birth,  null: false
       t.string :place_of_birth, null: false
 
-      t.references :contacts_list, null: false, index: { unique: true }
+      t.references :contacts_list,
+                   null: false, index: { unique: true }, foreign_key: true
     end
 
     create_table :passports do |t|
@@ -86,9 +88,10 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       t.string :public_name
       t.text   :biography
 
-      t.references :person, index: { unique: true }
+      t.references :person, index: { unique: true }, foreign_key: true
 
-      t.references :contacts_list, null: false, index: { unique: true }
+      t.references :contacts_list,
+                   null: false, index: { unique: true }, foreign_key: true
     end
 
     create_table :person_comments do |t|
@@ -103,7 +106,8 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.timestamps null: false
 
-      t.references :account, null: false, index: { unique: true }
+      t.references :account,
+                   null: false, index: { unique: true }, foreign_key: true
 
       ## Database authenticatable
       t.string :email,              null: false, default: ''
@@ -142,7 +146,9 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
     create_table :roles do |t|
       t.timestamps null: false
+
       t.string :name, null: false
+
       t.references :resource, polymorphic: true
 
       t.index %i[name resource_type resource_id], unique: true
@@ -151,8 +157,8 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     create_table :account_roles do |t|
       t.timestamps null: false
 
-      t.references :account, null: false, index: true
-      t.references :role,    null: false, index: true
+      t.references :account, null: false, index: true, foreign_key: true
+      t.references :role,    null: false, index: true, foreign_key: true
 
       t.datetime :deleted_at
       t.datetime :expires_at
@@ -161,7 +167,8 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     create_table :user_omniauths do |t|
       t.timestamps null: false
 
-      t.references :user, foreign_key: true
+      t.references :user, index: true, foreign_key: true
+
       t.string :provider,  null: false
       t.string :remote_id, null: false
       t.string :email,     null: false
@@ -186,14 +193,6 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
       t.index %i[person_id from_date], unique: true
     end
-
-    add_foreign_key :users,            :accounts
-    add_foreign_key :account_roles,    :accounts
-    add_foreign_key :account_roles,    :roles
-    add_foreign_key :accounts,         :people
-    add_foreign_key :regional_offices, :federal_subjects
-    add_foreign_key :accounts,         :contacts_lists
-    add_foreign_key :people,           :contacts_lists
 
     constraint :relationships, :dates, <<~SQL
       until_date IS NULL OR from_date < until_date
