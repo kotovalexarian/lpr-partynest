@@ -1139,8 +1139,6 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
-('20181130024918'),
-('20190720042127'),
-('20190720124758');
+('20181130024918');
 
 
