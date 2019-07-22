@@ -218,8 +218,8 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.contacts_lists (
     id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1141,7 +1141,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
 ('20190427141639'),
-('20190627000456'),
 ('20190715210610'),
 ('20190718184543'),
 ('20190719224405'),

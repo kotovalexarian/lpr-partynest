@@ -26,6 +26,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       end
     end
 
+    create_table :contacts_lists do |t|
+      t.timestamps null: false
+    end
+
     create_table :federal_subjects do |t|
       t.timestamps null: false
 
@@ -48,6 +52,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.column :sex, :sex,      null: false
       t.date   :date_of_birth,  null: false
       t.string :place_of_birth, null: false
+
+      t.references :contacts_list, null: false, index: { unique: true }
     end
 
     create_table :accounts do |t|
@@ -60,6 +66,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.text   :biography
 
       t.references :person, index: { unique: true }
+
+      t.references :contacts_list, null: false, index: { unique: true }
     end
 
     create_table :users do |t|
@@ -136,5 +144,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_foreign_key :account_roles,    :roles
     add_foreign_key :accounts,         :people
     add_foreign_key :regional_offices, :federal_subjects
+    add_foreign_key :accounts,         :contacts_lists
+    add_foreign_key :people,           :contacts_lists
   end
 end
