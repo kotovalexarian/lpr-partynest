@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 class Relationship < ApplicationRecord
-  enum status: %i[supporter excluded member]
+  enum status: {
+    supporter: 'supporter',
+    excluded: 'excluded',
+    member: 'member',
+  }
 
-  enum role: %i[manager supervisor]
+  enum role: {
+    manager: 'manager',
+    supervisor: 'supervisor',
+  }
 
   ################
   # Associations #

@@ -33,29 +33,36 @@ RSpec.describe Relationship do
   end
 
   describe '#role' do
+    def allow_value(*)
+      super.for :role
+    end
+
     context 'for supporter relationship' do
       subject { create :supporter_relationship }
 
-      it { is_expected.to validate_absence_of :role }
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value described_class.roles.keys.sample }
     end
 
     context 'for excluded supporter relationship' do
       subject { create :excluded_supporter_relationship }
 
-      it { is_expected.to validate_absence_of :role }
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value described_class.roles.keys.sample }
     end
 
     context 'for excluded member relationship' do
       subject { create :excluded_member_relationship }
 
-      it { is_expected.to validate_absence_of :role }
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value described_class.roles.keys.sample }
     end
 
     context 'for member relationship' do
       subject { create :member_relationship }
 
-      it { is_expected.not_to validate_absence_of :role }
-      it { is_expected.not_to validate_presence_of :role }
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value described_class.roles.keys.sample }
     end
   end
 end

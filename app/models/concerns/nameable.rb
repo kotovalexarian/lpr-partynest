@@ -4,7 +4,10 @@ module Nameable
   extend ActiveSupport::Concern
 
   included do
-    enum sex: %i[male female]
+    enum sex: {
+      male: 'male',
+      female: 'female',
+    }
 
     before_validation :turn_blank_middle_name_into_nil
 

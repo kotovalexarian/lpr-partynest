@@ -23,6 +23,37 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: relationship_role; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.relationship_role AS ENUM (
+    'manager',
+    'supervisor'
+);
+
+
+--
+-- Name: relationship_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.relationship_status AS ENUM (
+    'supporter',
+    'excluded',
+    'member'
+);
+
+
+--
+-- Name: sex; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.sex AS ENUM (
+    'male',
+    'female'
+);
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -259,7 +290,7 @@ CREATE TABLE public.passports (
     last_name character varying NOT NULL,
     first_name character varying NOT NULL,
     middle_name character varying,
-    sex integer NOT NULL,
+    sex public.sex NOT NULL,
     date_of_birth date NOT NULL,
     place_of_birth character varying NOT NULL,
     series integer NOT NULL,
@@ -301,7 +332,7 @@ CREATE TABLE public.people (
     first_name character varying NOT NULL,
     middle_name character varying,
     last_name character varying NOT NULL,
-    sex integer NOT NULL,
+    sex public.sex NOT NULL,
     date_of_birth date NOT NULL,
     place_of_birth character varying NOT NULL,
     contacts_list_id bigint NOT NULL
@@ -403,10 +434,10 @@ CREATE TABLE public.relationships (
     regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
     until_date date,
-    status integer NOT NULL,
-    role integer,
+    status public.relationship_status NOT NULL,
+    role public.relationship_role,
     CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date))),
-    CONSTRAINT role CHECK (((status = 2) OR (role IS NULL)))
+    CONSTRAINT role CHECK (((status = 'member'::public.relationship_status) OR (role IS NULL)))
 );
 
 
