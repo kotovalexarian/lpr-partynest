@@ -261,11 +261,11 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     SQL
 
     constraint :accounts, :public_name, <<~SQL
-      public_name IS NULL OR is_good_limited_text(public_name, 3, 255)
+      public_name IS NULL OR is_good_limited_text(public_name, 1, 255)
     SQL
 
     constraint :accounts, :biography, <<~SQL
-      biography IS NULL OR is_good_limited_text(biography, 3, 10000)
+      biography IS NULL OR is_good_limited_text(biography, 1, 10000)
     SQL
 
     constraint :federal_subjects, :english_name, <<~SQL

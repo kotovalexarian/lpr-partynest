@@ -121,7 +121,7 @@ RSpec.describe Account do
 
     it do
       is_expected.to \
-        validate_length_of(:public_name).is_at_least(3).is_at_most(255)
+        validate_length_of(:public_name).is_at_least(1).is_at_most(255)
     end
 
     context 'when it was set to blank value' do
@@ -158,7 +158,7 @@ RSpec.describe Account do
 
     it do
       is_expected.to \
-        validate_length_of(:biography).is_at_least(3).is_at_most(10_000)
+        validate_length_of(:biography).is_at_least(1).is_at_most(10_000)
     end
 
     context 'when it was set to blank value' do

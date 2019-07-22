@@ -174,10 +174,10 @@ CREATE TABLE public.accounts (
     biography text,
     person_id bigint,
     contacts_list_id bigint NOT NULL,
-    CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_limited_text(biography, 3, 10000))),
+    CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_limited_text(biography, 1, 10000))),
     CONSTRAINT guest_token CHECK (public.is_guest_token((guest_token)::text)),
     CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
-    CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_limited_text((public_name)::text, 3, 255)))
+    CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_limited_text((public_name)::text, 1, 255)))
 );
 
 
