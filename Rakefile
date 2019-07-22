@@ -71,5 +71,8 @@ task :brakeman do
     '--confidence-level',
     '1',
     '--run-all-checks',
+    # Ignore UnscopedFind because we use Pundit
+    '--except',
+    'UnscopedFind',
   )
 end
