@@ -428,8 +428,8 @@ ALTER SEQUENCE public.regional_offices_id_seq OWNED BY public.regional_offices.i
 
 CREATE TABLE public.relationships (
     id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
