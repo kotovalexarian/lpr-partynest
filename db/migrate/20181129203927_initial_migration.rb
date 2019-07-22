@@ -261,15 +261,11 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     SQL
 
     constraint :accounts, :public_name, <<~SQL
-      public_name IS NULL
-      OR
-      is_good_limited_text(public_name, 3, 255)
+      public_name IS NULL OR is_good_limited_text(public_name, 3, 255)
     SQL
 
     constraint :accounts, :biography, <<~SQL
-      biography IS NULL
-      OR
-      is_good_limited_text(biography, 3, 10000)
+      biography IS NULL OR is_good_limited_text(biography, 3, 10000)
     SQL
 
     constraint :federal_subjects, :english_name, <<~SQL
@@ -289,93 +285,63 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     SQL
 
     constraint :passports, :zip_code, <<~SQL
-      zip_code IS NULL
-      OR
-      is_good_limited_text(zip_code, 1, 255)
+      zip_code IS NULL OR is_good_limited_text(zip_code, 1, 255)
     SQL
 
     constraint :passports, :town_type, <<~SQL
-      town_type IS NULL
-      OR
-      is_good_limited_text(town_type, 1, 255)
+      town_type IS NULL OR is_good_limited_text(town_type, 1, 255)
     SQL
 
     constraint :passports, :town_name, <<~SQL
-      town_name IS NULL
-      OR
-      is_good_limited_text(town_name, 1, 255)
+      town_name IS NULL OR is_good_limited_text(town_name, 1, 255)
     SQL
 
     constraint :passports, :settlement_type, <<~SQL
-      settlement_type IS NULL
-      OR
-      is_good_limited_text(settlement_type, 1, 255)
+      settlement_type IS NULL OR is_good_limited_text(settlement_type, 1, 255)
     SQL
 
     constraint :passports, :settlement_name, <<~SQL
-      settlement_name IS NULL
-      OR
-      is_good_limited_text(settlement_name, 1, 255)
+      settlement_name IS NULL OR is_good_limited_text(settlement_name, 1, 255)
     SQL
 
     constraint :passports, :district_type, <<~SQL
-      district_type IS NULL
-      OR
-      is_good_limited_text(district_type, 1, 255)
+      district_type IS NULL OR is_good_limited_text(district_type, 1, 255)
     SQL
 
     constraint :passports, :district_name, <<~SQL
-      district_name IS NULL
-      OR
-      is_good_limited_text(district_name, 1, 255)
+      district_name IS NULL OR is_good_limited_text(district_name, 1, 255)
     SQL
 
     constraint :passports, :street_type, <<~SQL
-      street_type IS NULL
-      OR
-      is_good_limited_text(street_type, 1, 255)
+      street_type IS NULL OR is_good_limited_text(street_type, 1, 255)
     SQL
 
     constraint :passports, :street_name, <<~SQL
-      street_name IS NULL
-      OR
-      is_good_limited_text(street_name, 1, 255)
+      street_name IS NULL OR is_good_limited_text(street_name, 1, 255)
     SQL
 
     constraint :passports, :residence_type, <<~SQL
-      residence_type IS NULL
-      OR
-      is_good_limited_text(residence_type, 1, 255)
+      residence_type IS NULL OR is_good_limited_text(residence_type, 1, 255)
     SQL
 
     constraint :passports, :residence_name, <<~SQL
-      residence_name IS NULL
-      OR
-      is_good_limited_text(residence_name, 1, 255)
+      residence_name IS NULL OR is_good_limited_text(residence_name, 1, 255)
     SQL
 
     constraint :passports, :building_type, <<~SQL
-      building_type IS NULL
-      OR
-      is_good_limited_text(building_type, 1, 255)
+      building_type IS NULL OR is_good_limited_text(building_type, 1, 255)
     SQL
 
     constraint :passports, :building_name, <<~SQL
-      building_name IS NULL
-      OR
-      is_good_limited_text(building_name, 1, 255)
+      building_name IS NULL OR is_good_limited_text(building_name, 1, 255)
     SQL
 
     constraint :passports, :apartment_type, <<~SQL
-      apartment_type IS NULL
-      OR
-      is_good_limited_text(apartment_type, 1, 255)
+      apartment_type IS NULL OR is_good_limited_text(apartment_type, 1, 255)
     SQL
 
     constraint :passports, :apartment_name, <<~SQL
-      apartment_name IS NULL
-      OR
-      is_good_limited_text(apartment_name, 1, 255)
+      apartment_name IS NULL OR is_good_limited_text(apartment_name, 1, 255)
     SQL
   end
 
