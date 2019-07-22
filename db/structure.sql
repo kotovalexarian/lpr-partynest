@@ -285,8 +285,8 @@ ALTER SEQUENCE public.federal_subjects_id_seq OWNED BY public.federal_subjects.i
 
 CREATE TABLE public.passports (
     id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     last_name character varying NOT NULL,
     first_name character varying NOT NULL,
     middle_name character varying,
@@ -1141,7 +1141,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
 ('20190427141639'),
-('20190718184543'),
 ('20190719224405'),
 ('20190720022446'),
 ('20190720042127'),
