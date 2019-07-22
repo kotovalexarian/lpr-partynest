@@ -113,13 +113,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :account_roles do |t|
       t.timestamps null: false
 
-      t.references :account, null: false
-      t.references :role,    null: false
+      t.references :account, null: false, index: true
+      t.references :role,    null: false, index: true
 
       t.datetime :deleted_at
       t.datetime :expires_at
-
-      t.index %i[account_id role_id], unique: true
     end
 
     create_table :user_omniauths do |t|
