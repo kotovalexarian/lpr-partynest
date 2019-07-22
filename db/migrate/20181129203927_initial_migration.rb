@@ -2,26 +2,14 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
-    reversible do |dir|
-      dir.down do
-        execute 'DROP FUNCTION has_no_leading_trailing_whitespace'
-      end
-
-      dir.up do
-        execute <<~SQL
-          CREATE FUNCTION has_no_leading_trailing_whitespace (str text)
-            RETURNS boolean
-            IMMUTABLE
-            LANGUAGE plpgsql
-            AS
-          $$
-          BEGIN
-            RETURN str ~ '^[^[:space:]]+(.*[^[:space:]])?$';
-          END;
-          $$;
-        SQL
-      end
-    end
+    func :has_no_leading_trailing_whitespace, <<~SQL
+      (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
+      $$
+      BEGIN
+        RETURN str ~ '^[^[:space:]]+(.*[^[:space:]])?$';
+      END;
+      $$;
+    SQL
 
     enum :sex, %i[male female]
 
@@ -405,6 +393,18 @@ class InitialMigration < ActiveRecord::Migration[6.0]
   end
 
 private
+
+  def func(name, sql)
+    reversible do |dir|
+      dir.up do
+        execute "CREATE FUNCTION #{name} #{sql}"
+      end
+
+      dir.down do
+        execute "DROP FUNCTION #{name}"
+      end
+    end
+  end
 
   def enum(name, values)
     reversible do |dir|
