@@ -11,6 +11,16 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       $$;
     SQL
 
+    func :is_good_limited_text, <<~SQL
+      (str text, min_length integer, max_length integer)
+        RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
+      $$
+      BEGIN
+        RETURN LENGTH(str) BETWEEN min_length AND max_length AND is_good_text(str);
+      END;
+      $$;
+    SQL
+
     enum :sex, %i[male female]
 
     enum :relationship_status, %i[supporter excluded member]
@@ -236,35 +246,25 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     constraint :accounts, :public_name, <<~SQL
       public_name IS NULL
       OR
-      length(public_name) BETWEEN 3 AND 255
-      AND
-      is_good_text(public_name)
+      is_good_limited_text(public_name, 3, 255)
     SQL
 
     constraint :accounts, :biography, <<~SQL
       biography IS NULL
       OR
-      length(biography) BETWEEN 3 AND 10000
-      AND
-      is_good_text(biography)
+      is_good_limited_text(biography, 3, 10000)
     SQL
 
     constraint :federal_subjects, :english_name, <<~SQL
-      length(english_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(english_name)
+      is_good_limited_text(english_name, 1, 255)
     SQL
 
     constraint :federal_subjects, :native_name, <<~SQL
-      length(native_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(native_name)
+      is_good_limited_text(native_name, 1, 255)
     SQL
 
     constraint :federal_subjects, :centre, <<~SQL
-      length(centre) BETWEEN 1 AND 255
-      AND
-      is_good_text(centre)
+      is_good_limited_text(centre, 1, 255)
     SQL
 
     constraint :federal_subjects, :number, <<~SQL
@@ -274,121 +274,91 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     constraint :passports, :zip_code, <<~SQL
       zip_code IS NULL
       OR
-      length(zip_code) BETWEEN 1 AND 255
-      AND
-      is_good_text(zip_code)
+      is_good_limited_text(zip_code, 1, 255)
     SQL
 
     constraint :passports, :town_type, <<~SQL
       town_type IS NULL
       OR
-      length(town_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(town_type)
+      is_good_limited_text(town_type, 1, 255)
     SQL
 
     constraint :passports, :town_name, <<~SQL
       town_name IS NULL
       OR
-      length(town_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(town_name)
+      is_good_limited_text(town_name, 1, 255)
     SQL
 
     constraint :passports, :settlement_type, <<~SQL
       settlement_type IS NULL
       OR
-      length(settlement_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(settlement_type)
+      is_good_limited_text(settlement_type, 1, 255)
     SQL
 
     constraint :passports, :settlement_name, <<~SQL
       settlement_name IS NULL
       OR
-      length(settlement_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(settlement_name)
+      is_good_limited_text(settlement_name, 1, 255)
     SQL
 
     constraint :passports, :district_type, <<~SQL
       district_type IS NULL
       OR
-      length(district_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(district_type)
+      is_good_limited_text(district_type, 1, 255)
     SQL
 
     constraint :passports, :district_name, <<~SQL
       district_name IS NULL
       OR
-      length(district_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(district_name)
+      is_good_limited_text(district_name, 1, 255)
     SQL
 
     constraint :passports, :street_type, <<~SQL
       street_type IS NULL
       OR
-      length(street_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(street_type)
+      is_good_limited_text(street_type, 1, 255)
     SQL
 
     constraint :passports, :street_name, <<~SQL
       street_name IS NULL
       OR
-      length(street_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(street_name)
+      is_good_limited_text(street_name, 1, 255)
     SQL
 
     constraint :passports, :residence_type, <<~SQL
       residence_type IS NULL
       OR
-      length(residence_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(residence_type)
+      is_good_limited_text(residence_type, 1, 255)
     SQL
 
     constraint :passports, :residence_name, <<~SQL
       residence_name IS NULL
       OR
-      length(residence_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(residence_name)
+      is_good_limited_text(residence_name, 1, 255)
     SQL
 
     constraint :passports, :building_type, <<~SQL
       building_type IS NULL
       OR
-      length(building_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(building_type)
+      is_good_limited_text(building_type, 1, 255)
     SQL
 
     constraint :passports, :building_name, <<~SQL
       building_name IS NULL
       OR
-      length(building_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(building_name)
+      is_good_limited_text(building_name, 1, 255)
     SQL
 
     constraint :passports, :apartment_type, <<~SQL
       apartment_type IS NULL
       OR
-      length(apartment_type) BETWEEN 1 AND 255
-      AND
-      is_good_text(apartment_type)
+      is_good_limited_text(apartment_type, 1, 255)
     SQL
 
     constraint :passports, :apartment_name, <<~SQL
       apartment_name IS NULL
       OR
-      length(apartment_name) BETWEEN 1 AND 255
-      AND
-      is_good_text(apartment_name)
+      is_good_limited_text(apartment_name, 1, 255)
     SQL
   end
 

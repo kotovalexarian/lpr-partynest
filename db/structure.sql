@@ -70,6 +70,19 @@ CREATE TYPE public.sex AS ENUM (
 
 
 --
+-- Name: is_good_limited_text(text, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.is_good_limited_text(str text, min_length integer, max_length integer) RETURNS boolean
+    LANGUAGE plpgsql IMMUTABLE
+    AS $$
+BEGIN
+  RETURN LENGTH(str) BETWEEN min_length AND max_length AND is_good_text(str);
+END;
+$$;
+
+
+--
 -- Name: is_good_text(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -134,10 +147,10 @@ CREATE TABLE public.accounts (
     biography text,
     person_id bigint,
     contacts_list_id bigint NOT NULL,
-    CONSTRAINT biography CHECK (((biography IS NULL) OR (((length(biography) >= 3) AND (length(biography) <= 10000)) AND public.is_good_text(biography)))),
+    CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_limited_text(biography, 3, 10000))),
     CONSTRAINT guest_token CHECK (((guest_token)::text ~ '^[0-9a-f]{32}$'::text)),
     CONSTRAINT nickname CHECK ((((length((nickname)::text) >= 3) AND (length((nickname)::text) <= 36)) AND ((nickname)::text ~ '^[a-z][a-z0-9]*(_[a-z0-9]+)*$'::text))),
-    CONSTRAINT public_name CHECK (((public_name IS NULL) OR (((length((public_name)::text) >= 3) AND (length((public_name)::text) <= 255)) AND public.is_good_text((public_name)::text))))
+    CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_limited_text((public_name)::text, 3, 255)))
 );
 
 
@@ -283,9 +296,9 @@ CREATE TABLE public.federal_subjects (
     centre character varying NOT NULL,
     number integer NOT NULL,
     timezone interval NOT NULL,
-    CONSTRAINT centre CHECK ((((length((centre)::text) >= 1) AND (length((centre)::text) <= 255)) AND public.is_good_text((centre)::text))),
-    CONSTRAINT english_name CHECK ((((length((english_name)::text) >= 1) AND (length((english_name)::text) <= 255)) AND public.is_good_text((english_name)::text))),
-    CONSTRAINT native_name CHECK ((((length((native_name)::text) >= 1) AND (length((native_name)::text) <= 255)) AND public.is_good_text((native_name)::text))),
+    CONSTRAINT centre CHECK (public.is_good_limited_text((centre)::text, 1, 255)),
+    CONSTRAINT english_name CHECK (public.is_good_limited_text((english_name)::text, 1, 255)),
+    CONSTRAINT native_name CHECK (public.is_good_limited_text((native_name)::text, 1, 255)),
     CONSTRAINT number CHECK ((number > 0))
 );
 
@@ -345,21 +358,21 @@ CREATE TABLE public.passports (
     building_name character varying,
     apartment_type character varying,
     apartment_name character varying,
-    CONSTRAINT apartment_name CHECK (((apartment_name IS NULL) OR (((length((apartment_name)::text) >= 1) AND (length((apartment_name)::text) <= 255)) AND public.is_good_text((apartment_name)::text)))),
-    CONSTRAINT apartment_type CHECK (((apartment_type IS NULL) OR (((length((apartment_type)::text) >= 1) AND (length((apartment_type)::text) <= 255)) AND public.is_good_text((apartment_type)::text)))),
-    CONSTRAINT building_name CHECK (((building_name IS NULL) OR (((length((building_name)::text) >= 1) AND (length((building_name)::text) <= 255)) AND public.is_good_text((building_name)::text)))),
-    CONSTRAINT building_type CHECK (((building_type IS NULL) OR (((length((building_type)::text) >= 1) AND (length((building_type)::text) <= 255)) AND public.is_good_text((building_type)::text)))),
-    CONSTRAINT district_name CHECK (((district_name IS NULL) OR (((length((district_name)::text) >= 1) AND (length((district_name)::text) <= 255)) AND public.is_good_text((district_name)::text)))),
-    CONSTRAINT district_type CHECK (((district_type IS NULL) OR (((length((district_type)::text) >= 1) AND (length((district_type)::text) <= 255)) AND public.is_good_text((district_type)::text)))),
-    CONSTRAINT residence_name CHECK (((residence_name IS NULL) OR (((length((residence_name)::text) >= 1) AND (length((residence_name)::text) <= 255)) AND public.is_good_text((residence_name)::text)))),
-    CONSTRAINT residence_type CHECK (((residence_type IS NULL) OR (((length((residence_type)::text) >= 1) AND (length((residence_type)::text) <= 255)) AND public.is_good_text((residence_type)::text)))),
-    CONSTRAINT settlement_name CHECK (((settlement_name IS NULL) OR (((length((settlement_name)::text) >= 1) AND (length((settlement_name)::text) <= 255)) AND public.is_good_text((settlement_name)::text)))),
-    CONSTRAINT settlement_type CHECK (((settlement_type IS NULL) OR (((length((settlement_type)::text) >= 1) AND (length((settlement_type)::text) <= 255)) AND public.is_good_text((settlement_type)::text)))),
-    CONSTRAINT street_name CHECK (((street_name IS NULL) OR (((length((street_name)::text) >= 1) AND (length((street_name)::text) <= 255)) AND public.is_good_text((street_name)::text)))),
-    CONSTRAINT street_type CHECK (((street_type IS NULL) OR (((length((street_type)::text) >= 1) AND (length((street_type)::text) <= 255)) AND public.is_good_text((street_type)::text)))),
-    CONSTRAINT town_name CHECK (((town_name IS NULL) OR (((length((town_name)::text) >= 1) AND (length((town_name)::text) <= 255)) AND public.is_good_text((town_name)::text)))),
-    CONSTRAINT town_type CHECK (((town_type IS NULL) OR (((length((town_type)::text) >= 1) AND (length((town_type)::text) <= 255)) AND public.is_good_text((town_type)::text)))),
-    CONSTRAINT zip_code CHECK (((zip_code IS NULL) OR (((length((zip_code)::text) >= 1) AND (length((zip_code)::text) <= 255)) AND public.is_good_text((zip_code)::text))))
+    CONSTRAINT apartment_name CHECK (((apartment_name IS NULL) OR public.is_good_limited_text((apartment_name)::text, 1, 255))),
+    CONSTRAINT apartment_type CHECK (((apartment_type IS NULL) OR public.is_good_limited_text((apartment_type)::text, 1, 255))),
+    CONSTRAINT building_name CHECK (((building_name IS NULL) OR public.is_good_limited_text((building_name)::text, 1, 255))),
+    CONSTRAINT building_type CHECK (((building_type IS NULL) OR public.is_good_limited_text((building_type)::text, 1, 255))),
+    CONSTRAINT district_name CHECK (((district_name IS NULL) OR public.is_good_limited_text((district_name)::text, 1, 255))),
+    CONSTRAINT district_type CHECK (((district_type IS NULL) OR public.is_good_limited_text((district_type)::text, 1, 255))),
+    CONSTRAINT residence_name CHECK (((residence_name IS NULL) OR public.is_good_limited_text((residence_name)::text, 1, 255))),
+    CONSTRAINT residence_type CHECK (((residence_type IS NULL) OR public.is_good_limited_text((residence_type)::text, 1, 255))),
+    CONSTRAINT settlement_name CHECK (((settlement_name IS NULL) OR public.is_good_limited_text((settlement_name)::text, 1, 255))),
+    CONSTRAINT settlement_type CHECK (((settlement_type IS NULL) OR public.is_good_limited_text((settlement_type)::text, 1, 255))),
+    CONSTRAINT street_name CHECK (((street_name IS NULL) OR public.is_good_limited_text((street_name)::text, 1, 255))),
+    CONSTRAINT street_type CHECK (((street_type IS NULL) OR public.is_good_limited_text((street_type)::text, 1, 255))),
+    CONSTRAINT town_name CHECK (((town_name IS NULL) OR public.is_good_limited_text((town_name)::text, 1, 255))),
+    CONSTRAINT town_type CHECK (((town_type IS NULL) OR public.is_good_limited_text((town_type)::text, 1, 255))),
+    CONSTRAINT zip_code CHECK (((zip_code IS NULL) OR public.is_good_limited_text((zip_code)::text, 1, 255)))
 );
 
 
