@@ -6,6 +6,7 @@ class ImportPerson
   def call
     ActiveRecord::Base.transaction do
       create_person
+      create_general_comments_person_comment
     end
   end
 
@@ -18,6 +19,18 @@ private
           contacts_list: ContactsList.new,
         ),
       )
+  end
+
+  def create_general_comments_person_comment
+    return if context.general_comments.blank?
+
+    context.general_comments_person_comment =
+      context.person.person_comments.where(origin: :general_comments)
+      .lock(true).first_or_initialize
+
+    context.general_comments_person_comment.text = context.general_comments
+
+    context.general_comments_person_comment.save!
   end
 
   def person_attributes
