@@ -12,13 +12,13 @@
     <dd><%= truncate @person.last_name %></dd>
 
     <dt><%= Person.human_attribute_name :sex %></dt>
-    <dd><%= translate_enum :sex, @person.sex %></dd>
+    <dd><%= translate_enum :sex, @person.sex if @person.sex %></dd>
 
     <dt><%= Person.human_attribute_name :date_of_birth %></dt>
-    <dd><%= localize @person.date_of_birth %></dd>
+    <dd><%= localize @person.date_of_birth if @person.date_of_birth %></dd>
 
     <dt><%= Person.human_attribute_name :place_of_birth %></dt>
-    <dd><%= truncate @person.place_of_birth %></dd>
+    <dd><%= truncate @person.place_of_birth if @person.place_of_birth %></dd>
 
     <dt><%= Person.human_attribute_name :current_regional_office %></dt>
     <dd>

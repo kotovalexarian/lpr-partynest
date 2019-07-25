@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Passport < ApplicationRecord
-  include Nameable
+  include RequiredNameable
 
   FORMAT_RE = /\A[^[:space:]]+(.*[^[:space:]]+)?\z/.freeze
 

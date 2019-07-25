@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Passport do
   subject { create :empty_passport }
 
-  it_behaves_like 'nameable'
+  it_behaves_like 'required_nameable'
 
   describe '#person' do
     it { is_expected.to belong_to(:person).optional }

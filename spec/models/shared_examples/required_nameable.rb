@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'nameable' do
+RSpec.shared_examples 'required_nameable' do
   it { is_expected.to     validate_presence_of :last_name }
   it { is_expected.to     validate_presence_of :first_name }
   it { is_expected.not_to validate_presence_of :middle_name }
-  it { is_expected.not_to validate_presence_of :sex }
-  it { is_expected.not_to validate_presence_of :date_of_birth }
-  it { is_expected.not_to validate_presence_of :place_of_birth }
+  it { is_expected.to     validate_presence_of :sex }
+  it { is_expected.to     validate_presence_of :date_of_birth }
+  it { is_expected.to     validate_presence_of :place_of_birth }
 
   %i[
     last_name

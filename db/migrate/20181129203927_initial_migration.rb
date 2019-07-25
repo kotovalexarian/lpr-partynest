@@ -102,9 +102,9 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       t.string :first_name,     null: false
       t.string :middle_name,    null: true
       t.string :last_name,      null: false
-      t.column :sex, :sex,      null: false
-      t.date   :date_of_birth,  null: false
-      t.string :place_of_birth, null: false
+      t.column :sex, :sex,      null: true
+      t.date   :date_of_birth,  null: true
+      t.string :place_of_birth, null: true
 
       t.references :contacts_list,
                    null: false, index: { unique: true }, foreign_key: true

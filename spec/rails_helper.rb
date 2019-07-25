@@ -38,6 +38,7 @@ require_relative 'support/devise'
 require_relative 'support/pundit'
 
 require_relative 'models/shared_examples/nameable'
+require_relative 'models/shared_examples/required_nameable'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.

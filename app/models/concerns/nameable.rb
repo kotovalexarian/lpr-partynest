@@ -6,16 +6,17 @@ module Nameable
   included do
     pg_enum :sex, %i[male female]
 
-    before_validation :turn_blank_middle_name_into_nil
+    before_validation :turn_blank_nameable_attributes_into_nils
 
+    validates :last_name,  presence: true
     validates :first_name, presence: true
-    validates :last_name, presence: true
-    validates :sex, presence: true
-    validates :date_of_birth, presence: true
-    validates :place_of_birth, presence: true
   end
 
-  def turn_blank_middle_name_into_nil
-    self.middle_name = nil if middle_name.blank?
+  def turn_blank_nameable_attributes_into_nils
+    %i[
+      last_name first_name middle_name sex date_of_birth place_of_birth
+    ].each do |attribute|
+      public_send "#{attribute}=", nil if public_send(attribute).blank?
+    end
   end
 end

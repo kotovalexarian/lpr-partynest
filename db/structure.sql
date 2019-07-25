@@ -459,9 +459,9 @@ CREATE TABLE public.people (
     first_name character varying NOT NULL,
     middle_name character varying,
     last_name character varying NOT NULL,
-    sex public.sex NOT NULL,
-    date_of_birth date NOT NULL,
-    place_of_birth character varying NOT NULL,
+    sex public.sex,
+    date_of_birth date,
+    place_of_birth character varying,
     contacts_list_id bigint NOT NULL
 );
 
