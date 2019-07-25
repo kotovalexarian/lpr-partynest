@@ -8,6 +8,7 @@ class ImportPerson
       create_person
       create_general_comments_person_comment
       create_first_contact_date_person_comment
+      create_latest_contact_date_person_comment
     end
   end
 
@@ -47,6 +48,18 @@ private
     context.first_contact_date_person_comment.save!
   end
 
+  def create_latest_contact_date_person_comment
+    return if latest_contact_date.blank?
+
+    context.latest_contact_date_person_comment =
+      context.person.person_comments.where(origin: :latest_contact_date)
+             .lock(true).first_or_initialize
+
+    context.latest_contact_date_person_comment.text = latest_contact_date
+
+    context.latest_contact_date_person_comment.save!
+  end
+
   # rubocop:enable Metrics/AbcSize
 
   def person_id
@@ -70,5 +83,9 @@ private
 
   def first_contact_date
     context.row[6]
+  end
+
+  def latest_contact_date
+    context.row[7]
   end
 end
