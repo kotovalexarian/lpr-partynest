@@ -28,8 +28,9 @@ private
     return if general_comments.blank?
 
     context.general_comments_person_comment =
-      context.person.person_comments.where(origin: :general_comments)
-             .lock(true).first_or_initialize
+      context
+      .person.person_comments.where(origin: :general_comments).lock(true)
+      .first_or_initialize
 
     context.general_comments_person_comment.text = general_comments
 
@@ -40,8 +41,9 @@ private
     return if first_contact_date.blank?
 
     context.first_contact_date_person_comment =
-      context.person.person_comments.where(origin: :first_contact_date)
-             .lock(true).first_or_initialize
+      context
+      .person.person_comments.where(origin: :first_contact_date).lock(true)
+      .first_or_initialize
 
     context.first_contact_date_person_comment.text = first_contact_date
 
@@ -52,8 +54,9 @@ private
     return if latest_contact_date.blank?
 
     context.latest_contact_date_person_comment =
-      context.person.person_comments.where(origin: :latest_contact_date)
-             .lock(true).first_or_initialize
+      context
+      .person.person_comments.where(origin: :latest_contact_date).lock(true)
+      .first_or_initialize
 
     context.latest_contact_date_person_comment.text = latest_contact_date
 
