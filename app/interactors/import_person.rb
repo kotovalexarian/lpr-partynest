@@ -21,12 +21,14 @@ private
     )
   end
 
+  # rubocop:disable Metrics/AbcSize
+
   def create_general_comments_person_comment
     return if general_comments.blank?
 
     context.general_comments_person_comment =
       context.person.person_comments.where(origin: :general_comments)
-      .lock(true).first_or_initialize
+             .lock(true).first_or_initialize
 
     context.general_comments_person_comment.text = general_comments
 
@@ -38,12 +40,14 @@ private
 
     context.first_contact_date_person_comment =
       context.person.person_comments.where(origin: :first_contact_date)
-      .lock(true).first_or_initialize
+             .lock(true).first_or_initialize
 
     context.first_contact_date_person_comment.text = first_contact_date
 
     context.first_contact_date_person_comment.save!
   end
+
+  # rubocop:enable Metrics/AbcSize
 
   def person_id
     context.row[0]
