@@ -2,14 +2,14 @@
   <%= render partial: 'nav_tabs', locals: { person: @person, tab: :overview } %>
 
   <dl>
+    <dt><%= Person.human_attribute_name :last_name %></dt>
+    <dd><%= truncate @person.last_name %></dd>
+
     <dt><%= Person.human_attribute_name :first_name %></dt>
     <dd><%= truncate @person.first_name %></dd>
 
     <dt><%= Person.human_attribute_name :middle_name %></dt>
     <dd><%= truncate @person.middle_name %></dd>
-
-    <dt><%= Person.human_attribute_name :last_name %></dt>
-    <dd><%= truncate @person.last_name %></dd>
 
     <dt><%= Person.human_attribute_name :sex %></dt>
     <dd><%= translate_enum :sex, @person.sex if @person.sex %></dd>
