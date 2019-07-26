@@ -2,6 +2,22 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
+    enum :sex, %i[male female]
+
+    enum :relationship_status, %i[supporter excluded member]
+
+    enum :relationship_role, %i[regional_manager regional_supervisor]
+
+    enum :person_comment_origin, %i[
+      general_comments
+      first_contact_date
+      latest_contact_date
+      human_readable_id
+      past_experience
+      aid_at_2014_elections
+      aid_at_2015_elections
+    ]
+
     func :is_guest_token, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -57,22 +73,6 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       END;
       $$;
     SQL
-
-    enum :sex, %i[male female]
-
-    enum :relationship_status, %i[supporter excluded member]
-
-    enum :relationship_role, %i[regional_manager regional_supervisor]
-
-    enum :person_comment_origin, %i[
-      general_comments
-      first_contact_date
-      latest_contact_date
-      human_readable_id
-      past_experience
-      aid_at_2014_elections
-      aid_at_2015_elections
-    ]
 
     create_table :contacts_lists do |t|
       t.timestamps null: false
