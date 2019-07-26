@@ -11,6 +11,7 @@ class ImportPerson
       create_latest_contact_date_person_comment
       create_human_readable_id_person_comment
       create_past_experience_person_comment
+      create_aid_at_2014_elections_person_comment
     end
   end
 
@@ -91,6 +92,19 @@ private
     context.past_experience_person_comment.save!
   end
 
+  def create_aid_at_2014_elections_person_comment
+    return if aid_at_2014_elections.blank?
+
+    context.aid_at_2014_elections_person_comment =
+      context
+      .person.person_comments.where(origin: :ait_at_2014_elections).lock(true)
+      .first_or_initialize
+
+    context.aid_at_2014_elections_person_comment.text = ait_at_2014_elections
+
+    context.aid_at_2014_elections_person_comment.save!
+  end
+
   # rubocop:enable Metrics/AbcSize
 
   def person_id
@@ -126,5 +140,9 @@ private
 
   def past_experience
     context.row[35]
+  end
+
+  def ait_at_2014_elections
+    context.row[36]
   end
 end
