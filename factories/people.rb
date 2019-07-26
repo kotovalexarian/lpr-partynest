@@ -34,7 +34,7 @@ FactoryBot.define do
 
   factory :excluded_person, parent: :member_person do
     after :create do |person, evaluator|
-      create :excluded_member_relationship,
+      create :excluded_relationship,
              person: person,
              regional_office: evaluator.regional_office
     end

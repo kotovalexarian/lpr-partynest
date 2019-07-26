@@ -13,11 +13,7 @@ FactoryBot.define do
     role { nil }
   end
 
-  factory :excluded_supporter_relationship, parent: :supporter_relationship do
-    status { :excluded }
-  end
-
-  factory :excluded_member_relationship, parent: :member_relationship do
+  factory :excluded_relationship, parent: :supporter_relationship do
     status { :excluded }
   end
 

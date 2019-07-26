@@ -44,15 +44,8 @@ RSpec.describe Relationship do
       it { is_expected.not_to allow_value described_class.roles.keys.sample }
     end
 
-    context 'for excluded supporter relationship' do
-      subject { create :excluded_supporter_relationship }
-
-      it { is_expected.to allow_value nil }
-      it { is_expected.not_to allow_value described_class.roles.keys.sample }
-    end
-
-    context 'for excluded member relationship' do
-      subject { create :excluded_member_relationship }
+    context 'for excluded relationship' do
+      subject { create :excluded_relationship }
 
       it { is_expected.to allow_value nil }
       it { is_expected.not_to allow_value described_class.roles.keys.sample }
@@ -78,8 +71,8 @@ RSpec.describe Relationship do
       it { is_expected.not_to allow_value :federal_secretary }
     end
 
-    context 'for excluded supporter relationship' do
-      subject { create :excluded_supporter_relationship }
+    context 'for excluded relationship' do
+      subject { create :excluded_relationship }
 
       it { is_expected.to allow_value nil }
       it { is_expected.not_to allow_value :federal_secretary }
@@ -87,13 +80,6 @@ RSpec.describe Relationship do
 
     context 'for member relationship' do
       subject { create :member_relationship }
-
-      it { is_expected.to allow_value nil }
-      it { is_expected.not_to allow_value :federal_secretary }
-    end
-
-    context 'for excluded member relationship' do
-      subject { create :excluded_member_relationship }
 
       it { is_expected.to allow_value nil }
       it { is_expected.not_to allow_value :federal_secretary }
@@ -151,8 +137,8 @@ RSpec.describe Relationship do
       it { is_expected.not_to allow_value :regional_secretary }
     end
 
-    context 'for excluded supporter relationship' do
-      subject { create :excluded_supporter_relationship }
+    context 'for excluded relationship' do
+      subject { create :excluded_relationship }
 
       it { is_expected.to allow_value nil }
       it { is_expected.not_to allow_value :regional_secretary }
@@ -160,13 +146,6 @@ RSpec.describe Relationship do
 
     context 'for member relationship' do
       subject { create :member_relationship }
-
-      it { is_expected.to allow_value nil }
-      it { is_expected.not_to allow_value :regional_secretary }
-    end
-
-    context 'for excluded member relationship' do
-      subject { create :excluded_member_relationship }
 
       it { is_expected.to allow_value nil }
       it { is_expected.not_to allow_value :regional_secretary }
@@ -216,8 +195,8 @@ RSpec.describe Relationship do
   describe '.supporters' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
@@ -233,13 +212,13 @@ RSpec.describe Relationship do
   describe '.excluded' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship4) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship4) { create :excluded_relationship }
     let!(:relationship5) { create :federal_manager_relationship }
     let!(:relationship6) { create :federal_supervisor_relationship }
     let!(:relationship7) { create :regional_manager_relationship }
     let!(:relationship8) { create :regional_supervisor_relationship }
-    let!(:relationship9) { create :excluded_supporter_relationship }
+    let!(:relationship9) { create :excluded_relationship }
 
     specify do
       expect(described_class.excluded).to \
@@ -250,8 +229,8 @@ RSpec.describe Relationship do
   describe '.members' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship4) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship4) { create :excluded_relationship }
     let!(:relationship5) { create :federal_manager_relationship }
     let!(:relationship6) { create :federal_supervisor_relationship }
     let!(:relationship7) { create :regional_manager_relationship }
@@ -273,8 +252,8 @@ RSpec.describe Relationship do
   describe '.federal_managers' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
@@ -290,8 +269,8 @@ RSpec.describe Relationship do
   describe '.federal_supervisors' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
@@ -307,8 +286,8 @@ RSpec.describe Relationship do
   describe '.federal_secretaries' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
@@ -324,8 +303,8 @@ RSpec.describe Relationship do
   describe '.regional_managers' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
@@ -341,8 +320,8 @@ RSpec.describe Relationship do
   describe '.regional_supervisors' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
@@ -358,8 +337,8 @@ RSpec.describe Relationship do
   describe '.regional_secretaries' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
-    let!(:relationship3) { create :excluded_supporter_relationship }
-    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship3) { create :excluded_relationship }
+    let!(:relationship3) { create :excluded_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
     let!(:relationship5) { create :federal_supervisor_relationship }
     let!(:relationship6) { create :regional_manager_relationship }
