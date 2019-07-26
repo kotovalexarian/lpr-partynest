@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-class ImportPerson
+class ImportPerson # rubocop:disable Metrics/ClassLength
   include Interactor
 
-  def call
+  def call # rubocop:disable Metrics/MethodLength
     ActiveRecord::Base.transaction do
       create_person
+      create_passport
       create_general_comments_person_comment
       create_first_contact_date_person_comment
       create_latest_contact_date_person_comment
@@ -27,6 +28,22 @@ private
   end
 
   # rubocop:disable Metrics/AbcSize
+
+  def create_passport
+    context.passport =
+      Passport
+      .where(person_id: context.person.id).lock(true).first_or_initialize
+
+    context.passport.federal_subject = FederalSubject.find_by id: region_id
+
+    passport_attributes.each do |(key, value)|
+      context.passport.public_send "#{key}=", value
+    end
+
+    context.passport.save!
+  rescue
+    context.passport = nil
+  end
 
   def create_general_comments_person_comment
     return if general_comments.blank?
@@ -119,10 +136,12 @@ private
     context.aid_at_2015_elections_person_comment.save!
   end
 
-  # rubocop:enable Metrics/AbcSize
-
   def person_id
     context.row[0]
+  end
+
+  def region_id
+    context.row[14]
   end
 
   def person_attributes
@@ -135,6 +154,41 @@ private
       place_of_birth: context.row[9],
     }
   end
+
+  def passport_attributes # rubocop:disable Metrics/MethodLength
+    {
+      last_name: context.row[2],
+      first_name: context.row[1],
+      middle_name: context.row[3],
+      sex: :male,
+      date_of_birth: context.row[8],
+      place_of_birth: context.row[9],
+
+      series: context.row[38],
+      number: context.row[10],
+      issued_by: context.row[11],
+      unit_code: context.row[12],
+      date_of_issue: context.row[13],
+      zip_code: context.row[15],
+
+      town_type: context.row[20],
+      town_name: context.row[21],
+      settlement_type: context.row[22],
+      settlement_name: context.row[23],
+      district_type: context.row[18],
+      district_name: context.row[19],
+      street_type: context.row[16],
+      street_name: context.row[17],
+      residence_type: context.row[24],
+      residence_name: context.row[25],
+      building_type: context.row[26],
+      building_name: context.row[27],
+      apartment_type: context.row[28],
+      apartment_name: context.row[29],
+    }
+  end
+
+  # rubocop:enable Metrics/AbcSize
 
   def general_comments
     context.row[5]

@@ -92,6 +92,9 @@ Style/RescueModifier:
   Exclude:
     - 'spec/**/*.rb'
 
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
 Style/Semicolon:
   Exclude:
     - 'spec/**/*.rb'
