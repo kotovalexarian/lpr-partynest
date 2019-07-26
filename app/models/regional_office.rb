@@ -46,10 +46,10 @@ class RegionalOffice < ApplicationRecord
            class_name: 'Relationship',
            inverse_of: :regional_office
 
-  has_many :current_supervisor_relationships,
+  has_many :current_regional_supervisor_relationships,
            lambda {
              select('DISTINCT ON (relationships.person_id) *')
-               .where(status: :member, role: :supervisor)
+               .where(status: :member, role: :regional_supervisor)
                .order(person_id: :asc, from_date: :desc)
            },
            class_name: 'Relationship',
@@ -85,10 +85,10 @@ class RegionalOffice < ApplicationRecord
            through: :current_regional_manager_relationships,
            source: :person
 
-  has_many :current_supervisor_people,
+  has_many :current_regional_supervisor_people,
            class_name: 'Person',
            inverse_of: :current_regional_office,
-           through: :current_supervisor_relationships,
+           through: :current_regional_supervisor_relationships,
            source: :person
 
   ###############

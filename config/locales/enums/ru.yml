@@ -9,7 +9,8 @@ ru:
       member: Член партии
     relationship_role:
       regional_manager: Член руководящего комитета регионального отделения
-      supervisor: Член контрольно-ревизионной комиссии регионального отделения
+      regional_supervisor: >-
+        Член контрольно-ревизионной комиссии регионального отделения
     person_comment_origin:
       general_comments: Общий комментарий
       first_contact_date: Дата первого контакта

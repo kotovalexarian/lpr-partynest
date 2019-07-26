@@ -62,7 +62,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
     enum :relationship_status, %i[supporter excluded member]
 
-    enum :relationship_role, %i[regional_manager supervisor]
+    enum :relationship_role, %i[regional_manager regional_supervisor]
 
     enum :person_comment_origin, %i[
       general_comments

@@ -29,7 +29,7 @@ FactoryBot.define do
     role { :regional_manager }
   end
 
-  factory :supervisor_relationship, parent: :member_relationship do
-    role { :supervisor }
+  factory :regional_supervisor_relationship, parent: :member_relationship do
+    role { :regional_supervisor }
   end
 end
