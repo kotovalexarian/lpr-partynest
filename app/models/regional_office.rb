@@ -22,7 +22,7 @@ class RegionalOffice < ApplicationRecord
   has_many :current_supporter_relationships,
            lambda {
              select('DISTINCT ON (relationships.person_id) *')
-               .where(status: :supporter)
+               .supporters
                .order(person_id: :asc, from_date: :desc)
            },
            class_name: 'Relationship',
@@ -31,7 +31,7 @@ class RegionalOffice < ApplicationRecord
   has_many :current_member_relationships,
            lambda {
              select('DISTINCT ON (relationships.person_id) *')
-               .where(status: :member)
+               .members
                .order(person_id: :asc, from_date: :desc)
            },
            class_name: 'Relationship',
@@ -40,7 +40,7 @@ class RegionalOffice < ApplicationRecord
   has_many :current_regional_manager_relationships,
            lambda {
              select('DISTINCT ON (relationships.person_id) *')
-               .where(status: :member, role: :regional_manager)
+               .regional_managers
                .order(person_id: :asc, from_date: :desc)
            },
            class_name: 'Relationship',
@@ -49,7 +49,7 @@ class RegionalOffice < ApplicationRecord
   has_many :current_regional_supervisor_relationships,
            lambda {
              select('DISTINCT ON (relationships.person_id) *')
-               .where(status: :member, role: :regional_supervisor)
+               .regional_supervisors
                .order(person_id: :asc, from_date: :desc)
            },
            class_name: 'Relationship',

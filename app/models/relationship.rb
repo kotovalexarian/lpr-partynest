@@ -32,19 +32,21 @@ class Relationship < ApplicationRecord
 
   scope :members, -> { where(status: :member) }
 
-  scope :federal_managers, -> { where(role: :federal_manager) }
+  scope :federal_managers, -> { members.where(role: :federal_manager) }
 
-  scope :federal_supervisors, -> { where(role: :federal_supervisor) }
+  scope :federal_supervisors, -> { members.where(role: :federal_supervisor) }
 
-  scope :federal_secretaries,
-        -> { where(federal_secretary_flag: :federal_secretary) }
+  scope :federal_secretaries, lambda {
+    federal_managers.where(federal_secretary_flag: :federal_secretary)
+  }
 
-  scope :regional_managers, -> { where(role: :regional_manager) }
+  scope :regional_managers, -> { members.where(role: :regional_manager) }
 
-  scope :regional_supervisors, -> { where(role: :regional_supervisor) }
+  scope :regional_supervisors, -> { members.where(role: :regional_supervisor) }
 
-  scope :regional_secretaries,
-        -> { where(regional_secretary_flag: :regional_secretary) }
+  scope :regional_secretaries, lambda {
+    regional_managers.where(regional_secretary_flag: :regional_secretary)
+  }
 
   ###############
   # Validations #
