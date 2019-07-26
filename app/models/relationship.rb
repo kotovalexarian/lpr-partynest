@@ -3,7 +3,12 @@
 class Relationship < ApplicationRecord
   pg_enum :status, %i[supporter excluded member]
 
-  pg_enum :role, %i[federal_manager regional_manager regional_supervisor]
+  pg_enum :role, %i[
+    federal_manager
+    federal_supervisor
+    regional_manager
+    regional_supervisor
+  ]
 
   ################
   # Associations #
@@ -18,6 +23,8 @@ class Relationship < ApplicationRecord
   ##########
 
   scope :federal_managers, -> { where(role: :federal_manager) }
+
+  scope :federal_supervisors, -> { where(role: :federal_supervisor) }
 
   ###############
   # Validations #

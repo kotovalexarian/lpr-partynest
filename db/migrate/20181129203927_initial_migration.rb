@@ -17,6 +17,7 @@ private
 
     enum :relationship_role, %i[
       federal_manager
+      federal_supervisor
       regional_manager
       regional_supervisor
     ]

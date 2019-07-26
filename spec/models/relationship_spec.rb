@@ -72,13 +72,31 @@ RSpec.describe Relationship do
     let!(:relationship3) { create :excluded_supporter_relationship }
     let!(:relationship3) { create :excluded_member_relationship }
     let!(:relationship4) { create :federal_manager_relationship }
-    let!(:relationship5) { create :regional_manager_relationship }
-    let!(:relationship6) { create :regional_supervisor_relationship }
-    let!(:relationship7) { create :federal_manager_relationship }
+    let!(:relationship5) { create :federal_supervisor_relationship }
+    let!(:relationship6) { create :regional_manager_relationship }
+    let!(:relationship7) { create :regional_supervisor_relationship }
+    let!(:relationship8) { create :federal_manager_relationship }
 
     specify do
       expect(described_class.federal_managers).to \
-        eq [relationship4, relationship7]
+        eq [relationship4, relationship8]
+    end
+  end
+
+  describe '.federal_supervisors' do
+    let!(:relationship1) { create :supporter_relationship }
+    let!(:relationship2) { create :member_relationship }
+    let!(:relationship3) { create :excluded_supporter_relationship }
+    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship4) { create :federal_manager_relationship }
+    let!(:relationship5) { create :federal_supervisor_relationship }
+    let!(:relationship6) { create :regional_manager_relationship }
+    let!(:relationship7) { create :regional_supervisor_relationship }
+    let!(:relationship8) { create :federal_supervisor_relationship }
+
+    specify do
+      expect(described_class.federal_supervisors).to \
+        eq [relationship5, relationship8]
     end
   end
 end
