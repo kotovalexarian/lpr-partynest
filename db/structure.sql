@@ -48,6 +48,15 @@ CREATE TYPE public.relationship_federal_secretary_flag AS ENUM (
 
 
 --
+-- Name: relationship_regional_secretary_flag; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.relationship_regional_secretary_flag AS ENUM (
+    'regional_secretary'
+);
+
+
+--
 -- Name: relationship_role; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -576,8 +585,10 @@ CREATE TABLE public.relationships (
     status public.relationship_status NOT NULL,
     role public.relationship_role,
     federal_secretary_flag public.relationship_federal_secretary_flag,
+    regional_secretary_flag public.relationship_regional_secretary_flag,
     CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date))),
     CONSTRAINT federal_secretary_flag CHECK (((federal_secretary_flag IS NULL) OR (role = 'federal_manager'::public.relationship_role))),
+    CONSTRAINT regional_secretary_flag CHECK (((regional_secretary_flag IS NULL) OR (role = 'regional_manager'::public.relationship_role))),
     CONSTRAINT role CHECK (((status = 'member'::public.relationship_status) OR (role IS NULL)))
 );
 
@@ -1103,6 +1114,20 @@ CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.rel
 --
 
 CREATE INDEX index_relationships_on_regional_office_id ON public.relationships USING btree (regional_office_id);
+
+
+--
+-- Name: index_relationships_on_regional_office_id_and_secretary_flag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relationships_on_regional_office_id_and_secretary_flag ON public.relationships USING btree (regional_office_id, regional_secretary_flag);
+
+
+--
+-- Name: index_relationships_on_regional_secretary_flag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_regional_secretary_flag ON public.relationships USING btree (regional_secretary_flag);
 
 
 --

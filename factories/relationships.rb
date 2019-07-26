@@ -45,4 +45,9 @@ FactoryBot.define do
           parent: :federal_manager_relationship do
     federal_secretary_flag { :federal_secretary }
   end
+
+  factory :regional_secretary_relationship,
+          parent: :regional_manager_relationship do
+    regional_secretary_flag { :regional_secretary }
+  end
 end

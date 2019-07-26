@@ -12,6 +12,8 @@ class Relationship < ApplicationRecord
 
   pg_enum :federal_secretary_flag, %i[federal_secretary]
 
+  pg_enum :regional_secretary_flag, %i[regional_secretary]
+
   ################
   # Associations #
   ################
@@ -31,6 +33,9 @@ class Relationship < ApplicationRecord
   scope :federal_secretaries,
         -> { where(federal_secretary_flag: :federal_secretary) }
 
+  scope :regional_secretaries,
+        -> { where(regional_secretary_flag: :regional_secretary) }
+
   ###############
   # Validations #
   ###############
@@ -45,4 +50,9 @@ class Relationship < ApplicationRecord
             allow_nil: true,
             absence: { unless: :federal_manager? },
             uniqueness: true
+
+  validates :regional_secretary_flag,
+            allow_nil: true,
+            absence: { unless: :regional_manager? },
+            uniqueness: { scope: :regional_office_id }
 end

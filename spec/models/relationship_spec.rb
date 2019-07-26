@@ -139,6 +139,80 @@ RSpec.describe Relationship do
     end
   end
 
+  describe '#regional_secretary_flag' do
+    def allow_value(*)
+      super.for :regional_secretary_flag
+    end
+
+    context 'for supporter relationship' do
+      subject { create :supporter_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+
+    context 'for excluded supporter relationship' do
+      subject { create :excluded_supporter_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+
+    context 'for member relationship' do
+      subject { create :member_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+
+    context 'for excluded member relationship' do
+      subject { create :excluded_member_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+
+    context 'for federal manager relationship' do
+      subject { create :federal_manager_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+
+    context 'for federal supervisor relationship' do
+      subject { create :federal_supervisor_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+
+    context 'for regional manager relationship' do
+      subject { create :regional_manager_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.to allow_value :regional_secretary }
+
+      context 'when regional secretary already exists' do
+        subject { create :regional_secretary_relationship }
+
+        it do
+          is_expected.to \
+            validate_uniqueness_of(:regional_secretary_flag)
+            .allow_nil
+            .ignoring_case_sensitivity
+            .scoped_to(:regional_office_id)
+        end
+      end
+    end
+
+    context 'for regional supervisor relationship' do
+      subject { create :regional_supervisor_relationship }
+
+      it { is_expected.to allow_value nil }
+      it { is_expected.not_to allow_value :regional_secretary }
+    end
+  end
+
   describe '.federal_managers' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }
@@ -187,6 +261,23 @@ RSpec.describe Relationship do
 
     specify do
       expect(described_class.federal_secretaries).to eq [relationship8]
+    end
+  end
+
+  describe '.regional_secretaries' do
+    let!(:relationship1) { create :supporter_relationship }
+    let!(:relationship2) { create :member_relationship }
+    let!(:relationship3) { create :excluded_supporter_relationship }
+    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship4) { create :federal_manager_relationship }
+    let!(:relationship5) { create :federal_supervisor_relationship }
+    let!(:relationship6) { create :regional_manager_relationship }
+    let!(:relationship7) { create :regional_supervisor_relationship }
+    let!(:relationship8) { create :regional_secretary_relationship }
+    let!(:relationship9) { create :regional_manager_relationship }
+
+    specify do
+      expect(described_class.regional_secretaries).to eq [relationship8]
     end
   end
 end

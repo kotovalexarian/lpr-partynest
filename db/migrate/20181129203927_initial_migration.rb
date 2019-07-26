@@ -24,6 +24,8 @@ private
 
     enum :relationship_federal_secretary_flag, %i[federal_secretary]
 
+    enum :relationship_regional_secretary_flag, %i[regional_secretary]
+
     enum :person_comment_origin, %i[
       general_comments
       first_contact_date
@@ -284,7 +286,18 @@ private
                null: true,
                index: { unique: true }
 
+      t.column :regional_secretary_flag,
+               :relationship_regional_secretary_flag,
+               null: true,
+               index: true
+
       t.index %i[person_id from_date], unique: true
+
+      t.index(
+        %i[regional_office_id regional_secretary_flag],
+        name: :index_relationships_on_regional_office_id_and_secretary_flag,
+        unique: true,
+      )
     end
   end
 
@@ -299,6 +312,10 @@ private
 
     constraint :relationships, :federal_secretary_flag, <<~SQL
       federal_secretary_flag IS NULL OR role = 'federal_manager'
+    SQL
+
+    constraint :relationships, :regional_secretary_flag, <<~SQL
+      regional_secretary_flag IS NULL OR role = 'regional_manager'
     SQL
 
     constraint :accounts, :guest_token, <<~SQL
