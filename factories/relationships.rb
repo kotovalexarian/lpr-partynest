@@ -25,8 +25,8 @@ FactoryBot.define do
     status { :member }
   end
 
-  factory :manager_relationship, parent: :member_relationship do
-    role { :manager }
+  factory :regional_manager_relationship, parent: :member_relationship do
+    role { :regional_manager }
   end
 
   factory :supervisor_relationship, parent: :member_relationship do

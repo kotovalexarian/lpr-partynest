@@ -62,14 +62,14 @@ RSpec.describe RegionalOffice do
     end
   end
 
-  describe '#current_manager_relationships' do
+  describe '#current_regional_manager_relationships' do
     it do
       is_expected.to \
-        have_many(:current_manager_relationships)
+        have_many(:current_regional_manager_relationships)
         .class_name('Relationship')
         .inverse_of(:regional_office)
         .dependent(:restrict_with_exception)
-        .conditions(status: :member, role: :manager)
+        .conditions(status: :member, role: :regional_manager)
         .order(person_id: :asc, from_date: :desc)
     end
   end
@@ -134,13 +134,13 @@ RSpec.describe RegionalOffice do
     end
   end
 
-  describe '#current_manager_people' do
+  describe '#current_regional_manager_people' do
     it do
       is_expected.to \
-        have_many(:current_manager_people)
+        have_many(:current_regional_manager_people)
         .class_name('Person')
         .inverse_of(:current_regional_office)
-        .through(:current_manager_relationships)
+        .through(:current_regional_manager_relationships)
         .source(:person)
         .dependent(:restrict_with_exception)
     end

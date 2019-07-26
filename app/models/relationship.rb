@@ -3,7 +3,7 @@
 class Relationship < ApplicationRecord
   pg_enum :status, %i[supporter excluded member]
 
-  pg_enum :role, %i[manager supervisor]
+  pg_enum :role, %i[regional_manager supervisor]
 
   ################
   # Associations #

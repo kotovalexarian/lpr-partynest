@@ -8,7 +8,7 @@ ru:
       excluded: Исключён из партии
       member: Член партии
     relationship_role:
-      manager: Член руководящего комитета регионального отделения
+      regional_manager: Член руководящего комитета регионального отделения
       supervisor: Член контрольно-ревизионной комиссии регионального отделения
     person_comment_origin:
       general_comments: Общий комментарий

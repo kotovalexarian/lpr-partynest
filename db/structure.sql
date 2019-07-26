@@ -43,7 +43,7 @@ CREATE TYPE public.person_comment_origin AS ENUM (
 --
 
 CREATE TYPE public.relationship_role AS ENUM (
-    'manager',
+    'regional_manager',
     'supervisor'
 );
 
