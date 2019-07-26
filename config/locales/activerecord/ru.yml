@@ -16,6 +16,9 @@ ru:
       person_comment:
         one: Комментарий
         many: Комментарии
+      regional_office:
+        one: Региональное отделение
+        many: Региональные отделения
       roles:
         one: Роль
         many: Роли
@@ -63,6 +66,10 @@ ru:
         id: ID
         attachment: Приложение
         text: Текст
+      regional_office:
+        id: ID
+        current_supporters_count: Количество сторонников
+        current_members_count: Количество членов
       role:
         id: ID
         name: Название

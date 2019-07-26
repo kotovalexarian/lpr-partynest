@@ -16,6 +16,9 @@ en:
       person_comment:
         one: Comment
         many: Comments
+      regional_office:
+        one: Regional office
+        many: Regional offices
       roles:
         one: Role
         many: Roles
@@ -63,6 +66,10 @@ en:
         id: ID
         attachment: Attachment
         text: Text
+      regional_office:
+        id: ID
+        current_supporters_count: Number of supporters
+        current_members_count: Number of members
       role:
         id: ID
         name: Name
