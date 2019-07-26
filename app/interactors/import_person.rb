@@ -115,10 +115,10 @@ private
 
     context.aid_at_2014_elections_person_comment =
       context
-      .person.person_comments.where(origin: :ait_at_2014_elections).lock(true)
+      .person.person_comments.where(origin: :aid_at_2014_elections).lock(true)
       .first_or_initialize
 
-    context.aid_at_2014_elections_person_comment.text = ait_at_2014_elections
+    context.aid_at_2014_elections_person_comment.text = aid_at_2014_elections
 
     context.aid_at_2014_elections_person_comment.save!
   end
@@ -128,10 +128,10 @@ private
 
     context.aid_at_2015_elections_person_comment =
       context
-      .person.person_comments.where(origin: :ait_at_2015_elections).lock(true)
+      .person.person_comments.where(origin: :aid_at_2015_elections).lock(true)
       .first_or_initialize
 
-    context.aid_at_2015_elections_person_comment.text = ait_at_2015_elections
+    context.aid_at_2015_elections_person_comment.text = aid_at_2015_elections
 
     context.aid_at_2015_elections_person_comment.save!
   end
@@ -210,11 +210,11 @@ private
     context.row[35]
   end
 
-  def ait_at_2014_elections
+  def aid_at_2014_elections
     context.row[36]
   end
 
-  def ait_at_2015_elections
+  def aid_at_2015_elections
     context.row[37]
   end
 end
