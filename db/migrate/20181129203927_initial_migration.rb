@@ -2,6 +2,15 @@
 
 class InitialMigration < ActiveRecord::Migration[6.0]
   def change
+    change_types
+    change_functions
+    change_tables
+    change_constraints
+  end
+
+private
+
+  def change_types
     enum :sex, %i[male female]
 
     enum :relationship_status, %i[supporter excluded member]
@@ -17,7 +26,9 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       aid_at_2014_elections
       aid_at_2015_elections
     ]
+  end
 
+  def change_functions
     func :is_guest_token, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -73,7 +84,9 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       END;
       $$;
     SQL
+  end
 
+  def change_tables
     create_table :contacts_lists do |t|
       t.timestamps null: false
     end
@@ -261,7 +274,9 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 
       t.index %i[person_id from_date], unique: true
     end
+  end
 
+  def change_constraints
     constraint :relationships, :dates, <<~SQL
       until_date IS NULL OR from_date < until_date
     SQL
@@ -362,8 +377,6 @@ class InitialMigration < ActiveRecord::Migration[6.0]
       apartment_name IS NULL OR is_good_small_text(apartment_name)
     SQL
   end
-
-private
 
   def func(name, sql)
     reversible do |dir|
