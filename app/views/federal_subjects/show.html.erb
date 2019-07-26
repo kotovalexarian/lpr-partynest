@@ -1,4 +1,17 @@
 <div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to FederalSubject.model_name.human(count: 0),
+                    federal_subjects_path %>
+      </li>
+
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= @federal_subject.display_name %>
+      </li>
+    </ol>
+  </nav>
+
   <h1><%= @federal_subject.native_name %></h1>
 
   <p class="h1">

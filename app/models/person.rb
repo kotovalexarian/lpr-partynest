@@ -35,4 +35,16 @@ class Person < ApplicationRecord
   ###############
 
   validates :contacts_list, uniqueness: true
+
+  ###########
+  # Methods #
+  ###########
+
+  def full_name
+    [
+      last_name,
+      first_name,
+      middle_name,
+    ].map(&:presence).compact.join(' ').freeze
+  end
 end

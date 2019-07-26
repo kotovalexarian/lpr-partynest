@@ -113,4 +113,24 @@ RSpec.describe Person do
         .dependent(:restrict_with_exception)
     end
   end
+
+  describe '#full_name' do
+    specify do
+      expect(subject.full_name).to be_instance_of String
+    end
+
+    specify do
+      expect(subject.full_name).to be_frozen
+    end
+
+    specify do
+      expect(subject.full_name).to eq(
+        [
+          subject.last_name,
+          subject.first_name,
+          subject.middle_name,
+        ].compact.join(' '),
+      )
+    end
+  end
 end
