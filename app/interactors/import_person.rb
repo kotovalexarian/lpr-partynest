@@ -9,6 +9,7 @@ class ImportPerson
       create_general_comments_person_comment
       create_first_contact_date_person_comment
       create_latest_contact_date_person_comment
+      create_human_readable_id_person_comment
     end
   end
 
@@ -63,6 +64,19 @@ private
     context.latest_contact_date_person_comment.save!
   end
 
+  def create_human_readable_id_person_comment
+    return if human_readable_id.blank?
+
+    context.human_readable_id_person_comment =
+      context
+      .person.person_comments.where(origin: :human_readable_id).lock(true)
+      .first_or_initialize
+
+    context.human_readable_id_person_comment.text = human_readable_id
+
+    context.human_readable_id_person_comment.save!
+  end
+
   # rubocop:enable Metrics/AbcSize
 
   def person_id
@@ -90,5 +104,9 @@ private
 
   def latest_contact_date
     context.row[7]
+  end
+
+  def human_readable_id
+    context.row[34]
   end
 end
