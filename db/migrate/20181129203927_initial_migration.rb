@@ -15,7 +15,11 @@ private
 
     enum :relationship_status, %i[supporter excluded member]
 
-    enum :relationship_role, %i[regional_manager regional_supervisor]
+    enum :relationship_role, %i[
+      federal_manager
+      regional_manager
+      regional_supervisor
+    ]
 
     enum :person_comment_origin, %i[
       general_comments

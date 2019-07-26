@@ -65,4 +65,20 @@ RSpec.describe Relationship do
       it { is_expected.to allow_value described_class.roles.keys.sample }
     end
   end
+
+  describe '.federal_managers' do
+    let!(:relationship1) { create :supporter_relationship }
+    let!(:relationship2) { create :member_relationship }
+    let!(:relationship3) { create :excluded_supporter_relationship }
+    let!(:relationship3) { create :excluded_member_relationship }
+    let!(:relationship4) { create :federal_manager_relationship }
+    let!(:relationship5) { create :regional_manager_relationship }
+    let!(:relationship6) { create :regional_supervisor_relationship }
+    let!(:relationship7) { create :federal_manager_relationship }
+
+    specify do
+      expect(described_class.federal_managers).to \
+        eq [relationship4, relationship7]
+    end
+  end
 end

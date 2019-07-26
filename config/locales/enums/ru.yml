@@ -8,6 +8,7 @@ ru:
       excluded: Исключён из партии
       member: Член партии
     relationship_role:
+      federal_manager: Член федерального комитета
       regional_manager: Член руководящего комитета регионального отделения
       regional_supervisor: >-
         Член контрольно-ревизионной комиссии регионального отделения
