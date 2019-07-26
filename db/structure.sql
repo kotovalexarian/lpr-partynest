@@ -39,6 +39,15 @@ CREATE TYPE public.person_comment_origin AS ENUM (
 
 
 --
+-- Name: relationship_federal_secretary_flag; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.relationship_federal_secretary_flag AS ENUM (
+    'federal_secretary'
+);
+
+
+--
 -- Name: relationship_role; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -566,7 +575,9 @@ CREATE TABLE public.relationships (
     until_date date,
     status public.relationship_status NOT NULL,
     role public.relationship_role,
+    federal_secretary_flag public.relationship_federal_secretary_flag,
     CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date))),
+    CONSTRAINT federal_secretary_flag CHECK (((federal_secretary_flag IS NULL) OR (role = 'federal_manager'::public.relationship_role))),
     CONSTRAINT role CHECK (((status = 'member'::public.relationship_status) OR (role IS NULL)))
 );
 
@@ -1064,6 +1075,13 @@ CREATE INDEX index_person_comments_on_person_id ON public.person_comments USING 
 --
 
 CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regional_offices USING btree (federal_subject_id);
+
+
+--
+-- Name: index_relationships_on_federal_secretary_flag; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relationships_on_federal_secretary_flag ON public.relationships USING btree (federal_secretary_flag);
 
 
 --

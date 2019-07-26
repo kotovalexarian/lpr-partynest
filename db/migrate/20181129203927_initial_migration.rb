@@ -22,6 +22,8 @@ private
       regional_supervisor
     ]
 
+    enum :relationship_federal_secretary_flag, %i[federal_secretary]
+
     enum :person_comment_origin, %i[
       general_comments
       first_contact_date
@@ -277,6 +279,11 @@ private
       t.column :status, :relationship_status, null: false, index: true
       t.column :role,   :relationship_role,   null: true,  index: true
 
+      t.column :federal_secretary_flag,
+               :relationship_federal_secretary_flag,
+               null: true,
+               index: { unique: true }
+
       t.index %i[person_id from_date], unique: true
     end
   end
@@ -288,6 +295,10 @@ private
 
     constraint :relationships, :role, <<~SQL
       status = 'member' OR role IS NULL
+    SQL
+
+    constraint :relationships, :federal_secretary_flag, <<~SQL
+      federal_secretary_flag IS NULL OR role = 'federal_manager'
     SQL
 
     constraint :accounts, :guest_token, <<~SQL

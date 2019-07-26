@@ -10,6 +10,8 @@ class Relationship < ApplicationRecord
     regional_supervisor
   ]
 
+  pg_enum :federal_secretary_flag, %i[federal_secretary]
+
   ################
   # Associations #
   ################
@@ -26,6 +28,9 @@ class Relationship < ApplicationRecord
 
   scope :federal_supervisors, -> { where(role: :federal_supervisor) }
 
+  scope :federal_secretaries,
+        -> { where(federal_secretary_flag: :federal_secretary) }
+
   ###############
   # Validations #
   ###############
@@ -35,4 +40,9 @@ class Relationship < ApplicationRecord
   validates :status, presence: true
 
   validates :role, absence: { unless: :member? }
+
+  validates :federal_secretary_flag,
+            allow_nil: true,
+            absence: { unless: :federal_manager? },
+            uniqueness: true
 end
