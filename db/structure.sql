@@ -90,6 +90,36 @@ CREATE TYPE public.sex AS ENUM (
 
 
 --
+-- Name: ensure_contacts_list_id_matches_related_person(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.ensure_contacts_list_id_matches_related_person() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  person record;
+BEGIN
+  IF NEW.person_id IS NULL THEN
+    RETURN NEW;
+  END IF;
+
+  SELECT * FROM people INTO person WHERE people.id = NEW.person_id;
+
+  IF person IS NULL THEN
+    RETURN NEW;
+  END IF;
+
+  IF NEW.contacts_list_id IS DISTINCT FROM person.contacts_list_id THEN
+    RAISE EXCEPTION
+      'column "contacts_list_id" does not match related person';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+--
 -- Name: ensure_contacts_list_id_remains_unchanged(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1222,6 +1252,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 --
 
 CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
+-- Name: accounts ensure_contacts_list_id_matches_related_person; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER ensure_contacts_list_id_matches_related_person BEFORE INSERT OR UPDATE OF person_id, contacts_list_id ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_contacts_list_id_matches_related_person();
 
 
 --

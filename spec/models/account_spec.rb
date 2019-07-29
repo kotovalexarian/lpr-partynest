@@ -71,6 +71,20 @@ RSpec.describe Account do
       specify do
         expect(subject.contacts_list).to eq subject.person.contacts_list
       end
+
+      context 'when it was changed' do
+        before do
+          subject.contacts_list = ContactsList.new
+        end
+
+        specify do
+          expect { subject.save validate: false }.to raise_error(
+            ActiveRecord::StatementInvalid,
+            /\APG::RaiseException:\sERROR:\s\s
+              column\s"contacts_list_id"\sdoes\snot\smatch\srelated\sperson$/x,
+          )
+        end
+      end
     end
   end
 

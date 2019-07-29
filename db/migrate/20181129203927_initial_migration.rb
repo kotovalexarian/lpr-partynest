@@ -107,6 +107,32 @@ private
       END;
       $$;
     SQL
+
+    func :ensure_contacts_list_id_matches_related_person, <<~SQL
+      () RETURNS trigger LANGUAGE plpgsql AS
+      $$
+      DECLARE
+        person record;
+      BEGIN
+        IF NEW.person_id IS NULL THEN
+          RETURN NEW;
+        END IF;
+
+        SELECT * FROM people INTO person WHERE people.id = NEW.person_id;
+
+        IF person IS NULL THEN
+          RETURN NEW;
+        END IF;
+
+        IF NEW.contacts_list_id IS DISTINCT FROM person.contacts_list_id THEN
+          RAISE EXCEPTION
+            'column "contacts_list_id" does not match related person';
+        END IF;
+
+        RETURN NEW;
+      END;
+      $$;
+    SQL
   end
 
   def change_tables
@@ -441,6 +467,25 @@ private
             ON people
             FOR EACH ROW
             EXECUTE PROCEDURE ensure_contacts_list_id_remains_unchanged();
+        SQL
+      end
+    end
+
+    reversible do |dir|
+      dir.down do
+        execute <<~SQL
+          DROP TRIGGER ensure_contacts_list_id_matches_related_person
+            ON accounts;
+        SQL
+      end
+
+      dir.up do
+        execute <<~SQL
+          CREATE TRIGGER ensure_contacts_list_id_matches_related_person
+            BEFORE INSERT OR UPDATE OF person_id, contacts_list_id
+            ON accounts
+            FOR EACH ROW
+            EXECUTE PROCEDURE ensure_contacts_list_id_matches_related_person();
         SQL
       end
     end
