@@ -7,7 +7,7 @@ class Person < ApplicationRecord
   # Associations #
   ################
 
-  belongs_to :contacts_list
+  belongs_to :contact_list
 
   has_one :account
 
@@ -34,7 +34,7 @@ class Person < ApplicationRecord
   # Validations #
   ###############
 
-  validates :contacts_list, uniqueness: true
+  validates :contact_list, uniqueness: true
 
   ###########
   # Methods #

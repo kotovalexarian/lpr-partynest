@@ -34,7 +34,7 @@ class Account < ApplicationRecord
 
   belongs_to :person, optional: true
 
-  belongs_to :contacts_list
+  belongs_to :contact_list
 
   has_one :user
 
@@ -45,7 +45,7 @@ class Account < ApplicationRecord
   after_initialize :generate_nickname
 
   before_validation do
-    self.contacts_list ||= person ? person.contacts_list : ContactsList.new
+    self.contact_list ||= person ? person.contact_list : ContactList.new
   end
 
   before_validation :turn_blanks_into_nils
@@ -59,7 +59,7 @@ class Account < ApplicationRecord
 
   validates :person, allow_nil: true, uniqueness: true
 
-  validates :contacts_list, uniqueness: true
+  validates :contact_list, uniqueness: true
 
   validates :nickname,
             presence: true,
@@ -73,7 +73,7 @@ class Account < ApplicationRecord
 
   validates :avatar, allow_nil: true, image: true
 
-  validate :contacts_list_corresponds_person
+  validate :contact_list_corresponds_person
 
   ###########
   # Methods #
@@ -134,9 +134,9 @@ private
     self.biography   = biography&.strip
   end
 
-  def contacts_list_corresponds_person
+  def contact_list_corresponds_person
     return if person.nil?
 
-    errors.add :contacts_list unless contacts_list == person.contacts_list
+    errors.add :contact_list unless contact_list == person.contact_list
   end
 end

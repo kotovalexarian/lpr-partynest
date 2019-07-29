@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ContactsList < ApplicationRecord
+class ContactList < ApplicationRecord
   ################
   # Associations #
   ################

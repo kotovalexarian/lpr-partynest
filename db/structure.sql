@@ -90,10 +90,10 @@ CREATE TYPE public.sex AS ENUM (
 
 
 --
--- Name: ensure_contacts_list_id_matches_related_person(); Type: FUNCTION; Schema: public; Owner: -
+-- Name: ensure_contact_list_id_matches_related_person(); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public.ensure_contacts_list_id_matches_related_person() RETURNS trigger
+CREATE FUNCTION public.ensure_contact_list_id_matches_related_person() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -109,9 +109,9 @@ BEGIN
     RETURN NEW;
   END IF;
 
-  IF NEW.contacts_list_id IS DISTINCT FROM person.contacts_list_id THEN
+  IF NEW.contact_list_id IS DISTINCT FROM person.contact_list_id THEN
     RAISE EXCEPTION
-      'column "contacts_list_id" does not match related person';
+      'column "contact_list_id" does not match related person';
   END IF;
 
   RETURN NEW;
@@ -120,15 +120,15 @@ $$;
 
 
 --
--- Name: ensure_contacts_list_id_remains_unchanged(); Type: FUNCTION; Schema: public; Owner: -
+-- Name: ensure_contact_list_id_remains_unchanged(); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION public.ensure_contacts_list_id_remains_unchanged() RETURNS trigger
+CREATE FUNCTION public.ensure_contact_list_id_remains_unchanged() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 BEGIN
-  IF NEW.contacts_list_id IS DISTINCT FROM OLD.contacts_list_id THEN
-    RAISE EXCEPTION 'can not change column "contacts_list_id"';
+  IF NEW.contact_list_id IS DISTINCT FROM OLD.contact_list_id THEN
+    RAISE EXCEPTION 'can not change column "contact_list_id"';
   END IF;
 
   RETURN NEW;
@@ -266,7 +266,7 @@ CREATE TABLE public.accounts (
     public_name character varying,
     biography text,
     person_id bigint,
-    contacts_list_id bigint NOT NULL,
+    contact_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_big_text(biography))),
     CONSTRAINT guest_token CHECK (public.is_guest_token((guest_token)::text)),
     CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
@@ -374,10 +374,10 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: contacts_lists; Type: TABLE; Schema: public; Owner: -
+-- Name: contact_lists; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.contacts_lists (
+CREATE TABLE public.contact_lists (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
@@ -385,10 +385,10 @@ CREATE TABLE public.contacts_lists (
 
 
 --
--- Name: contacts_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: contact_lists_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.contacts_lists_id_seq
+CREATE SEQUENCE public.contact_lists_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -397,10 +397,10 @@ CREATE SEQUENCE public.contacts_lists_id_seq
 
 
 --
--- Name: contacts_lists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: contact_lists_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.contacts_lists_id_seq OWNED BY public.contacts_lists.id;
+ALTER SEQUENCE public.contact_lists_id_seq OWNED BY public.contact_lists.id;
 
 
 --
@@ -529,7 +529,7 @@ CREATE TABLE public.people (
     sex public.sex,
     date_of_birth date,
     place_of_birth character varying,
-    contacts_list_id bigint NOT NULL
+    contact_list_id bigint NOT NULL
 );
 
 
@@ -812,10 +812,10 @@ ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval
 
 
 --
--- Name: contacts_lists id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: contact_lists id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.contacts_lists ALTER COLUMN id SET DEFAULT nextval('public.contacts_lists_id_seq'::regclass);
+ALTER TABLE ONLY public.contact_lists ALTER COLUMN id SET DEFAULT nextval('public.contact_lists_id_seq'::regclass);
 
 
 --
@@ -922,11 +922,11 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: contacts_lists contacts_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: contact_lists contact_lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.contacts_lists
-    ADD CONSTRAINT contacts_lists_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.contact_lists
+    ADD CONSTRAINT contact_lists_pkey PRIMARY KEY (id);
 
 
 --
@@ -1024,10 +1024,10 @@ CREATE INDEX index_account_roles_on_role_id ON public.account_roles USING btree 
 
 
 --
--- Name: index_accounts_on_contacts_list_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_accounts_on_contact_list_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_accounts_on_contacts_list_id ON public.accounts USING btree (contacts_list_id);
+CREATE UNIQUE INDEX index_accounts_on_contact_list_id ON public.accounts USING btree (contact_list_id);
 
 
 --
@@ -1108,10 +1108,10 @@ CREATE INDEX index_passports_on_person_id ON public.passports USING btree (perso
 
 
 --
--- Name: index_people_on_contacts_list_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_people_on_contact_list_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_people_on_contacts_list_id ON public.people USING btree (contacts_list_id);
+CREATE UNIQUE INDEX index_people_on_contact_list_id ON public.people USING btree (contact_list_id);
 
 
 --
@@ -1255,25 +1255,17 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unl
 
 
 --
--- Name: accounts ensure_contacts_list_id_matches_related_person; Type: TRIGGER; Schema: public; Owner: -
+-- Name: accounts ensure_contact_list_id_matches_related_person; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER ensure_contacts_list_id_matches_related_person BEFORE INSERT OR UPDATE OF person_id, contacts_list_id ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_contacts_list_id_matches_related_person();
-
-
---
--- Name: people ensure_contacts_list_id_remains_unchanged; Type: TRIGGER; Schema: public; Owner: -
---
-
-CREATE TRIGGER ensure_contacts_list_id_remains_unchanged BEFORE UPDATE OF contacts_list_id ON public.people FOR EACH ROW EXECUTE PROCEDURE public.ensure_contacts_list_id_remains_unchanged();
+CREATE TRIGGER ensure_contact_list_id_matches_related_person BEFORE INSERT OR UPDATE OF person_id, contact_list_id ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_contact_list_id_matches_related_person();
 
 
 --
--- Name: accounts fk_rails_0fa1840045; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: people ensure_contact_list_id_remains_unchanged; Type: TRIGGER; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.accounts
-    ADD CONSTRAINT fk_rails_0fa1840045 FOREIGN KEY (contacts_list_id) REFERENCES public.contacts_lists(id);
+CREATE TRIGGER ensure_contact_list_id_remains_unchanged BEFORE UPDATE OF contact_list_id ON public.people FOR EACH ROW EXECUTE PROCEDURE public.ensure_contact_list_id_remains_unchanged();
 
 
 --
@@ -1282,6 +1274,14 @@ ALTER TABLE ONLY public.accounts
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_100235139c FOREIGN KEY (regional_office_id) REFERENCES public.regional_offices(id);
+
+
+--
+-- Name: people fk_rails_4f02f930eb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.people
+    ADD CONSTRAINT fk_rails_4f02f930eb FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
 
 
 --
@@ -1306,6 +1306,14 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.accounts
     ADD CONSTRAINT fk_rails_777d10a224 FOREIGN KEY (person_id) REFERENCES public.people(id);
+
+
+--
+-- Name: accounts fk_rails_77a360a20e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.accounts
+    ADD CONSTRAINT fk_rails_77a360a20e FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
 
 
 --
@@ -1338,14 +1346,6 @@ ALTER TABLE ONLY public.account_roles
 
 ALTER TABLE ONLY public.person_comments
     ADD CONSTRAINT fk_rails_a9c7b4ae11 FOREIGN KEY (account_id) REFERENCES public.accounts(id);
-
-
---
--- Name: people fk_rails_cb9b5a21ec; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.people
-    ADD CONSTRAINT fk_rails_cb9b5a21ec FOREIGN KEY (contacts_list_id) REFERENCES public.contacts_lists(id);
 
 
 --

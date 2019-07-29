@@ -95,12 +95,12 @@ private
       $$;
     SQL
 
-    func :ensure_contacts_list_id_remains_unchanged, <<~SQL
+    func :ensure_contact_list_id_remains_unchanged, <<~SQL
       () RETURNS trigger LANGUAGE plpgsql AS
       $$
       BEGIN
-        IF NEW.contacts_list_id IS DISTINCT FROM OLD.contacts_list_id THEN
-          RAISE EXCEPTION 'can not change column "contacts_list_id"';
+        IF NEW.contact_list_id IS DISTINCT FROM OLD.contact_list_id THEN
+          RAISE EXCEPTION 'can not change column "contact_list_id"';
         END IF;
 
         RETURN NEW;
@@ -108,7 +108,7 @@ private
       $$;
     SQL
 
-    func :ensure_contacts_list_id_matches_related_person, <<~SQL
+    func :ensure_contact_list_id_matches_related_person, <<~SQL
       () RETURNS trigger LANGUAGE plpgsql AS
       $$
       DECLARE
@@ -124,9 +124,9 @@ private
           RETURN NEW;
         END IF;
 
-        IF NEW.contacts_list_id IS DISTINCT FROM person.contacts_list_id THEN
+        IF NEW.contact_list_id IS DISTINCT FROM person.contact_list_id THEN
           RAISE EXCEPTION
-            'column "contacts_list_id" does not match related person';
+            'column "contact_list_id" does not match related person';
         END IF;
 
         RETURN NEW;
@@ -136,7 +136,7 @@ private
   end
 
   def change_tables
-    create_table :contacts_lists do |t|
+    create_table :contact_lists do |t|
       t.timestamps null: false
     end
 
@@ -168,7 +168,7 @@ private
       t.date   :date_of_birth,  null: true
       t.string :place_of_birth, null: true
 
-      t.references :contacts_list,
+      t.references :contact_list,
                    null: false, index: { unique: true }, foreign_key: true
     end
 
@@ -219,7 +219,7 @@ private
 
       t.references :person, index: { unique: true }, foreign_key: true
 
-      t.references :contacts_list,
+      t.references :contact_list,
                    null: false, index: { unique: true }, foreign_key: true
     end
 
@@ -455,18 +455,18 @@ private
     reversible do |dir|
       dir.down do
         execute <<~SQL
-          DROP TRIGGER ensure_contacts_list_id_remains_unchanged
+          DROP TRIGGER ensure_contact_list_id_remains_unchanged
             ON people;
         SQL
       end
 
       dir.up do
         execute <<~SQL
-          CREATE TRIGGER ensure_contacts_list_id_remains_unchanged
-            BEFORE UPDATE OF contacts_list_id
+          CREATE TRIGGER ensure_contact_list_id_remains_unchanged
+            BEFORE UPDATE OF contact_list_id
             ON people
             FOR EACH ROW
-            EXECUTE PROCEDURE ensure_contacts_list_id_remains_unchanged();
+            EXECUTE PROCEDURE ensure_contact_list_id_remains_unchanged();
         SQL
       end
     end
@@ -474,18 +474,18 @@ private
     reversible do |dir|
       dir.down do
         execute <<~SQL
-          DROP TRIGGER ensure_contacts_list_id_matches_related_person
+          DROP TRIGGER ensure_contact_list_id_matches_related_person
             ON accounts;
         SQL
       end
 
       dir.up do
         execute <<~SQL
-          CREATE TRIGGER ensure_contacts_list_id_matches_related_person
-            BEFORE INSERT OR UPDATE OF person_id, contacts_list_id
+          CREATE TRIGGER ensure_contact_list_id_matches_related_person
+            BEFORE INSERT OR UPDATE OF person_id, contact_list_id
             ON accounts
             FOR EACH ROW
-            EXECUTE PROCEDURE ensure_contacts_list_id_matches_related_person();
+            EXECUTE PROCEDURE ensure_contact_list_id_matches_related_person();
         SQL
       end
     end

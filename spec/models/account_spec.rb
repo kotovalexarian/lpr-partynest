@@ -48,40 +48,40 @@ RSpec.describe Account do
     it { is_expected.not_to validate_presence_of :person }
   end
 
-  describe '#contacts_list' do
+  describe '#contact_list' do
     def allow_value(*)
-      super.for :contacts_list
+      super.for :contact_list
     end
 
-    xit { is_expected.to belong_to(:contacts_list).required }
+    xit { is_expected.to belong_to(:contact_list).required }
 
     context 'for usual account' do
       subject { create :usual_account }
 
-      it { is_expected.to allow_value create :empty_contacts_list }
+      it { is_expected.to allow_value create :empty_contact_list }
     end
 
     context 'for personal account' do
       subject { create :personal_account }
 
-      it { is_expected.not_to allow_value create :empty_contacts_list }
+      it { is_expected.not_to allow_value create :empty_contact_list }
 
-      it { is_expected.to allow_value subject.person.contacts_list }
+      it { is_expected.to allow_value subject.person.contact_list }
 
       specify do
-        expect(subject.contacts_list).to eq subject.person.contacts_list
+        expect(subject.contact_list).to eq subject.person.contact_list
       end
 
       context 'when it was changed' do
         before do
-          subject.contacts_list = ContactsList.new
+          subject.contact_list = ContactList.new
         end
 
         specify do
           expect { subject.save validate: false }.to raise_error(
             ActiveRecord::StatementInvalid,
             /\APG::RaiseException:\sERROR:\s\s
-              column\s"contacts_list_id"\sdoes\snot\smatch\srelated\sperson$/x,
+              column\s"contact_list_id"\sdoes\snot\smatch\srelated\sperson$/x,
           )
         end
       end

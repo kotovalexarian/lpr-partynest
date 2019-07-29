@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe ContactsList do
-  subject { create :empty_contacts_list }
+RSpec.describe ContactList do
+  subject { create :empty_contact_list }
 
   describe '#account' do
     it do

@@ -11,19 +11,19 @@ RSpec.describe Person do
     it { is_expected.to have_one(:account).dependent(:restrict_with_exception) }
   end
 
-  describe '#contacts_list' do
-    xit { is_expected.to belong_to(:contacts_list).required }
+  describe '#contact_list' do
+    xit { is_expected.to belong_to(:contact_list).required }
 
     context 'when it was changed' do
       before do
-        subject.contacts_list = ContactsList.new
+        subject.contact_list = ContactList.new
       end
 
       specify do
         expect { subject.save }.to raise_error(
           ActiveRecord::StatementInvalid,
           /\APG::RaiseException:\s
-            ERROR:\s\scan\snot\schange\scolumn\s"contacts_list_id"$/x,
+            ERROR:\s\scan\snot\schange\scolumn\s"contact_list_id"$/x,
         )
       end
     end

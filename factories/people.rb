@@ -6,7 +6,7 @@ FactoryBot.define do
       regional_office { create :regional_office }
     end
 
-    association :contacts_list, factory: :empty_contacts_list
+    association :contact_list, factory: :empty_contact_list
 
     first_name { Faker::Name.first_name }
     middle_name { Faker::Name.first_name }

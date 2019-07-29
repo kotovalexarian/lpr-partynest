@@ -22,7 +22,7 @@ private
   def create_person
     context.person = Person.where(id: person_id).lock(true).first_or_create!(
       person_attributes.reverse_merge(
-        contacts_list: ContactsList.new,
+        contact_list: ContactList.new,
       ),
     )
   end
