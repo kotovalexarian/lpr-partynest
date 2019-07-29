@@ -6,6 +6,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     change_functions
     change_tables
     change_constraints
+    change_triggers
   end
 
 private
@@ -90,6 +91,19 @@ private
       $$
       BEGIN
         RETURN is_good_limited_text(str, 10000);
+      END;
+      $$;
+    SQL
+
+    func :ensure_contacts_list_id_remains_unchanged, <<~SQL
+      () RETURNS trigger LANGUAGE plpgsql AS
+      $$
+      BEGIN
+        IF NEW.contacts_list_id IS DISTINCT FROM OLD.contacts_list_id THEN
+          RAISE EXCEPTION 'can not change column "contacts_list_id"';
+        END IF;
+
+        RETURN NEW;
       END;
       $$;
     SQL
@@ -409,6 +423,27 @@ private
     constraint :passports, :apartment_name, <<~SQL
       apartment_name IS NULL OR is_good_small_text(apartment_name)
     SQL
+  end
+
+  def change_triggers
+    reversible do |dir|
+      dir.down do
+        execute <<~SQL
+          DROP TRIGGER ensure_contacts_list_id_remains_unchanged
+            ON people;
+        SQL
+      end
+
+      dir.up do
+        execute <<~SQL
+          CREATE TRIGGER ensure_contacts_list_id_remains_unchanged
+            BEFORE UPDATE OF contacts_list_id
+            ON people
+            FOR EACH ROW
+            EXECUTE PROCEDURE ensure_contacts_list_id_remains_unchanged();
+        SQL
+      end
+    end
   end
 
   def func(name, sql)

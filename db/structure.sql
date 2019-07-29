@@ -90,6 +90,23 @@ CREATE TYPE public.sex AS ENUM (
 
 
 --
+-- Name: ensure_contacts_list_id_remains_unchanged(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.ensure_contacts_list_id_remains_unchanged() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF NEW.contacts_list_id IS DISTINCT FROM OLD.contacts_list_id THEN
+    RAISE EXCEPTION 'can not change column "contacts_list_id"';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+--
 -- Name: is_good_big_text(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1205,6 +1222,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 --
 
 CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
+-- Name: people ensure_contacts_list_id_remains_unchanged; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER ensure_contacts_list_id_remains_unchanged BEFORE UPDATE OF contacts_list_id ON public.people FOR EACH ROW EXECUTE PROCEDURE public.ensure_contacts_list_id_remains_unchanged();
 
 
 --

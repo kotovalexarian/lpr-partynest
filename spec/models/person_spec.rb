@@ -13,6 +13,20 @@ RSpec.describe Person do
 
   describe '#contacts_list' do
     xit { is_expected.to belong_to(:contacts_list).required }
+
+    context 'when it was changed' do
+      before do
+        subject.contacts_list = ContactsList.new
+      end
+
+      specify do
+        expect { subject.save }.to raise_error(
+          ActiveRecord::StatementInvalid,
+          /\APG::RaiseException:\s
+            ERROR:\s\scan\snot\schange\scolumn\s"contacts_list_id"$/x,
+        )
+      end
+    end
   end
 
   describe '#all_relationships' do
