@@ -404,6 +404,40 @@ ALTER SEQUENCE public.contact_lists_id_seq OWNED BY public.contact_lists.id;
 
 
 --
+-- Name: contact_networks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.contact_networks (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    nickname character varying NOT NULL,
+    public_name character varying NOT NULL,
+    CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
+    CONSTRAINT public_name CHECK (public.is_good_small_text((public_name)::text))
+);
+
+
+--
+-- Name: contact_networks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.contact_networks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: contact_networks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.contact_networks_id_seq OWNED BY public.contact_networks.id;
+
+
+--
 -- Name: federal_subjects; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -819,6 +853,13 @@ ALTER TABLE ONLY public.contact_lists ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: contact_networks id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contact_networks ALTER COLUMN id SET DEFAULT nextval('public.contact_networks_id_seq'::regclass);
+
+
+--
 -- Name: federal_subjects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -927,6 +968,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.contact_lists
     ADD CONSTRAINT contact_lists_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_networks contact_networks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contact_networks
+    ADD CONSTRAINT contact_networks_pkey PRIMARY KEY (id);
 
 
 --
@@ -1070,6 +1119,20 @@ CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active
 --
 
 CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
+
+
+--
+-- Name: index_contact_networks_on_nickname; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_contact_networks_on_nickname ON public.contact_networks USING btree (nickname);
+
+
+--
+-- Name: index_contact_networks_on_public_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_contact_networks_on_public_name ON public.contact_networks USING btree (public_name);
 
 
 --

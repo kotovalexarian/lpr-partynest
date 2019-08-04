@@ -136,6 +136,13 @@ private
   end
 
   def change_tables
+    create_table :contact_networks do |t|
+      t.timestamps null: false
+
+      t.string :nickname,    null: false, index: { unique: true }
+      t.string :public_name, null: false, index: { unique: true }
+    end
+
     create_table :contact_lists do |t|
       t.timestamps null: false
     end
@@ -342,6 +349,14 @@ private
   end
 
   def change_constraints
+    constraint :contact_networks, :nickname, <<~SQL
+      is_nickname(nickname)
+    SQL
+
+    constraint :contact_networks, :public_name, <<~SQL
+      is_good_small_text(public_name)
+    SQL
+
     constraint :relationships, :dates, <<~SQL
       until_date IS NULL OR from_date < until_date
     SQL
