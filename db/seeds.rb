@@ -3,6 +3,7 @@
 require 'csv'
 
 federal_subjects_filename = Rails.root.join 'config', 'federal_subjects.csv'
+contact_networks_filename = Rails.root.join 'config', 'contact_networks.csv'
 
 CSV.foreach(
   federal_subjects_filename,
@@ -21,6 +22,20 @@ CSV.foreach(
     new_federal_subject.number = number
     new_federal_subject.timezone = timezone
     new_federal_subject.centre = centre
+  end
+end
+
+CSV.foreach(
+  contact_networks_filename,
+  col_sep: '|',
+) do |(id, nickname, public_name)|
+  id = Integer(id.strip)
+  nickname.strip!
+  public_name.strip!
+
+  ContactNetwork.where(id: id).first_or_create! do |new_contact_network|
+    new_contact_network.nickname = nickname
+    new_contact_network.public_name = public_name
   end
 end
 
