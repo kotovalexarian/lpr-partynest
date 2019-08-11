@@ -22,6 +22,12 @@
         </div>
       <% end %>
 
+      <% if @account.superuser? %>
+        <span class="badge badge-primary">
+          <%= translate :superuser %>
+        </span>
+      <% end %>
+
       <hr/>
 
       <% if @account.biography %>

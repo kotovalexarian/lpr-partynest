@@ -9,6 +9,15 @@ When 'there is a usual account with the following data:' do |table|
          biography: options[:biography]
 end
 
+When 'there is a superuser account with the following data:' do |table|
+  options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
+
+  create :superuser_account,
+         nickname: options[:nickname],
+         public_name: options[:public_name],
+         biography: options[:biography]
+end
+
 When 'there is a supporter account with the following data:' do |table|
   options = table.raw.map { |(k, v)| [k.to_sym, v] }.to_h
 
