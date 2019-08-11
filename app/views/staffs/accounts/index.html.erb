@@ -1,0 +1,49 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to translate(:staff_services), staff_root_path %>
+      </li>
+
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= Account.model_name.human count: 0 %>
+      </li>
+    </ol>
+  </nav>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= Account.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= Account.human_attribute_name :nickname %>
+        </th>
+        <th scope="col">
+          <%= Account.human_attribute_name :public_name %>
+        </th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @accounts.each do |account| %>
+        <tr>
+          <td scope="row"><%= account.id %></td>
+          <td><%= account.nickname %></td>
+          <td><%= account.public_name %></td>
+          <td>
+            <% if account.superuser? %>
+              <span class="badge badge-primary">
+                <%= translate :superuser %>
+              </span>
+            <% end %>
+          </td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -8,6 +8,12 @@
   </nav>
 
   <ul>
+    <% if policy(%i[staff account]).index? %>
+      <li>
+        <%= link_to Account.model_name.human(count: 0), staff_accounts_path %>
+      </li>
+    <% end %>
+
     <% if policy(%i[staff person]).index? %>
       <li>
         <%= link_to Person.model_name.human(count: 0), staff_people_path %>
