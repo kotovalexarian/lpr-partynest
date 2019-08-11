@@ -28,6 +28,12 @@
         </span>
       <% end %>
 
+      <% if policy([:staff, @account]).show? %>
+        <div class="mt-3">
+          <%= link_to translate('.staff_page'), [:staff, @account] %>
+        </div>
+      <% end %>
+
       <hr/>
 
       <% if @account.biography %>
