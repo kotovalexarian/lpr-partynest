@@ -1,0 +1,36 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to translate(:staff_services), staff_root_path %>
+      </li>
+
+      <li class="breadcrumb-item">
+        <%= link_to Account.model_name.human(count: 0), staff_accounts_path %>
+      </li>
+
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= @account.nickname %>
+      </li>
+    </ol>
+  </nav>
+
+  <% if @account.superuser? %>
+    <div class="mb-4">
+      <span class="badge badge-primary">
+        <%= translate :superuser %>
+      </span>
+    </div>
+  <% end %>
+
+  <dl>
+    <dt><%= Account.human_attribute_name :id %></dt>
+    <dd><%= @account.id %></dd>
+
+    <dt><%= Account.human_attribute_name :nickname %></dt>
+    <dd><%= @account.nickname %></dd>
+
+    <dt><%= Account.human_attribute_name :public_name %></dt>
+    <dd><%= @account.public_name %></dd>
+  </dl>
+</div>
