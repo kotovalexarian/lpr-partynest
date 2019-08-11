@@ -147,6 +147,15 @@ private
       t.timestamps null: false
     end
 
+    create_table :contacts do |t|
+      t.timestamps null: false
+
+      t.references :contact_list,    null: false, index: true, foreign_key: true
+      t.references :contact_network, null: false, index: true, foreign_key: true
+
+      t.string :value, null: false
+    end
+
     create_table :federal_subjects do |t|
       t.timestamps null: false
 
@@ -349,6 +358,10 @@ private
   end
 
   def change_constraints
+    constraint :contacts, :value, <<~SQL
+      is_good_small_text(value)
+    SQL
+
     constraint :contact_networks, :nickname, <<~SQL
       is_nickname(nickname)
     SQL

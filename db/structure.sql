@@ -438,6 +438,40 @@ ALTER SEQUENCE public.contact_networks_id_seq OWNED BY public.contact_networks.i
 
 
 --
+-- Name: contacts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.contacts (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    contact_list_id bigint NOT NULL,
+    contact_network_id bigint NOT NULL,
+    value character varying NOT NULL,
+    CONSTRAINT value CHECK (public.is_good_small_text((value)::text))
+);
+
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.contacts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.contacts_id_seq OWNED BY public.contacts.id;
+
+
+--
 -- Name: federal_subjects; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -860,6 +894,13 @@ ALTER TABLE ONLY public.contact_networks ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: contacts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contacts ALTER COLUMN id SET DEFAULT nextval('public.contacts_id_seq'::regclass);
+
+
+--
 -- Name: federal_subjects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -976,6 +1017,14 @@ ALTER TABLE ONLY public.contact_lists
 
 ALTER TABLE ONLY public.contact_networks
     ADD CONSTRAINT contact_networks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contacts contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contacts
+    ADD CONSTRAINT contacts_pkey PRIMARY KEY (id);
 
 
 --
@@ -1133,6 +1182,20 @@ CREATE UNIQUE INDEX index_contact_networks_on_nickname ON public.contact_network
 --
 
 CREATE UNIQUE INDEX index_contact_networks_on_public_name ON public.contact_networks USING btree (public_name);
+
+
+--
+-- Name: index_contacts_on_contact_list_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_contacts_on_contact_list_id ON public.contacts USING btree (contact_list_id);
+
+
+--
+-- Name: index_contacts_on_contact_network_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_contacts_on_contact_network_id ON public.contacts USING btree (contact_network_id);
 
 
 --
@@ -1396,6 +1459,14 @@ ALTER TABLE ONLY public.user_omniauths
 
 
 --
+-- Name: contacts fk_rails_8dffd7a589; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contacts
+    ADD CONSTRAINT fk_rails_8dffd7a589 FOREIGN KEY (contact_network_id) REFERENCES public.contact_networks(id);
+
+
+--
 -- Name: account_roles fk_rails_a85be4ccfd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1433,6 +1504,14 @@ ALTER TABLE ONLY public.person_comments
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_d60748ff4c FOREIGN KEY (person_id) REFERENCES public.people(id);
+
+
+--
+-- Name: contacts fk_rails_dd2a5400cf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contacts
+    ADD CONSTRAINT fk_rails_dd2a5400cf FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
 
 
 --
