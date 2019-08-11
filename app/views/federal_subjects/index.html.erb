@@ -22,6 +22,9 @@
         <th scope="col">
           <%= FederalSubject.human_attribute_name :timezone %>
         </th>
+        <th scope="col">
+          <%= FederalSubject.human_attribute_name :regional_office %>
+        </th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -33,6 +36,13 @@
           <td><%= federal_subject.display_name %></td>
           <td><%= federal_subject.centre %></td>
           <td><%= federal_subject.timezone %></td>
+          <td>
+            <% if federal_subject.regional_office.nil? %>
+              <%= translate :no %>
+            <% else %>
+              <%= translate :yes %>
+            <% end %>
+          </td>
           <td>
             <% if policy(federal_subject).show? %>
               <%= link_to federal_subject,

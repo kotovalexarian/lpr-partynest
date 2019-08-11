@@ -29,31 +29,14 @@
 
     <dt><%= FederalSubject.human_attribute_name :timezone %></dt>
     <dd><%= @federal_subject.timezone %></dd>
+
+    <dt><%= FederalSubject.human_attribute_name :regional_office %></dt>
+    <dd>
+      <% if @federal_subject.regional_office.nil? %>
+        <%= translate :no %>
+      <% else %>
+        <%= translate :yes %>
+      <% end %>
+    </dd>
   </dl>
-
-  <% if @federal_subject.regional_office %>
-    <hr/>
-
-    <h2><%= RegionalOffice.model_name.human %></h2>
-
-    <div class="row">
-      <div class="col-md-4">
-        <dl class="my-4">
-          <dt>
-            <%= RegionalOffice.human_attribute_name :current_supporters_count %>
-          </dt>
-          <dd><%= @federal_subject.regional_office.current_supporters_count %></dd>
-
-          <dt><%= RegionalOffice.human_attribute_name :current_members_count %></dt>
-          <dd><%= @federal_subject.regional_office.current_members_count %></dd>
-        </dl>
-      </div>
-
-      <div class="col-md-4">
-      </div>
-
-      <div class="col-md-4">
-      </div>
-    </div>
-  <% end %>
 </div>

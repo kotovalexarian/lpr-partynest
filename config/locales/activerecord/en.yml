@@ -34,6 +34,7 @@ en:
         avatar: Avatar
       federal_subject:
         id: ID
+        regional_office: Regional department
         english_name: Name
         native_name: Name
         display_name: Name
