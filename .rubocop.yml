@@ -51,10 +51,6 @@ Rails:
 Rails/BulkChangeTable:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
-  Exclude:
-    - 'app/models/role.rb'
-
 Rails/HasManyOrHasOneDependent:
   Enabled: false
 

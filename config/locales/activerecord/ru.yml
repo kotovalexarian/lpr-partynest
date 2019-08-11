@@ -19,9 +19,6 @@ ru:
       regional_office:
         one: Региональное отделение
         many: Региональные отделения
-      roles:
-        one: Роль
-        many: Роли
       user:
         one: Пользователь
         many: Пользователи
@@ -71,10 +68,6 @@ ru:
         id: ID
         current_supporters_count: Количество сторонников
         current_members_count: Количество членов
-      role:
-        id: ID
-        name: Название
-        resource: Ресурс
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения

@@ -2,6 +2,6 @@
 
 class Staff::HomePolicy < ApplicationPolicy
   def show?
-    account&.is_superuser?
+    account&.superuser?
   end
 end

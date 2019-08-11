@@ -2,16 +2,16 @@
 
 class Staff::PersonPolicy < ApplicationPolicy
   def index?
-    account&.is_superuser?
+    account&.superuser?
   end
 
   def show?
-    account&.is_superuser?
+    account&.superuser?
   end
 
   class Scope < Scope
     def resolve
-      return scope.all if account&.is_superuser?
+      return scope.all if account&.superuser?
 
       scope.none
     end

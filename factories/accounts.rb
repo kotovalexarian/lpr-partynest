@@ -15,8 +15,6 @@ FactoryBot.define do
   end
 
   factory :superuser_account, parent: :personal_account do
-    after :create do |account, _evaluator|
-      account.add_role :superuser
-    end
+    superuser { true }
   end
 end

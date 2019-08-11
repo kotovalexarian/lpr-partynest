@@ -96,6 +96,27 @@ private
       $$;
     SQL
 
+    func :ensure_superuser_has_related_user, <<~SQL
+      () RETURNS trigger LANGUAGE plpgsql AS
+      $$
+      DECLARE
+        user record;
+      BEGIN
+        IF NOT NEW.superuser THEN
+          RETURN NEW;
+        END IF;
+
+        SELECT * FROM users INTO user WHERE users.account_id = NEW.id;
+
+        IF user IS NULL THEN
+          RAISE EXCEPTION 'does not have related user';
+        END IF;
+
+        RETURN NEW;
+      END;
+      $$
+    SQL
+
     func :ensure_contact_list_id_remains_unchanged, <<~SQL
       () RETURNS trigger LANGUAGE plpgsql AS
       $$
@@ -234,6 +255,8 @@ private
       t.string :public_name
       t.text   :biography
 
+      t.boolean :superuser, null: false, default: false
+
       t.references :person, index: { unique: true }, foreign_key: true
 
       t.references :contact_list,
@@ -289,26 +312,6 @@ private
       t.index :reset_password_token, unique: true
       t.index :confirmation_token,   unique: true
       t.index :unlock_token,         unique: true
-    end
-
-    create_table :roles do |t|
-      t.timestamps null: false
-
-      t.string :name, null: false
-
-      t.references :resource, polymorphic: true
-
-      t.index %i[name resource_type resource_id], unique: true
-    end
-
-    create_table :account_roles do |t|
-      t.timestamps null: false
-
-      t.references :account, null: false, index: true, foreign_key: true
-      t.references :role,    null: false, index: true, foreign_key: true
-
-      t.datetime :deleted_at
-      t.datetime :expires_at
     end
 
     create_table :user_omniauths do |t|
@@ -494,6 +497,22 @@ private
   end
 
   def change_triggers
+    reversible do |dir|
+      dir.down do
+        execute 'DROP TRIGGER ensure_superuser_has_related_user ON accounts;'
+      end
+
+      dir.up do
+        execute <<~SQL
+          CREATE TRIGGER ensure_superuser_has_related_user
+            BEFORE INSERT OR UPDATE
+            ON accounts
+            FOR EACH ROW
+            EXECUTE PROCEDURE ensure_superuser_has_related_user();
+        SQL
+      end
+    end
+
     reversible do |dir|
       dir.down do
         execute <<~SQL

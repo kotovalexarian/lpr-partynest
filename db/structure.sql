@@ -137,6 +137,31 @@ $$;
 
 
 --
+-- Name: ensure_superuser_has_related_user(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.ensure_superuser_has_related_user() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  user record;
+BEGIN
+  IF NOT NEW.superuser THEN
+    RETURN NEW;
+  END IF;
+
+  SELECT * FROM users INTO user WHERE users.account_id = NEW.id;
+
+  IF user IS NULL THEN
+    RAISE EXCEPTION 'does not have related user';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+--
 -- Name: is_good_big_text(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -220,40 +245,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: account_roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.account_roles (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    account_id bigint NOT NULL,
-    role_id bigint NOT NULL,
-    deleted_at timestamp without time zone,
-    expires_at timestamp without time zone
-);
-
-
---
--- Name: account_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.account_roles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: account_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.account_roles_id_seq OWNED BY public.account_roles.id;
-
-
---
 -- Name: accounts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -265,6 +256,7 @@ CREATE TABLE public.accounts (
     nickname character varying NOT NULL,
     public_name character varying,
     biography text,
+    superuser boolean DEFAULT false NOT NULL,
     person_id bigint,
     contact_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_big_text(biography))),
@@ -728,39 +720,6 @@ ALTER SEQUENCE public.relationships_id_seq OWNED BY public.relationships.id;
 
 
 --
--- Name: roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.roles (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    name character varying NOT NULL,
-    resource_type character varying,
-    resource_id bigint
-);
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.roles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -852,13 +811,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: account_roles id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.account_roles ALTER COLUMN id SET DEFAULT nextval('public.account_roles_id_seq'::regclass);
-
-
---
 -- Name: accounts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -943,13 +895,6 @@ ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
-
-
---
 -- Name: user_omniauths id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -961,14 +906,6 @@ ALTER TABLE ONLY public.user_omniauths ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Name: account_roles account_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.account_roles
-    ADD CONSTRAINT account_roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -1076,14 +1013,6 @@ ALTER TABLE ONLY public.relationships
 
 
 --
--- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.roles
-    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
-
-
---
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1105,20 +1034,6 @@ ALTER TABLE ONLY public.user_omniauths
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_account_roles_on_account_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_account_roles_on_account_id ON public.account_roles USING btree (account_id);
-
-
---
--- Name: index_account_roles_on_role_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_account_roles_on_role_id ON public.account_roles USING btree (role_id);
 
 
 --
@@ -1318,20 +1233,6 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 
 
 --
--- Name: index_roles_on_name_and_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_roles_on_name_and_resource_type_and_resource_id ON public.roles USING btree (name, resource_type, resource_id);
-
-
---
--- Name: index_roles_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_roles_on_resource_type_and_resource_id ON public.roles USING btree (resource_type, resource_id);
-
-
---
 -- Name: index_user_omniauths_on_remote_id_and_provider; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1392,6 +1293,13 @@ CREATE TRIGGER ensure_contact_list_id_matches_related_person BEFORE INSERT OR UP
 --
 
 CREATE TRIGGER ensure_contact_list_id_remains_unchanged BEFORE UPDATE OF contact_list_id ON public.people FOR EACH ROW EXECUTE PROCEDURE public.ensure_contact_list_id_remains_unchanged();
+
+
+--
+-- Name: accounts ensure_superuser_has_related_user; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_superuser_has_related_user();
 
 
 --
@@ -1467,14 +1375,6 @@ ALTER TABLE ONLY public.contacts
 
 
 --
--- Name: account_roles fk_rails_a85be4ccfd; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.account_roles
-    ADD CONSTRAINT fk_rails_a85be4ccfd FOREIGN KEY (account_id) REFERENCES public.accounts(id);
-
-
---
 -- Name: person_comments fk_rails_a9c7b4ae11; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1512,14 +1412,6 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.contacts
     ADD CONSTRAINT fk_rails_dd2a5400cf FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
-
-
---
--- Name: account_roles fk_rails_f48937287f; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.account_roles
-    ADD CONSTRAINT fk_rails_f48937287f FOREIGN KEY (role_id) REFERENCES public.roles(id);
 
 
 --

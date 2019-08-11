@@ -2,11 +2,11 @@
 
 class Staff::Person::PersonCommentPolicy < ApplicationPolicy
   def index?
-    account&.is_superuser?
+    account&.superuser?
   end
 
   def create?
-    account&.is_superuser?
+    account&.superuser?
   end
 
   def permitted_attributes_for_create
@@ -15,7 +15,7 @@ class Staff::Person::PersonCommentPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      return scope.all if account&.is_superuser?
+      return scope.all if account&.superuser?
 
       scope.none
     end

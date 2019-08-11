@@ -32,7 +32,6 @@ Rails.application.routes.draw do
 
   namespace :settings do
     resource :profile, only: %i[edit update]
-    resources :roles, only: %i[index destroy]
   end
 
   #########################

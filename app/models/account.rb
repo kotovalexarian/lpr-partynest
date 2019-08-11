@@ -1,16 +1,7 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  include Rolify::Role
-  extend Rolify::Dynamic if Rolify.dynamic_shortcuts
-
   NICKNAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
-
-  self.role_cname = 'Role'
-  self.role_table_name = 'roles'
-  self.strict_rolify = false
-
-  self.adapter = Rolify::Adapter::Base.create 'role_adapter', role_cname, name
 
   ##########
   # Scopes #
@@ -23,14 +14,6 @@ class Account < ApplicationRecord
   ################
 
   has_one_attached :avatar
-
-  has_many :account_roles,
-           -> { active },
-           inverse_of: :account
-
-  has_many :roles,
-           -> { distinct },
-           through: :account_roles
 
   belongs_to :person, optional: true
 
@@ -87,31 +70,8 @@ class Account < ApplicationRecord
     user.nil?
   end
 
-  def add_role(role_name, resource = nil)
-    raise 'can not add role to guest account' if guest?
-
-    role = self.class.role_class.make! role_name, resource
-
-    return role if roles.include? role
-
-    if Rolify.dynamic_shortcuts
-      self.class.define_dynamic_method role.name, resource
-    end
-
-    account_roles.where(role: role).first_or_create!
-
-    role
-  end
-
-  def remove_role(role_name, resource = nil)
-    role = self.class.role_class.find_by name: role_name, resource: resource
-    return if role.nil?
-
-    account_roles.where(role: role).update_all(deleted_at: Time.zone.now)
-  end
-
   def can_access_sidekiq_web_interface?
-    is_superuser?
+    superuser?
   end
 
 private

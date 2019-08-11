@@ -12,11 +12,4 @@
                 class: 'list-group-item list-group-item-action ' \
                        "#{:active if tab == :credentials}" %>
   <% end %>
-
-  <% if policy(%i[settings role]).index? %>
-    <%= link_to translate(:roles, scope: %i[nav_tabs settings]),
-                settings_roles_path,
-                class: 'list-group-item list-group-item-action ' \
-                       "#{:active if tab == :roles}" %>
-  <% end %>
 </div>

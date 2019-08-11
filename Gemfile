@@ -79,11 +79,6 @@ gem 'devise', '~> 4.6'
 # Translations for the devise gem.
 gem 'devise-i18n', '~> 1.8'
 
-# Very simple Roles library without any authorization enforcement
-# supporting scope on resource objects (instance or class).
-# Supports ActiveRecord and Mongoid ORMs.
-gem 'rolify', '~> 5.2'
-
 # Object oriented authorization for Rails applications.
 gem 'pundit', '~> 2.0'
 
