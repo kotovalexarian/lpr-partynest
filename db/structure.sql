@@ -423,7 +423,7 @@ CREATE TABLE public.contact_networks (
 --
 
 CREATE SEQUENCE public.contact_networks_id_seq
-    START WITH 1
+    START WITH 100
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -457,7 +457,7 @@ CREATE TABLE public.contacts (
 --
 
 CREATE SEQUENCE public.contacts_id_seq
-    START WITH 1
+    START WITH 4000
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -496,7 +496,7 @@ CREATE TABLE public.federal_subjects (
 --
 
 CREATE SEQUENCE public.federal_subjects_id_seq
-    START WITH 1
+    START WITH 100
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE
@@ -606,7 +606,7 @@ CREATE TABLE public.people (
 --
 
 CREATE SEQUENCE public.people_id_seq
-    START WITH 1
+    START WITH 3000
     INCREMENT BY 1
     NO MINVALUE
     NO MAXVALUE

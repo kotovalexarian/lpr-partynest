@@ -5,6 +5,7 @@ class InitialMigration < ActiveRecord::Migration[6.0]
     change_types
     change_functions
     change_tables
+    change_sequences
     change_constraints
     change_triggers
   end
@@ -354,6 +355,19 @@ private
         name: :index_relationships_on_regional_office_id_and_secretary_flag,
         unique: true,
       )
+    end
+  end
+
+  def change_sequences
+    reversible do |dir|
+      dir.up do
+        execute <<~SQL
+          ALTER SEQUENCE contact_networks_id_seq START WITH 100;
+          ALTER SEQUENCE federal_subjects_id_seq START WITH 100;
+          ALTER SEQUENCE contacts_id_seq         START WITH 4000;
+          ALTER SEQUENCE people_id_seq           START WITH 3000;
+        SQL
+      end
     end
   end
 
