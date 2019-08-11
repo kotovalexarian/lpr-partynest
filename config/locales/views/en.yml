@@ -1,7 +1,4 @@
 en:
-  accounts:
-    show:
-      staff_page: Staff page
   home:
     show:
       join: Join
@@ -10,7 +7,3 @@ en:
         We stand for a free market and freedom of government intervention
         in the economy, for the principle of self-ownership and self-value
         of the human person.
-  staffs:
-    accounts:
-      show:
-        public_page: Public page

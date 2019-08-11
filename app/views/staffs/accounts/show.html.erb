@@ -23,12 +23,6 @@
     </div>
   <% end %>
 
-  <% if policy(@account).show? %>
-    <div class="mt-3">
-      <%= link_to translate('.public_page'), @account %>
-    </div>
-  <% end %>
-
   <dl class="mt-3">
     <dt><%= Account.human_attribute_name :id %></dt>
     <dd><%= @account.id %></dd>
