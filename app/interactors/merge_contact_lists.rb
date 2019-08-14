@@ -4,14 +4,14 @@ class MergeContactLists
   include Interactor
 
   after do
-    context.from.contacts.reload
-    context.to.contacts.reload
+    context.old_contact_list.contacts.reload
+    context.new_contact_list.contacts.reload
   end
 
   def call
     ActiveRecord::Base.transaction do
-      context.from.contacts.each do |contact|
-        contact.update! contact_list: context.to
+      context.old_contact_list.contacts.each do |contact|
+        contact.update! contact_list: context.new_contact_list
       end
     end
   end

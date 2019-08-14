@@ -12,8 +12,7 @@ class MergeAccountPerson
   end
 
   before do
-    context.from                     = context.account.contact_list
-    context.to                       = context.person.contact_list
-    context.destroyable_contact_list = context.account.contact_list
+    context.old_contact_list = context.account.contact_list
+    context.new_contact_list = context.person.contact_list
   end
 end
