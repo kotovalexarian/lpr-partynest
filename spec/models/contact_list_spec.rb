@@ -20,4 +20,12 @@ RSpec.describe ContactList do
         .dependent(:restrict_with_exception)
     end
   end
+
+  describe '#contacts' do
+    it do
+      is_expected.to \
+        have_many(:contacts)
+        .dependent(:restrict_with_exception)
+    end
+  end
 end
