@@ -28,11 +28,8 @@
         <% if @account.person&.current_regional_office %>
           <div>
             <i class="fas fa-map-marker-alt fa-fw"></i>
-            <%= link_to(
-              @account.person.current_regional_office.federal_subject
-                .display_name,
-              @account.person.current_regional_office.federal_subject,
-            ) %>
+            <%= regional_office_link_or_none \
+                  @account.person.current_regional_office %>
           </div>
         <% end %>
       </div>
