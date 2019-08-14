@@ -11,4 +11,6 @@ module RegionalOfficesHelper
       regional_office.federal_subject.display_name
     end
   end
+
+  alias staff_regional_office_link_or_none regional_office_link_or_none
 end

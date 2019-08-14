@@ -1,0 +1,51 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to translate(:staff_services), staff_root_path %>
+      </li>
+
+      <li class="breadcrumb-item">
+        <%= link_to Person.model_name.human(count: 0), staff_people_path %>
+      </li>
+
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= @person.full_name %>
+      </li>
+    </ol>
+  </nav>
+
+  <%= render partial: 'staffs/people/nav_tabs',
+             locals: { person: @person, tab: :relationships } %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= Relationship.human_attribute_name :id %>
+        </th>
+        <th scope="col">
+          <%= Relationship.human_attribute_name :from_date %>
+        </th>
+        <th scope="col">
+          <%= Relationship.human_attribute_name :regional_office %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @relationships.each do |relationship| %>
+        <tr>
+          <td scope="row"><%= relationship.id %></td>
+          <td><%= localize relationship.from_date, format: :long %></td>
+          <td>
+            <%= staff_regional_office_link_or_none \
+                  relationship.regional_office %>
+          </td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

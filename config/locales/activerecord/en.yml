@@ -19,6 +19,9 @@ en:
       regional_office:
         one: Regional office
         many: Regional offices
+      relationship:
+        one: Party relation
+        one: Party relations
       user:
         one: User
         many: Users
@@ -70,6 +73,10 @@ en:
         id: ID
         current_supporters_count: Number of supporters
         current_members_count: Number of members
+      relationship:
+        id: ID
+        regional_office: Regional department
+        from_date: From date
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at

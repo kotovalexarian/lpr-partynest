@@ -3,6 +3,7 @@ ru:
     person:
       overview: Обзор
       person_comments: Комментарии
+      relationships: Отношения с партией
       passports: Паспорта
     settings:
       credentials: Данные для входа

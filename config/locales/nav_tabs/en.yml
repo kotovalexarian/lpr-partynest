@@ -3,6 +3,7 @@ en:
     person:
       overview: Overview
       person_comments: Comments
+      relationships: Party relations
       passports: Passports
     settings:
       credentials: Credentials

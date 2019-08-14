@@ -56,6 +56,10 @@ Rails.application.routes.draw do
                 controller: 'people/person_comments',
                 only: %i[index create]
 
+      resources :relationships,
+                controller: 'people/relationships',
+                only: :index
+
       resources :passports,
                 controller: 'people/passports',
                 only: :index
