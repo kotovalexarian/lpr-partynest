@@ -21,13 +21,13 @@
 
       <div class="mt-2">
         <div>
-          <i class="fas fa-user-tag"></i>
+          <i class="fas fa-user-tag fa-fw"></i>
           <%= person_status @account.person %>
         </div>
 
         <% if @account.person&.current_regional_office %>
           <div>
-            <i class="fas fa-map-marker-alt"></i>
+            <i class="fas fa-map-marker-alt fa-fw"></i>
             <%= link_to(
               @account.person.current_regional_office.federal_subject
                 .display_name,
