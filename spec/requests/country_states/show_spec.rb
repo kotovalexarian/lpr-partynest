@@ -7,7 +7,7 @@ RSpec.describe 'GET /federal_subjects/:id' do
 
   before do
     sign_in current_account.user if current_account&.user
-    get "/federal_subjects/#{federal_subject.id}"
+    get "/federal_subjects/#{federal_subject.number}"
   end
 
   for_account_types nil, :guest, :usual, :superuser do
