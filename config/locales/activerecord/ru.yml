@@ -53,6 +53,7 @@ ru:
         date_of_issue: Дата выдачи
       person:
         id: ID
+        account: Аккаунт
         current_regional_office: Региональное отделение
         first_name: Имя
         middle_name: Отчество

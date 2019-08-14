@@ -18,6 +18,9 @@
   <%= render partial: 'nav_tabs', locals: { person: @person, tab: :overview } %>
 
   <dl>
+    <dt><%= Person.human_attribute_name :account %></dt>
+    <dd><%= staff_account_link_or_none @person.account %></dd>
+
     <dt><%= Person.human_attribute_name :last_name %></dt>
     <dd><%= truncate @person.last_name %></dd>
 
