@@ -21,6 +21,18 @@
     <dt><%= Person.human_attribute_name :account %></dt>
     <dd><%= staff_account_link_or_none @person.account %></dd>
 
+    <dt><%= Person.human_attribute_name :current_regional_office %></dt>
+    <dd>
+      <% if @person.current_regional_office %>
+        <%= link_to(
+              @person.current_regional_office.federal_subject.display_name,
+              @person.current_regional_office.federal_subject,
+            ) %>
+      <% else %>
+        <%= translate :none %>
+      <% end %>
+    </dd>
+
     <dt><%= Person.human_attribute_name :last_name %></dt>
     <dd><%= truncate @person.last_name %></dd>
 
@@ -38,17 +50,5 @@
 
     <dt><%= Person.human_attribute_name :place_of_birth %></dt>
     <dd><%= truncate @person.place_of_birth if @person.place_of_birth %></dd>
-
-    <dt><%= Person.human_attribute_name :current_regional_office %></dt>
-    <dd>
-      <% if @person.current_regional_office %>
-        <%= link_to(
-              @person.current_regional_office.federal_subject.display_name,
-              @person.current_regional_office.federal_subject,
-            ) %>
-      <% else %>
-        <%= translate :none %>
-      <% end %>
-    </dd>
   </dl>
 </div>
