@@ -29,6 +29,7 @@ ru:
         public_name: Публичное имя
         biography: Биография
         avatar: Аватар
+        person: Человек
       federal_subject:
         id: ID
         regional_office: Региональное отделение

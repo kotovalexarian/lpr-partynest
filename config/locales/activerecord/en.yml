@@ -29,6 +29,7 @@ en:
         public_name: Public name
         biography: Bio
         avatar: Avatar
+        person: Person
       federal_subject:
         id: ID
         regional_office: Regional department

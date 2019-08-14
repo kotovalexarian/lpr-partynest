@@ -32,5 +32,8 @@
 
     <dt><%= Account.human_attribute_name :public_name %></dt>
     <dd><%= @account.public_name %></dd>
+
+    <dt><%= Account.human_attribute_name :person %></dt>
+    <dd><%= staff_person_link_or_none @account.person %></dd>
   </dl>
 </div>
