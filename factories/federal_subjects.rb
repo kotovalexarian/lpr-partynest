@@ -2,12 +2,11 @@
 
 FactoryBot.define do
   factory :federal_subject do
-    sequence(:id)     { |n| n + 1000 }
-    sequence(:number) { |n| n + 1000 }
+    number { rand 1..2**31 - 1 }
 
-    sequence :english_name do |n|
+    english_name do
       I18n.with_locale :en do
-        "#{Faker::Address.unique.state} #{n}"
+        "#{Faker::Address.state} #{number}"
       end
     end
 

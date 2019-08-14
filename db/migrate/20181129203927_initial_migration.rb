@@ -365,10 +365,10 @@ private
     reversible do |dir|
       dir.up do
         execute <<~SQL
-          ALTER SEQUENCE contact_networks_id_seq START WITH 100;
-          ALTER SEQUENCE federal_subjects_id_seq START WITH 100;
-          ALTER SEQUENCE contacts_id_seq         START WITH 4000;
-          ALTER SEQUENCE people_id_seq           START WITH 3000;
+          ALTER SEQUENCE contact_networks_id_seq RESTART WITH 100;
+          ALTER SEQUENCE federal_subjects_id_seq RESTART WITH 100;
+          ALTER SEQUENCE contacts_id_seq         RESTART WITH 4000;
+          ALTER SEQUENCE people_id_seq           RESTART WITH 3000;
         SQL
       end
     end
