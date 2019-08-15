@@ -25,10 +25,10 @@
           <%= Relationship.human_attribute_name :id %>
         </th>
         <th scope="col">
-          <%= Relationship.human_attribute_name :from_date %>
+          <%= Relationship.human_attribute_name :status %>
         </th>
         <th scope="col">
-          <%= Relationship.human_attribute_name :status %>
+          <%= Relationship.human_attribute_name :from_date %>
         </th>
         <th scope="col">
           <%= Relationship.human_attribute_name :regional_office %>
@@ -44,8 +44,8 @@
       <% @relationships.each do |relationship| %>
         <tr>
           <td scope="row"><%= relationship.id %></td>
-          <td><%= localize relationship.from_date, format: :long %></td>
           <td><%= relationship_status_or_none relationship %></td>
+          <td><%= localize relationship.from_date, format: :long %></td>
           <td>
             <%= staff_regional_office_link_or_none \
                   relationship.regional_office %>
