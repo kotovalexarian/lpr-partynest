@@ -71,5 +71,20 @@
         </dd>
       </dl>
     </div>
+
+    <div class="col-md-4">
+      <% unless true %>
+        <%= link_to translate('.accept_as_supporter'),
+                    '#',
+                    role: :button,
+                    class: 'btn btn-primary disabled',
+                    'aria-disabled': true %>
+      <% else %>
+        <%= link_to translate('.accept_as_supporter'),
+                    '#',
+                    role: :button,
+                    class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>
