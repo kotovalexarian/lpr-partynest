@@ -4,6 +4,7 @@ class AcceptAsSupporter
   include Interactor
 
   around :wrap_into_transaction
+  before :validate_person
   before :validate_account
   after :reload_records
 
@@ -26,6 +27,10 @@ private
 
   def reload_records
     context.person.reload
+  end
+
+  def validate_person
+    context.fail! unless context.person.current_relationship.nil?
   end
 
   def validate_account

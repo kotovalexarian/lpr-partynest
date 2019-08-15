@@ -37,6 +37,36 @@ RSpec.describe AcceptAsSupporter do
     )
   end
 
+  context 'when person is a supporter' do
+    let!(:person) { create :supporter_person }
+
+    specify { expect(subject).to be_failure }
+
+    specify do
+      expect { subject }.not_to change(Relationship, :count)
+    end
+  end
+
+  context 'when person is a member' do
+    let!(:person) { create :member_person }
+
+    specify { expect(subject).to be_failure }
+
+    specify do
+      expect { subject }.not_to change(Relationship, :count)
+    end
+  end
+
+  context 'when person is excluded' do
+    let!(:person) { create :excluded_person }
+
+    specify { expect(subject).to be_failure }
+
+    specify do
+      expect { subject }.not_to change(Relationship, :count)
+    end
+  end
+
   context 'when initiator is a federal secretary' do
     let!(:initiator_account) { create :personal_account }
 
