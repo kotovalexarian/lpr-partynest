@@ -2,9 +2,21 @@
   <%= nav_tabs(
     :person,
     tab,
-    overview: [:staff, person],
-    person_comments: staff_person_person_comments_path(person),
-    relationships: staff_person_relationships_path(person),
-    passports: staff_person_passports_path(person),
+    overview: [
+      policy([:staff, person]).show?,
+      [:staff, person],
+    ],
+    person_comments: [
+      policy([:staff, person, :person_comment]).index?,
+      staff_person_person_comments_path(person),
+    ],
+    relationships: [
+      policy([:staff, person, :relationship]).index?,
+      staff_person_relationships_path(person),
+    ],
+    passports: [
+      policy([:staff, person, :passport]).index?,
+      staff_person_passports_path(person),
+    ],
   ) %>
 </div>

@@ -41,16 +41,24 @@ module ApplicationHelper
   def nav_tabs_list(scope_name, current_tab_name, format, options)
     tag.ul class: NAV_TABS_LIST_HTML_CLASS[format] do
       options.each do |(k, v)|
-        concat nav_tabs_item scope_name, current_tab_name, k, v
+        concat nav_tabs_item scope_name, current_tab_name, k, *v
       end
     end
   end
 
-  def nav_tabs_item(scope_name, current_tab_name, tab_name, url)
+  def nav_tabs_item(scope_name, current_tab_name, tab_name, policy, url)
     tag.li class: 'nav-item' do
-      link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
-              url,
-              class: "nav-link #{:active if current_tab_name == tab_name}"
+      if policy
+        link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
+                url,
+                class: "nav-link #{:active if current_tab_name == tab_name}"
+      else
+        link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
+                url,
+                class: 'nav-link disabled',
+                tabindex: -1,
+                'aria-disabled': true
+      end
     end
   end
 end
