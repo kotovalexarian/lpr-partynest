@@ -46,10 +46,7 @@
           </td>
           <td>
             <% if policy([:staff, person]).show? %>
-              <%= link_to [:staff, person],
-                          role: :button, class: 'btn btn-light btn-sm' do %>
-                <i class="far fa-eye"></i>
-              <% end %>
+              <%= open_action [:staff, person] %>
             <% end %>
           </td>
         </tr>

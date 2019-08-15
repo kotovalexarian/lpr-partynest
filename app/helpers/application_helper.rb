@@ -13,6 +13,14 @@ module ApplicationHelper
     translate value, scope: [:enums, type]
   end
 
+  def open_action(url)
+    link_to url, role: :button, class: 'btn btn-light btn-sm' do
+      concat tag.i class: 'far fa-eye'
+      concat '&nbsp;'.html_safe
+      concat translate :open_action
+    end
+  end
+
   def bootstrap_class_for_flash(flash_type)
     case flash_type
     when 'success'

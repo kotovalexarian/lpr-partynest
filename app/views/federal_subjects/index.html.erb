@@ -39,11 +39,7 @@
           </td>
           <td>
             <% if policy(federal_subject).show? %>
-              <%= link_to federal_subject,
-                          role: :button,
-                          class: 'btn btn-light btn-sm' do %>
-                <i class="far fa-eye"></i>
-              <% end %>
+              <%= open_action federal_subject %>
             <% end %>
           </td>
         </tr>
