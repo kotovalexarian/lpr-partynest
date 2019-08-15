@@ -329,11 +329,17 @@ private
     create_table :relationships do |t|
       t.timestamps null: false
 
-      t.references :person,
-                   null: false, index: false, foreign_key: true
+      t.references :person,            null: false,
+                                       index: false,
+                                       foreign_key: true
 
-      t.references :regional_office,
-                   null: false, index: true,  foreign_key: true
+      t.references :regional_office,   null: false,
+                                       index: true,
+                                       foreign_key: true
+
+      t.references :initiator_account, null: true,
+                                       index: true,
+                                       foreign_key: { to_table: :accounts }
 
       t.date :from_date, null: false, index: true
 

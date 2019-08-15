@@ -18,6 +18,16 @@ RSpec.describe Relationship do
     end
   end
 
+  describe '#initiator_account' do
+    it do
+      is_expected.to \
+        belong_to(:initiator_account)
+        .class_name('Account')
+        .inverse_of(false)
+        .optional
+    end
+  end
+
   describe '#from_date' do
     it { is_expected.to validate_presence_of :from_date }
 

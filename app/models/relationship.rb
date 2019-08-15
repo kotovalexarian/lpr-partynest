@@ -22,6 +22,11 @@ class Relationship < ApplicationRecord
 
   belongs_to :regional_office, inverse_of: :all_relationships
 
+  belongs_to :initiator_account,
+             class_name: 'Account',
+             inverse_of: false,
+             optional: true
+
   ##########
   # Scopes #
   ##########
