@@ -4,9 +4,11 @@ ru:
       male: Мужской
       female: Женский
     relationship_status:
+      false: Не относится к партии
       supporter: Сторонник партии
       excluded: Исключён из партии
       member: Член партии
+
     relationship_role:
       federal_manager: Член федерального комитета
       federal_supervisor: Член центральной контрольно-ревизионной комиссии

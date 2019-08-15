@@ -4,6 +4,7 @@ en:
       male: Male
       female: Female
     relationship_status:
+      false: Is not related to the party
       supporter: Party supporter
       excluded: Excluded from party
       member: Party member

@@ -1,11 +1,5 @@
 en:
   helpers:
-    person_status:
-      not_in_party: Is not related to the party
-      supporter: Party supporter
-      member: Party member
-      excluded: Excluded from party
-
     submit:
       person_comment:
         create: Send

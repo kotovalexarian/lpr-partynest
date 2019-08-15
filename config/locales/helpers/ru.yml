@@ -1,11 +1,5 @@
 ru:
   helpers:
-    person_status:
-      not_in_party: Не относится к партии
-      supporter: Сторонник партии
-      member: Член партии
-      excluded: Исключён из партии
-
     submit:
       person_comment:
         create: Отправить

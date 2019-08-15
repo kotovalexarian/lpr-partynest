@@ -46,7 +46,7 @@
     <div class="col-md-4">
       <dl>
         <dt><%= Relationship.human_attribute_name :status %></dt>
-        <dd><%= relationship_status @person.current_relationship %></dd>
+        <dd><%= relationship_status_or_none @person.current_relationship %></dd>
 
         <% if @person.current_relationship %>
           <dt><%= Relationship.human_attribute_name :from_date %></dt>
