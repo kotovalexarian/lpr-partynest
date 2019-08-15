@@ -6,6 +6,29 @@ module NavsHelper
     pills: 'nav nav-pills d-flex d-sm-none flex-column',
   }.freeze
 
+  def nav_breadcrumb(*args, active_text)
+    tag.nav 'aria-label': 'breadcrumb' do
+      tag.ol class: 'breadcrumb' do
+        args.each do |(text, url)|
+          concat nav_breadcrumb_item text, url
+        end
+        concat nav_breadcrumb_item active_text
+      end
+    end
+  end
+
+  def nav_breadcrumb_item(text, url = nil)
+    if url
+      tag.li class: 'breadcrumb-item' do
+        link_to text, url
+      end
+    else
+      tag.li class: 'breadcrumb-item active', 'aria-current': 'page' do
+        text
+      end
+    end
+  end
+
   def nav_tabs(scope_name, active_tab_name, options)
     capture do
       concat nav_tabs_list scope_name, active_tab_name, :tabs, options

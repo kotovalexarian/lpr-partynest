@@ -1,19 +1,9 @@
 <div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to translate(:staff_services), staff_root_path %>
-      </li>
-
-      <li class="breadcrumb-item">
-        <%= link_to Person.model_name.human(count: 0), staff_people_path %>
-      </li>
-
-      <li class="breadcrumb-item active" aria-current="page">
-        <%= @person.full_name %>
-      </li>
-    </ol>
-  </nav>
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    [Person.model_name.human(count: 0), staff_people_path],
+    @person.full_name,
+  ) %>
 
   <%= render partial: 'staffs/people/nav_tabs',
              locals: { person: @person, tab: :relationships } %>

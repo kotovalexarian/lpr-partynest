@@ -1,15 +1,8 @@
 <div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to translate(:staff_services), staff_root_path %>
-      </li>
-
-      <li class="breadcrumb-item active" aria-current="page">
-        <%= Person.model_name.human count: 0 %>
-      </li>
-    </ol>
-  </nav>
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    Person.model_name.human(count: 0),
+  ) %>
 
   <table class="table">
     <thead>
