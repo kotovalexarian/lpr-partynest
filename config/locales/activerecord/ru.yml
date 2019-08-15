@@ -78,6 +78,7 @@ ru:
         initiator_account: Инициатор
         from_date: Дата начала
         status: Статус
+        position: Должность
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения

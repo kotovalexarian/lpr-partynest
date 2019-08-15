@@ -8,3 +8,10 @@ en:
       supporter: Party supporter
       excluded: Excluded from party
       member: Party member
+    relationship_position:
+      federal_manager: Federal manager
+      federal_supervisor: Federal supervisor
+      federal_secretary: Federal secretary
+      regional_manager: Regional manager
+      regional_supervisor: Regional supervisor
+      regional_secretary: Regional secretary

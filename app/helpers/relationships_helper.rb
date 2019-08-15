@@ -12,4 +12,12 @@ module RelationshipsHelper
   def relationship_status_or_none(relationship)
     translate_enum :relationship_status, relationship&.status || false
   end
+
+  def relationship_position_or_none(relationship)
+    if relationship&.position.nil?
+      translate :none
+    else
+      translate_enum :relationship_position, relationship.position
+    end
+  end
 end

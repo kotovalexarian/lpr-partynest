@@ -48,6 +48,11 @@
         <dt><%= Relationship.human_attribute_name :status %></dt>
         <dd><%= relationship_status_or_none @person.current_relationship %></dd>
 
+        <dt><%= Relationship.human_attribute_name :position %></dt>
+        <dd>
+          <%= relationship_position_or_none @person.current_relationship %>
+        </dd>
+
         <dt><%= Relationship.human_attribute_name :from_date %></dt>
         <dd>
           <%= relationship_from_date_or_none @person.current_relationship %>

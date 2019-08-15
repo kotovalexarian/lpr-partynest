@@ -8,6 +8,15 @@ ru:
       supporter: Сторонник партии
       excluded: Исключён из партии
       member: Член партии
+    relationship_position:
+      federal_manager: Член федерального комитета
+      federal_supervisor: Член центральной контрольно-ревизионной комиссии
+      federal_secretary: Секретарь федерального комитета
+      regional_manager: Член руководящего комитета регионального отделения
+      regional_supervisor: >-
+        Член контрольно-ревизионной комиссии регионального отделения
+      regional_secretary: >-
+        Секретарь руководящего комитета регионального отделения
 
     relationship_role:
       federal_manager: Член федерального комитета

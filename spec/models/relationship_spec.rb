@@ -202,6 +202,70 @@ RSpec.describe Relationship do
     end
   end
 
+  context '#position' do
+    let(:result) { subject.position }
+
+    context 'for supporter relationship' do
+      subject { create :supporter_relationship }
+
+      specify { expect(result).to equal nil }
+    end
+
+    context 'for excluded relationship' do
+      subject { create :excluded_relationship }
+
+      specify { expect(result).to equal nil }
+    end
+
+    context 'for member relationship' do
+      subject { create :member_relationship }
+
+      specify { expect(result).to equal nil }
+    end
+
+    context 'for federal manager relationship' do
+      subject { create :federal_manager_relationship }
+
+      specify { expect(result).to be_instance_of String }
+      specify { expect(result).to eq 'federal_manager' }
+    end
+
+    context 'for federal supervisor relationship' do
+      subject { create :federal_supervisor_relationship }
+
+      specify { expect(result).to be_instance_of String }
+      specify { expect(result).to eq 'federal_supervisor' }
+    end
+
+    context 'for federal secretary relationship' do
+      subject { create :federal_secretary_relationship }
+
+      specify { expect(result).to be_instance_of String }
+      specify { expect(result).to eq 'federal_secretary' }
+    end
+
+    context 'for regional manager relationship' do
+      subject { create :regional_manager_relationship }
+
+      specify { expect(result).to be_instance_of String }
+      specify { expect(result).to eq 'regional_manager' }
+    end
+
+    context 'for regional supervisor relationship' do
+      subject { create :regional_supervisor_relationship }
+
+      specify { expect(result).to be_instance_of String }
+      specify { expect(result).to eq 'regional_supervisor' }
+    end
+
+    context 'for regional secretary relationship' do
+      subject { create :regional_secretary_relationship }
+
+      specify { expect(result).to be_instance_of String }
+      specify { expect(result).to eq 'regional_secretary' }
+    end
+  end
+
   describe '.supporters' do
     let!(:relationship1) { create :supporter_relationship }
     let!(:relationship2) { create :member_relationship }

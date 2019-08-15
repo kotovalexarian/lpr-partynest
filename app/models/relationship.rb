@@ -72,4 +72,15 @@ class Relationship < ApplicationRecord
             allow_nil: true,
             absence: { unless: :regional_manager? },
             uniqueness: { scope: :regional_office_id }
+
+  ###########
+  # Methods #
+  ###########
+
+  def position
+    return 'federal_secretary'  if federal_secretary?
+    return 'regional_secretary' if regional_secretary?
+
+    role
+  end
 end
