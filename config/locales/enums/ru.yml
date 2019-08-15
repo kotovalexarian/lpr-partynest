@@ -17,6 +17,13 @@ ru:
         Член контрольно-ревизионной комиссии регионального отделения
       regional_secretary: >-
         Секретарь руководящего комитета регионального отделения
+    relationship_short_position:
+      federal_manager: Член ФК
+      federal_supervisor: Член ЦКРК
+      federal_secretary: Секретарь ФК
+      regional_manager: Член РК РО
+      regional_supervisor: Член КРК РО
+      regional_secretary: Секретарь РК РО
 
     relationship_role:
       federal_manager: Член федерального комитета

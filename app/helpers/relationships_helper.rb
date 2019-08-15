@@ -20,4 +20,12 @@ module RelationshipsHelper
       translate_enum :relationship_position, relationship.position
     end
   end
+
+  def relationship_short_position_or_none(relationship)
+    if relationship&.position.nil?
+      translate :none
+    else
+      translate_enum :relationship_short_position, relationship.position
+    end
+  end
 end
