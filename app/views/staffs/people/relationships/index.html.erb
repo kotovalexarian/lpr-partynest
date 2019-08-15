@@ -45,7 +45,7 @@
         <tr>
           <td scope="row"><%= relationship.id %></td>
           <td><%= relationship_status_or_none relationship %></td>
-          <td><%= localize relationship.from_date, format: :long %></td>
+          <td><%= relationship_from_date_or_none relationship %></td>
           <td>
             <%= staff_regional_office_link_or_none \
                   relationship.regional_office %>

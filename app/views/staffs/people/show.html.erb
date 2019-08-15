@@ -48,13 +48,10 @@
         <dt><%= Relationship.human_attribute_name :status %></dt>
         <dd><%= relationship_status_or_none @person.current_relationship %></dd>
 
-        <% if @person.current_relationship %>
-          <dt><%= Relationship.human_attribute_name :from_date %></dt>
-          <dd>
-            <%= localize @person.current_relationship.from_date,
-                         format: :long %>
-          </dd>
-        <% end %>
+        <dt><%= Relationship.human_attribute_name :from_date %></dt>
+        <dd>
+          <%= relationship_from_date_or_none @person.current_relationship %>
+        </dd>
 
         <dt><%= Relationship.human_attribute_name :regional_office %></dt>
         <dd>
