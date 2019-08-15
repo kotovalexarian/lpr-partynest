@@ -688,12 +688,10 @@ CREATE TABLE public.relationships (
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
-    until_date date,
     status public.relationship_status NOT NULL,
     role public.relationship_role,
     federal_secretary_flag public.relationship_federal_secretary_flag,
     regional_secretary_flag public.relationship_regional_secretary_flag,
-    CONSTRAINT dates CHECK (((until_date IS NULL) OR (from_date < until_date))),
     CONSTRAINT federal_secretary_flag CHECK (((federal_secretary_flag IS NULL) OR (role = 'federal_manager'::public.relationship_role))),
     CONSTRAINT regional_secretary_flag CHECK (((regional_secretary_flag IS NULL) OR (role = 'regional_manager'::public.relationship_role))),
     CONSTRAINT role CHECK (((status = 'member'::public.relationship_status) OR (role IS NULL)))

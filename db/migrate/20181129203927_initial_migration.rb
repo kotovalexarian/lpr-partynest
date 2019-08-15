@@ -335,8 +335,7 @@ private
       t.references :regional_office,
                    null: false, index: true,  foreign_key: true
 
-      t.date :from_date,  null: false, index: true
-      t.date :until_date, null: true,  index: false
+      t.date :from_date, null: false, index: true
 
       t.column :status, :relationship_status, null: false, index: true
       t.column :role,   :relationship_role,   null: true,  index: true
@@ -385,10 +384,6 @@ private
 
     constraint :contact_networks, :public_name, <<~SQL
       is_good_small_text(public_name)
-    SQL
-
-    constraint :relationships, :dates, <<~SQL
-      until_date IS NULL OR from_date < until_date
     SQL
 
     constraint :relationships, :role, <<~SQL
