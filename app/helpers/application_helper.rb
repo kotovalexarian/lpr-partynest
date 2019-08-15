@@ -38,6 +38,14 @@ module ApplicationHelper
     end
   end
 
+  def nav_sidebar(scope_name, current_tab_name, options)
+    tag.div class: 'list-group' do
+      options.each do |(k, v)|
+        concat nav_sidebar_item scope_name, current_tab_name, k, *v
+      end
+    end
+  end
+
   def nav_tabs_list(scope_name, current_tab_name, format, options)
     tag.ul class: NAV_TABS_LIST_HTML_CLASS[format] do
       options.each do |(k, v)|
@@ -59,6 +67,20 @@ module ApplicationHelper
                 tabindex: -1,
                 'aria-disabled': true
       end
+    end
+  end
+
+  def nav_sidebar_item(scope_name, current_tab_name, tab_name, policy, url)
+    if policy
+      link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
+              url,
+              class: 'list-group-item list-group-item-action ' \
+                     "#{:active if current_tab_name == tab_name}"
+    else
+      link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
+              url,
+              class: 'list-group-item list-group-item-action disabled',
+              'aria-disabled': true
     end
   end
 end
