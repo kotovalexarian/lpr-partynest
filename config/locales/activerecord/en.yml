@@ -58,7 +58,6 @@ en:
       person:
         id: ID
         account: Account
-        current_regional_office: Regional office
         first_name: First name
         middle_name: Middle name
         last_name: Last name

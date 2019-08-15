@@ -17,29 +17,51 @@
 
   <%= render partial: 'nav_tabs', locals: { person: @person, tab: :overview } %>
 
-  <dl>
-    <dt><%= Person.human_attribute_name :account %></dt>
-    <dd><%= staff_account_link_or_none @person.account %></dd>
+  <div class="row">
+    <div class="col-md-4">
+      <dl>
+        <dt><%= Person.human_attribute_name :account %></dt>
+        <dd><%= staff_account_link_or_none @person.account %></dd>
 
-    <dt><%= Person.human_attribute_name :current_regional_office %></dt>
-    <dd><%= regional_office_link_or_none @person.current_regional_office %></dd>
+        <dt><%= Person.human_attribute_name :last_name %></dt>
+        <dd><%= truncate @person.last_name %></dd>
 
-    <dt><%= Person.human_attribute_name :last_name %></dt>
-    <dd><%= truncate @person.last_name %></dd>
+        <dt><%= Person.human_attribute_name :first_name %></dt>
+        <dd><%= truncate @person.first_name %></dd>
 
-    <dt><%= Person.human_attribute_name :first_name %></dt>
-    <dd><%= truncate @person.first_name %></dd>
+        <dt><%= Person.human_attribute_name :middle_name %></dt>
+        <dd><%= truncate @person.middle_name %></dd>
 
-    <dt><%= Person.human_attribute_name :middle_name %></dt>
-    <dd><%= truncate @person.middle_name %></dd>
+        <dt><%= Person.human_attribute_name :sex %></dt>
+        <dd><%= translate_enum :sex, @person.sex if @person.sex %></dd>
 
-    <dt><%= Person.human_attribute_name :sex %></dt>
-    <dd><%= translate_enum :sex, @person.sex if @person.sex %></dd>
+        <dt><%= Person.human_attribute_name :date_of_birth %></dt>
+        <dd><%= localize @person.date_of_birth if @person.date_of_birth %></dd>
 
-    <dt><%= Person.human_attribute_name :date_of_birth %></dt>
-    <dd><%= localize @person.date_of_birth if @person.date_of_birth %></dd>
+        <dt><%= Person.human_attribute_name :place_of_birth %></dt>
+        <dd><%= truncate @person.place_of_birth if @person.place_of_birth %></dd>
+      </dl>
+    </div>
 
-    <dt><%= Person.human_attribute_name :place_of_birth %></dt>
-    <dd><%= truncate @person.place_of_birth if @person.place_of_birth %></dd>
-  </dl>
+    <div class="col-md-4">
+      <dl>
+        <dt><%= Relationship.human_attribute_name :status %></dt>
+        <dd><%= relationship_status @person.current_relationship %></dd>
+
+        <% if @person.current_relationship %>
+          <dt><%= Relationship.human_attribute_name :from_date %></dt>
+          <dd>
+            <%= localize @person.current_relationship.from_date,
+                         format: :long %>
+          </dd>
+        <% end %>
+
+        <dt><%= Relationship.human_attribute_name :regional_office %></dt>
+        <dd>
+          <%= staff_regional_office_link_or_none \
+                @person.current_relationship&.regional_office %>
+        </dd>
+      </dl>
+    </div>
+  </div>
 </div>
