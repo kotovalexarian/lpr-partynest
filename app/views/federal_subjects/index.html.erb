@@ -27,8 +27,8 @@
       <% @federal_subjects.each do |federal_subject| %>
         <tr>
           <td><%= federal_subject.number %></td>
-          <td><%= federal_subject.display_name %></td>
-          <td><%= federal_subject.centre %></td>
+          <td><%= truncate federal_subject.display_name, length: 25 %></td>
+          <td><%= truncate federal_subject.centre, length: 15 %></td>
           <td><%= federal_subject.timezone %></td>
           <td>
             <% if federal_subject.regional_office.nil? %>
