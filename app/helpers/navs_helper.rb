@@ -31,31 +31,32 @@ module NavsHelper
 
   def nav_tabs_item(scope_name, current_tab_name, tab_name, policy, url)
     tag.li class: 'nav-item' do
-      if policy
-        link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
-                url,
-                class: "nav-link #{:active if current_tab_name == tab_name}"
-      else
-        link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
-                url,
-                class: 'nav-link disabled',
-                tabindex: -1,
-                'aria-disabled': true
-      end
+      link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
+              url,
+              nav_tab_link_options(policy, tab_name == current_tab_name)
     end
   end
 
   def nav_sidebar_item(scope_name, current_tab_name, tab_name, policy, url)
+    link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
+            url,
+            nav_sidebar_link_options(policy, tab_name == current_tab_name)
+  end
+
+  def nav_tab_link_options(policy, active)
     if policy
-      link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
-              url,
-              class: 'list-group-item list-group-item-action ' \
-                     "#{:active if current_tab_name == tab_name}"
+      { class: "nav-link #{:active if active}" }
     else
-      link_to translate(tab_name, scope: [:nav_tabs, scope_name]),
-              url,
-              class: 'list-group-item list-group-item-action disabled',
-              'aria-disabled': true
+      { class: 'nav-link disabled', tabindex: -1, 'aria-disabled': true }
+    end
+  end
+
+  def nav_sidebar_link_options(policy, active)
+    if policy
+      { class: "list-group-item list-group-item-action #{:active if active}" }
+    else
+      { class: 'list-group-item list-group-item-action disabled',
+        'aria-disabled': true }
     end
   end
 end
