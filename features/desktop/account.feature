@@ -61,3 +61,17 @@ Feature: Account
     And I see text "Hi there :)"
     And I see text "Исключён из партии"
     And I see text "Москва"
+
+  Scenario: of a federal manager
+    Given there is a federal manager account with the following data:
+      | nickname        | kotovalexarian |
+      | public_name     | Alex Kotov     |
+      | biography       | Hi there :)    |
+      | federal_subject | Москва         |
+    When I visit "/accounts/kotovalexarian"
+    Then I see text "kotovalexarian"
+    And I see text "Alex Kotov"
+    And I see text "Hi there :)"
+    And I see text "Член партии"
+    And I see text "Член ФК"
+    And I see text "Москва"

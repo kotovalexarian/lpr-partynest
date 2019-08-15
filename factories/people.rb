@@ -39,4 +39,12 @@ FactoryBot.define do
              regional_office: evaluator.regional_office
     end
   end
+
+  factory :federal_manager_person, parent: :initial_person do
+    after :create do |person, evaluator|
+      create :federal_manager_relationship,
+             person: person,
+             regional_office: evaluator.regional_office
+    end
+  end
 end
