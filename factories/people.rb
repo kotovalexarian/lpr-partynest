@@ -24,7 +24,7 @@ FactoryBot.define do
     end
   end
 
-  factory :member_person, parent: :supporter_person do
+  factory :member_person, parent: :initial_person do
     after :create do |person, evaluator|
       create :member_relationship,
              person: person,
@@ -32,7 +32,7 @@ FactoryBot.define do
     end
   end
 
-  factory :excluded_person, parent: :member_person do
+  factory :excluded_person, parent: :initial_person do
     after :create do |person, evaluator|
       create :excluded_relationship,
              person: person,
