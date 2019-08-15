@@ -28,6 +28,9 @@
           <%= Relationship.human_attribute_name :from_date %>
         </th>
         <th scope="col">
+          <%= Relationship.human_attribute_name :status %>
+        </th>
+        <th scope="col">
           <%= Relationship.human_attribute_name :regional_office %>
         </th>
         <th scope="col"></th>
@@ -39,6 +42,7 @@
         <tr>
           <td scope="row"><%= relationship.id %></td>
           <td><%= localize relationship.from_date, format: :long %></td>
+          <td><%= relationship_status relationship %></td>
           <td>
             <%= staff_regional_office_link_or_none \
                   relationship.regional_office %>

@@ -77,6 +77,7 @@ en:
         id: ID
         regional_office: Regional department
         from_date: From date
+        status: Status
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at
