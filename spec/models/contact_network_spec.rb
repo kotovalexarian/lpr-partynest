@@ -5,18 +5,18 @@ require 'rails_helper'
 RSpec.describe ContactNetwork do
   subject { create :contact_network }
 
-  describe '#nickname' do
+  describe '#codename' do
     def allow_value(*)
-      super.for :nickname
+      super.for :codename
     end
 
-    it { is_expected.to validate_presence_of :nickname }
+    it { is_expected.to validate_presence_of :codename }
 
     it do
-      is_expected.to validate_length_of(:nickname).is_at_least(3).is_at_most(36)
+      is_expected.to validate_length_of(:codename).is_at_least(3).is_at_most(36)
     end
 
-    it { is_expected.to validate_uniqueness_of(:nickname).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:codename).case_insensitive }
 
     it { is_expected.not_to allow_value nil }
     it { is_expected.not_to allow_value '' }

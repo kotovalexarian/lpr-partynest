@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :contact_network, class: ContactNetwork do
-    nickname { Faker::Internet.username 3..36, %w[_] }
+    codename { Faker::Internet.username 3..36, %w[_] }
     public_name { Faker::Company.unique.name }
   end
 end

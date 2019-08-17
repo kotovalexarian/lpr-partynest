@@ -8,7 +8,7 @@
     <thead>
       <tr>
         <th scope="col">
-          <%= ContactNetwork.human_attribute_name :nickname %>
+          <%= ContactNetwork.human_attribute_name :codename %>
         </th>
         <th scope="col">
           <%= ContactNetwork.human_attribute_name :public_name %>
@@ -20,7 +20,7 @@
     <tbody>
       <% @contact_networks.each do |contact_network| %>
         <tr>
-          <td scope="row"><%= contact_network.nickname %></td>
+          <td scope="row"><%= contact_network.codename %></td>
           <td><%= contact_network.public_name %></td>
         </tr>
       <% end %>

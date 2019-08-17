@@ -38,7 +38,7 @@ ru:
         person: Человек
       contact_network:
         id: ID
-        nickname: Имя пользователя
+        codename: Кодовое имя
         public_name: Публичное имя
       federal_subject:
         id: ID

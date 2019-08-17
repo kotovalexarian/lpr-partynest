@@ -28,13 +28,13 @@ end
 CSV.foreach(
   contact_networks_filename,
   col_sep: '|',
-) do |(id, nickname, public_name)|
+) do |(id, codename, public_name)|
   id = Integer(id.strip)
-  nickname.strip!
+  codename.strip!
   public_name.strip!
 
   ContactNetwork.where(id: id).first_or_create! do |new_contact_network|
-    new_contact_network.nickname = nickname
+    new_contact_network.codename = codename
     new_contact_network.public_name = public_name
   end
 end

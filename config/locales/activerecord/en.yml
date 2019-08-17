@@ -38,7 +38,7 @@ en:
         person: Person
       contact_network:
         id: ID
-        nickname: Nickname
+        codename: Codename
         public_name: Public name
       federal_subject:
         id: ID

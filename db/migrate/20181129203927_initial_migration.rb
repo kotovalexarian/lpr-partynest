@@ -59,6 +59,15 @@ private
       $$;
     SQL
 
+    func :is_codename, <<~SQL
+      (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
+      $$
+      BEGIN
+        RETURN is_nickname(str);
+      END;
+      $$;
+    SQL
+
     func :is_good_text, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -161,7 +170,7 @@ private
     create_table :contact_networks do |t|
       t.timestamps null: false
 
-      t.string :nickname,    null: false, index: { unique: true }
+      t.string :codename,    null: false, index: { unique: true }
       t.string :public_name, null: false, index: { unique: true }
     end
 
@@ -384,8 +393,8 @@ private
       is_good_small_text(value)
     SQL
 
-    constraint :contact_networks, :nickname, <<~SQL
-      is_nickname(nickname)
+    constraint :contact_networks, :codename, <<~SQL
+      is_codename(codename)
     SQL
 
     constraint :contact_networks, :public_name, <<~SQL

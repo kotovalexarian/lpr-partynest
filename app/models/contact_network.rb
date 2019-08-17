@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ContactNetwork < ApplicationRecord
-  NICKNAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
+  CODENAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
 
   #############
   # Callbacks #
@@ -14,10 +14,10 @@ class ContactNetwork < ApplicationRecord
   # Validations #
   ###############
 
-  validates :nickname,
+  validates :codename,
             presence: true,
             length: { in: 3..36 },
-            format: NICKNAME_RE,
+            format: CODENAME_RE,
             uniqueness: { case_sensitive: false }
 
   validates :public_name, allow_nil: true, length: { in: 1..255 }
@@ -25,12 +25,12 @@ class ContactNetwork < ApplicationRecord
 private
 
   def turn_blanks_into_nils
-    self.nickname    = nil if nickname.blank?
+    self.codename    = nil if codename.blank?
     self.public_name = nil if public_name.blank?
   end
 
   def strip_extra_spaces
-    self.nickname    = nickname&.strip
+    self.codename    = codename&.strip
     self.public_name = public_name&.strip
   end
 end
