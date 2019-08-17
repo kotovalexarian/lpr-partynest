@@ -4,6 +4,9 @@ ru:
       account:
         one: Аккаунт
         many: Аккаунты
+      contact_network:
+        one: Сеть контактов
+        many: Сети контактов
       federal_subject:
         one: Регион
         many: Регионы
@@ -33,6 +36,10 @@ ru:
         biography: Биография
         avatar: Аватар
         person: Человек
+      contact_network:
+        id: ID
+        nickname: Имя пользователя
+        public_name: Публичное имя
       federal_subject:
         id: ID
         regional_office: Региональное отделение

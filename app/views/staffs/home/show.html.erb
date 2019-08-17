@@ -13,5 +13,12 @@
         <%= link_to Person.model_name.human(count: 0), staff_people_path %>
       </li>
     <% end %>
+
+    <% if policy(%i[staff contact_network]).index? %>
+      <li>
+        <%= link_to ContactNetwork.model_name.human(count: 0),
+                    staff_contact_networks_path %>
+      </li>
+    <% end %>
   </ul>
 </div>

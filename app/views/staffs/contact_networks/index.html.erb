@@ -1,0 +1,29 @@
+<div class="container">
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    ContactNetwork.model_name.human(count: 0),
+  ) %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= ContactNetwork.human_attribute_name :nickname %>
+        </th>
+        <th scope="col">
+          <%= ContactNetwork.human_attribute_name :public_name %>
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @contact_networks.each do |contact_network| %>
+        <tr>
+          <td scope="row"><%= contact_network.nickname %></td>
+          <td><%= contact_network.public_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

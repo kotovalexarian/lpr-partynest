@@ -4,6 +4,9 @@ en:
       account:
         one: Account
         many: Accounts
+      contact_network:
+        one: Contact network
+        many: Contact networks
       federal_subject:
         one: State
         many: States
@@ -33,6 +36,10 @@ en:
         biography: Bio
         avatar: Avatar
         person: Person
+      contact_network:
+        id: ID
+        nickname: Nickname
+        public_name: Public name
       federal_subject:
         id: ID
         regional_office: Regional department
