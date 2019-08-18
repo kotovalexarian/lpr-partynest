@@ -36,11 +36,11 @@
           </div>
         <% end %>
 
-        <% if @account.person&.current_regional_office %>
+        <% if @account.person&.current_relationship&.regional_office %>
           <div>
             <i class="fas fa-map-marker-alt fa-fw"></i>
             <%= regional_office_link_or_none \
-                  @account.person.current_regional_office %>
+                  @account.person.current_relationship.regional_office %>
           </div>
         <% end %>
       </div>

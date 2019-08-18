@@ -99,18 +99,6 @@ RSpec.describe Person do
     end
   end
 
-  describe '#current_regional_office' do
-    it do
-      is_expected.to \
-        have_one(:current_regional_office)
-        .through(:current_relationship)
-        .source(:regional_office)
-        .dependent(:restrict_with_exception)
-    end
-
-    it { is_expected.not_to validate_presence_of :current_regional_office }
-  end
-
   describe '#person_comments' do
     it do
       is_expected.to \

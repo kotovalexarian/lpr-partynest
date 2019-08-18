@@ -21,10 +21,6 @@ class Person < ApplicationRecord
           class_name: 'Relationship',
           inverse_of: :person
 
-  has_one :current_regional_office,
-          through: :current_relationship,
-          source: :regional_office
-
   has_many :person_comments
 
   has_many :passports
