@@ -5,7 +5,7 @@ class Staffs::ContactNetworksController < ApplicationController
   def index
     authorize %i[staff contact_network]
     @contact_networks = policy_scope(
-      ContactNetwork,
+      ContactNetwork.order(codename: :asc),
       policy_scope_class: Staff::ContactNetworkPolicy::Scope,
     )
   end
