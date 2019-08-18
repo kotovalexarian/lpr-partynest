@@ -157,4 +157,64 @@ RSpec.describe RegionalOffice do
         .dependent(:restrict_with_exception)
     end
   end
+
+  describe '#all_accounts' do
+    it do
+      is_expected.to \
+        have_many(:all_accounts)
+        .class_name('Account')
+        .through(:all_people)
+        .source(:account)
+    end
+  end
+
+  describe '#current_accounts' do
+    it do
+      is_expected.to \
+        have_many(:current_accounts)
+        .class_name('Account')
+        .through(:current_people)
+        .source(:account)
+    end
+  end
+
+  describe '#current_supporter_accounts' do
+    it do
+      is_expected.to \
+        have_many(:current_supporter_accounts)
+        .class_name('Account')
+        .through(:current_supporter_people)
+        .source(:account)
+    end
+  end
+
+  describe '#current_member_accounts' do
+    it do
+      is_expected.to \
+        have_many(:current_member_accounts)
+        .class_name('Account')
+        .through(:current_member_people)
+        .source(:account)
+    end
+  end
+
+  describe '#current_regional_manager_accounts' do
+    it do
+      is_expected.to \
+        have_many(:current_regional_manager_accounts)
+        .class_name('Account')
+        .through(:current_regional_manager_people)
+        .source(:account)
+    end
+  end
+
+  describe '#current_regional_supervisor_accounts' do
+    it do
+      is_expected.to \
+        have_many(:current_regional_supervisor_accounts)
+        .class_name('Account')
+        .through(:current_regional_supervisor_people)
+        .source(:account)
+    end
+  end
 end
