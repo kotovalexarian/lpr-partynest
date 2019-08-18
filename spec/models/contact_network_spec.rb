@@ -5,6 +5,12 @@ require 'rails_helper'
 RSpec.describe ContactNetwork do
   subject { create :contact_network }
 
+  describe '#to_param' do
+    specify do
+      expect(subject.to_param).to eq subject.codename
+    end
+  end
+
   describe '#codename' do
     def allow_value(*)
       super.for :codename

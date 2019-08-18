@@ -22,6 +22,14 @@ class ContactNetwork < ApplicationRecord
 
   validates :name, allow_nil: true, length: { in: 1..255 }
 
+  ###########
+  # Methods #
+  ###########
+
+  def to_param
+    codename
+  end
+
 private
 
   def turn_blanks_into_nils
