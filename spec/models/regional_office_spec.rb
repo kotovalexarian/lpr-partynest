@@ -86,6 +86,20 @@ RSpec.describe RegionalOffice do
     end
   end
 
+  describe '#current_regional_secretary_relationship' do
+    it do
+      is_expected.to \
+        have_one(:current_regional_secretary_relationship)
+        .class_name('Relationship')
+        .inverse_of(:regional_office)
+        .dependent(:restrict_with_exception)
+        .conditions(status: :member,
+                    role: :regional_manager,
+                    regional_secretary_flag: :regional_secretary)
+        .order(person_id: :asc, from_date: :desc)
+    end
+  end
+
   describe '#all_people' do
     it do
       is_expected.to \
@@ -152,6 +166,17 @@ RSpec.describe RegionalOffice do
     end
   end
 
+  describe '#current_regional_secretary_person' do
+    it do
+      is_expected.to \
+        have_one(:current_regional_secretary_person)
+        .class_name('Person')
+        .inverse_of(:current_regional_office)
+        .through(:current_regional_secretary_relationship)
+        .source(:person)
+    end
+  end
+
   describe '#all_accounts' do
     it do
       is_expected.to \
@@ -208,6 +233,16 @@ RSpec.describe RegionalOffice do
         have_many(:current_regional_supervisor_accounts)
         .class_name('Account')
         .through(:current_regional_supervisor_people)
+        .source(:account)
+    end
+  end
+
+  describe '#current_regional_secretary_account' do
+    it do
+      is_expected.to \
+        have_one(:current_regional_secretary_account)
+        .class_name('Account')
+        .through(:current_regional_secretary_person)
         .source(:account)
     end
   end

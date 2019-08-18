@@ -55,6 +55,15 @@ class RegionalOffice < ApplicationRecord
            class_name: 'Relationship',
            inverse_of: :regional_office
 
+  has_one :current_regional_secretary_relationship,
+          lambda {
+            select('DISTINCT ON (relationships.person_id) *')
+              .regional_secretaries
+              .order(person_id: :asc, from_date: :desc)
+          },
+          class_name: 'Relationship',
+          inverse_of: :regional_office
+
   has_many :all_people,
            class_name: 'Person',
            inverse_of: :current_regional_office,
@@ -91,6 +100,12 @@ class RegionalOffice < ApplicationRecord
            through: :current_regional_supervisor_relationships,
            source: :person
 
+  has_one :current_regional_secretary_person,
+          class_name: 'Person',
+          inverse_of: :current_regional_office,
+          through: :current_regional_secretary_relationship,
+          source: :person
+
   has_many :all_accounts,
            class_name: 'Account',
            through: :all_people,
@@ -120,6 +135,11 @@ class RegionalOffice < ApplicationRecord
            class_name: 'Account',
            through: :current_regional_supervisor_people,
            source: :account
+
+  has_one :current_regional_secretary_account,
+          class_name: 'Account',
+          through: :current_regional_secretary_person,
+          source: :account
 
   ###############
   # Validations #
