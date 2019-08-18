@@ -126,16 +126,4 @@ class RegionalOffice < ApplicationRecord
   ###############
 
   validates :federal_subject, uniqueness: true
-
-  ###########
-  # Methods #
-  ###########
-
-  def current_supporters_count
-    current_supporter_people.count
-  end
-
-  def current_members_count
-    current_member_people.count
-  end
 end

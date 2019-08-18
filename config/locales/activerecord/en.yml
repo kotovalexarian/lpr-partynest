@@ -78,8 +78,6 @@ en:
         text: Text
       regional_office:
         id: ID
-        current_supporters_count: Number of supporters
-        current_members_count: Number of members
       relationship:
         id: ID
         regional_office: Regional department

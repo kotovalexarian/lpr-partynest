@@ -78,8 +78,6 @@ ru:
         text: Текст
       regional_office:
         id: ID
-        current_supporters_count: Количество сторонников
-        current_members_count: Количество членов
       relationship:
         id: ID
         regional_office: Региональное отделение
