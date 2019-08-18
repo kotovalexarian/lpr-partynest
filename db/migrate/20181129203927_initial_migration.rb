@@ -203,6 +203,8 @@ private
 
       t.references :federal_subject,
                    null: false, index: { unique: true }, foreign_key: true
+
+      t.string :name, null: false, index: { unique: true }
     end
 
     create_table :people do |t|
@@ -389,6 +391,10 @@ private
   end
 
   def change_constraints
+    constraint :regional_offices, :name, <<~SQL
+      is_good_small_text(name)
+    SQL
+
     constraint :contacts, :value, <<~SQL
       is_good_small_text(value)
     SQL

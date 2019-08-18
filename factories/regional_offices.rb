@@ -7,5 +7,7 @@ FactoryBot.define do
     end
 
     association :federal_subject
+
+    name { federal_subject&.native_name }
   end
 end

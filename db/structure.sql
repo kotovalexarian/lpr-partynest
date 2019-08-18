@@ -667,7 +667,9 @@ CREATE TABLE public.regional_offices (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    federal_subject_id bigint NOT NULL
+    federal_subject_id bigint NOT NULL,
+    name character varying NOT NULL,
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
 );
 
 
@@ -1186,6 +1188,13 @@ CREATE INDEX index_person_comments_on_person_id ON public.person_comments USING 
 --
 
 CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regional_offices USING btree (federal_subject_id);
+
+
+--
+-- Name: index_regional_offices_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_regional_offices_on_name ON public.regional_offices USING btree (name);
 
 
 --
