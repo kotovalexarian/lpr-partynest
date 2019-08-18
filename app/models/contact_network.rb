@@ -3,6 +3,12 @@
 class ContactNetwork < ApplicationRecord
   CODENAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
 
+  ################
+  # Associations #
+  ################
+
+  has_many :contacts, dependent: :restrict_with_exception
+
   #############
   # Callbacks #
   #############

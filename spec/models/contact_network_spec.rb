@@ -11,6 +11,12 @@ RSpec.describe ContactNetwork do
     end
   end
 
+  describe '#contacts' do
+    it do
+      is_expected.to have_many(:contacts).dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#codename' do
     def allow_value(*)
       super.for :codename
