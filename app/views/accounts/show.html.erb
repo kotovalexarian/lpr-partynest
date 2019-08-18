@@ -3,6 +3,8 @@
     <div class="col-md-3">
       <% if @account.avatar.attached? %>
         <%= image_tag @account.avatar, class: 'img-thumbnail mb-4' %>
+      <% else %>
+        <%= image_tag 'image_placeholder.png', class: 'img-thumbnail mb-4' %>
       <% end %>
 
       <% if @account.public_name.present? %>
