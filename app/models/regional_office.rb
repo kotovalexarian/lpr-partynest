@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RegionalOffice < ApplicationRecord
+class RegionalOffice < ApplicationRecord # rubocop:disable Metrics/ClassLength
   ################
   # Associations #
   ################
