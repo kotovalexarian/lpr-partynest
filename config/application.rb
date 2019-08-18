@@ -18,6 +18,8 @@ require 'sprockets/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require 'csv'
+
 module Partynest
   class Application < Rails::Application
     FILTER_PARAMS = %i[
