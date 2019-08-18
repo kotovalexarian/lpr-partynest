@@ -2,19 +2,13 @@
 
 class ContactNetwork < ApplicationRecord
   CODENAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
+  FORMAT_RE = /\A[^[:space:]]+(.*[^[:space:]]+)?\z/.freeze
 
   ################
   # Associations #
   ################
 
   has_many :contacts
-
-  #############
-  # Callbacks #
-  #############
-
-  before_validation :turn_blanks_into_nils
-  before_validation :strip_extra_spaces
 
   ###############
   # Validations #
@@ -26,7 +20,10 @@ class ContactNetwork < ApplicationRecord
             format: CODENAME_RE,
             uniqueness: { case_sensitive: false }
 
-  validates :name, allow_nil: true, length: { in: 1..255 }
+  validates :name,
+            presence: true,
+            length: { in: 1..255 },
+            format: FORMAT_RE
 
   ###########
   # Methods #
@@ -34,17 +31,5 @@ class ContactNetwork < ApplicationRecord
 
   def to_param
     codename
-  end
-
-private
-
-  def turn_blanks_into_nils
-    self.codename = nil if codename.blank?
-    self.name     = nil if name.blank?
-  end
-
-  def strip_extra_spaces
-    self.codename = codename&.strip
-    self.name     = name&.strip
   end
 end

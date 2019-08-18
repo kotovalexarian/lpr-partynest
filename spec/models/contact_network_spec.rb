@@ -54,38 +54,25 @@ RSpec.describe ContactNetwork do
       super.for :name
     end
 
-    it { is_expected.to allow_value nil }
-    it { is_expected.to allow_value '' }
-    it { is_expected.to allow_value ' ' }
+    it { is_expected.to validate_presence_of :name }
+
+    it do
+      is_expected.to validate_length_of(:name).is_at_least(1).is_at_most(255)
+    end
+
+    it { is_expected.not_to allow_value nil }
+    it { is_expected.not_to allow_value '' }
+    it { is_expected.not_to allow_value ' ' }
 
     it { is_expected.to allow_value Faker::Name.name }
     it { is_expected.to allow_value Faker::Name.first_name }
     it { is_expected.to allow_value 'Foo Bar' }
 
-    it { is_expected.to validate_length_of(:name).is_at_most(255) }
-
-    context 'when it was set to blank value' do
-      subject { build :contact_network, name: ' ' * rand(100) }
-
-      before { subject.validate }
-
-      specify do
-        expect(subject.name).to eq nil
-      end
-    end
-
-    context 'when it was set to value with leading and trailing spaces' do
-      subject { create :contact_network, name: name }
-
-      let :name do
-        "#{' ' * rand(4)}#{Faker::Name.name}#{' ' * rand(4)}"
-      end
-
-      before { subject.validate }
-
-      specify do
-        expect(subject.name).to eq name.strip
-      end
-    end
+    it { is_expected.not_to allow_value ' Foo' }
+    it { is_expected.not_to allow_value 'Foo ' }
+    it { is_expected.not_to allow_value "\tFoo" }
+    it { is_expected.not_to allow_value "Foo\t" }
+    it { is_expected.not_to allow_value "\nFoo" }
+    it { is_expected.not_to allow_value "Foo\n" }
   end
 end
