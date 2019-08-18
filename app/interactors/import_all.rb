@@ -8,12 +8,12 @@ class ImportAll
   end
 
   def call
-    import 'LPR_PEOPLE_ALL.csv',   ImportPerson
-    import 'LPR_CONTACTS_ALL.csv', ImportContact
+    import 'LPR_PEOPLE_ALL.csv',        ImportPerson
+    import 'LPR_CONTACTS_ALL.csv',      ImportContact
+    import 'LPR_PARTY_MEMBERS_ALL.csv', ImportRelationship
 
     # TODO: Implement this:
     #
-    # LPR_PARTY_MEMBERS_ALL.csv
     # LPR_REGIONAL_DEPTS_ALL.csv
 
     # Imported in "db/seeds.rb":
