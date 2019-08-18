@@ -20,7 +20,7 @@ class Relationship < ApplicationRecord
 
   belongs_to :person, inverse_of: :all_relationships
 
-  belongs_to :regional_office, inverse_of: :all_relationships
+  belongs_to :regional_office
 
   belongs_to :initiator_account,
              class_name: 'Account',
