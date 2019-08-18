@@ -45,6 +45,10 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*.rb'
 
+Naming/PredicateName:
+  Exclude:
+    - 'app/models/application_record.rb'
+
 Rails:
   Enabled: true
 
