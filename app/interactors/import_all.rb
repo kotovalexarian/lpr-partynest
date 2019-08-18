@@ -10,6 +10,22 @@ class ImportAll
   def call
     import 'LPR_PEOPLE_ALL.csv',   ImportPerson
     import 'LPR_CONTACTS_ALL.csv', ImportContact
+
+    # TODO: Implement this:
+    #
+    # LPR_PARTY_MEMBERS_ALL.csv
+    # LPR_REGIONAL_DEPTS_ALL.csv
+
+    # Imported in "db/seeds.rb":
+    #
+    # LPR_CONTACT_NETWORKS_ALL.csv
+    # LPR_REGIONS_ALL.csv
+
+    # Unnecessary:
+    #
+    # LPR_EVENTS_ALL.csv
+    # LPR_STATUSES_ALL.csv
+    # LPR_USERS.csv
   end
 
 private
