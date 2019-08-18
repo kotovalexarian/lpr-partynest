@@ -39,6 +39,7 @@ ru:
       contact_network:
         id: ID
         codename: Кодовое имя
+        contacts: Контакты
         name: Название
       federal_subject:
         id: ID

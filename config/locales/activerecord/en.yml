@@ -39,6 +39,7 @@ en:
       contact_network:
         id: ID
         codename: Codename
+        contacts: Contacts
         name: Name
       federal_subject:
         id: ID
