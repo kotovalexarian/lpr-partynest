@@ -383,6 +383,7 @@ private
         execute <<~SQL
           ALTER SEQUENCE contact_networks_id_seq RESTART WITH 100;
           ALTER SEQUENCE federal_subjects_id_seq RESTART WITH 100;
+          ALTER SEQUENCE regional_offices_id_seq RESTART WITH 100;
           ALTER SEQUENCE contacts_id_seq         RESTART WITH 4000;
           ALTER SEQUENCE people_id_seq           RESTART WITH 3000;
         SQL
