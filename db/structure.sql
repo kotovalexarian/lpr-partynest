@@ -417,9 +417,9 @@ CREATE TABLE public.contact_networks (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     codename character varying NOT NULL,
-    public_name character varying NOT NULL,
+    name character varying NOT NULL,
     CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
-    CONSTRAINT public_name CHECK (public.is_good_small_text((public_name)::text))
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
 );
 
 
@@ -1105,10 +1105,10 @@ CREATE UNIQUE INDEX index_contact_networks_on_codename ON public.contact_network
 
 
 --
--- Name: index_contact_networks_on_public_name; Type: INDEX; Schema: public; Owner: -
+-- Name: index_contact_networks_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_contact_networks_on_public_name ON public.contact_networks USING btree (public_name);
+CREATE UNIQUE INDEX index_contact_networks_on_name ON public.contact_networks USING btree (name);
 
 
 --

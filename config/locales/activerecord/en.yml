@@ -39,7 +39,7 @@ en:
       contact_network:
         id: ID
         codename: Codename
-        public_name: Public name
+        name: Name
       federal_subject:
         id: ID
         regional_office: Regional department

@@ -37,9 +37,9 @@ RSpec.describe ContactNetwork do
     it { is_expected.not_to allow_value '1foo' }
   end
 
-  describe '#public_name' do
+  describe '#name' do
     def allow_value(*)
-      super.for :public_name
+      super.for :name
     end
 
     it { is_expected.to allow_value nil }
@@ -50,25 +50,29 @@ RSpec.describe ContactNetwork do
     it { is_expected.to allow_value Faker::Name.first_name }
     it { is_expected.to allow_value 'Foo Bar' }
 
-    it { is_expected.to validate_length_of(:public_name).is_at_most(255) }
+    it { is_expected.to validate_length_of(:name).is_at_most(255) }
 
     context 'when it was set to blank value' do
-      subject { create :personal_account, public_name: ' ' * rand(100) }
+      subject { build :contact_network, name: ' ' * rand(100) }
+
+      before { subject.validate }
 
       specify do
-        expect(subject.public_name).to eq nil
+        expect(subject.name).to eq nil
       end
     end
 
     context 'when it was set to value with leading and trailing spaces' do
-      subject { create :personal_account, public_name: public_name }
+      subject { create :contact_network, name: name }
 
-      let :public_name do
+      let :name do
         "#{' ' * rand(4)}#{Faker::Name.name}#{' ' * rand(4)}"
       end
 
+      before { subject.validate }
+
       specify do
-        expect(subject.public_name).to eq public_name.strip
+        expect(subject.name).to eq name.strip
       end
     end
   end

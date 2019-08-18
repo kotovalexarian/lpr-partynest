@@ -170,8 +170,8 @@ private
     create_table :contact_networks do |t|
       t.timestamps null: false
 
-      t.string :codename,    null: false, index: { unique: true }
-      t.string :public_name, null: false, index: { unique: true }
+      t.string :codename, null: false, index: { unique: true }
+      t.string :name,     null: false, index: { unique: true }
     end
 
     create_table :contact_lists do |t|
@@ -397,8 +397,8 @@ private
       is_codename(codename)
     SQL
 
-    constraint :contact_networks, :public_name, <<~SQL
-      is_good_small_text(public_name)
+    constraint :contact_networks, :name, <<~SQL
+      is_good_small_text(name)
     SQL
 
     constraint :relationships, :role, <<~SQL

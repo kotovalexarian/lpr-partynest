@@ -20,17 +20,17 @@ class ContactNetwork < ApplicationRecord
             format: CODENAME_RE,
             uniqueness: { case_sensitive: false }
 
-  validates :public_name, allow_nil: true, length: { in: 1..255 }
+  validates :name, allow_nil: true, length: { in: 1..255 }
 
 private
 
   def turn_blanks_into_nils
-    self.codename    = nil if codename.blank?
-    self.public_name = nil if public_name.blank?
+    self.codename = nil if codename.blank?
+    self.name     = nil if name.blank?
   end
 
   def strip_extra_spaces
-    self.codename    = codename&.strip
-    self.public_name = public_name&.strip
+    self.codename = codename&.strip
+    self.name     = name&.strip
   end
 end

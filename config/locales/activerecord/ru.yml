@@ -39,7 +39,7 @@ ru:
       contact_network:
         id: ID
         codename: Кодовое имя
-        public_name: Публичное имя
+        name: Название
       federal_subject:
         id: ID
         regional_office: Региональное отделение
