@@ -94,7 +94,6 @@ RSpec.describe RegionalOffice do
         .inverse_of(:current_regional_office)
         .through(:all_relationships)
         .source(:person)
-        .dependent(:restrict_with_exception)
     end
   end
 
@@ -106,7 +105,6 @@ RSpec.describe RegionalOffice do
         .inverse_of(:current_regional_office)
         .through(:current_relationships)
         .source(:person)
-        .dependent(:restrict_with_exception)
     end
   end
 
@@ -118,7 +116,6 @@ RSpec.describe RegionalOffice do
         .inverse_of(:current_regional_office)
         .through(:current_supporter_relationships)
         .source(:person)
-        .dependent(:restrict_with_exception)
     end
   end
 
@@ -130,7 +127,6 @@ RSpec.describe RegionalOffice do
         .inverse_of(:current_regional_office)
         .through(:current_member_relationships)
         .source(:person)
-        .dependent(:restrict_with_exception)
     end
   end
 
@@ -142,7 +138,6 @@ RSpec.describe RegionalOffice do
         .inverse_of(:current_regional_office)
         .through(:current_regional_manager_relationships)
         .source(:person)
-        .dependent(:restrict_with_exception)
     end
   end
 
@@ -154,7 +149,6 @@ RSpec.describe RegionalOffice do
         .inverse_of(:current_regional_office)
         .through(:current_regional_supervisor_relationships)
         .source(:person)
-        .dependent(:restrict_with_exception)
     end
   end
 
