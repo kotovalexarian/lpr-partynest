@@ -9,5 +9,5 @@ class ContactList < ApplicationRecord
 
   has_one :person
 
-  has_many :contacts, dependent: :restrict_with_exception
+  has_many :contacts
 end

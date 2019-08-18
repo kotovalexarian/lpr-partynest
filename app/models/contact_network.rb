@@ -7,7 +7,7 @@ class ContactNetwork < ApplicationRecord
   # Associations #
   ################
 
-  has_many :contacts, dependent: :restrict_with_exception
+  has_many :contacts
 
   #############
   # Callbacks #
