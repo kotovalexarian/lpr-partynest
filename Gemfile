@@ -7,11 +7,11 @@ source 'https://rubygems.org'
 git_source(:github) { |s| "https://github.com/#{s}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
-gem 'rails', '~> 6.0.0.rc1'
+gem 'rails', '~> 6.0.0'
 
 # A set of common locale data and translations
 # to internationalize and/or localize your Rails applications.
-gem 'rails-i18n', '~> 6.0.0.beta1'
+gem 'rails-i18n', '~> 6.0.0'
 
 # Use postgresql as the database for Active Record.
 gem 'pg', '>= 0.18', '< 2.0'
