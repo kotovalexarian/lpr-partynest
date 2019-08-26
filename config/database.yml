@@ -24,4 +24,4 @@ cucumber:
 production:
   <<: *default
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_production' } %>
-  password: 'password'
+  password: <%= Rails.application.credentials.postgres_password %>
