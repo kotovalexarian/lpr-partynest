@@ -1,13 +1,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch('POSTGRES_POOL') { 5 } %>
-  host: <%= ENV.fetch('POSTGRES_HOST') { 'localhost' } %>
-  port: <%= ENV.fetch('POSTGRES_PORT') { 5432 } %>
+  pool:     <%= ENV.fetch('POSTGRES_POOL') { 5 } %>
+  host:     <%= ENV.fetch('POSTGRES_HOST') { 'localhost' } %>
+  port:     <%= ENV.fetch('POSTGRES_PORT') { 5432 } %>
+  username: <%= ENV.fetch('POSTGRES_USER') { 'partynest' } %>
 
 unsafe: &unsafe
   <<: *default
-  username: <%= ENV.fetch('POSTGRES_USER') { 'partynest' } %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password' } %>
 
 development:
@@ -24,5 +24,4 @@ cucumber:
 production:
   <<: *default
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_production' } %>
-  username: <%= ENV.fetch('POSTGRES_USER') { 'doadmin' } %>
-  password: <%= Rails.application.credentials.postgres_password[ENV.fetch('POSTGRES_USER') { 'partynest' }.to_sym] %>
+  password: 'password'
