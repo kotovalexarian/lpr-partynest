@@ -1,5 +1,7 @@
 ru:
   helpers:
     submit:
+      person:
+        create: Отправить
       person_comment:
         create: Отправить

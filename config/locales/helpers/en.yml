@@ -1,5 +1,7 @@
 en:
   helpers:
     submit:
+      person:
+        create: Send
       person_comment:
         create: Send
