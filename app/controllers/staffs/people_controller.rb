@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Staffs::PeopleController < ApplicationController
-  before_action :set_person, except: %i[index new]
+  before_action :set_person, except: %i[index new create]
 
   # GET /staff/people
   def index
@@ -21,6 +21,18 @@ class Staffs::PeopleController < ApplicationController
   def new
     @person = Person.new
     authorize [:staff, @person]
+  end
+
+  # POST /staff/people
+  def create
+    @person = Person.new permitted_attributes [:staff, Person]
+    @person.contact_list = ContactList.new
+
+    authorize [:staff, @person]
+
+    return render :new unless @person.save
+
+    redirect_to [:staff, @person]
   end
 
 private
