@@ -72,6 +72,7 @@ en:
         sex: Sex
         date_of_birth: Date of birth
         place_of_birth: Place of birth
+        photo: Photo
       person_comment:
         id: ID
         attachment: Attachment

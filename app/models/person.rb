@@ -7,6 +7,8 @@ class Person < ApplicationRecord
   # Associations #
   ################
 
+  has_one_attached :photo
+
   belongs_to :contact_list
 
   has_one :account
@@ -30,6 +32,8 @@ class Person < ApplicationRecord
   ###############
 
   validates :contact_list, uniqueness: true
+
+  validates :photo, allow_nil: true, image: true
 
   ###########
   # Methods #

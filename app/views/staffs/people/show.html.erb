@@ -9,6 +9,14 @@
 
   <div class="row">
     <div class="col-md-4">
+      <% if @person.photo.attached? %>
+        <%= image_tag @person.photo, class: 'img-thumbnail mb-4' %>
+      <% else %>
+        <%= image_tag 'image_placeholder.png', class: 'img-thumbnail mb-4' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-4">
       <dl>
         <dt><%= Person.human_attribute_name :account %></dt>
         <dd><%= staff_account_link_or_none @person.account %></dd>
@@ -60,9 +68,6 @@
                 @person.current_relationship&.initiator_account %>
         </dd>
       </dl>
-    </div>
-
-    <div class="col-md-4">
     </div>
   </div>
 </div>

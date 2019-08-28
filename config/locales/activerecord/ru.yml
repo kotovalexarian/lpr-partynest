@@ -72,6 +72,7 @@ ru:
         sex: Пол
         date_of_birth: Дата рождения
         place_of_birth: Место рождения
+        photo: Фотография
       person_comment:
         id: ID
         attachment: Приложение
