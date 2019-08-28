@@ -9,6 +9,10 @@ class Staff::PersonPolicy < ApplicationPolicy
     account&.superuser?
   end
 
+  def create?
+    account&.superuser?
+  end
+
   class Scope < Scope
     def resolve
       return scope.all if account&.superuser?

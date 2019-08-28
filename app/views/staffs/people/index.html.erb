@@ -4,7 +4,18 @@
     Person.model_name.human(count: 0),
   ) %>
 
-  <table class="table">
+  <% if policy(%i[staff person]).new? %>
+    <div class="btn-group" role="group">
+      <% if policy(%i[staff person]).new? %>
+        <%= link_to translate(:create),
+                    new_staff_person_path,
+                    class: 'btn btn-primary',
+                    role: :button %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <table class="table mt-3">
     <thead>
       <tr>
         <th scope="col">

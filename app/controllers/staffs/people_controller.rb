@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Staffs::PeopleController < ApplicationController
-  before_action :set_person, except: :index
+  before_action :set_person, except: %i[index new]
 
   # GET /staff/people
   def index
@@ -14,6 +14,12 @@ class Staffs::PeopleController < ApplicationController
 
   # GET /staff/people/:id
   def show
+    authorize [:staff, @person]
+  end
+
+  # GET /staff/people/new
+  def new
+    @person = Person.new
     authorize [:staff, @person]
   end
 

@@ -52,7 +52,7 @@ Rails.application.routes.draw do
 
     resources :accounts, param: :nickname, only: %i[index show]
 
-    resources :people, only: %i[index show] do
+    resources :people, only: %i[index show new] do
       resources :person_comments,
                 path: 'comments',
                 controller: 'people/person_comments',
