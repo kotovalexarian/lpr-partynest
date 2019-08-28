@@ -3,7 +3,7 @@
 module RegionalOfficesHelper
   def regional_office_link_or_none(regional_office)
     if regional_office.nil?
-      translate :none
+      none
     elsif policy(regional_office.federal_subject).show?
       link_to regional_office.federal_subject.display_name,
               regional_office.federal_subject

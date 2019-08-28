@@ -9,6 +9,12 @@ module ApplicationHelper
     controller_path.start_with?('staff')
   end
 
+  def none
+    tag.i class: 'text-muted' do
+      translate :none
+    end
+  end
+
   def translate_enum(type, value)
     translate value, scope: [:enums, type]
   end

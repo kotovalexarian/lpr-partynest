@@ -3,7 +3,7 @@
 module AccountsHelper
   def account_link_or_none(account)
     if account.nil?
-      translate :none
+      none
     elsif policy(account).show?
       link_to account.nickname, account
     else
@@ -13,7 +13,7 @@ module AccountsHelper
 
   def staff_account_link_or_none(account)
     if account.nil?
-      translate :none
+      none
     elsif policy([:staff, account]).show?
       link_to account.nickname, [:staff, account]
     elsif policy(account).show?

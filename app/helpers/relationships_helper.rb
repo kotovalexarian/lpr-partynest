@@ -3,7 +3,7 @@
 module RelationshipsHelper
   def relationship_from_date_or_none(relationship)
     if relationship&.from_date.blank?
-      translate :none
+      none
     else
       localize relationship.from_date, format: :long
     end
@@ -15,7 +15,7 @@ module RelationshipsHelper
 
   def relationship_position_or_none(relationship)
     if relationship&.position.nil?
-      translate :none
+      none
     else
       translate_enum :relationship_position, relationship.position
     end
@@ -23,7 +23,7 @@ module RelationshipsHelper
 
   def relationship_short_position_or_none(relationship)
     if relationship&.position.nil?
-      translate :none
+      none
     else
       translate_enum :relationship_short_position, relationship.position
     end
