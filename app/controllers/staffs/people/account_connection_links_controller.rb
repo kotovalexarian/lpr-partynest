@@ -8,6 +8,11 @@ class Staffs::People::AccountConnectionLinksController < ApplicationController
     authorize [:staff, @person, AccountConnectionLink.new(@person)]
   end
 
+  # POST /staff/people/:person_id/account_connection_link
+  def create
+    authorize [:staff, @person, AccountConnectionLink.new(@person)]
+  end
+
 private
 
   def set_person

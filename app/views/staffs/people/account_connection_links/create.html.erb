@@ -10,12 +10,5 @@
     <p class="lead">
       <%= translate '.description' %>
     </p>
-
-    <% if policy([:staff, @person, AccountConnectionLink.new(@person)]).create? %>
-      <%= link_to translate('.generate'),
-                  staff_person_account_connection_link_path(@person),
-                  method: :post,
-                  class: 'btn btn-primary btn-lg' %>
-    <% end %>
   </div>
 </div>

@@ -16,3 +16,5 @@ en:
         new:
           link_to_connect_account: Link to connect account
           generate: Generate
+        create:
+          link_to_connect_account: Link to connect account
