@@ -7,13 +7,17 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link' do
 
   let(:current_account) { create :superuser_account }
 
-  before do
-    sign_in current_account.user if current_account&.user
-
+  def make_request
     post "/staff/people/#{person.to_param}/account_connection_link"
   end
 
+  before do
+    sign_in current_account.user if current_account&.user
+  end
+
   for_account_types nil, :usual do
+    before { make_request }
+
     specify do
       expect(response).to have_http_status :forbidden
     end
@@ -21,7 +25,17 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link' do
 
   for_account_types :superuser do
     specify do
-      expect(response).to have_http_status :ok
+      expect { make_request }.to(
+        change { person.reload.account_connection_token },
+      )
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :ok
+      end
     end
   end
 
@@ -29,7 +43,17 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link' do
     let(:person) { create(:personal_account).person }
 
     specify do
-      expect(response).to have_http_status :forbidden
+      expect { make_request }.not_to(
+        change { person.reload.account_connection_token },
+      )
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :forbidden
+      end
     end
   end
 end

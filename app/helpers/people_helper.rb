@@ -10,4 +10,8 @@ module PeopleHelper
       person.full_name
     end
   end
+
+  def person_account_connection_link(person)
+    new_account_connection_link_url token: person.account_connection_token
+  end
 end

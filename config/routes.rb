@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   # Account routes #
   ##################
 
+  resource :account_connection_link, only: :new
+
   namespace :settings do
     resource :profile, only: %i[edit update]
   end

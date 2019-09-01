@@ -12,7 +12,31 @@ RSpec.describe Person do
   end
 
   describe '#account_connection_token' do
+    def allow_value(*)
+      super.for :account_connection_token
+    end
+
     it { is_expected.not_to validate_presence_of :account_connection_token }
+
+    it do
+      is_expected.to \
+        validate_length_of(:account_connection_token).is_equal_to(32)
+    end
+
+    it { is_expected.to allow_value nil }
+    it { is_expected.to allow_value SecureRandom.alphanumeric(32) }
+    it { is_expected.to allow_value '_' * 32 }
+
+    it { is_expected.not_to allow_value '' }
+    it { is_expected.not_to allow_value 'q' }
+    it { is_expected.not_to allow_value SecureRandom.alphanumeric(31) }
+    it { is_expected.not_to allow_value SecureRandom.alphanumeric(33) }
+
+    %w[
+      ~ ` ! @ # $ % ^ & * ( ) - = + [ { ] } \ | ; : ' " , < . > / ?
+    ].each do |char|
+      it { is_expected.not_to allow_value char * 32 }
+    end
   end
 
   describe '#contact_list' do

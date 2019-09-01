@@ -10,5 +10,12 @@
     <p class="lead">
       <%= translate '.description' %>
     </p>
+
+    <input
+       type="text"
+       class="form-control"
+       readonly="readonly"
+       value="<%= person_account_connection_link @person %>"
+     >
   </div>
 </div>

@@ -3,6 +3,8 @@
 class Person < ApplicationRecord
   include Nameable
 
+  ACCOUNT_CONNECTION_TOKEN_RE = /\A\w+\z/.freeze
+
   ################
   # Associations #
   ################
@@ -34,6 +36,12 @@ class Person < ApplicationRecord
   validates :contact_list, uniqueness: true
 
   validates :photo, allow_nil: true, image: true
+
+  validates :account_connection_token,
+            allow_nil: true,
+            allow_blank: false,
+            length: { is: 32 },
+            format: { with: ACCOUNT_CONNECTION_TOKEN_RE }
 
   ###########
   # Methods #
