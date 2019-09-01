@@ -6,13 +6,13 @@ class ImportRelationship
   def call
     return if status.nil? || regional_office_id.nil?
 
-    if status == :supporter || status == :excluded
-      create_supporter_relationship
+    case status
+    when :supporter then create_supporter_relationship
+    when :member    then create_member_relationship
+    when :excluded  then create_excluded_relationship
     else
-      create_member_relationship
+      raise "Invalid status: #{status.inspect}"
     end
-
-    create_excluded_relationship if status == :excluded
   end
 
 private
