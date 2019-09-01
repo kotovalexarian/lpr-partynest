@@ -19,7 +19,22 @@
     <div class="col-md-4">
       <dl>
         <dt><%= Person.human_attribute_name :account %></dt>
-        <dd><%= staff_account_link_or_none @person.account %></dd>
+        <dd>
+          <%= staff_account_link_or_none @person.account %>
+
+          <% if policy([:staff,
+                        @person,
+                        AccountConnectionLink.new(@person)]).new? %>
+            <br/>
+
+            <small>
+              <%= link_to(
+                translate('.create_link_to_connect_account'),
+                new_staff_person_account_connection_link_path(@person),
+              ) %>
+            </small>
+          <% end %>
+        </dd>
 
         <dt><%= Person.human_attribute_name :last_name %></dt>
         <dd><%= truncate @person.last_name %></dd>

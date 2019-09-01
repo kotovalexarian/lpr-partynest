@@ -11,3 +11,7 @@ en:
     people:
       show:
         accept_as_supporter: Accept as supporter
+        create_link_to_connect_account: Create link to connect account
+      account_connection_links:
+        new:
+          link_to_connect_account: Link to connect account

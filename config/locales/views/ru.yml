@@ -11,3 +11,8 @@ ru:
     people:
       show:
         accept_as_supporter: Принять в качестве сторонника
+        create_link_to_connect_account: >
+          Создать ссылку для присоединения аккаунта
+      account_connection_links:
+        new:
+          link_to_connect_account: Ссылка для присоединения аккаунта

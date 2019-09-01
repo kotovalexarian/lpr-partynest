@@ -65,6 +65,10 @@ Rails.application.routes.draw do
       resources :passports,
                 controller: 'people/passports',
                 only: :index
+
+      resource :account_connection_link,
+               controller: 'people/account_connection_links',
+               only: :new
     end
   end
 end

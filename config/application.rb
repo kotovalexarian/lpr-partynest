@@ -41,6 +41,7 @@ module Partynest
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += [
+      config.root.join('app', 'primitives'),
       config.root.join('app', 'validators'),
     ]
 
