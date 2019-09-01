@@ -40,15 +40,6 @@ private
   end
 
   def change_functions
-    func :is_guest_token, <<~SQL
-      (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
-      $$
-      BEGIN
-        RETURN str ~ '^[0-9a-f]{32}$';
-      END;
-      $$;
-    SQL
-
     func :is_nickname, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -260,8 +251,7 @@ private
     create_table :accounts do |t|
       t.timestamps null: false
 
-      t.string :guest_token, null: false, index: { unique: true }
-      t.string :nickname,    null: false, index: { unique: true }
+      t.string :nickname, null: false, index: { unique: true }
 
       t.string :public_name
       t.text   :biography
@@ -419,10 +409,6 @@ private
 
     constraint :relationships, :regional_secretary_flag, <<~SQL
       regional_secretary_flag IS NULL OR role = 'regional_manager'
-    SQL
-
-    constraint :accounts, :guest_token, <<~SQL
-      is_guest_token(guest_token)
     SQL
 
     constraint :accounts, :nickname, <<~SQL

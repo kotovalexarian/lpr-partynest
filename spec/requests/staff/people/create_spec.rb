@@ -15,7 +15,7 @@ RSpec.describe 'POST /staff/people' do
     sign_in current_account.user if current_account&.user
   end
 
-  for_account_types nil, :guest, :usual do
+  for_account_types nil, :usual do
     specify do
       expect { make_request }.not_to change(Person, :count)
     end

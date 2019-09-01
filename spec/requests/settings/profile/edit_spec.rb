@@ -14,12 +14,6 @@ RSpec.describe 'GET /settings/profile/edit' do
     end
   end
 
-  xfor_account_types :guest do
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
   for_account_types :usual, :superuser do
     specify do
       expect(response).to have_http_status :ok

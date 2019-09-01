@@ -7,7 +7,7 @@ RSpec.describe ApplicationPolicy do
 
   let(:record) { nil }
 
-  for_account_types nil, :guest, :usual, :superuser do
+  for_account_types nil, :usual, :superuser do
     it do
       is_expected.to \
         forbid_actions %i[index show new create edit update destroy]

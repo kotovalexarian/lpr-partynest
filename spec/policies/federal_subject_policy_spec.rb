@@ -14,7 +14,7 @@ RSpec.describe FederalSubjectPolicy do
 
   before { create_list :federal_subject, 3 }
 
-  for_account_types nil, :guest, :usual, :superuser do
+  for_account_types nil, :usual, :superuser do
     it { is_expected.to permit_actions %i[index show] }
     it { is_expected.to forbid_new_and_create_actions }
     it { is_expected.to forbid_edit_and_update_actions }

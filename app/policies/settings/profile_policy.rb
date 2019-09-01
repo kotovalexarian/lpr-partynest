@@ -2,7 +2,7 @@
 
 class Settings::ProfilePolicy < ApplicationPolicy
   def update?
-    account && !account.guest?
+    !!account
   end
 
   def permitted_attributes_for_update

@@ -21,7 +21,7 @@ RSpec.describe 'PATCH/PUT /settings/profile' do
     patch '/settings/profile', params: { account: account_attributes }
   end
 
-  for_account_types nil, :guest do
+  for_account_types nil do
     before { make_request }
 
     specify do

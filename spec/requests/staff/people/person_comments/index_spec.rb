@@ -14,7 +14,7 @@ RSpec.describe 'GET /staff/people/:person_id/comments' do
     get "/staff/people/#{person.to_param}/comments"
   end
 
-  for_account_types nil, :guest, :usual do
+  for_account_types nil, :usual do
     specify do
       expect(response).to have_http_status :forbidden
     end

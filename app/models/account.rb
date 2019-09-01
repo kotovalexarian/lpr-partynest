@@ -3,12 +3,6 @@
 class Account < ApplicationRecord
   NICKNAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
 
-  ##########
-  # Scopes #
-  ##########
-
-  scope :guests, -> { includes(:user).where(users: { id: nil }) }
-
   ################
   # Associations #
   ################
@@ -33,8 +27,6 @@ class Account < ApplicationRecord
 
   before_validation :turn_blanks_into_nils
   before_validation :strip_extra_spaces
-
-  before_create :generate_guest_token
 
   ###############
   # Validations #
@@ -66,10 +58,6 @@ class Account < ApplicationRecord
     nickname
   end
 
-  def guest?
-    user.nil?
-  end
-
   def can_access_sidekiq_web_interface?
     superuser?
   end
@@ -90,10 +78,6 @@ private
 
   def generate_nickname
     self.nickname ||= "noname_#{SecureRandom.hex(8)}"
-  end
-
-  def generate_guest_token
-    self.guest_token ||= SecureRandom.hex
   end
 
   def turn_blanks_into_nils

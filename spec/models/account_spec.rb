@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe Account do
   subject { create :personal_account }
 
-  pending '.guests'
-  pending '#guest?'
   pending '#can_access_sidekiq_web_interface?'
 
   describe '#to_param' do
@@ -177,11 +175,6 @@ RSpec.describe Account do
     let(:result) { subject.can_initiate_relationship? regional_office }
 
     let(:regional_office) { create :regional_office }
-
-    context 'for guest account' do
-      subject { create :guest_account }
-      specify { expect(result).to equal false }
-    end
 
     context 'for usual account' do
       subject { create :usual_account }

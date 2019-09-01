@@ -15,7 +15,7 @@ RSpec.describe 'GET /staff/people/:person_id/relationships' do
     get "/staff/people/#{person.to_param}/relationships"
   end
 
-  for_account_types nil, :guest, :usual do
+  for_account_types nil, :usual do
     specify do
       expect(response).to have_http_status :forbidden
     end

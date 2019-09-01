@@ -227,19 +227,6 @@ $_$;
 
 
 --
--- Name: is_guest_token(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION public.is_guest_token(str text) RETURNS boolean
-    LANGUAGE plpgsql IMMUTABLE
-    AS $_$
-BEGIN
-  RETURN str ~ '^[0-9a-f]{32}$';
-END;
-$_$;
-
-
---
 -- Name: is_nickname(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -265,7 +252,6 @@ CREATE TABLE public.accounts (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    guest_token character varying NOT NULL,
     nickname character varying NOT NULL,
     public_name character varying,
     biography text,
@@ -273,7 +259,6 @@ CREATE TABLE public.accounts (
     person_id bigint,
     contact_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_big_text(biography))),
-    CONSTRAINT guest_token CHECK (public.is_guest_token((guest_token)::text)),
     CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
     CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_small_text((public_name)::text)))
 );
@@ -1055,13 +1040,6 @@ ALTER TABLE ONLY public.users
 --
 
 CREATE UNIQUE INDEX index_accounts_on_contact_list_id ON public.accounts USING btree (contact_list_id);
-
-
---
--- Name: index_accounts_on_guest_token; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_accounts_on_guest_token ON public.accounts USING btree (guest_token);
 
 
 --

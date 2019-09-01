@@ -10,7 +10,7 @@ RSpec.describe 'GET /accounts/:nickname' do
     get "/accounts/#{account_record.nickname}"
   end
 
-  for_account_types nil, :guest, :usual, :superuser do
+  for_account_types nil, :usual, :superuser do
     specify do
       expect(response).to have_http_status :ok
     end

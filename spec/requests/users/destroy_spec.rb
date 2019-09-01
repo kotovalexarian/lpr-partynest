@@ -11,7 +11,7 @@ RSpec.describe 'DELETE /users' do
     sign_in current_account.user if current_account&.user
   end
 
-  for_account_types nil, :guest do
+  for_account_types nil do
     specify do
       expect { make_request }.not_to change(User, :count)
     end

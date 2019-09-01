@@ -9,7 +9,7 @@ RSpec.describe 'GET /staff/sidekiq' do
     get '/staff/sidekiq'
   end
 
-  for_account_types nil, :guest do
+  for_account_types nil do
     specify do
       expect(response).to redirect_to @new_user_session_url
     end

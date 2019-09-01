@@ -6,7 +6,6 @@ RSpec.describe 'GET /staff/accounts' do
   before do
     sign_in current_account.user if current_account&.user
 
-    create :guest_account
     create :usual_account
     create :personal_account
     create :superuser_account
@@ -14,7 +13,7 @@ RSpec.describe 'GET /staff/accounts' do
     get '/staff/accounts'
   end
 
-  for_account_types nil, :guest, :usual do
+  for_account_types nil, :usual do
     specify do
       expect(response).to have_http_status :forbidden
     end

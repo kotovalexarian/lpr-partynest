@@ -21,10 +21,6 @@ class Users::SessionsController < Devise::SessionsController
   def destroy
     authorize %i[users session]
     super
-    # super do
-    #   set_flash_message! :notice, :signed_out if current_account&.guest?
-    #   session[:guest_account_id] = nil
-    # end
   end
 
 protected

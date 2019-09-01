@@ -7,7 +7,7 @@ RSpec.describe AccountPolicy do
 
   let!(:record) { create :personal_account }
 
-  for_account_types nil, :guest, :usual, :superuser do
+  for_account_types nil, :usual, :superuser do
     it { is_expected.to permit_action :show }
 
     it { is_expected.to forbid_action :index }

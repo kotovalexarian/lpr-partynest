@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user do
-    association :account, factory: :guest_account
+    association :account, factory: :initial_account
 
     email { Faker::Internet.email }
     password { Faker::Internet.password }
