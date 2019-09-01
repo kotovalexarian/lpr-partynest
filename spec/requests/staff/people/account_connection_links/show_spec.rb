@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /staff/people/:person_id/account_connection_link/new' do
+RSpec.describe 'GET /staff/people/:person_id/account_connection_link' do
   let(:person) { create :initial_person }
 
   let(:current_account) { create :superuser_account }
@@ -10,7 +10,7 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link/new' do
   before do
     sign_in current_account.user if current_account&.user
 
-    get "/staff/people/#{person.to_param}/account_connection_link/new"
+    get "/staff/people/#{person.to_param}/account_connection_link"
   end
 
   for_account_types nil, :usual do
@@ -29,7 +29,7 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link/new' do
     let(:person) { create(:personal_account).person }
 
     specify do
-      expect(response).to have_http_status :forbidden
+      expect(response).to have_http_status :ok
     end
   end
 end

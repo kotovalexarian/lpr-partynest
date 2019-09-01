@@ -3,8 +3,8 @@
 class Staffs::People::AccountConnectionLinksController < ApplicationController
   before_action :set_person
 
-  # GET /staff/people/:person_id/account_connection_link/new
-  def new
+  # GET /staff/people/:person_id/account_connection_link
+  def show
     authorize [:staff, @person, AccountConnectionLink.new(@person)]
   end
 
@@ -12,6 +12,7 @@ class Staffs::People::AccountConnectionLinksController < ApplicationController
   def create
     authorize [:staff, @person, AccountConnectionLink.new(@person)]
     @person.update! account_connection_token: SecureRandom.alphanumeric(32)
+    redirect_to staff_person_account_connection_link_url(@person)
   end
 
 private

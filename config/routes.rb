@@ -70,7 +70,7 @@ Rails.application.routes.draw do
 
       resource :account_connection_link,
                controller: 'people/account_connection_links',
-               only: %i[new create]
+               only: %i[show create]
     end
   end
 end

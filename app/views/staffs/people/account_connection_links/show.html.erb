@@ -11,6 +11,19 @@
       <%= translate '.description' %>
     </p>
 
+    <% if policy([:staff, @person, AccountConnectionLink.new(@person)]).show? %>
+      <% if @person.account_connection_token %>
+        <div class="my-4">
+          <input
+             type="text"
+             class="form-control"
+             readonly="readonly"
+             value="<%= person_account_connection_link @person %>"
+           >
+        </div>
+       <% end %>
+     <% end %>
+
     <% if policy([:staff, @person, AccountConnectionLink.new(@person)]).create? %>
       <%= link_to translate('.generate'),
                   staff_person_account_connection_link_path(@person),

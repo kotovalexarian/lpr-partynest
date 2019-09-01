@@ -13,8 +13,6 @@ en:
         accept_as_supporter: Accept as supporter
         create_link_to_connect_account: Create link to connect account
       account_connection_links:
-        new:
+        show:
           link_to_connect_account: Link to connect account
           generate: Generate
-        create:
-          link_to_connect_account: Link to connect account

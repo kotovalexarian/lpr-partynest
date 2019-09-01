@@ -34,7 +34,8 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link' do
       before { make_request }
 
       specify do
-        expect(response).to have_http_status :ok
+        expect(response).to \
+          redirect_to "/staff/people/#{person.to_param}/account_connection_link"
       end
     end
   end

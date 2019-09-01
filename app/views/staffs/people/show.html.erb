@@ -24,13 +24,13 @@
 
           <% if policy([:staff,
                         @person,
-                        AccountConnectionLink.new(@person)]).new? %>
+                        ]).show? %>
             <br/>
 
             <small>
               <%= link_to(
                 translate('.create_link_to_connect_account'),
-                new_staff_person_account_connection_link_path(@person),
+                staff_person_account_connection_link_path(@person),
               ) %>
             </small>
           <% end %>
