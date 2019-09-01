@@ -10,8 +10,7 @@ class ImportRelationship
     when :supporter then create_supporter_relationship
     when :member    then create_member_relationship
     when :excluded  then create_excluded_relationship
-    else
-      raise "Invalid status: #{status.inspect}"
+    else raise "Invalid status: #{status.inspect}"
     end
   end
 
@@ -44,6 +43,7 @@ private
       regional_office: regional_office,
       from_date: member_from_date,
       status: :member,
+      role: member_role,
     )
   end
 
@@ -106,5 +106,26 @@ private
 
   def comment
     context.row[7].presence
+  end
+
+  def secretary?
+    context.row[5] == 'Y'
+  end
+
+  def manager?
+    secretary? || context.row[16] == 'Y'
+  end
+
+  def supervisor?
+    context.row[15] == 'Y'
+  end
+
+  def member_role
+    return :regional_supervisor if supervisor?
+    return :regional_manager if manager?
+  end
+
+  def member_regional_secretary_flag
+    return :regional_secretary if secretary?
   end
 end
