@@ -201,6 +201,8 @@ private
     create_table :people do |t|
       t.timestamps null: false
 
+      t.string :account_connection_token, null: true
+
       t.string :first_name,     null: false
       t.string :middle_name,    null: true
       t.string :last_name,      null: false

@@ -581,6 +581,7 @@ CREATE TABLE public.people (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
+    account_connection_token character varying,
     first_name character varying NOT NULL,
     middle_name character varying,
     last_name character varying NOT NULL,

@@ -11,6 +11,10 @@ RSpec.describe Person do
     it { is_expected.to have_one(:account).dependent(:restrict_with_exception) }
   end
 
+  describe '#account_connection_token' do
+    it { is_expected.not_to validate_presence_of :account_connection_token }
+  end
+
   describe '#contact_list' do
     xit { is_expected.to belong_to(:contact_list).required }
 
