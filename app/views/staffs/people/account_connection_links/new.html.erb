@@ -5,4 +5,15 @@
     [@person.full_name, staff_person_path(@person)],
     translate('.link_to_connect_account'),
   ) %>
+
+  <div class="text-center">
+    <p class="lead">
+      <%= translate '.description' %>
+    </p>
+
+    <%= link_to translate('.generate'),
+                staff_person_account_connection_link_path,
+                method: :post,
+                class: 'btn btn-primary btn-lg' %>
+  </div>
 </div>
