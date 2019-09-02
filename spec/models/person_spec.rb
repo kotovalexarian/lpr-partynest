@@ -162,4 +162,24 @@ RSpec.describe Person do
       )
     end
   end
+
+  describe '#generate_account_connection_token' do
+    specify do
+      expect { subject.generate_account_connection_token }.to \
+        change(subject, :account_connection_token)
+        .from(nil)
+    end
+
+    context 'when token already exists' do
+      before do
+        subject.generate_account_connection_token
+      end
+
+      specify do
+        expect { subject.generate_account_connection_token }.to \
+          change(subject, :account_connection_token)
+          .from(subject.account_connection_token)
+      end
+    end
+  end
 end

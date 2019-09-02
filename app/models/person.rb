@@ -54,4 +54,8 @@ class Person < ApplicationRecord
       middle_name,
     ].map(&:presence).compact.join(' ').freeze
   end
+
+  def generate_account_connection_token
+    update! account_connection_token: SecureRandom.alphanumeric(32)
+  end
 end

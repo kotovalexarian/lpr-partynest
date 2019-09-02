@@ -11,7 +11,7 @@ class Staffs::People::AccountConnectionLinksController < ApplicationController
   # POST /staff/people/:person_id/account_connection_link
   def create
     authorize [:staff, @person, AccountConnectionLink.new(@person)]
-    @person.update! account_connection_token: SecureRandom.alphanumeric(32)
+    @person.generate_account_connection_token
     redirect_to staff_person_account_connection_link_url(@person)
   end
 
