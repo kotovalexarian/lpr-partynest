@@ -4,6 +4,9 @@ en:
       account:
         one: Account
         many: Accounts
+      contact:
+        one: Contact
+        many: Contacts
       contact_network:
         one: Contact network
         many: Contact networks
@@ -36,6 +39,10 @@ en:
         biography: Bio
         avatar: Avatar
         person: Person
+      contact:
+        id: ID
+        contact_network: Contact network
+        value: Value
       contact_network:
         id: ID
         codename: Codename

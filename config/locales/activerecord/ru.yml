@@ -4,6 +4,9 @@ ru:
       account:
         one: Аккаунт
         many: Аккаунты
+      contact:
+        one: Контакт
+        many: Контакты
       contact_network:
         one: Сеть контактов
         many: Сети контактов
@@ -36,6 +39,10 @@ ru:
         biography: Биография
         avatar: Аватар
         person: Человек
+      contact:
+        id: ID
+        contact_network: Сеть контактов
+        value: Значение
       contact_network:
         id: ID
         codename: Кодовое имя
