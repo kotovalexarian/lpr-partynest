@@ -24,7 +24,7 @@
 
           <% if policy([:staff,
                         @person,
-                        ]).show? %>
+                        AccountConnectionLink.new(@person)]).show? %>
             <br/>
 
             <small>

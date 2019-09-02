@@ -29,7 +29,7 @@ RSpec.describe 'GET /staff/people/:person_id/account_connection_link' do
     let(:person) { create(:personal_account).person }
 
     specify do
-      expect(response).to have_http_status :ok
+      expect(response).to have_http_status :forbidden
     end
   end
 end

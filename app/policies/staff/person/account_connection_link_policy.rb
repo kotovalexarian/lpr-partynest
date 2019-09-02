@@ -2,7 +2,7 @@
 
 class Staff::Person::AccountConnectionLinkPolicy < ApplicationPolicy
   def show?
-    account&.superuser?
+    record.person.account.nil? && account&.superuser?
   end
 
   def create?
