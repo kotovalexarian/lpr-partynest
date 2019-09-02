@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Settings::PeopleController < ApplicationController
+  before_action :authenticate_user!, only: :new
+
   before_action :set_account
   before_action :set_person_from_token, only: :new
 
