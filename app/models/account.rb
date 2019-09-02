@@ -49,6 +49,7 @@ class Account < ApplicationRecord
   validates :avatar, allow_nil: true, image: true
 
   validate :contact_list_corresponds_person
+  validate :person_corresponds_contact_list
 
   ###########
   # Methods #
@@ -94,5 +95,11 @@ private
     return if person.nil?
 
     errors.add :contact_list unless contact_list == person.contact_list
+  end
+
+  def person_corresponds_contact_list
+    return if contact_list.nil?
+
+    errors.add :contact_list unless person == contact_list.person
   end
 end
