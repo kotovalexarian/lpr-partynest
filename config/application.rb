@@ -33,7 +33,13 @@ module Partynest
     ].freeze
 
     def settings(name)
-      config_for("settings/#{name}").deep_symbolize_keys
+      name = String(name).to_sym
+      raise "Invalid name: #{name.to_s.inspect}" unless name.match?(/\A\w+\z/)
+
+      @partynest_settings ||= {}
+
+      @partynest_settings[name] ||=
+        config_for("settings/#{name}").deep_symbolize_keys.freeze
     end
 
     # Initialize configuration defaults for originally generated Rails version.
