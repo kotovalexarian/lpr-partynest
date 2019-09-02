@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <%= render partial: 'settings/nav_sidebar', locals: { tab: :person } %>
+    </div>
+
+    <div class="col-md-9">
+      <% if @account.person.nil? %>
+        <p class="lead">
+          <%= translate '.no_person' %>
+        </p>
+      <% else %>
+        <dl>
+          <dt><%= Person.human_attribute_name :last_name %></dt>
+          <dd>
+            <% if @account.person.last_name %>
+              <%= truncate @account.person.last_name %>
+            <% else %>
+              <%= none %>
+            <% end %>
+          </dd>
+
+          <dt><%= Person.human_attribute_name :first_name %></dt>
+          <dd>
+            <% if @account.person.first_name.present? %>
+              <%= truncate @account.person.first_name %>
+            <% else %>
+              <%= none %>
+            <% end %>
+          </dd>
+
+          <dt><%= Person.human_attribute_name :middle_name %></dt>
+          <dd>
+            <% if @account.person.middle_name.present? %>
+              <%= truncate @account.person.middle_name %>
+            <% else %>
+              <%= none %>
+            <% end %>
+          </dd>
+
+          <dt><%= Person.human_attribute_name :sex %></dt>
+          <dd>
+            <% if @account.person.sex.present? %>
+              <%= translate_enum :sex, @account.person.sex %>
+            <% else %>
+              <%= none %>
+            <% end %>
+          </dd>
+
+          <dt><%= Person.human_attribute_name :date_of_birth %></dt>
+          <dd>
+            <% if @account.person.date_of_birth.present? %>
+              <%= localize @account.person.date_of_birth %>
+            <% else %>
+              <%= none %>
+            <% end %>
+          </dd>
+
+          <dt><%= Person.human_attribute_name :place_of_birth %></dt>
+          <dd>
+            <% if @account.person.place_of_birth.present? %>
+              <%= truncate @account.person.place_of_birth %>
+            <% else %>
+              <%= none %>
+            <% end %>
+          </dd>
+        </dl>
+      <% end %>
+    </div>
+  </div>
+</div>

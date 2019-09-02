@@ -8,3 +8,4 @@ en:
     settings:
       credentials: Credentials
       profile: Public profile
+      person: Person
