@@ -3,17 +3,17 @@
 class Settings::ContactsController < ApplicationController
   before_action :skip_policy_scope, only: :index
 
-  before_action :set_account
+  before_action :set_contact_list
 
   # GET /settings/contacts
   def index
     authorize %i[settings contact]
-    @contacts = @account.contact_list.contacts
+    @contacts = @contact_list.contacts
   end
 
 private
 
-  def set_account
-    @account = current_account.clone&.reload
+  def set_contact_list
+    @contact_list = current_account&.contact_list
   end
 end
