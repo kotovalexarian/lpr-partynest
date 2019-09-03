@@ -1,4 +1,8 @@
 en:
   flash:
+    settings/appearances:
+      update: 'Appearance settings was successfully updated.'
     settings/contacts:
       destroy: 'Contact "%{value}" was successfully destroyed.'
+    settings/profiles:
+      update: 'Public profile was successfully updated.'

@@ -1,4 +1,8 @@
 ru:
   flash:
+    settings/appearances:
+      update: 'Настройки внешнего вида успешно изменены.'
     settings/contacts:
       destroy: 'Контакт "%{value}" успешно удалён.'
+    settings/profiles:
+      update: 'Публичный профиль успешно изменён.'

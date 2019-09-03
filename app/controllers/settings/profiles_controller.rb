@@ -14,7 +14,7 @@ class Settings::ProfilesController < ApplicationController
 
     return render :edit unless @account.update account_attributes_for_update
 
-    redirect_to edit_settings_profile_url
+    redirect_to edit_settings_profile_url, notice: translate_flash
   end
 
 private
