@@ -2,6 +2,7 @@
 
 class Account < ApplicationRecord
   NICKNAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
+  TIMEZONE_RE = /\A-?\d\d:\d\d:00\z/.freeze
 
   ################
   # Associations #
@@ -49,6 +50,8 @@ class Account < ApplicationRecord
   validates :biography, allow_nil: true, length: { in: 1..10_000 }
 
   validates :avatar, allow_nil: true, image: true
+
+  validates :timezone, presence: true, format: { with: TIMEZONE_RE }
 
   validate :contact_list_corresponds_person
   validate :person_corresponds_contact_list

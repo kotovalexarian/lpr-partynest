@@ -258,7 +258,8 @@ private
       t.string :public_name
       t.text   :biography
 
-      t.boolean :superuser, null: false, default: false
+      t.boolean  :superuser, null: false, index: false, default: false
+      t.interval :timezone,  null: false, index: false, default: '03:00:00'
 
       t.references :person, index: { unique: true }, foreign_key: true
 

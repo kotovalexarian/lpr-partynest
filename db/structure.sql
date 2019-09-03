@@ -256,6 +256,7 @@ CREATE TABLE public.accounts (
     public_name character varying,
     biography text,
     superuser boolean DEFAULT false NOT NULL,
+    timezone interval DEFAULT '03:00:00'::interval NOT NULL,
     person_id bigint,
     contact_list_id bigint NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_big_text(biography))),
