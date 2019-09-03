@@ -11,5 +11,7 @@ class Session < ApplicationRecord
   # Validations #
   ###############
 
+  validates :logged_at, presence: true
+
   validates :ip_address, presence: true
 end

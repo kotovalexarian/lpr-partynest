@@ -4,6 +4,8 @@ FactoryBot.define do
   factory :some_session, class: Session do
     association :account, factory: :usual_account
 
+    logged_at { Faker::Time.backward.utc }
+
     ip_address { Faker::Internet.ip_v4_address }
 
     trait :with_ipv6_address do

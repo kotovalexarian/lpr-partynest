@@ -271,7 +271,8 @@ private
 
       t.references :account, null: false, index: true, foreign_key: true
 
-      t.string :ip_address, null: false
+      t.datetime :logged_at,  null: false
+      t.string   :ip_address, null: false
     end
 
     create_table :person_comments do |t|

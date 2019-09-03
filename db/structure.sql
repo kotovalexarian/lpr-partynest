@@ -737,6 +737,7 @@ CREATE TABLE public.sessions (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     account_id bigint NOT NULL,
+    logged_at timestamp without time zone NOT NULL,
     ip_address character varying NOT NULL,
     CONSTRAINT ip_address CHECK (public.is_good_small_text((ip_address)::text))
 );
