@@ -1,0 +1,7 @@
+<%= simple_form_for account, url: settings_appearance_path do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :timezone, as: :select, collection: timezones_collection %>
+
+  <%= f.button :submit, translate(:save) %>
+<% end %>

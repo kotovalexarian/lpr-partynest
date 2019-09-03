@@ -44,6 +44,7 @@ ru:
         biography: Биография
         avatar: Аватар
         person: Человек
+        timezone: Часовой пояс
       contact:
         id: ID
         contact_network: Сеть контактов

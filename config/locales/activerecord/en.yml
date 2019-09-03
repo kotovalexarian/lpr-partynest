@@ -44,6 +44,7 @@ en:
         biography: Bio
         avatar: Avatar
         person: Person
+        timezone: Timezone
       contact:
         id: ID
         contact_network: Contact network

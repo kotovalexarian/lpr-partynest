@@ -5,7 +5,7 @@ FactoryBot.define do
     public_name { Faker::Name.name }
     biography { Faker::Lorem.paragraph }
 
-    timezone { "#{[nil, :-].sample}#{rand(0..11).to_s.rjust(2, '0')}:00:00" }
+    timezone { "#{[nil, :-].sample}#{rand(1..11).to_s.rjust(2, '0')}:00:00" }
   end
 
   factory :usual_account, parent: :initial_account do
