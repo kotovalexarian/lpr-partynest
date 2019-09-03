@@ -1,12 +1,8 @@
 <%= simple_form_for contact, url: settings_contacts_path do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :contact_network, collection: ContactNetwork.all %>
-    <%= f.input :value %>
-  </div>
+  <%= f.association :contact_network, collection: ContactNetwork.all %>
+  <%= f.input :value %>
 
-  <div class="form-actions">
-    <%= f.button :submit, translate(:create) %>
-  </div>
+  <%= f.button :submit, translate(:create) %>
 <% end %>

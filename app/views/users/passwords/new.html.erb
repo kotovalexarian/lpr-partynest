@@ -4,16 +4,12 @@
   <%= simple_form_for resource, as: resource_name, url: password_path(resource_name) do |f| %>
     <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: 'email' } %>
-    </div>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: 'email' } %>
 
-    <div class="form-actions">
-      <%= f.button :submit, translate('.send_me_reset_password_instructions') %>
-    </div>
+    <%= f.button :submit, translate('.send_me_reset_password_instructions') %>
   <% end %>
 
   <%= render 'users/shared/links' %>

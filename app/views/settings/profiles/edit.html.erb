@@ -8,19 +8,16 @@
       <%= simple_form_for @account, url: settings_profile_path do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
-          <%= f.input :nickname, required: true %>
-          <%= f.input :public_name %>
-          <%= f.input :biography %>
-          <%= f.input :avatar, direct_upload: true %>
-          <% if f.object.avatar.attached? %>
-            <%= image_tag f.object.avatar, class: 'img-thumbnail mb-4' %>
-          <% end %>
-        </div>
+        <%= f.input :nickname, required: true %>
+        <%= f.input :public_name %>
+        <%= f.input :biography %>
+        <%= f.input :avatar, direct_upload: true %>
 
-        <div class="form-actions">
-          <%= f.button :submit, translate('users.registrations.edit.update') %>
-        </div>
+        <% if f.object.avatar.attached? %>
+          <%= image_tag f.object.avatar, class: 'img-thumbnail mb-4' %>
+        <% end %>
+
+        <%= f.button :submit, translate('users.registrations.edit.update') %>
       <% end %>
     </div>
   </div>

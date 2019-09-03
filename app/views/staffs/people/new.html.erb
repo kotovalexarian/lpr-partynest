@@ -8,18 +8,14 @@
   <%= simple_form_for [:staff, @person] do |f| %>
     <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :last_name %>
-      <%= f.input :first_name %>
-      <%= f.input :middle_name %>
-      <%= f.input :sex, collection: Person.sexes.keys.map(&:to_sym) %>
-      <%= f.input :date_of_birth %>
-      <%= f.input :place_of_birth %>
-      <%= f.input :photo, direct_upload: true %>
-    </div>
+    <%= f.input :last_name %>
+    <%= f.input :first_name %>
+    <%= f.input :middle_name %>
+    <%= f.input :sex, collection: Person.sexes.keys.map(&:to_sym) %>
+    <%= f.input :date_of_birth %>
+    <%= f.input :place_of_birth %>
+    <%= f.input :photo, direct_upload: true %>
 
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+    <%= f.button :submit %>
   <% end %>
 </div>

@@ -5,16 +5,12 @@
     <%= f.error_notification %>
     <%= f.full_error :unlock_token %>
 
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: 'email' } %>
-    </div>
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: 'email' } %>
 
-    <div class="form-actions">
-      <%= f.button :submit, translate('.resend_unlock_instructions') %>
-    </div>
+    <%= f.button :submit, translate('.resend_unlock_instructions') %>
   <% end %>
 
   <%= render 'users/shared/links' %>

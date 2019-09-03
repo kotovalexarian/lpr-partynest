@@ -10,22 +10,18 @@
     <%= f.input :reset_password_token, as: :hidden %>
     <%= f.full_error :reset_password_token %>
 
-    <div class="form-inputs">
-      <%= f.input :password,
-                  label: translate('.new_password'),
-                  required: true,
-                  autofocus: true,
-                  hint: (translate('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
-                  input_html: { autocomplete: 'new-password' } %>
+    <%= f.input :password,
+                label: translate('.new_password'),
+                required: true,
+                autofocus: true,
+                hint: (translate('devise.shared.minimum_password_length', count: @minimum_password_length) if @minimum_password_length),
+                input_html: { autocomplete: 'new-password' } %>
 
-      <%= f.input :password_confirmation,
-                  label: translate('.confirm_new_password'),
-                  required: true %>
-    </div>
+    <%= f.input :password_confirmation,
+                label: translate('.confirm_new_password'),
+                required: true %>
 
-    <div class="form-actions">
-      <%= f.button :submit, translate('.change_my_password') %>
-    </div>
+    <%= f.button :submit, translate('.change_my_password') %>
   <% end %>
 
   <%= render 'users/shared/links' %>
