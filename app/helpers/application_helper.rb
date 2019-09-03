@@ -26,7 +26,7 @@ module ApplicationHelper
       }
 
       concat tag.div(class: 'd-flex justify-content-center') {
-        tag.span { page_entries_info(collection).capitalize }
+        tag.span { page_entries_info collection }
       }
     end
   end

@@ -3,7 +3,7 @@ ru:
     page_entries_info:
       one_page:
         display_entries:
-          zero: '%{entry_name} не найдено'
+          zero: 'Не найдено %{entry_name}'
           one: 'Отображается <b>1</b> %{entry_name}'
           few: 'Отображаются <b>все %{count}</b> %{entry_name}'
           many: 'Отображаются <b>все %{count}</b> %{entry_name}'
