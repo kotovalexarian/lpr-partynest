@@ -14,6 +14,7 @@
             <th scope="col">
               <%= Contact.human_attribute_name :value %>
             </th>
+            <th scope="col"></th>
           </tr>
         </thead>
 
@@ -22,6 +23,18 @@
             <tr>
               <td><%= contact.contact_network.name %></td>
               <td><%= truncate contact.value %></td>
+              <td>
+                <% if policy([:settings, contact]).destroy? %>
+                  <%= link_to(
+                    [:settings, contact],
+                    method: :delete,
+                    class: 'btn btn-danger btn-sm',
+                    data: { confirm: contact_destroy_confirmation(contact) },
+                  ) do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

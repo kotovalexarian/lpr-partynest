@@ -8,3 +8,4 @@ en:
   superuser: Administrator
   open_action: Open
   create: Create
+  destroy_confirmation: 'Do you really want to destroy %{value}?'
