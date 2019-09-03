@@ -1,0 +1,44 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= Relationship.human_attribute_name :id %>
+      </th>
+      <th scope="col">
+        <%= Relationship.human_attribute_name :status %>
+      </th>
+      <th scope="col">
+        <%= Relationship.human_attribute_name :position %>
+      </th>
+      <th scope="col">
+        <%= Relationship.human_attribute_name :from_date %>
+      </th>
+      <th scope="col">
+        <%= Relationship.human_attribute_name :regional_office %>
+      </th>
+      <th scope="col">
+        <%= Relationship.human_attribute_name :initiator_account %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% relationships.each do |relationship| %>
+      <tr>
+        <td scope="row"><%= relationship.id %></td>
+        <td><%= relationship_status_or_none relationship %></td>
+        <td><%= relationship_short_position_or_none relationship %></td>
+        <td><%= relationship_from_date_or_none relationship %></td>
+        <td>
+          <%= staff_regional_office_link_or_none \
+                relationship.regional_office %>
+        </td>
+        <td>
+          <%= staff_account_link_or_none relationship.initiator_account %>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

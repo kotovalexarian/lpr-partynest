@@ -1,0 +1,49 @@
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= Person.human_attribute_name :id %>
+      </th>
+      <th scope="col">
+        <%= Person.human_attribute_name :last_name %>
+      </th>
+      <th scope="col">
+        <%= Person.human_attribute_name :first_name %>
+      </th>
+      <th scope="col">
+        <%= Person.human_attribute_name :middle_name %>
+      </th>
+      <th scope="col" class="d-none d-lg-table-cell">
+        <%= Person.human_attribute_name :date_of_birth %>
+      </th>
+      <th scope="col" class="d-none d-md-table-cell">
+        <%= Person.human_attribute_name :place_of_birth %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% people.each do |person| %>
+      <tr>
+        <td scope="row"><%= person.id %></td>
+        <td><%= truncate person.last_name, length: 15 %></td>
+        <td><%= truncate person.first_name, length: 15 %></td>
+        <td><%= truncate person.middle_name, length: 15 %></td>
+        <td class="d-none d-lg-table-cell">
+          <%= localize person.date_of_birth if person.date_of_birth %>
+        </td>
+        <td class="d-none d-md-table-cell">
+          <% if person.place_of_birth %>
+            <%= truncate person.place_of_birth, length: 15 %>
+          <% end %>
+        </td>
+        <td>
+          <% if policy([:staff, person]).show? %>
+            <%= open_action [:staff, person] %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

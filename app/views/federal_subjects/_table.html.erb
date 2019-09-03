@@ -1,0 +1,45 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= FederalSubject.human_attribute_name :number %>
+      </th>
+      <th scope="col">
+        <%= FederalSubject.human_attribute_name :display_name %>
+      </th>
+      <th scope="col">
+        <%= FederalSubject.human_attribute_name :centre %>
+      </th>
+      <th scope="col">
+        <%= FederalSubject.human_attribute_name :timezone %>
+      </th>
+      <th scope="col">
+        <%= FederalSubject.human_attribute_name :regional_office %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% federal_subjects.each do |federal_subject| %>
+      <tr>
+        <td><%= federal_subject.number %></td>
+        <td><%= truncate federal_subject.display_name, length: 25 %></td>
+        <td><%= truncate federal_subject.centre, length: 15 %></td>
+        <td><%= federal_subject.timezone %></td>
+        <td>
+          <% if federal_subject.regional_office.nil? %>
+            <%= translate :no %>
+          <% else %>
+            <%= translate :yes %>
+          <% end %>
+        </td>
+        <td>
+          <% if policy(federal_subject).show? %>
+            <%= open_action federal_subject %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

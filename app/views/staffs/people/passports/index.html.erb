@@ -8,39 +8,5 @@
   <%= render partial: 'staffs/people/nav_tabs', locals: { person: @person,
                                                           tab: :passports } %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">
-          <%= Passport.human_attribute_name :id %>
-        </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :series %>
-        </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :number %>
-        </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :unit_code %>
-        </th>
-        <th scope="col">
-          <%= Passport.human_attribute_name :date_of_issue %>
-        </th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @passports.each do |passport| %>
-        <tr>
-          <td scope="row"><%= passport.id %></td>
-          <td><%= passport.series %></td>
-          <td><%= passport.number %></td>
-          <td><%= passport.unit_code %></td>
-          <td><%= passport.date_of_issue %></td>
-          <td></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render partial: 'table', locals: { passports: @passports } %>
 </div>

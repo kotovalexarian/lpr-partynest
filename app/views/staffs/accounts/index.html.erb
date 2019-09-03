@@ -4,43 +4,5 @@
     Account.model_name.human(count: 0),
   ) %>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">
-          <%= Account.human_attribute_name :id %>
-        </th>
-        <th scope="col">
-          <%= Account.human_attribute_name :nickname %>
-        </th>
-        <th scope="col">
-          <%= Account.human_attribute_name :public_name %>
-        </th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @accounts.each do |account| %>
-        <tr>
-          <td scope="row"><%= account.id %></td>
-          <td><%= account.nickname %></td>
-          <td><%= account.public_name %></td>
-          <td>
-            <% if account.superuser? %>
-              <span class="badge badge-primary">
-                <%= translate :superuser %>
-              </span>
-            <% end %>
-          </td>
-          <td>
-            <% if policy([:staff, account]).show? %>
-              <%= open_action [:staff, account] %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render partial: 'table', locals: { accounts: @accounts } %>
 </div>
