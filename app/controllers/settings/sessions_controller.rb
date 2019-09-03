@@ -7,6 +7,7 @@ class Settings::SessionsController < ApplicationController
   def index
     authorize [:settings, Session]
 
-    @sessions = current_account.sessions.order(logged_at: :desc).limit(10)
+    @sessions = current_account.sessions.order(logged_at: :desc)
+                               .page(params[:page])
   end
 end
