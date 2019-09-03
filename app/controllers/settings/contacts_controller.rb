@@ -4,6 +4,7 @@ class Settings::ContactsController < ApplicationController
   before_action :skip_policy_scope, only: :index
 
   before_action :set_contact_list
+  before_action :set_contact, except: :index
 
   # GET /settings/contacts
   def index
@@ -11,9 +12,20 @@ class Settings::ContactsController < ApplicationController
     @contacts = @contact_list.contacts
   end
 
+  # DELETE /settings/contacts/:id
+  def destroy
+    authorize [:settings, @contact]
+    @contact.destroy!
+    redirect_to settings_contacts_url
+  end
+
 private
 
   def set_contact_list
     @contact_list = current_account&.contact_list
+  end
+
+  def set_contact
+    @contact = Contact.find params[:id]
   end
 end

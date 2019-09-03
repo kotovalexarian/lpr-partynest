@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resource :profile, only: %i[edit update]
     resource :person, only: %i[show new]
-    resources :contacts, only: :index
+    resources :contacts, only: %i[index destroy]
   end
 
   #########################
