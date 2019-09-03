@@ -729,6 +729,39 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sessions (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    account_id bigint NOT NULL,
+    ip_address character varying NOT NULL,
+    CONSTRAINT ip_address CHECK (public.is_good_small_text((ip_address)::text))
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
+
+
+--
 -- Name: user_omniauths; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -895,6 +928,13 @@ ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
+
+
+--
 -- Name: user_omniauths id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1018,6 +1058,14 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1240,6 +1288,13 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 
 
 --
+-- Name: index_sessions_on_account_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_account_id ON public.sessions USING btree (account_id);
+
+
+--
 -- Name: index_user_omniauths_on_remote_id_and_provider; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1331,6 +1386,14 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.people
     ADD CONSTRAINT fk_rails_4f02f930eb FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
+
+
+--
+-- Name: sessions fk_rails_5599381559; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT fk_rails_5599381559 FOREIGN KEY (account_id) REFERENCES public.accounts(id);
 
 
 --

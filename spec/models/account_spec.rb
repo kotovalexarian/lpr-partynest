@@ -23,6 +23,14 @@ RSpec.describe Account do
     it { is_expected.not_to validate_presence_of :user }
   end
 
+  describe '#sessions' do
+    it do
+      is_expected.to \
+        have_many(:sessions)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#person' do
     it { is_expected.to belong_to(:person).optional }
 

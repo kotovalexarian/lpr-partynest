@@ -266,6 +266,14 @@ private
                    null: false, index: { unique: true }, foreign_key: true
     end
 
+    create_table :sessions do |t|
+      t.timestamps null: false
+
+      t.references :account, null: false, index: true, foreign_key: true
+
+      t.string :ip_address, null: false
+    end
+
     create_table :person_comments do |t|
       t.timestamps null: false
 
@@ -385,6 +393,10 @@ private
   end
 
   def change_constraints
+    constraint :sessions, :ip_address, <<~SQL
+      is_good_small_text(ip_address)
+    SQL
+
     constraint :regional_offices, :name, <<~SQL
       is_good_small_text(name)
     SQL
