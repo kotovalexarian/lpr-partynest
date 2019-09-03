@@ -4,13 +4,9 @@ module Partynest
   module Migration
     def func(name, sql)
       reversible do |dir|
-        dir.up do
-          execute "CREATE FUNCTION #{name} #{sql}"
-        end
+        dir.up { execute "CREATE FUNCTION #{name} #{sql}" }
 
-        dir.down do
-          execute "DROP FUNCTION #{name}"
-        end
+        dir.down { execute "DROP FUNCTION #{name}" }
       end
     end
 
@@ -23,9 +19,7 @@ module Partynest
           SQL
         end
 
-        dir.down do
-          execute "DROP TYPE #{name}"
-        end
+        dir.down { execute "DROP TYPE #{name}" }
       end
     end
 
@@ -37,11 +31,7 @@ module Partynest
           SQL
         end
 
-        dir.down do
-          execute <<~SQL
-            ALTER TABLE #{table} DROP CONSTRAINT #{name}
-          SQL
-        end
+        dir.down { execute "ALTER TABLE #{table} DROP CONSTRAINT #{name}" }
       end
     end
   end
