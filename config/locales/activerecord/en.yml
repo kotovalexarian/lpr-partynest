@@ -134,4 +134,5 @@ en:
         image_format: 'has invalid format: %{content_type}'
         image_ext: 'has invalid extension: ".%{ext}"'
         leading_spaces: 'has leading spaces'
+        timezone: 'does not match timezone format'
         trailing_spaces: 'has trailing spaces'
