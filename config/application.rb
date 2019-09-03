@@ -48,6 +48,7 @@ module Partynest
     config.autoload_paths += [
       config.root.join('app', 'primitives'),
       config.root.join('app', 'validators'),
+      config.root.join('lib'),
     ]
 
     # Use SQL format for database schema

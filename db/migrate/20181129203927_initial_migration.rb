@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class InitialMigration < ActiveRecord::Migration[6.0]
+  include Partynest::Migration
+
   def change
     change_types
     change_functions
@@ -567,49 +569,6 @@ private
             ON accounts
             FOR EACH ROW
             EXECUTE PROCEDURE ensure_contact_list_id_matches_related_person();
-        SQL
-      end
-    end
-  end
-
-  def func(name, sql)
-    reversible do |dir|
-      dir.up do
-        execute "CREATE FUNCTION #{name} #{sql}"
-      end
-
-      dir.down do
-        execute "DROP FUNCTION #{name}"
-      end
-    end
-  end
-
-  def enum(name, values)
-    reversible do |dir|
-      dir.up do
-        execute <<~SQL
-          CREATE TYPE #{name}
-            AS ENUM (#{values.map { |s| "'#{s}'" }.join(', ')})
-        SQL
-      end
-
-      dir.down do
-        execute "DROP TYPE #{name}"
-      end
-    end
-  end
-
-  def constraint(table, name, check)
-    reversible do |dir|
-      dir.up do
-        execute <<~SQL
-          ALTER TABLE #{table} ADD CONSTRAINT #{name} CHECK (#{check})
-        SQL
-      end
-
-      dir.down do
-        execute <<~SQL
-          ALTER TABLE #{table} DROP CONSTRAINT #{name}
         SQL
       end
     end
