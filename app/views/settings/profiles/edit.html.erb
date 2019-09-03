@@ -5,20 +5,7 @@
     </div>
 
     <div class="col-md-9">
-      <%= simple_form_for @account, url: settings_profile_path do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.input :nickname, required: true %>
-        <%= f.input :public_name %>
-        <%= f.input :biography %>
-        <%= f.input :avatar, direct_upload: true %>
-
-        <% if f.object.avatar.attached? %>
-          <%= image_tag f.object.avatar, class: 'img-thumbnail mb-4' %>
-        <% end %>
-
-        <%= f.button :submit, translate('users.registrations.edit.update') %>
-      <% end %>
+      <%= render partial: 'form', locals: { account: @account } %>
     </div>
   </div>
 </div>
