@@ -9,7 +9,7 @@
 
       <% unless @contacts.nil? %>
         <%= render partial: 'table', locals: { contacts: @contacts } %>
-        <%= paginate @contacts %>
+        <%= pagination @contacts %>
       <% end %>
     </div>
   </div>

@@ -1,5 +1,15 @@
 ru:
   helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: '%{entry_name} не найдено'
+          one: 'Отображается <b>1</b> %{entry_name}'
+          few: 'Отображаются <b>все %{count}</b> %{entry_name}'
+          many: 'Отображаются <b>все %{count}</b> %{entry_name}'
+      more_pages:
+        display_entries: 'Отображение %{entry_name}
+        <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> всего'
     submit:
       person:
         create: Отправить

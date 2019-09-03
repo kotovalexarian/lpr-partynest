@@ -6,7 +6,8 @@ ru:
         many: Аккаунты
       contact:
         one: Контакт
-        many: Контакты
+        few: Контакта
+        many: Контактов
       contact_network:
         one: Сеть контактов
         many: Сети контактов
@@ -30,7 +31,8 @@ ru:
         one: Отношения с партией
       session:
         one: Сессия
-        many: Сессии
+        few: Сессии
+        many: Сессий
       user:
         one: Пользователь
         many: Пользователи

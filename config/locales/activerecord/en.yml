@@ -6,6 +6,7 @@ en:
         many: Accounts
       contact:
         one: Contact
+        few: Contacts
         many: Contacts
       contact_network:
         one: Contact network
@@ -30,6 +31,7 @@ en:
         many: Party relations
       session:
         one: Session
+        few: Sessions
         many: Sessions
       user:
         one: User

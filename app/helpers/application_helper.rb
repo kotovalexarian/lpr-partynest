@@ -19,6 +19,18 @@ module ApplicationHelper
     translate value, scope: [:enums, type]
   end
 
+  def pagination(collection)
+    tag.div do
+      concat tag.div(class: 'd-flex justify-content-center') {
+        paginate collection
+      }
+
+      concat tag.div(class: 'd-flex justify-content-center') {
+        tag.span { page_entries_info(collection).capitalize }
+      }
+    end
+  end
+
   def open_action(url)
     link_to url, role: :button, class: 'btn btn-light btn-sm' do
       concat tag.i class: 'far fa-eye'
