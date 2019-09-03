@@ -107,6 +107,10 @@ gem 'sidekiq', '~> 5.2'
 # Helpers for the reCAPTCHA API.
 gem 'recaptcha', '~> 4.13'
 
+# Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable
+# and sophisticated paginator for Rails 4+.
+gem 'kaminari', '~> 1.1'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'

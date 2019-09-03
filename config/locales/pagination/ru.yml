@@ -1,0 +1,7 @@
+ru:
+  pagination:
+    first: '&laquo; Первая'
+    last: 'Последняя &raquo;'
+    previous: '&lsaquo; Пред.'
+    next: 'След. &rsaquo;'
+    truncate: '&hellip;'

@@ -184,6 +184,18 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.2.0)
     jwt (2.2.1)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.7.0)
@@ -450,6 +462,7 @@ DEPENDENCIES
   font-awesome-sass (~> 5.5.0)
   interactor (~> 3.1)
   jquery-rails (~> 4.3)
+  kaminari (~> 1.1)
   letter_opener (~> 1.6)
   listen (>= 3.0.5, < 3.2)
   omniauth (~> 1.9)
@@ -489,4 +502,4 @@ RUBY VERSION
    ruby 2.6.2p47
 
 BUNDLED WITH
-   2.0.1
+   2.0.2

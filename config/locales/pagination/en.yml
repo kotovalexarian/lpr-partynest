@@ -1,0 +1,7 @@
+en:
+  pagination:
+    first: '&laquo; First'
+    last: 'Last &raquo;'
+    previous: '&lsaquo; Prev'
+    next: 'Next &rsaquo;'
+    truncate: '&hellip;'
