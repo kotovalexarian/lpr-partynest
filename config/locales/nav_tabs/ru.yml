@@ -8,6 +8,7 @@ ru:
     settings:
       credentials: Данные для входа
       profile: Публичный профиль
+      appearance: Внешний вид
       person: Личность
       contacts: Контакты
       sessions: Сессии

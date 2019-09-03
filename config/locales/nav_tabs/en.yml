@@ -8,6 +8,7 @@ en:
     settings:
       credentials: Credentials
       profile: Public profile
+      appearance: Appearance
       person: Person
       contacts: Contacts
       sessions: Sessions
