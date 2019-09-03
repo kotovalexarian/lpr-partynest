@@ -13,7 +13,7 @@ class Settings::ContactsController < ApplicationController
   def index
     authorize [:settings, Contact]
 
-    @contacts = @contact_list.contacts
+    @contacts = @contact_list.contacts.page(params[:page])
   end
 
   # POST /settings/contacts

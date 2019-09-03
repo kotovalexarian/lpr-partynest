@@ -6,6 +6,11 @@ RSpec.describe 'GET /settings/contacts' do
   before do
     sign_in current_account.user if current_account&.user
 
+    if current_account
+      create_list :some_contact, rand(1..3),
+                  contact_list: current_account.contact_list
+    end
+
     get '/settings/contacts'
   end
 
