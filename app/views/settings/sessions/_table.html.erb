@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= Session.human_attribute_name :logged_at %>
+      </th>
+      <th scope="col">
+        <%= Session.human_attribute_name :ip_address %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% sessions.each do |session| %>
+      <tr>
+        <td><%= localize session.logged_at, format: :long %></td>
+        <td><%= session.ip_address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

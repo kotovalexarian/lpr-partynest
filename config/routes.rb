@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resource :profile, only: %i[edit update]
     resource :person, only: %i[show new]
     resources :contacts, only: %i[index create destroy]
+    resources :sessions, only: :index
   end
 
   #########################

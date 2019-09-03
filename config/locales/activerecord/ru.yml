@@ -28,6 +28,9 @@ ru:
       relationship:
         one: Отношение с партией
         one: Отношения с партией
+      session:
+        one: Сессия
+        many: Сессии
       user:
         one: Пользователь
         many: Пользователи
@@ -93,6 +96,11 @@ ru:
         from_date: Дата начала
         status: Статус
         position: Должность
+      session:
+        id: ID
+        account: Аккаунт
+        logged_at: Дата & время (часовой пояс UTC)
+        ip_address: IP-адрес
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения

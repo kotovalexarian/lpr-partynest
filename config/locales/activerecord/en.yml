@@ -27,7 +27,10 @@ en:
         many: Regional offices
       relationship:
         one: Party relation
-        one: Party relations
+        many: Party relations
+      session:
+        one: Session
+        many: Sessions
       user:
         one: User
         many: Users
@@ -93,6 +96,11 @@ en:
         from_date: From date
         status: Status
         position: Position
+      session:
+        id: ID
+        account: Account
+        logged_at: Date & time (UTC timezone)
+        ip_address: IP address
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at
