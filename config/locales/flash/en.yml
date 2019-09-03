@@ -1,0 +1,4 @@
+en:
+  flash:
+    settings/contacts:
+      destroy: 'Contact "%{value}" was successfully destroyed.'

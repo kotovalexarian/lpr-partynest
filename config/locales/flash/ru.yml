@@ -1,0 +1,4 @@
+ru:
+  flash:
+    settings/contacts:
+      destroy: 'Контакт "%{value}" успешно удалён.'

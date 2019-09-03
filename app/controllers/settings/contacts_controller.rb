@@ -16,7 +16,14 @@ class Settings::ContactsController < ApplicationController
   def destroy
     authorize [:settings, @contact]
     @contact.destroy!
-    redirect_to settings_contacts_url
+
+    redirect_to(
+      settings_contacts_url,
+      notice: translate_flash(
+        network_name: @contact.contact_network.name,
+        value: @contact.value,
+      ),
+    )
   end
 
 private

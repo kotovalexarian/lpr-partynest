@@ -59,4 +59,18 @@ private
       format.json { render status: :method_not_allowed, json: {} }
     end
   end
+
+  def translate_flash(*args)
+    options = args.extract_options!.symbolize_keys
+
+    case args.size
+    when 0
+      translate action_name, options.merge(scope: [:flash, controller_path])
+    when 1
+      translate args.first,
+                options.merge(scope: [:flash, controller_path, action_name])
+    else
+      raise ArgumentError, 'Invalid usage'
+    end
+  end
 end
