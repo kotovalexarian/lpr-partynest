@@ -46,6 +46,18 @@ module ApplicationHelper
     end
   end
 
+  def bool_badge(value)
+    if value
+      tag.span class: 'badge badge-pill badge-success' do
+        translate :yes
+      end
+    else
+      tag.span class: 'badge badge-pill badge-secondary' do
+        translate :no
+      end
+    end
+  end
+
   def translate_enum(type, value)
     translate value, scope: [:enums, type]
   end

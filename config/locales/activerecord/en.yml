@@ -49,6 +49,7 @@ en:
         id: ID
         contact_network: Contact network
         value: Value
+        send_security_notifications: Security notifications
       contact_network:
         id: ID
         codename: Codename

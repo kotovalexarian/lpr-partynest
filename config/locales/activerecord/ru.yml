@@ -49,6 +49,7 @@ ru:
         id: ID
         contact_network: Сеть контактов
         value: Значение
+        send_security_notifications: Уведомления безопасности
       contact_network:
         id: ID
         codename: Кодовое имя
