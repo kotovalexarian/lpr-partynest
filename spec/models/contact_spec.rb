@@ -48,6 +48,36 @@ RSpec.describe Contact do
     end
   end
 
+  describe '#contact_network_communicable?' do
+    specify do
+      expect(subject.contact_network_communicable?).to equal false
+    end
+
+    context 'when no network is set' do
+      subject { build :some_contact, contact_network: nil }
+
+      specify do
+        expect(subject.contact_network_communicable?).to equal nil
+      end
+    end
+
+    context 'for email' do
+      subject { create :email_contact }
+
+      specify do
+        expect(subject.contact_network_communicable?).to equal true
+      end
+    end
+
+    context 'for phone' do
+      subject { create :phone_contact }
+
+      specify do
+        expect(subject.contact_network_communicable?).to equal false
+      end
+    end
+  end
+
   describe '#send_security_notifications' do
     def allow_value(*)
       super.for :send_security_notifications

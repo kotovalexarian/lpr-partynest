@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Contact < ApplicationRecord
+  delegate :communicable?,
+           to: :contact_network,
+           allow_nil: true,
+           prefix: true
+
   ################
   # Associations #
   ################
@@ -28,12 +33,7 @@ class Contact < ApplicationRecord
             uniqueness: { scope: %i[contact_list_id contact_network_id] }
 
   validates :send_security_notifications,
-            inclusion: {
-              in: [false],
-              unless: lambda { |record|
-                record.contact_network&.communicable?
-              },
-            }
+            inclusion: { in: [false], unless: :contact_network_communicable? }
 
 private
 
