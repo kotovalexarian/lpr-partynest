@@ -44,6 +44,7 @@ Rails.application.settings(:superuser).tap do |config|
       nickname: config[:nickname],
       public_name: config[:public_name],
       biography: config[:biography],
+      contact_list: ContactList.new,
     )
   end
 

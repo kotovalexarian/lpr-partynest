@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :initial_account, class: Account do
+    association :contact_list, factory: :empty_contact_list
+
     public_name { Faker::Name.name }
     biography { Faker::Lorem.paragraph }
 
@@ -14,6 +16,8 @@ FactoryBot.define do
 
   factory :personal_account, parent: :usual_account do
     association :person, factory: :initial_person
+
+    contact_list { person&.contact_list }
   end
 
   factory :superuser_account, parent: :personal_account do

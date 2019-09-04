@@ -23,10 +23,6 @@ class Account < ApplicationRecord
 
   after_initialize :generate_nickname
 
-  before_validation do
-    self.contact_list ||= person ? person.contact_list : ContactList.new
-  end
-
   before_validation :turn_blanks_into_nils
   before_validation :strip_extra_spaces
 
