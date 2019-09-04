@@ -13,7 +13,7 @@ FactoryBot.define do
     end
   end
 
-  factory :some_session_with_ipv4_address,
+  factory :some_session_with_ipv6_address,
           parent: :some_session,
           traits: %i[with_ipv6_address]
 end
