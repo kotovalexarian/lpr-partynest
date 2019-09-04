@@ -36,4 +36,25 @@ class User < ApplicationRecord
   before_validation do
     self.account ||= Account.new
   end
+
+  ###########
+  # Methods #
+  ###########
+
+  def remember_exists_and_not_expired?
+    return false unless respond_to? :remember_created_at
+    return false unless respond_to? :remember_expired?
+
+    remember_created_at && !remember_expired?
+  end
+
+  def remember_expired?
+    remember_created_at.nil? || (remember_expires_at <= Time.now.utc)
+  end
+
+  def timedout?(last_access)
+    return false if remember_exists_and_not_expired?
+
+    !timeout_in.nil? && last_access && last_access <= timeout_in.ago
+  end
 end
