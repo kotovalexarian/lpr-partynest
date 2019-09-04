@@ -19,8 +19,6 @@ RSpec.describe Account do
         have_one(:user)
         .dependent(:restrict_with_exception)
     end
-
-    it { is_expected.not_to validate_presence_of :user }
   end
 
   describe '#sessions' do

@@ -29,14 +29,6 @@ class User < ApplicationRecord
 
   validates :account, uniqueness: true
 
-  #############
-  # Callbacks #
-  #############
-
-  before_validation do
-    self.account ||= Account.new
-  end
-
   ###########
   # Methods #
   ###########

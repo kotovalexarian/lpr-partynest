@@ -52,6 +52,7 @@ protected
   def build_resource(hash = {})
     super
     resource.account ||= current_account if current_account&.user.nil?
+    resource.account ||= Account.new
   end
 
   # The path used after sign up.
