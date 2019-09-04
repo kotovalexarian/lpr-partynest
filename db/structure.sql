@@ -1157,6 +1157,13 @@ CREATE INDEX index_contacts_on_contact_network_id ON public.contacts USING btree
 
 
 --
+-- Name: index_contacts_on_list_id_and_network_id_and_value; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_contacts_on_list_id_and_network_id_and_value ON public.contacts USING btree (contact_list_id, contact_network_id, value);
+
+
+--
 -- Name: index_federal_subjects_on_english_name; Type: INDEX; Schema: public; Owner: -
 --
 

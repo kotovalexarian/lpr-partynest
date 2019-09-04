@@ -178,6 +178,10 @@ private
       t.references :contact_network, null: false, index: true, foreign_key: true
 
       t.string :value, null: false
+
+      t.index %i[contact_list_id contact_network_id value],
+              name: :index_contacts_on_list_id_and_network_id_and_value,
+              unique: true
     end
 
     create_table :federal_subjects do |t|

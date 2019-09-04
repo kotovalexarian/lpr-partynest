@@ -24,6 +24,12 @@ RSpec.describe Contact do
 
     it { is_expected.to validate_presence_of :value }
 
+    it do
+      is_expected.to \
+        validate_uniqueness_of(:value)
+        .scoped_to(:contact_list_id, :contact_network_id)
+    end
+
     it { is_expected.not_to allow_value nil }
     it { is_expected.not_to allow_value '' }
     it { is_expected.not_to allow_value ' ' * rand(1..3) }
