@@ -34,8 +34,13 @@ Rails.application.routes.draw do
     resource :profile, only: %i[edit update]
     resource :appearance, only: %i[edit update]
     resource :person, only: %i[show new]
-    resources :contacts, only: %i[index create destroy]
     resources :sessions, only: :index
+
+    resources :contacts, only: %i[index create destroy] do
+      resource :security_notification_switch,
+               controller: 'contacts/security_notification_switches',
+               only: :create
+    end
   end
 
   #########################
