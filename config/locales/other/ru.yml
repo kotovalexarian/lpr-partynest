@@ -10,3 +10,4 @@ ru:
   create: Создать
   destroy_confirmation: 'Вы действительно хотите удалить %{value}?'
   save: Сохранить
+  hello: Здравствуйте

@@ -1,0 +1,16 @@
+<p><%= greeting_text @session.account.public_name %></p>
+
+<p><%= translate '.summary' %>:</p>
+
+<dl>
+  <dt><strong><%= Session.human_attribute_name :logged_at %>:</strong></dt>
+  <dd><%= localize @session.logged_at, format: :long %></dd>
+
+  <dt><strong><%= Session.human_attribute_name :ip_address %>:</strong></dt>
+  <dd><%= @session.ip_address %></dd>
+</dl>
+
+<p>
+  <%= translate '.instructions' %>:
+  <%= link_to edit_user_registration_url, edit_user_registration_url %>
+</p>

@@ -3,10 +3,19 @@ en:
     show:
       join: Join
       tracking: Your application
-      description: >
+      description: >-
         We stand for a free market and freedom of government intervention
         in the economy, for the principle of self-ownership and self-value
         of the human person.
+  notification_mailer:
+    signed_in:
+      subject: '[LPR Alert]: New sign in to your account'
+      summary: >-
+        This email address was used to access the Libertarian Party of Russia
+      instructions: >-
+        If this was you, you can ignore this alert. If you suspect
+        any suspicious activity on your account, please change your password
+        and enable two-factor authentication
   staffs:
     people:
       show:

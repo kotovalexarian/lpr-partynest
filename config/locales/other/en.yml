@@ -10,3 +10,4 @@ en:
   create: Create
   destroy_confirmation: 'Do you really want to destroy %{value}?'
   save: Save
+  hello: Hello

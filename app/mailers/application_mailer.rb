@@ -4,4 +4,6 @@ class ApplicationMailer < ActionMailer::Base
   layout 'mailer'
 
   default from: Rails.application.settings(:identity)[:noreply_email_contact]
+
+  helper :mail
 end
