@@ -179,6 +179,9 @@ private
 
       t.string :value, null: false
 
+      t.boolean :send_security_notifications,
+                index: true, null: false, default: false
+
       t.index %i[contact_list_id contact_network_id value],
               name: :index_contacts_on_list_id_and_network_id_and_value,
               unique: true

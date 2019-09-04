@@ -27,6 +27,14 @@ class Contact < ApplicationRecord
             presence: true,
             uniqueness: { scope: %i[contact_list_id contact_network_id] }
 
+  validates :send_security_notifications,
+            inclusion: {
+              in: [false],
+              unless: lambda { |record|
+                record.contact_network&.communicable?
+              },
+            }
+
 private
 
   def turn_blanks_into_nils

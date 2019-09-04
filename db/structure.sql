@@ -439,6 +439,7 @@ CREATE TABLE public.contacts (
     contact_list_id bigint NOT NULL,
     contact_network_id bigint NOT NULL,
     value character varying NOT NULL,
+    send_security_notifications boolean DEFAULT false NOT NULL,
     CONSTRAINT value CHECK (public.is_good_small_text((value)::text))
 );
 
@@ -1161,6 +1162,13 @@ CREATE INDEX index_contacts_on_contact_network_id ON public.contacts USING btree
 --
 
 CREATE UNIQUE INDEX index_contacts_on_list_id_and_network_id_and_value ON public.contacts USING btree (contact_list_id, contact_network_id, value);
+
+
+--
+-- Name: index_contacts_on_send_security_notifications; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_contacts_on_send_security_notifications ON public.contacts USING btree (send_security_notifications);
 
 
 --

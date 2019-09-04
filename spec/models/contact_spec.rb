@@ -47,4 +47,33 @@ RSpec.describe Contact do
       end
     end
   end
+
+  describe '#send_security_notifications' do
+    def allow_value(*)
+      super.for :send_security_notifications
+    end
+
+    it do
+      is_expected.to \
+        validate_inclusion_of(:send_security_notifications)
+        .in_array([false])
+    end
+
+    context 'for email' do
+      subject { create :email_contact }
+
+      it { is_expected.to allow_value false }
+      it { is_expected.to allow_value true }
+    end
+
+    context 'for phone' do
+      subject { create :phone_contact }
+
+      it do
+        is_expected.to \
+          validate_inclusion_of(:send_security_notifications)
+          .in_array([false])
+      end
+    end
+  end
 end
