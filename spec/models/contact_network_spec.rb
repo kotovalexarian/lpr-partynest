@@ -75,4 +75,26 @@ RSpec.describe ContactNetwork do
     it { is_expected.not_to allow_value "\nFoo" }
     it { is_expected.not_to allow_value "Foo\n" }
   end
+
+  describe '#communicable?' do
+    specify do
+      expect(subject.communicable?).to equal false
+    end
+
+    context 'for email' do
+      subject { create :email_contact_network }
+
+      specify do
+        expect(subject.communicable?).to equal true
+      end
+    end
+
+    context 'for phone' do
+      subject { create :phone_contact_network }
+
+      specify do
+        expect(subject.communicable?).to equal false
+      end
+    end
+  end
 end

@@ -32,4 +32,8 @@ class ContactNetwork < ApplicationRecord
   def to_param
     codename
   end
+
+  def communicable?
+    codename == 'email'
+  end
 end
