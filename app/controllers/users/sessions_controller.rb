@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super do |user|
-      LogUserSession.call user: user
+      LogUserSessionJob.perform_later user.id
     end
   end
 
