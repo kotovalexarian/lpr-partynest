@@ -34,6 +34,6 @@ class ContactNetwork < ApplicationRecord
   end
 
   def communicable?
-    codename == 'email'
+    %w[email telegram_id].include? codename
   end
 end
