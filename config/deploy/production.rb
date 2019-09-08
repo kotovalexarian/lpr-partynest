@@ -1,3 +1,5 @@
 # frozen_string_literal: true
 
-server 'partynest.libertarian-party.com', roles: %w[web app db]
+server 'beta.libertarian-party.com', roles: %w[web]
+
+server 'gamma.libertarian-party.com', roles: %w[web app db]
