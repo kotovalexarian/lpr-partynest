@@ -51,7 +51,9 @@ append :linked_dirs,
 # before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-ruby_version = File.read(File.expand_path('.ruby-version', __dir__)).chomp
-ruby_gemset  = File.read(File.expand_path('.ruby-gemset',  __dir__)).chomp
+root_dir = File.join(__dir__, '..')
+
+ruby_version = File.read(File.expand_path('.ruby-version', root_dir)).chomp
+ruby_gemset  = File.read(File.expand_path('.ruby-gemset',  root_dir)).chomp
 
 set :rvm_ruby_version, "#{ruby_version}@#{ruby_gemset}"
