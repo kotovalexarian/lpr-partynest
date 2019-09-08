@@ -26,5 +26,5 @@ production:
   host: 'private-db-postgresql-ams3-63609-do-user-4455684-0.db.ondigitalocean.com'
   port: 25060
   database: 'partynest_production'
-  username: 'partynest'
+  username: 'doadmin'
   password: <%= Rails.application.credentials.postgres_password %>
