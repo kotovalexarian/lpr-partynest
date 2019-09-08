@@ -51,4 +51,7 @@ append :linked_dirs,
 # before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :rvm_ruby_version, '2.6.2@partynest'
+ruby_version = File.read(File.expand_path('.ruby-version', __dir__)).chomp
+ruby_gemset  = File.read(File.expand_path('.ruby-gemset',  __dir__)).chomp
+
+set :rvm_ruby_version, "#{ruby_version}@#{ruby_gemset}"
