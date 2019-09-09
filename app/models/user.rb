@@ -33,6 +33,14 @@ class User < ApplicationRecord
   # Methods #
   ###########
 
+  def active_for_authentication?
+    super && (
+      !Rails.env.production?        ||
+      Rails.application.restricted? ||
+      !account.restricted?
+    )
+  end
+
   def remember_exists_and_not_expired?
     return false unless respond_to? :remember_created_at
     return false unless respond_to? :remember_expired?
