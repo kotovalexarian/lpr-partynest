@@ -31,6 +31,20 @@ module Partynest
       unlock_token
     ].freeze
 
+    def restricted?
+      if instance_variable_defined? :@partynest_restricted
+        return @partynest_restricted
+      end
+
+      @partynest_restricted =
+        case ENV['PARTYNEST_RESTRICTED']
+        when nil, 'no' then false
+        when 'yes'     then true
+        else
+          raise 'Invalid value for ENV "PARTYNEST_RESTRICTED"'
+        end
+    end
+
     def settings(name)
       name = String(name).to_sym
       raise "Invalid name: #{name.to_s.inspect}" unless name.match?(/\A\w+\z/)
