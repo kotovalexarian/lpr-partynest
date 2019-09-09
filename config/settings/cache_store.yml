@@ -7,7 +7,7 @@ default:
 production:
   host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
   port:     25061
-  password: <%= Rails.application.credentials.sidekiq_cache_redis_password %>
+  password: <%= Rails.application.credentials.rails_cache_redis_password %>
   db:       1
   ssl:      true
   ssl_params:
