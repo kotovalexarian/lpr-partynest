@@ -10,4 +10,4 @@ production:
   password: <%= Rails.application.credentials.sidekiq_cache_redis_password %>
   db:       1
   ssl:
-    ca_file: <%= Rails.root.join 'config', 'redis.ca' %>
+    ca_file: <%= Rails.root.join 'config', 'redis.crt' %>
