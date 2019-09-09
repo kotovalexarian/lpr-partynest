@@ -18,4 +18,5 @@ production:
   db:       0
   ssl:      true
   ssl_params:
-    ca_file: <%= Rails.root.join 'config', 'redis.crt' %>
+    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>
+    ca_file:     <%= Rails.root.join 'config', 'redis.crt' %>
