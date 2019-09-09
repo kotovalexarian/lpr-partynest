@@ -58,7 +58,7 @@ class ApplicationPolicy
       scope.none
     end
 
-    # :nocov:
+  # :nocov:
 
   private
 
