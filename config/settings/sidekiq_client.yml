@@ -1,20 +1,20 @@
 default: &default
-  redis_host:     <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_HOST')     { 'localhost' } %>
-  redis_port:     <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_PORT')     { 6379        } %>
-  redis_password: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_PASSWORD') { 'password'  } %>
+  host:     <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_HOST')     { 'localhost' } %>
+  port:     <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_PORT')     { 6379        } %>
+  password: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_PASSWORD') { 'password'  } %>
 
 development:
   <<: *default
-  redis_db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 0 } %>
+  db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 0 } %>
 
 test:
   <<: *default
-  redis_db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 15 } %>
+  db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 15 } %>
 
 production:
-  redis_host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
-  redis_port:     25061
-  redis_password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
-  redis_db:       0
-  redis_ssl:
+  host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
+  port:     25061
+  password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
+  db:       0
+  ssl:
     ca_file: <%= Rails.root.join 'config', 'redis.ca' %>
