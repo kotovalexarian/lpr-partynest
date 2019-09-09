@@ -59,5 +59,17 @@ class ApplicationPolicy
     end
 
     # :nocov:
+
+  private
+
+    def restricted?
+      Rails.application.restricted?
+    end
+  end
+
+private
+
+  def restricted?
+    Rails.application.restricted?
   end
 end
