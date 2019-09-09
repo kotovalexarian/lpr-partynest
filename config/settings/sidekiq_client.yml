@@ -15,4 +15,4 @@ production:
   redis_host:     'db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
   redis_port:     25061
   redis_password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
-  redis_db:       <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 0 } %>
+  redis_db:       0
