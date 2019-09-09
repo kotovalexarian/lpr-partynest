@@ -16,5 +16,6 @@ production:
   port:     25061
   password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
   db:       0
-  ssl:
+  ssl:      true
+  ssl_params:
     ca_file: <%= Rails.root.join 'config', 'redis.crt' %>

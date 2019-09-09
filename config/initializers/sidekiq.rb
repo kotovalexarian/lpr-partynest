@@ -11,7 +11,8 @@ Sidekiq.configure_client do |config|
     port: client_conf[:port],
     db: client_conf[:db],
     password: client_conf[:password],
-    ssl_params: client_conf[:ssl],
+    ssl: client_conf[:ssl],
+    ssl_params: client_conf[:ssl_params],
   }
 end
 
@@ -21,6 +22,7 @@ Sidekiq.configure_server do |config|
     port: server_conf[:port],
     db: server_conf[:db],
     password: server_conf[:password],
-    ssl_params: client_conf[:ssl],
+    ssl: client_conf[:ssl],
+    ssl_params: client_conf[:ssl_params],
   }
 end
