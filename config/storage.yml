@@ -5,3 +5,11 @@ test:
 local:
   service: Disk
   root: <%= Rails.root.join 'storage' %>
+
+amazon:
+  service: S3
+  region: eu-west-2
+  bucket: partynest
+
+  access_key_id:     '<%= Rails.application.credentials.amazon_s3_access_key_id %>'
+  secret_access_key: '<%= Rails.application.credentials.amazon_s3_access_key_secret %>'

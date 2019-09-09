@@ -111,6 +111,10 @@ gem 'recaptcha', '~> 4.13'
 # and sophisticated paginator for Rails 4+.
 gem 'kaminari', '~> 1.1'
 
+# Official AWS Ruby gem for Amazon Simple Storage Service (Amazon S3).
+# This gem is part of the AWS SDK for Ruby.
+gem 'aws-sdk-s3', require: false
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
