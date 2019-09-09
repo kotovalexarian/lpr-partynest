@@ -16,3 +16,5 @@ production:
   redis_port:     25061
   redis_password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
   redis_db:       0
+  redis_ssl:
+    ca_file: <%= Rails.root.join 'config', 'redis.ca' %>

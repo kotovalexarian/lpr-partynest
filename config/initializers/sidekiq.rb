@@ -11,6 +11,7 @@ Sidekiq.configure_client do |config|
     port: client_conf[:redis_port],
     db: client_conf[:redis_db],
     password: client_conf[:redis_password],
+    ssl_params: client_conf[:redis_ssl],
   }
 end
 
@@ -20,5 +21,6 @@ Sidekiq.configure_server do |config|
     port: server_conf[:redis_port],
     db: server_conf[:redis_db],
     password: server_conf[:redis_password],
+    ssl_params: client_conf[:redis_ssl],
   }
 end
