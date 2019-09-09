@@ -59,6 +59,10 @@ class Account < ApplicationRecord
     nickname
   end
 
+  def restricted?
+    !superuser?
+  end
+
   def can_access_sidekiq_web_interface?
     superuser?
   end

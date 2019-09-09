@@ -199,6 +199,25 @@ RSpec.describe Account do
     end
   end
 
+  describe '#restricted?' do
+    let(:result) { subject.restricted? }
+
+    context 'for usual account' do
+      subject { create :usual_account }
+      specify { expect(result).to equal true }
+    end
+
+    context 'for personal account' do
+      subject { create :personal_account }
+      specify { expect(result).to equal true }
+    end
+
+    context 'for superuser account' do
+      subject { create :superuser_account }
+      specify { expect(result).to equal false }
+    end
+  end
+
   describe '#can_initiate_relationship?' do
     let(:result) { subject.can_initiate_relationship? regional_office }
 
