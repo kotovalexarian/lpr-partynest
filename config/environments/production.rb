@@ -65,7 +65,7 @@ Rails.application.configure do
     port: cache_conf[:port],
     db: cache_conf[:db],
     password: cache_conf[:password],
-    ssl_params: client_conf[:ssl],
+    ssl_params: cache_conf[:ssl],
   }
 
   # Use a real queuing backend for Active Job
