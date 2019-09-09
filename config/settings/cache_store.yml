@@ -7,5 +7,5 @@ default:
 production:
   host:     'db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
   port:     25061
-  password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
-  db:       <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 1 } %>
+  password: <%= Rails.application.credentials.sidekiq_cache_redis_password %>
+  db:       <%= ENV.fetch('SIDEKIQ_CACHE_REDIS_DB') { 1 } %>
