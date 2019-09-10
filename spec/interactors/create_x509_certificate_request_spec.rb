@@ -25,10 +25,6 @@ RSpec.describe CreateX509CertificateRequest do
   end
 
   specify do
-    expect(subject.certificate_request).to be_instance_of X509CertificateRequest
-  end
-
-  specify do
     expect(subject.certificate_request.rsa_public_key).to eq public_key
   end
 
