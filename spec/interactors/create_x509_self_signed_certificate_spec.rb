@@ -21,6 +21,19 @@ RSpec.describe CreateX509SelfSignedCertificate do
   let(:not_after) { Faker::Time.forward.utc }
 
   specify do
-    expect { subject }.not_to raise_error
+    expect { subject }.to change(X509Certificate, :count).by(1)
+  end
+
+  specify do
+    expect(subject.certificate).to be_instance_of X509Certificate
+  end
+
+  specify do
+    expect(subject.certificate.x509_certificate_request).to equal nil
+  end
+
+  specify do
+    expect(subject.certificate.pem).to \
+      be_start_with "-----BEGIN CERTIFICATE-----\n"
   end
 end
