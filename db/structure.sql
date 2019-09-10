@@ -741,7 +741,9 @@ CREATE TABLE public.sessions (
     account_id bigint NOT NULL,
     logged_at timestamp without time zone NOT NULL,
     ip_address character varying NOT NULL,
-    CONSTRAINT ip_address CHECK (public.is_good_small_text((ip_address)::text))
+    user_agent character varying DEFAULT ''::character varying NOT NULL,
+    CONSTRAINT ip_address CHECK (public.is_good_small_text((ip_address)::text)),
+    CONSTRAINT user_agent CHECK (public.is_good_big_text((user_agent)::text))
 );
 
 
@@ -1517,6 +1519,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
-('20181130024918');
+('20181130024918'),
+('20190910040709');
 
 

@@ -8,6 +8,8 @@ FactoryBot.define do
 
     ip_address { Faker::Internet.ip_v4_address }
 
+    user_agent { Faker::Internet.user_agent }
+
     trait :with_ipv6_address do
       ip_address { Faker::Internet.ip_v6_address }
     end
