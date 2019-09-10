@@ -21,7 +21,7 @@ private
     @subject ||= OpenSSL::X509::Name.parse context.distinguished_name
   end
 
-  def cert
+  def cert # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @cert ||= OpenSSL::X509::Certificate.new.tap do |cert|
       cert.version = 2
       cert.serial = 0
