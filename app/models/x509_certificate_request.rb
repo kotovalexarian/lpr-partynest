@@ -14,4 +14,6 @@ class X509CertificateRequest < ApplicationRecord
   validates :distinguished_name,
             presence: true,
             length: { maximum: 10_000 }
+
+  validates :pem, presence: true
 end

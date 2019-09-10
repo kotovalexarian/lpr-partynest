@@ -5,5 +5,6 @@ FactoryBot.define do
     association :rsa_public_key
 
     distinguished_name { "CN=#{Faker::Internet.domain_name}" }
+    pem { OpenSSL::X509::Request.new.to_pem }
   end
 end

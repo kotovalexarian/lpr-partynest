@@ -10,6 +10,7 @@ class CreateX509CertificateRequests < ActiveRecord::Migration[6.0]
       t.references :rsa_public_key, null: false, foreign_key: true
 
       t.string :distinguished_name, null: false
+      t.text   :pem,                null: false
     end
 
     constraint :x509_certificate_requests, :distinguished_name, <<~SQL

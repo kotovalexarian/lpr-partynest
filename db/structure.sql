@@ -891,6 +891,7 @@ CREATE TABLE public.x509_certificate_requests (
     updated_at timestamp(6) without time zone NOT NULL,
     rsa_public_key_id bigint NOT NULL,
     distinguished_name character varying NOT NULL,
+    pem text NOT NULL,
     CONSTRAINT distinguished_name CHECK (public.is_good_big_text((distinguished_name)::text))
 );
 
