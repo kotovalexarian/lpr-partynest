@@ -916,6 +916,38 @@ ALTER SEQUENCE public.x509_certificate_requests_id_seq OWNED BY public.x509_cert
 
 
 --
+-- Name: x509_certificates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.x509_certificates (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    x509_certificate_request_id bigint,
+    pem text NOT NULL
+);
+
+
+--
+-- Name: x509_certificates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.x509_certificates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: x509_certificates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.x509_certificates_id_seq OWNED BY public.x509_certificates.id;
+
+
+--
 -- Name: accounts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1032,6 +1064,13 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 ALTER TABLE ONLY public.x509_certificate_requests ALTER COLUMN id SET DEFAULT nextval('public.x509_certificate_requests_id_seq'::regclass);
+
+
+--
+-- Name: x509_certificates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.x509_certificates ALTER COLUMN id SET DEFAULT nextval('public.x509_certificates_id_seq'::regclass);
 
 
 --
@@ -1184,6 +1223,14 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.x509_certificate_requests
     ADD CONSTRAINT x509_certificate_requests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: x509_certificates x509_certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.x509_certificates
+    ADD CONSTRAINT x509_certificates_pkey PRIMARY KEY (id);
 
 
 --
@@ -1474,6 +1521,13 @@ CREATE INDEX index_x509_certificate_requests_on_rsa_public_key_id ON public.x509
 
 
 --
+-- Name: index_x509_certificates_on_x509_certificate_request_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_x509_certificates_on_x509_certificate_request_id ON public.x509_certificates USING btree (x509_certificate_request_id);
+
+
+--
 -- Name: accounts ensure_contact_list_id_matches_related_person; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1508,6 +1562,14 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_124c042ac0 FOREIGN KEY (initiator_account_id) REFERENCES public.accounts(id);
+
+
+--
+-- Name: x509_certificates fk_rails_4958020bc7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.x509_certificates
+    ADD CONSTRAINT fk_rails_4958020bc7 FOREIGN KEY (x509_certificate_request_id) REFERENCES public.x509_certificate_requests(id);
 
 
 --
@@ -1641,6 +1703,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181130024918'),
 ('20190910040709'),
 ('20190910115511'),
-('20190910133430');
+('20190910133430'),
+('20190910225118');
 
 
