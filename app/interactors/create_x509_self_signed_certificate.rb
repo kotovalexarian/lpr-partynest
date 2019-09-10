@@ -24,7 +24,7 @@ private
   def cert # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @cert ||= OpenSSL::X509::Certificate.new.tap do |cert|
       cert.version = 2
-      cert.serial = 0
+      cert.serial = SecureRandom.rand 0...(2**16)
       cert.subject = subject
       cert.issuer = cert.subject
       cert.public_key = public_key_pkey
