@@ -37,11 +37,11 @@ module Partynest
       end
 
       @partynest_restricted =
-        case ENV['PARTYNEST_RESTRICTED']
+        case ENV['PARTYNEST_RESTRICT']
         when nil, 'no' then false
         when 'yes'     then true
         else
-          raise 'Invalid value for ENV "PARTYNEST_RESTRICTED"'
+          raise 'Invalid value for ENV "PARTYNEST_RESTRICT"'
         end
     end
 
