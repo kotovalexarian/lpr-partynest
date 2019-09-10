@@ -743,7 +743,7 @@ CREATE TABLE public.sessions (
     ip_address character varying NOT NULL,
     user_agent character varying DEFAULT ''::character varying NOT NULL,
     CONSTRAINT ip_address CHECK (public.is_good_small_text((ip_address)::text)),
-    CONSTRAINT user_agent CHECK (public.is_good_big_text((user_agent)::text))
+    CONSTRAINT user_agent CHECK ((((user_agent)::text = ''::text) OR public.is_good_big_text((user_agent)::text)))
 );
 
 
