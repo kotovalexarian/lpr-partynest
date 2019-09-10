@@ -7,6 +7,9 @@
       <th scope="col">
         <%= Session.human_attribute_name :ip_address %>
       </th>
+      <th scope="col">
+        <%= Session.human_attribute_name :user_agent %>
+      </th>
     </tr>
   </thead>
 
@@ -15,6 +18,7 @@
       <tr>
         <td><%= localize session.logged_at, format: :long %></td>
         <td><%= session.ip_address %></td>
+        <td><%= truncate session.user_agent, length: 40 %></td>
       </tr>
     <% end %>
   </tbody>

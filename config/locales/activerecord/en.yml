@@ -105,6 +105,7 @@ en:
         account: Account
         logged_at: Date & time (UTC timezone)
         ip_address: IP address
+        user_agent: User agent
       user:
         id: ID
         confirmation_sent_at: Confirmation sent at

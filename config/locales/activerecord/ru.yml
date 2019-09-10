@@ -105,6 +105,7 @@ ru:
         account: Аккаунт
         logged_at: Дата & время (часовой пояс UTC)
         ip_address: IP-адрес
+        user_agent: User agent
       user:
         id: ID
         confirmation_sent_at: Дата отправки подтверждения
