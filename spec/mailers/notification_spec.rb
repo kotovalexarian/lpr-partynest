@@ -17,16 +17,20 @@ RSpec.describe NotificationMailer do
 
     it 'includes greeting' do
       expect(mail.body.encoded).to \
-        match "Здравствуйте, #{session.account.public_name}"
+        include "Здравствуйте, #{session.account.public_name}"
     end
 
     it 'includes datetime' do
       expect(mail.body.encoded).to \
-        match I18n.localize session.logged_at, format: :long
+        include I18n.localize session.logged_at, format: :long
     end
 
     it 'includes IP address' do
-      expect(mail.body.encoded).to match session.ip_address
+      expect(mail.body.encoded).to include session.ip_address
+    end
+
+    it 'inclused user agent' do
+      expect(mail.body.encoded).to include session.user_agent[0...90]
     end
   end
 end

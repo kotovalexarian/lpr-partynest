@@ -8,6 +8,9 @@
 
   <dt><strong><%= Session.human_attribute_name :ip_address %>:</strong></dt>
   <dd><%= @session.ip_address %></dd>
+
+  <dt><strong><%= Session.human_attribute_name :user_agent %>:</strong></dt>
+  <dd><%= truncate @session.user_agent, length: 100 %></dd>
 </dl>
 
 <p>
