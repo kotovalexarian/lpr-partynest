@@ -3,6 +3,11 @@
 class CreateX509SelfSignedCertificate
   include Interactor
 
+  before do
+    context.not_before = Time.at(context.not_before).utc if context.not_before
+    context.not_after  = Time.at(context.not_after).utc  if context.not_after
+  end
+
   def call
     context.cert = cert
   end
