@@ -722,6 +722,39 @@ ALTER SEQUENCE public.relationships_id_seq OWNED BY public.relationships.id;
 
 
 --
+-- Name: rsa_public_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.rsa_public_keys (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    pem text NOT NULL,
+    bits integer NOT NULL,
+    CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
+);
+
+
+--
+-- Name: rsa_public_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.rsa_public_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: rsa_public_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.rsa_public_keys_id_seq OWNED BY public.rsa_public_keys.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -933,6 +966,13 @@ ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: rsa_public_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.rsa_public_keys ALTER COLUMN id SET DEFAULT nextval('public.rsa_public_keys_id_seq'::regclass);
+
+
+--
 -- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1055,6 +1095,14 @@ ALTER TABLE ONLY public.regional_offices
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: rsa_public_keys rsa_public_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.rsa_public_keys
+    ADD CONSTRAINT rsa_public_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -1307,6 +1355,13 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 
 
 --
+-- Name: index_rsa_public_keys_on_pem; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_rsa_public_keys_on_pem ON public.rsa_public_keys USING btree (pem);
+
+
+--
 -- Name: index_sessions_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1520,6 +1575,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
-('20190910040709');
+('20190910040709'),
+('20190910115511');
 
 
