@@ -21,11 +21,15 @@ private
     @public_key_pkey ||= OpenSSL::PKey::RSA.new context.public_key.pem
   end
 
+  def subject
+    @subject ||= OpenSSL::X509::Name.parse context.distinguished_name
+  end
+
   def request
     @request ||= OpenSSL::X509::Request.new.tap do |request|
       request.version = 0
       request.public_key = public_key_pkey
-      request.subject = OpenSSL::X509::Name.parse context.distinguished_name
+      request.subject = subject
       request.sign private_key_pkey, OpenSSL::Digest::SHA256.new
     end
   end
