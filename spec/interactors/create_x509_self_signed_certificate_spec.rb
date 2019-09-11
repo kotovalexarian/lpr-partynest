@@ -36,4 +36,12 @@ RSpec.describe CreateX509SelfSignedCertificate do
     expect(subject.certificate.pem).to \
       be_start_with "-----BEGIN CERTIFICATE-----\n"
   end
+
+  specify do
+    expect(subject.certificate.not_before).to eq not_before
+  end
+
+  specify do
+    expect(subject.certificate.not_after).to eq not_after
+  end
 end

@@ -924,7 +924,9 @@ CREATE TABLE public.x509_certificates (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     x509_certificate_request_id bigint,
-    pem text NOT NULL
+    pem text NOT NULL,
+    not_before timestamp without time zone,
+    not_after timestamp without time zone
 );
 
 

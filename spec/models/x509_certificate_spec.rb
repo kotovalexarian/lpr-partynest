@@ -12,4 +12,12 @@ RSpec.describe X509Certificate do
   describe '#pem' do
     it { is_expected.to validate_presence_of :pem }
   end
+
+  describe '#not_before' do
+    it { is_expected.not_to validate_presence_of :not_before }
+  end
+
+  describe '#not_after' do
+    it { is_expected.not_to validate_presence_of :not_after }
+  end
 end
