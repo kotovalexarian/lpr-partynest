@@ -51,6 +51,16 @@ Rails.application.configure do
   # and use secure cookies.
   config.force_ssl = true
 
+  # Configure SSL.
+  config.ssl_options = {
+    secure_cookies: true,
+    hsts: {
+      expires: 1.year,
+      subdomains: true,
+      preload: true,
+    },
+  }
+
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :info
