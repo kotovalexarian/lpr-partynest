@@ -3,6 +3,8 @@
 class ApplicationPolicy
   attr_reader :context, :record
 
+  delegate :account, :params, to: :context, allow_nil: true
+
   def initialize(context, record)
     @context = context
     @record = record
@@ -46,20 +48,14 @@ class ApplicationPolicy
 
 private
 
-  def account
-    context&.account
-  end
-
-  def params
-    context&.params
-  end
-
   def restricted?
     Rails.application.restricted?
   end
 
   class Scope
     attr_reader :context, :scope
+
+    delegate :account, :params, to: :context, allow_nil: true
 
     def initialize(context, scope)
       @context = context
@@ -75,14 +71,6 @@ private
   # :nocov:
 
   private
-
-    def account
-      context&.account
-    end
-
-    def params
-      context&.params
-    end
 
     def restricted?
       Rails.application.restricted?
