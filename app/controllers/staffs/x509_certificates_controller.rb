@@ -35,9 +35,10 @@ class Staffs::X509CertificatesController < ApplicationController
     result = CreateRSAKeysAndX509SelfSignedCertificate.call \
       @x509_certificate_form.attributes
 
-    return render :new unless result.success?
-
-    redirect_to [:staff, result.certificate]
+    redirect_to staff_x509_certificate_url(
+      result.certificate,
+      private_key_secret: Base64.urlsafe_encode64(result.private_key_pem_key),
+    )
   end
 
 private

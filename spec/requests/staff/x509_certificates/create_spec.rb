@@ -58,7 +58,8 @@ RSpec.describe 'POST /staff/x509_certificates' do
       before { make_request }
 
       specify do
-        expect(response).to redirect_to [:staff, X509Certificate.last]
+        expect(response).to \
+          redirect_to(/\A#{staff_x509_certificate_url(X509Certificate.last)}\?/)
       end
 
       specify do

@@ -26,6 +26,7 @@ module Partynest
       confirmation_token
       password
       password_confirmation
+      private_key_secret
       reset_password_token
       secret
       unlock_token
