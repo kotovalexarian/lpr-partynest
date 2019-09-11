@@ -10,7 +10,7 @@ class CreateX509SelfSignedCertificate
 
   def call
     context.certificate = X509Certificate.create!(
-      pem: cert.to_pem.freeze,
+      pem: cert.to_pem,
       subject: cert.subject.to_s,
       issuer: cert.issuer.to_s,
       not_before: cert.not_before,
