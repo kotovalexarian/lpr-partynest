@@ -10,6 +10,9 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       t.text    :pem,  null: false
       t.integer :bits, null: false
 
+      t.binary :private_key_pem_iv
+      t.binary :private_key_pem_ciphertext
+
       t.index :pem, unique: true
     end
 

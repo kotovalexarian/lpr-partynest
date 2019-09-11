@@ -731,6 +731,8 @@ CREATE TABLE public.rsa_public_keys (
     updated_at timestamp(6) without time zone NOT NULL,
     pem text NOT NULL,
     bits integer NOT NULL,
+    private_key_pem_iv bytea,
+    private_key_pem_ciphertext bytea,
     CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
 );
 
