@@ -35,10 +35,9 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
 
       t.references :x509_certificate_request, null: true, foreign_key: true
 
-      t.text :pem, null: false
-
-      t.datetime :not_before
-      t.datetime :not_after
+      t.text     :pem,        null: false
+      t.datetime :not_before, null: false
+      t.datetime :not_after,  null: false
     end
   end
 end

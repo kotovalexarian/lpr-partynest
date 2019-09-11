@@ -12,4 +12,8 @@ class X509Certificate < ApplicationRecord
   ###############
 
   validates :pem, presence: true
+
+  validates :not_before, presence: true
+
+  validates :not_after, presence: true
 end
