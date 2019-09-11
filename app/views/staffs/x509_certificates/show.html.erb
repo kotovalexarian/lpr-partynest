@@ -64,6 +64,22 @@
             <dd><%= localize @x509_certificate.not_after, format: :long %></dd>
           </dl>
         </div>
+
+        <div class="col-md-6">
+          <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">
+              <%= translate '.private_key_alert_header' %>
+            </h4>
+
+            <hr/>
+
+            <p><%= translate '.private_key_alert_text' %></p>
+
+            <%= link_to translate('.private_key_alert_link'),
+                        '#',
+                        class: 'btn btn-warning' %>
+          </div>
+        </div>
       </div>
     </div>
 

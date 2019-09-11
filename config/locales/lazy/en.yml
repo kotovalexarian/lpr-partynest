@@ -25,3 +25,12 @@ en:
         show:
           link_to_connect_account: Link to connect account
           generate: Generate
+    x509_certificates:
+      show:
+        private_key_alert_header: >-
+          Your private key is ready, but you have to download it right now!
+        private_key_alert_text: >-
+          For better security we have encrypted your private key
+          with temporary secret token. You can download it until
+          you leave this page.
+        private_key_alert_link: Download
