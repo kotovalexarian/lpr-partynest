@@ -13,6 +13,12 @@ class Staff::X509CertificatePolicy < ApplicationPolicy
     account&.superuser?
   end
 
+  def new?
+    return false if restricted?
+
+    account&.superuser?
+  end
+
   class Scope < Scope
     def resolve
       return scope.none if restricted?

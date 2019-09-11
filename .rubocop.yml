@@ -47,6 +47,7 @@ Metrics/MethodLength:
 
 Naming/PredicateName:
   Exclude:
+    - 'app/forms/application_form.rb'
     - 'app/models/application_record.rb'
 
 Rails:

@@ -1,0 +1,17 @@
+<div class="container">
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    [X509Certificate.model_name.human(count: 0), staff_x509_certificates_path],
+    translate(:create),
+  ) %>
+
+  <%= simple_form_for [:staff, @x509_certificate_form] do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :distinguished_name %>
+    <%= f.input :not_before %>
+    <%= f.input :not_after %>
+
+    <%= f.button :submit %>
+  <% end %>
+</div>

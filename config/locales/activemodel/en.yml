@@ -1,0 +1,7 @@
+en:
+  activemodel:
+    attributes:
+      x509_certificate:
+        distinguished_name: Distinguished name
+        not_before: Active since
+        not_after: Expires at
