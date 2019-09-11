@@ -12,3 +12,7 @@ ru:
       person: Личность
       contacts: Контакты
       sessions: Сессии
+    x509_certificate:
+      overview: Обзор
+      pem: PEM
+      text: Текст

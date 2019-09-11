@@ -5,18 +5,64 @@
     X509Certificate.model_name.human(count: 1),
   ) %>
 
-  <dl>
-    <dt><%= X509Certificate.human_attribute_name :id %></dt>
-    <dd><%= @x509_certificate.id %></dd>
+  <div id="myTab" class="mb-3">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <%= link_to translate('nav_tabs.x509_certificate.overview'),
+                    '#overview',
+                    id: 'overview-tab',
+                    class: 'nav-link active',
+                    role: :tab,
+                    'data-toggle': :tab,
+                    'aria-controls': :overview,
+                    'aria-selected': true %>
+      </li>
 
-    <dt><%= X509Certificate.human_attribute_name :not_before %></dt>
-    <dd><%= localize @x509_certificate.not_before, format: :long %></dd>
+      <li class="nav-item">
+        <%= link_to translate('nav_tabs.x509_certificate.pem'),
+                    '#pem',
+                    id: 'pem-tab',
+                    class: 'nav-link',
+                    role: :tab,
+                    'data-toggle': :tab,
+                    'aria-controls': :pem,
+                    'aria-selected': true %>
+      </li>
 
-    <dt><%= X509Certificate.human_attribute_name :not_after %></dt>
-    <dd><%= localize @x509_certificate.not_after, format: :long %></dd>
-  </dl>
+      <li class="nav-item">
+        <%= link_to translate('nav_tabs.x509_certificate.text'),
+                    '#text',
+                    id: 'text-tab',
+                    class: 'nav-link',
+                    role: :tab,
+                    'data-toggle': :tab,
+                    'aria-controls': :text,
+                    'aria-selected': true %>
 
-  <hr/>
+      </li>
+    </ul>
+  </div>
 
-  <pre class="pre-scrollable"><code><%= OpenSSL::X509::Certificate.new(@x509_certificate.pem).to_text %></code></pre>
+  <div id="myTabContent" class="tab-content">
+    <div id="overview" class="tab-pane show active" role="tabpanel" aria-labelledby="overview-tab">
+      <dl>
+        <dt><%= X509Certificate.human_attribute_name :id %></dt>
+        <dd><%= @x509_certificate.id %></dd>
+
+        <dt><%= X509Certificate.human_attribute_name :not_before %></dt>
+        <dd><%= localize @x509_certificate.not_before, format: :long %></dd>
+
+        <dt><%= X509Certificate.human_attribute_name :not_after %></dt>
+        <dd><%= localize @x509_certificate.not_after, format: :long %></dd>
+      </dl>
+    </div>
+
+    <div id="pem" class="tab-pane" role="tabpanel" aria-labelledby"pem-tab">
+      <pre><code><%= @x509_certificate.pem %></code></pre>
+    </div>
+
+    <div id="text" class="tab-pane" role="tabpanel" aria-labelledby="text-tab">
+      <pre><code><%= OpenSSL::X509::Certificate.new(@x509_certificate.pem).to_text %></code></pre>
+    </div>
+  </div>
 </div>

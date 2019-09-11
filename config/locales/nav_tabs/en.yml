@@ -12,3 +12,7 @@ en:
       person: Person
       contacts: Contacts
       sessions: Sessions
+    x509_certificate:
+      overview: Overview
+      pem: PEM
+      text: Text
