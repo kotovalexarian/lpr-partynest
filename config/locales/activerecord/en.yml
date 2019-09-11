@@ -137,6 +137,7 @@ en:
         updated_at: Updated at
       x509_certificate:
         id: ID
+        pem: PEM
         not_before: Active since
         not_after: Expires at
     errors:

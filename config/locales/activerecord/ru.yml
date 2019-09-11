@@ -137,6 +137,7 @@ ru:
         updated_at: Дата обновления
       x509_certificate:
         id: ID
+        pem: PEM
         not_before: Активен с
         not_after: Истекает
     errors:

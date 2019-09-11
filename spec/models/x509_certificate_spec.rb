@@ -10,7 +10,19 @@ RSpec.describe X509Certificate do
   end
 
   describe '#pem' do
+    def allow_value(*)
+      super.for :pem
+    end
+
     it { is_expected.to validate_presence_of :pem }
+
+    it 'is allowed to be a valid certificate' do
+      is_expected.to allow_value File.read Rails.root.join 'fixtures', 'ca.crt'
+    end
+
+    it 'is not allowed to be an invalid certificate' do
+      is_expected.not_to allow_value OpenSSL::X509::Certificate.new.to_pem
+    end
   end
 
   describe '#not_before' do
