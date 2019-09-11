@@ -13,8 +13,8 @@ class CreateX509SelfSignedCertificate
       pem: cert.to_pem.freeze,
       subject: cert.subject.to_s,
       issuer: cert.issuer.to_s,
-      not_before: context.not_before,
-      not_after: context.not_after,
+      not_before: cert.not_before,
+      not_after: cert.not_after,
     )
   end
 
