@@ -67,4 +67,68 @@ RSpec.describe 'POST /staff/x509_certificates' do
       end
     end
   end
+
+  context 'when distinguished name is missing' do
+    let(:distinguished_name) { nil }
+
+    specify do
+      expect { make_request }.not_to change(X509Certificate, :count)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :ok
+      end
+    end
+  end
+
+  context 'when activation time is missing' do
+    let(:not_before) { nil }
+
+    specify do
+      expect { make_request }.not_to change(X509Certificate, :count)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :ok
+      end
+    end
+  end
+
+  context 'when expiration time is missing' do
+    let(:not_after) { nil }
+
+    specify do
+      expect { make_request }.not_to change(X509Certificate, :count)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :ok
+      end
+    end
+  end
+
+  context 'when distinguished name is invalid' do
+    let(:distinguished_name) { 'Hello!' }
+
+    specify do
+      expect { make_request }.not_to change(X509Certificate, :count)
+    end
+
+    context 'after request' do
+      before { make_request }
+
+      specify do
+        expect(response).to have_http_status :ok
+      end
+    end
+  end
 end
