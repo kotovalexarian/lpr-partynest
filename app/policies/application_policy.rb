@@ -44,6 +44,12 @@ class ApplicationPolicy
     Pundit.policy account, record
   end
 
+private
+
+  def restricted?
+    Rails.application.restricted?
+  end
+
   class Scope
     attr_reader :account, :scope
 
@@ -65,11 +71,5 @@ class ApplicationPolicy
     def restricted?
       Rails.application.restricted?
     end
-  end
-
-private
-
-  def restricted?
-    Rails.application.restricted?
   end
 end
