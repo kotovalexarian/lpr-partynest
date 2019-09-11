@@ -21,7 +21,11 @@ private
     @current_account ||= current_user&.account
   end
 
-  alias pundit_user current_account
+  def pundit_user
+    @pundit_user ||= ApplicationPolicy::Context.new(
+      account: current_account,
+    )
+  end
 
   def set_raven_context
     Raven.user_context(
