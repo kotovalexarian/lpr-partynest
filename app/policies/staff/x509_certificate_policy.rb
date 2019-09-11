@@ -13,7 +13,7 @@ class Staff::X509CertificatePolicy < ApplicationPolicy
     account&.superuser?
   end
 
-  def new?
+  def create?
     return false if restricted?
 
     account&.superuser?

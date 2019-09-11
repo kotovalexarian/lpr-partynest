@@ -3,6 +3,7 @@
 class ApplicationForm
   include ActiveModel::Model
   include ActiveModel::Attributes
+  include ActiveRecord::AttributeAssignment
 
   def has_attribute?(name)
     attributes.key?(name.to_s)
