@@ -28,10 +28,22 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   end
 
   specify do
+    expect(subject.private_key_pem_key).to be_instance_of String
+  end
+
+  specify do
     expect(subject.public_key).to be_instance_of RSAPublicKey
   end
 
   specify do
     expect(subject.certificate).to be_instance_of X509Certificate
+  end
+
+  specify do
+    expect(subject.private_key_pem).not_to be_blank
+  end
+
+  specify do
+    expect(subject.private_key_pem_key).not_to be_blank
   end
 end
