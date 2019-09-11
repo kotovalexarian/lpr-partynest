@@ -24,6 +24,7 @@ private
   def pundit_user
     @pundit_user ||= ApplicationPolicy::Context.new(
       account: current_account,
+      params: params,
     )
   end
 

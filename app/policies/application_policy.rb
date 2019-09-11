@@ -50,6 +50,10 @@ private
     context&.account
   end
 
+  def params
+    context&.params
+  end
+
   def restricted?
     Rails.application.restricted?
   end
@@ -76,16 +80,21 @@ private
       context&.account
     end
 
+    def params
+      context&.params
+    end
+
     def restricted?
       Rails.application.restricted?
     end
   end
 
   class Context
-    attr_reader :account
+    attr_reader :account, :params
 
-    def initialize(account:)
+    def initialize(account:, params:)
       @account = account
+      @params = params
     end
   end
 end
