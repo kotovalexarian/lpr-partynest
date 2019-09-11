@@ -25,6 +25,14 @@ RSpec.describe X509Certificate do
     end
   end
 
+  describe '#subject' do
+    it { is_expected.to validate_presence_of :subject }
+  end
+
+  describe '#issuer' do
+    it { is_expected.to validate_presence_of :issuer }
+  end
+
   describe '#not_before' do
     it { is_expected.to validate_presence_of :not_before }
   end

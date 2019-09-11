@@ -38,6 +38,14 @@ RSpec.describe CreateX509SelfSignedCertificate do
   end
 
   specify do
+    expect(subject.certificate.subject).to eq "/#{distinguished_name}"
+  end
+
+  specify do
+    expect(subject.certificate.issuer).to eq "/#{distinguished_name}"
+  end
+
+  specify do
     expect(subject.certificate.not_before).to eq not_before
   end
 

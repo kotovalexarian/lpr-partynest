@@ -13,6 +13,10 @@ class X509Certificate < ApplicationRecord
 
   validates :pem, presence: true
 
+  validates :subject, presence: true
+
+  validates :issuer, presence: true
+
   validates :not_before, presence: true
 
   validates :not_after, presence: true
