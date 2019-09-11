@@ -36,6 +36,10 @@ ru:
       user:
         one: Пользователь
         many: Пользователи
+      x509_certificate:
+        one: Сертификат X509
+        few: Сертификатов X509
+        many: Сертификаты X509
     attributes:
       account:
         id: ID
@@ -131,6 +135,10 @@ ru:
         unconfirmed_email: Неподтвержденный email
         unlock_token: Токен разблокировки
         updated_at: Дата обновления
+      x509_certificate:
+        id: ID
+        not_before: Активен с
+        not_after: Истекает
     errors:
       messages:
         image_size: 'имеет слишком большой размер'

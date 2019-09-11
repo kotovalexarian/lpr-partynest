@@ -36,6 +36,10 @@ en:
       user:
         one: User
         many: Users
+      x509_certificate:
+        one: X509 certificate
+        few: X509 certificates
+        many: X509 certificates
     attributes:
       account:
         id: ID
@@ -131,6 +135,10 @@ en:
         unconfirmed_email: Unconfirmed email
         unlock_token: Unlock token
         updated_at: Updated at
+      x509_certificate:
+        id: ID
+        not_before: Active since
+        not_after: Expires at
     errors:
       messages:
         image_size: 'has too big size'

@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= X509Certificate.human_attribute_name :id %>
+      </th>
+      <th scope="col">
+        <%= X509Certificate.human_attribute_name :not_before %>
+      </th>
+      <th scope="col">
+        <%= X509Certificate.human_attribute_name :not_after %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% x509_certificates.each do |x509_certificate| %>
+      <tr>
+        <td scope="row"><%= x509_certificate.id %></td>
+        <td><%= localize x509_certificate.not_before, format: :long %></td>
+        <td><%= localize x509_certificate.not_after, format: :long %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

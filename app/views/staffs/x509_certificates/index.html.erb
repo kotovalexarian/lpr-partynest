@@ -1,0 +1,10 @@
+<div class="container">
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    X509Certificate.model_name.human(count: 0),
+  ) %>
+
+  <%= render partial: 'table',
+             locals: { x509_certificates: @x509_certificates } %>
+  <%= pagination @x509_certificates %>
+</div>
