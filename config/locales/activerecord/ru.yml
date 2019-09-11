@@ -138,6 +138,8 @@ ru:
       x509_certificate:
         id: ID
         pem: PEM
+        subject: Имя субъекта
+        issuer: Имя издателя
         not_before: Активен с
         not_after: Истекает
     errors:

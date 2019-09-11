@@ -138,6 +138,8 @@ en:
       x509_certificate:
         id: ID
         pem: PEM
+        subject: Subject
+        issuer: Issuer
         not_before: Active since
         not_after: Expires at
     errors:

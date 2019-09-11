@@ -49,6 +49,12 @@
         <dt><%= X509Certificate.human_attribute_name :id %></dt>
         <dd><%= @x509_certificate.id %></dd>
 
+        <dt><%= X509Certificate.human_attribute_name :subject %></dt>
+        <dd><%= truncate @x509_certificate.subject %></dd>
+
+        <dt><%= X509Certificate.human_attribute_name :issuer %></dt>
+        <dd><%= truncate @x509_certificate.issuer %></dd>
+
         <dt><%= X509Certificate.human_attribute_name :not_before %></dt>
         <dd><%= localize @x509_certificate.not_before, format: :long %></dd>
 
