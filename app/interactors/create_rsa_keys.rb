@@ -5,28 +5,37 @@ class CreateRSAKeys
 
   BITS = 4096
 
+  before :set_pkey
+  before :set_ciphertext
+
   def call
-    pkey = OpenSSL::PKey::RSA.new BITS
-
-    context.private_key_pem = pkey.to_pem.freeze
-
-    cipher = OpenSSL::Cipher::AES256.new
-    cipher.encrypt
-
-    context.private_key_pem_key = cipher.random_key.freeze
-
-    private_key_pem_iv = cipher.random_iv
-
-    private_key_pem_ciphertext = [
-      cipher.update(context.private_key_pem),
-      cipher.final,
-    ].join.freeze
+    context.private_key_pem = @pkey.to_pem.freeze
+    context.private_key_pem_key = @key
 
     context.public_key = RSAPublicKey.create!(
       bits: BITS,
-      pem: pkey.public_key.to_pem.freeze,
-      private_key_pem_iv: private_key_pem_iv,
-      private_key_pem_ciphertext: private_key_pem_ciphertext,
+      pem: @pkey.public_key.to_pem.freeze,
+      private_key_pem_iv: @iv,
+      private_key_pem_ciphertext: @ciphertext,
     )
+  end
+
+private
+
+  def set_pkey
+    @pkey = OpenSSL::PKey::RSA.new BITS
+  end
+
+  def set_ciphertext
+    cipher = OpenSSL::Cipher::AES256.new
+    cipher.encrypt
+
+    @iv  = cipher.random_iv.freeze
+    @key = cipher.random_key.freeze
+
+    @ciphertext = [
+      cipher.update(@pkey.to_pem),
+      cipher.final,
+    ].join.freeze
   end
 end
