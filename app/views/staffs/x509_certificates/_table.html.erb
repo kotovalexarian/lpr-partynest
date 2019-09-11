@@ -10,6 +10,7 @@
       <th scope="col">
         <%= X509Certificate.human_attribute_name :not_after %>
       </th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
@@ -19,6 +20,11 @@
         <td scope="row"><%= x509_certificate.id %></td>
         <td><%= localize x509_certificate.not_before, format: :long %></td>
         <td><%= localize x509_certificate.not_after, format: :long %></td>
+        <td>
+          <% if policy([:staff, x509_certificate]).show? %>
+            <%= open_action [:staff, x509_certificate] %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,22 @@
+<div class="container">
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    [X509Certificate.model_name.human(count: 0), staff_x509_certificates_path],
+    X509Certificate.model_name.human(count: 1),
+  ) %>
+
+  <dl>
+    <dt><%= X509Certificate.human_attribute_name :id %></dt>
+    <dd><%= @x509_certificate.id %></dd>
+
+    <dt><%= X509Certificate.human_attribute_name :not_before %></dt>
+    <dd><%= localize @x509_certificate.not_before, format: :long %></dd>
+
+    <dt><%= X509Certificate.human_attribute_name :not_after %></dt>
+    <dd><%= localize @x509_certificate.not_after, format: :long %></dd>
+  </dl>
+
+  <hr/>
+
+  <pre class="pre-scrollable"><code><%= OpenSSL::X509::Certificate.new(@x509_certificate.pem).to_text %></code></pre>
+</div>
