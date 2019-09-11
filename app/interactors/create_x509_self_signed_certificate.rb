@@ -8,8 +8,9 @@ class CreateX509SelfSignedCertificate
     context.not_after  = Time.at(context.not_after).utc
   end
 
-  def call
+  def call # rubocop:disable Metrics/AbcSize
     context.certificate = X509Certificate.create!(
+      rsa_public_key: context.public_key,
       pem: cert.to_pem,
       subject: cert.subject.to_s,
       issuer: cert.issuer.to_s,

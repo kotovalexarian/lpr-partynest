@@ -36,7 +36,8 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
     create_table :x509_certificates do |t|
       t.timestamps null: false
 
-      t.references :x509_certificate_request, null: true, foreign_key: true
+      t.references :rsa_public_key,           null: false, foreign_key: true
+      t.references :x509_certificate_request, null: true,  foreign_key: true
 
       t.text     :pem,        null: false
       t.string   :subject,    null: false

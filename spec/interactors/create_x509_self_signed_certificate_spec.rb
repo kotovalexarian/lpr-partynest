@@ -29,6 +29,10 @@ RSpec.describe CreateX509SelfSignedCertificate do
   end
 
   specify do
+    expect(subject.certificate.rsa_public_key).to eq public_key
+  end
+
+  specify do
     expect(subject.certificate.x509_certificate_request).to equal nil
   end
 

@@ -925,6 +925,7 @@ CREATE TABLE public.x509_certificates (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
+    rsa_public_key_id bigint NOT NULL,
     x509_certificate_request_id bigint,
     pem text NOT NULL,
     subject character varying NOT NULL,
@@ -1527,6 +1528,13 @@ CREATE INDEX index_x509_certificate_requests_on_rsa_public_key_id ON public.x509
 
 
 --
+-- Name: index_x509_certificates_on_rsa_public_key_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_x509_certificates_on_rsa_public_key_id ON public.x509_certificates USING btree (rsa_public_key_id);
+
+
+--
 -- Name: index_x509_certificates_on_x509_certificate_request_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1680,6 +1688,14 @@ ALTER TABLE ONLY public.person_comments
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_d60748ff4c FOREIGN KEY (person_id) REFERENCES public.people(id);
+
+
+--
+-- Name: x509_certificates fk_rails_d6153a2956; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.x509_certificates
+    ADD CONSTRAINT fk_rails_d6153a2956 FOREIGN KEY (rsa_public_key_id) REFERENCES public.rsa_public_keys(id);
 
 
 --
