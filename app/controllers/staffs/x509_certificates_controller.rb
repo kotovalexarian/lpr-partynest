@@ -26,7 +26,7 @@ class Staffs::X509CertificatesController < ApplicationController
   # POST /staff/x509_certificates
   def create
     @x509_certificate_form =
-      X509CertificateForm.new params.require(:x509_certificate).permit!
+      X509CertificateForm.new x509_certificate_form_params
 
     authorize [:staff, @x509_certificate_form]
 
@@ -45,5 +45,13 @@ private
 
   def set_x509_certificate
     @x509_certificate = X509Certificate.find params[:id]
+  end
+
+  def x509_certificate_form_params
+    params.require(:x509_certificate).permit(
+      :distinguished_name,
+      :not_before,
+      :not_after,
+    )
   end
 end
