@@ -733,6 +733,8 @@ CREATE TABLE public.rsa_public_keys (
     private_key_pem_iv bytea,
     private_key_pem_ciphertext bytea,
     bits integer NOT NULL,
+    sha1 character varying NOT NULL,
+    sha256 character varying NOT NULL,
     CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
 );
 
@@ -1462,6 +1464,20 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 --
 
 CREATE UNIQUE INDEX index_rsa_public_keys_on_public_key_pem ON public.rsa_public_keys USING btree (public_key_pem);
+
+
+--
+-- Name: index_rsa_public_keys_on_sha1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_rsa_public_keys_on_sha1 ON public.rsa_public_keys USING btree (sha1);
+
+
+--
+-- Name: index_rsa_public_keys_on_sha256; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_rsa_public_keys_on_sha256 ON public.rsa_public_keys USING btree (sha256);
 
 
 --

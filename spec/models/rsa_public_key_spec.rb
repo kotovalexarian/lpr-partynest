@@ -13,6 +13,16 @@ RSpec.describe RSAPublicKey do
     it { is_expected.to validate_inclusion_of(:bits).in_array([2048, 4096]) }
   end
 
+  describe '#sha1' do
+    it { is_expected.to validate_presence_of :sha1 }
+    it { is_expected.to validate_uniqueness_of(:sha1).case_insensitive }
+  end
+
+  describe '#sha256' do
+    it { is_expected.to validate_presence_of :sha256 }
+    it { is_expected.to validate_uniqueness_of(:sha256).case_insensitive }
+  end
+
   describe '#private_key_pem_iv' do
     it { is_expected.not_to validate_presence_of :private_key_pem_iv }
   end

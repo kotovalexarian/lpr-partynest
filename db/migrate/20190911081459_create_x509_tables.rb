@@ -12,9 +12,13 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       t.binary :private_key_pem_iv
       t.binary :private_key_pem_ciphertext
 
-      t.integer :bits, null: false
+      t.integer :bits,   null: false
+      t.string  :sha1,   null: false
+      t.string  :sha256, null: false
 
       t.index :public_key_pem, unique: true
+      t.index :sha1,           unique: true
+      t.index :sha256,         unique: true
     end
 
     constraint :rsa_public_keys, :bits, <<~SQL

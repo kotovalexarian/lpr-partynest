@@ -11,6 +11,14 @@ class RSAPublicKey < ApplicationRecord
 
   validates :bits, inclusion: { in: [2048, 4096] }
 
+  validates :sha1,
+            presence: true,
+            uniqueness: { case_sensitive: false }
+
+  validates :sha256,
+            presence: true,
+            uniqueness: { case_sensitive: false }
+
   ###########
   # Methods #
   ###########
