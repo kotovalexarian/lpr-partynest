@@ -107,6 +107,21 @@ RSpec.describe RSAPublicKey do
       specify do
         expect(subject.private_key_pem_ciphertext).not_to be_blank
       end
+
+      specify do
+        cipher = OpenSSL::Cipher::AES256.new
+        cipher.encrypt
+
+        cipher.iv  = subject.private_key_pem_iv
+        cipher.key = subject.private_key_pem_secret
+
+        ciphertext = [
+          cipher.update(cleartext),
+          cipher.final,
+        ].join.freeze
+
+        expect(subject.private_key_pem_ciphertext).to eq ciphertext
+      end
     end
   end
 
