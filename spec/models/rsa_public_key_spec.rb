@@ -21,6 +21,95 @@ RSpec.describe RSAPublicKey do
     it { is_expected.not_to validate_presence_of :private_key_pem_ciphertext }
   end
 
+  describe '#encrypt_private_key_pem' do
+    subject { create :rsa_public_key, private_key_pem: cleartext }
+
+    let(:cleartext) { OpenSSL::PKey::RSA.new.to_pem.freeze }
+
+    specify do
+      expect(subject.encrypt_private_key_pem).to be_instance_of String
+    end
+
+    specify do
+      expect(subject.encrypt_private_key_pem).to be_frozen
+    end
+
+    specify do
+      expect(subject.encrypt_private_key_pem).to \
+        equal subject.private_key_pem_secret
+    end
+
+    specify do
+      expect { subject.encrypt_private_key_pem }.to \
+        change(subject, :private_key_pem_iv)
+        .from(nil)
+    end
+
+    specify do
+      expect { subject.encrypt_private_key_pem }.to \
+        change(subject, :private_key_pem_secret)
+        .from(nil)
+    end
+
+    specify do
+      expect { subject.encrypt_private_key_pem }.to \
+        change(subject, :private_key_pem_ciphertext)
+        .from(nil)
+    end
+
+    context 'after call' do
+      before { subject.encrypt_private_key_pem }
+
+      specify do
+        expect(subject.private_key_pem).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem_iv).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem_secret).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem_ciphertext).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem_iv).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem_secret).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem_ciphertext).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem).to eq cleartext
+      end
+
+      specify do
+        expect(subject.private_key_pem_iv).not_to be_blank
+      end
+
+      specify do
+        expect(subject.private_key_pem_secret).not_to be_blank
+      end
+
+      specify do
+        expect(subject.private_key_pem_ciphertext).not_to be_blank
+      end
+    end
+  end
+
   describe '#decrypt_private_key_pem' do
     subject do
       create(
@@ -31,7 +120,7 @@ RSpec.describe RSAPublicKey do
       )
     end
 
-    let(:cleartext) { OpenSSL::PKey::RSA.new.to_pem }
+    let(:cleartext) { OpenSSL::PKey::RSA.new.to_pem.freeze }
 
     let!(:cipher) { OpenSSL::Cipher::AES256.new.tap(&:encrypt) }
 
