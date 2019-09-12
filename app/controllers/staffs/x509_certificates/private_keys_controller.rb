@@ -10,11 +10,11 @@ class Staffs::X509Certificates::PrivateKeysController < ApplicationController
     authorize [:staff, X509Certificate,
                PublicKeyPrivateKey.new(@rsa_public_key)]
 
-    result = DecryptRSAPrivateKey.call public_key: @rsa_public_key
+    @rsa_public_key.decrypt_private_key_pem
 
     respond_to do |format|
       format.key do
-        send_data result.private_key_pem_cleartext, filename: 'private.key'
+        send_data @rsa_public_key.private_key_pem, filename: 'private.key'
       end
     end
   end
