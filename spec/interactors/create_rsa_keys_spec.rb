@@ -14,6 +14,14 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
+    expect(subject.public_key.sha1).not_to be_blank
+  end
+
+  specify do
+    expect(subject.public_key.sha256).not_to be_blank
+  end
+
+  specify do
     expect(subject.public_key.private_key_pem).not_to be_blank
   end
 
@@ -30,6 +38,22 @@ RSpec.describe CreateRSAKeys do
   specify do
     expect { OpenSSL::PKey::RSA.new subject.public_key.public_key_pem }.not_to \
       raise_error
+  end
+
+  specify do
+    expect(subject.public_key.sha1).to eq(
+      Digest::SHA1.hexdigest(
+        OpenSSL::PKey::RSA.new(subject.public_key.public_key_pem).to_der,
+      ),
+    )
+  end
+
+  specify do
+    expect(subject.public_key.sha256).to eq(
+      Digest::SHA256.hexdigest(
+        OpenSSL::PKey::RSA.new(subject.public_key.public_key_pem).to_der,
+      ),
+    )
   end
 
   specify do
