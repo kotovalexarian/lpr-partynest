@@ -37,7 +37,9 @@ class Staffs::X509CertificatesController < ApplicationController
 
     redirect_to staff_x509_certificate_url(
       result.certificate,
-      private_key_secret: Base64.urlsafe_encode64(result.private_key_pem_key),
+      private_key_secret: Base64.urlsafe_encode64(
+        result.public_key.private_key_pem_key,
+      ),
     )
   end
 

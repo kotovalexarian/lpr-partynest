@@ -14,10 +14,6 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect(subject.private_key_pem_key).to be_instance_of String
-  end
-
-  specify do
     expect(subject.public_key).to be_instance_of RSAPublicKey
   end
 
@@ -26,15 +22,11 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect(subject.private_key_pem_key).to be_frozen
-  end
-
-  specify do
     expect(subject.private_key_pem).not_to be_blank
   end
 
   specify do
-    expect(subject.private_key_pem_key).not_to be_blank
+    expect(subject.public_key.private_key_pem_key).not_to be_blank
   end
 
   specify do
@@ -62,8 +54,8 @@ RSpec.describe CreateRSAKeys do
   specify do
     cipher = OpenSSL::Cipher::AES256.new
     cipher.decrypt
-    cipher.iv = subject.public_key.private_key_pem_iv
-    cipher.key = subject.private_key_pem_key
+    cipher.iv  = subject.public_key.private_key_pem_iv
+    cipher.key = subject.public_key.private_key_pem_key
 
     cleartext = [
       cipher.update(subject.public_key.private_key_pem_ciphertext),

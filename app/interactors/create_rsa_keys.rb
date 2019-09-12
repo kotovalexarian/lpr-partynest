@@ -10,12 +10,12 @@ class CreateRSAKeys
 
   def call
     context.private_key_pem = @pkey.to_pem.freeze
-    context.private_key_pem_key = @key
 
     context.public_key = RSAPublicKey.create!(
       bits: BITS,
       public_key_pem: @pkey.public_key.to_pem.freeze,
       private_key_pem_iv: @iv,
+      private_key_pem_key: @key,
       private_key_pem_ciphertext: @ciphertext,
     )
   end

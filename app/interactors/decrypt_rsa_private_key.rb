@@ -19,6 +19,6 @@ private
     @cipher.decrypt
 
     @cipher.iv  = context.public_key.private_key_pem_iv
-    @cipher.key = context.private_key_pem_key
+    @cipher.key = context.public_key.private_key_pem_key
   end
 end

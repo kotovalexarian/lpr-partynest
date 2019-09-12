@@ -10,8 +10,7 @@ class Staffs::X509Certificates::PrivateKeysController < ApplicationController
     authorize [:staff, X509Certificate,
                PublicKeyPrivateKey.new(@rsa_public_key)]
 
-    result = DecryptRSAPrivateKey.call public_key: @rsa_public_key,
-                                       private_key_pem_key: @secret
+    result = DecryptRSAPrivateKey.call public_key: @rsa_public_key
 
     respond_to do |format|
       format.key do
@@ -31,6 +30,7 @@ private
   end
 
   def set_secret
-    @secret = Base64.urlsafe_decode64 params[:private_key_secret]
+    @rsa_public_key.private_key_pem_key =
+      Base64.urlsafe_decode64 params[:private_key_secret]
   end
 end
