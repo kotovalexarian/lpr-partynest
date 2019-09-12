@@ -14,7 +14,7 @@ class CreateRSAKeys
 
     context.public_key = RSAPublicKey.create!(
       bits: BITS,
-      pem: @pkey.public_key.to_pem.freeze,
+      public_key_pem: @pkey.public_key.to_pem.freeze,
       private_key_pem_iv: @iv,
       private_key_pem_ciphertext: @ciphertext,
     )

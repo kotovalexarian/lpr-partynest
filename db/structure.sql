@@ -729,10 +729,10 @@ CREATE TABLE public.rsa_public_keys (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    pem text NOT NULL,
-    bits integer NOT NULL,
+    public_key_pem text NOT NULL,
     private_key_pem_iv bytea,
     private_key_pem_ciphertext bytea,
+    bits integer NOT NULL,
     CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
 );
 
@@ -1458,10 +1458,10 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 
 
 --
--- Name: index_rsa_public_keys_on_pem; Type: INDEX; Schema: public; Owner: -
+-- Name: index_rsa_public_keys_on_public_key_pem; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_rsa_public_keys_on_pem ON public.rsa_public_keys USING btree (pem);
+CREATE UNIQUE INDEX index_rsa_public_keys_on_public_key_pem ON public.rsa_public_keys USING btree (public_key_pem);
 
 
 --

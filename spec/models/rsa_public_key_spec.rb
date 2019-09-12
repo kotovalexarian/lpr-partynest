@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe RSAPublicKey do
   subject { create :rsa_public_key }
 
-  describe '#pem' do
-    it { is_expected.to validate_presence_of :pem }
+  describe '#public_key_pem' do
+    it { is_expected.to validate_presence_of :public_key_pem }
   end
 
   describe '#bits' do

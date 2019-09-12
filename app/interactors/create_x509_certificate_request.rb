@@ -18,7 +18,8 @@ private
   end
 
   def public_key_pkey
-    @public_key_pkey ||= OpenSSL::PKey::RSA.new context.public_key.pem
+    @public_key_pkey ||=
+      OpenSSL::PKey::RSA.new context.public_key.public_key_pem
   end
 
   def subject

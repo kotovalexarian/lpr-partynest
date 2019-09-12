@@ -7,13 +7,14 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
     create_table :rsa_public_keys do |t|
       t.timestamps null: false
 
-      t.text    :pem,  null: false
-      t.integer :bits, null: false
+      t.text :public_key_pem, null: false
 
       t.binary :private_key_pem_iv
       t.binary :private_key_pem_ciphertext
 
-      t.index :pem, unique: true
+      t.integer :bits, null: false
+
+      t.index :public_key_pem, unique: true
     end
 
     constraint :rsa_public_keys, :bits, <<~SQL

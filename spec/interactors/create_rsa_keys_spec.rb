@@ -42,11 +42,12 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect { OpenSSL::PKey::RSA.new subject.public_key.pem }.not_to raise_error
+    expect { OpenSSL::PKey::RSA.new subject.public_key.public_key_pem }.not_to \
+      raise_error
   end
 
   specify do
-    expect(subject.public_key.pem).to \
+    expect(subject.public_key.public_key_pem).to \
       eq OpenSSL::PKey::RSA.new(subject.private_key_pem).public_key.to_pem
   end
 
