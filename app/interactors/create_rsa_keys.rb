@@ -9,11 +9,10 @@ class CreateRSAKeys
   before :set_ciphertext
 
   def call
-    context.private_key_pem = @pkey.to_pem.freeze
-
     context.public_key = RSAPublicKey.create!(
       bits: BITS,
       public_key_pem: @pkey.public_key.to_pem.freeze,
+      private_key_pem: @pkey.to_pem.freeze,
       private_key_pem_iv: @iv,
       private_key_pem_secret: @key,
       private_key_pem_ciphertext: @ciphertext,

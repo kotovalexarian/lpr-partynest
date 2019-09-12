@@ -6,7 +6,7 @@ class DecryptRSAPrivateKey
   before :set_cipher
 
   def call
-    context.private_key_pem_cleartext = [
+    context.public_key.private_key_pem = [
       @cipher.update(context.public_key.private_key_pem_ciphertext),
       @cipher.final,
     ].join.freeze

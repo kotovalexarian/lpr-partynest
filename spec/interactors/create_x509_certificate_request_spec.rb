@@ -5,14 +5,12 @@ require 'rails_helper'
 RSpec.describe CreateX509CertificateRequest do
   subject do
     described_class.call(
-      private_key_pem: private_key_pem,
       public_key: public_key,
       distinguished_name: distinguished_name,
     )
   end
 
   let(:rsa_keys) { CreateRSAKeys.call }
-  let(:private_key_pem) { rsa_keys.private_key_pem }
   let(:public_key) { rsa_keys.public_key }
   let(:distinguished_name) { "CN=#{Faker::Internet.domain_name}" }
 

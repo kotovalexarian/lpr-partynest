@@ -14,7 +14,8 @@ class CreateX509CertificateRequest
 private
 
   def private_key_pkey
-    @private_key_pkey ||= OpenSSL::PKey::RSA.new context.private_key_pem
+    @private_key_pkey ||=
+      OpenSSL::PKey::RSA.new context.public_key.private_key_pem
   end
 
   def public_key_pkey
