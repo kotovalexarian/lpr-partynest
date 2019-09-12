@@ -8,18 +8,19 @@ class Staffs::X509Certificates::PrivateKeysController < ApplicationController
   def show
     authorize [:staff, X509Certificate, PublicKeyPrivateKey.new(@rsa_public_key)]
 
-    cipher = OpenSSL::Cipher::AES256.new
-    cipher.decrypt
-    cipher.iv = @rsa_public_key.private_key_pem_iv
-    cipher.key = Base64.urlsafe_decode64 params[:private_key_secret]
-
-    cleartext = [
-      cipher.update(@rsa_public_key.private_key_pem_ciphertext),
-      cipher.final,
-    ].join
+    result = DecryptRSAPrivateKey.call(
+      public_key: @rsa_public_key,
+      private_key_pem_key: Base64.urlsafe_decode64(params[:private_key_secret]),
+    )
 
     respond_to do |format|
-      format.key { send_data cleartext, filename: 'private.key' }
+      if result.success?
+        format.key do
+          send_data result.private_key_pem_cleartext, filename: 'private.key'
+        end
+      else
+        format.key { render status: :unprocessable_entity, plain: '' }
+      end
     end
   end
 
