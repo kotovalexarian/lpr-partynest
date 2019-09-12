@@ -26,7 +26,7 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect(subject.public_key.private_key_pem_key).not_to be_blank
+    expect(subject.public_key.private_key_pem_secret).not_to be_blank
   end
 
   specify do
@@ -55,7 +55,7 @@ RSpec.describe CreateRSAKeys do
     cipher = OpenSSL::Cipher::AES256.new
     cipher.decrypt
     cipher.iv  = subject.public_key.private_key_pem_iv
-    cipher.key = subject.public_key.private_key_pem_key
+    cipher.key = subject.public_key.private_key_pem_secret
 
     cleartext = [
       cipher.update(subject.public_key.private_key_pem_ciphertext),

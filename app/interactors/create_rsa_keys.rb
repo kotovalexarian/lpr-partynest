@@ -15,7 +15,7 @@ class CreateRSAKeys
       bits: BITS,
       public_key_pem: @pkey.public_key.to_pem.freeze,
       private_key_pem_iv: @iv,
-      private_key_pem_key: @key,
+      private_key_pem_secret: @key,
       private_key_pem_ciphertext: @ciphertext,
     )
   end

@@ -30,7 +30,7 @@ private
   end
 
   def set_secret
-    @rsa_public_key.private_key_pem_key =
+    @rsa_public_key.private_key_pem_secret =
       Base64.urlsafe_decode64 params[:private_key_secret]
   end
 end

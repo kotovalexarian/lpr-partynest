@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RSAPublicKey < ApplicationRecord
-  attr_accessor :private_key_pem_key
+  attr_accessor :private_key_pem_secret
 
   ###############
   # Validations #
