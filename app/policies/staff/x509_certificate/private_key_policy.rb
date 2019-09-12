@@ -6,6 +6,6 @@ class Staff::X509Certificate::PrivateKeyPolicy < ApplicationPolicy
 
     account&.superuser? &&
       record.exist? &&
-      params[:private_key_secret].present?
+      params[:private_key_pem_secret].present?
   end
 end

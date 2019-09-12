@@ -55,7 +55,7 @@ private
   def after_create_url(certificate, public_key)
     staff_x509_certificate_url(
       certificate,
-      private_key_secret: Base64.urlsafe_encode64(
+      private_key_pem_secret: Base64.urlsafe_encode64(
         public_key.private_key_pem_secret,
       ),
     )
