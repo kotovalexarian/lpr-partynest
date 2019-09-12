@@ -5,8 +5,9 @@ class Staffs::X509Certificates::PrivateKeysController < ApplicationController
   before_action :set_rsa_public_key
 
   # GET /staff/x509_certificates/:x509_certificate_id/private_key
-  def show
-    authorize [:staff, X509Certificate, PublicKeyPrivateKey.new(@rsa_public_key)]
+  def show # rubocop:disable Metrics/MethodLength
+    authorize [:staff, X509Certificate,
+               PublicKeyPrivateKey.new(@rsa_public_key)]
 
     result = DecryptRSAPrivateKey.call(
       public_key: @rsa_public_key,
