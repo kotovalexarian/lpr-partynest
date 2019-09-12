@@ -61,7 +61,11 @@ Rails.application.routes.draw do
 
     resources :accounts, param: :nickname, only: %i[index show]
 
-    resources :x509_certificates, only: %i[index show new create]
+    resources :x509_certificates, only: %i[index show new create] do
+      resource :private_key,
+               controller: 'x509_certificates/private_keys',
+               only: :show
+    end
 
     resources :people, only: %i[index show new create] do
       resources :person_comments,

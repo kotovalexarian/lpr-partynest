@@ -4,7 +4,7 @@ class PublicKeyPrivateKey
   attr_reader :public_key
 
   def self.policy_class
-    'RSAPrivateKey'
+    'PrivateKeyPolicy'
   end
 
   def initialize(public_key)
