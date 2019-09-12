@@ -34,7 +34,8 @@ RSpec.describe CreateRSAKeys do
 
   specify do
     expect(subject.public_key.public_key_pem).to eq(
-      OpenSSL::PKey::RSA.new(subject.public_key.private_key_pem).public_key.to_pem,
+      OpenSSL::PKey::RSA.new(subject.public_key.private_key_pem)
+                        .public_key.to_pem,
     )
   end
 
