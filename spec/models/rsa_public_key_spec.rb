@@ -22,20 +22,23 @@ RSpec.describe RSAPublicKey do
   end
 
   describe '#decrypt_private_key_pem' do
+    subject do
+      create(
+        :rsa_public_key,
+        private_key_pem_iv: iv,
+        private_key_pem_secret: secret,
+        private_key_pem_ciphertext: ciphertext,
+      )
+    end
+
     let(:cleartext) { OpenSSL::PKey::RSA.new.to_pem }
 
-    before do
-      cipher = OpenSSL::Cipher::AES256.new
-      cipher.encrypt
+    let!(:cipher) { OpenSSL::Cipher::AES256.new.tap(&:encrypt) }
 
-      subject.private_key_pem_iv     = cipher.random_iv
-      subject.private_key_pem_secret = cipher.random_key
+    let!(:iv)     { cipher.random_iv.freeze }
+    let!(:secret) { cipher.random_key.freeze }
 
-      subject.private_key_pem_ciphertext = [
-        cipher.update(cleartext),
-        cipher.final,
-      ].join
-    end
+    let!(:ciphertext) { [cipher.update(cleartext), cipher.final].join.freeze }
 
     specify do
       expect(subject.decrypt_private_key_pem).to be_instance_of String
@@ -54,6 +57,58 @@ RSpec.describe RSAPublicKey do
         change(subject, :private_key_pem)
         .from(nil)
         .to(cleartext)
+    end
+
+    context 'after call' do
+      before { subject.decrypt_private_key_pem }
+
+      specify do
+        expect(subject.private_key_pem).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem_iv).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem_secret).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem_ciphertext).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.private_key_pem).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem_iv).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem_secret).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem_ciphertext).to be_frozen
+      end
+
+      specify do
+        expect(subject.private_key_pem).to eq cleartext
+      end
+
+      specify do
+        expect(subject.private_key_pem_iv).to equal iv
+      end
+
+      specify do
+        expect(subject.private_key_pem_secret).to equal secret
+      end
+
+      specify do
+        expect(subject.private_key_pem_ciphertext).to equal ciphertext
+      end
     end
   end
 end
