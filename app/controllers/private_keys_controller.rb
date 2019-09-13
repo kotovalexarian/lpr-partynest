@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-class Staffs::X509Certificates::PrivateKeysController < ApplicationController
-  before_action :set_x509_certificate
+class PrivateKeysController < ApplicationController
   before_action :set_asymmetric_key
   before_action :set_secret
 
-  # GET /staff/x509_certificates/:x509_certificate_id/private_key
+  # GET /private_keys/:id
   def show
-    authorize [:staff, X509Certificate, PrivateKey.new(@asymmetric_key)]
+    authorize PrivateKey.new(@asymmetric_key)
 
     @asymmetric_key.decrypt_private_key_pem
 
@@ -20,12 +19,8 @@ class Staffs::X509Certificates::PrivateKeysController < ApplicationController
 
 private
 
-  def set_x509_certificate
-    @x509_certificate = X509Certificate.find params[:x509_certificate_id]
-  end
-
   def set_asymmetric_key
-    @asymmetric_key = @x509_certificate.asymmetric_key
+    @asymmetric_key = AsymmetricKey.find params[:id]
   end
 
   def set_secret

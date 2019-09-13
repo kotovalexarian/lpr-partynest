@@ -66,11 +66,7 @@
         </div>
 
         <div class="col-md-6">
-          <% if policy([
-              :staff,
-              X509Certificate,
-              PrivateKey.new(@x509_certificate.asymmetric_key),
-            ]).show? %>
+          <% if policy(PrivateKey.new(@x509_certificate.asymmetric_key)).show? %>
 
           <div class="alert alert-warning" role="alert">
             <h4 class="alert-heading">
@@ -88,8 +84,8 @@
 
             <%= link_to(
                 translate('.private_key_alert_link'),
-                staff_x509_certificate_private_key_path(
-                  @x509_certificate,
+                private_key_path(
+                  @x509_certificate.asymmetric_key,
                   format: :key,
                   private_key_pem_secret: params[:private_key_pem_secret],
                 ),
