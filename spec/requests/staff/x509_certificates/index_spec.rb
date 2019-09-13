@@ -6,7 +6,7 @@ RSpec.describe 'GET /staff/x509_certificates' do
   let(:current_account) { create :superuser_account }
 
   let :x509_certificates_count do
-    [0, 1, rand(2..4), rand(5..10), rand(20..100)].sample
+    [0, 1, rand(2..4), rand(5..10), rand(20..40)].sample
   end
 
   before do
@@ -62,7 +62,7 @@ RSpec.describe 'GET /staff/x509_certificates' do
   end
 
   context 'when there are lot of X509 certificates' do
-    let(:x509_certificates_count) { rand 20..100 }
+    let(:x509_certificates_count) { rand 20..40 }
 
     specify do
       expect(response).to have_http_status :ok
