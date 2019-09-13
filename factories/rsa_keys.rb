@@ -6,6 +6,8 @@ FactoryBot.define do
 
     public_key_pem { OpenSSL::PKey::RSA.new(bits).public_key.to_pem }
     public_key_der { OpenSSL::PKey::RSA.new(bits).public_key.to_der }
+
+    has_password { [false, true].sample }
     bits { [2048, 4096].sample }
     sha1 { Digest::SHA1.hexdigest SecureRandom.hex }
     sha256 { Digest::SHA256.hexdigest SecureRandom.hex }

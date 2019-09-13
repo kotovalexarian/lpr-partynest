@@ -22,6 +22,10 @@ RSpec.describe RSAKey do
     it { is_expected.to validate_uniqueness_of :public_key_der }
   end
 
+  describe '#has_password' do
+    it { is_expected.to validate_exclusion_of(:has_password).in_array([nil]) }
+  end
+
   describe '#bits' do
     it { is_expected.to validate_inclusion_of(:bits).in_array([2048, 4096]) }
   end

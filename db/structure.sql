@@ -378,6 +378,7 @@ CREATE TABLE public.asymmetric_keys (
     public_key_der bytea NOT NULL,
     private_key_pem_iv bytea,
     private_key_pem_ciphertext bytea,
+    has_password boolean NOT NULL,
     bits integer NOT NULL,
     sha1 character varying NOT NULL,
     sha256 character varying NOT NULL,
