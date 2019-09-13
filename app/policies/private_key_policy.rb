@@ -2,7 +2,9 @@
 
 class PrivateKeyPolicy < ApplicationPolicy
   def show?
-    account&.superuser? &&
+    return false if account.nil?
+
+    (account.superuser? || account == record.account) &&
       record.exist? &&
       params[:private_key_pem_secret].present?
   end

@@ -3,6 +3,8 @@
 class PrivateKey
   attr_reader :asymmetric_key
 
+  delegate :account, to: :asymmetric_key
+
   def self.policy_class
     'PrivateKeyPolicy'
   end
