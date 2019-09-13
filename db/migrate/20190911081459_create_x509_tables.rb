@@ -9,6 +9,8 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       t.string :type, null: false
       t.index %i[type id], unique: true
 
+      t.references :account, foreign_key: true
+
       t.text   :public_key_pem, null: false
       t.binary :public_key_der, null: false
 

@@ -373,6 +373,7 @@ CREATE TABLE public.asymmetric_keys (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     type character varying NOT NULL,
+    account_id bigint,
     public_key_pem text NOT NULL,
     public_key_der bytea NOT NULL,
     private_key_pem_iv bytea,
@@ -1237,6 +1238,13 @@ CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_b
 
 
 --
+-- Name: index_asymmetric_keys_on_account_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_asymmetric_keys_on_account_id ON public.asymmetric_keys USING btree (account_id);
+
+
+--
 -- Name: index_asymmetric_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1608,6 +1616,14 @@ ALTER TABLE ONLY public.accounts
 
 ALTER TABLE ONLY public.regional_offices
     ADD CONSTRAINT fk_rails_7a6d5fdd9a FOREIGN KEY (federal_subject_id) REFERENCES public.federal_subjects(id);
+
+
+--
+-- Name: asymmetric_keys fk_rails_7d85781ea1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.asymmetric_keys
+    ADD CONSTRAINT fk_rails_7d85781ea1 FOREIGN KEY (account_id) REFERENCES public.accounts(id);
 
 
 --

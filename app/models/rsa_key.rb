@@ -3,6 +3,12 @@
 class RSAKey < AsymmetricKey
   attr_accessor :private_key_pem, :private_key_pem_secret
 
+  ################
+  # Associations #
+  ################
+
+  belongs_to :account, optional: true
+
   ###############
   # Validations #
   ###############

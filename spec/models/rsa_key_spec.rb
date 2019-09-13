@@ -5,6 +5,13 @@ require 'rails_helper'
 RSpec.describe RSAKey do
   subject { create :rsa_key }
 
+  describe '#account' do
+    it { is_expected.to belong_to(:account).optional }
+
+    it { is_expected.not_to validate_presence_of :account }
+    it { is_expected.not_to validate_uniqueness_of :account }
+  end
+
   describe '#public_key_pem' do
     it { is_expected.to validate_presence_of :public_key_pem }
     it { is_expected.to validate_uniqueness_of :public_key_pem }
