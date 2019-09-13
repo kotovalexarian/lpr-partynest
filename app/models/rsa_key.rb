@@ -6,4 +6,6 @@ class RSAKey < AsymmetricKey
   ###############
 
   validates :bits, inclusion: { in: [2048, 4096] }
+
+  validates :curve, absence: true
 end

@@ -11,6 +11,10 @@ RSpec.describe RSAKey do
     it { is_expected.to validate_inclusion_of(:bits).in_array([2048, 4096]) }
   end
 
+  describe '#curve' do
+    it { is_expected.to validate_absence_of :curve }
+  end
+
   describe '#encrypt_private_key_pem' do
     subject { create :rsa_key, private_key_pem: cleartext }
 
