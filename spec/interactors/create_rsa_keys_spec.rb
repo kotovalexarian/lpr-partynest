@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe CreateRSAKeys do
-  subject { described_class.call account: account }
+  subject { described_class.call account: account, password: password }
 
   let(:account) { create :initial_account }
+  let(:password) { Faker::Internet.password }
 
   specify do
     expect { subject }.to change(AsymmetricKey, :count).by(1)
@@ -26,6 +27,10 @@ RSpec.describe CreateRSAKeys do
 
   specify do
     expect(subject.asymmetric_key).to be_instance_of RSAKey
+  end
+
+  specify do
+    expect(subject.asymmetric_key.has_password).to equal true
   end
 
   specify do
@@ -50,13 +55,19 @@ RSpec.describe CreateRSAKeys do
 
   specify do
     expect do
-      OpenSSL::PKey::RSA.new subject.asymmetric_key.private_key_pem
+      OpenSSL::PKey::RSA.new(
+        subject.asymmetric_key.private_key_pem,
+        String(password),
+      )
     end.not_to raise_error
   end
 
   specify do
     expect do
-      OpenSSL::PKey::RSA.new subject.asymmetric_key.public_key_pem
+      OpenSSL::PKey::RSA.new(
+        subject.asymmetric_key.public_key_pem,
+        String(password),
+      )
     end.not_to \
       raise_error
   end
@@ -64,7 +75,10 @@ RSpec.describe CreateRSAKeys do
   specify do
     expect(subject.asymmetric_key.sha1).to eq(
       Digest::SHA1.hexdigest(
-        OpenSSL::PKey::RSA.new(subject.asymmetric_key.public_key_pem).to_der,
+        OpenSSL::PKey::RSA.new(
+          subject.asymmetric_key.public_key_pem,
+          String(password),
+        ).to_der,
       ),
     )
   end
@@ -72,15 +86,21 @@ RSpec.describe CreateRSAKeys do
   specify do
     expect(subject.asymmetric_key.sha256).to eq(
       Digest::SHA256.hexdigest(
-        OpenSSL::PKey::RSA.new(subject.asymmetric_key.public_key_pem).to_der,
+        OpenSSL::PKey::RSA.new(
+          subject.asymmetric_key.public_key_pem,
+          String(password),
+        ).to_der,
       ),
     )
   end
 
   specify do
     expect(subject.asymmetric_key.public_key_pem).to eq(
-      OpenSSL::PKey::RSA.new(subject.asymmetric_key.private_key_pem)
-                        .public_key.to_pem,
+      OpenSSL::PKey::RSA.new(
+        subject.asymmetric_key.private_key_pem,
+        String(password),
+      )
+        .public_key.to_pem,
     )
   end
 
@@ -111,6 +131,36 @@ RSpec.describe CreateRSAKeys do
 
     specify do
       expect(subject.asymmetric_key.account).to equal nil
+    end
+  end
+
+  context 'when password is nil' do
+    let(:password) { nil }
+
+    specify do
+      expect(subject.asymmetric_key.has_password).to equal false
+    end
+  end
+
+  context 'when password is blank' do
+    let(:password) { ' ' * rand(1..3) }
+
+    specify do
+      expect(subject.asymmetric_key.has_password).to equal false
+    end
+  end
+
+  context 'when password.to_s returns nil' do
+    let :password do
+      Class.new do
+        def to_s
+          nil
+        end
+      end.new
+    end
+
+    specify do
+      expect { subject }.to raise_error TypeError
     end
   end
 end

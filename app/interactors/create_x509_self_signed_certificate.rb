@@ -22,13 +22,17 @@ class CreateX509SelfSignedCertificate
 private
 
   def private_key_pkey
-    @private_key_pkey ||=
-      OpenSSL::PKey::RSA.new context.asymmetric_key.private_key_pem
+    @private_key_pkey ||= OpenSSL::PKey::RSA.new(
+      context.asymmetric_key.private_key_pem,
+      String(context.password),
+    )
   end
 
   def public_key_pkey
-    @public_key_pkey ||=
-      OpenSSL::PKey::RSA.new context.asymmetric_key.public_key_pem
+    @public_key_pkey ||= OpenSSL::PKey::RSA.new(
+      context.asymmetric_key.public_key_pem,
+      String(context.password),
+    )
   end
 
   def subject

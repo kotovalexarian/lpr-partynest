@@ -6,6 +6,7 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   subject do
     described_class.call(
       account: account,
+      password: password,
       distinguished_name: distinguished_name,
       not_before: not_before,
       not_after: not_after,
@@ -13,6 +14,7 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   end
 
   let(:account) { create :initial_account }
+  let(:password) { Faker::Internet.password }
   let(:distinguished_name) { "CN=#{Faker::Internet.domain_name}" }
   let(:not_before) { Faker::Time.backward.utc }
   let(:not_after) { Faker::Time.forward.utc }
@@ -43,6 +45,10 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   end
 
   specify do
+    expect(subject.asymmetric_key.has_password).to equal true
+  end
+
+  specify do
     expect(subject.certificate).to be_instance_of X509Certificate
   end
 
@@ -63,6 +69,22 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
 
     specify do
       expect(subject.asymmetric_key.account).to equal nil
+    end
+  end
+
+  context 'when password is nil' do
+    let(:password) { nil }
+
+    specify do
+      expect(subject.asymmetric_key.has_password).to equal false
+    end
+  end
+
+  context 'when password is blank' do
+    let(:password) { ' ' * rand(1..3) }
+
+    specify do
+      expect(subject.asymmetric_key.has_password).to equal false
     end
   end
 end
