@@ -382,7 +382,9 @@ CREATE TABLE public.asymmetric_keys (
     sha1 character varying NOT NULL,
     sha256 character varying NOT NULL,
     bits integer,
-    CONSTRAINT bits CHECK (((bits IS NULL) OR (bits = ANY (ARRAY[2048, 4096]))))
+    curve character varying,
+    CONSTRAINT bits CHECK (((bits IS NULL) OR (bits = ANY (ARRAY[2048, 4096])))),
+    CONSTRAINT curve CHECK (((curve IS NULL) OR ((curve)::text = ANY ((ARRAY['prime256v1'::character varying, 'secp384r1'::character varying])::text[]))))
 );
 
 
