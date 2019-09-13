@@ -365,6 +365,45 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: asymmetric_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.asymmetric_keys (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    type character varying NOT NULL,
+    public_key_pem text NOT NULL,
+    public_key_der bytea NOT NULL,
+    private_key_pem_iv bytea,
+    private_key_pem_ciphertext bytea,
+    bits integer NOT NULL,
+    sha1 character varying NOT NULL,
+    sha256 character varying NOT NULL,
+    CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
+);
+
+
+--
+-- Name: asymmetric_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.asymmetric_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: asymmetric_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.asymmetric_keys_id_seq OWNED BY public.asymmetric_keys.id;
+
+
+--
 -- Name: contact_lists; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -722,44 +761,6 @@ ALTER SEQUENCE public.relationships_id_seq OWNED BY public.relationships.id;
 
 
 --
--- Name: rsa_keys; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.rsa_keys (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    public_key_pem text NOT NULL,
-    public_key_der bytea NOT NULL,
-    private_key_pem_iv bytea,
-    private_key_pem_ciphertext bytea,
-    bits integer NOT NULL,
-    sha1 character varying NOT NULL,
-    sha256 character varying NOT NULL,
-    CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
-);
-
-
---
--- Name: rsa_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.rsa_keys_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: rsa_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.rsa_keys_id_seq OWNED BY public.rsa_keys.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -894,7 +895,7 @@ CREATE TABLE public.x509_certificates (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    rsa_key_id bigint NOT NULL,
+    asymmetric_key_id bigint NOT NULL,
     pem text NOT NULL,
     subject character varying NOT NULL,
     issuer character varying NOT NULL,
@@ -941,6 +942,13 @@ ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
+
+
+--
+-- Name: asymmetric_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.asymmetric_keys ALTER COLUMN id SET DEFAULT nextval('public.asymmetric_keys_id_seq'::regclass);
 
 
 --
@@ -1007,13 +1015,6 @@ ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: rsa_keys id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.rsa_keys ALTER COLUMN id SET DEFAULT nextval('public.rsa_keys_id_seq'::regclass);
-
-
---
 -- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1071,6 +1072,14 @@ ALTER TABLE ONLY public.active_storage_blobs
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: asymmetric_keys asymmetric_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.asymmetric_keys
+    ADD CONSTRAINT asymmetric_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -1143,14 +1152,6 @@ ALTER TABLE ONLY public.regional_offices
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT relationships_pkey PRIMARY KEY (id);
-
-
---
--- Name: rsa_keys rsa_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.rsa_keys
-    ADD CONSTRAINT rsa_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -1233,6 +1234,41 @@ CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active
 --
 
 CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
+
+
+--
+-- Name: index_asymmetric_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_asymmetric_keys_on_public_key_der ON public.asymmetric_keys USING btree (public_key_der);
+
+
+--
+-- Name: index_asymmetric_keys_on_public_key_pem; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_asymmetric_keys_on_public_key_pem ON public.asymmetric_keys USING btree (public_key_pem);
+
+
+--
+-- Name: index_asymmetric_keys_on_sha1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_asymmetric_keys_on_sha1 ON public.asymmetric_keys USING btree (sha1);
+
+
+--
+-- Name: index_asymmetric_keys_on_sha256; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_asymmetric_keys_on_sha256 ON public.asymmetric_keys USING btree (sha256);
+
+
+--
+-- Name: index_asymmetric_keys_on_type_and_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_asymmetric_keys_on_type_and_id ON public.asymmetric_keys USING btree (type, id);
 
 
 --
@@ -1411,34 +1447,6 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 
 
 --
--- Name: index_rsa_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_rsa_keys_on_public_key_der ON public.rsa_keys USING btree (public_key_der);
-
-
---
--- Name: index_rsa_keys_on_public_key_pem; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_rsa_keys_on_public_key_pem ON public.rsa_keys USING btree (public_key_pem);
-
-
---
--- Name: index_rsa_keys_on_sha1; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_rsa_keys_on_sha1 ON public.rsa_keys USING btree (sha1);
-
-
---
--- Name: index_rsa_keys_on_sha256; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_rsa_keys_on_sha256 ON public.rsa_keys USING btree (sha256);
-
-
---
 -- Name: index_sessions_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1495,10 +1503,10 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unl
 
 
 --
--- Name: index_x509_certificates_on_rsa_key_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_x509_certificates_on_asymmetric_key_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_x509_certificates_on_rsa_key_id ON public.x509_certificates USING btree (rsa_key_id);
+CREATE INDEX index_x509_certificates_on_asymmetric_key_id ON public.x509_certificates USING btree (asymmetric_key_id);
 
 
 --
@@ -1539,11 +1547,11 @@ ALTER TABLE ONLY public.relationships
 
 
 --
--- Name: x509_certificates fk_rails_3e448649ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: x509_certificates fk_rails_1671512c40; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.x509_certificates
-    ADD CONSTRAINT fk_rails_3e448649ba FOREIGN KEY (rsa_key_id) REFERENCES public.rsa_keys(id);
+    ADD CONSTRAINT fk_rails_1671512c40 FOREIGN KEY (asymmetric_key_id) REFERENCES public.asymmetric_keys(id);
 
 
 --

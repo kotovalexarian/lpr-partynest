@@ -6,14 +6,18 @@ RSpec.describe CreateRSAKeys do
   subject { described_class.call }
 
   specify do
+    expect { subject }.to change(AsymmetricKey, :count).by(1)
+  end
+
+  specify do
     expect { subject }.to change(RSAKey, :count).by(1)
   end
 
   specify do
     expect { subject }.to(
-      have_enqueued_job(ClearRSAPrivateKeyJob)
-      .with do |rsa_key_id|
-        expect(rsa_key_id).to equal RSAKey.last.id
+      have_enqueued_job(ClearAsymmetricPrivateKeyJob)
+      .with do |asymmetric_key_id|
+        expect(asymmetric_key_id).to equal AsymmetricKey.last.id
       end,
     )
   end

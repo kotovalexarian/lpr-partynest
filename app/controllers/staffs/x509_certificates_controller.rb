@@ -56,7 +56,7 @@ private
     staff_x509_certificate_url(
       certificate,
       private_key_pem_secret: Base64.urlsafe_encode64(
-        certificate.rsa_key.private_key_pem_secret,
+        certificate.asymmetric_key.private_key_pem_secret,
       ),
     )
   end

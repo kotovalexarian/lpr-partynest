@@ -5,15 +5,15 @@ require 'rails_helper'
 RSpec.describe X509Certificate do
   subject { create :self_signed_x509_certificate }
 
-  describe '#rsa_key' do
-    it { is_expected.to belong_to(:rsa_key).required }
+  describe '#asymmetric_key' do
+    it { is_expected.to belong_to(:asymmetric_key).required }
 
     it do
       is_expected.to \
-        validate_presence_of(:rsa_key).with_message(:required)
+        validate_presence_of(:asymmetric_key).with_message(:required)
     end
 
-    it { is_expected.not_to validate_uniqueness_of :rsa_key }
+    it { is_expected.not_to validate_uniqueness_of :asymmetric_key }
   end
 
   describe '#pem' do

@@ -10,7 +10,7 @@ class CreateX509SelfSignedCertificate
 
   def call # rubocop:disable Metrics/AbcSize
     context.certificate = X509Certificate.create!(
-      rsa_key: context.key,
+      asymmetric_key: context.key,
       pem: cert.to_pem,
       subject: cert.subject.to_s,
       issuer: cert.issuer.to_s,

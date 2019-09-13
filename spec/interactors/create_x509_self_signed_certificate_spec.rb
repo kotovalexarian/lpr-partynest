@@ -5,15 +5,14 @@ require 'rails_helper'
 RSpec.describe CreateX509SelfSignedCertificate do
   subject do
     described_class.call(
-      key: key,
+      key: asymmetric_key,
       distinguished_name: distinguished_name,
       not_before: not_before,
       not_after: not_after,
     )
   end
 
-  let(:rsa_keys) { CreateRSAKeys.call }
-  let(:key) { rsa_keys.key }
+  let(:asymmetric_key) { CreateRSAKeys.call.key }
   let(:distinguished_name) { "CN=#{Faker::Internet.domain_name}" }
   let(:not_before) { Faker::Time.backward.utc }
   let(:not_after) { Faker::Time.forward.utc }
@@ -27,7 +26,7 @@ RSpec.describe CreateX509SelfSignedCertificate do
   end
 
   specify do
-    expect(subject.certificate.rsa_key).to eq key
+    expect(subject.certificate.asymmetric_key).to eq asymmetric_key
   end
 
   specify do

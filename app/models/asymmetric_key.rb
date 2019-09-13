@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class AsymmetricKey < ApplicationRecord
-  self.abstract_class = true
+  PRIVATE_KEY_CLEAR_DELAY = 12.hours.freeze
 end

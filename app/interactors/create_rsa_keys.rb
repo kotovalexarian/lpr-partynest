@@ -8,8 +8,8 @@ class CreateRSAKeys
   def call
     context.key = RSAKey.create!(attributes, &:encrypt_private_key_pem)
 
-    ClearRSAPrivateKeyJob
-      .set(wait: RSAKey::PRIVATE_KEY_CLEAR_DELAY)
+    ClearAsymmetricPrivateKeyJob
+      .set(wait: AsymmetricKey::PRIVATE_KEY_CLEAR_DELAY)
       .perform_later context.key.id
   end
 

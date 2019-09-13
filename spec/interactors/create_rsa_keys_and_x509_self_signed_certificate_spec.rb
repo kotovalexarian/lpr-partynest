@@ -16,6 +16,10 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   let(:not_after) { Faker::Time.forward.utc }
 
   specify do
+    expect { subject }.to change(AsymmetricKey, :count).by(1)
+  end
+
+  specify do
     expect { subject }.to change(RSAKey, :count).by(1)
   end
 
@@ -25,9 +29,9 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
 
   specify do
     expect { subject }.to(
-      have_enqueued_job(ClearRSAPrivateKeyJob)
-      .with do |rsa_key_id|
-        expect(rsa_key_id).to equal RSAKey.last.id
+      have_enqueued_job(ClearAsymmetricPrivateKeyJob)
+      .with do |asymmetric_key_id|
+        expect(asymmetric_key_id).to equal AsymmetricKey.last.id
       end,
     )
   end

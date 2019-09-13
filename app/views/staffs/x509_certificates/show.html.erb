@@ -69,7 +69,7 @@
           <% if policy([
               :staff,
               X509Certificate,
-              PublicKeyPrivateKey.new(@x509_certificate.rsa_key),
+              PublicKeyPrivateKey.new(@x509_certificate.asymmetric_key),
             ]).show? %>
 
           <div class="alert alert-warning" role="alert">
@@ -80,9 +80,10 @@
             <hr/>
 
             <p>
-              <%= translate '.private_key_alert_text',
-                            delay: distance_of_time_in_words(12.hours)
-                %>
+              <%= translate(
+                  '.private_key_alert_text',
+                  delay: distance_of_time_in_words(AsymmetricKey::PRIVATE_KEY_CLEAR_DELAY),
+                ) %>
             </p>
 
             <%= link_to(
