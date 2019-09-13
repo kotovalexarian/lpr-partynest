@@ -19,11 +19,11 @@ en:
   private_keys:
     alert:
       link: Download
-      header: >-
+      primary_header: >-
         Your private key is ready, but you have to download it right now!
       secondary_header: >-
         Your private key was deleted.
-      text: >-
+      primary_text: >-
         For better security we have encrypted your private key
         with temporary secret token. You can download it until
         you leave this page. Also note that key will be deleted
