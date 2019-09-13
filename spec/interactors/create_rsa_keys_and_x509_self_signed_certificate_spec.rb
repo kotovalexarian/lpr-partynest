@@ -24,6 +24,15 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   end
 
   specify do
+    expect { subject }.to(
+      have_enqueued_job(ClearRSAPrivateKeyJob)
+      .with do |rsa_public_key_id|
+        expect(rsa_public_key_id).to equal RSAPublicKey.last.id
+      end,
+    )
+  end
+
+  specify do
     expect(subject.public_key).to be_instance_of RSAPublicKey
   end
 

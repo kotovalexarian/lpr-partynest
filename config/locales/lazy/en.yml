@@ -32,5 +32,6 @@ en:
         private_key_alert_text: >-
           For better security we have encrypted your private key
           with temporary secret token. You can download it until
-          you leave this page.
+          you leave this page. Also note that key will be deleted
+          in %{delay} after creation anyway.
         private_key_alert_link: Download

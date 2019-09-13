@@ -21,6 +21,7 @@ Layout/EmptyLinesAroundArguments:
   Enabled: false
 
 Metrics/AbcSize:
+  Max: 15.5
   Exclude:
     - 'db/migrate/*.rb'
 

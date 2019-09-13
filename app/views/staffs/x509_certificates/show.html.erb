@@ -79,7 +79,11 @@
 
             <hr/>
 
-            <p><%= translate '.private_key_alert_text' %></p>
+            <p>
+              <%= translate '.private_key_alert_text',
+                            delay: distance_of_time_in_words(12.hours)
+                %>
+            </p>
 
             <%= link_to(
                 translate('.private_key_alert_link'),

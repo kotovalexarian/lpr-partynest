@@ -49,6 +49,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
+ActiveJob::Base.queue_adapter = :test
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('fixtures').to_s
