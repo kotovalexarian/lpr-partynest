@@ -10,7 +10,7 @@ class CreateX509SelfSignedCertificate
 
   def call # rubocop:disable Metrics/AbcSize
     context.certificate = X509Certificate.create!(
-      asymmetric_key: context.key,
+      asymmetric_key: context.asymmetric_key,
       pem: cert.to_pem,
       subject: cert.subject.to_s,
       issuer: cert.issuer.to_s,
@@ -22,11 +22,13 @@ class CreateX509SelfSignedCertificate
 private
 
   def private_key_pkey
-    @private_key_pkey ||= OpenSSL::PKey::RSA.new context.key.private_key_pem
+    @private_key_pkey ||=
+      OpenSSL::PKey::RSA.new context.asymmetric_key.private_key_pem
   end
 
   def public_key_pkey
-    @public_key_pkey ||= OpenSSL::PKey::RSA.new context.key.public_key_pem
+    @public_key_pkey ||=
+      OpenSSL::PKey::RSA.new context.asymmetric_key.public_key_pem
   end
 
   def subject

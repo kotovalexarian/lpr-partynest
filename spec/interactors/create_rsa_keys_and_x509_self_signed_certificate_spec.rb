@@ -37,7 +37,7 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   end
 
   specify do
-    expect(subject.key).to be_instance_of RSAKey
+    expect(subject.asymmetric_key).to be_instance_of RSAKey
   end
 
   specify do
@@ -45,10 +45,10 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   end
 
   specify do
-    expect(subject.key.private_key_pem).not_to be_blank
+    expect(subject.asymmetric_key.private_key_pem).not_to be_blank
   end
 
   specify do
-    expect(subject.key.private_key_pem_secret).not_to be_blank
+    expect(subject.asymmetric_key.private_key_pem_secret).not_to be_blank
   end
 end
