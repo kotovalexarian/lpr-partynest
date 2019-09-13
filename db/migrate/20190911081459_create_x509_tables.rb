@@ -7,7 +7,8 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
     create_table :rsa_public_keys do |t|
       t.timestamps null: false
 
-      t.text :public_key_pem, null: false
+      t.text   :public_key_pem, null: false
+      t.binary :public_key_der, null: false
 
       t.binary :private_key_pem_iv
       t.binary :private_key_pem_ciphertext
@@ -17,6 +18,7 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       t.string  :sha256, null: false
 
       t.index :public_key_pem, unique: true
+      t.index :public_key_der, unique: true
       t.index :sha1,           unique: true
       t.index :sha256,         unique: true
     end

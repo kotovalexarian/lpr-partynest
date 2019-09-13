@@ -9,6 +9,8 @@ class RSAPublicKey < ApplicationRecord
 
   validates :public_key_pem, presence: true
 
+  validates :public_key_der, presence: true
+
   validates :bits, inclusion: { in: [2048, 4096] }
 
   validates :sha1,

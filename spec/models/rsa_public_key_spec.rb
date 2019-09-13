@@ -9,6 +9,10 @@ RSpec.describe RSAPublicKey do
     it { is_expected.to validate_presence_of :public_key_pem }
   end
 
+  describe '#public_key_der' do
+    it { is_expected.to validate_presence_of :public_key_der }
+  end
+
   describe '#bits' do
     it { is_expected.to validate_inclusion_of(:bits).in_array([2048, 4096]) }
   end

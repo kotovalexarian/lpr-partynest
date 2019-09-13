@@ -730,6 +730,7 @@ CREATE TABLE public.rsa_public_keys (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     public_key_pem text NOT NULL,
+    public_key_der bytea NOT NULL,
     private_key_pem_iv bytea,
     private_key_pem_ciphertext bytea,
     bits integer NOT NULL,
@@ -1457,6 +1458,13 @@ CREATE INDEX index_relationships_on_role ON public.relationships USING btree (ro
 --
 
 CREATE INDEX index_relationships_on_status ON public.relationships USING btree (status);
+
+
+--
+-- Name: index_rsa_public_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_rsa_public_keys_on_public_key_der ON public.rsa_public_keys USING btree (public_key_der);
 
 
 --
