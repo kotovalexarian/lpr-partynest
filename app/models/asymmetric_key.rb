@@ -26,6 +26,7 @@ class AsymmetricKey < ApplicationRecord
   validates :has_password, exclusion: { in: [nil] }
 
   validates :bits,
+            allow_nil: true,
             numericality: {
               only_integer: true,
               greater_than: 0,

@@ -379,10 +379,10 @@ CREATE TABLE public.asymmetric_keys (
     private_key_pem_iv bytea,
     private_key_pem_ciphertext bytea,
     has_password boolean NOT NULL,
-    bits integer NOT NULL,
     sha1 character varying NOT NULL,
     sha256 character varying NOT NULL,
-    CONSTRAINT bits CHECK ((bits = ANY (ARRAY[2048, 4096])))
+    bits integer,
+    CONSTRAINT bits CHECK (((bits IS NULL) OR (bits = ANY (ARRAY[2048, 4096]))))
 );
 
 

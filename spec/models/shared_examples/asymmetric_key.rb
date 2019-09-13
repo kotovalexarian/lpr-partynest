@@ -26,6 +26,7 @@ RSpec.shared_examples 'asymmetric_key' do
     it do
       is_expected.to \
         validate_numericality_of(:bits)
+        .allow_nil
         .only_integer
         .is_greater_than(0)
     end
