@@ -27,6 +27,13 @@ RSpec.describe RSAKey do
   end
 
   describe '#bits' do
+    it do
+      is_expected.to \
+        validate_numericality_of(:bits)
+        .only_integer
+        .is_greater_than(0)
+    end
+
     it { is_expected.to validate_inclusion_of(:bits).in_array([2048, 4096]) }
   end
 
