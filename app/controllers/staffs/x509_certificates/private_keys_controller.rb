@@ -7,8 +7,7 @@ class Staffs::X509Certificates::PrivateKeysController < ApplicationController
 
   # GET /staff/x509_certificates/:x509_certificate_id/private_key
   def show
-    authorize [:staff, X509Certificate,
-               PublicKeyPrivateKey.new(@asymmetric_key)]
+    authorize [:staff, X509Certificate, PrivateKey.new(@asymmetric_key)]
 
     @asymmetric_key.decrypt_private_key_pem
 

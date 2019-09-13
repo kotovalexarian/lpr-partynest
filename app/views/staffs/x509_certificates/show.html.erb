@@ -69,7 +69,7 @@
           <% if policy([
               :staff,
               X509Certificate,
-              PublicKeyPrivateKey.new(@x509_certificate.asymmetric_key),
+              PrivateKey.new(@x509_certificate.asymmetric_key),
             ]).show? %>
 
           <div class="alert alert-warning" role="alert">
