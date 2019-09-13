@@ -5,54 +5,10 @@ require 'rails_helper'
 RSpec.describe RSAKey do
   subject { create :rsa_key }
 
-  describe '#account' do
-    it { is_expected.to belong_to(:account).optional }
-
-    it { is_expected.not_to validate_presence_of :account }
-    it { is_expected.not_to validate_uniqueness_of :account }
-  end
-
-  describe '#public_key_pem' do
-    it { is_expected.to validate_presence_of :public_key_pem }
-    it { is_expected.to validate_uniqueness_of :public_key_pem }
-  end
-
-  describe '#public_key_der' do
-    it { is_expected.to validate_presence_of :public_key_der }
-    it { is_expected.to validate_uniqueness_of :public_key_der }
-  end
-
-  describe '#has_password' do
-    it { is_expected.to validate_exclusion_of(:has_password).in_array([nil]) }
-  end
+  it_behaves_like 'asymmetric_key'
 
   describe '#bits' do
-    it do
-      is_expected.to \
-        validate_numericality_of(:bits)
-        .only_integer
-        .is_greater_than(0)
-    end
-
     it { is_expected.to validate_inclusion_of(:bits).in_array([2048, 4096]) }
-  end
-
-  describe '#sha1' do
-    it { is_expected.to validate_presence_of :sha1 }
-    it { is_expected.to validate_uniqueness_of(:sha1).case_insensitive }
-  end
-
-  describe '#sha256' do
-    it { is_expected.to validate_presence_of :sha256 }
-    it { is_expected.to validate_uniqueness_of(:sha256).case_insensitive }
-  end
-
-  describe '#private_key_pem_iv' do
-    it { is_expected.not_to validate_presence_of :private_key_pem_iv }
-  end
-
-  describe '#private_key_pem_ciphertext' do
-    it { is_expected.not_to validate_presence_of :private_key_pem_ciphertext }
   end
 
   describe '#encrypt_private_key_pem' do
