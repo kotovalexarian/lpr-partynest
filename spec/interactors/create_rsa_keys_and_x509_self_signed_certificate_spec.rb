@@ -5,12 +5,14 @@ require 'rails_helper'
 RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
   subject do
     described_class.call(
+      account: account,
       distinguished_name: distinguished_name,
       not_before: not_before,
       not_after: not_after,
     )
   end
 
+  let(:account) { create :initial_account }
   let(:distinguished_name) { "CN=#{Faker::Internet.domain_name}" }
   let(:not_before) { Faker::Time.backward.utc }
   let(:not_after) { Faker::Time.forward.utc }
@@ -50,5 +52,17 @@ RSpec.describe CreateRSAKeysAndX509SelfSignedCertificate do
 
   specify do
     expect(subject.asymmetric_key.private_key_pem_secret).not_to be_blank
+  end
+
+  specify do
+    expect(subject.asymmetric_key.account).to eq account
+  end
+
+  context 'when owner is not specified' do
+    let(:account) { nil }
+
+    specify do
+      expect(subject.asymmetric_key.account).to equal nil
+    end
   end
 end

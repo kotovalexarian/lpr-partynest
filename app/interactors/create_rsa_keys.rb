@@ -20,6 +20,8 @@ private
     pkey = OpenSSL::PKey::RSA.new BITS
 
     {
+      account: context.account,
+
       bits: BITS,
 
       sha1: Digest::SHA1.hexdigest(pkey.public_key.to_der),

@@ -66,6 +66,11 @@ RSpec.describe 'POST /staff/x509_certificates' do
         expect(X509Certificate.last).to \
           have_attributes x509_certificate_attributes
       end
+
+      specify do
+        expect(X509Certificate.last.asymmetric_key.account).to \
+          eq current_account
+      end
     end
   end
 

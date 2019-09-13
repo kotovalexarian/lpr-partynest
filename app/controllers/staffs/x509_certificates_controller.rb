@@ -33,7 +33,7 @@ class Staffs::X509CertificatesController < ApplicationController
     return render :new unless @x509_certificate_form.valid?
 
     result = CreateRSAKeysAndX509SelfSignedCertificate.call \
-      @x509_certificate_form.attributes
+      @x509_certificate_form.attributes.merge(account: current_account)
 
     redirect_to after_create_url result.certificate
   end

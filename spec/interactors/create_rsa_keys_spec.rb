@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe CreateRSAKeys do
-  subject { described_class.call }
+  subject { described_class.call account: account }
+
+  let(:account) { create :initial_account }
 
   specify do
     expect { subject }.to change(AsymmetricKey, :count).by(1)
@@ -40,6 +42,10 @@ RSpec.describe CreateRSAKeys do
 
   specify do
     expect(subject.asymmetric_key.private_key_pem_secret).not_to be_blank
+  end
+
+  specify do
+    expect(subject.asymmetric_key.account).to eq account
   end
 
   specify do
@@ -98,5 +104,13 @@ RSpec.describe CreateRSAKeys do
     ].join.freeze
 
     expect(cleartext).to eq subject.asymmetric_key.private_key_pem
+  end
+
+  context 'when owner is not specified' do
+    let(:account) { nil }
+
+    specify do
+      expect(subject.asymmetric_key.account).to equal nil
+    end
   end
 end
