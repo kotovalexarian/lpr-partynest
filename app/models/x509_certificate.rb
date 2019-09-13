@@ -7,8 +7,6 @@ class X509Certificate < ApplicationRecord
 
   belongs_to :rsa_public_key
 
-  belongs_to :x509_certificate_request, optional: true
-
   ###############
   # Validations #
   ###############

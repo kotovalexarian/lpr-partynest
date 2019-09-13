@@ -27,24 +27,10 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       bits in (2048, 4096)
     SQL
 
-    create_table :x509_certificate_requests do |t|
-      t.timestamps null: false
-
-      t.references :rsa_public_key, null: false, foreign_key: true
-
-      t.string :distinguished_name, null: false
-      t.text   :pem,                null: false
-    end
-
-    constraint :x509_certificate_requests, :distinguished_name, <<~SQL
-      is_good_big_text(distinguished_name)
-    SQL
-
     create_table :x509_certificates do |t|
       t.timestamps null: false
 
-      t.references :rsa_public_key,           null: false, foreign_key: true
-      t.references :x509_certificate_request, null: true,  foreign_key: true
+      t.references :rsa_public_key, null: false, foreign_key: true
 
       t.text     :pem,        null: false
       t.string   :subject,    null: false

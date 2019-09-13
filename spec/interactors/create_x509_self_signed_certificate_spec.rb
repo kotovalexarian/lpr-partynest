@@ -33,10 +33,6 @@ RSpec.describe CreateX509SelfSignedCertificate do
   end
 
   specify do
-    expect(subject.certificate.x509_certificate_request).to equal nil
-  end
-
-  specify do
     expect(subject.certificate.pem).to \
       be_start_with "-----BEGIN CERTIFICATE-----\n"
   end

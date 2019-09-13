@@ -16,10 +16,6 @@ RSpec.describe X509Certificate do
     it { is_expected.not_to validate_uniqueness_of :rsa_public_key }
   end
 
-  describe '#x509_certificate_request' do
-    it { is_expected.not_to validate_presence_of :x509_certificate_request }
-  end
-
   describe '#pem' do
     def allow_value(*)
       super.for :pem

@@ -887,40 +887,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: x509_certificate_requests; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.x509_certificate_requests (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    rsa_public_key_id bigint NOT NULL,
-    distinguished_name character varying NOT NULL,
-    pem text NOT NULL,
-    CONSTRAINT distinguished_name CHECK (public.is_good_big_text((distinguished_name)::text))
-);
-
-
---
--- Name: x509_certificate_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.x509_certificate_requests_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: x509_certificate_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.x509_certificate_requests_id_seq OWNED BY public.x509_certificate_requests.id;
-
-
---
 -- Name: x509_certificates; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -929,7 +895,6 @@ CREATE TABLE public.x509_certificates (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     rsa_public_key_id bigint NOT NULL,
-    x509_certificate_request_id bigint,
     pem text NOT NULL,
     subject character varying NOT NULL,
     issuer character varying NOT NULL,
@@ -1067,13 +1032,6 @@ ALTER TABLE ONLY public.user_omniauths ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Name: x509_certificate_requests id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificate_requests ALTER COLUMN id SET DEFAULT nextval('public.x509_certificate_requests_id_seq'::regclass);
 
 
 --
@@ -1225,14 +1183,6 @@ ALTER TABLE ONLY public.user_omniauths
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: x509_certificate_requests x509_certificate_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificate_requests
-    ADD CONSTRAINT x509_certificate_requests_pkey PRIMARY KEY (id);
 
 
 --
@@ -1545,24 +1495,10 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unl
 
 
 --
--- Name: index_x509_certificate_requests_on_rsa_public_key_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_x509_certificate_requests_on_rsa_public_key_id ON public.x509_certificate_requests USING btree (rsa_public_key_id);
-
-
---
 -- Name: index_x509_certificates_on_rsa_public_key_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_x509_certificates_on_rsa_public_key_id ON public.x509_certificates USING btree (rsa_public_key_id);
-
-
---
--- Name: index_x509_certificates_on_x509_certificate_request_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_x509_certificates_on_x509_certificate_request_id ON public.x509_certificates USING btree (x509_certificate_request_id);
 
 
 --
@@ -1600,14 +1536,6 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_124c042ac0 FOREIGN KEY (initiator_account_id) REFERENCES public.accounts(id);
-
-
---
--- Name: x509_certificates fk_rails_4958020bc7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificates
-    ADD CONSTRAINT fk_rails_4958020bc7 FOREIGN KEY (x509_certificate_request_id) REFERENCES public.x509_certificate_requests(id);
 
 
 --
@@ -1728,14 +1656,6 @@ ALTER TABLE ONLY public.x509_certificates
 
 ALTER TABLE ONLY public.contacts
     ADD CONSTRAINT fk_rails_dd2a5400cf FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
-
-
---
--- Name: x509_certificate_requests fk_rails_f0002b108f; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificate_requests
-    ADD CONSTRAINT fk_rails_f0002b108f FOREIGN KEY (rsa_public_key_id) REFERENCES public.rsa_public_keys(id);
 
 
 --
