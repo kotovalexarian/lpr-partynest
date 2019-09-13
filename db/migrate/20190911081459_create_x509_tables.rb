@@ -31,11 +31,11 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
     end
 
     constraint :asymmetric_keys, :bits, <<~SQL
-      bits IS NULL OR bits in (2048, 4096)
+      bits IS NULL OR bits IN (2048, 4096)
     SQL
 
     constraint :asymmetric_keys, :curve, <<~SQL
-      curve IS NULL OR curve in ('prime256v1', 'secp384r1')
+      curve IS NULL OR curve IN ('prime256v1', 'secp384r1')
     SQL
 
     create_table :x509_certificates do |t|
