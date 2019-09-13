@@ -22,6 +22,6 @@ FactoryBot.define do
     sha1 { Digest::SHA1.hexdigest SecureRandom.hex }
     sha256 { Digest::SHA256.hexdigest SecureRandom.hex }
 
-    curve { %w[prime256v1 secp384r1].sample }
+    curve { EcurveKey::CURVES.sample }
   end
 end

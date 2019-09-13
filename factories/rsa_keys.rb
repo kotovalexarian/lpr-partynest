@@ -11,6 +11,6 @@ FactoryBot.define do
     sha1 { Digest::SHA1.hexdigest SecureRandom.hex }
     sha256 { Digest::SHA256.hexdigest SecureRandom.hex }
 
-    bits { [2048, 4096].sample }
+    bits { RSAKey::BITS.sample }
   end
 end
