@@ -7,9 +7,13 @@ class RSAPublicKey < ApplicationRecord
   # Validations #
   ###############
 
-  validates :public_key_pem, presence: true
+  validates :public_key_pem,
+            presence: true,
+            uniqueness: true
 
-  validates :public_key_der, presence: true
+  validates :public_key_der,
+            presence: true,
+            uniqueness: true
 
   validates :bits, inclusion: { in: [2048, 4096] }
 

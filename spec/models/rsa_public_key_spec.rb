@@ -7,10 +7,12 @@ RSpec.describe RSAPublicKey do
 
   describe '#public_key_pem' do
     it { is_expected.to validate_presence_of :public_key_pem }
+    it { is_expected.to validate_uniqueness_of :public_key_pem }
   end
 
   describe '#public_key_der' do
     it { is_expected.to validate_presence_of :public_key_der }
+    it { is_expected.to validate_uniqueness_of :public_key_der }
   end
 
   describe '#bits' do
