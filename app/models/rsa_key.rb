@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RSAKey < Key
+class RSAKey < AsymmetricKey
   PRIVATE_KEY_CLEAR_DELAY = 12.hours.freeze
 
   attr_accessor :private_key_pem, :private_key_pem_secret

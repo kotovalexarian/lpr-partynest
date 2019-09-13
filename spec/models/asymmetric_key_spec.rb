@@ -2,6 +2,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Key do
+RSpec.describe AsymmetricKey do
   pending "add some examples to (or delete) #{__FILE__}"
 end

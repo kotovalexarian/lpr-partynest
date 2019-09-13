@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Key < ApplicationRecord
+class AsymmetricKey < ApplicationRecord
   self.abstract_class = true
 end
