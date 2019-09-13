@@ -1,5 +1,5 @@
 <% if policy(PrivateKey.new(asymmetric_key)).show? %>
-  <div class="alert alert-warning" role="alert">
+  <div class="alert alert-primary" role="alert">
     <h4 class="alert-heading">
       <%= translate '.primary_header' %>
     </h4>
@@ -20,7 +20,7 @@
           format: :key,
           private_key_pem_secret: params[:private_key_pem_secret],
         ),
-        class: 'btn btn-warning',
+        class: 'btn btn-primary',
       ) %>
   </div>
 <% else %>
