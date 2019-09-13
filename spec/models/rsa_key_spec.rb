@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe RSAPublicKey do
-  subject { create :rsa_public_key }
+RSpec.describe RSAKey do
+  subject { create :rsa_key }
 
   describe '#public_key_pem' do
     it { is_expected.to validate_presence_of :public_key_pem }
@@ -38,7 +38,7 @@ RSpec.describe RSAPublicKey do
   end
 
   describe '#encrypt_private_key_pem' do
-    subject { create :rsa_public_key, private_key_pem: cleartext }
+    subject { create :rsa_key, private_key_pem: cleartext }
 
     let(:cleartext) { OpenSSL::PKey::RSA.new.to_pem.freeze }
 
@@ -144,7 +144,7 @@ RSpec.describe RSAPublicKey do
   describe '#decrypt_private_key_pem' do
     subject do
       create(
-        :rsa_public_key,
+        :rsa_key,
         private_key_pem_iv: iv,
         private_key_pem_secret: secret,
         private_key_pem_ciphertext: ciphertext,

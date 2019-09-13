@@ -5,7 +5,7 @@ class X509Certificate < ApplicationRecord
   # Associations #
   ################
 
-  belongs_to :rsa_public_key
+  belongs_to :rsa_key
 
   ###############
   # Validations #

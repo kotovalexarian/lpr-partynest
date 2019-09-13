@@ -2,19 +2,18 @@
 
 class Staffs::X509Certificates::PrivateKeysController < ApplicationController
   before_action :set_x509_certificate
-  before_action :set_rsa_public_key
+  before_action :set_rsa_key
   before_action :set_secret
 
   # GET /staff/x509_certificates/:x509_certificate_id/private_key
   def show
-    authorize [:staff, X509Certificate,
-               PublicKeyPrivateKey.new(@rsa_public_key)]
+    authorize [:staff, X509Certificate, PublicKeyPrivateKey.new(@rsa_key)]
 
-    @rsa_public_key.decrypt_private_key_pem
+    @rsa_key.decrypt_private_key_pem
 
     respond_to do |format|
       format.key do
-        send_data @rsa_public_key.private_key_pem, filename: 'private.key'
+        send_data @rsa_key.private_key_pem, filename: 'private.key'
       end
     end
   end
@@ -25,12 +24,12 @@ private
     @x509_certificate = X509Certificate.find params[:x509_certificate_id]
   end
 
-  def set_rsa_public_key
-    @rsa_public_key = @x509_certificate.rsa_public_key
+  def set_rsa_key
+    @rsa_key = @x509_certificate.rsa_key
   end
 
   def set_secret
-    @rsa_public_key.private_key_pem_secret =
+    @rsa_key.private_key_pem_secret =
       Base64.urlsafe_decode64 params[:private_key_pem_secret]
   end
 end

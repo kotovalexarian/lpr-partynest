@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :self_signed_x509_certificate, class: X509Certificate do
-    association :rsa_public_key
+    association :rsa_key
 
     pem { File.read Rails.root.join 'fixtures', 'ca.crt' }
     subject { '/CN=example.com' }

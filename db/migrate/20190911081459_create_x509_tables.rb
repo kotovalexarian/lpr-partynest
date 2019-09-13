@@ -4,7 +4,7 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
   include Partynest::Migration
 
   def change
-    create_table :rsa_public_keys do |t|
+    create_table :rsa_keys do |t|
       t.timestamps null: false
 
       t.text   :public_key_pem, null: false
@@ -23,14 +23,14 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       t.index :sha256,         unique: true
     end
 
-    constraint :rsa_public_keys, :bits, <<~SQL
+    constraint :rsa_keys, :bits, <<~SQL
       bits in (2048, 4096)
     SQL
 
     create_table :x509_certificates do |t|
       t.timestamps null: false
 
-      t.references :rsa_public_key, null: false, foreign_key: true
+      t.references :rsa_key, null: false, foreign_key: true
 
       t.text     :pem,        null: false
       t.string   :subject,    null: false

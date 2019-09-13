@@ -722,10 +722,10 @@ ALTER SEQUENCE public.relationships_id_seq OWNED BY public.relationships.id;
 
 
 --
--- Name: rsa_public_keys; Type: TABLE; Schema: public; Owner: -
+-- Name: rsa_keys; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.rsa_public_keys (
+CREATE TABLE public.rsa_keys (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
@@ -741,10 +741,10 @@ CREATE TABLE public.rsa_public_keys (
 
 
 --
--- Name: rsa_public_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: rsa_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.rsa_public_keys_id_seq
+CREATE SEQUENCE public.rsa_keys_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -753,10 +753,10 @@ CREATE SEQUENCE public.rsa_public_keys_id_seq
 
 
 --
--- Name: rsa_public_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: rsa_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.rsa_public_keys_id_seq OWNED BY public.rsa_public_keys.id;
+ALTER SEQUENCE public.rsa_keys_id_seq OWNED BY public.rsa_keys.id;
 
 
 --
@@ -894,7 +894,7 @@ CREATE TABLE public.x509_certificates (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    rsa_public_key_id bigint NOT NULL,
+    rsa_key_id bigint NOT NULL,
     pem text NOT NULL,
     subject character varying NOT NULL,
     issuer character varying NOT NULL,
@@ -1007,10 +1007,10 @@ ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: rsa_public_keys id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: rsa_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.rsa_public_keys ALTER COLUMN id SET DEFAULT nextval('public.rsa_public_keys_id_seq'::regclass);
+ALTER TABLE ONLY public.rsa_keys ALTER COLUMN id SET DEFAULT nextval('public.rsa_keys_id_seq'::regclass);
 
 
 --
@@ -1146,11 +1146,11 @@ ALTER TABLE ONLY public.relationships
 
 
 --
--- Name: rsa_public_keys rsa_public_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: rsa_keys rsa_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.rsa_public_keys
-    ADD CONSTRAINT rsa_public_keys_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.rsa_keys
+    ADD CONSTRAINT rsa_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -1411,31 +1411,31 @@ CREATE INDEX index_relationships_on_status ON public.relationships USING btree (
 
 
 --
--- Name: index_rsa_public_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
+-- Name: index_rsa_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_rsa_public_keys_on_public_key_der ON public.rsa_public_keys USING btree (public_key_der);
-
-
---
--- Name: index_rsa_public_keys_on_public_key_pem; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_rsa_public_keys_on_public_key_pem ON public.rsa_public_keys USING btree (public_key_pem);
+CREATE UNIQUE INDEX index_rsa_keys_on_public_key_der ON public.rsa_keys USING btree (public_key_der);
 
 
 --
--- Name: index_rsa_public_keys_on_sha1; Type: INDEX; Schema: public; Owner: -
+-- Name: index_rsa_keys_on_public_key_pem; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_rsa_public_keys_on_sha1 ON public.rsa_public_keys USING btree (sha1);
+CREATE UNIQUE INDEX index_rsa_keys_on_public_key_pem ON public.rsa_keys USING btree (public_key_pem);
 
 
 --
--- Name: index_rsa_public_keys_on_sha256; Type: INDEX; Schema: public; Owner: -
+-- Name: index_rsa_keys_on_sha1; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_rsa_public_keys_on_sha256 ON public.rsa_public_keys USING btree (sha256);
+CREATE UNIQUE INDEX index_rsa_keys_on_sha1 ON public.rsa_keys USING btree (sha1);
+
+
+--
+-- Name: index_rsa_keys_on_sha256; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_rsa_keys_on_sha256 ON public.rsa_keys USING btree (sha256);
 
 
 --
@@ -1495,10 +1495,10 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unl
 
 
 --
--- Name: index_x509_certificates_on_rsa_public_key_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_x509_certificates_on_rsa_key_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_x509_certificates_on_rsa_public_key_id ON public.x509_certificates USING btree (rsa_public_key_id);
+CREATE INDEX index_x509_certificates_on_rsa_key_id ON public.x509_certificates USING btree (rsa_key_id);
 
 
 --
@@ -1536,6 +1536,14 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_124c042ac0 FOREIGN KEY (initiator_account_id) REFERENCES public.accounts(id);
+
+
+--
+-- Name: x509_certificates fk_rails_3e448649ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.x509_certificates
+    ADD CONSTRAINT fk_rails_3e448649ba FOREIGN KEY (rsa_key_id) REFERENCES public.rsa_keys(id);
 
 
 --
@@ -1640,14 +1648,6 @@ ALTER TABLE ONLY public.person_comments
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_d60748ff4c FOREIGN KEY (person_id) REFERENCES public.people(id);
-
-
---
--- Name: x509_certificates fk_rails_d6153a2956; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificates
-    ADD CONSTRAINT fk_rails_d6153a2956 FOREIGN KEY (rsa_public_key_id) REFERENCES public.rsa_public_keys(id);
 
 
 --

@@ -35,7 +35,7 @@ class Staffs::X509CertificatesController < ApplicationController
     result = CreateRSAKeysAndX509SelfSignedCertificate.call \
       @x509_certificate_form.attributes
 
-    redirect_to after_create_url result.certificate, result.public_key
+    redirect_to after_create_url result.certificate, result.key
   end
 
 private
@@ -52,11 +52,11 @@ private
     )
   end
 
-  def after_create_url(certificate, public_key)
+  def after_create_url(certificate, key)
     staff_x509_certificate_url(
       certificate,
       private_key_pem_secret: Base64.urlsafe_encode64(
-        public_key.private_key_pem_secret,
+        key.private_key_pem_secret,
       ),
     )
   end
