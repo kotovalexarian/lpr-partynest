@@ -30,6 +30,14 @@ RSpec.describe CreateEcurveKeys do
   end
 
   specify do
+    expect(subject.asymmetric_key.curve).to eq 'prime256v1'
+  end
+
+  specify do
+    expect(subject.asymmetric_key.bits).to equal nil
+  end
+
+  specify do
     expect(subject.asymmetric_key.has_password).to equal true
   end
 

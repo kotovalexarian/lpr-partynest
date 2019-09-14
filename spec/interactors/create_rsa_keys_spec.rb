@@ -30,6 +30,14 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
+    expect(subject.asymmetric_key.bits).to equal 4096
+  end
+
+  specify do
+    expect(subject.asymmetric_key.curve).to equal nil
+  end
+
+  specify do
     expect(subject.asymmetric_key.has_password).to equal true
   end
 
