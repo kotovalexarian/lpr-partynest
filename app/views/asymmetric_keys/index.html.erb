@@ -1,0 +1,7 @@
+<div class="container">
+  <%= nav_breadcrumb AsymmetricKey.model_name.human count: 0 %>
+
+  <%= render partial: 'table',
+             locals: { asymmetric_keys: @asymmetric_keys } %>
+  <%= pagination @asymmetric_keys %>
+</div>

@@ -4,6 +4,10 @@ en:
       account:
         one: Account
         many: Accounts
+      asymmetric_key:
+        one: Public key
+        few: Public keys
+        many: Public keys
       contact:
         one: Contact
         few: Contacts
@@ -49,6 +53,11 @@ en:
         avatar: Avatar
         person: Person
         timezone: Timezone
+      asymmetric_key:
+        id: ID
+        algo_class: Algorithm class
+        algo_variant: Variant
+        sha256: SHA-256 fingerprint
       contact:
         id: ID
         contact_network: Contact network

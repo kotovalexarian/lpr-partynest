@@ -44,6 +44,14 @@ class AsymmetricKey < ApplicationRecord
   # Methods #
   ###########
 
+  def algo_class
+    raise NotImplementedError, "#{self.class}#algo_class"
+  end
+
+  def algo_variant
+    raise NotImplementedError, "#{self.class}#algo_variant"
+  end
+
   def encrypt_private_key_pem
     cipher = OpenSSL::Cipher::AES256.new
     cipher.encrypt

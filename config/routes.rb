@@ -13,6 +13,11 @@ Rails.application.routes.draw do
 
   resources :federal_subjects, param: :number, only: %i[index show]
 
+  resources :public_keys,
+            as: :asymmetric_key,
+            controller: 'asymmetric_keys',
+            only: :index
+
   resources :private_keys, only: :show
 
   ###############

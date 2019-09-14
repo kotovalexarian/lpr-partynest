@@ -4,6 +4,10 @@ ru:
       account:
         one: Аккаунт
         many: Аккаунты
+      asymmetric_key:
+        one: Публичный ключ
+        few: Публичных ключа
+        many: Публичные ключи
       contact:
         one: Контакт
         few: Контакта
@@ -49,6 +53,11 @@ ru:
         avatar: Аватар
         person: Человек
         timezone: Часовой пояс
+      asymmetric_key:
+        id: ID
+        algo_class: Класс алгоритма
+        algo_variant: Вариант
+        sha256: Отпечаток SHA-256
       contact:
         id: ID
         contact_network: Сеть контактов

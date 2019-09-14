@@ -10,4 +10,16 @@ class RSAKey < AsymmetricKey
   validates :bits, inclusion: { in: BITS }
 
   validates :curve, absence: true
+
+  ###########
+  # Methods #
+  ###########
+
+  def algo_class
+    'RSA'
+  end
+
+  def algo_variant
+    "#{bits} bits"
+  end
 end

@@ -10,4 +10,16 @@ class EcurveKey < AsymmetricKey
   validates :curve, inclusion: { in: CURVES }
 
   validates :bits, absence: true
+
+  ###########
+  # Methods #
+  ###########
+
+  def algo_class
+    'Elliptic curve'
+  end
+
+  def algo_variant
+    curve
+  end
 end
