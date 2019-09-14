@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CreateRSAKeys do
+RSpec.describe CreateEcurveKeys do
   subject { described_class.call account: account, password: password }
 
   let(:account) { create :initial_account }
@@ -13,7 +13,7 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect { subject }.to change(RSAKey, :count).by(1)
+    expect { subject }.to change(EcurveKey, :count).by(1)
   end
 
   specify do
@@ -26,7 +26,7 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect(subject.asymmetric_key).to be_instance_of RSAKey
+    expect(subject.asymmetric_key).to be_instance_of EcurveKey
   end
 
   specify do
@@ -55,7 +55,7 @@ RSpec.describe CreateRSAKeys do
 
   specify do
     expect do
-      OpenSSL::PKey::RSA.new(
+      OpenSSL::PKey::EC.new(
         subject.asymmetric_key.private_key_pem,
         String(password),
       )
@@ -64,7 +64,7 @@ RSpec.describe CreateRSAKeys do
 
   specify do
     expect do
-      OpenSSL::PKey::RSA.new(
+      OpenSSL::PKey::EC.new(
         subject.asymmetric_key.public_key_pem,
         String(password),
       )
@@ -74,7 +74,7 @@ RSpec.describe CreateRSAKeys do
   specify do
     expect(subject.asymmetric_key.sha1).to eq(
       Digest::SHA1.hexdigest(
-        OpenSSL::PKey::RSA.new(
+        OpenSSL::PKey::EC.new(
           subject.asymmetric_key.public_key_pem,
           String(password),
         ).to_der,
@@ -85,7 +85,7 @@ RSpec.describe CreateRSAKeys do
   specify do
     expect(subject.asymmetric_key.sha256).to eq(
       Digest::SHA256.hexdigest(
-        OpenSSL::PKey::RSA.new(
+        OpenSSL::PKey::EC.new(
           subject.asymmetric_key.public_key_pem,
           String(password),
         ).to_der,
@@ -94,13 +94,15 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect(subject.asymmetric_key.public_key_pem).to eq(
-      OpenSSL::PKey::RSA.new(
-        subject.asymmetric_key.private_key_pem,
-        String(password),
-      )
-        .public_key.to_pem,
+    private_key = OpenSSL::PKey::EC.new(
+      subject.asymmetric_key.private_key_pem,
+      String(password),
     )
+
+    public_key = OpenSSL::PKey::EC.new private_key.public_key.group
+    public_key.public_key = private_key.public_key
+
+    expect(subject.asymmetric_key.public_key_pem).to eq public_key.to_pem
   end
 
   specify do
