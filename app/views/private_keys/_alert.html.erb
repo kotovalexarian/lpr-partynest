@@ -15,7 +15,7 @@
 
     <%= link_to(
         translate('.link'),
-        private_key_path(
+        asymmetric_key_private_key_path(
           asymmetric_key,
           format: :key,
           private_key_pem_secret: params[:private_key_pem_secret],

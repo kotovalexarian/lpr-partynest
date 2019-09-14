@@ -4,7 +4,7 @@ class PrivateKeysController < ApplicationController
   before_action :set_asymmetric_key
   before_action :set_secret
 
-  # GET /private_keys/:id
+  # GET /asymmetric_keys/:asymmetric_key_id/private_keys
   def show
     authorize PrivateKey.new(@asymmetric_key)
 
@@ -20,7 +20,7 @@ class PrivateKeysController < ApplicationController
 private
 
   def set_asymmetric_key
-    @asymmetric_key = AsymmetricKey.find params[:id]
+    @asymmetric_key = AsymmetricKey.find params[:asymmetric_key_id]
   end
 
   def set_secret
