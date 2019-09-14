@@ -724,6 +724,39 @@ ALTER SEQUENCE public.regional_offices_id_seq OWNED BY public.regional_offices.i
 
 
 --
+-- Name: relationship_statuses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.relationship_statuses (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    codename character varying NOT NULL,
+    name character varying NOT NULL,
+    CONSTRAINT codename CHECK (public.is_codename((codename)::text))
+);
+
+
+--
+-- Name: relationship_statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.relationship_statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: relationship_statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.relationship_statuses_id_seq OWNED BY public.relationship_statuses.id;
+
+
+--
 -- Name: relationships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1012,6 +1045,13 @@ ALTER TABLE ONLY public.regional_offices ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: relationship_statuses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relationship_statuses ALTER COLUMN id SET DEFAULT nextval('public.relationship_statuses_id_seq'::regclass);
+
+
+--
 -- Name: relationships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1148,6 +1188,14 @@ ALTER TABLE ONLY public.person_comments
 
 ALTER TABLE ONLY public.regional_offices
     ADD CONSTRAINT regional_offices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: relationship_statuses relationship_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relationship_statuses
+    ADD CONSTRAINT relationship_statuses_pkey PRIMARY KEY (id);
 
 
 --
@@ -1392,6 +1440,20 @@ CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regio
 --
 
 CREATE UNIQUE INDEX index_regional_offices_on_name ON public.regional_offices USING btree (name);
+
+
+--
+-- Name: index_relationship_statuses_on_codename; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relationship_statuses_on_codename ON public.relationship_statuses USING btree (codename);
+
+
+--
+-- Name: index_relationship_statuses_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relationship_statuses_on_name ON public.relationship_statuses USING btree (name);
 
 
 --
@@ -1695,6 +1757,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181129203927'),
 ('20181130024918'),
 ('20190910040709'),
-('20190911081459');
+('20190911081459'),
+('20190914050858');
 
 
