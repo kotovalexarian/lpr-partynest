@@ -3,10 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe CreateEcurveKeys do
-  subject { described_class.call account: account, password: password }
+  subject do
+    described_class.call account: account, password: password, curve: curve
+  end
 
   let(:account) { create :initial_account }
   let(:password) { Faker::Internet.password }
+  let(:curve) { EcurveKey::CURVES.sample }
 
   specify do
     expect { subject }.to change(AsymmetricKey, :count).by(1)
@@ -30,7 +33,7 @@ RSpec.describe CreateEcurveKeys do
   end
 
   specify do
-    expect(subject.asymmetric_key.curve).to eq 'prime256v1'
+    expect(subject.asymmetric_key.curve).to eq curve
   end
 
   specify do
@@ -170,6 +173,22 @@ RSpec.describe CreateEcurveKeys do
 
     specify do
       expect { subject }.to raise_error TypeError
+    end
+  end
+
+  context 'when curve value is invalid' do
+    let(:curve) { 'secp521r1' }
+
+    specify do
+      expect { subject }.to raise_error RuntimeError, 'Invalid curve'
+    end
+  end
+
+  context 'when curve value is nil' do
+    let(:curve) { nil }
+
+    specify do
+      expect(subject.asymmetric_key.curve).to eq 'prime256v1'
     end
   end
 end

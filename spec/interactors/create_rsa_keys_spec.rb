@@ -3,10 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe CreateRSAKeys do
-  subject { described_class.call account: account, password: password }
+  subject do
+    described_class.call account: account, password: password, bits: bits
+  end
 
   let(:account) { create :initial_account }
   let(:password) { Faker::Internet.password }
+  let(:bits) { RSAKey::BITS.sample }
 
   specify do
     expect { subject }.to change(AsymmetricKey, :count).by(1)
@@ -30,7 +33,7 @@ RSpec.describe CreateRSAKeys do
   end
 
   specify do
-    expect(subject.asymmetric_key.bits).to equal 4096
+    expect(subject.asymmetric_key.bits).to equal bits
   end
 
   specify do
@@ -168,6 +171,22 @@ RSpec.describe CreateRSAKeys do
 
     specify do
       expect { subject }.to raise_error TypeError
+    end
+  end
+
+  context 'when bits value is invalid' do
+    let(:bits) { 1024 }
+
+    specify do
+      expect { subject }.to raise_error RuntimeError, 'Invalid key size'
+    end
+  end
+
+  context 'when bits value is nil' do
+    let(:bits) { nil }
+
+    specify do
+      expect(subject.asymmetric_key.bits).to equal 4096
     end
   end
 end

@@ -3,7 +3,9 @@
 class CreateEcurveKeys
   include Interactor
 
-  CURVE = 'prime256v1'
+  DEFAULT_CURVE = 'prime256v1'
+
+  before :set_curve
 
   def call
     context.asymmetric_key =
@@ -16,8 +18,14 @@ class CreateEcurveKeys
 
 private
 
+  def set_curve
+    context.curve ||= DEFAULT_CURVE
+    context.curve = String(context.curve).freeze
+    raise 'Invalid curve' unless EcurveKey::CURVES.include? context.curve
+  end
+
   def pkey
-    @pkey ||= OpenSSL::PKey::EC.generate CURVE
+    @pkey ||= OpenSSL::PKey::EC.generate context.curve
   end
 
   def pkey_public
@@ -36,7 +44,7 @@ private
       private_key_pem: private_key_pem,
 
       has_password: context.password.present?,
-      curve: CURVE,
+      curve: context.curve,
       sha1: sha1,
       sha256: sha256,
     }

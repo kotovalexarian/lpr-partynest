@@ -3,7 +3,9 @@
 class CreateRSAKeys
   include Interactor
 
-  BITS = 4096
+  DEFAULT_BITS = 4096
+
+  before :set_bits
 
   def call
     context.asymmetric_key =
@@ -16,8 +18,14 @@ class CreateRSAKeys
 
 private
 
+  def set_bits
+    context.bits ||= DEFAULT_BITS
+    context.bits = Integer(context.bits)
+    raise 'Invalid key size' unless RSAKey::BITS.include? context.bits
+  end
+
   def pkey
-    @pkey ||= OpenSSL::PKey::RSA.new BITS
+    @pkey ||= OpenSSL::PKey::RSA.new context.bits
   end
 
   def attributes
@@ -29,7 +37,7 @@ private
       private_key_pem: private_key_pem,
 
       has_password: context.password.present?,
-      bits: BITS,
+      bits: context.bits,
       sha1: sha1,
       sha256: sha256,
     }
