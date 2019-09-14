@@ -22,7 +22,7 @@
         <td><%= asymmetric_key.algo_variant %></td>
         <td>
           <% if policy(asymmetric_key).show? %>
-            <%= open_action public_key_path(asymmetric_key) %>
+            <%= open_action asymmetric_key_path(asymmetric_key) %>
           <% end %>
         </td>
       </tr>

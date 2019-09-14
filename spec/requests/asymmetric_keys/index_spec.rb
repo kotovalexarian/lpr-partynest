@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /public_keys' do
+RSpec.describe 'GET /asymmetric_keys' do
   let(:current_account) { create :superuser_account }
 
   let :asymmetric_keys_count do
@@ -18,7 +18,7 @@ RSpec.describe 'GET /public_keys' do
     create_list :rsa_key,    rsa_keys_count
     create_list :ecurve_key, ecurve_keys_count
 
-    get '/public_keys'
+    get '/asymmetric_keys'
   end
 
   for_account_types nil, :usual, :superuser do

@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /public_keys/:id' do
+RSpec.describe 'GET /asymmetric_keys/:id' do
   let(:current_account) { nil }
 
   let(:asymmetric_key) { create %i[rsa_key ecurve_key].sample }
 
   def make_request
-    get "/public_keys/#{asymmetric_key.id}"
+    get "/asymmetric_keys/#{asymmetric_key.id}"
   end
 
   before do

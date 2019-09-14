@@ -3,13 +3,13 @@
 class AsymmetricKeysController < ApplicationController
   before_action :set_asymmetric_key, except: :index
 
-  # GET /public_keys
+  # GET /asymmetric_keys
   def index
     authorize AsymmetricKey
     @asymmetric_keys = policy_scope(AsymmetricKey).page(params[:page])
   end
 
-  # GET /public_keys/:id
+  # GET /asymmetric_keys/:id
   def show
     authorize @asymmetric_key
   end
