@@ -3,3 +3,4 @@
 # Be sure to restart your server when you modify this file.
 
 Mime::Type.register 'application/pkcs8', :key
+Mime::Type.register 'application/x-pem-file', :pem
