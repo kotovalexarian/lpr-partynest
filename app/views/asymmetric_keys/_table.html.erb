@@ -10,6 +10,7 @@
       <th scope="col">
         <%= AsymmetricKey.human_attribute_name :algo_variant %>
       </th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
@@ -19,6 +20,11 @@
         <td scope="row"><%= asymmetric_key.id %></td>
         <td><%= asymmetric_key.algo_class %></td>
         <td><%= asymmetric_key.algo_variant %></td>
+        <td>
+          <% if policy(asymmetric_key).show? %>
+            <%= open_action public_key_path(asymmetric_key) %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

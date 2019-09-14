@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ApplicationHelper
+module ApplicationHelper # rubocop:disable Metrics/ModuleLength
   def federal_subjects_controller?
     controller_path == 'federal_subjects'
   end
@@ -11,6 +11,34 @@ module ApplicationHelper
 
   def timezones_collection
     [*negative_timezones_collection, *positive_timezones_collection].freeze
+  end
+
+  def display_sha1(str)
+    str = String(str).upcase
+    raise 'Invalid format for SHA-1' unless str.match?(/\A[A-F0-9]{40}\z/)
+
+    tag.small do
+      concat display_fingerprint str[0...20]
+      concat tag.br
+      concat display_fingerprint str[20..-1]
+    end
+  end
+
+  def display_sha256(str)
+    str = String(str).upcase
+    raise 'Invalid format for SHA-256' unless str.match?(/\A[A-F0-9]{64}\z/)
+
+    tag.small do
+      concat display_fingerprint str[0...32]
+      concat tag.br
+      concat display_fingerprint str[32..-1]
+    end
+  end
+
+  def display_fingerprint(str)
+    tag.samp do
+      String(str).strip.upcase.each_char.each_slice(2).map(&:join).join(':')
+    end
   end
 
   def positive_timezones_collection

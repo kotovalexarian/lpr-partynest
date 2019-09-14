@@ -57,6 +57,7 @@ ru:
         id: ID
         algo_class: Класс алгоритма
         algo_variant: Вариант
+        sha1: Отпечаток SHA-1
         sha256: Отпечаток SHA-256
       contact:
         id: ID

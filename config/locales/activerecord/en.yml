@@ -57,6 +57,7 @@ en:
         id: ID
         algo_class: Algorithm class
         algo_variant: Variant
+        sha1: SHA-1 fingerprint
         sha256: SHA-256 fingerprint
       contact:
         id: ID

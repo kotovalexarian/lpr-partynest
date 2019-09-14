@@ -44,6 +44,10 @@ class AsymmetricKey < ApplicationRecord
   # Methods #
   ###########
 
+  def self.policy_class
+    AsymmetricKeyPolicy
+  end
+
   def algo_class
     raise NotImplementedError, "#{self.class}#algo_class"
   end
