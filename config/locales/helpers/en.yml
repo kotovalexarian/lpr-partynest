@@ -11,8 +11,6 @@ en:
         display_entries: 'Displaying %{entry_name}
         <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total'
     submit:
-      asymmetric_key:
-        create: Add
       person:
         create: Send
       person_comment:

@@ -13,10 +13,6 @@ Rails.application.routes.draw do
 
   resources :federal_subjects, param: :number, only: %i[index show]
 
-  resources :asymmetric_keys, only: %i[index show new create] do
-    resource :private_key, only: :show
-  end
-
   ###############
   # User routes #
   ###############
@@ -64,8 +60,6 @@ Rails.application.routes.draw do
     resources :contact_networks, only: :index
 
     resources :accounts, param: :nickname, only: %i[index show]
-
-    resources :x509_certificates, only: %i[index show new create]
 
     resources :people, only: %i[index show new create] do
       resources :person_comments,

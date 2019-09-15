@@ -365,49 +365,6 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: asymmetric_keys; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.asymmetric_keys (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    type character varying NOT NULL,
-    account_id bigint,
-    public_key_pem text NOT NULL,
-    public_key_der bytea NOT NULL,
-    private_key_pem_iv bytea,
-    private_key_pem_ciphertext bytea,
-    has_password boolean,
-    sha1 character varying NOT NULL,
-    sha256 character varying NOT NULL,
-    bits integer,
-    curve character varying,
-    CONSTRAINT bits CHECK (((bits IS NULL) OR (bits = ANY (ARRAY[2048, 4096])))),
-    CONSTRAINT curve CHECK (((curve IS NULL) OR ((curve)::text = ANY ((ARRAY['prime256v1'::character varying, 'secp384r1'::character varying])::text[]))))
-);
-
-
---
--- Name: asymmetric_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.asymmetric_keys_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: asymmetric_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.asymmetric_keys_id_seq OWNED BY public.asymmetric_keys.id;
-
-
---
 -- Name: contact_lists; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -925,42 +882,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: x509_certificates; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.x509_certificates (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    asymmetric_key_id bigint NOT NULL,
-    pem text NOT NULL,
-    subject character varying NOT NULL,
-    issuer character varying NOT NULL,
-    not_before timestamp without time zone NOT NULL,
-    not_after timestamp without time zone NOT NULL
-);
-
-
---
--- Name: x509_certificates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.x509_certificates_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: x509_certificates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.x509_certificates_id_seq OWNED BY public.x509_certificates.id;
-
-
---
 -- Name: accounts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -979,13 +900,6 @@ ALTER TABLE ONLY public.active_storage_attachments ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval('public.active_storage_blobs_id_seq'::regclass);
-
-
---
--- Name: asymmetric_keys id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.asymmetric_keys ALTER COLUMN id SET DEFAULT nextval('public.asymmetric_keys_id_seq'::regclass);
 
 
 --
@@ -1080,13 +994,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Name: x509_certificates id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificates ALTER COLUMN id SET DEFAULT nextval('public.x509_certificates_id_seq'::regclass);
-
-
---
 -- Name: accounts accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1116,14 +1023,6 @@ ALTER TABLE ONLY public.active_storage_blobs
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
--- Name: asymmetric_keys asymmetric_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.asymmetric_keys
-    ADD CONSTRAINT asymmetric_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -1239,14 +1138,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: x509_certificates x509_certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificates
-    ADD CONSTRAINT x509_certificates_pkey PRIMARY KEY (id);
-
-
---
 -- Name: index_accounts_on_contact_list_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1286,48 +1177,6 @@ CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active
 --
 
 CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
-
-
---
--- Name: index_asymmetric_keys_on_account_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_asymmetric_keys_on_account_id ON public.asymmetric_keys USING btree (account_id);
-
-
---
--- Name: index_asymmetric_keys_on_public_key_der; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_asymmetric_keys_on_public_key_der ON public.asymmetric_keys USING btree (public_key_der);
-
-
---
--- Name: index_asymmetric_keys_on_public_key_pem; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_asymmetric_keys_on_public_key_pem ON public.asymmetric_keys USING btree (public_key_pem);
-
-
---
--- Name: index_asymmetric_keys_on_sha1; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_asymmetric_keys_on_sha1 ON public.asymmetric_keys USING btree (sha1);
-
-
---
--- Name: index_asymmetric_keys_on_sha256; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_asymmetric_keys_on_sha256 ON public.asymmetric_keys USING btree (sha256);
-
-
---
--- Name: index_asymmetric_keys_on_type_and_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_asymmetric_keys_on_type_and_id ON public.asymmetric_keys USING btree (type, id);
 
 
 --
@@ -1576,13 +1425,6 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unl
 
 
 --
--- Name: index_x509_certificates_on_asymmetric_key_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_x509_certificates_on_asymmetric_key_id ON public.x509_certificates USING btree (asymmetric_key_id);
-
-
---
 -- Name: accounts ensure_contact_list_id_matches_related_person; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1617,14 +1459,6 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_124c042ac0 FOREIGN KEY (initiator_account_id) REFERENCES public.accounts(id);
-
-
---
--- Name: x509_certificates fk_rails_1671512c40; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.x509_certificates
-    ADD CONSTRAINT fk_rails_1671512c40 FOREIGN KEY (asymmetric_key_id) REFERENCES public.asymmetric_keys(id);
 
 
 --
@@ -1681,14 +1515,6 @@ ALTER TABLE ONLY public.accounts
 
 ALTER TABLE ONLY public.regional_offices
     ADD CONSTRAINT fk_rails_7a6d5fdd9a FOREIGN KEY (federal_subject_id) REFERENCES public.federal_subjects(id);
-
-
---
--- Name: asymmetric_keys fk_rails_7d85781ea1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.asymmetric_keys
-    ADD CONSTRAINT fk_rails_7d85781ea1 FOREIGN KEY (account_id) REFERENCES public.accounts(id);
 
 
 --
@@ -1759,6 +1585,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190910040709'),
 ('20190911081459'),
 ('20190914050858'),
-('20190915085803');
+('20190915085803'),
+('20190915131325');
 
 

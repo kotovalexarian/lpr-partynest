@@ -2,5 +2,5 @@
 
 # Be sure to restart your server when you modify this file.
 
-Mime::Type.register 'application/pkcs8', :key
-Mime::Type.register 'application/x-pem-file', :pem
+# Add new mime types for use in respond_to blocks:
+# Mime::Type.register "text/richtext", :rtf

@@ -4,10 +4,6 @@ en:
       account:
         one: Account
         many: Accounts
-      asymmetric_key:
-        one: Public key
-        few: Public keys
-        many: Public keys
       contact:
         one: Contact
         few: Contacts
@@ -40,10 +36,6 @@ en:
       user:
         one: User
         many: Users
-      x509_certificate:
-        one: X509 certificate
-        few: X509 certificates
-        many: X509 certificates
     attributes:
       account:
         id: ID
@@ -53,12 +45,6 @@ en:
         avatar: Avatar
         person: Person
         timezone: Timezone
-      asymmetric_key:
-        id: ID
-        algo_class: Algorithm class
-        algo_variant: Variant
-        sha1: SHA-1 fingerprint
-        sha256: SHA-256 fingerprint
       contact:
         id: ID
         contact_network: Contact network
@@ -145,13 +131,6 @@ en:
         unconfirmed_email: Unconfirmed email
         unlock_token: Unlock token
         updated_at: Updated at
-      x509_certificate:
-        id: ID
-        pem: PEM
-        subject: Subject
-        issuer: Issuer
-        not_before: Active since
-        not_after: Expires at
     errors:
       messages:
         image_size: 'has too big size'

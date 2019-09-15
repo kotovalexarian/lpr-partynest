@@ -21,7 +21,6 @@ Layout/EmptyLinesAroundArguments:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 15.5
   Exclude:
     - 'db/migrate/*.rb'
 
@@ -48,7 +47,6 @@ Metrics/MethodLength:
 
 Naming/PredicateName:
   Exclude:
-    - 'app/forms/application_form.rb'
     - 'app/models/application_record.rb'
 
 Rails:

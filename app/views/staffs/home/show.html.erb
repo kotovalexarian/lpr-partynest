@@ -26,12 +26,5 @@
                     staff_contact_networks_path %>
       </li>
     <% end %>
-
-    <% if policy(%i[staff x509_certificate]).index? %>
-      <li>
-        <%= link_to X509Certificate.model_name.human(count: 0),
-                    staff_x509_certificates_path %>
-      </li>
-    <% end %>
   </ul>
 </div>

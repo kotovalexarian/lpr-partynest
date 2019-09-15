@@ -26,7 +26,6 @@ module Partynest
       confirmation_token
       password
       password_confirmation
-      private_key_pem_secret
       reset_password_token
       secret
       unlock_token
@@ -61,7 +60,6 @@ module Partynest
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += [
-      config.root.join('app', 'forms'),
       config.root.join('app', 'primitives'),
       config.root.join('app', 'validators'),
       config.root.join('lib'),

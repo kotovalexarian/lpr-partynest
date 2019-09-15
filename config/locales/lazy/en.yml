@@ -16,23 +16,6 @@ en:
         If this was you, you can ignore this alert. If you suspect
         any suspicious activity on your account, please change your password
         and enable two-factor authentication
-  private_keys:
-    alert:
-      link: Download
-      primary_header: >-
-        Your private key is ready, but you have to download it right now!
-      secondary_header: >-
-        Your private key was deleted.
-      primary_text: >-
-        For better security we have encrypted your private key
-        with temporary secret token. You can download it until
-        you leave this page. Also note that key will be deleted
-        in %{delay} after creation anyway.
-      secondary_text: >-
-        For better security we have deleted your private key.
-        Hope you have downloaded it, because we can not restore it.
-        If you haven't downloaded it, you have to repeat the whole
-        procedure to generate new private key.
   staffs:
     people:
       show:

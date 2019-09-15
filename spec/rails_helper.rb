@@ -37,7 +37,6 @@ require_relative 'support/database_cleaner'
 require_relative 'support/devise'
 require_relative 'support/pundit'
 
-require_relative 'models/shared_examples/asymmetric_key'
 require_relative 'models/shared_examples/nameable'
 require_relative 'models/shared_examples/required_nameable'
 

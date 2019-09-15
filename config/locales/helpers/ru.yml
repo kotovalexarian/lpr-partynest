@@ -11,8 +11,6 @@ ru:
         display_entries: 'Отображение %{entry_name}
         <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> всего'
     submit:
-      asymmetric_key:
-        create: Добавить
       person:
         create: Отправить
       person_comment:

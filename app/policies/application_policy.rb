@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :context, :record
+  attr_reader :account, :record
 
-  delegate :account, :params, to: :context, allow_nil: true
-
-  def initialize(context, record)
-    @context = context
+  def initialize(account, record)
+    @account = account
     @record = record
   end
 
@@ -53,12 +51,10 @@ private
   end
 
   class Scope
-    attr_reader :context, :scope
+    attr_reader :account, :scope
 
-    delegate :account, :params, to: :context, allow_nil: true
-
-    def initialize(context, scope)
-      @context = context
+    def initialize(account, scope)
+      @account = account
       @scope = scope
     end
 
@@ -74,15 +70,6 @@ private
 
     def restricted?
       Rails.application.restricted?
-    end
-  end
-
-  class Context
-    attr_reader :account, :params
-
-    def initialize(account:, params:)
-      @account = account
-      @params = params
     end
   end
 end

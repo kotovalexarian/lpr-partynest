@@ -4,10 +4,6 @@ ru:
       account:
         one: Аккаунт
         many: Аккаунты
-      asymmetric_key:
-        one: Публичный ключ
-        few: Публичных ключа
-        many: Публичные ключи
       contact:
         one: Контакт
         few: Контакта
@@ -40,10 +36,6 @@ ru:
       user:
         one: Пользователь
         many: Пользователи
-      x509_certificate:
-        one: Сертификат X509
-        few: Сертификатов X509
-        many: Сертификаты X509
     attributes:
       account:
         id: ID
@@ -53,12 +45,6 @@ ru:
         avatar: Аватар
         person: Человек
         timezone: Часовой пояс
-      asymmetric_key:
-        id: ID
-        algo_class: Класс алгоритма
-        algo_variant: Вариант
-        sha1: Отпечаток SHA-1
-        sha256: Отпечаток SHA-256
       contact:
         id: ID
         contact_network: Сеть контактов
@@ -145,13 +131,6 @@ ru:
         unconfirmed_email: Неподтвержденный email
         unlock_token: Токен разблокировки
         updated_at: Дата обновления
-      x509_certificate:
-        id: ID
-        pem: PEM
-        subject: Имя субъекта
-        issuer: Имя издателя
-        not_before: Активен с
-        not_after: Истекает
     errors:
       messages:
         image_size: 'имеет слишком большой размер'
