@@ -3,6 +3,7 @@
 class ApplicationForm
   include ActiveModel::Model
   include ActiveModel::Attributes
+  include ActiveModel::Validations::Callbacks
   include ActiveRecord::AttributeAssignment
 
   def has_attribute?(name)
