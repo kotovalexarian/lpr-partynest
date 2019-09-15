@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RSAKey < AsymmetricKey
+  ALGO_CLASS = 'RSA'
   BITS = [2048, 4096].freeze
 
   ###############
@@ -16,7 +17,7 @@ class RSAKey < AsymmetricKey
   ###########
 
   def algo_class
-    'RSA'
+    ALGO_CLASS
   end
 
   def algo_variant

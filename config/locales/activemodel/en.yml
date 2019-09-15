@@ -1,6 +1,8 @@
 en:
   activemodel:
     attributes:
+      asymmetric_key:
+        public_key_pem: Public key in PEM format
       x509_certificate:
         distinguished_name: Distinguished name
         not_before: Active since

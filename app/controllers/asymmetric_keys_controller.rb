@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AsymmetricKeysController < ApplicationController
-  before_action :set_asymmetric_key, except: :index
+  before_action :set_asymmetric_key, except: %i[index new]
 
   # GET /asymmetric_keys
   def index
@@ -19,6 +19,12 @@ class AsymmetricKeysController < ApplicationController
         send_data @asymmetric_key.public_key_pem, filename: 'public.pem'
       end
     end
+  end
+
+  # GET /asymmetric_keys/new
+  def new
+    @asymmetric_key_form = AsymmetricKeyForm.new
+    authorize @asymmetric_key_form
   end
 
 private

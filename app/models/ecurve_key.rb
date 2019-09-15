@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class EcurveKey < AsymmetricKey
+  ALGO_CLASS = 'Elliptic curve'
   CURVES = %w[prime256v1 secp384r1].freeze
 
   ###############
@@ -16,7 +17,7 @@ class EcurveKey < AsymmetricKey
   ###########
 
   def algo_class
-    'Elliptic curve'
+    ALGO_CLASS
   end
 
   def algo_variant

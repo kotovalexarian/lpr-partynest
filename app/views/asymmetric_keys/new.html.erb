@@ -1,0 +1,14 @@
+<div class="container">
+  <%= nav_breadcrumb(
+      [AsymmetricKey.model_name.human(count: 0), asymmetric_keys_path],
+      translate(:add_existing),
+    ) %>
+
+  <%= simple_form_for @asymmetric_key_form do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :public_key_pem, as: :text %>
+
+    <%= f.button :submit %>
+  <% end %>
+</div>

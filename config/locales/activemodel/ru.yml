@@ -1,6 +1,8 @@
 ru:
   activemodel:
     attributes:
+      asymmetric_key:
+        public_key_pem: Публичный ключ в формате PEM
       x509_certificate:
         distinguished_name: Уникальное имя (distinguished name)
         not_before: Активен с
