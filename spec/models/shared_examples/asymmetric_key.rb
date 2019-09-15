@@ -19,7 +19,7 @@ RSpec.shared_examples 'asymmetric_key' do
   end
 
   describe '#has_password' do
-    it { is_expected.to validate_exclusion_of(:has_password).in_array([nil]) }
+    it { is_expected.not_to validate_presence_of :has_password }
   end
 
   describe '#bits' do

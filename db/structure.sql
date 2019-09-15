@@ -378,7 +378,7 @@ CREATE TABLE public.asymmetric_keys (
     public_key_der bytea NOT NULL,
     private_key_pem_iv bytea,
     private_key_pem_ciphertext bytea,
-    has_password boolean NOT NULL,
+    has_password boolean,
     sha1 character varying NOT NULL,
     sha256 character varying NOT NULL,
     bits integer,
@@ -1758,6 +1758,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181130024918'),
 ('20190910040709'),
 ('20190911081459'),
-('20190914050858');
+('20190914050858'),
+('20190915085803');
 
 

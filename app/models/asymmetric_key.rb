@@ -23,8 +23,6 @@ class AsymmetricKey < ApplicationRecord
             presence: true,
             uniqueness: true
 
-  validates :has_password, exclusion: { in: [nil] }
-
   validates :bits,
             allow_nil: true,
             numericality: {
