@@ -32,9 +32,12 @@ class AsymmetricKeysController < ApplicationController
     @asymmetric_key_form = AsymmetricKeyForm.new asymmetric_key_form_params
     authorize @asymmetric_key_form
 
-    return render :new unless @asymmetric_key_form.valid?
-
     result = ImportAsymmetricKey.call @asymmetric_key_form.attributes
+
+    if result.failure?
+      @asymmetric_key_form.errors.add :public_key_pem
+      return render :new
+    end
 
     redirect_to after_create_url result.asymmetric_key
   end
