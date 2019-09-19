@@ -2,8 +2,10 @@
 
 require 'csv'
 
-federal_subjects_filename = Rails.root.join 'config', 'federal_subjects.csv'
-contact_networks_filename = Rails.root.join 'config', 'contact_networks.csv'
+seeds_dirname = Rails.root.join 'config', 'seeds'
+
+federal_subjects_filename = seeds_dirname.join 'federal_subjects.csv'
+contact_networks_filename = seeds_dirname.join 'contact_networks.csv'
 
 CSV.foreach(
   federal_subjects_filename,
