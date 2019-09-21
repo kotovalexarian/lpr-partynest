@@ -715,6 +715,41 @@ ALTER SEQUENCE public.relation_statuses_id_seq OWNED BY public.relation_statuses
 
 
 --
+-- Name: relation_transitions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.relation_transitions (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    from_status_id bigint,
+    to_status_id bigint NOT NULL,
+    name character varying NOT NULL,
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text)),
+    CONSTRAINT statuses CHECK ((from_status_id <> to_status_id))
+);
+
+
+--
+-- Name: relation_transitions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.relation_transitions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: relation_transitions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.relation_transitions_id_seq OWNED BY public.relation_transitions.id;
+
+
+--
 -- Name: relationship_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1000,6 +1035,13 @@ ALTER TABLE ONLY public.relation_statuses ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: relation_transitions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_transitions ALTER COLUMN id SET DEFAULT nextval('public.relation_transitions_id_seq'::regclass);
+
+
+--
 -- Name: relationship_statuses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1136,6 +1178,14 @@ ALTER TABLE ONLY public.regional_offices
 
 ALTER TABLE ONLY public.relation_statuses
     ADD CONSTRAINT relation_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: relation_transitions relation_transitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_transitions
+    ADD CONSTRAINT relation_transitions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1355,6 +1405,34 @@ CREATE UNIQUE INDEX index_relation_statuses_on_name ON public.relation_statuses 
 
 
 --
+-- Name: index_relation_transitions_on_from_status_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relation_transitions_on_from_status_id ON public.relation_transitions USING btree (from_status_id);
+
+
+--
+-- Name: index_relation_transitions_on_from_status_id_and_to_status_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relation_transitions_on_from_status_id_and_to_status_id ON public.relation_transitions USING btree (from_status_id, to_status_id);
+
+
+--
+-- Name: index_relation_transitions_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relation_transitions_on_name ON public.relation_transitions USING btree (name);
+
+
+--
+-- Name: index_relation_transitions_on_to_status_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relation_transitions_on_to_status_id ON public.relation_transitions USING btree (to_status_id);
+
+
+--
 -- Name: index_relationship_statuses_on_codename; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1557,6 +1635,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: relation_transitions fk_rails_620f685310; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_transitions
+    ADD CONSTRAINT fk_rails_620f685310 FOREIGN KEY (to_status_id) REFERENCES public.relation_statuses(id);
+
+
+--
 -- Name: accounts fk_rails_777d10a224; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1605,6 +1691,14 @@ ALTER TABLE ONLY public.person_comments
 
 
 --
+-- Name: relation_transitions fk_rails_b61956945e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_transitions
+    ADD CONSTRAINT fk_rails_b61956945e FOREIGN KEY (from_status_id) REFERENCES public.relation_statuses(id);
+
+
+--
 -- Name: passports fk_rails_cd632a506c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1650,6 +1744,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190914050858'),
 ('20190915085803'),
 ('20190915131325'),
-('20190921142404');
+('20190921142404'),
+('20190921161613');
 
 
