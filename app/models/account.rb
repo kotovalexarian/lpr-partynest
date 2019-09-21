@@ -67,18 +67,6 @@ class Account < ApplicationRecord
     superuser?
   end
 
-  def can_initiate_relationship?(regional_office)
-    return false if regional_office.nil?
-    return true if superuser?
-
-    current_relationship = person&.current_relationship
-    return false if current_relationship.nil?
-
-    current_relationship.federal_secretary? ||
-      current_relationship.regional_secretary? &&
-        current_relationship.regional_office == regional_office
-  end
-
 private
 
   def generate_nickname

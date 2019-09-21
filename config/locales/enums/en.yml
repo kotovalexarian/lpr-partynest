@@ -3,22 +3,3 @@ en:
     sex:
       male: Male
       female: Female
-    relationship_status:
-      false: Is not related to the party
-      supporter: Party supporter
-      excluded: Excluded from party
-      member: Party member
-    relationship_position:
-      federal_manager: Federal manager
-      federal_supervisor: Federal supervisor
-      federal_secretary: Federal secretary
-      regional_manager: Regional manager
-      regional_supervisor: Regional supervisor
-      regional_secretary: Regional secretary
-    relationship_short_position:
-      federal_manager: Federal manager
-      federal_supervisor: Federal supervisor
-      federal_secretary: Federal secretary
-      regional_manager: Regional manager
-      regional_supervisor: Regional supervisor
-      regional_secretary: Regional secretary

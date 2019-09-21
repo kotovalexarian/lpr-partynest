@@ -3,34 +3,6 @@ ru:
     sex:
       male: Мужской
       female: Женский
-    relationship_status:
-      false: Не относится к партии
-      supporter: Сторонник партии
-      excluded: Исключён из партии
-      member: Член партии
-    relationship_position:
-      federal_manager: Член федерального комитета
-      federal_supervisor: Член центральной контрольно-ревизионной комиссии
-      federal_secretary: Секретарь федерального комитета
-      regional_manager: Член руководящего комитета регионального отделения
-      regional_supervisor: >-
-        Член контрольно-ревизионной комиссии регионального отделения
-      regional_secretary: >-
-        Секретарь руководящего комитета регионального отделения
-    relationship_short_position:
-      federal_manager: Член ФК
-      federal_supervisor: Член ЦКРК
-      federal_secretary: Секретарь ФК
-      regional_manager: Член РК РО
-      regional_supervisor: Член КРК РО
-      regional_secretary: Секретарь РК РО
-
-    relationship_role:
-      federal_manager: Член федерального комитета
-      federal_supervisor: Член центральной контрольно-ревизионной комиссии
-      regional_manager: Член руководящего комитета регионального отделения
-      regional_supervisor: >-
-        Член контрольно-ревизионной комиссии регионального отделения
     person_comment_origin:
       general_comments: Общий комментарий
       first_contact_date: Дата первого контакта

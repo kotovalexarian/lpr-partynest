@@ -107,8 +107,6 @@ ru:
         regional_office: Региональное отделение
         initiator_account: Инициатор
         from_date: Дата начала
-        status: Статус
-        position: Должность
       session:
         id: ID
         account: Аккаунт

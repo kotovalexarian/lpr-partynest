@@ -22,20 +22,6 @@
       <% end %>
 
       <div class="mt-2">
-        <div>
-          <i class="fas fa-user-tag fa-fw"></i>
-          <%= relationship_status_or_none \
-                @account.person&.current_relationship %>
-        </div>
-
-        <% if @account.person&.current_relationship&.position %>
-          <div>
-            <i class="fas fa-briefcase fa-fw"></i>
-            <%= relationship_short_position_or_none \
-                  @account.person.current_relationship %>
-          </div>
-        <% end %>
-
         <% if @account.person&.current_relationship&.regional_office %>
           <div>
             <i class="fas fa-map-marker-alt fa-fw"></i>
