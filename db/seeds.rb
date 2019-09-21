@@ -4,8 +4,9 @@ require 'csv'
 
 seeds_dirname = Rails.root.join 'config', 'seeds'
 
-federal_subjects_filename = seeds_dirname.join 'federal_subjects.csv'
-contact_networks_filename = seeds_dirname.join 'contact_networks.csv'
+federal_subjects_filename  = seeds_dirname.join 'federal_subjects.csv'
+contact_networks_filename  = seeds_dirname.join 'contact_networks.csv'
+relation_statuses_filename = seeds_dirname.join 'relation_statuses.csv'
 
 CSV.foreach(
   federal_subjects_filename,
@@ -35,6 +36,16 @@ CSV.foreach contact_networks_filename, col_sep: '|' do |(id, codename, name)|
   ContactNetwork.where(id: id).first_or_create! do |new_contact_network|
     new_contact_network.codename = codename
     new_contact_network.name = name
+  end
+end
+
+CSV.foreach relation_statuses_filename, col_sep: '|' do |(codename, name)|
+  codename.strip!
+  name.strip!
+
+  RelationStatus.where(codename: codename).first_or_create! \
+  do |new_relation_status|
+    new_relation_status.name = name
   end
 end
 
