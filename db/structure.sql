@@ -39,47 +39,6 @@ CREATE TYPE public.person_comment_origin AS ENUM (
 
 
 --
--- Name: relationship_federal_secretary_flag; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.relationship_federal_secretary_flag AS ENUM (
-    'federal_secretary'
-);
-
-
---
--- Name: relationship_regional_secretary_flag; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.relationship_regional_secretary_flag AS ENUM (
-    'regional_secretary'
-);
-
-
---
--- Name: relationship_role; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.relationship_role AS ENUM (
-    'federal_manager',
-    'federal_supervisor',
-    'regional_manager',
-    'regional_supervisor'
-);
-
-
---
--- Name: relationship_status; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.relationship_status AS ENUM (
-    'supporter',
-    'excluded',
-    'member'
-);
-
-
---
 -- Name: sex; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -793,14 +752,7 @@ CREATE TABLE public.relationships (
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     initiator_account_id bigint,
-    from_date date NOT NULL,
-    status public.relationship_status NOT NULL,
-    role public.relationship_role,
-    federal_secretary_flag public.relationship_federal_secretary_flag,
-    regional_secretary_flag public.relationship_regional_secretary_flag,
-    CONSTRAINT federal_secretary_flag CHECK (((federal_secretary_flag IS NULL) OR (role = 'federal_manager'::public.relationship_role))),
-    CONSTRAINT regional_secretary_flag CHECK (((regional_secretary_flag IS NULL) OR (role = 'regional_manager'::public.relationship_role))),
-    CONSTRAINT role CHECK (((status = 'member'::public.relationship_status) OR (role IS NULL)))
+    from_date date NOT NULL
 );
 
 
@@ -1447,13 +1399,6 @@ CREATE UNIQUE INDEX index_relationship_statuses_on_name ON public.relationship_s
 
 
 --
--- Name: index_relationships_on_federal_secretary_flag; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_relationships_on_federal_secretary_flag ON public.relationships USING btree (federal_secretary_flag);
-
-
---
 -- Name: index_relationships_on_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1479,34 +1424,6 @@ CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.rel
 --
 
 CREATE INDEX index_relationships_on_regional_office_id ON public.relationships USING btree (regional_office_id);
-
-
---
--- Name: index_relationships_on_regional_office_id_and_secretary_flag; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_relationships_on_regional_office_id_and_secretary_flag ON public.relationships USING btree (regional_office_id, regional_secretary_flag);
-
-
---
--- Name: index_relationships_on_regional_secretary_flag; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_relationships_on_regional_secretary_flag ON public.relationships USING btree (regional_secretary_flag);
-
-
---
--- Name: index_relationships_on_role; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_relationships_on_role ON public.relationships USING btree (role);
-
-
---
--- Name: index_relationships_on_status; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_relationships_on_status ON public.relationships USING btree (status);
 
 
 --
@@ -1745,6 +1662,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190915085803'),
 ('20190915131325'),
 ('20190921142404'),
-('20190921161613');
+('20190921161613'),
+('20190921191213');
 
 
