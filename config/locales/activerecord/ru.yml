@@ -101,6 +101,7 @@ ru:
         id: ID
         codename: Кодовое имя
         name: Название
+        transitions: Переходы
       relationship:
         id: ID
         regional_office: Региональное отделение

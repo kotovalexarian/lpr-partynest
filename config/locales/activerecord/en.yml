@@ -101,6 +101,7 @@ en:
         id: ID
         codename: Codename
         name: Name
+        transitions: Transitions
       relationship:
         id: ID
         regional_office: Regional department

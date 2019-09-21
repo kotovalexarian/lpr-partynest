@@ -17,6 +17,21 @@
     </div>
 
     <div class="col-md-6">
+      <h4><%= RelationStatus.human_attribute_name :transitions %></h5>
+
+      <ul class="list-group mt-3">
+        <% @relation_status.transitions.each do |relation_transition| %>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <%= relation_transition.name %>
+              <small class="text-muted">
+                <i class="fas fa-arrow-right"></i>
+                <%= relation_transition.to_status.name %>
+              </small>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>
