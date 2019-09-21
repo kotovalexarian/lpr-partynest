@@ -26,6 +26,9 @@ en:
       regional_office:
         one: Regional office
         many: Regional offices
+      relation_status:
+        one: Relation status
+        many: Relation statuses
       relationship:
         one: Party relation
         many: Party relations
@@ -93,6 +96,10 @@ en:
         text: Text
       regional_office:
         id: ID
+      relation_status:
+        id: ID
+        codename: Codename
+        name: Name
       relationship:
         id: ID
         regional_office: Regional department

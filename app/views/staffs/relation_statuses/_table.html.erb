@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= RelationStatus.human_attribute_name :codename %>
+      </th>
+      <th scope="col">
+        <%= RelationStatus.human_attribute_name :name %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% relation_statuses.each do |relation_status| %>
+      <tr>
+        <td scope="row"><%= relation_status.codename %></td>
+        <td><%= relation_status.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

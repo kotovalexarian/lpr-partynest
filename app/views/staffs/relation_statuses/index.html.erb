@@ -1,0 +1,10 @@
+<div class="container">
+  <%= nav_breadcrumb(
+      [translate(:staff_services), staff_root_path],
+      RelationStatus.model_name.human(count: 0),
+    ) %>
+
+  <%= render partial: 'table',
+             locals: { relation_statuses: @relation_statuses } %>
+  <%= pagination @relation_statuses %>
+</div>

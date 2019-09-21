@@ -26,6 +26,9 @@ ru:
       regional_office:
         one: Региональное отделение
         many: Региональные отделения
+      relation_status:
+        one: Статус отношения
+        many: Статусы отношения
       relationship:
         one: Отношение с партией
         one: Отношения с партией
@@ -93,6 +96,10 @@ ru:
         text: Текст
       regional_office:
         id: ID
+      relation_status:
+        id: ID
+        codename: Кодовое имя
+        name: Название
       relationship:
         id: ID
         regional_office: Региональное отделение

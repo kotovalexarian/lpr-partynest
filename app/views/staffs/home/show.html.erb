@@ -26,5 +26,12 @@
                     staff_contact_networks_path %>
       </li>
     <% end %>
+
+    <% if policy([:staff, RelationStatus]).index? %>
+      <li>
+        <%= link_to RelationStatus.model_name.human(count: 0),
+                    staff_relation_statuses_path %>
+      </li>
+    <% end %>
   </ul>
 </div>
