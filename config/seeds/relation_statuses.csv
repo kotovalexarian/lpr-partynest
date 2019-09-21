@@ -1,0 +1,7 @@
+supporter          | Сторонник             |
+active_member      | Член                  |
+pending_member     | Приостановленный член |
+exited_supporter   | Вышедший сторонник    |
+exited_member      | Вышедший член         |
+excluded_supporter | Исключённый сторонник |
+excluded_member    | Исключённый член      |
