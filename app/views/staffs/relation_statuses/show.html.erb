@@ -5,11 +5,18 @@
       RelationStatus.model_name.human(count: 1),
     ) %>
 
-  <dl>
-    <dt><%= RelationStatus.human_attribute_name :codename %></dt>
-    <dd><%= @relation_status.codename %></dd>
+  <div class="row">
+    <div class="col-md-6">
+      <dl>
+        <dt><%= RelationStatus.human_attribute_name :codename %></dt>
+        <dd><%= @relation_status.codename %></dd>
 
-    <dt><%= RelationStatus.human_attribute_name :name %></dt>
-    <dd><%= @relation_status.name %></dd>
-  </dl>
+        <dt><%= RelationStatus.human_attribute_name :name %></dt>
+        <dd><%= @relation_status.name %></dd>
+      </dl>
+    </div>
+
+    <div class="col-md-6">
+    </div>
+  </div>
 </div>
