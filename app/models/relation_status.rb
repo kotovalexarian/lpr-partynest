@@ -4,6 +4,16 @@ class RelationStatus < ApplicationRecord
   CODENAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
   FORMAT_RE = /\A[^[:space:]]+(.*[^[:space:]]+)?\z/.freeze
 
+  ################
+  # Associations #
+  ################
+
+  has_many :transitions,
+           class_name: 'RelationTransition',
+           inverse_of: :from_status,
+           foreign_key: :from_status_id,
+           dependent: :restrict_with_exception
+
   ###############
   # Validations #
   ###############

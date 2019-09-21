@@ -11,6 +11,16 @@ RSpec.describe RelationStatus do
     end
   end
 
+  describe '#transitions' do
+    it do
+      is_expected.to \
+        have_many(:transitions)
+        .class_name('RelationTransition')
+        .inverse_of(:from_status)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#codename' do
     def allow_value(*)
       super.for :codename

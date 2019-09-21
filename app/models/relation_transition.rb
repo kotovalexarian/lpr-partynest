@@ -9,6 +9,7 @@ class RelationTransition < ApplicationRecord
 
   belongs_to :from_status,
              class_name: 'RelationStatus',
+             inverse_of: :transitions,
              optional: true
 
   belongs_to :to_status,

@@ -8,7 +8,10 @@ RSpec.describe RelationTransition do
   describe '#from_status' do
     it do
       is_expected.to \
-        belong_to(:from_status).class_name('RelationStatus').optional
+        belong_to(:from_status)
+        .class_name('RelationStatus')
+        .inverse_of(:transitions)
+        .optional
     end
 
     it { is_expected.not_to validate_presence_of :from_status }
