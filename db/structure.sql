@@ -681,6 +681,40 @@ ALTER SEQUENCE public.regional_offices_id_seq OWNED BY public.regional_offices.i
 
 
 --
+-- Name: relation_statuses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.relation_statuses (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    codename character varying NOT NULL,
+    name character varying NOT NULL,
+    CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
+);
+
+
+--
+-- Name: relation_statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.relation_statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: relation_statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.relation_statuses_id_seq OWNED BY public.relation_statuses.id;
+
+
+--
 -- Name: relationship_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -959,6 +993,13 @@ ALTER TABLE ONLY public.regional_offices ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: relation_statuses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_statuses ALTER COLUMN id SET DEFAULT nextval('public.relation_statuses_id_seq'::regclass);
+
+
+--
 -- Name: relationship_statuses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1087,6 +1128,14 @@ ALTER TABLE ONLY public.person_comments
 
 ALTER TABLE ONLY public.regional_offices
     ADD CONSTRAINT regional_offices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: relation_statuses relation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_statuses
+    ADD CONSTRAINT relation_statuses_pkey PRIMARY KEY (id);
 
 
 --
@@ -1289,6 +1338,20 @@ CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regio
 --
 
 CREATE UNIQUE INDEX index_regional_offices_on_name ON public.regional_offices USING btree (name);
+
+
+--
+-- Name: index_relation_statuses_on_codename; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relation_statuses_on_codename ON public.relation_statuses USING btree (codename);
+
+
+--
+-- Name: index_relation_statuses_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relation_statuses_on_name ON public.relation_statuses USING btree (name);
 
 
 --
@@ -1586,6 +1649,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190911081459'),
 ('20190914050858'),
 ('20190915085803'),
-('20190915131325');
+('20190915131325'),
+('20190921142404');
 
 
