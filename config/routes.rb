@@ -59,7 +59,7 @@ Rails.application.routes.draw do
 
     resources :contact_networks, only: :index
 
-    resources :relation_statuses, only: :index
+    resources :relation_statuses, param: :codename, only: %i[index show]
 
     resources :accounts, param: :nickname, only: %i[index show]
 

@@ -7,6 +7,12 @@ class Staff::RelationStatusPolicy < ApplicationPolicy
     account&.superuser?
   end
 
+  def show?
+    return false if restricted?
+
+    account&.superuser?
+  end
+
   class Scope < Scope
     def resolve
       return scope.none if restricted?

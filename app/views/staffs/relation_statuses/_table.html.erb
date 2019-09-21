@@ -7,6 +7,7 @@
       <th scope="col">
         <%= RelationStatus.human_attribute_name :name %>
       </th>
+      <th scope="col"></th>
     </tr>
   </thead>
 
@@ -15,6 +16,11 @@
       <tr>
         <td scope="row"><%= relation_status.codename %></td>
         <td><%= relation_status.name %></td>
+        <td>
+          <% if policy([:staff, relation_status]).show? %>
+            <%= open_action [:staff, relation_status] %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
