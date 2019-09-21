@@ -28,6 +28,7 @@ en:
         many: Regional offices
       relation_status:
         one: Relation status
+        few: Relation statuses
         many: Relation statuses
       relationship:
         one: Party relation
