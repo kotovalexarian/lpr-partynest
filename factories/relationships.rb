@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :supporter_relationship, class: Relationship do
+    association :status, factory: :some_relation_status
     association :person, factory: :initial_person
     association :regional_office
     association :initiator_account, factory: :superuser_account

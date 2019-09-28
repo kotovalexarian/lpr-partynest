@@ -719,7 +719,8 @@ CREATE TABLE public.relationships (
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
     initiator_account_id bigint,
-    from_date date NOT NULL
+    from_date date NOT NULL,
+    status_id bigint NOT NULL
 );
 
 
@@ -1365,6 +1366,13 @@ CREATE INDEX index_relationships_on_regional_office_id ON public.relationships U
 
 
 --
+-- Name: index_relationships_on_status_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_status_id ON public.relationships USING btree (status_id);
+
+
+--
 -- Name: index_sessions_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1522,6 +1530,14 @@ ALTER TABLE ONLY public.regional_offices
 
 
 --
+-- Name: relationships fk_rails_87a7339f1f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relationships
+    ADD CONSTRAINT fk_rails_87a7339f1f FOREIGN KEY (status_id) REFERENCES public.relation_statuses(id);
+
+
+--
 -- Name: user_omniauths fk_rails_8c1c9cb22e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1600,6 +1616,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190915131325'),
 ('20190921142404'),
 ('20190921161613'),
-('20190921191213');
+('20190921191213'),
+('20190928171705');
 
 
