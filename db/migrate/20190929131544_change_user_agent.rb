@@ -11,7 +11,7 @@ class ChangeUserAgent < ActiveRecord::Migration[6.0]
     remove_column :sessions, :user_agent, :string, null: false, default: ''
     add_column    :sessions, :user_agent, :string, null: true
 
-    constraint :sessions, :user_agent, <<~SQL
+    add_constraint :sessions, :user_agent, <<~SQL
       user_agent IS NULL OR is_good_big_text(user_agent)
     SQL
   end

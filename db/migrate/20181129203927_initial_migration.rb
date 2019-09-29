@@ -15,22 +15,22 @@ class InitialMigration < ActiveRecord::Migration[6.0]
 private
 
   def change_types
-    enum :sex, %i[male female]
+    add_enum :sex, %i[male female]
 
-    enum :relationship_status, %i[supporter excluded member]
+    add_enum :relationship_status, %i[supporter excluded member]
 
-    enum :relationship_role, %i[
+    add_enum :relationship_role, %i[
       federal_manager
       federal_supervisor
       regional_manager
       regional_supervisor
     ]
 
-    enum :relationship_federal_secretary_flag, %i[federal_secretary]
+    add_enum :relationship_federal_secretary_flag, %i[federal_secretary]
 
-    enum :relationship_regional_secretary_flag, %i[regional_secretary]
+    add_enum :relationship_regional_secretary_flag, %i[regional_secretary]
 
-    enum :person_comment_origin, %i[
+    add_enum :person_comment_origin, %i[
       general_comments
       first_contact_date
       latest_contact_date
@@ -42,7 +42,7 @@ private
   end
 
   def change_functions
-    func :is_nickname, <<~SQL
+    add_func :is_nickname, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -52,7 +52,7 @@ private
       $$;
     SQL
 
-    func :is_codename, <<~SQL
+    add_func :is_codename, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -61,7 +61,7 @@ private
       $$;
     SQL
 
-    func :is_good_text, <<~SQL
+    add_func :is_good_text, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -70,7 +70,7 @@ private
       $$;
     SQL
 
-    func :is_good_limited_text, <<~SQL
+    add_func :is_good_limited_text, <<~SQL
       (str text, max_length integer)
         RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
@@ -80,7 +80,7 @@ private
       $$;
     SQL
 
-    func :is_good_small_text, <<~SQL
+    add_func :is_good_small_text, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -89,7 +89,7 @@ private
       $$;
     SQL
 
-    func :is_good_big_text, <<~SQL
+    add_func :is_good_big_text, <<~SQL
       (str text) RETURNS boolean IMMUTABLE LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -98,7 +98,7 @@ private
       $$;
     SQL
 
-    func :ensure_superuser_has_related_user, <<~SQL
+    add_func :ensure_superuser_has_related_user, <<~SQL
       () RETURNS trigger LANGUAGE plpgsql AS
       $$
       DECLARE
@@ -119,7 +119,7 @@ private
       $$
     SQL
 
-    func :ensure_contact_list_id_remains_unchanged, <<~SQL
+    add_func :ensure_contact_list_id_remains_unchanged, <<~SQL
       () RETURNS trigger LANGUAGE plpgsql AS
       $$
       BEGIN
@@ -132,7 +132,7 @@ private
       $$;
     SQL
 
-    func :ensure_contact_list_id_matches_related_person, <<~SQL
+    add_func :ensure_contact_list_id_matches_related_person, <<~SQL
       () RETURNS trigger LANGUAGE plpgsql AS
       $$
       DECLARE
@@ -404,123 +404,123 @@ private
   end
 
   def change_constraints
-    constraint :sessions, :ip_address, <<~SQL
+    add_constraint :sessions, :ip_address, <<~SQL
       is_good_small_text(ip_address)
     SQL
 
-    constraint :regional_offices, :name, <<~SQL
+    add_constraint :regional_offices, :name, <<~SQL
       is_good_small_text(name)
     SQL
 
-    constraint :contacts, :value, <<~SQL
+    add_constraint :contacts, :value, <<~SQL
       is_good_small_text(value)
     SQL
 
-    constraint :contact_networks, :codename, <<~SQL
+    add_constraint :contact_networks, :codename, <<~SQL
       is_codename(codename)
     SQL
 
-    constraint :contact_networks, :name, <<~SQL
+    add_constraint :contact_networks, :name, <<~SQL
       is_good_small_text(name)
     SQL
 
-    constraint :relationships, :role, <<~SQL
+    add_constraint :relationships, :role, <<~SQL
       status = 'member' OR role IS NULL
     SQL
 
-    constraint :relationships, :federal_secretary_flag, <<~SQL
+    add_constraint :relationships, :federal_secretary_flag, <<~SQL
       federal_secretary_flag IS NULL OR role = 'federal_manager'
     SQL
 
-    constraint :relationships, :regional_secretary_flag, <<~SQL
+    add_constraint :relationships, :regional_secretary_flag, <<~SQL
       regional_secretary_flag IS NULL OR role = 'regional_manager'
     SQL
 
-    constraint :accounts, :nickname, <<~SQL
+    add_constraint :accounts, :nickname, <<~SQL
       is_nickname(nickname)
     SQL
 
-    constraint :accounts, :public_name, <<~SQL
+    add_constraint :accounts, :public_name, <<~SQL
       public_name IS NULL OR is_good_small_text(public_name)
     SQL
 
-    constraint :accounts, :biography, <<~SQL
+    add_constraint :accounts, :biography, <<~SQL
       biography IS NULL OR is_good_big_text(biography)
     SQL
 
-    constraint :federal_subjects, :english_name, <<~SQL
+    add_constraint :federal_subjects, :english_name, <<~SQL
       is_good_small_text(english_name)
     SQL
 
-    constraint :federal_subjects, :native_name, <<~SQL
+    add_constraint :federal_subjects, :native_name, <<~SQL
       is_good_small_text(native_name)
     SQL
 
-    constraint :federal_subjects, :centre, <<~SQL
+    add_constraint :federal_subjects, :centre, <<~SQL
       is_good_small_text(centre)
     SQL
 
-    constraint :federal_subjects, :number, <<~SQL
+    add_constraint :federal_subjects, :number, <<~SQL
       number > 0
     SQL
 
-    constraint :passports, :zip_code, <<~SQL
+    add_constraint :passports, :zip_code, <<~SQL
       zip_code IS NULL OR is_good_small_text(zip_code)
     SQL
 
-    constraint :passports, :town_type, <<~SQL
+    add_constraint :passports, :town_type, <<~SQL
       town_type IS NULL OR is_good_small_text(town_type)
     SQL
 
-    constraint :passports, :town_name, <<~SQL
+    add_constraint :passports, :town_name, <<~SQL
       town_name IS NULL OR is_good_small_text(town_name)
     SQL
 
-    constraint :passports, :settlement_type, <<~SQL
+    add_constraint :passports, :settlement_type, <<~SQL
       settlement_type IS NULL OR is_good_small_text(settlement_type)
     SQL
 
-    constraint :passports, :settlement_name, <<~SQL
+    add_constraint :passports, :settlement_name, <<~SQL
       settlement_name IS NULL OR is_good_small_text(settlement_name)
     SQL
 
-    constraint :passports, :district_type, <<~SQL
+    add_constraint :passports, :district_type, <<~SQL
       district_type IS NULL OR is_good_small_text(district_type)
     SQL
 
-    constraint :passports, :district_name, <<~SQL
+    add_constraint :passports, :district_name, <<~SQL
       district_name IS NULL OR is_good_small_text(district_name)
     SQL
 
-    constraint :passports, :street_type, <<~SQL
+    add_constraint :passports, :street_type, <<~SQL
       street_type IS NULL OR is_good_small_text(street_type)
     SQL
 
-    constraint :passports, :street_name, <<~SQL
+    add_constraint :passports, :street_name, <<~SQL
       street_name IS NULL OR is_good_small_text(street_name)
     SQL
 
-    constraint :passports, :residence_type, <<~SQL
+    add_constraint :passports, :residence_type, <<~SQL
       residence_type IS NULL OR is_good_small_text(residence_type)
     SQL
 
-    constraint :passports, :residence_name, <<~SQL
+    add_constraint :passports, :residence_name, <<~SQL
       residence_name IS NULL OR is_good_small_text(residence_name)
     SQL
 
-    constraint :passports, :building_type, <<~SQL
+    add_constraint :passports, :building_type, <<~SQL
       building_type IS NULL OR is_good_small_text(building_type)
     SQL
 
-    constraint :passports, :building_name, <<~SQL
+    add_constraint :passports, :building_name, <<~SQL
       building_name IS NULL OR is_good_small_text(building_name)
     SQL
 
-    constraint :passports, :apartment_type, <<~SQL
+    add_constraint :passports, :apartment_type, <<~SQL
       apartment_type IS NULL OR is_good_small_text(apartment_type)
     SQL
 
-    constraint :passports, :apartment_name, <<~SQL
+    add_constraint :passports, :apartment_name, <<~SQL
       apartment_name IS NULL OR is_good_small_text(apartment_name)
     SQL
   end

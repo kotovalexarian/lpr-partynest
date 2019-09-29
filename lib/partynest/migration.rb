@@ -2,7 +2,7 @@
 
 module Partynest
   module Migration
-    def func(name, sql)
+    def add_func(name, sql)
       reversible do |dir|
         dir.up   { func_creation(name, sql).call }
         dir.down { func_deletion(name).call      }
@@ -16,7 +16,7 @@ module Partynest
       end
     end
 
-    def enum(name, values)
+    def add_enum(name, values)
       reversible do |dir|
         dir.up   { enum_creation(name, values).call }
         dir.down { enum_deletion(name).call         }
@@ -30,7 +30,7 @@ module Partynest
       end
     end
 
-    def constraint(table, name, check)
+    def add_constraint(table, name, check)
       reversible do |dir|
         dir.up   { constraint_creation(table, name, check).call }
         dir.down { constraint_deletion(table, name).call        }

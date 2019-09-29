@@ -11,11 +11,11 @@ class CreateRelationStatuses < ActiveRecord::Migration[6.0]
       t.string :name,     null: false, index: { unique: true }
     end
 
-    constraint :relation_statuses, :codename, <<~SQL
+    add_constraint :relation_statuses, :codename, <<~SQL
       is_codename(codename)
     SQL
 
-    constraint :relation_statuses, :name, <<~SQL
+    add_constraint :relation_statuses, :name, <<~SQL
       is_good_small_text(name)
     SQL
   end

@@ -18,11 +18,11 @@ class CreateRelationTransitions < ActiveRecord::Migration[6.0]
       t.index %i[from_status_id to_status_id], unique: true
     end
 
-    constraint :relation_transitions, :name, <<~SQL
+    add_constraint :relation_transitions, :name, <<~SQL
       is_good_small_text(name)
     SQL
 
-    constraint :relation_transitions, :statuses, <<~SQL
+    add_constraint :relation_transitions, :statuses, <<~SQL
       from_status_id != to_status_id
     SQL
   end

@@ -30,11 +30,11 @@ class CreateX509Tables < ActiveRecord::Migration[6.0]
       t.index :sha256,         unique: true
     end
 
-    constraint :asymmetric_keys, :bits, <<~SQL
+    add_constraint :asymmetric_keys, :bits, <<~SQL
       bits IS NULL OR bits IN (2048, 4096)
     SQL
 
-    constraint :asymmetric_keys, :curve, <<~SQL
+    add_constraint :asymmetric_keys, :curve, <<~SQL
       curve IS NULL OR curve IN ('prime256v1', 'secp384r1')
     SQL
 
