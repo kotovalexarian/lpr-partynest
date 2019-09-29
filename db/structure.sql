@@ -324,41 +324,6 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: committee_types; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.committee_types (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    codename character varying NOT NULL,
-    name character varying NOT NULL,
-    regional boolean NOT NULL,
-    CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
-    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
-);
-
-
---
--- Name: committee_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.committee_types_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: committee_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.committee_types_id_seq OWNED BY public.committee_types.id;
-
-
---
 -- Name: contact_lists; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -927,13 +892,6 @@ ALTER TABLE ONLY public.active_storage_blobs ALTER COLUMN id SET DEFAULT nextval
 
 
 --
--- Name: committee_types id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.committee_types ALTER COLUMN id SET DEFAULT nextval('public.committee_types_id_seq'::regclass);
-
-
---
 -- Name: contact_lists id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1061,14 +1019,6 @@ ALTER TABLE ONLY public.active_storage_blobs
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
--- Name: committee_types committee_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.committee_types
-    ADD CONSTRAINT committee_types_pkey PRIMARY KEY (id);
 
 
 --
@@ -1231,20 +1181,6 @@ CREATE UNIQUE INDEX index_active_storage_attachments_uniqueness ON public.active
 --
 
 CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_blobs USING btree (key);
-
-
---
--- Name: index_committee_types_on_codename; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_committee_types_on_codename ON public.committee_types USING btree (codename);
-
-
---
--- Name: index_committee_types_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_committee_types_on_name ON public.committee_types USING btree (name);
 
 
 --
@@ -1681,7 +1617,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190921142404'),
 ('20190921161613'),
 ('20190921191213'),
-('20190928171705'),
-('20190929122847');
+('20190928171705');
 
 
