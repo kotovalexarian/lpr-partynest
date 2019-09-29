@@ -12,3 +12,4 @@ ru:
   save: Сохранить
   hello: Здравствуйте
   new_sign_in: Произведён вход в ваш аккаунт
+  sidekiq: Sidekiq

@@ -12,3 +12,4 @@ en:
   save: Save
   hello: Hello
   new_sign_in: New sign in to your account
+  sidekiq: Sidekiq
