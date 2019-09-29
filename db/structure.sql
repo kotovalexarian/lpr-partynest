@@ -763,9 +763,9 @@ CREATE TABLE public.sessions (
     account_id bigint NOT NULL,
     logged_at timestamp without time zone NOT NULL,
     ip_address character varying NOT NULL,
-    user_agent character varying DEFAULT ''::character varying NOT NULL,
+    user_agent character varying,
     CONSTRAINT ip_address CHECK (public.is_good_small_text((ip_address)::text)),
-    CONSTRAINT user_agent CHECK ((((user_agent)::text = ''::text) OR public.is_good_big_text((user_agent)::text)))
+    CONSTRAINT user_agent CHECK (((user_agent IS NULL) OR public.is_good_big_text((user_agent)::text)))
 );
 
 
@@ -1617,6 +1617,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190921142404'),
 ('20190921161613'),
 ('20190921191213'),
-('20190928171705');
+('20190928171705'),
+('20190929131544');
 
 

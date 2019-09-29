@@ -39,7 +39,9 @@ class Account < ApplicationRecord
 
   validates :public_name, allow_nil: true, length: { in: 1..255 }
 
-  validates :biography, allow_nil: true, length: { in: 1..10_000 }
+  validates :biography,
+            allow_nil: true,
+            good_big_text: true
 
   validates :avatar, allow_nil: true, image: true
 

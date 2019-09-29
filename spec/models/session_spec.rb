@@ -33,19 +33,19 @@ RSpec.describe Session do
 
     it { is_expected.to validate_length_of(:user_agent).is_at_most(10_000) }
 
-    it { is_expected.to allow_value '' }
+    it { is_expected.to allow_value nil }
     it { is_expected.to allow_value Faker::Internet.user_agent }
 
     context 'when it was set to nil' do
       subject { build :some_session, user_agent: nil }
       before { subject.validate }
-      specify { expect(subject.user_agent).to eq '' }
+      specify { expect(subject.user_agent).to eq nil }
     end
 
     context 'when it was set to blank' do
       subject { build :some_session, user_agent: ' ' * rand(1..3) }
       before { subject.validate }
-      specify { expect(subject.user_agent).to eq '' }
+      specify { expect(subject.user_agent).to eq nil }
     end
 
     context 'when it has leading spaces' do

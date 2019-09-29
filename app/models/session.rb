@@ -22,12 +22,14 @@ class Session < ApplicationRecord
 
   validates :ip_address, presence: true
 
-  validates :user_agent, length: { maximum: 10_000 }
+  validates :user_agent,
+            allow_nil: true,
+            good_big_text: true
 
 private
 
   def turn_nils_into_blanks
-    self.user_agent = '' if user_agent.blank?
+    self.user_agent = nil if user_agent.blank?
   end
 
   def strip_extra_spaces
