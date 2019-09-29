@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RelationStatus < ApplicationRecord
-  CODENAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
   FORMAT_RE = /\A[^[:space:]]+(.*[^[:space:]]+)?\z/.freeze
 
   ################
@@ -20,8 +19,7 @@ class RelationStatus < ApplicationRecord
 
   validates :codename,
             presence: true,
-            length: { in: 3..36 },
-            format: CODENAME_RE,
+            codename: true,
             uniqueness: { case_sensitive: false }
 
   validates :name,

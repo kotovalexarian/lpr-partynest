@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  NICKNAME_RE = /\A[a-z][a-z0-9]*(_[a-z0-9]+)*\z/.freeze
-
   ################
   # Associations #
   ################
@@ -36,8 +34,7 @@ class Account < ApplicationRecord
 
   validates :nickname,
             presence: true,
-            length: { in: 3..36 },
-            format: NICKNAME_RE,
+            codename: true,
             uniqueness: { case_sensitive: false }
 
   validates :public_name, allow_nil: true, length: { in: 1..255 }
