@@ -147,3 +147,4 @@ en:
         timezone: 'does not match timezone format'
         trailing_spaces: 'has trailing spaces'
         codename: 'does not match codename format'
+        good_text: 'does not match good text format'
