@@ -3,7 +3,7 @@
 # The MIT License (MIT)
 #
 # Copyright (c) 2015 Vladimir Kochnev
-# Copyright (c) 2018 Alex Kotov
+# Copyright (c) 2018-2019 Alex Kotov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@
 namespace :load do
   task :defaults do
     set :shell_server_number, ask('server number', 1)
-    set :shell_cmd, '$SHELL --login'
   end
 end
 
@@ -68,7 +67,7 @@ task :shell do
 
   cmd << [options[:user], host.hostname].compact.join('@')
 
-  shell_cmd = fetch :shell_cmd
+  shell_cmd = '$SHELL --login'
 
   cmd << if host.properties.fetch(:no_release)
            shell_cmd
