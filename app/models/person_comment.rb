@@ -17,5 +17,5 @@ class PersonComment < ApplicationRecord
   # Validations #
   ###############
 
-  validates :text, presence: true, length: { in: 1..10_000 }
+  validates :text, good_big_text: true
 end
