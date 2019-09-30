@@ -39,13 +39,11 @@ class Account < ApplicationRecord
 
   validates :public_name, allow_nil: true, length: { in: 1..255 }
 
-  validates :biography,
-            allow_nil: true,
-            good_big_text: true
+  validates :biography, allow_nil: true, good_big_text: true
 
   validates :avatar, allow_nil: true, image: true
 
-  validates :timezone, presence: true, timezone: true
+  validates :timezone, timezone: true
 
   validate :contact_list_corresponds_person
   validate :person_corresponds_contact_list

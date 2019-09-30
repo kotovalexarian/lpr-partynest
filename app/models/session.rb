@@ -22,9 +22,7 @@ class Session < ApplicationRecord
 
   validates :ip_address, presence: true
 
-  validates :user_agent,
-            allow_nil: true,
-            good_big_text: true
+  validates :user_agent, allow_nil: true, good_big_text: true
 
 private
 

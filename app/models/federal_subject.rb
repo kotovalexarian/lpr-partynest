@@ -42,7 +42,7 @@ class FederalSubject < ApplicationRecord
             uniqueness: true,
             numericality: { only_integer: true, greater_than: 0 }
 
-  validates :timezone, presence: true, timezone: true
+  validates :timezone, timezone: true
 
   validate :english_name_looks_realistic
   validate :native_name_looks_realistic

@@ -5,6 +5,7 @@ class GoodTextValidator < ApplicationEachValidator
     GOOD_TEXT_RE = /\A[^\s](.*[^\s])?\z/.freeze
 
     def perform
+      error! :blank if value.to_s.blank?
       error! :good_text unless GOOD_TEXT_RE.match? value
     end
   end
