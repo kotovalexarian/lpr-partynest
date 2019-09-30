@@ -6,15 +6,23 @@ RSpec.describe Contact do
   subject { create :some_contact }
 
   describe '#contact_list' do
-    it { is_expected.to belong_to(:contact_list) }
+    it { is_expected.to belong_to(:contact_list).required }
 
-    it { is_expected.to validate_presence_of :contact_list }
+    it do
+      is_expected.to \
+        validate_presence_of(:contact_list)
+        .with_message(:required)
+    end
   end
 
   describe '#contact_network' do
-    it { is_expected.to belong_to(:contact_network) }
+    it { is_expected.to belong_to(:contact_network).required }
 
-    it { is_expected.to validate_presence_of :contact_network }
+    it do
+      is_expected.to \
+        validate_presence_of(:contact_network)
+        .with_message(:required)
+    end
   end
 
   describe '#value' do

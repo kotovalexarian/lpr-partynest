@@ -24,10 +24,6 @@ class Contact < ApplicationRecord
   # Validations #
   ###############
 
-  validates :contact_list, presence: true
-
-  validates :contact_network, presence: true
-
   validates :value,
             presence: true,
             uniqueness: { scope: %i[contact_list_id contact_network_id] }
