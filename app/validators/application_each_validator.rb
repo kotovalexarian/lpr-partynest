@@ -35,5 +35,9 @@ class ApplicationEachValidator < ActiveModel::EachValidator
       error(*args)
       throw :stop_validating
     end
+
+    def str_value
+      @str_value ||= String(value).dup.freeze
+    end
   end
 end

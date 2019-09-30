@@ -5,7 +5,7 @@ class TimezoneValidator < ApplicationEachValidator
     TIMEZONE_RE = /\A-?\d\d:\d\d:00\z/.freeze
 
     def perform
-      error! :blank if value.to_s.blank?
+      error! :blank if str_value.blank?
       error! :timezone unless TIMEZONE_RE.match? value
     end
   end

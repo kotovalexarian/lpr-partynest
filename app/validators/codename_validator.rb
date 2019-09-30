@@ -8,10 +8,10 @@ class CodenameValidator < ApplicationEachValidator
     MAX = 36
 
     def perform
-      error! :blank if value.to_s.blank?
+      error! :blank if str_value.blank?
       error! :codename unless CODENAME_RE.match? value
-      error! :too_short, count: MIN if value.to_s.length < MIN
-      error! :too_long,  count: MAX if value.to_s.length > MAX
+      error! :too_short, count: MIN if str_value.length < MIN
+      error! :too_long,  count: MAX if str_value.length > MAX
     end
   end
 end
