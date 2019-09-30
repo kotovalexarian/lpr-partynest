@@ -32,12 +32,9 @@ class Account < ApplicationRecord
 
   validates :contact_list, uniqueness: true
 
-  validates :nickname,
-            presence: true,
-            codename: true,
-            uniqueness: { case_sensitive: false }
+  validates :nickname, codename: true, uniqueness: { case_sensitive: false }
 
-  validates :public_name, allow_nil: true, length: { in: 1..255 }
+  validates :public_name, allow_nil: true, good_small_text: true
 
   validates :biography, allow_nil: true, good_big_text: true
 
