@@ -499,6 +499,40 @@ ALTER SEQUENCE public.org_unit_kinds_id_seq OWNED BY public.org_unit_kinds.id;
 
 
 --
+-- Name: org_units; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.org_units (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    name character varying NOT NULL,
+    kind_id bigint NOT NULL,
+    parent_id bigint,
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
+);
+
+
+--
+-- Name: org_units_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.org_units_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: org_units_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.org_units_id_seq OWNED BY public.org_units.id;
+
+
+--
 -- Name: passports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -929,6 +963,13 @@ ALTER TABLE ONLY public.org_unit_kinds ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: org_units id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units ALTER COLUMN id SET DEFAULT nextval('public.org_units_id_seq'::regclass);
+
+
+--
 -- Name: passports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1061,6 +1102,14 @@ ALTER TABLE ONLY public.federal_subjects
 
 ALTER TABLE ONLY public.org_unit_kinds
     ADD CONSTRAINT org_unit_kinds_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: org_units org_units_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT org_units_pkey PRIMARY KEY (id);
 
 
 --
@@ -1277,6 +1326,27 @@ CREATE UNIQUE INDEX index_org_unit_kinds_on_short_name ON public.org_unit_kinds 
 
 
 --
+-- Name: index_org_units_on_kind_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_org_units_on_kind_id ON public.org_units USING btree (kind_id);
+
+
+--
+-- Name: index_org_units_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_org_units_on_name ON public.org_units USING btree (name);
+
+
+--
+-- Name: index_org_units_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_org_units_on_parent_id ON public.org_units USING btree (parent_id);
+
+
+--
 -- Name: index_passports_on_federal_subject_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1460,6 +1530,14 @@ ALTER TABLE ONLY public.people
 
 
 --
+-- Name: org_units fk_rails_54c0512b74; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT fk_rails_54c0512b74 FOREIGN KEY (parent_id) REFERENCES public.org_units(id);
+
+
+--
 -- Name: sessions fk_rails_5599381559; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1548,6 +1626,14 @@ ALTER TABLE ONLY public.relation_transitions
 
 
 --
+-- Name: org_units fk_rails_ccc56f184e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.org_units
+    ADD CONSTRAINT fk_rails_ccc56f184e FOREIGN KEY (kind_id) REFERENCES public.org_unit_kinds(id);
+
+
+--
 -- Name: passports fk_rails_cd632a506c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1604,6 +1690,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190929131544'),
 ('20190930154031'),
 ('20190930205337'),
-('20190930210852');
+('20190930210852'),
+('20190930215223');
 
 

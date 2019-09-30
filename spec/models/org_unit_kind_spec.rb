@@ -34,6 +34,17 @@ RSpec.describe OrgUnitKind do
     end
   end
 
+  describe '#instance' do
+    it do
+      is_expected.to \
+        have_many(:instances)
+        .class_name('OrgUnit')
+        .inverse_of(:kind)
+        .with_foreign_key(:kind_id)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#codename' do
     def allow_value(*)
       super.for :codename

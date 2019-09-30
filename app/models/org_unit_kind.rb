@@ -15,6 +15,11 @@ class OrgUnitKind < ApplicationRecord
            inverse_of: :parent_kind,
            foreign_key: :parent_kind_id
 
+  has_many :instances,
+           class_name: 'OrgUnit',
+           inverse_of: :kind,
+           foreign_key: :kind_id
+
   ###############
   # Validations #
   ###############
