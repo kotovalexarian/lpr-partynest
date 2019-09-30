@@ -27,9 +27,6 @@ ru:
       person_comment:
         one: Комментарий
         many: Комментарии
-      regional_office:
-        one: Региональное отделение
-        many: Региональные отделения
       relation_status:
         one: Статус отношения
         few: Статусы отношения
@@ -65,7 +62,6 @@ ru:
         name: Название
       federal_subject:
         id: ID
-        regional_office: Региональное отделение
         english_name: Название
         native_name: Название
         display_name: Название
@@ -105,8 +101,6 @@ ru:
         id: ID
         attachment: Приложение
         text: Текст
-      regional_office:
-        id: ID
       relation_status:
         id: ID
         codename: Кодовое имя
@@ -114,7 +108,6 @@ ru:
         transitions: Переходы
       relationship:
         id: ID
-        regional_office: Региональное отделение
         from_date: Дата начала
       session:
         id: ID

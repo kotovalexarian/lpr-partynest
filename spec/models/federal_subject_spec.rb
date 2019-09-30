@@ -5,16 +5,6 @@ require 'rails_helper'
 RSpec.describe FederalSubject do
   subject { create :federal_subject }
 
-  describe '#regional_office' do
-    it do
-      is_expected.to \
-        have_one(:regional_office)
-        .dependent(:restrict_with_exception)
-    end
-
-    it { is_expected.not_to validate_presence_of :regional_office }
-  end
-
   describe '#to_param' do
     specify do
       expect(subject.to_param).to be_instance_of String

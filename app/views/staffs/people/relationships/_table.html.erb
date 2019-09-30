@@ -7,9 +7,6 @@
       <th scope="col">
         <%= Relationship.human_attribute_name :from_date %>
       </th>
-      <th scope="col">
-        <%= Relationship.human_attribute_name :regional_office %>
-      </th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -19,10 +16,6 @@
       <tr>
         <td scope="row"><%= relationship.id %></td>
         <td><%= relationship_from_date_or_none relationship %></td>
-        <td>
-          <%= staff_regional_office_link_or_none \
-                relationship.regional_office %>
-        </td>
         <td></td>
       </tr>
     <% end %>

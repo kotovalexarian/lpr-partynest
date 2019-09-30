@@ -62,12 +62,6 @@
         <dd>
           <%= relationship_from_date_or_none @person.current_relationship %>
         </dd>
-
-        <dt><%= Relationship.human_attribute_name :regional_office %></dt>
-        <dd>
-          <%= staff_regional_office_link_or_none \
-                @person.current_relationship&.regional_office %>
-        </dd>
       </dl>
     </div>
   </div>

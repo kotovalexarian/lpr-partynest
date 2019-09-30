@@ -4,7 +4,6 @@ FactoryBot.define do
   factory :supporter_relationship, class: Relationship do
     association :status, factory: :some_relation_status
     association :person, factory: :initial_person
-    association :regional_office
 
     sequence :from_date do |n|
       Date.new rand((10 * n)...(11 * n)), rand(1..12), rand(1..28)

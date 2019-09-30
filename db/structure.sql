@@ -644,39 +644,6 @@ ALTER SEQUENCE public.person_comments_id_seq OWNED BY public.person_comments.id;
 
 
 --
--- Name: regional_offices; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.regional_offices (
-    id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    federal_subject_id bigint NOT NULL,
-    name character varying NOT NULL,
-    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
-);
-
-
---
--- Name: regional_offices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.regional_offices_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: regional_offices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.regional_offices_id_seq OWNED BY public.regional_offices.id;
-
-
---
 -- Name: relation_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -754,7 +721,6 @@ CREATE TABLE public.relationships (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
-    regional_office_id bigint NOT NULL,
     from_date date NOT NULL,
     status_id bigint NOT NULL
 );
@@ -984,13 +950,6 @@ ALTER TABLE ONLY public.person_comments ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: regional_offices id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.regional_offices ALTER COLUMN id SET DEFAULT nextval('public.regional_offices_id_seq'::regclass);
-
-
---
 -- Name: relation_statuses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1126,14 +1085,6 @@ ALTER TABLE ONLY public.people
 
 ALTER TABLE ONLY public.person_comments
     ADD CONSTRAINT person_comments_pkey PRIMARY KEY (id);
-
-
---
--- Name: regional_offices regional_offices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.regional_offices
-    ADD CONSTRAINT regional_offices_pkey PRIMARY KEY (id);
 
 
 --
@@ -1361,20 +1312,6 @@ CREATE INDEX index_person_comments_on_person_id ON public.person_comments USING 
 
 
 --
--- Name: index_regional_offices_on_federal_subject_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_regional_offices_on_federal_subject_id ON public.regional_offices USING btree (federal_subject_id);
-
-
---
--- Name: index_regional_offices_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_regional_offices_on_name ON public.regional_offices USING btree (name);
-
-
---
 -- Name: index_relation_statuses_on_codename; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1428,13 +1365,6 @@ CREATE INDEX index_relationships_on_from_date ON public.relationships USING btre
 --
 
 CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.relationships USING btree (person_id, from_date);
-
-
---
--- Name: index_relationships_on_regional_office_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_relationships_on_regional_office_id ON public.relationships USING btree (regional_office_id);
 
 
 --
@@ -1522,14 +1452,6 @@ CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON publ
 
 
 --
--- Name: relationships fk_rails_100235139c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.relationships
-    ADD CONSTRAINT fk_rails_100235139c FOREIGN KEY (regional_office_id) REFERENCES public.regional_offices(id);
-
-
---
 -- Name: people fk_rails_4f02f930eb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1583,14 +1505,6 @@ ALTER TABLE ONLY public.accounts
 
 ALTER TABLE ONLY public.accounts
     ADD CONSTRAINT fk_rails_77a360a20e FOREIGN KEY (contact_list_id) REFERENCES public.contact_lists(id);
-
-
---
--- Name: regional_offices fk_rails_7a6d5fdd9a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.regional_offices
-    ADD CONSTRAINT fk_rails_7a6d5fdd9a FOREIGN KEY (federal_subject_id) REFERENCES public.federal_subjects(id);
 
 
 --
@@ -1689,6 +1603,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190928171705'),
 ('20190929131544'),
 ('20190930154031'),
-('20190930205337');
+('20190930205337'),
+('20190930210852');
 
 

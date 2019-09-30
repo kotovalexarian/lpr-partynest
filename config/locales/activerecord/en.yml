@@ -27,9 +27,6 @@ en:
       person_comment:
         one: Comment
         many: Comments
-      regional_office:
-        one: Regional office
-        many: Regional offices
       relation_status:
         one: Relation status
         few: Relation statuses
@@ -65,7 +62,6 @@ en:
         name: Name
       federal_subject:
         id: ID
-        regional_office: Regional department
         english_name: Name
         native_name: Name
         display_name: Name
@@ -105,8 +101,6 @@ en:
         id: ID
         attachment: Attachment
         text: Text
-      regional_office:
-        id: ID
       relation_status:
         id: ID
         codename: Codename
@@ -114,7 +108,6 @@ en:
         transitions: Transitions
       relationship:
         id: ID
-        regional_office: Regional department
         from_date: From date
       session:
         id: ID

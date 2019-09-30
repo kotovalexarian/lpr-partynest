@@ -21,14 +21,5 @@
 
     <dt><%= FederalSubject.human_attribute_name :timezone %></dt>
     <dd><%= @federal_subject.timezone %></dd>
-
-    <dt><%= FederalSubject.human_attribute_name :regional_office %></dt>
-    <dd>
-      <% if @federal_subject.regional_office.nil? %>
-        <%= translate :no %>
-      <% else %>
-        <%= translate :yes %>
-      <% end %>
-    </dd>
   </dl>
 </div>

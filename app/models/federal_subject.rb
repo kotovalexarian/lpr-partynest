@@ -13,12 +13,6 @@ class FederalSubject < ApplicationRecord
     end
   }
 
-  ################
-  # Associations #
-  ################
-
-  has_one :regional_office
-
   ###############
   # Validations #
   ###############

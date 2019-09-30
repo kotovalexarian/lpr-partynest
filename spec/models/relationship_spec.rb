@@ -17,12 +17,6 @@ RSpec.describe Relationship do
     end
   end
 
-  describe '#regional_office' do
-    it do
-      is_expected.to belong_to(:regional_office).required
-    end
-  end
-
   describe '#from_date' do
     it { is_expected.to validate_presence_of :from_date }
 
