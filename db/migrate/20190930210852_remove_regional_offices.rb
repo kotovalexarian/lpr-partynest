@@ -10,7 +10,7 @@ class RemoveRegionalOffices < ActiveRecord::Migration[6.0]
                      index: true,
                      foreign_key: true
 
-    drop_constraint :regional_offices, :name, <<~SQL
+    remove_constraint :regional_offices, :name, <<~SQL
       is_good_small_text(name)
     SQL
 

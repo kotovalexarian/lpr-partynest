@@ -4,7 +4,7 @@ class ChangeUserAgent < ActiveRecord::Migration[6.0]
   include Partynest::Migration
 
   def change
-    drop_constraint :sessions, :user_agent, <<~SQL
+    remove_constraint :sessions, :user_agent, <<~SQL
       user_agent = '' OR is_good_big_text(user_agent)
     SQL
 

@@ -4,15 +4,15 @@ class RemoveOldStatuses < ActiveRecord::Migration[6.0]
   include Partynest::Migration
 
   def change
-    drop_constraint :relationships, :regional_secretary_flag, <<~SQL
+    remove_constraint :relationships, :regional_secretary_flag, <<~SQL
       regional_secretary_flag IS NULL OR role = 'regional_manager'
     SQL
 
-    drop_constraint :relationships, :federal_secretary_flag, <<~SQL
+    remove_constraint :relationships, :federal_secretary_flag, <<~SQL
       federal_secretary_flag IS NULL OR role = 'federal_manager'
     SQL
 
-    drop_constraint :relationships, :role, <<~SQL
+    remove_constraint :relationships, :role, <<~SQL
       status = 'member' OR role IS NULL
     SQL
 
@@ -68,17 +68,17 @@ class RemoveOldStatuses < ActiveRecord::Migration[6.0]
                   :relationship_status,
                   null: false
 
-    drop_enum :relationship_status, %i[supporter excluded member]
+    remove_enum :relationship_status, %i[supporter excluded member]
 
-    drop_enum :relationship_role, %i[
+    remove_enum :relationship_role, %i[
       federal_manager
       federal_supervisor
       regional_manager
       regional_supervisor
     ]
 
-    drop_enum :relationship_regional_secretary_flag, %i[regional_secretary]
+    remove_enum :relationship_regional_secretary_flag, %i[regional_secretary]
 
-    drop_enum :relationship_federal_secretary_flag, %i[federal_secretary]
+    remove_enum :relationship_federal_secretary_flag, %i[federal_secretary]
   end
 end

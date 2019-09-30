@@ -9,7 +9,7 @@ module Partynest
       end
     end
 
-    def drop_func(name, sql)
+    def remove_func(name, sql)
       reversible do |dir|
         dir.up   { func_deletion(name).call      }
         dir.down { func_creation(name, sql).call }
@@ -23,7 +23,7 @@ module Partynest
       end
     end
 
-    def drop_enum(name, values)
+    def remove_enum(name, values)
       reversible do |dir|
         dir.up   { enum_deletion(name).call         }
         dir.down { enum_creation(name, values).call }
@@ -37,7 +37,7 @@ module Partynest
       end
     end
 
-    def drop_constraint(table, name, check)
+    def remove_constraint(table, name, check)
       reversible do |dir|
         dir.up   { constraint_deletion(table, name).call        }
         dir.down { constraint_creation(table, name, check).call }
