@@ -57,3 +57,5 @@ ruby_version = File.read(File.expand_path('.ruby-version', root_dir)).chomp
 ruby_gemset  = File.read(File.expand_path('.ruby-gemset',  root_dir)).chomp
 
 set :rvm_ruby_version, "#{ruby_version}@#{ruby_gemset}"
+
+set :rvm_roles, %i[rvm]
