@@ -72,6 +72,12 @@ en:
         centre: Administrative centre
         number: Number
         timezone: Time zone
+      org_unit_kind:
+        id: ID
+        codename: Codename
+        short_name: Short name
+        name: Name
+        parent_kind: Parent
       passport:
         id: ID
         first_name: First name
