@@ -506,10 +506,12 @@ CREATE TABLE public.org_units (
     id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
+    short_name character varying NOT NULL,
     name character varying NOT NULL,
     kind_id bigint NOT NULL,
     parent_id bigint,
-    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text)),
+    CONSTRAINT short_name CHECK (public.is_good_small_text((short_name)::text))
 );
 
 
@@ -1344,6 +1346,13 @@ CREATE UNIQUE INDEX index_org_units_on_name ON public.org_units USING btree (nam
 --
 
 CREATE INDEX index_org_units_on_parent_id ON public.org_units USING btree (parent_id);
+
+
+--
+-- Name: index_org_units_on_short_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_org_units_on_short_name ON public.org_units USING btree (short_name);
 
 
 --

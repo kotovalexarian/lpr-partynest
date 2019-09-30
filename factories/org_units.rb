@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :some_root_org_unit, class: OrgUnit do
+    short_name { name }
     name { Faker::Company.unique.name }
 
     association :kind, factory: :some_root_org_unit_kind

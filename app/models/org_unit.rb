@@ -23,6 +23,8 @@ class OrgUnit < ApplicationRecord
   # Validations #
   ###############
 
+  validates :short_name, good_small_text: true, uniqueness: true
+
   validates :name, good_small_text: true, uniqueness: true
 
   validates :parent,
