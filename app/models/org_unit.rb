@@ -32,4 +32,12 @@ class OrgUnit < ApplicationRecord
               if: ->(record) { record.kind&.parent_kind },
               message: :required,
             }
+
+  validate :parent_matches_kind
+
+private
+
+  def parent_matches_kind
+    errors.add :parent unless parent&.kind == kind&.parent_kind
+  end
 end
