@@ -22,9 +22,11 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
+# Ignore Yarn and NPM related files.
+/node_modules/
 /yarn-error.log
 
+# Ignore generated files.
 /public/assets/
 /.byebug_history
 /.rake_tasks~
