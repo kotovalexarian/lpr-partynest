@@ -23,12 +23,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-namespace :load do
-  task :defaults do
-    set :shell_server_number, ask('server number', 1)
-  end
-end
-
 desc 'Opens SSH shell on remote host in current release directory'
 task :shell do
   hosts = []
@@ -40,9 +34,13 @@ task :shell do
   if hosts.none?
     puts 'No servers matched'
     exit
-  elsif hosts.length == 1
+  end
+
+  if hosts.length == 1
     set :shell_server_number, 1
   else
+    set :shell_server_number, ask('server number', 1)
+
     hosts.each_with_index do |host, i|
       puts "#{i + 1}) #{host} (#{host.roles.to_a.join ' '})"
     end
