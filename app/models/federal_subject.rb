@@ -23,19 +23,11 @@ class FederalSubject < ApplicationRecord
   # Validations #
   ###############
 
-  validates :english_name,
-            presence: true,
-            uniqueness: true,
-            length: { in: 1..255 }
+  validates :english_name, good_small_text: true, uniqueness: true
 
-  validates :native_name,
-            presence: true,
-            uniqueness: true,
-            length: { in: 1..255 }
+  validates :native_name, good_small_text: true, uniqueness: true
 
-  validates :centre,
-            presence: true,
-            length: { in: 1..255 }
+  validates :centre, good_small_text: true
 
   validates :number,
             presence: true,
