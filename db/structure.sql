@@ -755,7 +755,6 @@ CREATE TABLE public.relationships (
     updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     regional_office_id bigint NOT NULL,
-    initiator_account_id bigint,
     from_date date NOT NULL,
     status_id bigint NOT NULL
 );
@@ -1425,13 +1424,6 @@ CREATE INDEX index_relationships_on_from_date ON public.relationships USING btre
 
 
 --
--- Name: index_relationships_on_initiator_account_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_relationships_on_initiator_account_id ON public.relationships USING btree (initiator_account_id);
-
-
---
 -- Name: index_relationships_on_person_id_and_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1535,14 +1527,6 @@ CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON publ
 
 ALTER TABLE ONLY public.relationships
     ADD CONSTRAINT fk_rails_100235139c FOREIGN KEY (regional_office_id) REFERENCES public.regional_offices(id);
-
-
---
--- Name: relationships fk_rails_124c042ac0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.relationships
-    ADD CONSTRAINT fk_rails_124c042ac0 FOREIGN KEY (initiator_account_id) REFERENCES public.accounts(id);
 
 
 --
@@ -1704,6 +1688,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190921191213'),
 ('20190928171705'),
 ('20190929131544'),
-('20190930154031');
+('20190930154031'),
+('20190930205337');
 
 

@@ -115,7 +115,6 @@ ru:
       relationship:
         id: ID
         regional_office: Региональное отделение
-        initiator_account: Инициатор
         from_date: Дата начала
       session:
         id: ID

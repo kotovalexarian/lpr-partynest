@@ -115,7 +115,6 @@ en:
       relationship:
         id: ID
         regional_office: Regional department
-        initiator_account: Initiator
         from_date: From date
       session:
         id: ID

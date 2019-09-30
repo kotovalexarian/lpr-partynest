@@ -68,12 +68,6 @@
           <%= staff_regional_office_link_or_none \
                 @person.current_relationship&.regional_office %>
         </dd>
-
-        <dt><%= Relationship.human_attribute_name :initiator_account %></dt>
-        <dd>
-          <%= staff_account_link_or_none \
-                @person.current_relationship&.initiator_account %>
-        </dd>
       </dl>
     </div>
   </div>

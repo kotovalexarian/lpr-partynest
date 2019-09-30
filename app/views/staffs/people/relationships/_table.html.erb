@@ -10,9 +10,6 @@
       <th scope="col">
         <%= Relationship.human_attribute_name :regional_office %>
       </th>
-      <th scope="col">
-        <%= Relationship.human_attribute_name :initiator_account %>
-      </th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -25,9 +22,6 @@
         <td>
           <%= staff_regional_office_link_or_none \
                 relationship.regional_office %>
-        </td>
-        <td>
-          <%= staff_account_link_or_none relationship.initiator_account %>
         </td>
         <td></td>
       </tr>
