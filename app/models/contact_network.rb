@@ -13,7 +13,7 @@ class ContactNetwork < ApplicationRecord
 
   validates :codename, codename: true, uniqueness: { case_sensitive: false }
 
-  validates :name, good_small_text: true
+  validates :name, good_small_text: true, uniqueness: true
 
   ###########
   # Methods #
