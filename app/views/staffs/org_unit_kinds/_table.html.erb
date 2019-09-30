@@ -20,7 +20,11 @@
         <td scope="row"><%= org_unit_kind.codename %></td>
         <td><%= org_unit_kind.short_name %></td>
         <td><%= org_unit_kind.name %></td>
-        <td></td>
+        <td>
+          <% if policy([:staff, org_unit_kind]).show? %>
+            <%= open_action [:staff, org_unit_kind] %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

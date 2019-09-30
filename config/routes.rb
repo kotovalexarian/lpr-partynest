@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
     resources :relation_statuses, param: :codename, only: %i[index show]
 
-    resources :org_unit_kinds, only: %i[index]
+    resources :org_unit_kinds, param: :codename, only: %i[index show]
 
     resources :people, only: %i[index show new create] do
       resources :person_comments,
