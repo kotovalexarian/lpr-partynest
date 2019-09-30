@@ -45,8 +45,9 @@ CSV.foreach(
   org_unit_kinds_filename,
   col_sep: '|',
 ) do |(codename, parent, short_name, name)|
+  parent = parent.blank? ? nil : OrgUnitKind.find_by!(codename: parent.strip)
+
   codename.strip!
-  parent = parent.strip.presence
   short_name.strip!
   name.strip!
 
@@ -56,7 +57,7 @@ CSV.foreach(
     codename: codename,
     short_name: short_name,
     name: name,
-    parent_kind: parent.nil? ? nil : OrgUnitKind.find_by!(codename: parent),
+    parent_kind: parent,
   )
 end
 
@@ -64,7 +65,13 @@ CSV.foreach(
   relation_statuses_filename,
   col_sep: '|',
 ) do |(org_unit_kind, codename, name)|
-  org_unit_kind = OrgUnitKind.find_by! codename: org_unit_kind.strip
+  org_unit_kind =
+    if org_unit_kind.blank?
+      nil
+    else
+      OrgUnitKind.find_by!(codename: org_unit_kind.strip)
+    end
+
   codename.strip!
   name.strip!
 
