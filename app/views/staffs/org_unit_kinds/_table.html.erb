@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= OrgUnitKind.human_attribute_name :codename %>
+      </th>
+      <th scope="col">
+        <%= OrgUnitKind.human_attribute_name :short_name %>
+      </th>
+      <th scope="col">
+        <%= OrgUnitKind.human_attribute_name :name %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% org_unit_kinds.each do |org_unit_kind| %>
+      <tr>
+        <td scope="row"><%= org_unit_kind.codename %></td>
+        <td><%= org_unit_kind.short_name %></td>
+        <td><%= org_unit_kind.name %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

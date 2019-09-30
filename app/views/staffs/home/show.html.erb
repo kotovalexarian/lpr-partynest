@@ -34,5 +34,12 @@
                     staff_relation_statuses_path %>
       </li>
     <% end %>
+
+    <% if policy([:staff, OrgUnitKind]).index? %>
+      <li>
+        <%= link_to OrgUnitKind.model_name.human(count: 0),
+                    staff_org_unit_kinds_path %>
+      </li>
+    <% end %>
   </ul>
 </div>

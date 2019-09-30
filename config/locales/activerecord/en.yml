@@ -14,6 +14,10 @@ en:
       federal_subject:
         one: State
         many: States
+      org_unit_kind:
+        one: Organizational unit type
+        few: Organizational unit types
+        many: Organizational unit types
       passport:
         one: Passport
         many: Passports
