@@ -6,9 +6,9 @@ seeds_dirname = Rails.root.join 'config', 'seeds'
 
 federal_subjects_filename     = seeds_dirname.join 'federal_subjects.csv'
 contact_networks_filename     = seeds_dirname.join 'contact_networks.csv'
+org_unit_kinds_filename       = seeds_dirname.join 'org_unit_kinds.csv'
 relation_statuses_filename    = seeds_dirname.join 'relation_statuses.csv'
 relation_transitions_filename = seeds_dirname.join 'relation_transitions.csv'
-org_unit_kinds_filename       = seeds_dirname.join 'org_unit_kinds.csv'
 
 CSV.foreach(
   federal_subjects_filename,
@@ -41,6 +41,25 @@ CSV.foreach contact_networks_filename, col_sep: '|' do |(id, codename, name)|
   end
 end
 
+CSV.foreach(
+  org_unit_kinds_filename,
+  col_sep: '|',
+) do |(codename, parent, short_name, name)|
+  codename.strip!
+  parent = parent.strip.presence
+  short_name.strip!
+  name.strip!
+
+  next if OrgUnitKind.find_by codename: codename
+
+  OrgUnitKind.create!(
+    codename: codename,
+    short_name: short_name,
+    name: name,
+    parent_kind: parent.nil? ? nil : OrgUnitKind.find_by!(codename: parent),
+  )
+end
+
 CSV.foreach relation_statuses_filename, col_sep: '|' do |(codename, name)|
   codename.strip!
   name.strip!
@@ -65,25 +84,6 @@ CSV.foreach relation_transitions_filename, col_sep: '|' do |(from, to, name)|
   ).first_or_create! do |new_relation_transition|
     new_relation_transition.name = name
   end
-end
-
-CSV.foreach(
-  org_unit_kinds_filename,
-  col_sep: '|',
-) do |(codename, parent, short_name, name)|
-  codename.strip!
-  parent = parent.strip.presence
-  short_name.strip!
-  name.strip!
-
-  next if OrgUnitKind.find_by codename: codename
-
-  OrgUnitKind.create!(
-    codename: codename,
-    short_name: short_name,
-    name: name,
-    parent_kind: parent.nil? ? nil : OrgUnitKind.find_by!(codename: parent),
-  )
 end
 
 Rails.application.settings(:superuser).tap do |config|
