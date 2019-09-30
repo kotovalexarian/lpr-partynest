@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class RelationTransition < ApplicationRecord
-  FORMAT_RE = /\A[^[:space:]]+(.*[^[:space:]]+)?\z/.freeze
-
   ################
   # Associations #
   ################
@@ -19,11 +17,7 @@ class RelationTransition < ApplicationRecord
   # Validations #
   ###############
 
-  validates :name,
-            presence: true,
-            length: { in: 1..255 },
-            format: FORMAT_RE,
-            uniqueness: true
+  validates :name, good_small_text: true, uniqueness: true
 
   validate :statuses_are_not_equal
 

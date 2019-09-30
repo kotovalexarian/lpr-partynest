@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class RelationStatus < ApplicationRecord
-  FORMAT_RE = /\A[^[:space:]]+(.*[^[:space:]]+)?\z/.freeze
-
   ################
   # Associations #
   ################
@@ -17,16 +15,9 @@ class RelationStatus < ApplicationRecord
   # Validations #
   ###############
 
-  validates :codename,
-            presence: true,
-            codename: true,
-            uniqueness: { case_sensitive: false }
+  validates :codename, codename: true, uniqueness: { case_sensitive: false }
 
-  validates :name,
-            presence: true,
-            length: { in: 1..255 },
-            format: FORMAT_RE,
-            uniqueness: true
+  validates :name, good_small_text: true, uniqueness: true
 
   ###########
   # Methods #
