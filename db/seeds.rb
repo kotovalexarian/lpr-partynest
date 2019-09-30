@@ -2,18 +2,16 @@
 
 require 'csv'
 
-seeds_dirname = Rails.root.join 'config', 'seeds'
+def csv_foreach(filename, &block)
+  CSV.foreach(
+    Rails.root.join('config', 'seeds', "#{filename}.csv"),
+    col_sep: '|',
+    &block
+  )
+end
 
-federal_subjects_filename     = seeds_dirname.join 'federal_subjects.csv'
-contact_networks_filename     = seeds_dirname.join 'contact_networks.csv'
-org_unit_kinds_filename       = seeds_dirname.join 'org_unit_kinds.csv'
-relation_statuses_filename    = seeds_dirname.join 'relation_statuses.csv'
-relation_transitions_filename = seeds_dirname.join 'relation_transitions.csv'
-
-CSV.foreach(
-  federal_subjects_filename,
-  col_sep: '|',
-) do |(id, english_name, native_name, number, timezone, centre)|
+csv_foreach :federal_subjects \
+do |(id, english_name, native_name, number, timezone, centre)|
   id = Integer(id.strip)
   english_name.strip!
   native_name.strip!
@@ -30,7 +28,8 @@ CSV.foreach(
   end
 end
 
-CSV.foreach contact_networks_filename, col_sep: '|' do |(id, codename, name)|
+csv_foreach :contact_networks \
+do |(id, codename, name)|
   id = Integer(id.strip)
   codename.strip!
   name.strip!
@@ -41,10 +40,8 @@ CSV.foreach contact_networks_filename, col_sep: '|' do |(id, codename, name)|
   end
 end
 
-CSV.foreach(
-  org_unit_kinds_filename,
-  col_sep: '|',
-) do |(codename, parent, short_name, name)|
+csv_foreach :org_unit_kinds \
+do |(codename, parent, short_name, name)|
   parent = parent.blank? ? nil : OrgUnitKind.find_by!(codename: parent.strip)
 
   codename.strip!
@@ -61,10 +58,8 @@ CSV.foreach(
   )
 end
 
-CSV.foreach(
-  relation_statuses_filename,
-  col_sep: '|',
-) do |(org_unit_kind, codename, name)|
+csv_foreach :relation_statuses \
+do |(org_unit_kind, codename, name)|
   org_unit_kind =
     if org_unit_kind.blank?
       nil
@@ -81,7 +76,8 @@ CSV.foreach(
   end
 end
 
-CSV.foreach relation_transitions_filename, col_sep: '|' do |(from, to, name)|
+csv_foreach :relation_transitions \
+do |(from, to, name)|
   from.strip!
   to.strip!
   name.strip!
