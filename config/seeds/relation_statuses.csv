@@ -1,7 +1,7 @@
-supporter          | Сторонник             |
-active_member      | Член                  |
-pending_member     | Приостановленный член |
-exited_supporter   | Вышедший сторонник    |
-exited_member      | Вышедший член         |
-excluded_supporter | Исключённый сторонник |
-excluded_member    | Исключённый член      |
+lpr | supporter          | Сторонник             |
+lpr | active_member      | Член                  |
+lpr | pending_member     | Приостановленный член |
+lpr | exited_supporter   | Вышедший сторонник    |
+lpr | exited_member      | Вышедший член         |
+lpr | excluded_supporter | Исключённый сторонник |
+lpr | excluded_member    | Исключённый член      |
