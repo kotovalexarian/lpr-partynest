@@ -7,7 +7,7 @@ class RelationTransition < ApplicationRecord
 
   belongs_to :from_status,
              class_name: 'RelationStatus',
-             inverse_of: :transitions,
+             inverse_of: :outgoing_transitions,
              optional: true
 
   belongs_to :to_status,

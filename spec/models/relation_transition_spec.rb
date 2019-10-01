@@ -10,7 +10,7 @@ RSpec.describe RelationTransition do
       is_expected.to \
         belong_to(:from_status)
         .class_name('RelationStatus')
-        .inverse_of(:transitions)
+        .inverse_of(:outgoing_transitions)
         .optional
     end
 

@@ -17,10 +17,10 @@
     </div>
 
     <div class="col-md-6">
-      <h4><%= RelationStatus.human_attribute_name :transitions %></h5>
+      <h4><%= RelationStatus.human_attribute_name :outgoing_transitions %></h5>
 
       <ul class="list-group mt-3">
-        <% @relation_status.transitions.each do |relation_transition| %>
+        <% @relation_status.outgoing_transitions.each do |relation_transition| %>
           <li class="list-group-item">
             <div class="d-flex justify-content-between">
               <%= relation_transition.name %>

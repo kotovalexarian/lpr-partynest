@@ -115,7 +115,7 @@ ru:
         id: ID
         codename: Кодовое имя
         name: Название
-        transitions: Переходы
+        outgoing_transitions: Исходящие переходы
       relationship:
         id: ID
         from_date: Дата начала

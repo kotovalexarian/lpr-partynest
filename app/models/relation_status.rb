@@ -5,7 +5,7 @@ class RelationStatus < ApplicationRecord
   # Associations #
   ################
 
-  has_many :transitions,
+  has_many :outgoing_transitions,
            class_name: 'RelationTransition',
            inverse_of: :from_status,
            foreign_key: :from_status_id,

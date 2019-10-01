@@ -115,7 +115,7 @@ en:
         id: ID
         codename: Codename
         name: Name
-        transitions: Transitions
+        outgoing_transitions: Outgoing transitions
       relationship:
         id: ID
         from_date: From date
