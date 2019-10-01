@@ -7,7 +7,9 @@ class CreateRelationTransitions < ActiveRecord::Migration[6.0]
     create_table :relation_transitions do |t|
       t.timestamps null: false
 
-      t.references :from_status, foreign_key: { to_table: :relation_statuses }
+      t.references :from_status,
+                   null: true,
+                   foreign_key: { to_table: :relation_statuses }
 
       t.references :to_status,
                    null: false,

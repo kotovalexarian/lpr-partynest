@@ -28,6 +28,13 @@ RSpec.describe RelationTransition do
       is_expected.to validate_presence_of(:to_status).with_message(:required)
     end
 
+    # Does not work with relations, but I don't want to use IDs.
+    # Will wait while matcher will be upgraded.
+    xit do
+      is_expected.to \
+        validate_uniqueness_of(:to_status_id).scoped_to(:from_status_id)
+    end
+
     it { is_expected.not_to allow_value subject.from_status }
   end
 

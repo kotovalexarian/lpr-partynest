@@ -1434,6 +1434,13 @@ CREATE INDEX index_relation_transitions_on_to_status_id ON public.relation_trans
 
 
 --
+-- Name: index_relation_transitions_on_to_status_id_when_from_status_id_; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_relation_transitions_on_to_status_id_when_from_status_id_ ON public.relation_transitions USING btree (to_status_id) WHERE (from_status_id IS NULL);
+
+
+--
 -- Name: index_relationships_on_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1717,6 +1724,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930205337'),
 ('20190930210852'),
 ('20190930215223'),
-('20191001022049');
+('20191001022049'),
+('20191001211809');
 
 

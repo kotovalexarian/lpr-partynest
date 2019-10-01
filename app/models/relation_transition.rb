@@ -19,6 +19,8 @@ class RelationTransition < ApplicationRecord
 
   validates :name, good_small_text: true, uniqueness: true
 
+  validates :to_status, uniqueness: { scope: :from_status }
+
   validate :statuses_are_not_equal
 
 private
