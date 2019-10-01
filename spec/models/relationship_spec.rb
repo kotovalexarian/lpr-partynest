@@ -5,6 +5,15 @@ require 'rails_helper'
 RSpec.describe Relationship do
   subject { create :supporter_relationship }
 
+  describe '#org_unit' do
+    it do
+      is_expected.to \
+        belong_to(:org_unit)
+        .inverse_of(:all_relationships)
+        .required
+    end
+  end
+
   describe '#status' do
     it do
       is_expected.to belong_to(:status).class_name('RelationStatus').required

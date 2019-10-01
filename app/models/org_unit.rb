@@ -19,6 +19,10 @@ class OrgUnit < ApplicationRecord
            inverse_of: :parent,
            foreign_key: :parent_id
 
+  has_many :all_relationships,
+           class_name: 'Relationship',
+           inverse_of: :org_unit
+
   ###############
   # Validations #
   ###############

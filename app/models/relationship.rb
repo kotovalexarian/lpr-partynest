@@ -5,6 +5,8 @@ class Relationship < ApplicationRecord
   # Associations #
   ################
 
+  belongs_to :org_unit, inverse_of: :all_relationships
+
   belongs_to :status, class_name: 'RelationStatus'
 
   belongs_to :person, inverse_of: :all_relationships

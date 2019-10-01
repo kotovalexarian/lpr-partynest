@@ -42,6 +42,27 @@ RSpec.describe OrgUnit do
     end
   end
 
+  describe '#children' do
+    it do
+      is_expected.to \
+        have_many(:children)
+        .class_name('OrgUnit')
+        .inverse_of(:parent)
+        .with_foreign_key(:parent_id)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
+  describe '#all_relationships' do
+    it do
+      is_expected.to \
+        have_many(:all_relationships)
+        .class_name('Relationship')
+        .inverse_of(:org_unit)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#short_name' do
     def allow_value(*)
       super.for :short_name

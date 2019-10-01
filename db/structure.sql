@@ -758,7 +758,8 @@ CREATE TABLE public.relationships (
     updated_at timestamp(6) without time zone NOT NULL,
     person_id bigint NOT NULL,
     from_date date NOT NULL,
-    status_id bigint NOT NULL
+    status_id bigint NOT NULL,
+    org_unit_id bigint NOT NULL
 );
 
 
@@ -1440,6 +1441,13 @@ CREATE INDEX index_relationships_on_from_date ON public.relationships USING btre
 
 
 --
+-- Name: index_relationships_on_org_unit_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_org_unit_id ON public.relationships USING btree (org_unit_id);
+
+
+--
 -- Name: index_relationships_on_person_id_and_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1528,6 +1536,14 @@ CREATE TRIGGER ensure_contact_list_id_remains_unchanged BEFORE UPDATE OF contact
 --
 
 CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_superuser_has_related_user();
+
+
+--
+-- Name: relationships fk_rails_0ea63a126c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relationships
+    ADD CONSTRAINT fk_rails_0ea63a126c FOREIGN KEY (org_unit_id) REFERENCES public.org_units(id);
 
 
 --
@@ -1700,6 +1716,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930154031'),
 ('20190930205337'),
 ('20190930210852'),
-('20190930215223');
+('20190930215223'),
+('20191001022049');
 
 
