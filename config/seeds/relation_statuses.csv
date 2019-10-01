@@ -1,7 +1,7 @@
-reg_dept | supporter          | Сторонник             |
-reg_dept | active_member      | Член                  |
-reg_dept | pending_member     | Приостановленный член |
-lpr      | exited_supporter   | Вышедший сторонник    |
-lpr      | exited_member      | Вышедший член         |
-lpr      | excluded_supporter | Исключённый сторонник |
-lpr      | excluded_member    | Исключённый член      |
+reg_dept        | supporter          | Сторонник             |
+reg_dept        | active_member      | Член                  |
+reg_dept        | pending_member     | Приостановленный член |
+lpr             | exited_supporter   | Вышедший сторонник    |
+lpr             | exited_member      | Вышедший член         |
+lpr             | excluded_supporter | Исключённый сторонник |
+lpr             | excluded_member    | Исключённый член      |
