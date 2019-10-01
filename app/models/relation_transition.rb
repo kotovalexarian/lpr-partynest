@@ -11,7 +11,8 @@ class RelationTransition < ApplicationRecord
              optional: true
 
   belongs_to :to_status,
-             class_name: 'RelationStatus'
+             class_name: 'RelationStatus',
+             inverse_of: :incoming_transitions
 
   ###############
   # Validations #

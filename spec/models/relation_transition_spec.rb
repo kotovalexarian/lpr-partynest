@@ -22,7 +22,12 @@ RSpec.describe RelationTransition do
       super.for :to_status
     end
 
-    it { is_expected.to belong_to(:to_status).class_name('RelationStatus') }
+    it do
+      is_expected.to \
+        belong_to(:to_status)
+        .class_name('RelationStatus')
+        .inverse_of(:incoming_transitions)
+    end
 
     it do
       is_expected.to validate_presence_of(:to_status).with_message(:required)
