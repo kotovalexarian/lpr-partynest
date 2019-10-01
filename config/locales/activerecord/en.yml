@@ -14,6 +14,10 @@ en:
       federal_subject:
         one: State
         many: States
+      org_unit:
+        one: Organizational unit
+        few: Organizational unit
+        many: Organizational units
       org_unit_kind:
         one: Organizational unit type
         few: Organizational unit types
@@ -68,6 +72,12 @@ en:
         centre: Administrative centre
         number: Number
         timezone: Time zone
+      org_unit:
+        id: ID
+        kind: Type
+        short_name: Short name
+        name: Name
+        parent: Parent
       org_unit_kind:
         id: ID
         codename: Codename

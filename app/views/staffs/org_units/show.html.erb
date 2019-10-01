@@ -1,0 +1,39 @@
+<div class="container">
+  <%= nav_breadcrumb(
+      [translate(:staff_services), staff_root_path],
+      [OrgUnit.model_name.human(count: 0), staff_org_units_path],
+      @org_unit.name,
+    ) %>
+
+  <dl>
+    <dt><%= OrgUnit.human_attribute_name :kind %></dt>
+    <dd>
+      <% if @org_unit.kind.nil? %>
+        <%= none %>
+      <% elsif policy([:staff, @org_unit.kind]).show? %>
+        <%= link_to @org_unit.kind.name,
+                    [:staff, @org_unit.kind] %>
+      <% else %>
+        <%= @org_unit.kind.name %>
+      <% end %>
+    </dd>
+
+    <dt><%= OrgUnit.human_attribute_name :short_name %></dt>
+    <dd><%= @org_unit.short_name %></dd>
+
+    <dt><%= OrgUnit.human_attribute_name :name %></dt>
+    <dd><%= @org_unit.name %></dd>
+
+    <dt><%= OrgUnit.human_attribute_name :parent %></dt>
+    <dd>
+      <% if @org_unit.parent.nil? %>
+        <%= none %>
+      <% elsif policy([:staff, @org_unit.parent]).show? %>
+        <%= link_to @org_unit.parent.name,
+                    [:staff, @org_unit.parent] %>
+      <% else %>
+        <%= @org_unit.parent.name %>
+      <% end %>
+    </dd>
+  </dl>
+</div>

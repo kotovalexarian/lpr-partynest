@@ -14,6 +14,10 @@ ru:
       federal_subject:
         one: Регион
         many: Регионы
+      org_unit:
+        one: Организационное подразделение
+        few: Организационные подразделения
+        many: Организационные подразделения
       org_unit_kind:
         one: Тип организационных подразделений
         few: Типы организационных подразделений
@@ -68,6 +72,12 @@ ru:
         centre: Административный центр
         number: Номер
         timezone: Часовой пояс
+      org_unit:
+        id: ID
+        kind: Тип
+        short_name: Короткое развание
+        name: Название
+        parent: Родитель
       org_unit_kind:
         id: ID
         codename: Кодовое имя

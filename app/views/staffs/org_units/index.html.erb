@@ -1,0 +1,9 @@
+<div class="container">
+  <%= nav_breadcrumb(
+      [translate(:staff_services), staff_root_path],
+      OrgUnit.model_name.human(count: 0),
+    ) %>
+
+  <%= render partial: 'table', locals: { org_units: @org_units } %>
+  <%= pagination @org_units %>
+</div>

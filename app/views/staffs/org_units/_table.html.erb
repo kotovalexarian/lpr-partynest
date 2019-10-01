@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= OrgUnit.human_attribute_name :short_name %>
+      </th>
+      <th scope="col">
+        <%= OrgUnit.human_attribute_name :name %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% org_units.each do |org_unit| %>
+      <tr>
+        <td scope="row"><%= org_unit.short_name %></td>
+        <td><%= org_unit.name %></td>
+        <td>
+          <% if policy([:staff, org_unit]).show? %>
+            <%= open_action [:staff, org_unit] %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
