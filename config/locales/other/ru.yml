@@ -13,3 +13,4 @@ ru:
   hello: Здравствуйте
   new_sign_in: Произведён вход в ваш аккаунт
   sidekiq: Sidekiq
+  since: с

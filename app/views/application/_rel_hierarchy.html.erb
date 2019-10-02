@@ -1,0 +1,23 @@
+<span>
+  <strong>
+    <% if policy([:staff, relationship.org_unit]).show? %>
+      <%= link_to relationship.org_unit.name, [:staff, relationship.org_unit] %>
+    <% else %>
+      <%= relationship.org_unit.name %>
+    <% end %>
+  </strong>
+
+  </br>
+
+  <%= relationship.status.name %>
+  <%= translate :since %>
+  <%= localize relationship.from_date %>
+</span>
+
+<ul>
+  <% relationship.children_rels.each do |children_relationship| %>
+    <li>
+      <%= render partial: 'rel_hierarchy', locals: { relationship: children_relationship } %>
+    </li>
+  <% end %>
+</ul>
