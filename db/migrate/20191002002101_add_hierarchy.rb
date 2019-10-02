@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-class AddLevelToTables < ActiveRecord::Migration[6.0]
+class AddHierarchy < ActiveRecord::Migration[6.0]
   include Partynest::Migration
+
+  # rubocop:disable Rails/NotNullColumn
 
   def change
     rename_column :org_units, :parent_id, :parent_unit_id
@@ -12,11 +14,9 @@ class AddLevelToTables < ActiveRecord::Migration[6.0]
                   index: true,
                   foreign_key: { to_table: :relationships }
 
-    # rubocop:disable Rails/NotNullColumn
     add_column :org_unit_kinds, :level, :integer, null: false
     add_column :org_units,      :level, :integer, null: false
     add_column :relationships,  :level, :integer, null: false
-    # rubocop:enable Rails/NotNullColumn
 
     add_constraint :org_unit_kinds, :level, 'level >= 0'
     add_constraint :org_units,      :level, 'level >= 0'
@@ -44,7 +44,14 @@ class AddLevelToTables < ActiveRecord::Migration[6.0]
                 :validate_hierarchy,
                 'BEFORE INSERT OR UPDATE',
                 'validate_relationship_hierarchy()'
+
+    add_reference :relation_statuses,
+                  :org_unit_kind,
+                  null: false,
+                  foreign_key: true
   end
+
+  # rubocop:enable Rails/NotNullColumn
 
   def add_func_validate_org_unit_kind_hierarchy
     add_func :validate_org_unit_kind_hierarchy, <<~SQL
