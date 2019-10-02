@@ -31,8 +31,8 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Сторонник партии"
-    And I see text "Москва"
+    And I see text "Член или сторонник"
+    And I see text "Сторонник"
 
   Scenario: of an excluded member
     Given there is an excluded member account with the following data:
@@ -44,8 +44,7 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Исключён из партии"
-    And I see text "Москва"
+    And I see text "Исключённый член"
 
   Scenario: of a member
     Given there is a member account with the following data:
@@ -57,8 +56,8 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
-    And I see text "Москва"
+    And I see text "Член или сторонник"
+    And I see text "Член"
 
   Scenario: of a federal manager
     Given there is a member account with the following data:
@@ -71,9 +70,9 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
+    And I see text "Член или сторонник"
+    And I see text "Член"
     And I see text "Член ФК"
-    And I see text "Москва"
 
   Scenario: of a federal supervisor
     Given there is a member account with the following data:
@@ -86,9 +85,9 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
+    And I see text "Член или сторонник"
+    And I see text "Член"
     And I see text "Член ЦКРК"
-    And I see text "Москва"
 
   Scenario: of a regional manager
     Given there is a member account with the following data:
@@ -101,9 +100,9 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
+    And I see text "Член или сторонник"
+    And I see text "Член"
     And I see text "Член РК РО"
-    And I see text "Москва"
 
   Scenario: of a regional supervisor
     Given there is a member account with the following data:
@@ -116,9 +115,9 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
-    And I see text "Член КРК РО"
-    And I see text "Москва"
+    And I see text "Член или сторонник"
+    And I see text "Член"
+    And I see text "Член РКРК"
 
   Scenario: of a regional secretary
     Given there is a member account with the following data:
@@ -131,6 +130,6 @@ Feature: Account
     Then I see text "kotovalexarian"
     And I see text "Alex Kotov"
     And I see text "Hi there :)"
-    And I see text "Член партии"
+    And I see text "Член или сторонник"
+    And I see text "Член"
     And I see text "Секретарь РК РО"
-    And I see text "Москва"
