@@ -63,7 +63,7 @@ gem 'font-awesome-sass', '~> 5.5.0'
 
 # Forms made easy for Rails!
 # It's tied to a simple DSL, with no opinion on markup.
-gem 'simple_form', '~> 4.1'
+gem 'simple_form', '~> 5.0'
 
 # A simple HTTP and REST client for Ruby,
 # inspired by the Sinatra microframework style of specifying actions:
