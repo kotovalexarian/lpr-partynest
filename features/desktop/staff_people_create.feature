@@ -13,7 +13,6 @@ Feature: Staff people create
     Then I am at "/staff/people/\d+"
     And I see text "Иванов"
     And I see text "Павел"
-    And I see text "Не относится к партии"
 
   Scenario: with invalid attributes:
     When I fill form with the following data:

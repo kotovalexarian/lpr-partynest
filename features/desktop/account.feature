@@ -9,7 +9,6 @@ Feature: Account
     And I see text "Alex Kotov"
     And I do not see text "Администратор"
     And I see text "Hi there :)"
-    And I see text "Не относится к партии"
 
   Scenario: of a superuser
     Given there is a superuser account with the following data:
@@ -21,7 +20,6 @@ Feature: Account
     And I see text "Alex Kotov"
     And I see text "Администратор"
     And I see text "Hi there :)"
-    And I see text "Не относится к партии"
 
   Scenario: of a supporter
     Given there is a supporter account with the following data:
