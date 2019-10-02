@@ -8,4 +8,4 @@ server 'beta.libertarian-party.com',
        roles: %w[rvm web]
 
 server 'gamma.libertarian-party.com',
-       roles: %w[rvm web app db]
+       roles: %w[rvm web app db shell]

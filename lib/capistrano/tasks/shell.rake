@@ -27,7 +27,7 @@ desc 'Opens SSH shell on remote host in current release directory'
 task :shell do
   hosts = []
 
-  on roles(:all), in: :sequence, wait: 0 do |host|
+  on roles(:shell), in: :sequence, wait: 0 do |host|
     hosts << host
   end
 
