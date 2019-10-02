@@ -9,15 +9,15 @@ class OrgUnit < ApplicationRecord
              class_name: 'OrgUnitKind',
              inverse_of: :instances
 
-  belongs_to :parent,
+  belongs_to :parent_unit,
              class_name: 'OrgUnit',
-             inverse_of: :children,
+             inverse_of: :children_units,
              optional: true
 
-  has_many :children,
+  has_many :children_units,
            class_name: 'OrgUnit',
-           inverse_of: :parent,
-           foreign_key: :parent_id
+           inverse_of: :parent_unit,
+           foreign_key: :parent_unit_id
 
   has_many :all_relationships,
            class_name: 'Relationship',
@@ -31,7 +31,7 @@ class OrgUnit < ApplicationRecord
 
   validates :name, good_small_text: true, uniqueness: true
 
-  validates :parent,
+  validates :parent_unit,
             presence: {
               if: ->(record) { record.kind&.parent_kind },
               message: :required,
@@ -39,9 +39,19 @@ class OrgUnit < ApplicationRecord
 
   validate :parent_matches_kind
 
+  #############
+  # Callbacks #
+  #############
+
+  before_validation :set_level
+
 private
 
   def parent_matches_kind
-    errors.add :parent unless parent&.kind == kind&.parent_kind
+    errors.add :parent_unit unless parent_unit&.kind == kind&.parent_kind
+  end
+
+  def set_level
+    self.level = parent_unit.nil? ? 0 : parent_unit.level + 1
   end
 end

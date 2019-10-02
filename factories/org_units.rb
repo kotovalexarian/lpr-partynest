@@ -10,7 +10,7 @@ FactoryBot.define do
     trait :with_parent do
       association :kind, factory: :some_children_org_unit_kind
 
-      parent { create :some_root_org_unit, kind: kind.parent_kind }
+      parent_unit { create :some_root_org_unit, kind: kind.parent_kind }
     end
   end
 

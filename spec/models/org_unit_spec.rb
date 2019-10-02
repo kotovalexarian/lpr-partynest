@@ -17,19 +17,21 @@ RSpec.describe OrgUnit do
     it { is_expected.to validate_presence_of(:kind).with_message(:required) }
   end
 
-  describe '#parent' do
+  describe '#parent_unit' do
     it do
       is_expected.to \
-        belong_to(:parent)
+        belong_to(:parent_unit)
         .class_name('OrgUnit')
-        .inverse_of(:children)
+        .inverse_of(:children_units)
     end
 
     context 'when organizational unit type does not require parent' do
       subject { create :some_root_org_unit }
 
       it do
-        is_expected.not_to validate_presence_of(:parent).with_message(:required)
+        is_expected.not_to \
+          validate_presence_of(:parent_unit)
+          .with_message(:required)
       end
     end
 
@@ -37,18 +39,20 @@ RSpec.describe OrgUnit do
       subject { create :some_children_org_unit }
 
       it do
-        is_expected.to validate_presence_of(:parent).with_message(:required)
+        is_expected.to \
+          validate_presence_of(:parent_unit)
+          .with_message(:required)
       end
     end
   end
 
-  describe '#children' do
+  describe '#children_units' do
     it do
       is_expected.to \
-        have_many(:children)
+        have_many(:children_units)
         .class_name('OrgUnit')
-        .inverse_of(:parent)
-        .with_foreign_key(:parent_id)
+        .inverse_of(:parent_unit)
+        .with_foreign_key(:parent_unit_id)
         .dependent(:restrict_with_exception)
     end
   end

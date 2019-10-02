@@ -14,6 +14,27 @@ RSpec.describe Relationship do
     end
   end
 
+  describe '#parent_rel' do
+    it do
+      is_expected.to \
+        belong_to(:parent_rel)
+        .class_name('Relationship')
+        .inverse_of(:children_rels)
+        .optional
+    end
+  end
+
+  describe '#children_rels' do
+    it do
+      is_expected.to \
+        have_many(:children_rels)
+        .class_name('Relationship')
+        .inverse_of(:parent_rel)
+        .with_foreign_key(:parent_rel_id)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#status' do
     it do
       is_expected.to belong_to(:status).class_name('RelationStatus').required

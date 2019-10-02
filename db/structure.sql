@@ -199,6 +199,193 @@ END;
 $_$;
 
 
+--
+-- Name: validate_org_unit_hierarchy(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.validate_org_unit_hierarchy() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  kind record;
+  parent_kind record;
+  parent_unit record;
+BEGIN
+  IF NEW.kind_id IS NULL THEN
+    RAISE EXCEPTION 'does not have type';
+  END IF;
+
+  SELECT *
+    FROM org_unit_kinds
+    INTO kind
+    WHERE id = NEW.kind_id;
+
+  IF kind IS NULL THEN
+    RAISE EXCEPTION 'can not find type';
+  END IF;
+
+  SELECT *
+    FROM org_unit_kinds
+    INTO parent_kind
+    WHERE id = kind.parent_kind_id;
+
+  IF (kind.parent_kind_id IS NULL) != (parent_kind IS NULL) THEN
+    RAISE EXCEPTION 'can not find parent type';
+  END IF;
+
+  IF parent_kind IS NULL THEN
+    IF NEW.parent_unit_id IS NOT NULL THEN
+      RAISE EXCEPTION 'parent is invalid (expected NULL)';
+    END IF;
+
+    IF NEW.level != 0 THEN
+      RAISE EXCEPTION 'level is invalid';
+    END IF;
+
+    RETURN NEW;
+  END IF;
+
+  IF NEW.parent_unit_id IS NULL THEN
+    RAISE EXCEPTION 'parent is invalid (expected NOT NULL)';
+  END IF;
+
+  SELECT *
+    FROM org_units
+    INTO parent_unit
+    WHERE id = NEW.parent_unit_id;
+
+  IF parent_unit IS NULL THEN
+    RAISE EXCEPTION 'can not find parent';
+  END IF;
+
+  IF parent_unit.kind_id != parent_kind.id THEN
+    RAISE EXCEPTION 'parent is invalid';
+  END IF;
+
+  IF (
+    NEW.level != kind.level            OR
+    NEW.level != parent_kind.level + 1 OR
+    NEW.level != parent_unit.level + 1
+  ) THEN
+    RAISE EXCEPTION 'level is invalid';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+--
+-- Name: validate_org_unit_kind_hierarchy(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.validate_org_unit_kind_hierarchy() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  parent_kind record;
+BEGIN
+  IF NEW.parent_kind_id IS NULL THEN
+    IF NEW.level != 0 THEN
+      RAISE EXCEPTION 'level is invalid';
+    END IF;
+
+    RETURN NEW;
+  END IF;
+
+  SELECT *
+    FROM org_unit_kinds
+    INTO parent_kind
+    WHERE id = NEW.parent_kind_id;
+
+  IF parent_kind IS NULL THEN
+    RAISE EXCEPTION 'can not find parent';
+  END IF;
+
+  IF NEW.level != parent_kind.level + 1 THEN
+    RAISE EXCEPTION 'level is invalid';
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+--
+-- Name: validate_relationship_hierarchy(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.validate_relationship_hierarchy() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  org_unit record;
+  parent_unit record;
+  parent_rel record;
+BEGIN
+  IF NEW.org_unit_id IS NULL THEN
+    RAISE EXCEPTION 'does not have org unit';
+  END IF;
+
+  SELECT *
+    FROM org_units
+    INTO org_unit
+    WHERE id = NEW.org_unit_id;
+
+  IF org_unit IS NULL THEN
+    RAISE EXCEPTION 'can not find org unit';
+  END IF;
+
+  SELECT *
+    FROM org_units
+    INTO parent_unit
+    WHERE id = org_unit.parent_unit_id;
+
+  IF (org_unit.parent_unit_id IS NULL) != (parent_unit IS NULL) THEN
+    RAISE EXCEPTION 'can not find parent org unit';
+  END IF;
+
+  IF parent_unit IS NULL THEN
+    IF NEW.parent_rel_id IS NOT NULL THEN
+      RAISE EXCEPTION 'parent rel is invalid (expected NULL)';
+    END IF;
+
+    IF NEW.level != 0 THEN
+      RAISE EXCEPTION 'level is invalid (expected 0)';
+    END IF;
+
+    RETURN NEW;
+  END IF;
+
+  IF NEW.parent_rel_id IS NULL THEN
+    RAISE EXCEPTION 'parent rel is invalid (expected NOT NULL)';
+  END IF;
+
+  SELECT *
+    FROM relationships
+    INTO parent_rel
+    WHERE id = NEW.parent_rel_id;
+
+  IF parent_rel IS NULL THEN
+    RAISE EXCEPTION 'can not find parent rel';
+  END IF;
+
+  IF parent_rel.org_unit_id != parent_unit.id THEN
+    RAISE EXCEPTION 'parent rel is invalid';
+  END IF;
+
+  IF (
+    NEW.level != org_unit.level        OR
+    NEW.level != parent_unit.level + 1 OR
+    NEW.level != parent_rel.level  + 1
+  ) THEN
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -473,8 +660,11 @@ CREATE TABLE public.org_unit_kinds (
     short_name character varying NOT NULL,
     name character varying NOT NULL,
     parent_kind_id bigint,
+    level integer NOT NULL,
     CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
+    CONSTRAINT level CHECK ((level >= 0)),
     CONSTRAINT name CHECK (public.is_good_small_text((name)::text)),
+    CONSTRAINT parent_kind CHECK ((parent_kind_id <> id)),
     CONSTRAINT short_name CHECK (public.is_good_small_text((short_name)::text))
 );
 
@@ -509,8 +699,11 @@ CREATE TABLE public.org_units (
     short_name character varying NOT NULL,
     name character varying NOT NULL,
     kind_id bigint NOT NULL,
-    parent_id bigint,
+    parent_unit_id bigint,
+    level integer NOT NULL,
+    CONSTRAINT level CHECK ((level >= 0)),
     CONSTRAINT name CHECK (public.is_good_small_text((name)::text)),
+    CONSTRAINT parent_unit CHECK ((parent_unit_id <> id)),
     CONSTRAINT short_name CHECK (public.is_good_small_text((short_name)::text))
 );
 
@@ -759,7 +952,11 @@ CREATE TABLE public.relationships (
     person_id bigint NOT NULL,
     from_date date NOT NULL,
     status_id bigint NOT NULL,
-    org_unit_id bigint NOT NULL
+    org_unit_id bigint NOT NULL,
+    parent_rel_id bigint,
+    level integer NOT NULL,
+    CONSTRAINT level CHECK ((level >= 0)),
+    CONSTRAINT parent_rel CHECK ((parent_rel_id <> id))
 );
 
 
@@ -1343,10 +1540,10 @@ CREATE UNIQUE INDEX index_org_units_on_name ON public.org_units USING btree (nam
 
 
 --
--- Name: index_org_units_on_parent_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_org_units_on_parent_unit_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_org_units_on_parent_id ON public.org_units USING btree (parent_id);
+CREATE INDEX index_org_units_on_parent_unit_id ON public.org_units USING btree (parent_unit_id);
 
 
 --
@@ -1455,6 +1652,13 @@ CREATE INDEX index_relationships_on_org_unit_id ON public.relationships USING bt
 
 
 --
+-- Name: index_relationships_on_parent_rel_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relationships_on_parent_rel_id ON public.relationships USING btree (parent_rel_id);
+
+
+--
 -- Name: index_relationships_on_person_id_and_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1546,6 +1750,27 @@ CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON publ
 
 
 --
+-- Name: org_unit_kinds validate_hierarchy; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.org_unit_kinds FOR EACH ROW EXECUTE PROCEDURE public.validate_org_unit_kind_hierarchy();
+
+
+--
+-- Name: org_units validate_hierarchy; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.org_units FOR EACH ROW EXECUTE PROCEDURE public.validate_org_unit_hierarchy();
+
+
+--
+-- Name: relationships validate_hierarchy; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.relationships FOR EACH ROW EXECUTE PROCEDURE public.validate_relationship_hierarchy();
+
+
+--
 -- Name: relationships fk_rails_0ea63a126c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1566,7 +1791,7 @@ ALTER TABLE ONLY public.people
 --
 
 ALTER TABLE ONLY public.org_units
-    ADD CONSTRAINT fk_rails_54c0512b74 FOREIGN KEY (parent_id) REFERENCES public.org_units(id);
+    ADD CONSTRAINT fk_rails_54c0512b74 FOREIGN KEY (parent_unit_id) REFERENCES public.org_units(id);
 
 
 --
@@ -1658,6 +1883,14 @@ ALTER TABLE ONLY public.relation_transitions
 
 
 --
+-- Name: relationships fk_rails_b943fd3c34; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relationships
+    ADD CONSTRAINT fk_rails_b943fd3c34 FOREIGN KEY (parent_rel_id) REFERENCES public.relationships(id);
+
+
+--
 -- Name: org_units fk_rails_ccc56f184e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1725,6 +1958,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930210852'),
 ('20190930215223'),
 ('20191001022049'),
-('20191001211809');
+('20191001211809'),
+('20191002002101');
 
 

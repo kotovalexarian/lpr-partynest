@@ -24,15 +24,15 @@
     <dt><%= OrgUnit.human_attribute_name :name %></dt>
     <dd><%= @org_unit.name %></dd>
 
-    <dt><%= OrgUnit.human_attribute_name :parent %></dt>
+    <dt><%= OrgUnit.human_attribute_name :parent_unit %></dt>
     <dd>
-      <% if @org_unit.parent.nil? %>
+      <% if @org_unit.parent_unit.nil? %>
         <%= none %>
-      <% elsif policy([:staff, @org_unit.parent]).show? %>
-        <%= link_to @org_unit.parent.name,
-                    [:staff, @org_unit.parent] %>
+      <% elsif policy([:staff, @org_unit.parent_unit]).show? %>
+        <%= link_to @org_unit.parent_unit.name,
+                    [:staff, @org_unit.parent_unit] %>
       <% else %>
-        <%= @org_unit.parent.name %>
+        <%= @org_unit.parent_unit.name %>
       <% end %>
     </dd>
   </dl>

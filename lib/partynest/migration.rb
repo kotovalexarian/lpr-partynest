@@ -44,6 +44,20 @@ module Partynest
       end
     end
 
+    def add_trigger(table, name, events, call)
+      reversible do |dir|
+        dir.up   { trigger_creation(table, name, events, call).call }
+        dir.down { trigger_deletion(table, name).call               }
+      end
+    end
+
+    def remove_trigger(table, name, events, call)
+      reversible do |dir|
+        dir.up   { trigger_deletion(table, name).call               }
+        dir.down { trigger_creation(table, name, events, call).call }
+      end
+    end
+
   private
 
     def func_creation(name, sql)
@@ -69,6 +83,18 @@ module Partynest
       end
     end
 
+    def trigger_creation(table, name, events, call)
+      lambda do
+        execute <<~SQL
+          CREATE TRIGGER #{name}
+            #{events}
+            ON #{table}
+            FOR EACH ROW
+            EXECUTE PROCEDURE #{call};
+        SQL
+      end
+    end
+
     def func_deletion(name)
       lambda do
         execute "DROP FUNCTION #{name}"
@@ -84,6 +110,12 @@ module Partynest
     def constraint_deletion(table, name)
       lambda do
         execute "ALTER TABLE #{table} DROP CONSTRAINT #{name}"
+      end
+    end
+
+    def trigger_deletion(table, name)
+      lambda do
+        execute "DROP TRIGGER #{name} ON #{table}"
       end
     end
   end

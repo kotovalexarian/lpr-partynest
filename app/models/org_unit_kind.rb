@@ -30,11 +30,23 @@ class OrgUnitKind < ApplicationRecord
 
   validates :name, good_small_text: true, uniqueness: true
 
+  #############
+  # Callbacks #
+  #############
+
+  before_validation :set_level
+
   ###########
   # Methods #
   ###########
 
   def to_param
     codename
+  end
+
+private
+
+  def set_level
+    self.level = parent_kind.nil? ? 0 : parent_kind.level + 1
   end
 end

@@ -77,7 +77,7 @@ ru:
         kind: Тип
         short_name: Короткое развание
         name: Название
-        parent: Родитель
+        parent_unit: Родитель
       org_unit_kind:
         id: ID
         codename: Кодовое имя
