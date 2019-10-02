@@ -8,11 +8,51 @@ FactoryBot.define do
     name { Faker::Company.unique.name }
   end
 
-  factory :supporter_relation_status, class: RelationStatus do
+  factory :included_relation_status, class: RelationStatus do
     initialize_with do
       RelationStatus.find_or_initialize_by codename: codename
     end
 
+    codename { :included }
+    name { 'Член или сторонник' }
+
+    association :org_unit_kind, factory: :lpr_org_unit_kind
+  end
+
+  factory :exited_supporter_relation_status,
+          parent: :included_relation_status do
+    codename { :exited_supporter }
+    name { 'Вышедший сторонник' }
+
+    association :org_unit_kind, factory: :lpr_org_unit_kind
+  end
+
+  factory :exited_member_relation_status,
+          parent: :included_relation_status do
+    codename { :exited_member }
+    name { 'Вышедший член' }
+
+    association :org_unit_kind, factory: :lpr_org_unit_kind
+  end
+
+  factory :excluded_supporter_relation_status,
+          parent: :included_relation_status do
+    codename { :excluded_supporter }
+    name { 'Исключённый сторонник' }
+
+    association :org_unit_kind, factory: :lpr_org_unit_kind
+  end
+
+  factory :excluded_member_relation_status,
+          parent: :included_relation_status do
+    codename { :excluded_member }
+    name { 'Исключённый член' }
+
+    association :org_unit_kind, factory: :lpr_org_unit_kind
+  end
+
+  factory :supporter_relation_status,
+          parent: :included_relation_status do
     codename { :supporter }
     name { 'Сторонник' }
 
@@ -35,74 +75,48 @@ FactoryBot.define do
     association :org_unit_kind, factory: :reg_dept_org_unit_kind
   end
 
-  factory :exited_supporter_relation_status,
+  factory :fed_secretary_relation_status,
           parent: :supporter_relation_status do
-    codename { :exited_supporter }
-    name { 'Вышедший сторонник' }
-
-    association :org_unit_kind, factory: :lpr_org_unit_kind
-  end
-
-  factory :exited_member_relation_status,
-          parent: :supporter_relation_status do
-    codename { :exited_member }
-    name { 'Вышедший член' }
-
-    association :org_unit_kind, factory: :lpr_org_unit_kind
-  end
-
-  factory :excluded_supporter_relation_status,
-          parent: :supporter_relation_status do
-    codename { :excluded_supporter }
-    name { 'Исключённый сторонник' }
-
-    association :org_unit_kind, factory: :lpr_org_unit_kind
-  end
-
-  factory :excluded_member_relation_status,
-          parent: :supporter_relation_status do
-    codename { :excluded_member }
-    name { 'Исключённый член' }
-
-    association :org_unit_kind, factory: :lpr_org_unit_kind
-  end
-
-  factory :fed_secretary_relation_status, parent: :supporter_relation_status do
     codename { :fed_secretary }
     name { 'Федеральный секретарь' }
 
     association :org_unit_kind, factory: :fed_management_org_unit_kind
   end
 
-  factory :reg_secretary_relation_status, parent: :supporter_relation_status do
+  factory :reg_secretary_relation_status,
+          parent: :supporter_relation_status do
     codename { :reg_secretary }
     name { 'Секретарь РК РО' }
 
     association :org_unit_kind, factory: :reg_management_org_unit_kind
   end
 
-  factory :fed_manager_relation_status, parent: :supporter_relation_status do
+  factory :fed_manager_relation_status,
+          parent: :supporter_relation_status do
     codename { :fed_manager }
     name { 'Член ФК' }
 
     association :org_unit_kind, factory: :fed_management_org_unit_kind
   end
 
-  factory :reg_manager_relation_status, parent: :supporter_relation_status do
+  factory :reg_manager_relation_status,
+          parent: :supporter_relation_status do
     codename { :reg_manager }
     name { 'Член РК РО' }
 
     association :org_unit_kind, factory: :reg_management_org_unit_kind
   end
 
-  factory :fed_supervisor_relation_status, parent: :supporter_relation_status do
+  factory :fed_supervisor_relation_status,
+          parent: :supporter_relation_status do
     codename { :fed_supervisor }
     name { 'Член ЦКРК' }
 
     association :org_unit_kind, factory: :fed_supervision_org_unit_kind
   end
 
-  factory :reg_supervisor_relation_status, parent: :supporter_relation_status do
+  factory :reg_supervisor_relation_status,
+          parent: :supporter_relation_status do
     codename { :reg_supervisor }
     name { 'Член РКРК' }
 
