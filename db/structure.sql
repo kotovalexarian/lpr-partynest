@@ -1579,10 +1579,10 @@ CREATE INDEX index_relationships_on_parent_rel_id ON public.relationships USING 
 
 
 --
--- Name: index_relationships_on_person_id_and_from_date; Type: INDEX; Schema: public; Owner: -
+-- Name: index_relationships_on_person_id_and_org_unit_id_and_from_date; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_relationships_on_person_id_and_from_date ON public.relationships USING btree (person_id, from_date);
+CREATE UNIQUE INDEX index_relationships_on_person_id_and_org_unit_id_and_from_date ON public.relationships USING btree (person_id, org_unit_id, from_date);
 
 
 --
@@ -1872,6 +1872,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191001022049'),
 ('20191001211809'),
 ('20191002002101'),
-('20191002113932');
+('20191002113932'),
+('20191002170727');
 
 

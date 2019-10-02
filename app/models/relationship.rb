@@ -25,7 +25,9 @@ class Relationship < ApplicationRecord
   # Validations #
   ###############
 
-  validates :from_date, presence: true, uniqueness: { scope: :person_id }
+  validates :from_date,
+            presence: true,
+            uniqueness: { scope: %i[person_id org_unit_id] }
 
   #############
   # Callbacks #

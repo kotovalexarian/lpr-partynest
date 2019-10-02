@@ -53,7 +53,7 @@ RSpec.describe Relationship do
     it do
       is_expected.to \
         validate_uniqueness_of(:from_date)
-        .scoped_to(:person_id)
+        .scoped_to(:person_id, :org_unit_id)
     end
   end
 end
