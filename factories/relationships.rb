@@ -14,7 +14,9 @@ FactoryBot.define do
       association :org_unit, factory: :some_children_org_unit
 
       parent_rel do
-        create :some_root_relationship, org_unit: org_unit&.parent_unit
+        create :some_root_relationship,
+               person: person,
+               org_unit: org_unit&.parent_unit
       end
     end
   end
@@ -23,13 +25,13 @@ FactoryBot.define do
           parent: :some_root_relationship,
           traits: %i[with_parent]
 
-  factory :excluded_relationship, parent: :some_children_relationship do
+  factory :excluded_relationship, parent: :some_root_relationship do
     association :org_unit, factory: :lpr_org_unit
     association :status, factory: :excluded_member_relation_status
     parent_rel { nil }
   end
 
-  factory :included_relationship, parent: :some_children_relationship do
+  factory :included_relationship, parent: :some_root_relationship do
     association :org_unit, factory: :lpr_org_unit
     association :status, factory: :included_relation_status
     parent_rel { nil }
@@ -38,48 +40,48 @@ FactoryBot.define do
   factory :supporter_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :moscow_reg_dept_org_unit
     association :status, factory: :supporter_relation_status
-    association :parent_rel, factory: :included_relationship
+    parent_rel { create :included_relationship, person: person }
   end
 
   factory :member_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :moscow_reg_dept_org_unit
     association :status, factory: :active_member_relation_status
-    association :parent_rel, factory: :included_relationship
+    parent_rel { create :included_relationship, person: person }
   end
 
   factory :federal_manager_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :fed_management_org_unit
     association :status, factory: :fed_manager_relation_status
-    association :parent_rel, factory: :included_relationship
+    parent_rel { create :included_relationship, person: person }
   end
 
   factory :federal_supervisor_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :fed_supervision_org_unit
     association :status, factory: :fed_supervisor_relation_status
-    association :parent_rel, factory: :included_relationship
+    parent_rel { create :included_relationship, person: person }
   end
 
   factory :regional_manager_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :moscow_reg_management_org_unit
     association :status, factory: :reg_manager_relation_status
-    association :parent_rel, factory: :member_relationship
+    parent_rel { create :member_relationship, person: person }
   end
 
   factory :regional_supervisor_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :moscow_reg_supervision_org_unit
     association :status, factory: :reg_supervisor_relation_status
-    association :parent_rel, factory: :member_relationship
+    parent_rel { create :member_relationship, person: person }
   end
 
   factory :federal_secretary_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :fed_management_org_unit
     association :status, factory: :fed_secretary_relation_status
-    association :parent_rel, factory: :included_relationship
+    parent_rel { create :included_relationship, person: person }
   end
 
   factory :regional_secretary_relationship, parent: :excluded_relationship do
     association :org_unit, factory: :moscow_reg_management_org_unit
     association :status, factory: :reg_secretary_relation_status
-    association :parent_rel, factory: :member_relationship
+    parent_rel { create :member_relationship, person: person }
   end
 end

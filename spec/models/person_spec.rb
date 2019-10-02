@@ -58,21 +58,26 @@ RSpec.describe Person do
   end
 
   describe '#all_relationships' do
+    let(:parent_relationship) { create :included_relationship, person: subject }
+
     let! :relationship_2 do
       create :supporter_relationship,
              person: subject,
+             parent_rel: parent_relationship,
              from_date: 4.days.ago
     end
 
     let! :relationship_3 do
       create :supporter_relationship,
              person: subject,
+             parent_rel: parent_relationship,
              from_date: 2.days.ago
     end
 
     let! :relationship_1 do
       create :supporter_relationship,
              person: subject,
+             parent_rel: parent_relationship,
              from_date: 6.days.ago
     end
 
@@ -87,6 +92,7 @@ RSpec.describe Person do
 
     specify do
       expect(subject.all_relationships).to eq [
+        parent_relationship,
         relationship_1,
         relationship_2,
         relationship_3,

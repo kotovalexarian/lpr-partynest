@@ -165,6 +165,7 @@ class AddHierarchy < ActiveRecord::Migration[6.0]
       $$
       DECLARE
         org_unit record;
+        person record;
         parent_unit record;
         parent_rel record;
       BEGIN
@@ -172,13 +173,26 @@ class AddHierarchy < ActiveRecord::Migration[6.0]
           RAISE EXCEPTION 'does not have org unit';
         END IF;
 
+        IF NEW.person_id IS NULL THEN
+          RAISE EXCEPTION 'does not have person';
+        END IF;
+
         SELECT *
           FROM org_units
           INTO org_unit
           WHERE id = NEW.org_unit_id;
 
+        SELECT *
+          FROM people
+          INTO person
+          WHERE id = NEW.person_id;
+
         IF org_unit IS NULL THEN
           RAISE EXCEPTION 'can not find org unit';
+        END IF;
+
+        IF person IS NULL THEN
+          RAISE EXCEPTION 'can not find person';
         END IF;
 
         SELECT *
@@ -217,11 +231,16 @@ class AddHierarchy < ActiveRecord::Migration[6.0]
             RAISE EXCEPTION 'parent rel is invalid';
           END IF;
 
+          IF parent_rel.person_id != person.id THEN
+            RAISE EXCEPTION 'person is invalid';
+          END IF;
+
           IF (
             NEW.level != org_unit.level        OR
             NEW.level != parent_unit.level + 1 OR
             NEW.level != parent_rel.level  + 1
           ) THEN
+            RAISE EXCEPTION 'level is invalid';
           END IF;
         END IF;
 
