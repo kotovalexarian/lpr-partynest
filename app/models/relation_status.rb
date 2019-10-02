@@ -5,6 +5,8 @@ class RelationStatus < ApplicationRecord
   # Associations #
   ################
 
+  belongs_to :org_unit_kind, inverse_of: :relation_statuses
+
   has_many :incoming_transitions,
            class_name: 'RelationTransition',
            inverse_of: :to_status,

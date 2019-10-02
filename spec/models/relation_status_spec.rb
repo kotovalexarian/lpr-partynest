@@ -11,6 +11,15 @@ RSpec.describe RelationStatus do
     end
   end
 
+  describe '#org_unit_kind' do
+    it do
+      is_expected.to \
+        belong_to(:org_unit_kind)
+        .inverse_of(:relation_statuses)
+        .required
+    end
+  end
+
   describe '#incoming_transitions' do
     it do
       is_expected.to \

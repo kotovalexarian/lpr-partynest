@@ -20,6 +20,9 @@ class OrgUnitKind < ApplicationRecord
            inverse_of: :kind,
            foreign_key: :kind_id
 
+  has_many :relation_statuses,
+           inverse_of: :org_unit_kind
+
   ###############
   # Validations #
   ###############

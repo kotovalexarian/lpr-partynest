@@ -45,6 +45,15 @@ RSpec.describe OrgUnitKind do
     end
   end
 
+  describe '#relation_statuses' do
+    it do
+      is_expected.to \
+        have_many(:relation_statuses)
+        .inverse_of(:org_unit_kind)
+        .dependent(:restrict_with_exception)
+    end
+  end
+
   describe '#codename' do
     def allow_value(*)
       super.for :codename

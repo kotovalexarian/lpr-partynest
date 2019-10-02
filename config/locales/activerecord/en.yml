@@ -113,6 +113,7 @@ en:
         text: Text
       relation_status:
         id: ID
+        org_unit_kind: Unit type
         codename: Codename
         name: Name
         outgoing_transitions: Outgoing transitions

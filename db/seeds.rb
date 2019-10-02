@@ -72,6 +72,7 @@ do |(org_unit_kind, codename, name)|
 
   RelationStatus.where(codename: codename).first_or_create! \
   do |new_relation_status|
+    new_relation_status.org_unit_kind = org_unit_kind
     new_relation_status.name = name
   end
 end

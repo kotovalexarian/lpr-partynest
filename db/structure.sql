@@ -879,6 +879,7 @@ CREATE TABLE public.relation_statuses (
     updated_at timestamp(6) without time zone NOT NULL,
     codename character varying NOT NULL,
     name character varying NOT NULL,
+    org_unit_kind_id bigint NOT NULL,
     CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
     CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
 );
@@ -1600,6 +1601,13 @@ CREATE UNIQUE INDEX index_relation_statuses_on_name ON public.relation_statuses 
 
 
 --
+-- Name: index_relation_statuses_on_org_unit_kind_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_relation_statuses_on_org_unit_kind_id ON public.relation_statuses USING btree (org_unit_kind_id);
+
+
+--
 -- Name: index_relation_transitions_on_from_status_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1864,6 +1872,14 @@ ALTER TABLE ONLY public.contacts
 
 
 --
+-- Name: relation_statuses fk_rails_8ee81bb15e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.relation_statuses
+    ADD CONSTRAINT fk_rails_8ee81bb15e FOREIGN KEY (org_unit_kind_id) REFERENCES public.org_unit_kinds(id);
+
+
+--
 -- Name: person_comments fk_rails_a9c7b4ae11; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1956,6 +1972,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930215223'),
 ('20191001022049'),
 ('20191001211809'),
-('20191002002101');
+('20191002002101'),
+('20191002040019');
 
 

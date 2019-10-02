@@ -2,6 +2,9 @@
   <thead>
     <tr>
       <th scope="col">
+        <%= RelationStatus.human_attribute_name :org_unit_kind %>
+      </th>
+      <th scope="col">
         <%= RelationStatus.human_attribute_name :codename %>
       </th>
       <th scope="col">
@@ -14,7 +17,15 @@
   <tbody>
     <% relation_statuses.each do |relation_status| %>
       <tr>
-        <td scope="row"><%= relation_status.codename %></td>
+        <td scope="row">
+          <% if policy([:staff, relation_status.org_unit_kind]).show? %>
+            <%= link_to relation_status.org_unit_kind.short_name,
+                        [:staff, relation_status.org_unit_kind] %>
+          <% else %>
+            <%= relation_status.org_unit_kind.short_name %>
+          <% end %>
+        </td>
+        <td><%= relation_status.codename %></td>
         <td><%= relation_status.name %></td>
         <td>
           <% if policy([:staff, relation_status]).show? %>
