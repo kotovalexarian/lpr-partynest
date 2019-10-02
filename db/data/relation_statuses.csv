@@ -5,6 +5,7 @@ lpr             | exited_supporter   | Вышедший сторонник    |
 lpr             | exited_member      | Вышедший член         |
 lpr             | excluded_supporter | Исключённый сторонник |
 lpr             | excluded_member    | Исключённый член      |
+lpr             | included           | Член или сторонник    |
 fed_management  | fed_secretary      | Федеральный секретарь |
 reg_management  | reg_secretary      | Секретарь РК РО       |
 fed_management  | fed_manager        | Член ФК               |
