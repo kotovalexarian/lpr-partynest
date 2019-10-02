@@ -242,32 +242,31 @@ BEGIN
       RAISE EXCEPTION 'level is invalid';
     END IF;
 
-    RETURN NEW;
-  END IF;
+  ELSE
+    IF NEW.parent_unit_id IS NULL THEN
+      RAISE EXCEPTION 'parent is invalid (expected NOT NULL)';
+    END IF;
 
-  IF NEW.parent_unit_id IS NULL THEN
-    RAISE EXCEPTION 'parent is invalid (expected NOT NULL)';
-  END IF;
+    SELECT *
+      FROM org_units
+      INTO parent_unit
+      WHERE id = NEW.parent_unit_id;
 
-  SELECT *
-    FROM org_units
-    INTO parent_unit
-    WHERE id = NEW.parent_unit_id;
+    IF parent_unit IS NULL THEN
+      RAISE EXCEPTION 'can not find parent';
+    END IF;
 
-  IF parent_unit IS NULL THEN
-    RAISE EXCEPTION 'can not find parent';
-  END IF;
+    IF parent_unit.kind_id != parent_kind.id THEN
+      RAISE EXCEPTION 'parent is invalid';
+    END IF;
 
-  IF parent_unit.kind_id != parent_kind.id THEN
-    RAISE EXCEPTION 'parent is invalid';
-  END IF;
-
-  IF (
-    NEW.level != kind.level            OR
-    NEW.level != parent_kind.level + 1 OR
-    NEW.level != parent_unit.level + 1
-  ) THEN
-    RAISE EXCEPTION 'level is invalid';
+    IF (
+      NEW.level != kind.level            OR
+      NEW.level != parent_kind.level + 1 OR
+      NEW.level != parent_unit.level + 1
+    ) THEN
+      RAISE EXCEPTION 'level is invalid';
+    END IF;
   END IF;
 
   RETURN NEW;
@@ -290,20 +289,19 @@ BEGIN
       RAISE EXCEPTION 'level is invalid';
     END IF;
 
-    RETURN NEW;
-  END IF;
+  ELSE
+    SELECT *
+      FROM org_unit_kinds
+      INTO parent_kind
+      WHERE id = NEW.parent_kind_id;
 
-  SELECT *
-    FROM org_unit_kinds
-    INTO parent_kind
-    WHERE id = NEW.parent_kind_id;
+    IF parent_kind IS NULL THEN
+      RAISE EXCEPTION 'can not find parent';
+    END IF;
 
-  IF parent_kind IS NULL THEN
-    RAISE EXCEPTION 'can not find parent';
-  END IF;
-
-  IF NEW.level != parent_kind.level + 1 THEN
-    RAISE EXCEPTION 'level is invalid';
+    IF NEW.level != parent_kind.level + 1 THEN
+      RAISE EXCEPTION 'level is invalid';
+    END IF;
   END IF;
 
   RETURN NEW;
@@ -354,31 +352,30 @@ BEGIN
       RAISE EXCEPTION 'level is invalid (expected 0)';
     END IF;
 
-    RETURN NEW;
-  END IF;
+  ELSE
+    IF NEW.parent_rel_id IS NULL THEN
+      RAISE EXCEPTION 'parent rel is invalid (expected NOT NULL)';
+    END IF;
 
-  IF NEW.parent_rel_id IS NULL THEN
-    RAISE EXCEPTION 'parent rel is invalid (expected NOT NULL)';
-  END IF;
+    SELECT *
+      FROM relationships
+      INTO parent_rel
+      WHERE id = NEW.parent_rel_id;
 
-  SELECT *
-    FROM relationships
-    INTO parent_rel
-    WHERE id = NEW.parent_rel_id;
+    IF parent_rel IS NULL THEN
+      RAISE EXCEPTION 'can not find parent rel';
+    END IF;
 
-  IF parent_rel IS NULL THEN
-    RAISE EXCEPTION 'can not find parent rel';
-  END IF;
+    IF parent_rel.org_unit_id != parent_unit.id THEN
+      RAISE EXCEPTION 'parent rel is invalid';
+    END IF;
 
-  IF parent_rel.org_unit_id != parent_unit.id THEN
-    RAISE EXCEPTION 'parent rel is invalid';
-  END IF;
-
-  IF (
-    NEW.level != org_unit.level        OR
-    NEW.level != parent_unit.level + 1 OR
-    NEW.level != parent_rel.level  + 1
-  ) THEN
+    IF (
+      NEW.level != org_unit.level        OR
+      NEW.level != parent_unit.level + 1 OR
+      NEW.level != parent_rel.level  + 1
+    ) THEN
+    END IF;
   END IF;
 
   RETURN NEW;
