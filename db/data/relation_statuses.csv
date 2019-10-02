@@ -1,14 +1,14 @@
-reg_dept        | supporter          | Сторонник             |
-reg_dept        | active_member      | Член                  |
-reg_dept        | pending_member     | Приостановленный член |
 lpr             | exited_supporter   | Вышедший сторонник    |
 lpr             | exited_member      | Вышедший член         |
 lpr             | excluded_supporter | Исключённый сторонник |
 lpr             | excluded_member    | Исключённый член      |
 lpr             | included           | Член или сторонник    |
 fed_management  | fed_secretary      | Федеральный секретарь |
-reg_management  | reg_secretary      | Секретарь РК РО       |
 fed_management  | fed_manager        | Член ФК               |
-reg_management  | reg_manager        | Член РК РО            |
 fed_supervision | fed_supervisor     | Член ЦКРК             |
+reg_dept        | supporter          | Сторонник             |
+reg_dept        | active_member      | Член                  |
+reg_dept        | pending_member     | Приостановленный член |
+reg_management  | reg_secretary      | Секретарь РК РО       |
+reg_management  | reg_manager        | Член РК РО            |
 reg_supervision | reg_supervisor     | Член РКРК             |
