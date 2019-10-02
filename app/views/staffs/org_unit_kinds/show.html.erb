@@ -2,7 +2,7 @@
   <%= nav_breadcrumb(
       [translate(:staff_services), staff_root_path],
       [OrgUnitKind.model_name.human(count: 0), staff_org_unit_kinds_path],
-      @org_unit_kind.name,
+      @org_unit_kind.short_name,
     ) %>
 
   <dl>
