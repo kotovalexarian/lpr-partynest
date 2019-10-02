@@ -20,28 +20,6 @@ RSpec.describe RelationStatus do
     end
   end
 
-  describe '#incoming_transitions' do
-    it do
-      is_expected.to \
-        have_many(:incoming_transitions)
-        .class_name('RelationTransition')
-        .inverse_of(:to_status)
-        .with_foreign_key(:to_status_id)
-        .dependent(:restrict_with_exception)
-    end
-  end
-
-  describe '#outgoing_transitions' do
-    it do
-      is_expected.to \
-        have_many(:outgoing_transitions)
-        .class_name('RelationTransition')
-        .inverse_of(:from_status)
-        .with_foreign_key(:from_status_id)
-        .dependent(:restrict_with_exception)
-    end
-  end
-
   describe '#codename' do
     def allow_value(*)
       super.for :codename

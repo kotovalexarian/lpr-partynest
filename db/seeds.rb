@@ -77,23 +77,6 @@ do |(org_unit_kind, codename, name)|
   end
 end
 
-csv_foreach :relation_transitions \
-do |(from, to, name)|
-  from.strip!
-  to.strip!
-  name.strip!
-
-  from_status = RelationStatus.find_by! codename: from unless from.empty?
-  to_status   = RelationStatus.find_by! codename: to
-
-  RelationTransition.where(
-    from_status: from_status,
-    to_status: to_status,
-  ).first_or_create! do |new_relation_transition|
-    new_relation_transition.name = name
-  end
-end
-
 Rails.application.settings(:superuser).tap do |config|
   user = User.where(email: config[:email]).first_or_create! do |new_user|
     new_user.password = config[:password]

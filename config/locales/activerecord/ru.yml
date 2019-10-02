@@ -116,7 +116,6 @@ ru:
         org_unit_kind: Тип подразделений
         codename: Кодовое имя
         name: Название
-        outgoing_transitions: Исходящие переходы
       relationship:
         id: ID
         from_date: Дата начала
