@@ -8,7 +8,10 @@ desc 'Run all checks'
 task all: %i[default extra]
 
 desc 'Run common checks (test, lint...)'
-task default: :rubocop
+task default: :lint
+
+desc 'Run linting tools (RuboCop)'
+task lint: :rubocop
 
 desc 'Run additional checks'
 task extra: %i[bundler:audit brakeman]
