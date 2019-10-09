@@ -14,17 +14,17 @@ gem 'rails', '~> 6.0.0'
 gem 'rails-i18n', '~> 6.0.0'
 
 # Use postgresql as the database for Active Record.
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg', '~> 1.1'
 
 # Use Puma as the app server.
-gem 'puma', '~> 4.0'
+gem 'puma', '~> 4.2'
 
 # Use Uglifier as compressor for JavaScript assets.
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 4.0'
 
 # Turbolinks makes navigating your web application faster.
 # Read more: https://github.com/turbolinks/turbolinks.
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder.
 # gem 'jbuilder', '~> 2.5'
@@ -68,7 +68,7 @@ gem 'simple_form', '~> 5.0'
 # A simple HTTP and REST client for Ruby,
 # inspired by the Sinatra microframework style of specifying actions:
 # get, put, post, delete.
-gem 'rest-client', '~> 2.0'
+gem 'rest-client', '~> 2.1'
 
 # A gem that provides a client interface for the Sentry error logger.
 gem 'sentry-raven'
@@ -80,7 +80,7 @@ gem 'devise', '~> 4.7'
 gem 'devise-i18n', '~> 1.8'
 
 # Object oriented authorization for Rails applications.
-gem 'pundit', '~> 2.0'
+gem 'pundit', '~> 2.1'
 
 # Interactor provides a common interface
 # for performing complex user interactions.
@@ -99,7 +99,7 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'omniauth-github', '~> 1.3'
 
 # A rack middleware for throttling and blocking abusive requests.
-gem 'rack-attack', '~> 6.0'
+gem 'rack-attack', '~> 6.1'
 
 # Simple, efficient background processing for Ruby.
 gem 'sidekiq', '~> 5.2'
