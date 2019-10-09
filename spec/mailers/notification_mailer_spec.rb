@@ -4,14 +4,20 @@ require 'rails_helper'
 
 RSpec.describe NotificationMailer do
   describe '#signed_in' do
-    let(:mail) { NotificationMailer.signed_in email, session }
+    let(:mail) { described_class.signed_in email, session }
 
     let(:email) { Faker::Internet.email }
     let(:session) { create :some_session }
 
-    it 'renders the headers' do
+    it 'has subject' do
       expect(mail.subject).to eq '[LPR Alert]: Произведён вход в ваш аккаунт'
+    end
+
+    it 'has source' do
       expect(mail.from).to eq ['no-reply@libertarian-party.com']
+    end
+
+    it 'has destination' do
       expect(mail.to).to eq [email]
     end
 
