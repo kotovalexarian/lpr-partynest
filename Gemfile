@@ -105,7 +105,7 @@ gem 'rack-attack', '~> 6.1'
 gem 'sidekiq', '~> 6.0'
 
 # Helpers for the reCAPTCHA API.
-gem 'recaptcha', '~> 4.13'
+gem 'recaptcha', '~> 5.1'
 
 # Kaminari is a Scope & Engine based, clean, powerful, agnostic, customizable
 # and sophisticated paginator for Rails 4+.
