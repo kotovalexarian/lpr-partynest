@@ -46,7 +46,7 @@ RSpec.describe 'DELETE /settings/contacts/:id' do
   end
 
   context 'when contact does not belong to current account' do
-    let!(:contact) { create :some_contact }
+    let(:contact) { create :some_contact }
 
     before { make_request }
 

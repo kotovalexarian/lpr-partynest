@@ -38,20 +38,27 @@ RSpec.describe Session do
 
     context 'when it was set to nil' do
       subject { build :some_session, user_agent: nil }
+
       before { subject.validate }
+
       specify { expect(subject.user_agent).to eq nil }
     end
 
     context 'when it was set to blank' do
       subject { build :some_session, user_agent: ' ' * rand(1..3) }
+
       before { subject.validate }
+
       specify { expect(subject.user_agent).to eq nil }
     end
 
     context 'when it has leading spaces' do
       subject { build :some_session, user_agent: user_agent }
+
       let(:user_agent) { "   #{Faker::Internet.user_agent}" }
+
       before { subject.validate }
+
       specify { expect(subject.user_agent).to eq user_agent.strip }
     end
   end

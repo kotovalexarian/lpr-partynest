@@ -204,16 +204,19 @@ RSpec.describe Account do
 
     context 'for usual account' do
       subject { create :usual_account }
+
       specify { expect(result).to equal true }
     end
 
     context 'for personal account' do
       subject { create :personal_account }
+
       specify { expect(result).to equal true }
     end
 
     context 'for superuser account' do
       subject { create :superuser_account }
+
       specify { expect(result).to equal false }
     end
   end

@@ -101,6 +101,24 @@ RSpec.describe Person do
   end
 
   describe '#current_relationship' do
+    before do
+      create :supporter_relationship,
+             person: subject,
+             from_date: 4.days.ago
+    end
+
+    let! :expected_relationship do
+      create :supporter_relationship,
+             person: subject,
+             from_date: 2.days.ago
+    end
+
+    before do
+      create :supporter_relationship,
+             person: subject,
+             from_date: 6.days.ago
+    end
+
     it do
       is_expected.to \
         have_one(:current_relationship)
@@ -110,26 +128,8 @@ RSpec.describe Person do
         .order(from_date: :desc)
     end
 
-    let! :relationship_2 do
-      create :supporter_relationship,
-             person: subject,
-             from_date: 4.days.ago
-    end
-
-    let! :relationship_3 do
-      create :supporter_relationship,
-             person: subject,
-             from_date: 2.days.ago
-    end
-
-    let! :relationship_1 do
-      create :supporter_relationship,
-             person: subject,
-             from_date: 6.days.ago
-    end
-
     specify do
-      expect(subject.current_relationship).to eq relationship_3
+      expect(subject.current_relationship).to eq expected_relationship
     end
   end
 

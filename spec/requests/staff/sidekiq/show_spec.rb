@@ -3,15 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'GET /staff/sidekiq' do
+  let!(:valid_new_user_session_url) { new_user_session_url }
+
   before do
-    @new_user_session_url = new_user_session_url
     sign_in current_account.user if current_account&.user
     get '/staff/sidekiq'
   end
 
   for_account_types nil do
     specify do
-      expect(response).to redirect_to @new_user_session_url
+      expect(response).to redirect_to valid_new_user_session_url
     end
   end
 

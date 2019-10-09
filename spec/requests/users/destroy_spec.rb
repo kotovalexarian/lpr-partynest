@@ -11,11 +11,13 @@ RSpec.describe 'DELETE /users' do
     sign_in current_account.user if current_account&.user
   end
 
-  for_account_types nil do
+  for_account_types nil, :usual, :superuser do
     specify do
       expect { make_request }.not_to change(User, :count)
     end
+  end
 
+  for_account_types nil do
     context 'after request' do
       before { make_request }
 
@@ -26,10 +28,6 @@ RSpec.describe 'DELETE /users' do
   end
 
   for_account_types :usual, :superuser do
-    specify do
-      expect { make_request }.not_to change(User, :count)
-    end
-
     context 'after request' do
       before { make_request }
 
