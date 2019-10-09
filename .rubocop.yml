@@ -63,12 +63,32 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
-Rails/ReversibleMigration:
+RSpec/ContextWording:
+  Prefixes:
+    - 'after'
+    - 'for'
+    - 'when'
+    - 'with'
+    - 'without'
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/requests/**/*_spec.rb'
+
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/ImplicitSubject:
   Enabled: false
 
-Rails/SkipsModelValidations:
-  Whitelist:
-    - update_all
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/ScatteredSetup:
+  Enabled: false
 
 Style/AndOr:
   EnforcedStyle: conditionals
