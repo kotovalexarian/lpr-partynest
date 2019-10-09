@@ -102,7 +102,7 @@ gem 'omniauth-github', '~> 1.3'
 gem 'rack-attack', '~> 6.1'
 
 # Simple, efficient background processing for Ruby.
-gem 'sidekiq', '~> 5.2'
+gem 'sidekiq', '~> 6.0'
 
 # Helpers for the reCAPTCHA API.
 gem 'recaptcha', '~> 4.13'
