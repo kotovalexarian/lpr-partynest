@@ -135,6 +135,10 @@ group :development, :test do
   # focused on enforcing Rails best practices and coding conventions.
   gem 'rubocop-rails', '~> 2.2'
 
+  # Code style checking for RSpec files.
+  # A plugin for the RuboCop code style enforcing & linting tool.
+  gem 'rubocop-rspec', '~> 1.36'
+
   # rspec-rails is a testing framework for Rails 3+
   gem 'rspec-rails', '~> 3.8'
 
