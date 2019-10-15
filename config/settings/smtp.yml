@@ -1,3 +1,13 @@
+staging:
+  address: smtp.sendgrid.net
+  port: 587
+  domain: stg.libertarian-party.com
+  user_name: apikey
+  password: <%= Rails.application.credentials.sendgrid_api_key %>
+  authentication: plain
+  enable_starttls_auto: true
+  openssl_verify_mode: none
+
 production:
   address: smtp.sendgrid.net
   port: 587

@@ -5,6 +5,13 @@ development:
   public_name: Just Admin
   biography:   I am creator of the website you read this text on.
 
+staging:
+  email:       admin@example.com
+  password:    password
+  nickname:    admin
+  public_name: Just Admin
+  biography:   I am creator of the website you read this text on.
+
 production:
   email:       <%= Rails.application.credentials.superuser_email %>
   password:    <%= Rails.application.credentials.superuser_password %>

@@ -4,6 +4,16 @@ default:
   db:       <%= ENV.fetch('RAILS_CACHE_REDIS_DB')       { 1           } %>
   password: <%= ENV.fetch('RAILS_CACHE_REDIS_PASSWORD') { 'password'  } %>
 
+staging:
+  host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
+  port:     25061
+  password: <%= Rails.application.credentials.rails_cache_redis_password %>
+  db:       11
+  ssl:      true
+  ssl_params:
+    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %>
+    ca_file:     <%= Rails.root.join 'config', 'certs', 'redis.crt' %>
+
 production:
   host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
   port:     25061
