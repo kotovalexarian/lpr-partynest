@@ -63,6 +63,13 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
+Rails/UnknownEnv:
+  Environments:
+    - 'development'
+    - 'production'
+    - 'staging'
+    - 'test'
+
 RSpec/ContextWording:
   Prefixes:
     - 'after'
