@@ -1,5 +1,5 @@
 default: &default
-  mailer_sender: 'Libertarian party of Russia <no-reply@stg.libertarian-party.com>'
+  mailer_sender: 'Libertarian party of Russia <no-reply@libertarian-party.com>'
 
 development:
   <<: *default
@@ -16,7 +16,7 @@ test:
   github_secret: bbea64bbf666361e50ca96bbf596cb9d122eff1c
 
 staging:
-  <<: *default
+  mailer_sender: 'Libertarian party of Russia <no-reply@stg.libertarian-party.com>'
   secret_key:    33f993a85e852b7b2cff7367d2599952ff7b564c2820377a5b97f7db8df965a20953a928ed452b09bdd365b7bbab94b8d2dae07026bcd6afeb7c7f72dcc316cd
   pepper:        cdaa6324cc384ad55e9e6be481e25c93fc1cb3cde1057c50bb8ad7fc0e39f133ee576148f4a3277b443fac01d1d7c4f9bfd5027f0bfc3e1468db02bf081a02d2
   github_id:     4a9dc06681e485b406de
