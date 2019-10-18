@@ -41,3 +41,5 @@ end
 # recommended as it will mask a lot of errors for you!
 #
 ActionController::Base.allow_rescue = false
+
+Rack::Attack.enabled = false
