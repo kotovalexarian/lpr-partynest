@@ -66,7 +66,9 @@ ru:
         currently_waiting_confirmation_for_email: "Ожидается подтверждение адреса E-mail: %{email}"
         leave_blank_if_you_don_t_want_to_change_it: "оставьте поле пустым, если не хотите его менять"
         update: "Обновить"
-        we_need_your_current_password_to_confirm_your_changes: "введите текущий пароль для подтверждения изменений"
+        we_need_your_current_password_to_confirm_your_changes: >-
+          Введите текущий пароль для подтверждения изменений.
+          Выйдите из учётной записи и восстановите пароль если вы забыли его.
       new:
         sign_up: "Регистрация"
       signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
