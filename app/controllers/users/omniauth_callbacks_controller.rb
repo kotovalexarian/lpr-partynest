@@ -15,14 +15,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   # GET|POST /users/auth/github/callback
-  def github
+  def github # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     context = AuthenticateUserWithOmniauth.call(
       provider: auth_hash.provider,
       remote_id: auth_hash.uid,
       email: auth_hash.info.email,
     )
 
-    return failure if context.failure?
+    if context.failure?
+      set_flash_message! :alert, :failure,
+                         kind: OmniAuth::Utils.camelize(:github),
+                         reason: nil
+
+      return redirect_to after_omniauth_failure_path_for(resource_name)
+    end
 
     sign_in_and_redirect context.user
   end
