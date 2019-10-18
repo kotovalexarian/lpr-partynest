@@ -9,6 +9,8 @@ class AuthenticateUserWithOmniauth
     ActiveRecord::Base.transaction do
       build_user
       build_user_omniauth
+      validity_check
+      security_check
       save_records
     end
   end
@@ -40,6 +42,18 @@ private
       new_user_omniauth.user = context.user
       new_user_omniauth.email = context.email
     end
+  end
+
+  def validity_check
+    return if context.user_omniauth.user == context.user
+
+    context.fail! user: nil, user_omniauth: nil
+  end
+
+  def security_check
+    return unless context.user.persisted? && context.user_omniauth.new_record?
+
+    context.fail! user: nil, user_omniauth: nil
   end
 
   def save_records
