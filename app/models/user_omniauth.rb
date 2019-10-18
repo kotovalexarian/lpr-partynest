@@ -7,13 +7,12 @@ class UserOmniauth < ApplicationRecord
 
   belongs_to :user
 
-  has_one :assumed_user,
-          class_name: 'User',
-          primary_key: :email,
-          foreign_key: :email,
-          inverse_of: false,
-          autosave: false,
-          dependent: false
+  belongs_to :assumed_user,
+             class_name: 'User',
+             primary_key: :email,
+             foreign_key: :email,
+             inverse_of: false,
+             autosave: false
 
   ###############
   # Validations #
