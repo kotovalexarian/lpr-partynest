@@ -22,6 +22,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       email: auth_hash.info.email,
     )
 
+    return failure if context.failure?
+
     sign_in_and_redirect context.user
   end
 
