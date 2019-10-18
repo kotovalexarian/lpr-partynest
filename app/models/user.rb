@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  MIN_PASSWORD_LENGTH = 8
+  MAX_PASSWORD_LENGTH = 128
+
   devise(
     :confirmable,
     :database_authenticatable,

@@ -28,7 +28,7 @@ private
       email: context.email,
     ).lock(true).first_or_initialize do |new_user|
       new_user.account = Account.new contact_list: ContactList.new
-      new_user.password = Devise.friendly_token 128
+      new_user.password = Devise.friendly_token User::MAX_PASSWORD_LENGTH
     end
   end
 
