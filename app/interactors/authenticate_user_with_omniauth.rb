@@ -28,7 +28,7 @@ private
       email: context.email,
     ).lock(true).first_or_initialize do |new_user|
       new_user.account = Account.new contact_list: ContactList.new
-      new_user.password = Devise.friendly_token[0, 20]
+      new_user.password = Devise.friendly_token 128
     end
   end
 
