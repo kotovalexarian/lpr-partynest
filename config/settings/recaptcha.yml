@@ -1,6 +1,6 @@
 default: &default
-  site_key: 6LfLa4EUAAAAADUTFj2GdnRh49kH_WBfUHabv8_7
-  secret_key: <%= Rails.application.credentials.recaptcha_secret_key %>
+  site_key: 6LfqvL0UAAAAAJ28mP5C8zBQkXiYsYQwy3ZkLbuO
+  secret_key: <%= Rails.application.credentials.recaptcha_secret_key_stg %>
 
 development:
   <<: *default
@@ -9,4 +9,5 @@ staging:
   <<: *default
 
 production:
-  <<: *default
+  site_key: 6LfLa4EUAAAAADUTFj2GdnRh49kH_WBfUHabv8_7
+  secret_key: <%= Rails.application.credentials.recaptcha_secret_key %>
