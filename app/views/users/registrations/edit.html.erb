@@ -20,6 +20,7 @@
                     input_html: { autocomplete: 'new-password' } %>
 
         <%= f.input :password_confirmation,
+                    hint: translate('.leave_blank_if_you_don_t_want_to_change_it'),
                     required: false,
                     input_html: { autocomplete: 'new-password' } %>
 
