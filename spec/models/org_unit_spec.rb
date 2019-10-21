@@ -35,12 +35,47 @@ RSpec.describe OrgUnit do
       end
     end
 
-    context 'when organizational unit type does not require parent' do
+    context 'when organizational unit type requires parent' do
       subject { create :some_children_org_unit }
 
       it do
         is_expected.to \
           validate_presence_of(:parent_unit)
+          .with_message(:required)
+      end
+    end
+  end
+
+  describe '#resource' do
+    it { is_expected.to belong_to(:resource).optional }
+
+    context 'when organizational unit type does not require resource' do
+      subject { create :some_children_org_unit }
+
+      it do
+        is_expected.not_to \
+          validate_presence_of(:resource)
+          .with_message(:required)
+      end
+    end
+
+    context 'when organizational unit type requires resource' do
+      subject do
+        create :some_children_org_unit,
+               kind: org_unit_kind,
+               resource: resource
+      end
+
+      let :org_unit_kind do
+        create :some_children_org_unit_kind,
+               resource_type: resource.class.name
+      end
+
+      let(:resource) { create :federal_subject }
+
+      it do
+        is_expected.to \
+          validate_presence_of(:resource)
           .with_message(:required)
       end
     end

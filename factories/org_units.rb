@@ -35,6 +35,7 @@ FactoryBot.define do
 
     association :kind, factory: :reg_dept_org_unit_kind
     association :parent_unit, factory: :lpr_org_unit
+    association :resource, factory: :moscow_federal_subject
   end
 
   factory :perm_reg_dept_org_unit, parent: :lpr_org_unit do
@@ -46,6 +47,7 @@ FactoryBot.define do
 
     association :kind, factory: :reg_dept_org_unit_kind
     association :parent_unit, factory: :lpr_org_unit
+    association :resource, factory: :perm_federal_subject
   end
 
   factory :fed_management_org_unit, parent: :lpr_org_unit do

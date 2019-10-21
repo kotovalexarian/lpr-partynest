@@ -49,6 +49,61 @@ CREATE TYPE public.sex AS ENUM (
 
 
 --
+-- Name: add_func_validate_org_unit_resource(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.add_func_validate_org_unit_resource() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  org_unit_kind record;
+BEGIN
+  IF NEW.kind_id IS NULL THEN
+    IF NEW.resource_type IS NOT NULL THEN
+      RAISE EXCEPTION 'resource type is invalid (expected NULL)';
+    END IF;
+
+    IF NEW.resource_id IS NOT NULL THEN
+      RAISE EXCEPTION 'resource ID is invalid (expected NULL)';
+    END IF;
+
+    RETURN NEW;
+  END IF;
+
+  SELECT * FROM org_unit_kinds INTO org_unit_kind WHERE id = NEW.kind_id;
+
+  IF org_unit_kind IS NULL THEN
+    RAISE EXCEPTION 'can not find type';
+  END IF;
+
+  IF org_unit_kind.resource_type IS NULL THEN
+    IF NEW.resource_type IS NOT NULL THEN
+      RAISE EXCEPTION 'resource type is invalid (expected NULL)';
+    END IF;
+
+    IF NEW.resource_id IS NOT NULL THEN
+      RAISE EXCEPTION 'resource ID is invalid (expected NULL)';
+    END IF;
+  ELSE
+    IF NEW.resource_type IS NULL THEN
+      RAISE EXCEPTION 'resource type is invalid (expected NOT NULL)';
+    END IF;
+
+    IF NEW.resource_type != org_unit_kind.resource_type THEN
+      RAISE EXCEPTION 'resource type is invalid';
+    END IF;
+
+    IF NEW.resource_id IS NULL THEN
+      RAISE EXCEPTION 'resource ID is invalid (expected NULL)';
+    END IF;
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+--
 -- Name: ensure_contact_list_id_matches_related_person(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -732,6 +787,8 @@ CREATE TABLE public.org_units (
     kind_id bigint NOT NULL,
     parent_unit_id bigint,
     level integer NOT NULL,
+    resource_type character varying,
+    resource_id bigint,
     CONSTRAINT level CHECK ((level >= 0)),
     CONSTRAINT name CHECK (public.is_good_small_text((name)::text)),
     CONSTRAINT parent_unit CHECK ((parent_unit_id <> id)),
@@ -1529,6 +1586,13 @@ CREATE INDEX index_org_units_on_parent_unit_id ON public.org_units USING btree (
 
 
 --
+-- Name: index_org_units_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_org_units_on_resource_type_and_resource_id ON public.org_units USING btree (resource_type, resource_id);
+
+
+--
 -- Name: index_org_units_on_short_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1680,6 +1744,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 --
 
 CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
+-- Name: org_units add_func_validate_org_unit_resource; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER add_func_validate_org_unit_resource BEFORE INSERT OR UPDATE ON public.org_units FOR EACH ROW EXECUTE PROCEDURE public.add_func_validate_org_unit_resource();
 
 
 --
@@ -1905,6 +1976,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191001022049'),
 ('20191002002101'),
 ('20191002170727'),
-('20191021060000');
+('20191021060000'),
+('20191021061920');
 
 

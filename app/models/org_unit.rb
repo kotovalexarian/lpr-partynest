@@ -14,6 +14,10 @@ class OrgUnit < ApplicationRecord
              inverse_of: :children_units,
              optional: true
 
+  belongs_to :resource,
+             polymorphic: true,
+             optional: true
+
   has_many :children_units,
            class_name: 'OrgUnit',
            inverse_of: :parent_unit,
@@ -34,6 +38,12 @@ class OrgUnit < ApplicationRecord
   validates :parent_unit,
             presence: {
               if: ->(record) { record.kind&.parent_kind },
+              message: :required,
+            }
+
+  validates :resource,
+            presence: {
+              if: ->(record) { record.kind&.resource_type },
               message: :required,
             }
 
