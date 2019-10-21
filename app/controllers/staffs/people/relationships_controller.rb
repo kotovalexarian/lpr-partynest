@@ -6,10 +6,7 @@ class Staffs::People::RelationshipsController < ApplicationController
   # GET /staff/people/:person_id/relationships
   def index
     authorize [:staff, @person, :relationship]
-    @relationships = policy_scope(
-      @person.all_relationships,
-      policy_scope_class: Staff::Person::RelationshipPolicy::Scope,
-    )
+    skip_policy_scope
   end
 
 private
