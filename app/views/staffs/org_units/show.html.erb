@@ -35,5 +35,18 @@
         <%= @org_unit.parent_unit.name %>
       <% end %>
     </dd>
+
+    <dt><%= OrgUnit.human_attribute_name :resource %></dt>
+    <dd>
+      <% case @org_unit.resource %>
+      <% when nil %>
+        <%= none %>
+      <% when FederalSubject %>
+        <%= link_to @org_unit.resource.display_name,
+                    federal_subject_path(@org_unit.resource) %>
+      <% else %>
+        <%= there_is %>
+      <% end %>
+    </dd>
   </dl>
 </div>

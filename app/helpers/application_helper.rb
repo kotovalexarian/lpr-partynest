@@ -40,6 +40,12 @@ module ApplicationHelper
     end
   end
 
+  def there_is
+    tag.i class: 'text-muted' do
+      translate :there_is
+    end
+  end
+
   def none
     tag.i class: 'text-muted' do
       translate :none

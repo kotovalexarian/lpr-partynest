@@ -78,6 +78,7 @@ ru:
         short_name: Короткое развание
         name: Название
         parent_unit: Родитель
+        resource: Ресурс
       org_unit_kind:
         id: ID
         codename: Кодовое имя

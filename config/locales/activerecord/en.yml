@@ -78,6 +78,7 @@ en:
         short_name: Short name
         name: Name
         parent_unit: Parent
+        resource: Resource
       org_unit_kind:
         id: ID
         codename: Codename
