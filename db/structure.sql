@@ -121,6 +121,19 @@ $$;
 
 
 --
+-- Name: is_class_name(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.is_class_name(str text) RETURNS boolean
+    LANGUAGE plpgsql IMMUTABLE
+    AS $_$
+BEGIN
+  RETURN str ~ '^[A-Z][a-zA-Z0-9]*(::[A-Z][a-zA-Z0-9])*$';
+END;
+$_$;
+
+
+--
 -- Name: is_codename(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -677,10 +690,12 @@ CREATE TABLE public.org_unit_kinds (
     name character varying NOT NULL,
     parent_kind_id bigint,
     level integer NOT NULL,
+    resource_type character varying,
     CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
     CONSTRAINT level CHECK ((level >= 0)),
     CONSTRAINT name CHECK (public.is_good_small_text((name)::text)),
     CONSTRAINT parent_kind CHECK ((parent_kind_id <> id)),
+    CONSTRAINT resource_type CHECK (((resource_type IS NULL) OR public.is_class_name((resource_type)::text))),
     CONSTRAINT short_name CHECK (public.is_good_small_text((short_name)::text))
 );
 
@@ -1889,6 +1904,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930215223'),
 ('20191001022049'),
 ('20191002002101'),
-('20191002170727');
+('20191002170727'),
+('20191021060000');
 
 

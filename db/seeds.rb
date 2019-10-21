@@ -41,12 +41,13 @@ do |(id, codename, name)|
 end
 
 csv_foreach :org_unit_kinds \
-do |(codename, parent, short_name, name)|
+do |(codename, parent, short_name, name, resource_type)|
   parent = parent.blank? ? nil : OrgUnitKind.find_by!(codename: parent.strip)
 
   codename.strip!
   short_name.strip!
   name.strip!
+  resource_type = resource_type.strip.presence
 
   next if OrgUnitKind.find_by codename: codename
 
@@ -55,6 +56,7 @@ do |(codename, parent, short_name, name)|
     short_name: short_name,
     name: name,
     parent_kind: parent,
+    resource_type: resource_type,
   )
 end
 

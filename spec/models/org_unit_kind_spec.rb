@@ -146,4 +146,17 @@ RSpec.describe OrgUnitKind do
     it { is_expected.not_to allow_value "\nFoo" }
     it { is_expected.not_to allow_value "Foo\n" }
   end
+
+  describe '#resource_type' do
+    def allow_value(*)
+      super.for :resource_type
+    end
+
+    it { is_expected.to allow_value nil }
+
+    it { is_expected.not_to allow_value '' }
+    it { is_expected.not_to allow_value ' ' * rand(1..3) }
+
+    it { is_expected.to allow_value 'FederalSubject' }
+  end
 end

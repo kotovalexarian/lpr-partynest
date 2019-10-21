@@ -33,6 +33,8 @@ class OrgUnitKind < ApplicationRecord
 
   validates :name, good_small_text: true, uniqueness: true
 
+  validates :resource_type, allow_nil: true, presence: true
+
   #############
   # Callbacks #
   #############

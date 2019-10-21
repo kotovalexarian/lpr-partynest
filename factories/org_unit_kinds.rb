@@ -29,6 +29,7 @@ FactoryBot.define do
     codename { :reg_dept }
     short_name { 'РО' }
     name { 'Региональное отделение' }
+    resource_type { 'FederalSubject' }
 
     association :parent_kind, factory: :lpr_org_unit_kind
   end
