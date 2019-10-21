@@ -1043,6 +1043,41 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: scripts; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.scripts (
+    id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    codename character varying NOT NULL,
+    name character varying NOT NULL,
+    source_code text NOT NULL,
+    CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
+    CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
+);
+
+
+--
+-- Name: scripts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.scripts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: scripts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.scripts_id_seq OWNED BY public.scripts.id;
+
+
+--
 -- Name: sessions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1259,6 +1294,13 @@ ALTER TABLE ONLY public.relationships ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: scripts id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.scripts ALTER COLUMN id SET DEFAULT nextval('public.scripts_id_seq'::regclass);
+
+
+--
 -- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1405,6 +1447,14 @@ ALTER TABLE ONLY public.relationships
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: scripts scripts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.scripts
+    ADD CONSTRAINT scripts_pkey PRIMARY KEY (id);
 
 
 --
@@ -1688,6 +1738,20 @@ CREATE UNIQUE INDEX index_relationships_on_person_id_and_org_unit_id_and_from_da
 --
 
 CREATE INDEX index_relationships_on_status_id ON public.relationships USING btree (status_id);
+
+
+--
+-- Name: index_scripts_on_codename; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_scripts_on_codename ON public.scripts USING btree (codename);
+
+
+--
+-- Name: index_scripts_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_scripts_on_name ON public.scripts USING btree (name);
 
 
 --
@@ -1977,6 +2041,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191002002101'),
 ('20191002170727'),
 ('20191021060000'),
-('20191021061920');
+('20191021061920'),
+('20191021093331');
 
 

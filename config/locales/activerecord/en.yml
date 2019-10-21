@@ -38,6 +38,10 @@ en:
       relationship:
         one: Party relation
         many: Party relations
+      script:
+        one: Script
+        few: Scripts
+        many: Scripts
       session:
         one: Session
         few: Sessions
@@ -120,6 +124,11 @@ en:
       relationship:
         id: ID
         from_date: From date
+      script:
+        id: ID
+        codename: Codename
+        name: Name
+        source_code: Source code
       session:
         id: ID
         account: Account

@@ -1,0 +1,19 @@
+<div class="container">
+  <%= nav_breadcrumb(
+      [translate(:staff_services), staff_root_path],
+      [Script.model_name.human(count: 0), staff_scripts_path],
+      @script.codename,
+    ) %>
+
+  <dl>
+    <dt><%= Script.human_attribute_name :codename %></dt>
+    <dd><%= @script.codename %></dd>
+
+    <dt><%= Script.human_attribute_name :name %></dt>
+    <dd><%= @script.name %></dd>
+  </dl>
+
+  <hr/>
+
+  <pre><code><%= @script.source_code %></code></pre>
+</div>
