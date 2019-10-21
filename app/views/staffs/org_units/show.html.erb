@@ -38,19 +38,8 @@
 
     <dt><%= OrgUnit.human_attribute_name :resource %></dt>
     <dd>
-      <% case @org_unit.resource %>
-      <% when nil %>
-        <%= none %>
-      <% when FederalSubject %>
-        <% if policy(@org_unit.resource).show? %>
-          <%= link_to @org_unit.resource.display_name,
-                      federal_subject_path(@org_unit.resource) %>
-        <% else %>
-          <%= @org_unit.resource.display_name %>
-        <% end %>
-      <% else %>
-        <%= there_is %>
-      <% end %>
+    <%= render partial: 'resource_link',
+               locals: { resource: @org_unit.resource } %>
     </dd>
   </dl>
 </div>

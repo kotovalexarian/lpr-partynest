@@ -1,0 +1,15 @@
+<% case resource %>
+<% when nil %>
+  <%= none %>
+
+<% when FederalSubject %>
+  <% if policy(resource).show? %>
+    <%= link_to resource.display_name,
+                federal_subject_path(resource) %>
+  <% else %>
+    <%= resource.display_name %>
+  <% end %>
+
+<% else %>
+  <%= there_is %>
+<% end %>
