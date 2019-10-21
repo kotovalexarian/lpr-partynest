@@ -40,13 +40,8 @@ class OrgUnit < ApplicationRecord
             absence: { unless: :requires_parent? }
 
   validates :resource,
-            presence: {
-              if: ->(record) { record.kind&.resource_type },
-              message: :required,
-            },
-            absence: {
-              unless: ->(record) { record.kind&.resource_type },
-            }
+            presence: { if: :requires_resource?, message: :required },
+            absence: { unless: :requires_resource? }
 
   validate :parent_matches_kind
 
@@ -62,6 +57,10 @@ class OrgUnit < ApplicationRecord
 
   def requires_parent?
     kind&.parent_kind
+  end
+
+  def requires_resource?
+    kind&.resource_type
   end
 
 private
