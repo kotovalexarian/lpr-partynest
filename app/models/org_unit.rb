@@ -39,6 +39,9 @@ class OrgUnit < ApplicationRecord
             presence: {
               if: ->(record) { record.kind&.parent_kind },
               message: :required,
+            },
+            absence: {
+              unless: ->(record) {record.kind&.parent_kind },
             }
 
   validates :resource,
@@ -62,6 +65,10 @@ private
   end
 
   def set_level
-    self.level = parent_unit.nil? ? 0 : parent_unit.level + 1
+    self.level =
+      if parent_unit.nil? then 0
+      elsif parent_unit.level.nil? then nil
+      else parent_unit.level + 1
+      end
   end
 end

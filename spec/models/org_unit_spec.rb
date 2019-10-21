@@ -33,6 +33,8 @@ RSpec.describe OrgUnit do
           validate_presence_of(:parent_unit)
           .with_message(:required)
       end
+
+      it { is_expected.to validate_absence_of :parent_unit }
     end
 
     context 'when organizational unit type requires parent' do
@@ -43,6 +45,8 @@ RSpec.describe OrgUnit do
           validate_presence_of(:parent_unit)
           .with_message(:required)
       end
+
+      it { is_expected.not_to validate_absence_of :parent_unit }
     end
   end
 
