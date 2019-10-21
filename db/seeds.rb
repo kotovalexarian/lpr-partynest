@@ -93,3 +93,62 @@ Rails.application.settings(:superuser).tap do |config|
 
   user.account.update! superuser: true
 end
+
+lpr_org_unit_kind             = OrgUnitKind.find_by! codename: :lpr
+reg_dept_org_unit_kind        = OrgUnitKind.find_by! codename: :reg_dept
+fed_management_org_unit_kind  = OrgUnitKind.find_by! codename: :fed_management
+fed_supervision_org_unit_kind = OrgUnitKind.find_by! codename: :fed_supervision
+reg_management_org_unit_kind  = OrgUnitKind.find_by! codename: :reg_management
+reg_supervision_org_unit_kind = OrgUnitKind.find_by! codename: :reg_supervision
+
+lpr_org_unit = OrgUnit.where(kind: lpr_org_unit_kind).first_or_create!(
+  short_name: 'ЛПР',
+  name: 'Либертарианская партия России',
+)
+
+OrgUnit.where(
+  kind: fed_management_org_unit_kind,
+  parent_unit: lpr_org_unit,
+).first_or_create!(
+  short_name: 'ФК ЛПР',
+  name: 'Федеральный комитет Либертарианской партии России',
+)
+
+OrgUnit.where(
+  kind: fed_supervision_org_unit_kind,
+  parent_unit: lpr_org_unit,
+).first_or_create!(
+  short_name: 'ЦКРК ЛПР',
+  name: 'Центральная контрольно-ревизионная комиссия ' \
+        'Либертарианской партии России',
+)
+
+FederalSubject.all.each do |federal_subject|
+  reg_dept_org_unit = OrgUnit.where(
+    kind: reg_dept_org_unit_kind,
+    parent_unit: lpr_org_unit,
+    resource: federal_subject,
+  ).first_or_create!(
+    short_name: "РО ЛПР (#{federal_subject.native_name})",
+    name: 'Региональное отделение Либертарианской партии России ' \
+          "(#{federal_subject.native_name})",
+  )
+
+  OrgUnit.where(
+    kind: reg_management_org_unit_kind,
+    parent_unit: reg_dept_org_unit,
+  ).first_or_create!(
+    short_name: "РК РО ЛПР (#{federal_subject.native_name})",
+    name: 'Руководящий комитет регионального отделения ' \
+          "Либертарианской партии России (#{federal_subject.native_name})",
+  )
+
+  OrgUnit.where(
+    kind: reg_supervision_org_unit_kind,
+    parent_unit: reg_dept_org_unit,
+  ).first_or_create!(
+    short_name: "РКРК ЛПР (#{federal_subject.native_name})",
+    name: 'Региональная контрольно-ревизионная комиссия' \
+          "Либертарианской партии России (#{federal_subject.native_name})",
+  )
+end
