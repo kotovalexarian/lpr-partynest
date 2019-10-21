@@ -100,39 +100,6 @@ RSpec.describe Person do
     end
   end
 
-  describe '#current_relationship' do
-    before do
-      create :supporter_relationship,
-             person: subject,
-             from_date: 4.days.ago
-    end
-
-    let! :expected_relationship do
-      create :supporter_relationship,
-             person: subject,
-             from_date: 2.days.ago
-    end
-
-    before do
-      create :supporter_relationship,
-             person: subject,
-             from_date: 6.days.ago
-    end
-
-    it do
-      is_expected.to \
-        have_one(:current_relationship)
-        .class_name('Relationship')
-        .inverse_of(:person)
-        .dependent(:restrict_with_exception)
-        .order(from_date: :desc)
-    end
-
-    specify do
-      expect(subject.current_relationship).to eq expected_relationship
-    end
-  end
-
   describe '#person_comments' do
     it do
       is_expected.to \

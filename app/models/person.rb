@@ -20,11 +20,6 @@ class Person < ApplicationRecord
            class_name: 'Relationship',
            inverse_of: :person
 
-  has_one :current_relationship,
-          -> { order(from_date: :desc) },
-          class_name: 'Relationship',
-          inverse_of: :person
-
   has_many :person_comments
 
   has_many :passports
