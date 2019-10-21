@@ -43,6 +43,9 @@ class OrgUnit < ApplicationRecord
             presence: {
               if: ->(record) { record.kind&.resource_type },
               message: :required,
+            },
+            absence: {
+              unless: ->(record) { record.kind&.resource_type },
             }
 
   validate :parent_matches_kind
