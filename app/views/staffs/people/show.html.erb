@@ -44,7 +44,11 @@
 
         <dt><%= Person.human_attribute_name :middle_name %></dt>
         <dd><%= truncate @person.middle_name %></dd>
+      </dl>
+    </div>
 
+    <div class="col-md-4">
+      <dl>
         <dt><%= Person.human_attribute_name :sex %></dt>
         <dd><%= translate_enum :sex, @person.sex if @person.sex %></dd>
 
