@@ -7,7 +7,7 @@ class Staffs::People::RelationshipsController < ApplicationController
   def index
     authorize [:staff, @person, :relationship]
     @relationships = policy_scope(
-      @person.all_relationships.reorder(from_date: :desc),
+      @person.all_relationships,
       policy_scope_class: Staff::Person::RelationshipPolicy::Scope,
     )
   end

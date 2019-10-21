@@ -87,16 +87,15 @@ RSpec.describe Person do
         .class_name('Relationship')
         .inverse_of(:person)
         .dependent(:restrict_with_exception)
-        .order(from_date: :asc)
     end
 
     specify do
-      expect(subject.all_relationships).to eq [
+      expect(subject.all_relationships).to include(
         parent_relationship,
         relationship_1,
         relationship_2,
         relationship_3,
-      ]
+      )
     end
   end
 
