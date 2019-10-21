@@ -1,1 +1,12 @@
-hello | Поприветствовать |
+accept_as_supporter                 | Принять в сторонники                         |
+accept_as_member                    | Принять в члены                              |
+exit_from_supporters                | Выйти из сторонников                         |
+exclude_from_supporters             | Исключить из сторонников                     |
+pause_membership                    | Приостановить членство                       |
+exit_from_members                   | Выйти из членов                              |
+exclude_from_members                | Исключить из членов                          |
+resume_membership                   | Возобновить членство                         |
+accept_former_supp_as_supporter     | Принять в сторонники бывшего сторонника      |
+accept_former_member_as_supporter   | Принять в сторонники бывшего члена           |
+accept_excluded_supp_as_supporter   | Принять в сторонники исключённого сторонника |
+accept_excluded_member_as_supporter | Принять в сторонники исключённого члена      |
