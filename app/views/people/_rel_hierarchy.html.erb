@@ -17,7 +17,7 @@
 <ul>
   <% relationship.children_rels.each do |children_relationship| %>
     <li>
-      <%= render partial: 'rel_hierarchy', locals: { relationship: children_relationship } %>
+      <%= render partial: 'people/rel_hierarchy', locals: { relationship: children_relationship } %>
     </li>
   <% end %>
 </ul>
