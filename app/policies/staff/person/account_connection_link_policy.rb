@@ -10,6 +10,12 @@ class Staff::Person::AccountConnectionLinkPolicy < ApplicationPolicy
   def create?
     return false if restricted?
 
-    record.person.account.nil? && account&.superuser?
+    show?
+  end
+
+  def destroy?
+    return false if restricted?
+
+    create? && !record.person.account_connection_token.nil?
   end
 end

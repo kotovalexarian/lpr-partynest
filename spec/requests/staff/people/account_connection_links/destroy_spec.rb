@@ -2,13 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe 'POST /staff/people/:person_id/account_connection_link' do
-  let(:person) { create :initial_person }
+RSpec.describe 'DELETE /staff/people/:person_id/account_connection_link' do
+  let :person do
+    create(:initial_person).tap(&:generate_account_connection_token)
+  end
 
   let(:current_account) { create :superuser_account }
 
   def make_request
-    post "/staff/people/#{person.to_param}/account_connection_link"
+    delete "/staff/people/#{person.to_param}/account_connection_link"
   end
 
   before do
@@ -26,7 +28,7 @@ RSpec.describe 'POST /staff/people/:person_id/account_connection_link' do
   for_account_types :superuser do
     specify do
       expect { make_request }.to(
-        change { person.reload.account_connection_token },
+        change { person.reload.account_connection_token }.to(nil),
       )
     end
 

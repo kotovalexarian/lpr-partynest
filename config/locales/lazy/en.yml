@@ -25,3 +25,4 @@ en:
         show:
           link_to_connect_account: Link to connect account
           generate: Generate
+          destroy: Destroy

@@ -15,6 +15,13 @@ class Staffs::People::AccountConnectionLinksController < ApplicationController
     redirect_to staff_person_account_connection_link_url(@person)
   end
 
+  # DELETE /staff/people/:person_id/account_connection_link
+  def destroy
+    authorize [:staff, @person, AccountConnectionLink.new(@person)]
+    @person.destroy_account_connection_token
+    redirect_to staff_person_account_connection_link_url(@person)
+  end
+
 private
 
   def set_person

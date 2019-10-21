@@ -30,5 +30,12 @@
                   method: :post,
                   class: 'btn btn-primary btn-lg' %>
     <% end %>
+
+    <% if policy([:staff, @person, AccountConnectionLink.new(@person)]).destroy? %>
+      <%= link_to translate('.destroy'),
+                  staff_person_account_connection_link_path(@person),
+                  method: :delete,
+                  class: 'btn btn-danger btn-lg' %>
+    <% end %>
   </div>
 </div>

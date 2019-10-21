@@ -52,4 +52,8 @@ class Person < ApplicationRecord
   def generate_account_connection_token
     update! account_connection_token: SecureRandom.alphanumeric(32)
   end
+
+  def destroy_account_connection_token
+    update! account_connection_token: nil
+  end
 end
