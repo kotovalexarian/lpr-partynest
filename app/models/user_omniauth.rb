@@ -12,7 +12,8 @@ class UserOmniauth < ApplicationRecord
              primary_key: :email,
              foreign_key: :email,
              inverse_of: false,
-             autosave: false
+             autosave: false,
+             optional: true
 
   ###############
   # Validations #
