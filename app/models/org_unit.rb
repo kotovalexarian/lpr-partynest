@@ -36,13 +36,8 @@ class OrgUnit < ApplicationRecord
   validates :name, good_small_text: true, uniqueness: true
 
   validates :parent_unit,
-            presence: {
-              if: ->(record) { record.kind&.parent_kind },
-              message: :required,
-            },
-            absence: {
-              unless: ->(record) {record.kind&.parent_kind },
-            }
+            presence: { if: :requires_parent?, message: :required },
+            absence: { unless: :requires_parent? }
 
   validates :resource,
             presence: {
@@ -57,6 +52,14 @@ class OrgUnit < ApplicationRecord
   #############
 
   before_validation :set_level
+
+  ###########
+  # Methods #
+  ###########
+
+  def requires_parent?
+    kind&.parent_kind
+  end
 
 private
 
