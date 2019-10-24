@@ -79,21 +79,6 @@ do |(org_unit_kind, codename, name)|
   end
 end
 
-csv_foreach :scripts \
-do |(codename, name)|
-  codename.strip!
-  name.strip!
-
-  source_code = File.read(
-    File.expand_path(File.join('scripts', "#{codename}.rb"), __dir__),
-  )
-
-  Script.where(codename: codename).first_or_create!(
-    name: name,
-    source_code: source_code,
-  )
-end
-
 Rails.application.settings(:superuser).tap do |config|
   user = User.where(email: config[:email]).first_or_create! do |new_user|
     new_user.password = config[:password]

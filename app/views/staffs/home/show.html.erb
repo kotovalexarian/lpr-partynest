@@ -48,12 +48,5 @@
                     staff_org_units_path %>
       </li>
     <% end %>
-
-    <% if policy([:staff, Script]).index? %>
-      <li>
-        <%= link_to Script.model_name.human(count: 0),
-                    staff_scripts_path %>
-      </li>
-    <% end %>
   </ul>
 </div>

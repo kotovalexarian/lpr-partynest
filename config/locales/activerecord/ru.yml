@@ -38,10 +38,6 @@ ru:
       relationship:
         one: Отношение с партией
         one: Отношения с партией
-      script:
-        one: Скрипт
-        few: Скрипты
-        many: Скрипты
       session:
         one: Сессия
         few: Сессии
@@ -124,11 +120,6 @@ ru:
       relationship:
         id: ID
         from_date: Дата начала
-      script:
-        id: ID
-        codename: Кодовое имя
-        name: Название
-        source_code: Исходный код
       session:
         id: ID
         account: Аккаунт

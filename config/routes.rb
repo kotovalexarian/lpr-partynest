@@ -67,8 +67,6 @@ Rails.application.routes.draw do
 
     resources :org_units, only: %i[index show]
 
-    resources :scripts, param: :codename, only: %i[index show]
-
     resources :people, only: %i[index show new create] do
       resources :person_comments,
                 path: 'comments',
