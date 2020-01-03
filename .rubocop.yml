@@ -63,6 +63,9 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
+Rails/RakeEnvironment:
+  Enabled: false
+
 Rails/UnknownEnv:
   Environments:
     - 'development'
