@@ -15,6 +15,7 @@ en:
         many: Contact networks
       federal_subject:
         one: State
+        few: States
         many: States
       org_unit:
         one: Organizational unit

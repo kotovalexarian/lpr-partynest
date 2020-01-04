@@ -15,6 +15,7 @@ ru:
         many: Сети контактов
       federal_subject:
         one: Регион
+        few: Регионы
         many: Регионы
       org_unit:
         one: Организационное подразделение
