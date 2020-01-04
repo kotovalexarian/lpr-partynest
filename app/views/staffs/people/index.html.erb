@@ -4,9 +4,9 @@
     Person.model_name.human(count: 0),
   ) %>
 
-  <% if policy(%i[staff person]).new? %>
+  <% if policy([:staff, Person]).new? %>
     <div class="btn-group" role="group">
-      <% if policy(%i[staff person]).new? %>
+      <% if policy([:staff, Person]).new? %>
         <%= link_to translate(:create),
                     new_staff_person_path,
                     class: 'btn btn-primary',

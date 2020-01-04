@@ -5,7 +5,7 @@ class Staffs::PeopleController < ApplicationController
 
   # GET /staff/people
   def index
-    authorize %i[staff person]
+    authorize [:staff, Person]
     @people = policy_scope(
       Person,
       policy_scope_class: Staff::PersonPolicy::Scope,
