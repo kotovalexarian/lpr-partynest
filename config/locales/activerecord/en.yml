@@ -11,6 +11,7 @@ en:
         many: Contacts
       contact_network:
         one: Contact network
+        few: Contact networks
         many: Contact networks
       federal_subject:
         one: State

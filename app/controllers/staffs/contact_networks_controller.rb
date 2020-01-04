@@ -7,6 +7,6 @@ class Staffs::ContactNetworksController < ApplicationController
     @contact_networks = policy_scope(
       ContactNetwork.order(codename: :asc),
       policy_scope_class: Staff::ContactNetworkPolicy::Scope,
-    )
+    ).page(params[:page])
   end
 end

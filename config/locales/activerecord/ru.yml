@@ -11,6 +11,7 @@ ru:
         many: Контактов
       contact_network:
         one: Сеть контактов
+        few: Сети контактов
         many: Сети контактов
       federal_subject:
         one: Регион
