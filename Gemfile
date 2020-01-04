@@ -115,6 +115,12 @@ gem 'kaminari', '~> 1.1'
 # This gem is part of the AWS SDK for Ruby.
 gem 'aws-sdk-s3', require: false
 
+# ActiveModel/Record integrations for Elasticsearch.
+gem 'elasticsearch-model', '~> 7.0'
+
+# Ruby on Rails integrations for Elasticsearch.
+gem 'elasticsearch-rails', '~> 7.0'
+
 group :development, :test do
   # factory_bot provides a framework and DSL for defining and using factories.
   gem 'factory_bot_rails', '~> 4.10'
