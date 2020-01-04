@@ -9,7 +9,7 @@ class Staffs::PeopleController < ApplicationController
     @people = policy_scope(
       Person,
       policy_scope_class: Staff::PersonPolicy::Scope,
-    )
+    ).page(params[:page])
   end
 
   # GET /staff/people/:id

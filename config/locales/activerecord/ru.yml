@@ -28,6 +28,7 @@ ru:
         many: Паспорта
       person:
         one: Человек
+        few: Люди
         many: Люди
       person_comment:
         one: Комментарий

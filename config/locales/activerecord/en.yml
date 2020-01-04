@@ -28,6 +28,7 @@ en:
         many: Passports
       person:
         one: Person
+        few: People
         many: People
       person_comment:
         one: Comment
