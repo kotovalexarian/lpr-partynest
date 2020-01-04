@@ -3,6 +3,7 @@ ru:
     models:
       account:
         one: Аккаунт
+        few: Аккаунты
         many: Аккаунты
       contact:
         one: Контакт

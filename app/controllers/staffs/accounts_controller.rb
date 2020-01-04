@@ -9,7 +9,7 @@ class Staffs::AccountsController < ApplicationController
     @accounts = policy_scope(
       Account,
       policy_scope_class: Staff::AccountPolicy::Scope,
-    )
+    ).page(params[:page])
   end
 
   # GET /staff/accounts/:nickname

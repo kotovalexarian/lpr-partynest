@@ -3,6 +3,7 @@ en:
     models:
       account:
         one: Account
+        few: Accounts
         many: Accounts
       contact:
         one: Contact
