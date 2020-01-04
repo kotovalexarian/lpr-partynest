@@ -17,6 +17,8 @@ RSpec.describe 'GET /staff/relation_statuses' do
     get '/staff/relation_statuses'
   end
 
+  it_behaves_like 'paginal controller', :relation_statuses_count
+
   for_account_types nil, :usual do
     specify do
       expect(response).to have_http_status :forbidden
@@ -24,46 +26,6 @@ RSpec.describe 'GET /staff/relation_statuses' do
   end
 
   for_account_types :superuser do
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are no relation statuses' do
-    let(:relation_statuses_count) { 0 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there is one relation status' do
-    let(:relation_statuses_count) { 1 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are few relation statuses' do
-    let(:relation_statuses_count) { rand 2..4 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are many relation statuses' do
-    let(:relation_statuses_count) { rand 5..10 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are lot of relation statuses' do
-    let(:relation_statuses_count) { rand 20..40 }
-
     specify do
       expect(response).to have_http_status :ok
     end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Settings::ContactsController < ApplicationController
+  include PaginalController
+
   before_action :skip_policy_scope, only: :index
 
   before_action :set_contact_list
@@ -13,7 +15,7 @@ class Settings::ContactsController < ApplicationController
   def index
     authorize [:settings, Contact]
 
-    @contacts = @contact_list.contacts.page(params[:page])
+    @contacts = @contact_list.contacts.page(active_page)
   end
 
   # POST /settings/contacts

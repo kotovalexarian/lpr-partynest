@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Staffs::AccountsController < ApplicationController
+  include PaginalController
+
   before_action :set_account, except: :index
 
   # GET /staff/accounts
@@ -9,7 +11,7 @@ class Staffs::AccountsController < ApplicationController
     @accounts = policy_scope(
       Account,
       policy_scope_class: Staff::AccountPolicy::Scope,
-    ).page(params[:page])
+    ).page(active_page)
   end
 
   # GET /staff/accounts/:nickname

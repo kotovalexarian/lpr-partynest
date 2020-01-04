@@ -17,6 +17,8 @@ RSpec.describe 'GET /staff/org_units' do
     get '/staff/org_units'
   end
 
+  it_behaves_like 'paginal controller', :org_units_count
+
   for_account_types nil, :usual do
     specify do
       expect(response).to have_http_status :forbidden
@@ -24,46 +26,6 @@ RSpec.describe 'GET /staff/org_units' do
   end
 
   for_account_types :superuser do
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are no organizational units' do
-    let(:org_units_count) { 0 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there is one organizational unit' do
-    let(:org_units_count) { 1 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are few organizational units' do
-    let(:org_units_count) { rand 2..4 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are many organizational units' do
-    let(:org_units_count) { rand 5..10 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are lot of organizational units' do
-    let(:org_units_count) { rand 20..40 }
-
     specify do
       expect(response).to have_http_status :ok
     end

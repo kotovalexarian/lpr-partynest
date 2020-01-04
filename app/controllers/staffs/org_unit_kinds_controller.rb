@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Staffs::OrgUnitKindsController < ApplicationController
+  include PaginalController
+
   before_action :set_org_unit_kind, only: :show
 
   # GET /staff/org_unit_kinds
@@ -9,7 +11,7 @@ class Staffs::OrgUnitKindsController < ApplicationController
     @org_unit_kinds = policy_scope(
       OrgUnitKind.order(codename: :asc),
       policy_scope_class: Staff::OrgUnitKindPolicy::Scope,
-    ).page(params[:page])
+    ).page(active_page)
   end
 
   # GET /staff/org_unit_kinds/:codename

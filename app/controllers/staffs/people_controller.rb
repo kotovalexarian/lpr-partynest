@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Staffs::PeopleController < ApplicationController
+  include PaginalController
+
   before_action :set_person, except: %i[index new create]
 
   # GET /staff/people
@@ -9,7 +11,7 @@ class Staffs::PeopleController < ApplicationController
     @people = policy_scope(
       Person,
       policy_scope_class: Staff::PersonPolicy::Scope,
-    ).page(params[:page])
+    ).page(active_page)
   end
 
   # GET /staff/people/:id

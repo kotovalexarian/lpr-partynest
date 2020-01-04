@@ -17,6 +17,8 @@ RSpec.describe 'GET /staff/contact_networks' do
     get '/staff/contact_networks'
   end
 
+  it_behaves_like 'paginal controller', :contact_networks_count
+
   for_account_types nil, :usual do
     specify do
       expect(response).to have_http_status :forbidden
@@ -24,46 +26,6 @@ RSpec.describe 'GET /staff/contact_networks' do
   end
 
   for_account_types :superuser do
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are no contact networks' do
-    let(:contact_networks_count) { 0 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there is one person' do
-    let(:contact_networks_count) { 1 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are few contact networks' do
-    let(:contact_networks_count) { rand 2..4 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are many contact networks' do
-    let(:contact_networks_count) { rand 5..10 }
-
-    specify do
-      expect(response).to have_http_status :ok
-    end
-  end
-
-  context 'when there are lot of contact networks' do
-    let(:contact_networks_count) { rand 20..40 }
-
     specify do
       expect(response).to have_http_status :ok
     end
