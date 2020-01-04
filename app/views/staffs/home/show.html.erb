@@ -9,19 +9,19 @@
       </li>
     <% end %>
 
-    <% if policy(%i[staff account]).index? %>
+    <% if policy([:staff, Account]).index? %>
       <li>
         <%= link_to Account.model_name.human(count: 0), staff_accounts_path %>
       </li>
     <% end %>
 
-    <% if policy(%i[staff person]).index? %>
+    <% if policy([:staff, Person]).index? %>
       <li>
         <%= link_to Person.model_name.human(count: 0), staff_people_path %>
       </li>
     <% end %>
 
-    <% if policy(%i[staff contact_network]).index? %>
+    <% if policy([:staff, ContactNetwork]).index? %>
       <li>
         <%= link_to ContactNetwork.model_name.human(count: 0),
                     staff_contact_networks_path %>
