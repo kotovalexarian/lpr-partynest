@@ -2,15 +2,17 @@
 
 # Be sure to restart your server when you modify this file.
 
+conf = Rails.application.settings :elasticsearch
+
 Elasticsearch::Model.client = Elasticsearch::Client.new(
-  scheme: :http,
-  host: '127.0.0.1',
-  port: 9200,
-  user: 'elastic',
-  password: 'changeme',
+  scheme: conf[:ssl] ? :https : :http,
+  host: String(conf[:host]),
+  port: Integer(conf[:port]),
+  user: String(conf[:user]),
+  password: String(conf[:password]),
 
   transport_options: {
     request: { timeout: 5 },
-    ssl: { ca_file: nil },
+    ssl: { ca_file: conf.dig(:ssl_params, :ca_file) },
   },
 )

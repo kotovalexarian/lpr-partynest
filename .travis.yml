@@ -33,6 +33,11 @@ env:
     - RAILS_CACHE_REDIS_DB=1
     - RAILS_CACHE_REDIS_PASSWORD=
 
+    - ELASTICSEARCH_HOST=localhost
+    - ELASTICSEARCH_PORT=9200
+    - ELASTICSEARCH_USER=elastic
+    - ELASTICSEARCH_PASSWORD=changeme
+
 before_install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
   - sudo tar -xvzf geckodriver*
