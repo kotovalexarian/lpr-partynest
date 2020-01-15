@@ -135,7 +135,7 @@ group :development, :test do
 
   # Automatic Ruby code style checking tool.
   # Aims to enforce the community-driven Ruby Style Guide.
-  gem 'rubocop', '~> 0.72.0'
+  gem 'rubocop', '~> 0.79.0'
 
   # A collection of RuboCop cops
   # to check for performance optimizations in Ruby code.

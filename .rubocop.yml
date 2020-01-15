@@ -37,7 +37,7 @@ Metrics/ClassLength:
   Exclude:
     - 'db/migrate/*.rb'
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - 'config/initializers/simple_form.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
