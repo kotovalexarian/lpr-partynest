@@ -25,9 +25,13 @@
 # Ignore Yarn and NPM related files.
 /node_modules/
 /yarn-error.log
+/yarn-debug.log*
+/.yarn-integrity
 
 # Ignore generated files.
 /public/assets/
+/public/packs
+/public/packs-test
 /.byebug_history
 /.rake_tasks~
 /coverage/
