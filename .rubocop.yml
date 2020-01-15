@@ -88,6 +88,9 @@ RSpec/DescribeClass:
 RSpec/ExampleLength:
   Max: 8
 
+RSpec/ExpectInHook:
+  Enabled: false
+
 RSpec/ImplicitSubject:
   Enabled: false
 
