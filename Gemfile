@@ -9,6 +9,10 @@ git_source(:github) { |s| "https://github.com/#{s}.git" }
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'.
 gem 'rails', '~> 6.0.0'
 
+# Rack provides a minimal, modular and adaptable interface
+# for developing web applications in Ruby.
+gem 'rack', '= 2.2.0', github: 'rack/rack'
+
 # A set of common locale data and translations
 # to internationalize and/or localize your Rails applications.
 gem 'rails-i18n', '~> 6.0.0'

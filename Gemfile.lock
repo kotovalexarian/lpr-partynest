@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/rack/rack.git
+  revision: f83d84117724ff55b7e7bab32439394513d67ea2
+  specs:
+    rack (2.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -302,7 +308,6 @@ GEM
       activesupport (>= 3.0.0)
     pundit-matchers (1.6.0)
       rspec-rails (>= 3.0.0)
-    rack (2.1.1)
     rack-attack (6.2.2)
       rack (>= 1.0, < 3)
     rack-protection (2.0.8.1)
@@ -518,6 +523,7 @@ DEPENDENCIES
   puma (~> 4.2)
   pundit (~> 2.1)
   pundit-matchers (~> 1.6)
+  rack (= 2.2.0)!
   rack-attack (~> 6.1)
   rails (~> 6.0.0)
   rails-erd (~> 1.5)
