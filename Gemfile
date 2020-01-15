@@ -230,4 +230,8 @@ group :test do
 
   # A set of RSpec matchers for testing Pundit authorization policies.
   gem 'pundit-matchers', '~> 1.6'
+
+  # WebMock allows stubbing HTTP requests
+  # and setting expectations on HTTP requests.
+  gem 'webmock', '~> 3.8'
 end

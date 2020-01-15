@@ -36,6 +36,7 @@ require_relative 'support/factory_bot'
 require_relative 'support/database_cleaner'
 require_relative 'support/devise'
 require_relative 'support/pundit'
+require_relative 'support/webmock'
 
 require_relative 'models/shared_examples/nameable'
 require_relative 'models/shared_examples/required_nameable'

@@ -132,6 +132,8 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.5)
     cucumber (3.1.2)
       builder (>= 2.1.2)
@@ -198,6 +200,7 @@ GEM
     gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashdiff (1.0.0)
     hashie (3.6.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
@@ -392,6 +395,7 @@ GEM
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     rubyzip (2.0.0)
+    safe_yaml (1.0.5)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -460,6 +464,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.8.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -531,6 +539,7 @@ DEPENDENCIES
   turbolinks (~> 5.2)
   uglifier (>= 4.0)
   web-console (>= 3.3.0)
+  webmock (~> 3.8)
   yard (~> 0.9, >= 0.9.20)
 
 RUBY VERSION
