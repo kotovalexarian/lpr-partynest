@@ -11,6 +11,7 @@ AllCops:
     - 'db/schema.rb'
     - 'lib/tasks/cucumber.rake'
     - 'lib/templates/**/*'
+    - 'node_modules/**/*'
     - 'script/cucumber'
     - 'vendor/**/*'
 

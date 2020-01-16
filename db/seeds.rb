@@ -4,7 +4,7 @@ require 'csv'
 
 def csv_foreach(filename, &block)
   CSV.foreach(
-    Rails.root.join('db', 'data', "#{filename}.csv"),
+    Rails.root.join("db/data/#{filename}.csv"),
     col_sep: '|',
     &block
   )

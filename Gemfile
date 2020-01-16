@@ -4,7 +4,7 @@ ruby '2.7.0'
 
 source 'https://rubygems.org'
 
-git_source(:github) { |s| "https://github.com/#{s}.git" }
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'aws-sdk-s3', require: false
 gem 'bcrypt', '~> 3.1'
@@ -28,7 +28,7 @@ gem 'puma', '~> 4.2'
 gem 'pundit', '~> 2.1'
 gem 'rack', '= 2.2.0', github: 'rack/rack'
 gem 'rack-attack', '~> 6.1'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.0.2', '~> 6.0.2.1'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'recaptcha', '~> 5.1'
 gem 'redis', '~> 4.1'

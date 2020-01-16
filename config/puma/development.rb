@@ -2,8 +2,10 @@
 
 root_dir = File.expand_path '../..', __dir__
 
-workers_count = ENV.fetch('WEB_CONCURRENCY') { 1 }
-threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
+workers_count     = ENV.fetch('RAILS_WEB_CONCURRENCY') { 1 }
+max_threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
+min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
+port_number       = ENV.fetch('PORT') { 3000 }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -19,7 +21,7 @@ workers workers_count
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads threads_count, threads_count
+threads min_threads_count, max_threads_count
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
@@ -31,7 +33,7 @@ threads threads_count, threads_count
 # Specifies the `port` that Puma will listen on to receive requests;
 # default is 3000.
 #
-port ENV.fetch('PORT') { 3000 }
+port port_number
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
