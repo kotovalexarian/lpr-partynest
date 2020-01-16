@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-SCRIPT = File.expand_path(File.join('..', 'script', 'setup'), __dir__).freeze
-
-system SCRIPT
