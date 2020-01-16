@@ -31,26 +31,25 @@ FileUtils.chdir APP_ROOT do
   system! "gem install bundler -v '~> 2.0'"
 
   puts '== Installing gems =='
-  system 'bundle check' or system! 'bundle install'
+  system 'bin/bundle check' or system! 'bin/bundle install'
 
   puts '== Install JavaScript dependencies =='
-  system! 'bundle exec rake yarn:install'
+  system! 'bin/rake yarn:install'
 
   if initial
     puts '== Preparing database =='
-    system! 'bundle exec rails db:setup'
+    system! 'bin/rails db:setup'
   elsif travis
     puts '== Preparing database =='
     system! "psql -U #{postgres_user} -c 'CREATE DATABASE #{postgres_db};'"
-    system! 'bundle exec rails db:setup'
   else
     puts '== Updating database =='
-    system! 'bundle exec rails db:migrate'
+    system! 'bin/rails db:migrate'
   end
 
   puts '== Removing old logs and tempfiles =='
-  system! 'bundle exec rails log:clear tmp:clear'
+  system! 'bin/rails log:clear tmp:clear'
 
   puts '== Restarting application server =='
-  system! 'bundle exec rails restart'
+  system! 'bin/rails restart'
 end
