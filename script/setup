@@ -42,6 +42,7 @@ FileUtils.chdir APP_ROOT do
   elsif travis
     puts '== Preparing database =='
     system! "psql -U #{postgres_user} -c 'CREATE DATABASE #{postgres_db};'"
+    system! 'bundle exec rails db:setup'
   else
     puts '== Updating database =='
     system! 'bundle exec rails db:migrate'
