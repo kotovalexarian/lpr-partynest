@@ -419,7 +419,7 @@ GEM
       rubyzip (>= 1.2.2)
     sentry-raven (2.13.0)
       faraday (>= 0.7.6, < 1.0)
-    shoulda-matchers (4.0.0.rc1)
+    shoulda-matchers (4.2.0)
       activesupport (>= 4.2.0)
     sidekiq (6.0.4)
       connection_pool (>= 2.2.2)
@@ -543,7 +543,7 @@ DEPENDENCIES
   rubocop-rspec (~> 1.36)
   selenium-webdriver (~> 3.14)
   sentry-raven
-  shoulda-matchers (= 4.0.0.rc1)
+  shoulda-matchers (~> 4.2)
   sidekiq (~> 6.0)
   simple_form (~> 5.0)
   simplecov (~> 0.16)

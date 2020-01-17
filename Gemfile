@@ -76,7 +76,7 @@ group :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'pundit-matchers', '~> 1.6'
   gem 'selenium-webdriver', '~> 3.14'
-  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'shoulda-matchers', '~> 4.2'
   gem 'simplecov', '~> 0.16', require: false
   gem 'webmock', '~> 3.8'
 end
