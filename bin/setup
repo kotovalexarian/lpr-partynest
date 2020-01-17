@@ -3,4 +3,4 @@
 
 SCRIPT = File.expand_path(File.join('..', 'script', 'setup'), __dir__).freeze
 
-system SCRIPT, '--initial'
+system SCRIPT
