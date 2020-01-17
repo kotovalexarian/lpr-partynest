@@ -33,6 +33,7 @@ FileUtils.chdir APP_ROOT do
     system! "psql -U #{postgres_user} -c 'CREATE DATABASE #{postgres_db};'"
   end
   system! 'bundle exec rake db:prepare'
+  system! 'bundle exec rake db:prepare RAILS_ENV=test'
 
   puts '== Removing old logs and tempfiles =='
   system! 'bundle exec rake log:clear tmp:clear'
