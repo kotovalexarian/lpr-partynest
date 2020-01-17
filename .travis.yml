@@ -51,7 +51,7 @@ before_install:
   - sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch
   - sudo systemctl restart elasticsearch.service
 
-install: script/setup --travis
+install: script/setup
 
 script: bundle exec rake all
 

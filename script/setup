@@ -20,23 +20,23 @@ FileUtils.chdir APP_ROOT do
   system! 'gem update --system'
 
   puts '== Update Bundler =='
-  system! "gem install bundler -v '~> 2.0'"
+  system! "gem install bundler -v '~> 2.0' --conservative"
 
   puts '== Installing gems =='
-  system 'bin/bundle check' or system! 'bin/bundle install'
+  system 'bundle check' or system! 'bundle install'
 
   puts '== Install JavaScript dependencies =='
-  system! 'bin/rake yarn:install'
+  system! 'bundle exec rake yarn:install'
 
   puts '== Preparing database =='
   if postgres_user && postgres_db
     system! "psql -U #{postgres_user} -c 'CREATE DATABASE #{postgres_db};'"
   end
-  system! 'bin/rails db:prepare'
+  system! 'bundle exec rake db:prepare'
 
   puts '== Removing old logs and tempfiles =='
-  system! 'bin/rails log:clear tmp:clear'
+  system! 'bundle exec rake log:clear tmp:clear'
 
   puts '== Restarting application server =='
-  system! 'bin/rails restart'
+  system! 'bundle exec rake restart'
 end
