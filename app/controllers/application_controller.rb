@@ -36,6 +36,10 @@ private
     request.format.json?
   end
 
+  def verify_captcha(options = {})
+    verify_recaptcha options.reverse_merge timeout: 10
+  end
+
   def render_not_found
     respond_to do |format|
       format.html { render status: :not_found, template: 'errors/not_found' }

@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
 protected
 
   def check_captcha
-    return if verify_recaptcha
+    return if verify_captcha
 
     self.resource = resource_class.new sign_in_params
     render :new

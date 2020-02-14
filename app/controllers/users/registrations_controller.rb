@@ -71,7 +71,7 @@ protected
   end
 
   def check_captcha
-    return if verify_recaptcha
+    return if verify_captcha
 
     self.resource = resource_class.new sign_up_params
     resource.validate
