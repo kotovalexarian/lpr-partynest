@@ -80,15 +80,18 @@ do |(org_unit_kind, codename, name)|
 end
 
 Rails.application.settings(:superuser).tap do |config|
+  account = Account.where(
+    nickname: config[:nickname],
+  ).first_or_create! do |new_account|
+    new_account.public_name = config[:public_name]
+    new_account.biography = config[:biography]
+    new_account.contact_list = ContactList.new
+  end
+
   user = User.where(email: config[:email]).first_or_create! do |new_user|
     new_user.password = config[:password]
     new_user.confirmed_at = Time.zone.now
-    new_user.account = Account.create!(
-      nickname: config[:nickname],
-      public_name: config[:public_name],
-      biography: config[:biography],
-      contact_list: ContactList.new,
-    )
+    new_user.account = account
   end
 
   user.account.update! superuser: true
