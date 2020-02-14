@@ -12,7 +12,7 @@ test:
   db: <%= ENV.fetch('SIDEKIQ_CLIENT_REDIS_DB') { 15 } %>
 
 staging:
-  host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
+  host:     'private-db-redis-lon1-72645-do-user-4455684-0.db.ondigitalocean.com'
   port:     25061
   password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
   db:       10
@@ -22,7 +22,7 @@ staging:
     ca_file:     <%= Rails.root.join 'config', 'certs', 'redis.crt' %>
 
 production:
-  host:     'private-db-redis-ams3-76837-do-user-4455684-0.db.ondigitalocean.com'
+  host:     'private-db-redis-lon1-72645-do-user-4455684-0.db.ondigitalocean.com'
   port:     25061
   password: <%= Rails.application.credentials.sidekiq_client_redis_password %>
   db:       0

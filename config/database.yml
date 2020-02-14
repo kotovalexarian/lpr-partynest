@@ -23,7 +23,7 @@ cucumber:
 
 staging:
   <<: *default
-  host: 'private-db-postgresql-ams3-63609-do-user-4455684-0.db.ondigitalocean.com'
+  host: 'private-db-postgresql-lon1-10864-do-user-4455684-0.db.ondigitalocean.com'
   port: 25060
   database: 'partynest_staging'
   username: 'doadmin'
@@ -31,7 +31,7 @@ staging:
 
 production:
   <<: *default
-  host: 'private-db-postgresql-ams3-63609-do-user-4455684-0.db.ondigitalocean.com'
+  host: 'private-db-postgresql-lon1-10864-do-user-4455684-0.db.ondigitalocean.com'
   port: 25060
   database: 'partynest_production'
   username: 'doadmin'
