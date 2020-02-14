@@ -8,6 +8,7 @@ AllCops:
   DisplayCopNames: true
 
   Exclude:
+    - 'bin/**/*'
     - 'db/schema.rb'
     - 'lib/tasks/cucumber.rake'
     - 'lib/templates/**/*'
