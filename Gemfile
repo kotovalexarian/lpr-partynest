@@ -12,8 +12,6 @@ gem 'bootsnap', '>= 1.4.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise', '~> 4.7'
 gem 'devise-i18n', '~> 1.8'
-gem 'elasticsearch-model', '~> 7.0'
-gem 'elasticsearch-rails', '~> 7.0'
 gem 'font-awesome-sass', '~> 5.5.0'
 gem 'interactor', '~> 3.1'
 gem 'jquery-rails', '~> 4.3'

@@ -1,16 +1,6 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  include Searchable
-
-  settings index: { number_of_shards: 1 } do
-    mapping dynamic: false do
-      indexes :nickname,    analyzer: 'english'
-      indexes :public_name, analyzer: 'russian'
-      indexes :biography,   analyzer: 'russian'
-    end
-  end
-
   ################
   # Associations #
   ################

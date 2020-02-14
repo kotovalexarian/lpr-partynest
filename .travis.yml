@@ -34,22 +34,12 @@ env:
     - RAILS_CACHE_REDIS_DB=1
     - RAILS_CACHE_REDIS_PASSWORD=
 
-    - ELASTICSEARCH_HOST=localhost
-    - ELASTICSEARCH_PORT=9200
-    - ELASTICSEARCH_USER=elastic
-    - ELASTICSEARCH_PASSWORD=changeme
-
 before_install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
   - sudo tar -xvzf geckodriver*
   - sudo chmod +x geckodriver
   - sudo mv geckodriver /usr/local/bin/
   - geckodriver --version
-
-  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.5.1-amd64.deb
-  - sudo dpkg -i --force-confnew elasticsearch-7.5.1-amd64.deb
-  - sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch
-  - sudo systemctl restart elasticsearch.service
 
 install: script/setup
 

@@ -2,18 +2,8 @@
 
 class Person < ApplicationRecord
   include Nameable
-  include Searchable
 
   ACCOUNT_CONNECTION_TOKEN_RE = /\A\w+\z/.freeze
-
-  settings index: { number_of_shards: 1 } do
-    mapping dynamic: false do
-      indexes :first_name,     analyzer: 'russian'
-      indexes :middle_name,    analyzer: 'russian'
-      indexes :last_name,      analyzer: 'russian'
-      indexes :place_of_birth, analyzer: 'russian'
-    end
-  end
 
   ################
   # Associations #

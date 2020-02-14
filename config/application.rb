@@ -17,8 +17,6 @@ require 'sprockets/railtie'
 # you've limited to :test, :development, :staging, or :production.
 Bundler.require(*Rails.groups)
 
-require 'elasticsearch/rails/instrumentation'
-
 require 'csv'
 
 module Partynest
