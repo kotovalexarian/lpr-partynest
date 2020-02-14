@@ -1,21 +1,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch('POSTGRES_POOL') { 5 } %>
-
-unsafe: &unsafe
-  <<: *default
+  pool:     <%= ENV.fetch('POSTGRES_POOL')     { 5           } %>
   host:     <%= ENV.fetch('POSTGRES_HOST')     { 'localhost' } %>
   port:     <%= ENV.fetch('POSTGRES_PORT')     { 5432        } %>
   username: <%= ENV.fetch('POSTGRES_USER')     { 'partynest' } %>
   password: <%= ENV.fetch('POSTGRES_PASSWORD') { 'password'  } %>
 
 development:
-  <<: *unsafe
+  <<: *default
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_development' } %>
 
 test: &test
-  <<: *unsafe
+  <<: *default
   database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_test' } %>
 
 cucumber:
@@ -23,16 +20,8 @@ cucumber:
 
 staging:
   <<: *default
-  host: 'private-db-postgresql-lon1-10864-do-user-4455684-0.db.ondigitalocean.com'
-  port: 25060
-  database: 'partynest_staging'
-  username: 'doadmin'
-  password: <%= Rails.application.credentials.postgres_password %>
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_staging' } %>
 
 production:
   <<: *default
-  host: 'private-db-postgresql-lon1-10864-do-user-4455684-0.db.ondigitalocean.com'
-  port: 25060
-  database: 'partynest_production'
-  username: 'doadmin'
-  password: <%= Rails.application.credentials.postgres_password %>
+  database: <%= ENV.fetch('POSTGRES_DB') { 'partynest_production' } %>
