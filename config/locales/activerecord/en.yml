@@ -5,50 +5,63 @@ en:
         one: Account
         few: Accounts
         many: Accounts
+        other: Accounts
       contact:
         one: Contact
         few: Contacts
         many: Contacts
+        other: Contacts
       contact_network:
         one: Contact network
         few: Contact networks
         many: Contact networks
+        other: Contact networks
       federal_subject:
         one: State
         few: States
         many: States
+        other: States
       org_unit:
         one: Organizational unit
         few: Organizational unit
         many: Organizational units
+        other: Organizational units
       org_unit_kind:
         one: Organizational unit type
         few: Organizational unit types
         many: Organizational unit types
+        other: Organizational unit types
       passport:
         one: Passport
         many: Passports
+        other: Passports
       person:
         one: Person
         few: People
         many: People
+        other: People
       person_comment:
         one: Comment
         many: Comments
+        other: Comments
       relation_status:
         one: Relation status
         few: Relation statuses
         many: Relation statuses
+        other: Relation statuses
       relationship:
         one: Party relation
         many: Party relations
+        other: Party relations
       session:
         one: Session
         few: Sessions
         many: Sessions
+        other: Sessions
       user:
         one: User
         many: Users
+        other: Users
     attributes:
       account:
         id: ID
