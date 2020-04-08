@@ -58,6 +58,7 @@ ru:
         avatar: Аватар
         person: Человек
         timezone: Часовой пояс
+        locale: Язык
       contact:
         id: ID
         contact_network: Сеть контактов

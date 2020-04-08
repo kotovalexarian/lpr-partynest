@@ -71,6 +71,7 @@ en:
         avatar: Avatar
         person: Person
         timezone: Timezone
+        locale: Language
       contact:
         id: ID
         contact_network: Contact network
