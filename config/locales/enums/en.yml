@@ -1,5 +1,8 @@
 en:
   enums:
+    locale:
+      en: English
+      ru: Russian (Русский)
     sex:
       male: Male
       female: Female

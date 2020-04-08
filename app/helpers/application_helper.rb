@@ -13,6 +13,15 @@ module ApplicationHelper
     [*negative_timezones_collection, *positive_timezones_collection].freeze
   end
 
+  def locales_collection
+    Account.locales.keys.map(&:to_sym).map do |item|
+      [
+        translate_enum(:locale, item).freeze,
+        item,
+      ].freeze
+    end.freeze
+  end
+
   def positive_timezones_collection
     0.upto(11).flat_map do |n|
       s = n.to_s.rjust(2, '0')

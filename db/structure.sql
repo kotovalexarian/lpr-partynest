@@ -24,6 +24,16 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
+-- Name: locale; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.locale AS ENUM (
+    'en',
+    'ru'
+);
+
+
+--
 -- Name: person_comment_origin; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -489,6 +499,7 @@ CREATE TABLE public.accounts (
     timezone interval DEFAULT '03:00:00'::interval NOT NULL,
     person_id bigint,
     contact_list_id bigint NOT NULL,
+    locale public.locale DEFAULT 'ru'::public.locale NOT NULL,
     CONSTRAINT biography CHECK (((biography IS NULL) OR public.is_good_big_text(biography))),
     CONSTRAINT nickname CHECK (public.is_nickname((nickname)::text)),
     CONSTRAINT public_name CHECK (((public_name IS NULL) OR public.is_good_small_text((public_name)::text)))
@@ -1977,6 +1988,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191002002101'),
 ('20191002170727'),
 ('20191021060000'),
-('20191021061920');
+('20191021061920'),
+('20200408085219');
 
 

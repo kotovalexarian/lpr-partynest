@@ -8,6 +8,7 @@ FactoryBot.define do
     biography { Faker::Lorem.paragraph }
 
     timezone { "#{[nil, :-].sample}#{rand(1..11).to_s.rjust(2, '0')}:00:00" }
+    locale { :ru }
   end
 
   factory :usual_account, parent: :initial_account do

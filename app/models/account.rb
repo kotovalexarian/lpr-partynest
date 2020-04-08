@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
+  pg_enum :locale, %i[en ru]
+
   ################
   # Associations #
   ################
@@ -41,6 +43,8 @@ class Account < ApplicationRecord
   validates :avatar, allow_nil: true, image: true
 
   validates :timezone, timezone: true
+
+  validates :locale, presence: true
 
   validate :contact_list_corresponds_person
   validate :person_corresponds_contact_list

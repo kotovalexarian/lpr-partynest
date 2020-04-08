@@ -6,6 +6,6 @@ class Settings::AppearancePolicy < ApplicationPolicy
   end
 
   def permitted_attributes_for_update
-    %i[timezone]
+    %i[timezone locale].freeze
   end
 end

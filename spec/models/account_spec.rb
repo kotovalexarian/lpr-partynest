@@ -97,6 +97,10 @@ RSpec.describe Account do
     it { is_expected.not_to allow_value '+01:00:00' }
   end
 
+  describe '#locale' do
+    it { is_expected.to validate_presence_of :locale }
+  end
+
   describe '#nickname' do
     def allow_value(*)
       super.for :nickname
