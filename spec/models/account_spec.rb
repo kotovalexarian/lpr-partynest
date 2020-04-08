@@ -98,7 +98,14 @@ RSpec.describe Account do
   end
 
   describe '#locale' do
+    def allow_value(*)
+      super.for :locale
+    end
+
     it { is_expected.to validate_presence_of :locale }
+
+    it { is_expected.to allow_value :en }
+    it { is_expected.to allow_value :ru }
   end
 
   describe '#nickname' do
