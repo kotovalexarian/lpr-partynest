@@ -16,6 +16,9 @@ en:
         If this was you, you can ignore this alert. If you suspect
         any suspicious activity on your account, please change your password
         and enable two-factor authentication
+  people:
+    rel_root:
+      no_relations: Doesn't have a history of relationships to party.
   staffs:
     people:
       show:

@@ -1,9 +1,13 @@
-<ul>
-  <% Relationship.where(person: person,
-                        parent_rel: nil).each do |relationship| %>
-    <li>
-      <%= render partial: 'people/rel_hierarchy',
-                 locals: { relationship: relationship } %>
-    </li>
-  <% end %>
-</ul>
+<% if Relationship.where(person: person, parent_rel: nil).empty? %>
+  <%= translate '.no_relations' %>
+<% else %>
+  <ul>
+    <% Relationship.where(person: person,
+                          parent_rel: nil).each do |relationship| %>
+      <li>
+        <%= render partial: 'people/rel_hierarchy',
+                   locals: { relationship: relationship } %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
