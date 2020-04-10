@@ -13,55 +13,43 @@
         <dl>
           <dt><%= Person.human_attribute_name :last_name %></dt>
           <dd>
-            <% if @account.person.last_name %>
+            <%= maybe_or_none @account.person.last_name.present? do %>
               <%= truncate @account.person.last_name %>
-            <% else %>
-              <%= none %>
             <% end %>
           </dd>
 
           <dt><%= Person.human_attribute_name :first_name %></dt>
           <dd>
-            <% if @account.person.first_name.present? %>
+            <%= maybe_or_none @account.person.first_name.present? do %>
               <%= truncate @account.person.first_name %>
-            <% else %>
-              <%= none %>
             <% end %>
           </dd>
 
           <dt><%= Person.human_attribute_name :middle_name %></dt>
           <dd>
-            <% if @account.person.middle_name.present? %>
+            <%= maybe_or_none @account.person.middle_name.present? do %>
               <%= truncate @account.person.middle_name %>
-            <% else %>
-              <%= none %>
             <% end %>
           </dd>
 
           <dt><%= Person.human_attribute_name :sex %></dt>
           <dd>
-            <% if @account.person.sex.present? %>
+            <%= maybe_or_none @account.person.sex.present? do %>
               <%= translate_enum :sex, @account.person.sex %>
-            <% else %>
-              <%= none %>
             <% end %>
           </dd>
 
           <dt><%= Person.human_attribute_name :date_of_birth %></dt>
           <dd>
-            <% if @account.person.date_of_birth.present? %>
+            <%= maybe_or_none @account.person.date_of_birth.present? do %>
               <%= localize @account.person.date_of_birth %>
-            <% else %>
-              <%= none %>
             <% end %>
           </dd>
 
           <dt><%= Person.human_attribute_name :place_of_birth %></dt>
           <dd>
-            <% if @account.person.place_of_birth.present? %>
+            <%= maybe_or_none @account.person.place_of_birth.present? do %>
               <%= truncate @account.person.place_of_birth %>
-            <% else %>
-              <%= none %>
             <% end %>
           </dd>
         </dl>

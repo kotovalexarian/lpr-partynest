@@ -61,6 +61,10 @@ module ApplicationHelper
     end
   end
 
+  def maybe_or_none(cond)
+    cond ? yield : none
+  end
+
   def bool_badge(value)
     if value
       tag.span class: 'badge badge-pill badge-success' do
