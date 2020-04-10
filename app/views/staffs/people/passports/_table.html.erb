@@ -28,7 +28,11 @@
         <td><%= passport.number %></td>
         <td><%= passport.unit_code %></td>
         <td><%= passport.date_of_issue %></td>
-        <td></td>
+        <td>
+          <% if policy([:staff, @person, passport]).show? %>
+            <%= open_action [:staff, @person, passport] %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

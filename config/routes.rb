@@ -87,7 +87,7 @@ Rails.application.routes.draw do
 
       resources :passports,
                 controller: 'people/passports',
-                only: :index
+                only: %i[index show]
 
       resource :account_connection_link,
                controller: 'people/account_connection_links',
