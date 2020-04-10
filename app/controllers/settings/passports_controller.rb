@@ -7,6 +7,7 @@ class Settings::PassportsController < ApplicationController
 
   before_action :set_account
   before_action :set_passport, only: :show
+  before_action :new_passport, only: :new
 
   # GET /settings/passports
   def index
@@ -20,6 +21,11 @@ class Settings::PassportsController < ApplicationController
     authorize [:settings, @passport]
   end
 
+  # GET /settings/passports/new
+  def new
+    authorize [:settings, Passport]
+  end
+
 private
 
   def set_account
@@ -28,5 +34,9 @@ private
 
   def set_passport
     @passport = Passport.find params[:id]
+  end
+
+  def new_passport
+    @passport = Passport.new person: @account&.person
   end
 end

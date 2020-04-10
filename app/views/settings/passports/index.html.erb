@@ -5,6 +5,17 @@
     </div>
 
     <div class="col-md-9">
+      <% if policy([:settings, Passport]).new? %>
+        <div class="btn-group mb-3" role="group">
+          <% if policy([:settings, Passport]).new? %>
+            <%= link_to translate(:create),
+                        new_settings_passport_path,
+                        class: 'btn btn-primary',
+                        role: :button %>
+          <% end %>
+        </div>
+      <% end %>
+
       <%= render partial: 'table', locals: { passports: @passports } %>
       <%= pagination @passports %>
     </div>

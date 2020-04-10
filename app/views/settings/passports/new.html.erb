@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mb-4">
+      <%= render partial: 'settings/nav_sidebar', locals: { tab: :passports } %>
+    </div>
+
+    <div class="col-md-9">
+      <%= simple_form_for [:settings, @passport] do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :series %>
+        <%= f.input :number %>
+        <%= f.input :issued_by %>
+        <%= f.input :unit_code %>
+        <%= f.input :date_of_issue %>
+
+        <%= f.input :zip_code %>
+        <%= f.input :town_type %>
+        <%= f.input :town_name %>
+        <%= f.input :settlement_type %>
+        <%= f.input :settlement_name %>
+        <%= f.input :district_type %>
+        <%= f.input :district_name %>
+        <%= f.input :street_type %>
+        <%= f.input :street_name %>
+        <%= f.input :residence_type %>
+        <%= f.input :residence_name %>
+        <%= f.input :building_type %>
+        <%= f.input :building_name %>
+        <%= f.input :apartment_type %>
+        <%= f.input :apartment_name %>
+
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resource :appearance, only: %i[edit update]
     resource :person, only: %i[show new]
     resources :sessions, only: :index
-    resources :passports, only: %i[index show]
+    resources :passports, only: %i[index show new]
 
     resources :contacts, only: %i[index create destroy] do
       resource :security_notification_switch,

@@ -8,4 +8,8 @@ class Settings::PassportPolicy < ApplicationPolicy
   def show?
     account&.person && record.person == account.person
   end
+
+  def create?
+    account&.person
+  end
 end
