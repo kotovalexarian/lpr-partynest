@@ -15,3 +15,5 @@ ru:
   new_sign_in: Произведён вход в ваш аккаунт
   sidekiq: Sidekiq
   since: с
+  contact_public_switch_confirmation: >
+    Вы действительно хотите сделать контакт "%{value}" публичным?

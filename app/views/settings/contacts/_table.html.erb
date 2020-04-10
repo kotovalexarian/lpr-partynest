@@ -21,6 +21,7 @@
     <% contacts.each do |contact| %>
       <tr>
         <td><%= contact.contact_network.name %></td>
+
         <td>
           <% if contact.link.nil? %>
             <%= truncate contact.value %>
@@ -29,6 +30,7 @@
             <i class="fas fa-external-link-alt fa-xs text-muted"></i>
           <% end %>
         </td>
+
         <td>
           <% if policy([
                :settings,
@@ -42,6 +44,7 @@
             <% end %>
           <% end %>
         </td>
+
         <td>
           <% if policy([
                :settings,
@@ -50,11 +53,13 @@
             <%= link_to(
               settings_contact_public_switch_path(contact),
               method: :post,
+              data: { confirm: contact_public_switch_confirmation(contact) },
             ) do %>
               <%= bool_badge contact.show_in_public %>
             <% end %>
           <% end %>
         </td>
+
         <td>
           <% if policy([:settings, contact]).destroy? %>
             <%= link_to(
