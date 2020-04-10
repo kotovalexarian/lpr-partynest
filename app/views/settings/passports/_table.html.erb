@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= Passport.human_attribute_name :series %>
+      </th>
+      <th scope="col">
+        <%= Passport.human_attribute_name :number %>
+      </th>
+      <th scope="col">
+        <%= Passport.human_attribute_name :unit_code %>
+      </th>
+      <th scope="col">
+        <%= Passport.human_attribute_name :date_of_issue %>
+      </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% passports.each do |passport| %>
+      <tr>
+        <td><%= passport.series %></td>
+        <td><%= passport.number %></td>
+        <td><%= passport.unit_code %></td>
+        <td><%= passport.date_of_issue %></td>
+        <td>
+          <% if policy([:settings, passport]).show? %>
+            <%#= open_action [:settings, passport] %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

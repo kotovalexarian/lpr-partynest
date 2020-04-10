@@ -33,6 +33,7 @@ en:
         other: Organizational unit types
       passport:
         one: Passport
+        few: Passports
         many: Passports
         other: Passports
       person:
