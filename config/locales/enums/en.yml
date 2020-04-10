@@ -6,3 +6,11 @@ en:
     sex:
       male: Male
       female: Female
+    person_comment_origin:
+      general_comments: General comment
+      first_contact_date: First contact date
+      latest_contact_date: Latest contact date
+      human_readable_id: Human readable identifier
+      past_experience: Past experience
+      aid_at_2014_elections: Help at 2014 elections
+      aid_at_2015_elections: Help at 2015 elections
