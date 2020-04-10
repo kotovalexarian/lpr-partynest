@@ -31,6 +31,14 @@ class Contact < ApplicationRecord
   validates :send_security_notifications,
             inclusion: { in: [false], unless: :contact_network_communicable? }
 
+  ###########
+  # Methods #
+  ###########
+
+  def link
+    contact_network&.link&.sub('$$', value).freeze
+  end
+
 private
 
   def turn_blanks_into_nils

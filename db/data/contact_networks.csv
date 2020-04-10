@@ -1,18 +1,18 @@
-1  | phone             | Phone
-2  | email             | Email
-3  | telegram_phone    | Telegram (phone)
-4  | telegram_username | Telegram (username)
-5  | telegram_id       | Telegram (id)
-6  | twitter           | Twitter
-7  | facebook          | Facebook
-8  | vkontakte         | VK
-9  | skype             | Skype
-10 | xmpp              | XMPP
-11 | pgp               | PGP
-12 | google_plus       | Google+
-13 | www               | www
-14 | odnoklassniki     | Odnoklassniki
-15 | ostatus           | OStatus
-16 | livejournal       | LiveJournal
-41 | trello_id         | Trello (id)
-61 | trello_username   | Trello (username)
+1  | phone             | Phone               |                        |
+2  | email             | Email               | mailto:$$              |
+3  | telegram_phone    | Telegram (phone)    |                        |
+4  | telegram_username | Telegram (username) | https://t.me/$$        |
+5  | telegram_id       | Telegram (id)       |                        |
+6  | twitter           | Twitter             | https://twitter.com/$$ |
+7  | facebook          | Facebook            | https://fb.com/$$      |
+8  | vkontakte         | VK                  | https://vk.com/$$      |
+9  | skype             | Skype               |                        |
+10 | xmpp              | XMPP                |                        |
+11 | pgp               | PGP                 |                        |
+12 | google_plus       | Google+             |                        |
+13 | www               | www                 | $$                     |
+14 | odnoklassniki     | Odnoklassniki       |                        |
+15 | ostatus           | OStatus             |                        |
+16 | livejournal       | LiveJournal         |                        |
+41 | trello_id         | Trello (id)         |                        |
+61 | trello_username   | Trello (username)   | https://trello.com/$$  |

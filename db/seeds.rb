@@ -29,14 +29,16 @@ do |(id, english_name, native_name, number, timezone, centre)|
 end
 
 csv_foreach :contact_networks \
-do |(id, codename, name)|
+do |(id, codename, name, link)|
   id = Integer(id.strip)
   codename.strip!
   name.strip!
+  link = link.strip.presence
 
   ContactNetwork.where(id: id).first_or_create! do |new_contact_network|
     new_contact_network.codename = codename
     new_contact_network.name = name
+    new_contact_network.link = link
   end
 end
 

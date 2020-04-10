@@ -645,6 +645,7 @@ CREATE TABLE public.contact_networks (
     updated_at timestamp(6) without time zone NOT NULL,
     codename character varying NOT NULL,
     name character varying NOT NULL,
+    link character varying,
     CONSTRAINT codename CHECK (public.is_codename((codename)::text)),
     CONSTRAINT name CHECK (public.is_good_small_text((name)::text))
 );
@@ -1989,6 +1990,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191002170727'),
 ('20191021060000'),
 ('20191021061920'),
-('20200408085219');
+('20200408085219'),
+('20200410021628');
 
 

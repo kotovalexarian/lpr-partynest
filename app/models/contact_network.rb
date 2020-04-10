@@ -15,6 +15,12 @@ class ContactNetwork < ApplicationRecord
 
   validates :name, good_small_text: true, uniqueness: true
 
+  validates :link,
+            allow_nil: true,
+            allow_blank: false,
+            presence: true,
+            format: { with: /\A[^\s]+\z/ }
+
   ###########
   # Methods #
   ###########

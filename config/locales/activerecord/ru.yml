@@ -64,11 +64,13 @@ ru:
         contact_network: Сеть контактов
         value: Значение
         send_security_notifications: Уведомления безопасности
+        link: Ссылка
       contact_network:
         id: ID
         codename: Кодовое имя
         contacts: Контакты
         name: Название
+        link: Ссылка
       federal_subject:
         id: ID
         english_name: Название

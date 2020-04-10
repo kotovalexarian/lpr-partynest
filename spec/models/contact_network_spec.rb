@@ -77,6 +77,23 @@ RSpec.describe ContactNetwork do
     it { is_expected.not_to allow_value "Foo\n" }
   end
 
+  describe '#link' do
+    def allow_value(*)
+      super.for :link
+    end
+
+    it { is_expected.to     allow_value nil }
+    it { is_expected.not_to allow_value '' }
+    it { is_expected.not_to allow_value ' ' }
+
+    it { is_expected.to allow_value 'mailto:$$' }
+    it { is_expected.to allow_value 'https://t.me/$$' }
+
+    it { is_expected.not_to allow_value ' mailto:$$' }
+    it { is_expected.not_to allow_value 'mailto:$$ ' }
+    it { is_expected.not_to allow_value ' mailto:$$ ' }
+  end
+
   describe '#communicable?' do
     specify do
       expect(subject.communicable?).to equal false

@@ -8,6 +8,9 @@
         <%= ContactNetwork.human_attribute_name :name %>
       </th>
       <th scope="col">
+        <%= ContactNetwork.human_attribute_name :link %>
+      </th>
+      <th scope="col">
         <%= ContactNetwork.human_attribute_name :contacts %>
       </th>
       <th scope="col"></th>
@@ -19,6 +22,7 @@
       <tr>
         <td scope="row"><%= contact_network.codename %></td>
         <td><%= contact_network.name %></td>
+        <td><%= contact_network.link %></td>
         <td><%= contact_network.contacts.count %></td>
         <td></td>
       </tr>

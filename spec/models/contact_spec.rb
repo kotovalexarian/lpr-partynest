@@ -114,4 +114,30 @@ RSpec.describe Contact do
       end
     end
   end
+
+  describe '#link' do
+    context 'for email' do
+      subject { create :email_contact }
+
+      specify do
+        expect(subject.link).to be_instance_of String
+      end
+
+      specify do
+        expect(subject.link).to be_frozen
+      end
+
+      specify do
+        expect(subject.link).to eq "mailto:#{subject.value}"
+      end
+    end
+
+    context 'for phone' do
+      subject { create :phone_contact }
+
+      specify do
+        expect(subject.link).to equal nil
+      end
+    end
+  end
 end
