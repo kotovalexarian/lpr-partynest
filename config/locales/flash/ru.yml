@@ -4,5 +4,9 @@ ru:
       update: 'Настройки внешнего вида успешно изменены.'
     settings/contacts:
       destroy: 'Контакт "%{value}" успешно удалён.'
+    settings/contacts/public_switches:
+      create:
+        true: 'Контакт "%{value}" сделан публичным.'
+        false: 'Контакт "%{value}" сделан приватным.'
     settings/profiles:
       update: 'Публичный профиль успешно изменён.'

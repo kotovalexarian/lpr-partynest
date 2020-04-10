@@ -10,7 +10,13 @@ class Settings::Contacts::PublicSwitchesController < ApplicationController
     @contact.show_in_public = !@contact.show_in_public
     @contact.save!
 
-    redirect_to settings_contacts_url
+    redirect_to(
+      settings_contacts_url,
+      notice: translate_flash(
+        @contact.show_in_public,
+        value: @contact.value,
+      ),
+    )
   end
 
 private

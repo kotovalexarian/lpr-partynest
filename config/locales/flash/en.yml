@@ -4,5 +4,9 @@ en:
       update: 'Appearance settings was successfully updated.'
     settings/contacts:
       destroy: 'Contact "%{value}" was successfully destroyed.'
+    settings/contacts/public_switches:
+      create:
+        true: 'Contact "%{value}" was made public.'
+        false: 'Contact "%{value}" was made private.'
     settings/profiles:
       update: 'Public profile was successfully updated.'
