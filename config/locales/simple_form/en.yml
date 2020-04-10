@@ -11,6 +11,10 @@ en:
     error_notification:
       default_message: 'Please review the problems below:'
     options:
+      passport:
+        sex:
+          male: Male
+          female: Female
       person:
         sex:
           male: Male

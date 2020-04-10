@@ -6,8 +6,9 @@ class Settings::PassportsController < ApplicationController
   before_action :skip_policy_scope, only: :index
 
   before_action :set_account
-  before_action :set_passport, only: :show
-  before_action :new_passport, only: :new
+  before_action :set_passport,   only: :show
+  before_action :new_passport,   only: :new
+  before_action :build_passport, only: :create
 
   # GET /settings/passports
   def index
@@ -26,6 +27,15 @@ class Settings::PassportsController < ApplicationController
     authorize [:settings, Passport]
   end
 
+  # POST /settings/passports
+  def create
+    authorize [:settings, @passport]
+
+    return render :new unless @passport.save
+
+    redirect_to [:settings, @passport]
+  end
+
 private
 
   def set_account
@@ -38,5 +48,10 @@ private
 
   def new_passport
     @passport = Passport.new person: @account&.person
+  end
+
+  def build_passport
+    @passport = Passport.new permitted_attributes [:settings, Passport]
+    @passport.person = @account&.person
   end
 end

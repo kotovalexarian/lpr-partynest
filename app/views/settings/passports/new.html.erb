@@ -8,6 +8,13 @@
       <%= simple_form_for [:settings, @passport] do |f| %>
         <%= f.error_notification %>
 
+        <%= f.input :last_name %>
+        <%= f.input :first_name %>
+        <%= f.input :middle_name %>
+        <%= f.input :sex, collection: Passport.sexes.keys.map(&:to_sym) %>
+        <%= f.input :date_of_birth, start_year: 1900, end_year: Time.zone.now.year %>
+        <%= f.input :place_of_birth %>
+
         <%= f.input :series %>
         <%= f.input :number %>
         <%= f.input :issued_by %>
