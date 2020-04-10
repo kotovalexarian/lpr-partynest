@@ -14,15 +14,15 @@
     edit_settings_appearance_path,
   ],
   person: [
-    policy(%i[settings person]).show?,
+    policy([:settings, Person]).show?,
     settings_person_path,
   ],
   contacts: [
-    policy(%i[settings contact]).index?,
+    policy([:settings, Contact]).index?,
     settings_contacts_path,
   ],
   sessions: [
-    policy(%i[settings session]).index?,
+    policy([:settings, Session]).index?,
     settings_sessions_path,
   ],
 ) %>
