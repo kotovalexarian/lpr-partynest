@@ -6,6 +6,24 @@
 
     <div class="col-md-4">
       <dl>
+        <dt><%= Passport.human_attribute_name :last_name %></dt>
+        <dd><%= @passport.last_name %></dd>
+
+        <dt><%= Passport.human_attribute_name :first_name %></dt>
+        <dd><%= @passport.first_name %></dd>
+
+        <dt><%= Passport.human_attribute_name :middle_name %></dt>
+        <dd><%= @passport.middle_name %></dd>
+
+        <dt><%= Passport.human_attribute_name :sex %></dt>
+        <dd><%= translate_enum :sex, @passport.sex %></dd>
+
+        <dt><%= Passport.human_attribute_name :date_of_birth %></dt>
+        <dd><%= localize @passport.date_of_birth %></dd>
+
+        <dt><%= Passport.human_attribute_name :place_of_birth %></dt>
+        <dd><%= @passport.place_of_birth %></dd>
+
         <dt><%= Passport.human_attribute_name :series %></dt>
         <dd><%= @passport.series %></dd>
 
