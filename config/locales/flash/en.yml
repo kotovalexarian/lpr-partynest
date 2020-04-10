@@ -8,5 +8,9 @@ en:
       create:
         true: 'Contact "%{value}" was made public.'
         false: 'Contact "%{value}" was made private.'
+    settings/contacts/security_notification_switches:
+      create:
+        true: 'Contact "%{value}" was subscribed to security notifications.'
+        false: 'Contact "%{value}" was unsubscribed from security notifications.'
     settings/profiles:
       update: 'Public profile was successfully updated.'

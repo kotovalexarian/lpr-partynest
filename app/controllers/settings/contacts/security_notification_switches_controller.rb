@@ -11,7 +11,13 @@ class Settings::Contacts::SecurityNotificationSwitchesController \
     @contact.send_security_notifications = !@contact.send_security_notifications
     @contact.save!
 
-    redirect_to settings_contacts_url
+    redirect_to(
+      settings_contacts_url,
+      notice: translate_flash(
+        @contact.send_security_notifications,
+        value: @contact.value,
+      ),
+    )
   end
 
 private

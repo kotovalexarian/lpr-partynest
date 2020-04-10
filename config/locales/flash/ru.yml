@@ -8,5 +8,9 @@ ru:
       create:
         true: 'Контакт "%{value}" сделан публичным.'
         false: 'Контакт "%{value}" сделан приватным.'
+    settings/contacts/security_notification_switches:
+      create:
+        true: 'Контакт "%{value}" подписан на уведомления безопасности.'
+        false: 'Контакт "%{value}" отписан от уведомлений безопасности.'
     settings/profiles:
       update: 'Публичный профиль успешно изменён.'
