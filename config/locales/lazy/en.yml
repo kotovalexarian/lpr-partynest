@@ -19,6 +19,12 @@ en:
   people:
     rel_root:
       no_relations: Doesn't have a history of relationships to party.
+  settings:
+    people:
+      show:
+        no_person: >
+          Person is not linked to your account. To link it tell with secretary
+          of managing department which have accepted you to the party.
   staffs:
     people:
       show:
@@ -29,3 +35,8 @@ en:
           link_to_connect_account: Link to connect account
           generate: Generate
           destroy: Destroy
+          description: >
+            Generate link, which man can link his account to this person with.
+            This link is intended to give it to this man only. If the link
+            already exists then new link will replace the old one, the old one
+            will stop working.
