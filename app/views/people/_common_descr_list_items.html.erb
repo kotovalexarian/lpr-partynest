@@ -1,0 +1,41 @@
+<dt><%= Person.human_attribute_name :last_name %></dt>
+<dd>
+  <%= maybe_or_none person.last_name.present? do %>
+    <%= truncate person.last_name %>
+  <% end %>
+</dd>
+
+<dt><%= Person.human_attribute_name :first_name %></dt>
+<dd>
+  <%= maybe_or_none person.first_name.present? do %>
+    <%= truncate person.first_name %>
+  <% end %>
+</dd>
+
+<dt><%= Person.human_attribute_name :middle_name %></dt>
+<dd>
+  <%= maybe_or_none person.middle_name.present? do %>
+    <%= truncate person.middle_name %>
+  <% end %>
+</dd>
+
+<dt><%= Person.human_attribute_name :sex %></dt>
+<dd>
+  <%= maybe_or_none person.sex.present? do %>
+    <%= translate_enum :sex, person.sex %>
+  <% end %>
+</dd>
+
+<dt><%= Person.human_attribute_name :date_of_birth %></dt>
+<dd>
+  <%= maybe_or_none person.date_of_birth.present? do %>
+    <%= localize person.date_of_birth %>
+  <% end %>
+</dd>
+
+<dt><%= Person.human_attribute_name :place_of_birth %></dt>
+<dd>
+  <%= maybe_or_none person.place_of_birth.present? do %>
+    <%= truncate person.place_of_birth %>
+  <% end %>
+</dd>

@@ -16,7 +16,7 @@
       <% end %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-8">
       <dl>
         <dt><%= Person.human_attribute_name :account %></dt>
         <dd>
@@ -36,27 +36,8 @@
           <% end %>
         </dd>
 
-        <dt><%= Person.human_attribute_name :last_name %></dt>
-        <dd><%= truncate @person.last_name %></dd>
-
-        <dt><%= Person.human_attribute_name :first_name %></dt>
-        <dd><%= truncate @person.first_name %></dd>
-
-        <dt><%= Person.human_attribute_name :middle_name %></dt>
-        <dd><%= truncate @person.middle_name %></dd>
-      </dl>
-    </div>
-
-    <div class="col-md-4">
-      <dl>
-        <dt><%= Person.human_attribute_name :sex %></dt>
-        <dd><%= translate_enum :sex, @person.sex if @person.sex %></dd>
-
-        <dt><%= Person.human_attribute_name :date_of_birth %></dt>
-        <dd><%= localize @person.date_of_birth if @person.date_of_birth %></dd>
-
-        <dt><%= Person.human_attribute_name :place_of_birth %></dt>
-        <dd><%= truncate @person.place_of_birth if @person.place_of_birth %></dd>
+        <%= render partial: 'people/common_descr_list_items',
+                   locals: { person: @person } %>
       </dl>
     </div>
   </div>
