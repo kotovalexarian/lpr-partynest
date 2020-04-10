@@ -26,7 +26,7 @@
         <td><%= passport.date_of_issue %></td>
         <td>
           <% if policy([:settings, passport]).show? %>
-            <%#= open_action [:settings, passport] %>
+            <%= open_action [:settings, passport] %>
           <% end %>
         </td>
       </tr>
