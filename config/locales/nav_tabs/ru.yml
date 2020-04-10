@@ -1,5 +1,8 @@
 ru:
   nav_tabs:
+    account:
+      overview: Обзор
+      contacts: Контакты
     person:
       overview: Обзор
       person_comments: Комментарии

@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        <%= Contact.human_attribute_name :contact_network %>
+      </th>
+      <th scope="col">
+        <%= Contact.human_attribute_name :value %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.contact_network.name %></td>
+        <td>
+          <% if contact.link.nil? %>
+            <%= truncate contact.value %>
+          <% else %>
+            <%= link_to truncate(contact.value), contact.link, target: :_blank %>
+            <i class="fas fa-external-link-alt fa-xs text-muted"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

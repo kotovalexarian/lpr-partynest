@@ -1,0 +1,14 @@
+<div class="mb-3">
+  <%= nav_tabs(
+    :account,
+    tab,
+    overview: [
+      policy([:staff, account]).show?,
+      [:staff, account],
+    ],
+    contacts: [
+      policy([:staff, Account, Contact]).index?,
+      staff_account_contacts_path(account),
+    ],
+  ) %>
+</div>

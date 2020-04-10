@@ -5,6 +5,9 @@
     @account.nickname,
   ) %>
 
+  <%= render partial: 'nav_tabs',
+             locals: { account: @account, tab: :overview } %>
+
   <% if @account.superuser? %>
     <div>
       <span class="badge badge-primary">

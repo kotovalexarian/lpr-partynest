@@ -1,0 +1,14 @@
+<div class="container">
+  <%= nav_breadcrumb(
+    [translate(:staff_services), staff_root_path],
+    [Account.model_name.human(count: 0), staff_accounts_path],
+    [@account.nickname, [:staff, @account]],
+    Contact.model_name.human(count: 0),
+  ) %>
+
+  <%= render partial: 'staffs/accounts/nav_tabs',
+             locals: { account: @account, tab: :contacts } %>
+
+  <%= render partial: 'table', locals: { contacts: @contacts } %>
+  <%= pagination @contacts %>
+</div>

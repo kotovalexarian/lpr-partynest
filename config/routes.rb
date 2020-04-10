@@ -57,7 +57,11 @@ Rails.application.routes.draw do
 
     get '/sidekiq', to: redirect('/', status: 307), as: :forbidden_sidekiq
 
-    resources :accounts, param: :nickname, only: %i[index show]
+    resources :accounts, param: :nickname, only: %i[index show] do
+      resources :contacts,
+                controller: 'accounts/contacts',
+                only: :index
+    end
 
     resources :contact_networks, only: :index
 

@@ -1,5 +1,8 @@
 en:
   nav_tabs:
+    account:
+      overview: Overview
+      contacts: Contacts
     person:
       overview: Overview
       person_comments: Comments
