@@ -15,7 +15,12 @@ class Settings::ContactsController < ApplicationController
   def index
     authorize [:settings, Contact]
 
-    @contacts = @contact_list.contacts.page(active_page)
+    @contacts =
+      @contact_list
+      .contacts
+      .includes(:contact_network)
+      .order('contact_networks.name', :value)
+      .page(active_page)
   end
 
   # POST /settings/contacts
