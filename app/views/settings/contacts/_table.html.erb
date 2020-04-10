@@ -10,6 +10,9 @@
       <th scope="col">
         <%= Contact.human_attribute_name :send_security_notifications %>
       </th>
+      <th scope="col">
+        <%= Contact.human_attribute_name :show_in_public %>
+      </th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -36,6 +39,19 @@
               method: :post,
             ) do %>
               <%= bool_badge contact.send_security_notifications %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if policy([
+               :settings,
+               ContactPublicSwitch.new(contact),
+          ]).create? %>
+            <%= link_to(
+              settings_contact_public_switch_path(contact),
+              method: :post,
+            ) do %>
+              <%= bool_badge contact.show_in_public %>
             <% end %>
           <% end %>
         </td>

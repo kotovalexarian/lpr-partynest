@@ -64,6 +64,7 @@ ru:
         contact_network: Сеть контактов
         value: Значение
         send_security_notifications: Уведомления безопасности
+        show_in_public: Публичный
         link: Ссылка
       contact_network:
         id: ID

@@ -682,6 +682,7 @@ CREATE TABLE public.contacts (
     contact_network_id bigint NOT NULL,
     value character varying NOT NULL,
     send_security_notifications boolean DEFAULT false NOT NULL,
+    show_in_public boolean DEFAULT false NOT NULL,
     CONSTRAINT value CHECK (public.is_good_small_text((value)::text))
 );
 
@@ -1991,6 +1992,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191021060000'),
 ('20191021061920'),
 ('20200408085219'),
-('20200410021628');
+('20200410021628'),
+('20200410043002');
 
 

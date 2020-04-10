@@ -40,6 +40,10 @@ Rails.application.routes.draw do
       resource :security_notification_switch,
                controller: 'contacts/security_notification_switches',
                only: :create
+
+      resource :public_switch,
+               controller: 'contacts/public_switches',
+               only: :create
     end
   end
 
