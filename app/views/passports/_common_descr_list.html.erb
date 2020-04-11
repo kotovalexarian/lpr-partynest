@@ -1,34 +1,78 @@
 <dl>
   <dt><%= Passport.human_attribute_name :last_name %></dt>
-  <dd><%= passport.last_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.last_name.present? do %>
+      <%= truncate passport.last_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :first_name %></dt>
-  <dd><%= passport.first_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.first_name.present? do %>
+      <%= truncate passport.first_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :middle_name %></dt>
-  <dd><%= passport.middle_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.middle_name.present? do %>
+      <%= truncate passport.middle_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :sex %></dt>
-  <dd><%= translate_enum :sex, passport.sex %></dd>
+  <dd>
+    <%= maybe_or_none passport.sex.present? do %>
+      <%= translate_enum :sex, passport.sex %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :date_of_birth %></dt>
-  <dd><%= localize passport.date_of_birth %></dd>
+  <dd>
+    <%= maybe_or_none passport.date_of_birth.present? do %>
+      <%= localize passport.date_of_birth %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :place_of_birth %></dt>
-  <dd><%= passport.place_of_birth %></dd>
+  <dd>
+    <%= maybe_or_none passport.place_of_birth.present? do %>
+      <%= truncate passport.place_of_birth %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :series %></dt>
-  <dd><%= passport.series %></dd>
+  <dd>
+    <%= maybe_or_none passport.series.present? do %>
+      <%= passport.series %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :number %></dt>
-  <dd><%= passport.number %></dd>
+  <dd>
+    <%= maybe_or_none passport.number.present? do %>
+      <%= passport.number %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :issued_by %></dt>
-  <dd><%= passport.issued_by %></dd>
+  <dd>
+    <%= maybe_or_none passport.issued_by.present? do %>
+      <%= truncate passport.issued_by %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :unit_code %></dt>
-  <dd><%= passport.unit_code %></dd>
+  <dd>
+    <%= maybe_or_none passport.unit_code.present? do %>
+      <%= truncate passport.unit_code %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :date_of_issue %></dt>
-  <dd><%= localize passport.date_of_issue %></dd>
+  <dd>
+    <%= maybe_or_none passport.date_of_issue.present? do %>
+      <%= localize passport.date_of_issue %>
+    <% end %>
+  </dd>
 </dl>

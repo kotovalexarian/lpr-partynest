@@ -12,47 +12,107 @@
   </dd>
 
   <dt><%= Passport.human_attribute_name :zip_code %></dt>
-  <dd><%= passport.zip_code %></dd>
+  <dd>
+    <%= maybe_or_none passport.zip_code.present? do %>
+      <%= truncate passport.zip_code %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :town_type %></dt>
-  <dd><%= passport.town_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.town_type.present? do %>
+      <%= truncate passport.town_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :town_name %></dt>
-  <dd><%= passport.town_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.town_name.present? do %>
+      <%= truncate passport.town_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :settlement_type %></dt>
-  <dd><%= passport.settlement_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.settlement_type.present? do %>
+      <%= truncate passport.settlement_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :settlement_name %></dt>
-  <dd><%= passport.settlement_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.settlement_name.present? do %>
+      <%= truncate passport.settlement_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :district_type %></dt>
-  <dd><%= passport.district_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.district_type.present? do %>
+      <%= truncate passport.district_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :district_name %></dt>
-  <dd><%= passport.district_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.district_name.present? do %>
+      <%= truncate passport.district_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :street_type %></dt>
-  <dd><%= passport.street_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.street_type.present? do %>
+      <%= truncate passport.street_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :street_name %></dt>
-  <dd><%= passport.street_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.street_name.present? do %>
+      <%= truncate passport.street_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :residence_type %></dt>
-  <dd><%= passport.residence_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.residence_type.present? do %>
+      <%= truncate passport.residence_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :residence_name %></dt>
-  <dd><%= passport.residence_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.residence_name.present? do %>
+      <%= truncate passport.residence_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :building_type %></dt>
-  <dd><%= passport.building_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.building_type.present? do %>
+      <%= truncate passport.building_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :building_name %></dt>
-  <dd><%= passport.building_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.building_name.present? do %>
+      <%= truncate passport.building_name %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :apartment_type %></dt>
-  <dd><%= passport.apartment_type %></dd>
+  <dd>
+    <%= maybe_or_none passport.apartment_type.present? do %>
+      <%= truncate passport.apartment_type %>
+    <% end %>
+  </dd>
 
   <dt><%= Passport.human_attribute_name :apartment_name %></dt>
-  <dd><%= passport.apartment_name %></dd>
+  <dd>
+    <%= maybe_or_none passport.apartment_name.present? do %>
+      <%= truncate passport.apartment_name %>
+    <% end %>
+  </dd>
 </dl>
