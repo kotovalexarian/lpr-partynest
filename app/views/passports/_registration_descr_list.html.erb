@@ -1,4 +1,16 @@
 <dl>
+  <dt><%= Passport.human_attribute_name :federal_subject %></dt>
+  <dd>
+    <%= maybe_or_none passport.federal_subject do %>
+      <% if policy(passport.federal_subject).show? %>
+        <%= link_to passport.federal_subject.display_name,
+                    passport.federal_subject %>
+      <% else %>
+        <%= passport.federal_subject.display_name %>
+      <% end %>
+    <% end %>
+  </dd>
+
   <dt><%= Passport.human_attribute_name :zip_code %></dt>
   <dd><%= passport.zip_code %></dd>
 
