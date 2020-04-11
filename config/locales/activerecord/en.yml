@@ -109,6 +109,8 @@ en:
         parent_kind: Parent
       passport:
         id: ID
+        person: Person
+        federal_subject: State
         first_name: First name
         middle_name: Middle name
         last_name: Last name
@@ -120,6 +122,21 @@ en:
         issued_by: Issued by
         unit_code: Unit code
         date_of_issue: Date of issue
+        zip_code: ZIP code
+        town_type: Town (type)
+        town_name: Town (name)
+        settlement_type: Settlement (type)
+        settlement_name: Settlement (name)
+        district_type: District (type)
+        district_name: District (name)
+        street_type: Street (type)
+        street_name: Street (name)
+        residence_type: Residence (type)
+        residence_name: Residence (name)
+        building_type: Building (type)
+        building_name: Building (name)
+        apartment_type: Apartment (type)
+        apartment_name: Apartment (name)
       person:
         id: ID
         account: Account

@@ -96,6 +96,8 @@ ru:
         parent_kind: Родитель
       passport:
         id: ID
+        person: Личность
+        federal_subject: Субъект федерации
         first_name: Имя
         middle_name: Отчество
         last_name: Фамилия
@@ -107,6 +109,21 @@ ru:
         issued_by: Кем выдан
         unit_code: Код подразделения
         date_of_issue: Дата выдачи
+        zip_code: Индекс
+        town_type: Город (тип)
+        town_name: Город (название)
+        settlement_type: Поселение (тип)
+        settlement_name: Поселение (название)
+        district_type: Район (тип)
+        district_name: Район (название)
+        street_type: Улица (тип)
+        street_name: Улица (название)
+        residence_type: Резиденция (тип)
+        residence_name: Резиденция (название)
+        building_type: Здание (тип)
+        building_name: Здание (название)
+        apartment_type: Квартира (тип)
+        apartment_name: Квартира (название)
       person:
         id: ID
         account: Аккаунт
