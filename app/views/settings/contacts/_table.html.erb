@@ -26,7 +26,10 @@
           <% if contact.link.nil? %>
             <%= truncate contact.value %>
           <% else %>
-            <%= link_to truncate(contact.value), contact.link, target: :_blank %>
+            <%= link_to truncate(contact.value),
+                        contact.link,
+                        target: :_blank,
+                        rel: 'noopener noreferrer' %>
             <i class="fas fa-external-link-alt fa-xs text-muted"></i>
           <% end %>
         </td>
