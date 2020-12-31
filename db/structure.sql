@@ -10,20 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: locale; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -482,7 +468,7 @@ $$;
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: accounts; Type: TABLE; Schema: public; Owner: -
@@ -1763,49 +1749,49 @@ CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unl
 -- Name: org_units add_func_validate_org_unit_resource; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER add_func_validate_org_unit_resource BEFORE INSERT OR UPDATE ON public.org_units FOR EACH ROW EXECUTE PROCEDURE public.add_func_validate_org_unit_resource();
+CREATE TRIGGER add_func_validate_org_unit_resource BEFORE INSERT OR UPDATE ON public.org_units FOR EACH ROW EXECUTE FUNCTION public.add_func_validate_org_unit_resource();
 
 
 --
 -- Name: accounts ensure_contact_list_id_matches_related_person; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER ensure_contact_list_id_matches_related_person BEFORE INSERT OR UPDATE OF person_id, contact_list_id ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_contact_list_id_matches_related_person();
+CREATE TRIGGER ensure_contact_list_id_matches_related_person BEFORE INSERT OR UPDATE OF person_id, contact_list_id ON public.accounts FOR EACH ROW EXECUTE FUNCTION public.ensure_contact_list_id_matches_related_person();
 
 
 --
 -- Name: people ensure_contact_list_id_remains_unchanged; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER ensure_contact_list_id_remains_unchanged BEFORE UPDATE OF contact_list_id ON public.people FOR EACH ROW EXECUTE PROCEDURE public.ensure_contact_list_id_remains_unchanged();
+CREATE TRIGGER ensure_contact_list_id_remains_unchanged BEFORE UPDATE OF contact_list_id ON public.people FOR EACH ROW EXECUTE FUNCTION public.ensure_contact_list_id_remains_unchanged();
 
 
 --
 -- Name: accounts ensure_superuser_has_related_user; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON public.accounts FOR EACH ROW EXECUTE PROCEDURE public.ensure_superuser_has_related_user();
+CREATE TRIGGER ensure_superuser_has_related_user BEFORE INSERT OR UPDATE ON public.accounts FOR EACH ROW EXECUTE FUNCTION public.ensure_superuser_has_related_user();
 
 
 --
 -- Name: org_unit_kinds validate_hierarchy; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.org_unit_kinds FOR EACH ROW EXECUTE PROCEDURE public.validate_org_unit_kind_hierarchy();
+CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.org_unit_kinds FOR EACH ROW EXECUTE FUNCTION public.validate_org_unit_kind_hierarchy();
 
 
 --
 -- Name: org_units validate_hierarchy; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.org_units FOR EACH ROW EXECUTE PROCEDURE public.validate_org_unit_hierarchy();
+CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.org_units FOR EACH ROW EXECUTE FUNCTION public.validate_org_unit_hierarchy();
 
 
 --
 -- Name: relationships validate_hierarchy; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.relationships FOR EACH ROW EXECUTE PROCEDURE public.validate_relationship_hierarchy();
+CREATE TRIGGER validate_hierarchy BEFORE INSERT OR UPDATE ON public.relationships FOR EACH ROW EXECUTE FUNCTION public.validate_relationship_hierarchy();
 
 
 --
